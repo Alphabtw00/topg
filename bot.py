@@ -1,0 +1,788 @@
+import os
+import re
+import base58
+import discord
+import aiohttp
+import logging
+import asyncio
+import sys
+import psutil
+from functools import lru_cache
+from typing import Set
+from datetime import datetime
+from dotenv import load_dotenv
+from urllib.parse import quote
+from cachetools import TTLCache, cached
+from discord.ext import commands
+from discord import app_commands
+
+# Logging configuration
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s - %(levelname)s - %(message)s",
+    datefmt="%Y-%m-%d %H:%M:%S"
+)
+logger = logging.getLogger(__name__)
+
+
+# # Add file handler for persistent logs
+# try:
+#     os.makedirs('logs', exist_ok=True)
+#     file_handler = logging.FileHandler(f'logs/bot_{datetime.now().strftime("%Y%m%d")}.log')
+#     file_handler.setLevel(logging.WARNING)
+#     file_handler.setFormatter(logging.Formatter("%(asctime)s - %(levelname)s - %(message)s"))
+#     logger.addHandler(file_handler)
+# except Exception as e:
+#     logger.error(f"Failed to setup log file: {e}")
+
+load_dotenv()
+
+# config
+TOKEN = os.getenv("DISCORD_BOT_TOKEN")
+if not TOKEN:
+    logger.critical("DISCORD_BOT_TOKEN not found in environment")
+    exit(1)
+TARGET_CHANNEL_IDS = {int(id.strip()) for id in os.getenv("TARGET_CHANNEL_IDS", "").split(",") if id.strip().isdigit()}
+ALLOWED_USER_IDS = {int(uid.strip()) for uid in os.getenv("ALLOWED_USER_IDS", "").split(",") if uid.strip().isdigit()}
+BASE_URL = "https://api.dexscreener.com"
+TWITTER_SEARCH_URL = "https://x.com/search?q={query}&f=live"
+TRADING_PLATFORMS = {
+    "Axiom": "https://axiom.trade/meme/{pair}",
+    "Photon": "https://photon-sol.tinyastro.io/en/lp/{pair}",
+    "Neo BullX": "https://neo.bullx.io/terminal?chainId=1399811149&address={address}",
+}
+ADDRESS_REGEX = re.compile(r"\b[1-9A-HJ-NP-Za-km-z]{32,44}\b")
+TICKER_REGEX = re.compile(r"\$([^\s]{1,10})")
+ADDRESS_CACHE = TTLCache(maxsize=10_000, ttl=300)
+MAX_ERROR_THRESHOLD = 50
+error_counts = {}
+MAX_CONCURRENT_PROCESSES = 5
+processing_semaphore = asyncio.Semaphore(MAX_CONCURRENT_PROCESSES)
+PREFIX_COMMANDS = {}
+
+
+
+# Initialize bot with optimized intents
+intents = discord.Intents.default()
+intents.message_content = True
+# Disable unnecessary intents
+intents.typing = False
+intents.presences = False
+intents.integrations = False
+
+
+        
+
+
+
+
+#classes
+
+class CryptoBot(commands.Bot):
+    __slots__ = ("http_session", "startup_time", "processed_count")
+    
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.http_session = None
+        self.startup_time = datetime.now()
+        self.metrics = {
+            'processed_count': 0,
+            'processing_times': [],
+            'last_cleanup': datetime.now().timestamp()
+        }
+        
+    async def cleanup_metrics(self):
+        """Efficient metrics cleanup using batch operations"""
+        while True:
+            try:
+                await asyncio.sleep(3600)  # Run hourly
+                current_time = datetime.now().timestamp()
+                # Batch cleanup in one operation
+                self.metrics['processing_times'] = [
+                    t for t in self.metrics['processing_times'][-1000:]  # Keep last 1000 entries max
+                    if current_time - t[1] < 3600  # Only from last hour
+                ]
+                error_counts.clear()
+                self.metrics['last_cleanup'] = current_time
+            except Exception as e:
+                logger.error(f"Metrics cleanup error: {e}")
+    
+    async def setup_hook(self):
+        # This runs before on_ready
+        self.http_session = await setup_http_session()
+        self.bg_task = self.loop.create_task(self.cleanup_metrics())
+        self.memory_task = self.loop.create_task(monitor_memory_usage())
+        await self.add_cog(Commands(self)) #register commands
+        try:
+            synced = await self.tree.sync()
+            logger.info(f"Successfully synced {len(synced)} command(s)")
+        except Exception as e:
+            logger.error(f"Failed to sync commands: {e}")
+        logger.info("HTTP session initialized")
+
+    async def on_ready(self):
+        logger.info(f"Logged in as {self.user} (ID: {self.user.id})")
+        if TARGET_CHANNEL_IDS:
+            logger.info(f"Bot will respond in channels: {TARGET_CHANNEL_IDS}")
+        else:
+            logger.info("Bot will respond in all channels.")
+        
+        # Set custom presence
+        await self.change_presence(
+            activity=discord.Activity(
+                type=discord.ActivityType.custom,
+                name="Status",
+                state="aint nothing here to see"
+            )
+        )
+
+    async def close(self):
+        if self.http_session:
+            await self.http_session.close()
+        await super().close()
+
+bot = CryptoBot(command_prefix="!", intents=intents, help_command=None, reconnect=True)
+
+class CopyAddressView(discord.ui.View):
+    __slots__ = ("address",)
+    def __init__(self, address: str):
+        super().__init__(timeout=None)
+        self.address = address
+
+    @discord.ui.button(label="📋", style=discord.ButtonStyle.grey, custom_id="copy_address", row=0)
+    async def copy_address(self, interaction: discord.Interaction, _: discord.ui.Button):
+        await interaction.response.send_message(self.address, ephemeral=True)
+        await asyncio.sleep(30)
+        await interaction.delete_original_response()
+
+class Commands(commands.Cog):
+    def __init__(self, bot: CryptoBot):
+        self.bot = bot
+    
+    async def health_logic(self, user: discord.User) -> discord.Embed:
+        """Centralized logic for health command with user-specific features"""
+        current_time = datetime.now().timestamp()
+        recent_times = [
+            t[0] for t in self.bot.metrics['processing_times'] 
+            if current_time - t[1] < 3600
+        ]
+        avg_req_time = sum(recent_times) / len(recent_times) if recent_times else 0
+
+        embed = discord.Embed(
+            title="🌡️ Bot Health Monitor",
+            color=0x6BA1FF,
+            timestamp=datetime.now()
+        )
+
+        # Performance Metrics
+        embed.add_field(
+            name="🚀 Performance",
+            value=(
+                f"Uptime: **`{str(datetime.now() - self.bot.startup_time).split('.')[0]}`**\n"
+                f"Latency: **`{self.bot.latency * 1000:.1f}ms`**\n"
+                f"Memory: **`{psutil.Process().memory_info().rss / 1024 ** 2:.1f}MB`**\n"
+                f"Response: **`{avg_req_time:.2f}s`**"
+            ),
+            inline=True
+        )
+
+        # Activity Metrics
+        embed.add_field(
+            name="📈 Activity",
+            value=(
+                f"Processed: **`{self.bot.metrics['processed_count']:,}`**\n"
+                f"Errors: **`{sum(error_counts.values()):,}`**\n"
+                f"Last Cleanup: **`{relative_time(self.bot.metrics['last_cleanup'] * 1000)}`**"
+            ),
+            inline=True
+        )
+
+        # System Health
+        cpu_usage = psutil.cpu_percent()
+        mem_usage = psutil.virtual_memory().percent
+        embed.add_field(
+            name="🖥️ System Health",
+            value=(
+                f"CPU: **`{cpu_usage}%`** {self._progress_bar(cpu_usage)}\n"
+                f"RAM: **`{mem_usage}%`** {self._progress_bar(mem_usage)}\n"
+                f"Tasks: **`{len(asyncio.all_tasks())}`**"
+            ),
+            inline=False
+        )
+
+        embed.set_footer(
+            text=f"Requested by {user.display_name}",
+            icon_url=user.display_avatar.url
+        )
+
+        return embed
+
+    def _progress_bar(self, percentage: float) -> str:
+        """Create a color-coded progress bar"""
+        bars = 10
+        filled = int(round(percentage / 100 * bars))
+        color = (
+            "🟢" if percentage < 50 else
+            "🟡" if percentage < 75 else
+            "🔴"
+        )
+        return f"{color} {'█' * filled}{'░' * (bars - filled)}"
+
+    @app_commands.command(name="health", description="Show bot performance metrics")
+    @app_commands.checks.cooldown(1, 5)
+    async def health_slash(self, interaction: discord.Interaction):
+        """Health check command (slash version)"""
+        if interaction.user.id not in ALLOWED_USER_IDS:
+            await interaction.response.send_message(
+                "You don't have permission to use this command.",
+                ephemeral=True,
+                delete_after=5
+            )
+            return
+
+        try:
+            embed = await self.health_logic(interaction.user)
+            await interaction.response.send_message(embed=embed, ephemeral=True)
+        except app_commands.CommandOnCooldown as e:
+            await interaction.response.send_message(
+                f"Command on cooldown. Try again in {e.retry_after:.1f}s",
+                ephemeral=True,
+                delete_after=5
+            )
+        except Exception as e:
+            logger.error(f"Health command error: {e}")
+            await interaction.response.send_message(
+                "An error occurred while fetching bot status.",
+                ephemeral=True,
+                delete_after=5
+            )
+
+
+
+
+
+
+
+#optimization helper
+async def setup_http_session():
+    # Optimize connection settings for many concurrent requests
+    connector = aiohttp.TCPConnector(
+        limit=50,         # Maximum number of concurrent connections
+        ttl_dns_cache=300,  # Cache DNS results for 5 minutes
+        use_dns_cache=True,
+        ssl=True         
+    )
+    timeout = aiohttp.ClientTimeout(
+        total=15,
+        connect=5,
+        sock_connect=5,
+        sock_read=10
+    )
+    
+    return aiohttp.ClientSession(
+        connector=connector,
+        timeout=timeout,
+        headers={
+            "User-Agent": "DiscordCryptoBot/1.0",
+            "Accept": "application/json",
+            "Connection": "keep-alive"
+        }
+    )
+
+async def monitor_memory_usage(threshold_mb=300): #increase threshold if needed more storage, rn the main storage is caching verifying solana adresses
+    while True:
+        memory = psutil.Process().memory_info().rss / 1024 ** 2  # Get memory usage in MB
+        if memory > threshold_mb:
+            logger.warning(f"Memory cleanup triggered at {memory:.1f}MB")
+            # Force garbage collection
+            import gc
+            gc.collect()
+            # Clear caches
+            ADDRESS_CACHE.clear()
+        await asyncio.sleep(300)  # Check every 5 minutes
+        
+        
+        
+        
+
+
+
+
+#response helper
+def get_color_from_change(change: float) -> int:
+    if change > 0:
+        return 0x00FF00  #green
+    elif change < 0:
+        return 0xFF0000  #red
+    else:
+        return 0x0000FF  # Blue
+
+def format_value(value) -> str:
+    if value is None:
+        return "N/A"
+        
+    value = float(value)
+    abs_value = abs(value)
+    
+    if abs_value >= 1e9:
+        return f"{value / 1e9:.1f}".rstrip("0").rstrip(".") + "B"
+    if abs_value >= 1e6:
+       return f"{value / 1e6:.1f}".rstrip("0").rstrip(".") + "M"
+    if abs_value >= 1e3:
+        return f"{value / 1e3:.1f}".rstrip("0").rstrip(".") + "K"
+    if abs_value < 1:
+        # Handle small values efficiently
+        return f"{value:.6f}".rstrip('0').rstrip('.')
+    
+    # Format normal values efficiently
+    if abs_value == int(abs_value):
+        return str(int(value))
+    return f"{value:.2f}".rstrip('0').rstrip('.')
+
+def relative_time(timestamp) -> str:
+    try:
+        delta = datetime.now() - datetime.fromtimestamp(timestamp / 1000)
+        if delta.days >= 365:
+            return f"{delta.days//365}y"
+        if delta.days > 30:
+            return f"{delta.days//30}mo"
+        if delta.days:
+            return f"{delta.days}d"
+        if delta.seconds >= 3600:
+            return f"{delta.seconds//3600}h"
+        if delta.seconds >= 60:
+            return f"{delta.seconds//60}m"
+        return f"{delta.seconds}s"
+    except Exception:
+        return "N/A"
+
+@cached(ADDRESS_CACHE)
+def validate_solana_address(candidate: str) -> bool:
+    try:
+        return len(base58.b58decode(candidate)) == 32
+    except Exception:
+        return False
+
+def calculate_ath_marketcap(ath_price: float, current_price: float, current_fdv: float) -> float:
+    """Calculate ATH market cap based on ATH price and current FDV"""
+    if not ath_price or not current_price or not current_fdv:
+        return None
+    
+    try:
+        fdv_price_ratio = current_fdv / current_price
+        return ath_price * fdv_price_ratio
+    except ZeroDivisionError:
+        return None
+
+def get_addresses_from_content(content: str) -> Set[str]:
+    return {addr for addr in ADDRESS_REGEX.findall(content) if validate_solana_address(addr)}
+
+def get_tickers_from_content(content: str) -> Set[str]:
+    return list(set(TICKER_REGEX.findall(content)))
+
+def create_header_message(entry: dict) -> str:
+    try:
+        base = entry["baseToken"]
+        quote = entry.get("quoteToken", {})
+        market_cap = format_value(entry.get("marketCap", 0)).replace("$", "")
+        chain = entry.get("chainId", "N/A").upper()
+        dex = entry.get("dexId", "N/A").title()
+        symbol_pair = f"${base['symbol']}/{quote.get('symbol', '')}" if quote else base["symbol"]
+        chain_dex = f"({chain} @ {dex})" if chain != "N/A" and dex != "N/A" else ""
+        return f"✨ [**{base['name']}**]({entry.get('url', '#')}) **[${market_cap}]** - **{symbol_pair}** **{chain_dex}**"
+    except Exception as e:
+        logger.error(f"Header error: {e}")
+        return "Token Information"
+
+def create_embed(entry: dict, address: str, order_status: str) -> discord.Embed:
+    try:
+        # Extract core data once to avoid repeated dictionary lookups
+        change = float(entry.get("priceChange", {}).get("m5", 0))
+        embed = discord.Embed(color=get_color_from_change(change))
+        
+        # Extract data once to avoid repeated lookups
+        current_price = float(entry.get("priceUsd", 0))
+        current_fdv = float(entry.get("fdv", 0))
+        liquidity = float(entry.get("liquidity", {}).get("usd", 0))
+        volume_5m = entry.get("volume", {}).get("m5", 0)
+        txns = entry.get("txns", {}).get("m5", {})
+        buys = txns.get("buys", 0)
+        sells = txns.get("sells", 0)
+        pair_created_at = entry.get("pairCreatedAt")
+        
+        # Prices section
+        embed.add_field(name="💰 FDV", value=f"**`${format_value(current_fdv)}`**", inline=True)
+        embed.add_field(name="💵 USD Price", value=f"**`${format_value(current_price)}`**", inline=True)
+        embed.add_field(name="💧 Liquidity", value=f"**`${format_value(liquidity)}`**", inline=True)
+        
+        # ATH placeholder - will be updated asynchronously
+        embed.add_field(name="🏆 ATH", value="**`Fetching...`**", inline=True)
+        
+        # Changes section
+        emoji = "📉" if change < 0 else "📈"
+        embed.add_field(name="📊 5m Volume", value=f"**`${format_value(volume_5m)}`**", inline=True)
+        embed.add_field(name=f"{emoji} 5m Change", value=f"**`{format_value(change)}%`**", inline=True)
+        # embed.add_field(name="\u200b", value="\u200b", inline=True)
+        
+        # Transactions
+        embed.add_field(
+            name="🔄 5m Transactions",
+            value=f"🟢 **`{format_value(buys)}`** | 🔴 **`{format_value(sells)}`**",
+            inline=False,
+        )
+        
+        # Links section - efficiently build the links
+        info = entry.get("info", {})
+        links = []
+        
+        # Websites
+        websites = info.get("websites", [])
+        if websites:
+            links.append("**Websites:** " + " ".join(f"[{site.get('label') or 'Website'}]({site['url']})" for site in websites))
+        
+        # Socials
+        socials = info.get("socials", [])
+        if socials:
+            links.append("**Socials:** " + " ".join(f"[{soc.get('type', 'Social').title()}]({soc['url']})" for soc in socials))
+        
+        # Chart
+        links.append(f"**Chart:** [DEX]({entry.get('url', '#')})")
+        
+        if links:
+            embed.add_field(name="🔗 Links", value="\n".join(links), inline=False)
+        
+        # Twitter search
+        base_token = entry.get('baseToken', {})
+        symbol = base_token.get('symbol', '')
+        embed.add_field(
+            name="👀 Twitter Search",
+            value=f"[CA]({TWITTER_SEARCH_URL.format(query=address)})       [TICKER]({TWITTER_SEARCH_URL.format(query=quote(f'${symbol}'))})",
+            inline=False
+        )
+        
+        # Contract address
+        embed.add_field(name="🔑 Contact Address", value=f"**`{address}`**", inline=False)
+        
+        # Trading platforms
+        platforms = [f"[{name}]({url.format(pair=entry.get('pairAddress', address), address=address)})" 
+                     for name, url in TRADING_PLATFORMS.items()]
+        embed.add_field(name="💱 Trade On", value=" | ".join(platforms), inline=False)
+        
+        # Banner
+        banner = info.get("header")
+        if banner:
+            embed.set_image(url=banner)
+        
+        # Footer
+        footer_parts = []
+        if pair_created_at:
+            footer_parts.append(f"Created {relative_time(pair_created_at)} ago")
+        
+        # Order status
+        footer_parts.append(order_status)
+        
+        # Active boosts
+        boosts = entry.get("boosts", {})
+        active_boosts = boosts.get("active")
+        if active_boosts:
+            footer_parts.append(f"🚀 {active_boosts} Boosts")
+            
+        embed.set_footer(text=" • ".join(footer_parts))
+        
+        # Thumbnail
+        img = info.get("imageUrl")
+        if img:
+            embed.set_thumbnail(url=img)
+            
+        return embed
+    except Exception as e:
+        logger.error(f"Embed error: {e}")
+        return None
+
+
+
+
+
+
+#api logic
+async def fetch_data(session: aiohttp.ClientSession, url: str, max_retries=2):
+    endpoint = url.split('/')[3]
+    for attempt in range(max_retries + 1):
+        try:
+            async with session.get(url, timeout=10) as response:
+                if response.status == 200:
+                    return await response.json()
+                else:
+                    error_counts[endpoint] = error_counts.get(endpoint, 0) + 1
+                    if error_counts[endpoint] > MAX_ERROR_THRESHOLD:
+                        logger.critical(f"Endpoint {endpoint} experiencing high error rate")
+                        
+                    if response.status == 429:  # Rate limited
+                        if attempt < max_retries:
+                            await asyncio.sleep(1 * (attempt + 1))  # Exponential backoff
+                            continue
+                    
+                    logger.warning(f"API returned status {response.status} for URL: {url}")
+                    return None
+        except asyncio.TimeoutError:
+            logger.warning(f"Timeout fetching {url} (attempt {attempt+1}/{max_retries+1})")
+            if attempt < max_retries:
+                await asyncio.sleep(0.5)  # Short delay before retry
+                continue
+        except Exception as e:
+            logger.error(f"Fetch error: {e} for URL: {url}")
+            return None
+    return None
+
+async def get_all_time_high(session: aiohttp.ClientSession, pair_address: str, creation_timestamp: int = None) -> tuple:
+    try:
+        # Determine appropriate time period based on token age
+        current_time = int(datetime.now().timestamp() * 1000)
+        token_age = current_time - (creation_timestamp or 0)
+        
+        # Select period granularity based on token age - optimized for accuracy
+        # For new tokens (1-3 hours), use 1min granularity to get precise ATH
+        if token_age < 1 * 60 * 60 * 1000:  
+            period = "1min"
+        elif token_age < 5 * 60 * 60 * 1000:  
+            period = "5min"
+        elif token_age < 15 * 60 * 60 * 1000:  # 8 to 24 hours
+            period = "15min"
+        elif token_age < 3 * 24 * 60 * 60 * 1000:  # 1 day to 3 days
+            period = "1h"
+        elif token_age < 7 * 24 * 60 * 60 * 1000:  # 3 days to 7 days
+            period = "2h"
+        elif token_age < 14 * 24 * 60 * 60 * 1000:  # 7 days to 14 days
+            period = "4h"
+        elif token_age < 70 * 24 * 60 * 60 * 1000:  # 14 days to 1 month (approx. 30 days)
+            period = "1d"
+        elif token_age < 365 * 24 * 60 * 60 * 1000:  # 1 month to 1 year (approx. 365 days)
+            period = "7d"
+        else:  # Older than 1 year
+            period = "30d"
+            
+        # Always request the maximum number of candles (1000)
+        # This ensures we don't miss any potential ATH within the API's limit
+        url = f"https://production-api.mobula.io/api/1/market/history/pair?address={pair_address}&blockchain=solana&period={period}"
+        data = await fetch_data(session, url)
+        
+        if not data or not data.get("data"):
+            return None, None
+            
+        # Find ATH using max() with key function - more efficient than iterating manually
+        valid_candles = [c for c in data["data"] if c.get("high") is not None]
+        if not valid_candles:
+            return None, None
+            
+        ath_candle = max(valid_candles, key=lambda x: x["high"])
+        return ath_candle["high"], ath_candle["time"]
+        
+    except Exception as e:
+        logger.error(f"ATH fetch error for {pair_address}: {e}")
+        return None, None
+
+async def get_order_status(session: aiohttp.ClientSession, token_address: str) -> str:
+    try:
+        url = f"{BASE_URL}/orders/v1/solana/{token_address}"
+        data = await fetch_data(session, url)
+        
+        if data is None:
+            return ""
+        
+        if not data:  # []
+            return "❌ Dex Not Paid"
+        for order in data:
+            if order.get("type") == "tokenProfile":
+                status = order.get("status")
+                if status == "approved":
+                    timestamp = order.get("paymentTimestamp")
+                    time_ago = f" ({relative_time(timestamp)} ago)" if timestamp else ""
+                    return f"✅ Dex Paid{time_ago}"
+                elif status == "on-hold":
+                    return "⏳ Dex On Hold"
+        return "❌ Dex Not Paid"
+    
+    except Exception as e:
+        logger.error(f"Order status error for {token_address}: {e}")
+        return "❗ Dex Error"
+
+
+#api helper
+async def process_entry(message: discord.Message, session: aiohttp.ClientSession, entry: dict, address: str):    
+    start_time = datetime.now().timestamp()
+    try:
+        # Start all API calls concurrently
+        order_status_task = asyncio.create_task(get_order_status(session, address))
+        
+        # Initial embed with "Fetching..." for ATH
+        initial_embed = create_embed(entry, address, "Fetching...")
+        if not initial_embed:
+            return
+            
+        # Send initial response
+        response = await message.reply(
+            content=create_header_message(entry),
+            embed=initial_embed,
+            view=CopyAddressView(address),
+            mention_author=True
+        )
+        
+        # Get core data for later use
+        pair_address = entry.get("pairAddress")
+        creation_timestamp = entry.get("pairCreatedAt")
+        current_price = float(entry.get("priceUsd", 0))
+        current_fdv = float(entry.get("fdv", 0))
+        
+        # Start ATH fetch in parallel with order status
+        ath_task = None
+        if pair_address:
+            ath_task = asyncio.create_task(get_all_time_high(session, pair_address, creation_timestamp))
+        
+        # Wait for order status to complete
+        order_status = await order_status_task
+        
+        # Update embed with order status first
+        embed_dict = initial_embed.to_dict()
+        
+        # Update footer with order status
+        footer_text = embed_dict.get("footer", {}).get("text", "")
+        footer_parts = footer_text.split(" • ")
+        for i, part in enumerate(footer_parts):
+            if "Dex" in part or "Fetching" in part:
+                footer_parts[i] = order_status
+                break
+        else:
+            footer_parts.append(order_status)
+        
+        embed_dict["footer"] = {"text": " • ".join(footer_parts)}
+        
+        # If we have ATH task running, wait for it and update
+        if ath_task:
+            # Await ATH result
+            ath_price, ath_timestamp = await ath_task
+            
+            if ath_price:
+                # Calculate ATH market cap
+                ath_mcap = calculate_ath_marketcap(ath_price, current_price, current_fdv)
+                
+                # Format time ago
+                time_delta = datetime.now().timestamp() * 1000 - ath_timestamp
+                if time_delta < 5000:  # Less than 5 seconds
+                    time_display = "now!"
+                else:
+                    time_display = f"{relative_time(ath_timestamp)} ago"
+                
+                # Update the ATH field
+                for field in embed_dict["fields"]:
+                    if field["name"] == "🏆 ATH":
+                        field["value"] = f"**`${format_value(ath_mcap)}` [{time_display}]**"
+                        break
+            else:
+                # Update with N/A if ATH data couldn't be fetched
+                for field in embed_dict["fields"]:
+                    if field["name"] == "🏆 ATH":
+                        field["value"] = "**`N/A`**"
+                        break
+        
+        await response.edit(embed=discord.Embed.from_dict(embed_dict))
+         
+        bot.metrics['processed_count'] += 1
+        bot.metrics['processing_times'].append(
+            (datetime.now().timestamp() - start_time, start_time)
+        )       
+    except Exception as e:
+        logger.error(f"Processing error: {e}")
+        logger.error(f"Error details: {str(e)}")
+
+async def process_ticker(message: discord.Message, session: aiohttp.ClientSession, ticker: str):
+    try:
+        search_data = await fetch_data(session, f"{BASE_URL}/latest/dex/search?q={ticker}")
+        if not search_data or not search_data.get("pairs"):
+            return
+        
+        pair = search_data["pairs"][0]
+        address = pair["baseToken"]["address"] 
+        if address in message.content: #robust error down, use better one instead of string matching from message input
+            return
+        await process_entry(message, session, pair, address)
+    except Exception as e:
+        logger.error(f"Ticker error ${ticker}: {e}")
+
+
+
+
+#bot events
+@bot.event
+async def on_message(message: discord.Message):
+    if message.author.bot or (TARGET_CHANNEL_IDS and message.channel.id not in TARGET_CHANNEL_IDS):
+        return
+    
+    first_word = message.content.split()[0] if message.content else ''
+    if first_word in PREFIX_COMMANDS:
+        #turn on when needed prefix commands
+        # await bot.process_commands(message)
+        return
+    
+    content = message.content
+    # Quick check to see if we should process this message
+    if '$' not in content and not any(c.isalnum() for c in content[:min(20, len(content))]):
+        return
+        
+    # Extract addresses and tickers
+    addresses = get_addresses_from_content(content)
+    tickers = get_tickers_from_content(content)
+    
+    
+    if not addresses and not tickers:
+        return
+
+    session = bot.http_session
+    if not session:
+        return
+
+    async def process_with_semaphore(coro):
+        async with processing_semaphore:
+            return await coro
+
+    tasks = []
+
+    if addresses:
+        # Process addresses in chunks to avoid URL length limits
+        for chunk in [list(addresses)[i:i+5] for i in range(0, len(addresses), 5)]:
+            tokens_data = await fetch_data(session, f"{BASE_URL}/tokens/v1/solana/{','.join(chunk)}")
+            if tokens_data:
+                addr_map = {e["baseToken"]["address"].lower(): e for e in tokens_data}
+                tasks.extend(
+                    process_with_semaphore(process_entry(message, session, addr_map[addr.lower()], addr))
+                    for addr in chunk if addr.lower() in addr_map
+                )
+
+    if tickers:
+        tasks.extend(
+            process_with_semaphore(process_ticker(message, session, ticker)) 
+            for ticker in tickers
+        )
+
+    if tasks:
+        await asyncio.gather(*tasks)
+
+
+@bot.event
+async def on_error(event, *args, **kwargs):
+    if event == 'on_message':
+        logger.error(f"Error in {event}: {sys.exc_info()}")
+    else:
+        logger.error(f"Unhandled error in {event}: {sys.exc_info()}")
+        
+ 
+@bot.event
+async def on_disconnect():
+    logger.warning("Bot disconnected from Discord. Attempting to reconnect...")       
+
+if __name__ == "__main__":
+    try:
+        logger.info("Starting bot...")
+        bot.run(TOKEN, log_handler=None, reconnect=True)  # Disable Discord.py's own logging handler
+    except Exception as e:
+        logger.critical(f"Failed to start bot: {e}")
+        exit(1)
