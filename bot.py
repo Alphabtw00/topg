@@ -53,6 +53,8 @@ TRADING_PLATFORMS = {
 }
 ADDRESS_REGEX = re.compile(r"\b[1-9A-HJ-NP-Za-km-z]{32,44}\b")
 TICKER_REGEX = re.compile(r"\$([^\s]{1,10})")
+GITHUB_URL_REGEX = re.compile(r"^https://github\.com/[a-zA-Z0-9-]+/[a-zA-Z0-9._-]+/?$")
+GITHUB_ANALYSIS_CACHE = TTLCache(maxsize=100, ttl=3600)
 ADDRESS_CACHE = TTLCache(maxsize=10_000, ttl=300)
 MAX_ERROR_THRESHOLD = 50
 error_counts = {}
@@ -77,10 +79,8 @@ intents.integrations = False
 
 
 #classes
-
 class CryptoBot(commands.Bot):
     __slots__ = ("http_session", "startup_time", "processed_count")
-    
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.http_session = None
@@ -155,6 +155,25 @@ class CopyAddressView(discord.ui.View):
         await asyncio.sleep(30)
         await interaction.delete_original_response()
 
+class GitHubAnalysisView(discord.ui.View):
+    __slots__ = ("repo_url",)
+    def __init__(self, repo_url: str):
+        super().__init__(timeout=None)
+        self.repo_url = repo_url
+        self.add_item(discord.ui.Button(label="View Repository", url=repo_url))
+        self.add_item(discord.ui.Button(
+            label="Reanalyze", 
+            style=discord.ButtonStyle.gray, 
+            custom_id="reanalyze_repo"
+        ))
+    
+    async def interaction_check(self, interaction: discord.Interaction) -> bool:
+        if interaction.data.get("custom_id") == "reanalyze_repo":
+            # Clear this repo from cache to force reanalysis
+            GITHUB_ANALYSIS_CACHE.pop(self.repo_url, None)
+            await interaction.response.send_message("Repository will be reanalyzed on next check.", ephemeral=True)
+        return True
+
 class Commands(commands.Cog):
     def __init__(self, bot: CryptoBot):
         self.bot = bot
@@ -227,6 +246,28 @@ class Commands(commands.Cog):
             "🔴"
         )
         return f"{color} {'█' * filled}{'░' * (bars - filled)}"
+    
+    def _score_bar(self, percentage: float) -> str:
+        """Create a visual score bar for better readability"""
+        if percentage <= 0:
+            return "⬜⬜⬜⬜⬜"
+        
+        # Calculate filled and empty blocks
+        filled = min(5, max(0, round(percentage / 20)))
+        
+        # Determine color based on score
+        if percentage >= 80:
+            filled_char = "🟩"
+        elif percentage >= 60:
+            filled_char = "🟨"
+        elif percentage >= 40:
+            filled_char = "🟧"
+        else:
+            filled_char = "🟥"
+        
+        # Create bar with appropriate coloring
+        return filled_char * filled + "⬜" * (5 - filled)
+
 
     @app_commands.command(name="health", description="Show bot performance metrics")
     @app_commands.checks.cooldown(1, 5)
@@ -255,6 +296,284 @@ class Commands(commands.Cog):
                 "An error occurred while fetching bot status.",
                 ephemeral=True,
                 delete_after=5
+            )
+
+    @app_commands.command(name="github-checker", description="Analyze a GitHub repository for legitimacy")
+    @app_commands.checks.cooldown(1, 30)
+    async def check_repo(self, interaction: discord.Interaction, repo_url: str):
+        """Analyze a GitHub repository for potential scam indicators in crypto projects"""
+        
+        # Validate GitHub URL format
+        if not GITHUB_URL_REGEX.match(repo_url):
+            return await interaction.response.send_message(
+                "❌ Invalid GitHub repository URL. Format should be: https://github.com/username/repository", 
+                ephemeral=True,
+                delete_after=5
+            )
+        
+        # Remove trailing slash if present for consistency
+        repo_url = repo_url.rstrip("/")
+        
+        await interaction.response.defer(thinking=True)
+        
+        # Record start time for metrics
+        start_time = datetime.now().timestamp()
+        
+        # Check cache first - efficient memory usage
+        if repo_url in GITHUB_ANALYSIS_CACHE and (datetime.now() - GITHUB_ANALYSIS_CACHE[repo_url]['timestamp']).total_seconds() < 3600:
+            logger.info(f"Serving cached analysis for {repo_url}")
+            return await interaction.followup.send(
+                embed=GITHUB_ANALYSIS_CACHE[repo_url]['embed'], 
+                view=GitHubAnalysisView(repo_url)
+            )
+        
+        try:
+            # Make the API request
+            async with self.bot.http_session.post(
+                "http://localhost:3000/api/analyze",
+                json={"repoUrl": repo_url},
+                timeout=180  # Increased timeout for large repos
+            ) as response:
+                if response.status != 200:
+                    logger.error(f"API error: Status {response.status} for {repo_url}")
+                    return await interaction.followup.send(
+                        f"⚠️ Analysis service returned error code {response.status}. This could be due to service overload or an invalid repository.",
+                        ephemeral=True
+                    )
+                
+                data = await response.json()
+                
+                if not data.get("success"):
+                    error_msg = data.get('error', 'Unknown error')
+                    logger.error(f"API reported failure for {repo_url}: {error_msg}")
+                    return await interaction.followup.send(
+                        f"⚠️ Analysis failed: {error_msg}",
+                        ephemeral=True
+                    )
+                
+                # Extract core data
+                result = data["result"]
+                analysis = result["analysis"]
+                
+                # Core metrics - most important data
+                legitimacy_score = analysis.get("finalLegitimacyScore", 0)
+                trust_score = analysis.get("trustScore", 0)
+                detailed_scores = analysis.get("detailedScores", {})
+                code_review = analysis.get("codeReview", {})
+                ai_analysis = code_review.get("aiAnalysis", {})
+                
+                # Determine verdict and color - clear visual indicator
+                if legitimacy_score >= 75:
+                    embed_color = 0x00FF00  # Green
+                    verdict = "LIKELY LEGITIMATE"
+                    verdict_emoji = "✅"
+                elif legitimacy_score >= 50:
+                    embed_color = 0xFFD700  # Gold
+                    verdict = "EXERCISE CAUTION"
+                    verdict_emoji = "⚠️"
+                else:
+                    embed_color = 0xFF0000  # Red
+                    verdict = "HIGH RISK"
+                    verdict_emoji = "🚨"
+                
+                # Repository info - parsed once for efficiency
+                repo_name = result.get("repoName", "Unknown")
+                owner = result.get("owner", "Unknown")
+                stars = result.get("stars", 0)
+                forks = result.get("forks", 0)
+                language = result.get("language", "Unknown")
+                # last_analyzed = result.get("lastAnalyzed", "Unknown").replace('T', ' ').replace('Z', ' UTC').split('.')[0]
+                
+                
+                if result.get("lastAnalyzed"):
+                    try:
+                        # Parse ISO format timestamp to datetime object
+                        analyzed_dt = datetime.fromisoformat(result["lastAnalyzed"].replace("Z", ""))
+                        last_analyzed = f"{relative_time(analyzed_dt.timestamp() * 1000)} ago"
+                    except Exception as e:
+                        logger.error(f"Error parsing lastAnalyzed: {e}")
+                        last_analyzed = "N/A"
+                else:
+                    last_analyzed = "N/A"
+                    
+                # Create main embed
+                embed = discord.Embed(
+                    title=f"GitHub Analysis: {owner}/{repo_name}",
+                    url=repo_url,
+                    color=embed_color,
+                    timestamp=datetime.now()
+                )
+                
+                # Set GitHub icon and clear author for professional look
+                embed.set_author(
+                    name="GitHub Repository Analyzer", 
+                    icon_url="https://github.githubassets.com/assets/GitHub-Mark-ea2971cee799.png"
+                )
+                
+                # Top summary section with verdict
+                embed.description = (
+                f"## {verdict_emoji} VERDICT: {verdict} {verdict_emoji}\n"
+                f"━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n"
+                f"{analysis.get('summary', 'No summary available')}"
+                )
+                              
+                # --- SCORE SECTION (MOST IMPORTANT) ---
+                # Format scores as progress bars for visual clarity
+                code_quality = detailed_scores.get("codeQuality", 0)
+                project_structure = detailed_scores.get("projectStructure", 0)
+                implementation = detailed_scores.get("implementation", 0)
+                documentation = detailed_scores.get("documentation", 0)
+                ai_score = ai_analysis.get("score", 0)
+                overall_score = (code_quality + project_structure + implementation + documentation) / 4
+                overall_score_percent = overall_score * 4
+                
+                #overall assesment
+                embed.add_field(
+                    name="🛡️ Overall Assessment",
+                    value=(
+                        f"**Legitimacy Score:** {self._score_bar(legitimacy_score)} `{legitimacy_score}%`\n"
+                        f"**Trust Score:** {self._score_bar(trust_score)} `{trust_score}%`\n"
+                        f"**AI Implementation:** {self._score_bar(ai_score)} `{ai_score}%`"
+                        f"**QUALITY:** {self._score_bar(overall_score_percent)} `{overall_score_percent:.0f}%`\n"
+                    ),
+                    inline=False
+                )
+                
+                #detailed scores
+                embed.add_field(
+                    name="📚 Technical Quality",
+                    value=(
+                        f"**Code Quality:** {self._score_bar(code_quality*4)} `{code_quality}/25`\n"
+                        f"**Project Structure:** {self._score_bar(project_structure*4)} `{project_structure}/25`\n"
+                        f"**Implementation:** {self._score_bar(implementation*4)} `{implementation}/25`\n"
+                        f"**Documentation:** {self._score_bar(documentation*4)} `{documentation}/25`"
+                    ),
+                    inline=False
+                )
+                
+                #repo info
+                embed.add_field(
+                    name="📁 Repository Info",
+                    value=(
+                        f"**Language:** `{language}`\n"
+                        f"**Stars:** `{stars:,}`\n"
+                        f"**Forks:** `{forks:,}`\n"
+                        f"**Updated:** `{last_analyzed}`"
+                    ),
+                    inline=True
+                )
+                
+                #investment assesement 
+                ranking = code_review.get("investmentRanking", {})
+                rating = ranking.get("rating", "N/A")
+                confidence = ranking.get("confidence", 0)
+                
+                rating_emoji = {
+                    "Strong Buy": "🟢", 
+                    "Buy": "🟢",
+                    "Medium": "🟡",
+                    "Hold": "🟡", 
+                    "Sell": "🔴",
+                    "Strong Sell": "🔴"
+                }.get(rating, "⚪")
+                
+                embed.add_field(
+                    name="💰 Investment Rating",
+                    value=(
+                        f"**Rating:** {rating_emoji} `{rating}`\n"
+                        f"**Confidence:** {self._score_bar(confidence)} `{confidence}%`\n"
+                    ),
+                    inline=True
+                )
+                
+                #red flags
+                red_flags = code_review.get("redFlags", [])
+                if red_flags:
+                    flags_formatted = "\n".join(f"📉 {flag}" for flag in red_flags)
+                    embed.add_field(
+                        name="🚩 Security Concerns",
+                        value=flags_formatted if flags_formatted else "No significant issues detected",
+                        inline=False
+                    )
+                
+                
+                #key insights
+                reasoning = ranking.get("reasoning", [])
+                if reasoning:
+                    insights_text = "\n".join(f"✔ {item}" for item in reasoning[:3])
+                    
+                    if insights_text:
+                        embed.add_field(
+                            name="⚡ Key Insights",
+                            value=insights_text,
+                            inline=False
+                        )
+
+                #ai implementation 
+                if ai_analysis.get("hasAI", False):
+                    ai_components = ai_analysis.get("components", [])
+                    if ai_components:
+                        ai_features = [
+                            comp for comp in ai_components 
+                            if not comp.startswith("Areas for improvement:") and "improvement" not in comp.lower() and not comp.startswith("-")
+                        ]
+                        
+                        if ai_features:
+                            ai_text = "\n".join(f"🔹 {feature}" for feature in ai_features)
+                            
+                            embed.add_field(
+                                name="🤖 AI Implementation",
+                                value=ai_text,
+                                inline=False
+                            )
+
+                
+                #overall assesement
+                if code_review.get("overallAssessment"):
+                    assessment = code_review.get("overallAssessment")
+                    
+                    # Split into paragraphs and get just the first one for brevity
+                    paragraphs = assessment.split("\n\n")
+                    first_paragraph = paragraphs[0]
+                    
+                    embed.add_field(
+                        name="👨‍💻 Expert Opinion",
+                        value=f"> {first_paragraph}",
+                        inline=False
+                    )
+                
+                #footer
+                embed.set_footer(
+                    text=f"Requested by {interaction.user.display_name} • ⌛Analysis Time: {(datetime.now().timestamp() - start_time):.1f}s", 
+                    icon_url=interaction.user.display_avatar.url
+                )
+                
+                # Cache the embed with timestamp - memory efficient
+                GITHUB_ANALYSIS_CACHE[repo_url] = {
+                    'embed': embed,
+                    'timestamp': datetime.now()
+                }
+                
+                # Update metrics
+                self.bot.metrics['processed_count'] += 1
+                self.bot.metrics['processing_times'].append((datetime.now().timestamp() - start_time, datetime.now().timestamp()))
+                
+                # Create and send view with buttons
+                view = GitHubAnalysisView(repo_url)
+                await interaction.followup.send(embed=embed, view=view)
+                
+        except asyncio.TimeoutError:
+            logger.error(f"Analysis timeout for {repo_url}")
+            await interaction.followup.send(
+                "⌛ Analysis timed out (3+ minutes). GitHub repository analysis can take time for larger repositories. Please try again later.",
+                ephemeral=True,
+            )
+        except Exception as e:
+            logger.error(f"Repo analysis error for {repo_url}: {str(e)}")
+            error_counts[str(e)] = error_counts.get(str(e), 0) + 1
+            await interaction.followup.send(
+                "❌ Failed to analyze repository. Please ensure the URL is valid and try again. If the problem persists, the analysis service may be experiencing issues.",
+                ephemeral=True
             )
 
 
