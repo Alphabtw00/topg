@@ -119,19 +119,45 @@ class CryptoBot(commands.Bot):
 
     async def on_ready(self):
         logger.info(f"Logged in as {self.user} (ID: {self.user.id})")
+
+        # Fetch channel info concurrently
         if TARGET_CHANNEL_IDS:
-            logger.info(f"Bot will respond in channels: {TARGET_CHANNEL_IDS}")
+            async def get_channel_info(ch_id):
+                channel = self.get_channel(ch_id)
+                if channel is None:
+                    try:
+                        channel = await self.fetch_channel(ch_id)
+                    except Exception as e:
+                        logger.error(f"Could not fetch channel with ID {ch_id}: {e}")
+                        return None
+                guild_name = channel.guild.name if channel.guild else "DMs"
+                return f"{channel.name} (Server: {guild_name})"
+
+            channel_infos = await asyncio.gather(
+                *[get_channel_info(ch_id) for ch_id in TARGET_CHANNEL_IDS]
+            )
+            channel_infos = [info for info in channel_infos if info]
+            logger.info(f"Bot will respond in channels: {', '.join(channel_infos)}")
         else:
             logger.info("Bot will respond in all channels.")
-        
-        # Set custom presence
-        await self.change_presence(
-            activity=discord.Activity(
-                type=discord.ActivityType.custom,
-                name="Status",
-                state="aint nothing here to see"
+
+        # Fetch admin user info concurrently
+        if ALLOWED_USER_IDS:
+            async def get_user_info(user_id):
+                try:
+                    user = self.get_user(int(user_id))
+                    if user is None:
+                        user = await self.fetch_user(int(user_id))
+                    return f"{user.name}#{user.discriminator} (ID: {user.id})"
+                except Exception as e:
+                    logger.error(f"Could not fetch user with ID {user_id}: {e}")
+                    return None
+
+            user_infos = await asyncio.gather(
+                *[get_user_info(user_id) for user_id in ALLOWED_USER_IDS]
             )
-        )
+            user_infos = [info for info in user_infos if info]
+            logger.info(f"Allowed admin users: {', '.join(user_infos)}")
 
     async def close(self):
         if self.http_session:
@@ -185,7 +211,7 @@ class Commands(commands.Cog):
         avg_req_time = sum(recent_times) / len(recent_times) if recent_times else 0
 
         embed = discord.Embed(
-            title="🌡️ Bot Health Monitor",
+            title="🤖 Bot Health Monitor",
             color=0x6BA1FF,
             timestamp=datetime.now()
         )
@@ -219,8 +245,8 @@ class Commands(commands.Cog):
         embed.add_field(
             name="🖥️ System Health",
             value=(
-                f"CPU: **`{cpu_usage}%`** {self._score_bar(cpu_usage)}\n"
-                f"RAM: **`{mem_usage}%`** {self._score_bar(mem_usage)}\n"
+                f"CPU: **`{cpu_usage}%`** {self._progress_bar(cpu_usage)}\n"
+                f"RAM: **`{mem_usage}%`** {self._progress_bar(mem_usage)}\n"
                 f"Tasks: **`{len(asyncio.all_tasks())}`**"
             ),
             inline=False
@@ -281,19 +307,8 @@ class Commands(commands.Cog):
         try:
             embed = await self.health_logic(interaction.user)
             await interaction.response.send_message(embed=embed, ephemeral=True)
-        except app_commands.CommandOnCooldown as e:
-            await interaction.response.send_message(
-                f"Command on cooldown. Try again in {e.retry_after:.1f}s",
-                ephemeral=True,
-                delete_after=5
-            )
         except Exception as e:
             logger.error(f"Health command error: {e}")
-            await interaction.response.send_message(
-                "An error occurred while fetching bot status.",
-                ephemeral=True,
-                delete_after=5
-            )
 
     @app_commands.command(name="github-checker", description="Analyze a GitHub repository for legitimacy")
     @app_commands.checks.cooldown(1, 30)
@@ -558,7 +573,7 @@ class Commands(commands.Cog):
                 # Create and send view with buttons
                 view = GitHubAnalysisView(repo_url)
                 await interaction.followup.send(embed=embed, view=view)
-                
+                 
         except asyncio.TimeoutError:
             logger.error(f"Analysis timeout for {repo_url}")
             await interaction.followup.send(
@@ -572,7 +587,29 @@ class Commands(commands.Cog):
                 "❌ Failed to analyze repository. Please ensure the URL is valid and try again. If the problem persists, the analysis service may be experiencing issues.",
                 ephemeral=True
             )
-
+            
+    @commands.Cog.listener()
+    async def on_app_command_error(self, interaction: discord.Interaction, error: app_commands.AppCommandError):
+        if isinstance(error, app_commands.CommandOnCooldown):
+            await interaction.response.send_message(
+                f"Command on cooldown. Try again in {error.retry_after:.1f}s",
+                ephemeral=True,
+                delete_after=5
+            )
+        else:
+            logger.error(f"Command error: {str(error)}")
+            try:
+                await interaction.response.send_message(
+                    "An error occurred while processing this command.",
+                    ephemeral=True,
+                    delete_after=5
+                )
+            except:
+                # If response was already sent, use followup
+                await interaction.followup.send(
+                    "An error occurred while processing this command.",
+                    ephemeral=True
+                )
 
 
 
