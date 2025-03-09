@@ -63,24 +63,21 @@ processing_semaphore = asyncio.Semaphore(MAX_CONCURRENT_PROCESSES)
 PREFIX_COMMANDS = {}
 
 
-
 # Initialize bot with optimized intents
 intents = discord.Intents.default()
 intents.message_content = True
-# Disable unnecessary intents
 intents.typing = False
+# Disable unnecessary intents
 intents.presences = False
 intents.integrations = False
 
-
-        
 
 
 
 
 #classes
 class CryptoBot(commands.Bot):
-    __slots__ = ("http_session", "startup_time", "processed_count")
+    __slots__ = ("http_session", "startup_time", "processed_count", "metrics", "bg_task", "memory_task")
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.http_session = None
@@ -140,7 +137,7 @@ class CryptoBot(commands.Bot):
         if self.http_session:
             await self.http_session.close()
         await super().close()
-
+       
 bot = CryptoBot(command_prefix="!", intents=intents, help_command=None, reconnect=True)
 
 class CopyAddressView(discord.ui.View):
@@ -222,8 +219,8 @@ class Commands(commands.Cog):
         embed.add_field(
             name="🖥️ System Health",
             value=(
-                f"CPU: **`{cpu_usage}%`** {self._progress_bar(cpu_usage)}\n"
-                f"RAM: **`{mem_usage}%`** {self._progress_bar(mem_usage)}\n"
+                f"CPU: **`{cpu_usage}%`** {self._score_bar(cpu_usage)}\n"
+                f"RAM: **`{mem_usage}%`** {self._score_bar(mem_usage)}\n"
                 f"Tasks: **`{len(asyncio.all_tasks())}`**"
             ),
             inline=False
@@ -235,7 +232,7 @@ class Commands(commands.Cog):
         )
 
         return embed
-
+    
     def _progress_bar(self, percentage: float) -> str:
         """Create a color-coded progress bar"""
         bars = 10
