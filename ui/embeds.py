@@ -1,0 +1,479 @@
+"""
+Discord embed creation for different types of data
+"""
+import discord
+import asyncio
+from datetime import datetime
+from config import TWITTER_SEARCH_URL, TRADING_PLATFORMS
+from utils.formatters import (
+    format_value, format_date, format_size, 
+    relative_time, get_color_from_change, score_bar
+)
+from utils.logger import get_logger
+
+logger = get_logger()
+
+def create_token_embed(entry: dict, address: str, order_status: str) -> discord.Embed:
+    """
+    Create an embed for token information
+    
+    Args:
+        entry: Token data
+        address: Token address
+        order_status: Order status string
+        
+    Returns:
+        discord.Embed: Formatted embed
+    """
+    try:
+        # Extract core data once to avoid repeated dictionary lookups
+        change = float(entry.get("priceChange", {}).get("m5", 0))
+        embed = discord.Embed(color=get_color_from_change(change))
+        
+        # Extract data once to avoid repeated lookups
+        current_price = float(entry.get("priceUsd", 0))
+        current_fdv = float(entry.get("fdv", 0))
+        liquidity = float(entry.get("liquidity", {}).get("usd", 0))
+        volume_5m = entry.get("volume", {}).get("m5", 0)
+        txns = entry.get("txns", {}).get("m5", {})
+        buys = txns.get("buys", 0)
+        sells = txns.get("sells", 0)
+        pair_created_at = entry.get("pairCreatedAt")
+        
+        # Prices section
+        embed.add_field(name="💰 FDV", value=f"**`${format_value(current_fdv)}`**", inline=True)
+        embed.add_field(name="💵 USD Price", value=f"**`${format_value(current_price)}`**", inline=True)
+        embed.add_field(name="💧 Liquidity", value=f"**`${format_value(liquidity)}`**", inline=True)
+        
+        # ATH placeholder - will be updated asynchronously
+        embed.add_field(name="🏆 ATH", value="**`Fetching...`**", inline=True)
+        
+        # Changes section
+        emoji = "📉" if change < 0 else "📈"
+        embed.add_field(name="📊 5m Volume", value=f"**`${format_value(volume_5m)}`**", inline=True)
+        embed.add_field(name=f"{emoji} 5m Change", value=f"**`{format_value(change)}%`**", inline=True)
+        
+        # Transactions
+        embed.add_field(
+            name="🔄 5m Transactions",
+            value=f"🟢 **`{format_value(buys)}`** | 🔴 **`{format_value(sells)}`**",
+            inline=False,
+        )
+        
+        # Links section - efficiently build the links
+        info = entry.get("info", {})
+        links = []
+        
+        # Websites
+        websites = info.get("websites", [])
+        if websites:
+            links.append("**Websites:** " + " ".join(f"[{site.get('label') or 'Website'}]({site['url']})" for site in websites))
+        
+        # Socials
+        socials = info.get("socials", [])
+        if socials:
+            links.append("**Socials:** " + " ".join(f"[{soc.get('type', 'Social').title()}]({soc['url']})" for soc in socials))
+        
+        # Chart
+        links.append(f"**Chart:** [DEX]({entry.get('url', '#')})")
+        
+        if links:
+            embed.add_field(name="🔗 Links", value="\n".join(links), inline=False)
+        
+        # Twitter search
+        base_token = entry.get('baseToken', {})
+        symbol = base_token.get('symbol', '')
+        
+        from urllib.parse import quote
+        embed.add_field(
+            name="👀 Twitter Search",
+            value=f"[CA]({TWITTER_SEARCH_URL.format(query=address)})       [TICKER]({TWITTER_SEARCH_URL.format(query=quote(f'${symbol}'))})",
+            inline=False
+        )
+        
+        # Contract address
+        embed.add_field(name="🔑 Contact Address", value=f"**`{address}`**", inline=False)
+        
+        # Trading platforms
+        platforms = [f"[{name}]({url.format(pair=entry.get('pairAddress', address), address=address)})" 
+                     for name, url in TRADING_PLATFORMS.items()]
+        embed.add_field(name="💱 Trade On", value=" | ".join(platforms), inline=False)
+        
+        # Banner
+        banner = info.get("header")
+        if banner:
+            embed.set_image(url=banner)
+        
+        # Footer
+        footer_parts = []
+        if pair_created_at:
+            footer_parts.append(f"Created {relative_time(pair_created_at, include_ago=True)}")
+        
+        # Order status
+        footer_parts.append(order_status)
+        
+        # Active boosts
+        boosts = entry.get("boosts", {})
+        active_boosts = boosts.get("active")
+        if active_boosts:
+            footer_parts.append(f"🚀 {active_boosts} Boosts")
+            
+        embed.set_footer(text=" • ".join(footer_parts))
+        
+        # Thumbnail
+        img = info.get("imageUrl")
+        if img:
+            embed.set_thumbnail(url=img)
+            
+        return embed
+    except Exception as e:
+        logger.error(f"Embed creation error: {e}")
+        return None
+
+def create_header_message(entry: dict) -> str:
+    """
+    Create a header message for token information
+    
+    Args:
+        entry: Token data
+        
+    Returns:
+        str: Formatted header message
+    """
+    try:
+        base = entry["baseToken"]
+        quote = entry.get("quoteToken", {})
+        market_cap = format_value(entry.get("marketCap", 0)).replace("$", "")
+        chain = entry.get("chainId", "N/A").upper()
+        dex = entry.get("dexId", "N/A").title()
+        symbol_pair = f"${base['symbol']}/{quote.get('symbol', '')}" if quote else base["symbol"]
+        chain_dex = f"({chain} @ {dex})" if chain != "N/A" and dex != "N/A" else ""
+        return f"✨ [**{base['name']}**]({entry.get('url', '#')}) **[${market_cap}]** - **{symbol_pair}** **{chain_dex}**"
+    except Exception as e:
+        logger.error(f"Header creation error: {e}")
+        return "Token Information"
+
+def create_github_analysis_embed(repo_info, analysis, start_time, interaction):
+    """
+    Create an embed for GitHub repository analysis
+    
+    Args:
+        repo_info: Repository information
+        analysis: Analysis data
+        start_time: Analysis start time
+        interaction: Discord interaction
+        
+    Returns:
+        discord.Embed: Formatted embed
+    """
+    # Core metrics - most important data
+    legitimacy_score = analysis.get("finalLegitimacyScore", 0)
+    trust_score = analysis.get("trustScore", 0)
+    detailed_scores = analysis.get("detailedScores", {})
+    code_review = analysis.get("codeReview", {})
+    ai_analysis = code_review.get("aiAnalysis", {})
+    
+    # Determine verdict and color - clear visual indicator
+    if legitimacy_score >= 75:
+        embed_color = 0x00FF00  # Green
+        verdict = "LIKELY LEGITIMATE"
+        verdict_emoji = "✅"
+    elif legitimacy_score >= 50:
+        embed_color = 0xFFD700  # Gold
+        verdict = "EXERCISE CAUTION"
+        verdict_emoji = "⚠️"
+    else:
+        embed_color = 0xFF0000  # Red
+        verdict = "HIGH RISK"
+        verdict_emoji = "🚨"
+    
+    # Format repository name
+    repo_name = repo_info["name"]
+    owner = repo_info["owner"]
+    
+    # Create main embed
+    embed = discord.Embed(
+        title=f"GitHub Analysis: {owner}/{repo_name}",                   
+        url=f"https://github.com/{owner}/{repo_name}",
+        color=embed_color,
+        timestamp=datetime.now()
+    )
+    
+    # GitHub logo
+    embed.set_author(
+        name="GitHub Repository Analyzer", 
+        icon_url="https://github.githubassets.com/assets/GitHub-Mark-ea2971cee799.png"
+    )
+
+    # Owner avatar
+    embed.set_thumbnail(url=repo_info["owner_avatar"])
+    
+    # Top summary section with verdict
+    embed.description = (
+        f"## {verdict_emoji} VERDICT: {verdict} {verdict_emoji}\n"
+        f"━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n"
+        f"{analysis.get('summary', 'No summary available')}"
+    )
+                
+    # --- SCORE SECTION (MOST IMPORTANT) ---
+    # Format scores as progress bars for visual clarity
+    code_quality = detailed_scores.get("codeQuality", 0)
+    project_structure = detailed_scores.get("projectStructure", 0)
+    implementation = detailed_scores.get("implementation", 0)
+    documentation = detailed_scores.get("documentation", 0)
+    ai_score = ai_analysis.get("score", 0)
+    overall_score = (code_quality + project_structure + implementation + documentation) / 4
+    
+    # Overall assessment
+    embed.add_field(
+        name="🛡️ Overall Assessment",
+        value=(
+            f"**Legitimacy Score:** {score_bar(legitimacy_score)} `{legitimacy_score}%`\n"
+            f"**Trust Score:** {score_bar(trust_score)} `{trust_score}%`\n"
+            f"**AI Implementation:** {score_bar(ai_score)} `{ai_score}%`\n"
+            f"**Average Score:** {score_bar(overall_score)} `{overall_score:.0f}%`\n"
+        ),
+        inline=False
+    )
+    
+    # Detailed scores
+    embed.add_field(
+        name="📚 Technical Quality",
+        value=(
+            f"**Code Quality:** {score_bar(code_quality*4)} `{code_quality}/25`\n"
+            f"**Project Structure:** {score_bar(project_structure*4)} `{project_structure}/25`\n"
+            f"**Implementation:** {score_bar(implementation*4)} `{implementation}/25`\n"
+            f"**Documentation:** {score_bar(documentation*4)} `{documentation}/25`"
+        ),
+        inline=False
+    )
+
+    # Investment assessment 
+    ranking = code_review.get("investmentRanking", {})
+    rating = ranking.get("rating", "N/A")
+    confidence = ranking.get("confidence", 0)
+    
+    rating_emoji = {
+        "Strong Buy": "🟢", 
+        "Buy": "🟢",
+        "High": "🟢",
+        "Medium": "🟡",
+        "Hold": "🟡", 
+        "Sell": "🔴",
+        "Strong Sell": "🔴",
+        "Low": "🔴"
+    }.get(rating, "⚪")
+    
+    embed.add_field(
+        name="💰 Investment Rating",
+        value=(
+            f"**Rating:** {rating_emoji} `{rating}`\n"
+            f"**Confidence:** {score_bar(confidence)} `{confidence}%`\n"
+        ),
+        inline=False
+    )
+
+    # Enhanced repo info with more details
+    created_date = format_date(repo_info.get("created_at"))
+    updated_date = format_date(repo_info.get("updated_at"))
+    size = format_size(repo_info.get("size"))
+
+    # Group basic repository details under "General Info"
+    general_info = "\n".join([
+        f"**Primary Language:** `{repo_info.get('language')}`",
+        f"**License:** `{repo_info.get('license')}`",
+        f"**Size:** `{size}`",
+        f"**Created:** `{created_date}`",
+        f"**Updated:** `{updated_date}`",
+    ])
+
+    # Group engagement metrics under "Community Stats"
+    community_stats = "\n".join([
+        f"**Owner:** [{repo_info.get('owner')}](https://github.com/{repo_info.get('owner', 'Unknown')})",
+        f"**Stars:** `{repo_info.get('stars'):,}`",
+        f"**Forks:** `{repo_info.get('forks'):,}`",
+        f"**Watchers:** `{repo_info.get('watchers'):,}`",
+        f"**Open Issues:** `{repo_info.get('open_issues'):,}`",
+    ])
+
+    # Add two inline fields to the embed with the new headings
+    embed.add_field(
+        name="📁 Repo Info",
+        value=general_info,
+        inline=True
+    )
+    embed.add_field(
+        name="⭐ Community Stats",
+        value=community_stats,
+        inline=True
+    )
+            
+    # Red flags
+    red_flags = code_review.get("redFlags", [])
+    if red_flags:
+        flags_formatted = "\n".join(f"📉 {flag}" for flag in red_flags[:3])
+        embed.add_field(
+            name="🚩 Security Concerns",
+            value=flags_formatted if flags_formatted else "No significant issues detected",
+            inline=False
+        )
+    
+    # Key insights
+    reasoning = ranking.get("reasoning", [])
+    if reasoning:
+        insights_text = "\n".join(f"✔ {item}" for item in reasoning[:3])
+        
+        if insights_text:
+            embed.add_field(
+                name="⚡ Key Insights",
+                value=insights_text,
+                inline=False
+            )
+
+    # AI implementation 
+    if ai_analysis.get("hasAI", False):
+        ai_components = ai_analysis.get("components", [])
+        if ai_components:
+            ai_features = [
+                comp for comp in ai_components 
+                if not comp.startswith("Areas for improvement:") and "improvement" not in comp.lower() and not comp.startswith("-")
+            ]
+            
+            if ai_features:
+                ai_text = "\n".join(f"🔹 {feature}" for feature in ai_features[:3])
+                
+                embed.add_field(
+                    name="🤖 AI Implementation",
+                    value=ai_text,
+                    inline=False
+                )
+    
+    # Overall assessment
+    if code_review.get("overallAssessment"):
+        assessment = code_review.get("overallAssessment")
+        
+        # Split into paragraphs and get just the first one for brevity
+        paragraphs = assessment.split("\n\n")
+        first_paragraph = paragraphs[0]
+        
+        embed.add_field(
+            name="👨‍💻 Expert Opinion",
+            value=f"> {first_paragraph}",
+            inline=False
+        )
+    
+    # Footer
+    embed.set_footer(
+        text=f"Requested by {interaction.user.display_name} • ⌛Analysis Time: {(datetime.now().timestamp() - start_time):.1f}s", 
+        icon_url=interaction.user.display_avatar.url
+    )
+    
+    return embed
+
+def create_health_embed(bot, user) -> discord.Embed:
+    """
+    Create an embed for bot health information
+    
+    Args:
+        bot: Bot instance
+        user: User who requested the health check
+        
+    Returns:
+        discord.Embed: Formatted health embed
+    """
+    import psutil
+    from utils.cache import get_error_count
+    from utils.formatters import create_progress_bar, relative_time
+    
+    current_time = datetime.now().timestamp()
+    recent_times = [
+        t[0] for t in bot.metrics['processing_times'] 
+        if current_time - t[1] < 3600
+    ]
+    avg_req_time = sum(recent_times) / len(recent_times) if recent_times else 0
+
+    embed = discord.Embed(
+        title="🤖 Bot Health Monitor",
+        color=0x6BA1FF,
+        timestamp=datetime.now()
+    )
+
+    # Performance Metrics
+    embed.add_field(
+        name="🚀 Performance",
+        value=(
+            f"Uptime: **`{str(datetime.now() - bot.startup_time).split('.')[0]}`**\n"
+            f"Latency: **`{bot.latency * 1000:.1f}ms`**\n"
+            f"Memory: **`{psutil.Process().memory_info().rss / 1024 ** 2:.1f}MB`**\n"
+            f"Response: **`{avg_req_time:.2f}s`**"
+        ),
+        inline=True
+    )
+
+    # Activity Metrics
+    embed.add_field(
+        name="📈 Activity",
+        value=(
+            f"Processed: **`{bot.metrics['processed_count']:,}`**\n"
+            f"Errors: **`{get_error_count():,}`**\n"
+            f"Last Cleanup: **`{relative_time(bot.metrics['last_cleanup'] * 1000, include_ago=True)}`**"
+        ),
+        inline=True
+    )
+
+    # System Health
+    cpu_usage = psutil.cpu_percent()
+    mem_usage = psutil.virtual_memory().percent
+    embed.add_field(
+        name="🖥️ System Health",
+        value=(
+            f"CPU: **`{cpu_usage}%`** {create_progress_bar(cpu_usage)}\n"
+            f"RAM: **`{mem_usage}%`** {create_progress_bar(mem_usage)}\n"
+            f"Tasks: **`{len(asyncio.all_tasks())}`**"
+        ),
+        inline=False
+    )
+
+    embed.set_footer(
+        text=f"Requested by {user.display_name}",
+        icon_url=user.display_avatar.url
+    )
+
+    return embed
+
+def update_ath_in_embed(embed_dict, ath_price, ath_timestamp, current_price, current_fdv):
+    """
+    Update the ATH field in an embed dictionary
+    
+    Args:
+        embed_dict: Embed dictionary
+        ath_price: All-time high price
+        ath_timestamp: All-time high timestamp
+        current_price: Current price
+        current_fdv: Current fully diluted valuation
+        
+    Returns:
+        dict: Updated embed dictionary
+    """
+    from api.mobula import calculate_ath_marketcap
+    
+    if ath_price:
+        # Calculate ATH market cap
+        ath_mcap = calculate_ath_marketcap(ath_price, current_price, current_fdv)
+        
+        # Format time ago
+        time_display = relative_time(ath_timestamp, include_ago=True)
+        
+        # Update the ATH field
+        for field in embed_dict["fields"]:
+            if field["name"] == "🏆 ATH":
+                field["value"] = f"**`${format_value(ath_mcap)}` [{time_display}]**"
+                break
+    else:
+        # Update with N/A if ATH data couldn't be fetched
+        for field in embed_dict["fields"]:
+            if field["name"] == "🏆 ATH":
+                field["value"] = "**`N/A`**"
+                break
+    
+    return embed_dict

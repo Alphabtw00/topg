@@ -160,12 +160,16 @@ class CryptoBot(commands.Bot):
             logger.info(f"Allowed admin users: {', '.join(user_infos)}")
 
     async def close(self):
+        logger.info("Bot is shutting down...")
         if self.http_session:
             await self.http_session.close()
         await super().close()
        
 bot = CryptoBot(command_prefix="!", intents=intents, help_command=None, reconnect=True)
 
+
+
+#views
 class CopyAddressView(discord.ui.View):
     __slots__ = ("address",)
     def __init__(self, address: str):
@@ -197,10 +201,31 @@ class GitHubAnalysisView(discord.ui.View):
             await interaction.response.send_message("Repository will be reanalyzed on next check.", ephemeral=True)
         return True
 
+
+
+#commands
 class Commands(commands.Cog):
     def __init__(self, bot: CryptoBot):
         self.bot = bot
     
+    @app_commands.command(name="health", description="Show bot performance metrics")
+    @app_commands.checks.cooldown(1, 5)
+    async def health_slash(self, interaction: discord.Interaction):
+        """Health check command (slash version)"""
+        if interaction.user.id not in ALLOWED_USER_IDS:
+            await interaction.response.send_message(
+                "You don't have permission to use this command.",
+                ephemeral=True,
+                delete_after=5
+            )
+            return
+
+        try:
+            embed = await self.health_logic(interaction.user)
+            await interaction.response.send_message(embed=embed, ephemeral=True)
+        except Exception as e:
+            logger.error(f"Health command error: {e}")
+
     async def health_logic(self, user: discord.User) -> discord.Embed:
         """Centralized logic for health command with user-specific features"""
         current_time = datetime.now().timestamp()
@@ -234,7 +259,7 @@ class Commands(commands.Cog):
             value=(
                 f"Processed: **`{self.bot.metrics['processed_count']:,}`**\n"
                 f"Errors: **`{sum(error_counts.values()):,}`**\n"
-                f"Last Cleanup: **`{relative_time(self.bot.metrics['last_cleanup'] * 1000)}`**"
+                f"Last Cleanup: **`{relative_time(self.bot.metrics['last_cleanup'] * 1000, include_ago=True)}`**"
             ),
             inline=True
         )
@@ -270,48 +295,12 @@ class Commands(commands.Cog):
         )
         return f"{color} {'█' * filled}{'░' * (bars - filled)}"
     
-    def _score_bar(self, percentage: float) -> str:
-        """Create a visual score bar for better readability"""
-        if percentage <= 0:
-            return "⬜⬜⬜⬜⬜"
-        
-        # Calculate filled and empty blocks
-        filled = min(5, max(0, round(percentage / 20)))
-        
-        # Determine color based on score
-        if percentage >= 80:
-            filled_char = "🟩"
-        elif percentage >= 60:
-            filled_char = "🟨"
-        elif percentage >= 40:
-            filled_char = "🟧"
-        else:
-            filled_char = "🟥"
-        
-        # Create bar with appropriate coloring
-        return filled_char * filled + "⬜" * (5 - filled)
 
 
-    @app_commands.command(name="health", description="Show bot performance metrics")
-    @app_commands.checks.cooldown(1, 5)
-    async def health_slash(self, interaction: discord.Interaction):
-        """Health check command (slash version)"""
-        if interaction.user.id not in ALLOWED_USER_IDS:
-            await interaction.response.send_message(
-                "You don't have permission to use this command.",
-                ephemeral=True,
-                delete_after=5
-            )
-            return
 
-        try:
-            embed = await self.health_logic(interaction.user)
-            await interaction.response.send_message(embed=embed, ephemeral=True)
-        except Exception as e:
-            logger.error(f"Health command error: {e}")
 
     @app_commands.command(name="github-checker", description="Analyze a GitHub repository for legitimacy")
-    @app_commands.checks.cooldown(1, 30)
+    @app_commands.checks.cooldown(1, 15)
     async def check_repo(self, interaction: discord.Interaction, repo_url: str):
         """Analyze a GitHub repository for potential scam indicators in crypto projects"""
         
@@ -332,10 +321,20 @@ class Commands(commands.Cog):
         start_time = datetime.now().timestamp()
         
         # Check cache first - efficient memory usage
-        if repo_url in GITHUB_ANALYSIS_CACHE and (datetime.now() - GITHUB_ANALYSIS_CACHE[repo_url]['timestamp']).total_seconds() < 3600:
+        if repo_url in GITHUB_ANALYSIS_CACHE:
             logger.info(f"Serving cached analysis for {repo_url}")
+            cached_data = GITHUB_ANALYSIS_CACHE[repo_url]
+            
+            # Create embed from cached data
+            embed = self._create_embed(
+                cached_data['repo_info'],
+                cached_data['analysis'],
+                start_time,
+                interaction
+            )
+            
             return await interaction.followup.send(
-                embed=GITHUB_ANALYSIS_CACHE[repo_url]['embed'], 
+                embed=embed, 
                 view=GitHubAnalysisView(repo_url)
             )
         
@@ -365,206 +364,20 @@ class Commands(commands.Cog):
                 
                 # Extract core data
                 result = data["result"]
+                
+                # Extract repository info and analysis
+                repo_info = self._extract_repo_info(result)
                 analysis = result["analysis"]
                 
-                # Core metrics - most important data
-                legitimacy_score = analysis.get("finalLegitimacyScore", 0)
-                trust_score = analysis.get("trustScore", 0)
-                detailed_scores = analysis.get("detailedScores", {})
-                code_review = analysis.get("codeReview", {})
-                ai_analysis = code_review.get("aiAnalysis", {})
-                
-                # Determine verdict and color - clear visual indicator
-                if legitimacy_score >= 75:
-                    embed_color = 0x00FF00  # Green
-                    verdict = "LIKELY LEGITIMATE"
-                    verdict_emoji = "✅"
-                elif legitimacy_score >= 50:
-                    embed_color = 0xFFD700  # Gold
-                    verdict = "EXERCISE CAUTION"
-                    verdict_emoji = "⚠️"
-                else:
-                    embed_color = 0xFF0000  # Red
-                    verdict = "HIGH RISK"
-                    verdict_emoji = "🚨"
-                
-                # Repository info - parsed once for efficiency
-                repo_name = result.get("repoName", "Unknown")
-                owner = result.get("owner", "Unknown")
-                stars = result.get("stars", 0)
-                forks = result.get("forks", 0)
-                language = result.get("language", "Unknown")
-                # last_analyzed = result.get("lastAnalyzed", "Unknown").replace('T', ' ').replace('Z', ' UTC').split('.')[0]
-                
-                
-                if result.get("lastAnalyzed"):
-                    try:
-                        # Parse ISO format timestamp to datetime object
-                        analyzed_dt = datetime.fromisoformat(result["lastAnalyzed"].replace("Z", ""))
-                        last_analyzed = f"{relative_time(analyzed_dt.timestamp() * 1000)} ago"
-                    except Exception as e:
-                        logger.error(f"Error parsing lastAnalyzed: {e}")
-                        last_analyzed = "N/A"
-                else:
-                    last_analyzed = "N/A"
-                    
-                # Create main embed
-                embed = discord.Embed(
-                    title=f"GitHub Analysis: {owner}/{repo_name}",
-                    url=repo_url,
-                    color=embed_color,
-                    timestamp=datetime.now()
-                )
-                
-                # Set GitHub icon and clear author for professional look
-                embed.set_author(
-                    name="GitHub Repository Analyzer", 
-                    icon_url="https://github.githubassets.com/assets/GitHub-Mark-ea2971cee799.png"
-                )
-                
-                # Top summary section with verdict
-                embed.description = (
-                f"## {verdict_emoji} VERDICT: {verdict} {verdict_emoji}\n"
-                f"━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n"
-                f"{analysis.get('summary', 'No summary available')}"
-                )
-                              
-                # --- SCORE SECTION (MOST IMPORTANT) ---
-                # Format scores as progress bars for visual clarity
-                code_quality = detailed_scores.get("codeQuality", 0)
-                project_structure = detailed_scores.get("projectStructure", 0)
-                implementation = detailed_scores.get("implementation", 0)
-                documentation = detailed_scores.get("documentation", 0)
-                ai_score = ai_analysis.get("score", 0)
-                overall_score = (code_quality + project_structure + implementation + documentation) / 4
-                overall_score_percent = overall_score * 4
-                
-                #overall assesment
-                embed.add_field(
-                    name="🛡️ Overall Assessment",
-                    value=(
-                        f"**Legitimacy Score:** {self._score_bar(legitimacy_score)} `{legitimacy_score}%`\n"
-                        f"**Trust Score:** {self._score_bar(trust_score)} `{trust_score}%`\n"
-                        f"**AI Implementation:** {self._score_bar(ai_score)} `{ai_score}%`"
-                        f"**QUALITY:** {self._score_bar(overall_score_percent)} `{overall_score_percent:.0f}%`\n"
-                    ),
-                    inline=False
-                )
-                
-                #detailed scores
-                embed.add_field(
-                    name="📚 Technical Quality",
-                    value=(
-                        f"**Code Quality:** {self._score_bar(code_quality*4)} `{code_quality}/25`\n"
-                        f"**Project Structure:** {self._score_bar(project_structure*4)} `{project_structure}/25`\n"
-                        f"**Implementation:** {self._score_bar(implementation*4)} `{implementation}/25`\n"
-                        f"**Documentation:** {self._score_bar(documentation*4)} `{documentation}/25`"
-                    ),
-                    inline=False
-                )
-                
-                #repo info
-                embed.add_field(
-                    name="📁 Repository Info",
-                    value=(
-                        f"**Language:** `{language}`\n"
-                        f"**Stars:** `{stars:,}`\n"
-                        f"**Forks:** `{forks:,}`\n"
-                        f"**Updated:** `{last_analyzed}`"
-                    ),
-                    inline=True
-                )
-                
-                #investment assesement 
-                ranking = code_review.get("investmentRanking", {})
-                rating = ranking.get("rating", "N/A")
-                confidence = ranking.get("confidence", 0)
-                
-                rating_emoji = {
-                    "Strong Buy": "🟢", 
-                    "Buy": "🟢",
-                    "Medium": "🟡",
-                    "Hold": "🟡", 
-                    "Sell": "🔴",
-                    "Strong Sell": "🔴"
-                }.get(rating, "⚪")
-                
-                embed.add_field(
-                    name="💰 Investment Rating",
-                    value=(
-                        f"**Rating:** {rating_emoji} `{rating}`\n"
-                        f"**Confidence:** {self._score_bar(confidence)} `{confidence}%`\n"
-                    ),
-                    inline=True
-                )
-                
-                #red flags
-                red_flags = code_review.get("redFlags", [])
-                if red_flags:
-                    flags_formatted = "\n".join(f"📉 {flag}" for flag in red_flags)
-                    embed.add_field(
-                        name="🚩 Security Concerns",
-                        value=flags_formatted if flags_formatted else "No significant issues detected",
-                        inline=False
-                    )
-                
-                
-                #key insights
-                reasoning = ranking.get("reasoning", [])
-                if reasoning:
-                    insights_text = "\n".join(f"✔ {item}" for item in reasoning[:3])
-                    
-                    if insights_text:
-                        embed.add_field(
-                            name="⚡ Key Insights",
-                            value=insights_text,
-                            inline=False
-                        )
-
-                #ai implementation 
-                if ai_analysis.get("hasAI", False):
-                    ai_components = ai_analysis.get("components", [])
-                    if ai_components:
-                        ai_features = [
-                            comp for comp in ai_components 
-                            if not comp.startswith("Areas for improvement:") and "improvement" not in comp.lower() and not comp.startswith("-")
-                        ]
-                        
-                        if ai_features:
-                            ai_text = "\n".join(f"🔹 {feature}" for feature in ai_features)
-                            
-                            embed.add_field(
-                                name="🤖 AI Implementation",
-                                value=ai_text,
-                                inline=False
-                            )
-
-                
-                #overall assesement
-                if code_review.get("overallAssessment"):
-                    assessment = code_review.get("overallAssessment")
-                    
-                    # Split into paragraphs and get just the first one for brevity
-                    paragraphs = assessment.split("\n\n")
-                    first_paragraph = paragraphs[0]
-                    
-                    embed.add_field(
-                        name="👨‍💻 Expert Opinion",
-                        value=f"> {first_paragraph}",
-                        inline=False
-                    )
-                
-                #footer
-                embed.set_footer(
-                    text=f"Requested by {interaction.user.display_name} • ⌛Analysis Time: {(datetime.now().timestamp() - start_time):.1f}s", 
-                    icon_url=interaction.user.display_avatar.url
-                )
-                
-                # Cache the embed with timestamp - memory efficient
+                # Cache the repository info and analysis (not the embed)
                 GITHUB_ANALYSIS_CACHE[repo_url] = {
-                    'embed': embed,
+                    'repo_info': repo_info,
+                    'analysis': analysis,
                     'timestamp': datetime.now()
                 }
+                
+                # Create the embed
+                embed = self._create_embed(repo_info, analysis, start_time, interaction)
                 
                 # Update metrics
                 self.bot.metrics['processed_count'] += 1
@@ -573,7 +386,7 @@ class Commands(commands.Cog):
                 # Create and send view with buttons
                 view = GitHubAnalysisView(repo_url)
                 await interaction.followup.send(embed=embed, view=view)
-                 
+                    
         except asyncio.TimeoutError:
             logger.error(f"Analysis timeout for {repo_url}")
             await interaction.followup.send(
@@ -587,29 +400,311 @@ class Commands(commands.Cog):
                 "❌ Failed to analyze repository. Please ensure the URL is valid and try again. If the problem persists, the analysis service may be experiencing issues.",
                 ephemeral=True
             )
+
+    def _extract_repo_info(self, result):
+        """Extract repository info from API result, handling both cached and non-cached responses"""
+        repo_info = {}
+        
+        if "repoDetails" in result:
+            # First-time API response with full details
+            repo_details = result["repoDetails"]
             
-    @commands.Cog.listener()
-    async def on_app_command_error(self, interaction: discord.Interaction, error: app_commands.AppCommandError):
-        if isinstance(error, app_commands.CommandOnCooldown):
-            await interaction.response.send_message(
-                f"Command on cooldown. Try again in {error.retry_after:.1f}s",
-                ephemeral=True,
-                delete_after=5
-            )
+            repo_info["name"] = repo_details.get("name", "Unknown")
+
+            owner = repo_details.get("owner", {})
+            repo_info["owner"] = owner.get("login", "Unknown")
+            repo_info["owner_avatar"] = owner.get("avatar_url", "https://github.githubassets.com/assets/GitHub-Mark-ea2971cee799.png")
+            
+            # Repository stats
+            repo_info["stars"] = repo_details.get("stargazers_count", 0)
+            repo_info["forks"] = repo_details.get("forks_count", 0)
+            repo_info["watchers"] = repo_details.get("watchers_count", 0)
+            repo_info["open_issues"] = repo_details.get("open_issues_count", 0)
+            repo_info["language"] = repo_details.get("language", "Unknown")
+            repo_info["size"] = repo_details.get("size", 0)
+            
+            # Dates
+            repo_info["created_at"] = repo_details.get("created_at", "Unknown")
+            repo_info["updated_at"] = repo_details.get("updated_at", "Unknown")
+            
+            # License
+            license_info = repo_details.get("license", {})
+            repo_info["license"] = license_info.get("name", "No license") if license_info else "No license"
+        
         else:
-            logger.error(f"Command error: {str(error)}")
-            try:
+            # Cached API response with limited details - extract what we can
+            repo_info["name"] = result.get("repoName", "Unknown")
+            repo_info["owner"] = result.get("owner", "Unknown")
+            repo_info["stars"] = result.get("stars", 0)
+            repo_info["forks"] = result.get("forks", 0)
+            repo_info["language"] = result.get("language", "Unknown")
+            
+            # Set defaults for missing fields
+            repo_info["owner_avatar"] = "https://github.githubassets.com/assets/GitHub-Mark-ea2971cee799.png"
+            repo_info["watchers"] = 0
+            repo_info["open_issues"] = 0
+            repo_info["size"] = 0
+            repo_info["created_at"] = "Unknown"
+            repo_info["updated_at"] = "Unknown"
+            repo_info["license"] = "Unknown"
+        
+        return repo_info
+
+    def _create_embed(self, repo_info, analysis, start_time, interaction):
+        """Create a consistent embed from repository info and analysis"""
+        # Core metrics - most important data
+        legitimacy_score = analysis.get("finalLegitimacyScore", 0)
+        trust_score = analysis.get("trustScore", 0)
+        detailed_scores = analysis.get("detailedScores", {})
+        code_review = analysis.get("codeReview", {})
+        ai_analysis = code_review.get("aiAnalysis", {})
+        
+        # Determine verdict and color - clear visual indicator
+        if legitimacy_score >= 75:
+            embed_color = 0x00FF00  # Green
+            verdict = "LIKELY LEGITIMATE"
+            verdict_emoji = "✅"
+        elif legitimacy_score >= 50:
+            embed_color = 0xFFD700  # Gold
+            verdict = "EXERCISE CAUTION"
+            verdict_emoji = "⚠️"
+        else:
+            embed_color = 0xFF0000  # Red
+            verdict = "HIGH RISK"
+            verdict_emoji = "🚨"
+        
+        # Format repository name
+        repo_name = repo_info["name"]
+        owner = repo_info["owner"]
+        
+        # Create main embed
+        embed = discord.Embed(
+            title=f"GitHub Analysis: {owner}/{repo_name}",                   
+            url=f"https://github.com/{owner}/{repo_name}",
+            color=embed_color,
+            timestamp=datetime.now()
+        )
+        
+        # GitHub logo
+        embed.set_author(
+            name="GitHub Repository Analyzer", 
+            icon_url="https://github.githubassets.com/assets/GitHub-Mark-ea2971cee799.png"
+        )
+
+        # Owner avatar
+        embed.set_thumbnail(url=repo_info["owner_avatar"])
+        
+        # Top summary section with verdict
+        embed.description = (
+            f"## {verdict_emoji} VERDICT: {verdict} {verdict_emoji}\n"
+            f"━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n"
+            f"{analysis.get('summary', 'No summary available')}"
+        )
+                    
+        # --- SCORE SECTION (MOST IMPORTANT) ---
+        # Format scores as progress bars for visual clarity
+        code_quality = detailed_scores.get("codeQuality", 0)
+        project_structure = detailed_scores.get("projectStructure", 0)
+        implementation = detailed_scores.get("implementation", 0)
+        documentation = detailed_scores.get("documentation", 0)
+        ai_score = ai_analysis.get("score", 0)
+        overall_score = (code_quality + project_structure + implementation + documentation) / 4
+        
+        # Overall assessment
+        embed.add_field(
+            name="🛡️ Overall Assessment",
+            value=(
+                f"**Legitimacy Score:** {self._score_bar(legitimacy_score)} `{legitimacy_score}%`\n"
+                f"**Trust Score:** {self._score_bar(trust_score)} `{trust_score}%`\n"
+                f"**AI Implementation:** {self._score_bar(ai_score)} `{ai_score}%`\n"
+                f"**Average Score:** {self._score_bar(overall_score)} `{overall_score:.0f}%`\n"
+            ),
+            inline=False
+        )
+        
+        # Detailed scores
+        embed.add_field(
+            name="📚 Technical Quality",
+            value=(
+                f"**Code Quality:** {self._score_bar(code_quality*4)} `{code_quality}/25`\n"
+                f"**Project Structure:** {self._score_bar(project_structure*4)} `{project_structure}/25`\n"
+                f"**Implementation:** {self._score_bar(implementation*4)} `{implementation}/25`\n"
+                f"**Documentation:** {self._score_bar(documentation*4)} `{documentation}/25`"
+            ),
+            inline=False
+        )
+
+
+        # Investment assessment 
+        ranking = code_review.get("investmentRanking", {})
+        rating = ranking.get("rating", "N/A")
+        confidence = ranking.get("confidence", 0)
+        
+        rating_emoji = {
+            "Strong Buy": "🟢", 
+            "Buy": "🟢",
+            "High": "🟢",
+            "Medium": "🟡",
+            "Hold": "🟡", 
+            "Sell": "🔴",
+            "Strong Sell": "🔴",
+            "Low": "🔴"
+        }.get(rating, "⚪")
+        
+        embed.add_field(
+            name="💰 Investment Rating",
+            value=(
+                f"**Rating:** {rating_emoji} `{rating}`\n"
+                f"**Confidence:** {self._score_bar(confidence)} `{confidence}%`\n"
+            ),
+            inline=False
+        )
+        
+
+        # Enhanced repo info with more details
+        created_date = format_date(repo_info.get("created_at"))
+        updated_date = format_date(repo_info.get("updated_at"))
+        size = format_size(repo_info.get("size"))
+
+        # Group basic repository details under "General Info"
+        general_info = "\n".join([
+            f"**Primary Language:** `{repo_info.get('language')}`",
+            f"**License:** `{repo_info.get('license')}`",
+            f"**Size:** `{size}`",
+            f"**Created:** `{created_date}`",
+            f"**Updated:** `{updated_date}`",
+        ])
+
+        # Group engagement metrics under "Community Stats"
+        community_stats = "\n".join([
+            f"**Owner:** [{repo_info.get('owner')}](https://github.com/{repo_info.get('owner', 'Unknown')})",
+            f"**Stars:** `{repo_info.get('stars'):,}`",
+            f"**Forks:** `{repo_info.get('forks'):,}`",
+            f"**Watchers:** `{repo_info.get('watchers'):,}`",
+            f"**Open Issues:** `{repo_info.get('open_issues'):,}`",
+        ])
+
+        # Add two inline fields to the embed with the new headings
+        embed.add_field(
+            name="📁 Repo Info",
+            value=general_info,
+            inline=True
+        )
+        embed.add_field(
+            name="⭐ Community Stats",
+            value=community_stats,
+            inline=True
+        )
+                
+        # Red flags
+        red_flags = code_review.get("redFlags", [])
+        if red_flags:
+            flags_formatted = "\n".join(f"📉 {flag}" for flag in red_flags[:3])
+            embed.add_field(
+                name="🚩 Security Concerns",
+                value=flags_formatted if flags_formatted else "No significant issues detected",
+                inline=False
+            )
+        
+        # Key insights
+        reasoning = ranking.get("reasoning", [])
+        if reasoning:
+            insights_text = "\n".join(f"✔ {item}" for item in reasoning[:3])
+            
+            if insights_text:
+                embed.add_field(
+                    name="⚡ Key Insights",
+                    value=insights_text,
+                    inline=False
+                )
+
+        # AI implementation 
+        if ai_analysis.get("hasAI", False):
+            ai_components = ai_analysis.get("components", [])
+            if ai_components:
+                ai_features = [
+                    comp for comp in ai_components 
+                    if not comp.startswith("Areas for improvement:") and "improvement" not in comp.lower() and not comp.startswith("-")
+                ]
+                
+                if ai_features:
+                    ai_text = "\n".join(f"🔹 {feature}" for feature in ai_features[:3])
+                    
+                    embed.add_field(
+                        name="🤖 AI Implementation",
+                        value=ai_text,
+                        inline=False
+                    )
+        
+        # Overall assessment
+        if code_review.get("overallAssessment"):
+            assessment = code_review.get("overallAssessment")
+            
+            # Split into paragraphs and get just the first one for brevity
+            paragraphs = assessment.split("\n\n")
+            first_paragraph = paragraphs[0]
+            
+            embed.add_field(
+                name="👨‍💻 Expert Opinion",
+                value=f"> {first_paragraph}",
+                inline=False
+            )
+        
+        # Footer
+        embed.set_footer(
+            text=f"Requested by {interaction.user.display_name} • ⌛Analysis Time: {(datetime.now().timestamp() - start_time):.1f}s", 
+            icon_url=interaction.user.display_avatar.url
+        )
+        
+        return embed
+    
+    def _score_bar(self, percentage: float) -> str:
+        """Create a visual score bar for better readability"""
+        if percentage <= 0:
+            return "⬜⬜⬜⬜⬜"
+        
+        # Calculate filled and empty blocks
+        filled = min(5, max(0, round(percentage / 20)))
+        
+        # Determine color based on score
+        if percentage >= 80:
+            filled_char = "🟩"
+        elif percentage >= 60:
+            filled_char = "🟨"
+        elif percentage >= 40:
+            filled_char = "🟧"
+        else:
+            filled_char = "🟥"
+        
+        # Create bar with appropriate coloring
+        return filled_char * filled + "⬜" * (5 - filled)
+    
+    def create_error_handler(command_name):
+        async def error_handler(self, interaction: discord.Interaction, error: app_commands.AppCommandError):
+            if isinstance(error, app_commands.CommandOnCooldown):
                 await interaction.response.send_message(
-                    "An error occurred while processing this command.",
+                    f"Command on cooldown. Try again in {error.retry_after:.1f}s",
                     ephemeral=True,
                     delete_after=5
                 )
-            except:
-                # If response was already sent, use followup
-                await interaction.followup.send(
-                    "An error occurred while processing this command.",
-                    ephemeral=True
-                )
+            else:
+                logger.error(f"{command_name} command error: {str(error)}")
+                try:
+                    await interaction.response.send_message(
+                        "An error occurred while processing this command.",
+                        ephemeral=True,
+                        delete_after=5
+                    )
+                except:
+                    # If response was already sent, use followup
+                    await interaction.followup.send(
+                        "An error occurred while processing this command.",
+                        ephemeral=True
+                    )
+        return error_handler
+
+    check_repo.error(create_error_handler("github-checker"))
+    health_slash.error(create_error_handler("health"))
 
 
 
@@ -662,6 +757,30 @@ async def monitor_memory_usage(threshold_mb=300): #increase threshold if needed 
 
 
 #response helper
+def format_size(size_kb):
+    """Convert size in KB to a human-readable format (KB, MB, or GB)."""
+    try:
+        size = float(size_kb)
+    except (ValueError, TypeError):
+        return "Unknown"
+    if size < 1024:
+        return f"{size:.0f} KB"
+    elif size < 1024 * 1024:
+        size_mb = size / 1024
+        return f"{size_mb:.2f} MB"
+    else:
+        size_gb = size / (1024 * 1024)
+        return f"{size_gb:.2f} GB"
+
+def format_date(date_str):
+    """Return a formatted date string or 'Unknown' if not available."""
+    if not date_str or date_str == "Unknown":
+        return "Unknown"
+    try:
+        return datetime.fromisoformat(date_str.replace("Z", "+00:00")).strftime("%b %d, %Y")
+    except Exception:
+        return date_str
+
 def get_color_from_change(change: float) -> int:
     if change > 0:
         return 0x00FF00  #green
@@ -692,20 +811,28 @@ def format_value(value) -> str:
         return str(int(value))
     return f"{value:.2f}".rstrip('0').rstrip('.')
 
-def relative_time(timestamp) -> str:
+def relative_time(timestamp, include_ago=False) -> str:
     try:
         delta = datetime.now() - datetime.fromtimestamp(timestamp / 1000)
+        
+        if delta.seconds <= 5 and delta.days == 0:
+            return "Just now"
+            
+        # Format the time unit
         if delta.days >= 365:
-            return f"{delta.days//365}y"
-        if delta.days > 30:
-            return f"{delta.days//30}mo"
-        if delta.days:
-            return f"{delta.days}d"
-        if delta.seconds >= 3600:
-            return f"{delta.seconds//3600}h"
-        if delta.seconds >= 60:
-            return f"{delta.seconds//60}m"
-        return f"{delta.seconds}s"
+            time_str = f"{delta.days//365}y"
+        elif delta.days > 30:
+            time_str = f"{delta.days//30}mo"
+        elif delta.days:
+            time_str = f"{delta.days}d"
+        elif delta.seconds >= 3600:
+            time_str = f"{delta.seconds//3600}h"
+        elif delta.seconds >= 60:
+            time_str = f"{delta.seconds//60}m"
+        else:
+            time_str = f"{delta.seconds}s"
+        
+        return f"{time_str} ago" if include_ago else time_str
     except Exception:
         return "N/A"
 
@@ -829,7 +956,7 @@ def create_embed(entry: dict, address: str, order_status: str) -> discord.Embed:
         # Footer
         footer_parts = []
         if pair_created_at:
-            footer_parts.append(f"Created {relative_time(pair_created_at)} ago")
+            footer_parts.append(f"Created {relative_time(pair_created_at, include_ago=True)}")
         
         # Order status
         footer_parts.append(order_status)
@@ -949,7 +1076,7 @@ async def get_order_status(session: aiohttp.ClientSession, token_address: str) -
                 status = order.get("status")
                 if status == "approved":
                     timestamp = order.get("paymentTimestamp")
-                    time_ago = f" ({relative_time(timestamp)} ago)" if timestamp else ""
+                    time_ago = f" ({relative_time(timestamp, include_ago=True)})" if timestamp else ""
                     return f"✅ Dex Paid{time_ago}"
                 elif status == "on-hold":
                     return "⏳ Dex On Hold"
@@ -1020,10 +1147,7 @@ async def process_entry(message: discord.Message, session: aiohttp.ClientSession
                 
                 # Format time ago
                 time_delta = datetime.now().timestamp() * 1000 - ath_timestamp
-                if time_delta < 5000:  # Less than 5 seconds
-                    time_display = "now!"
-                else:
-                    time_display = f"{relative_time(ath_timestamp)} ago"
+                time_display = relative_time(ath_timestamp, include_ago=True)
                 
                 # Update the ATH field
                 for field in embed_dict["fields"]:
@@ -1119,7 +1243,6 @@ async def on_message(message: discord.Message):
     if tasks:
         await asyncio.gather(*tasks)
 
-
 @bot.event
 async def on_error(event, *args, **kwargs):
     if event == 'on_message':
@@ -1127,7 +1250,6 @@ async def on_error(event, *args, **kwargs):
     else:
         logger.error(f"Unhandled error in {event}: {sys.exc_info()}")
         
- 
 @bot.event
 async def on_disconnect():
     logger.warning("Bot disconnected from Discord. Attempting to reconnect...")       

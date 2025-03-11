@@ -1,0 +1,3 @@
+2025-03-11 14:17:55,016 - ERROR - Health command error: name 'asyncio' is not defined
+2025-03-11 15:43:22,958 - CRITICAL - Failed to start bot: 'CryptoBot' object has no attribute 'on_message_handler'
+2025-03-11 16:11:48,512 - ERROR - Message processing error: can only concatenate str (not "list") to str
