@@ -16,6 +16,11 @@ if not TOKEN:
 # Channel and User IDs
 TARGET_CHANNEL_IDS = {int(id.strip()) for id in os.getenv("TARGET_CHANNEL_IDS", "").split(",") if id.strip().isdigit()}
 ALLOWED_USER_IDS = {int(uid.strip()) for uid in os.getenv("ALLOWED_USER_IDS", "").split(",") if uid.strip().isdigit()}
+#ids to copy messages from
+INPUT_CHANNEL_IDS = {int(id.strip()) for id in os.getenv("INPUT_CHANNEL_IDS", "").split(",") if id.strip().isdigit()}
+#ids to forward messages to
+OUTPUT_CHANNEL_IDS = {int(id.strip()) for id in os.getenv("OUTPUT_CHANNEL_IDS", "").split(",") if id.strip().isdigit()}
+
 
 # API Endpoints
 BASE_URL = "https://api.dexscreener.com"
@@ -27,6 +32,17 @@ TRADING_PLATFORMS = {
     "Photon": "https://photon-sol.tinyastro.io/en/lp/{pair}",
     "Neo BullX": "https://neo.bullx.io/terminal?chainId=1399811149&address={address}",
 }
+
+
+DB_HOST = os.getenv("DB_HOST", "localhost")
+DB_PORT = int(os.getenv("DB_PORT", "3306"))
+DB_USER = os.getenv("DB_USER", "root")
+DB_PASSWORD = os.getenv("DB_PASSWORD", "")
+DB_NAME = os.getenv("DB_NAME", "crypto_bot")
+DB_POOL_MIN_SIZE = int(os.getenv("DB_POOL_MIN_SIZE", "1"))
+DB_POOL_MAX_SIZE = int(os.getenv("DB_POOL_MAX_SIZE", "10"))
+
+
 
 # Regex Patterns
 ADDRESS_REGEX_PATTERN = r"\b[1-9A-HJ-NP-Za-km-z]{32,44}\b"

@@ -27,10 +27,8 @@ def create_token_embed(entry: dict, address: str, order_status: str) -> discord.
     """
     try:
         # Extract core data once to avoid repeated dictionary lookups
+        # Use .get() with defaults to prevent errors if keys are missing
         change = float(entry.get("priceChange", {}).get("m5", 0))
-        embed = discord.Embed(color=get_color_from_change(change))
-        
-        # Extract data once to avoid repeated lookups
         current_price = float(entry.get("priceUsd", 0))
         current_fdv = float(entry.get("fdv", 0))
         liquidity = float(entry.get("liquidity", {}).get("usd", 0))
@@ -40,47 +38,52 @@ def create_token_embed(entry: dict, address: str, order_status: str) -> discord.
         sells = txns.get("sells", 0)
         pair_created_at = entry.get("pairCreatedAt")
         
-        # Prices section
+        # Set color based on price change
+        embed = discord.Embed(color=get_color_from_change(change))
+        
+        # Section 1: Core Metrics (FDV, Price, Liquidity)
         embed.add_field(name="💰 FDV", value=f"**`${format_value(current_fdv)}`**", inline=True)
         embed.add_field(name="💵 USD Price", value=f"**`${format_value(current_price)}`**", inline=True)
         embed.add_field(name="💧 Liquidity", value=f"**`${format_value(liquidity)}`**", inline=True)
         
-        # ATH placeholder - will be updated asynchronously
+        # Section 2: Performance Metrics (ATH, Volume, Change) - Reverted to old layout
         embed.add_field(name="🏆 ATH", value="**`Fetching...`**", inline=True)
         
-        # Changes section
+        # Price change indicators
         emoji = "📉" if change < 0 else "📈"
         embed.add_field(name="📊 5m Volume", value=f"**`${format_value(volume_5m)}`**", inline=True)
         embed.add_field(name=f"{emoji} 5m Change", value=f"**`{format_value(change)}%`**", inline=True)
         
-        # Transactions
+        # Section 3: Transactions
         embed.add_field(
             name="🔄 5m Transactions",
             value=f"🟢 **`{format_value(buys)}`** | 🔴 **`{format_value(sells)}`**",
             inline=False,
         )
         
-        # Links section - efficiently build the links
+        # Section 4: Links - build efficiently in a single pass
         info = entry.get("info", {})
-        links = []
+        links_parts = []
         
         # Websites
         websites = info.get("websites", [])
         if websites:
-            links.append("**Websites:** " + " ".join(f"[{site.get('label') or 'Website'}]({site['url']})" for site in websites))
+            sites_links = " ".join(f"[{site.get('label') or 'Website'}]({site['url']})" for site in websites)
+            links_parts.append(f"**Websites:** {sites_links}")
         
         # Socials
         socials = info.get("socials", [])
         if socials:
-            links.append("**Socials:** " + " ".join(f"[{soc.get('type', 'Social').title()}]({soc['url']})" for soc in socials))
+            social_links = " ".join(f"[{soc.get('type', 'Social').title()}]({soc['url']})" for soc in socials)
+            links_parts.append(f"**Socials:** {social_links}")
         
         # Chart
-        links.append(f"**Chart:** [DEX]({entry.get('url', '#')})")
+        links_parts.append(f"**Chart:** [DEX]({entry.get('url', '#')})")
         
-        if links:
-            embed.add_field(name="🔗 Links", value="\n".join(links), inline=False)
+        if links_parts:
+            embed.add_field(name="🔗 Links", value="\n".join(links_parts), inline=False)
         
-        # Twitter search
+        # Section 5: Twitter Search
         base_token = entry.get('baseToken', {})
         symbol = base_token.get('symbol', '')
         
@@ -91,36 +94,33 @@ def create_token_embed(entry: dict, address: str, order_status: str) -> discord.
             inline=False
         )
         
-        # Contract address
+        # Section 6: Contract Address
         embed.add_field(name="🔑 Contact Address", value=f"**`{address}`**", inline=False)
         
-        # Trading platforms
+        # Section 7: Trading Platforms
         platforms = [f"[{name}]({url.format(pair=entry.get('pairAddress', address), address=address)})" 
                      for name, url in TRADING_PLATFORMS.items()]
         embed.add_field(name="💱 Trade On", value=" | ".join(platforms), inline=False)
         
-        # Banner
+        # Set banner image if available
         banner = info.get("header")
         if banner:
             embed.set_image(url=banner)
         
-        # Footer
+        # Footer with price, time created, and DEX status
         footer_parts = []
+        
+        # Add DEX status
+        footer_parts.append(f"{order_status}")
+
+        # Add creation time with emoji
         if pair_created_at:
-            footer_parts.append(f"Created {relative_time(pair_created_at, include_ago=True)}")
+            footer_parts.append(f"⏱️ {relative_time(pair_created_at, include_ago=True)}")
         
-        # Order status
-        footer_parts.append(order_status)
-        
-        # Active boosts
-        boosts = entry.get("boosts", {})
-        active_boosts = boosts.get("active")
-        if active_boosts:
-            footer_parts.append(f"🚀 {active_boosts} Boosts")
-            
+        # Set footer text
         embed.set_footer(text=" • ".join(footer_parts))
         
-        # Thumbnail
+        # Set token logo as thumbnail
         img = info.get("imageUrl")
         if img:
             embed.set_thumbnail(url=img)
@@ -129,7 +129,7 @@ def create_token_embed(entry: dict, address: str, order_status: str) -> discord.
     except Exception as e:
         logger.error(f"Embed creation error: {e}")
         return None
-
+    
 def create_header_message(entry: dict) -> str:
     """
     Create a header message for token information
@@ -152,6 +152,90 @@ def create_header_message(entry: dict) -> str:
     except Exception as e:
         logger.error(f"Header creation error: {e}")
         return "Token Information"
+
+def update_ath_in_embed(embed_dict, ath_price, ath_timestamp, current_price, current_fdv):
+    """
+    Update the ATH field in an embed dictionary
+    
+    Args:
+        embed_dict: Embed dictionary
+        ath_price: All-time high price
+        ath_timestamp: All-time high timestamp
+        current_price: Current price
+        current_fdv: Current fully diluted valuation
+        
+    Returns:
+        dict: Updated embed dictionary
+    """
+    from api.mobula import calculate_ath_marketcap
+    
+    if ath_price:
+        # Calculate ATH market cap
+        ath_mcap = calculate_ath_marketcap(ath_price, current_price, current_fdv)
+        
+        # Format time ago
+        time_display = relative_time(ath_timestamp, include_ago=True)
+        
+        # Update the ATH field
+        for field in embed_dict["fields"]:
+            if field["name"] == "🏆 ATH":
+                field["value"] = f"**`${format_value(ath_mcap)}` [{time_display}]**"
+                break
+    else:
+        # Update with N/A if ATH data couldn't be fetched
+        for field in embed_dict["fields"]:
+            if field["name"] == "🏆 ATH":
+                field["value"] = "**`N/A`**"
+                break
+    
+    return embed_dict
+
+def update_first_call_in_embed(embed_dict, first_call_data, current_price, current_user):
+    """
+    Update embed with first call information
+    """
+    try:
+        if not first_call_data:
+            return embed_dict
+            
+        # Extract first call data
+        initial_price = float(first_call_data.get('initial_price', 0))
+        initial_fdv = float(first_call_data.get('initial_fdv', 0))
+        user_name = first_call_data.get('user_name', 'Unknown')
+        user_id = first_call_data.get('user_id', 0)
+        is_first_call = first_call_data.get('is_first_call', False)
+        
+        # Calculate price multiple (x)
+        price_multiple = 0
+        if initial_price > 0:
+            price_multiple = current_price / initial_price
+            
+        # Create first call text
+        if is_first_call:
+            # This is the first call - current user is the first caller
+            first_call_text = f"🎯 You're First! @ ${format_value(initial_fdv)}"
+        else:
+            if price_multiple >= 2:
+                first_call_text = f"🏆 {user_name} @ ${format_value(initial_fdv)} 📈{int(price_multiple)}x"
+            else:
+                first_call_text = f"🏆 {user_name} @ ${format_value(initial_fdv)}"
+        
+        # Get existing footer text if it exists
+        existing_footer_text = ""
+        if "footer" in embed_dict and "text" in embed_dict["footer"]:
+            existing_footer_text = embed_dict["footer"]["text"]
+        
+        # Combine footer texts
+        combined_footer = f"{first_call_text} • {existing_footer_text}" if existing_footer_text else first_call_text
+        
+        # Update embed footer
+        embed_dict["footer"] = {"text": combined_footer}
+            
+        return embed_dict
+        
+    except Exception as e:
+        logger.error(f"Error updating first call in embed: {e}")
+        return embed_dict
 
 def create_github_analysis_embed(repo_info, analysis, start_time, interaction):
     """
@@ -440,40 +524,3 @@ def create_health_embed(bot, user) -> discord.Embed:
     )
 
     return embed
-
-def update_ath_in_embed(embed_dict, ath_price, ath_timestamp, current_price, current_fdv):
-    """
-    Update the ATH field in an embed dictionary
-    
-    Args:
-        embed_dict: Embed dictionary
-        ath_price: All-time high price
-        ath_timestamp: All-time high timestamp
-        current_price: Current price
-        current_fdv: Current fully diluted valuation
-        
-    Returns:
-        dict: Updated embed dictionary
-    """
-    from api.mobula import calculate_ath_marketcap
-    
-    if ath_price:
-        # Calculate ATH market cap
-        ath_mcap = calculate_ath_marketcap(ath_price, current_price, current_fdv)
-        
-        # Format time ago
-        time_display = relative_time(ath_timestamp, include_ago=True)
-        
-        # Update the ATH field
-        for field in embed_dict["fields"]:
-            if field["name"] == "🏆 ATH":
-                field["value"] = f"**`${format_value(ath_mcap)}` [{time_display}]**"
-                break
-    else:
-        # Update with N/A if ATH data couldn't be fetched
-        for field in embed_dict["fields"]:
-            if field["name"] == "🏆 ATH":
-                field["value"] = "**`N/A`**"
-                break
-    
-    return embed_dict

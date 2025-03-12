@@ -14,14 +14,17 @@ async def main():
     """Main entry point for the bot"""
     try:
         logger.info("Starting bot...")
-        bot = CryptoBot(command_prefix="!", intents=INTENTS, help_command=None, reconnect=True)
+        bot = CryptoBot(command_prefix="!", intents=INTENTS, help_command=None)
         await bot.start(TOKEN)
     except Exception as e:
         logger.critical(f"Failed to start bot: {e}")
         exit(1)
     finally:
-        # Cleanup if needed
-        await bot.close()
+        if bot:
+            await bot.close()
+            # Add explicit database pool cleanup
+            from handlers.mysql_handler import close_db_pool
+            await close_db_pool()
 
 if __name__ == "__main__":
     try:
