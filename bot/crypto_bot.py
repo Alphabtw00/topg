@@ -10,7 +10,6 @@ from datetime import datetime, timedelta
 from discord.ext import commands, tasks
 from utils.logger import get_logger
 from api.http_client import setup_http_session
-from bot.memory_monitor import monitor_memory_usage
 from commands.health import Health
 from commands.github_checker import GithubChecker
 from handlers.mysql_handler import setup_db_pool
@@ -52,138 +51,6 @@ class CryptoBot(commands.Bot):
             },
             'api_latency': {}
         }
-        
-    def start_background_task(self, coro, name=None):
-        """
-        Start and track a background task
-        
-        Args:
-            coro: Coroutine to run as background task
-            name: Optional name for the task
-        """
-        task = self.loop.create_task(coro)
-        if name:
-            task.set_name(name)
-        self.bg_tasks.append(task)
-        return task
-        
-    async def cleanup_metrics(self):
-        """Efficient metrics cleanup using batch operations"""
-        while True:
-            try:
-                await asyncio.sleep(36000)  # Run every 10 hours
-                current_time = datetime.now().timestamp()
-                # Batch cleanup in one operation
-                self.metrics['processing_times'] = [
-                    t for t in self.metrics['processing_times'][-1000:]  # Keep last 1000 entries max
-                    if current_time - t[1] < 3600  # Only from last hour
-                ]
-
-                # Reset processed count periodically to prevent integer overflow
-                if self.metrics['processed_count'] > 1_000_000:
-                    self.metrics['processed_count'] = 0
-                    logger.info(f"Cleared processed counts after hitting processed limit.")
-
-                # Clear error counts
-                from utils.cache import get_error_count, clear_error_counts  
-                error_count = get_error_count()  # Fetch current error count
-                
-                if error_count > 1000:
-                    clear_error_counts()  # Clear errors
-                    logger.info(f"Cleared error counts after exceeding error limit")
-
-                # Suggest garbage collection
-                gc.collect()
-                
-                # Report memory usage
-                memory = psutil.Process().memory_info().rss / 1024 ** 2  # MB
-                logger.info(f"Memory usage: {memory:.1f}MB")
-
-                self.metrics['last_cleanup'] = current_time
-                logger.info("Metrics cleanup completed")
-            except Exception as e:
-                logger.error(f"Metrics cleanup error: {e}")
-
-    async def attempt_reconnect(self):
-        """Handle reconnection with exponential backoff"""
-        attempts = 0
-        while attempts < self.max_reconnect_attempts:
-            try:
-                logger.info(f"Reconnection attempt {attempts+1}/{self.max_reconnect_attempts}")
-                await self.connect(reconnect=True)
-                return True
-            except Exception as e:
-                attempts += 1
-                wait_time = self.reconnect_delay * (2 ** attempts)
-                logger.error(f"Reconnection failed: {e}. Waiting {wait_time}s before retry.")
-                await asyncio.sleep(wait_time)
-        return False
-    
-    async def heartbeat_monitor(self):
-        """Monitor Discord heartbeats to detect connection issues early"""
-        last_ack = None
-        missed_heartbeats = 0
-        
-        while True:
-            try:
-                await asyncio.sleep(30)  # Check every 30 seconds
-                
-                if hasattr(self.ws, 'last_heartbeat_ack'):
-                    current_ack = self.ws.last_heartbeat_ack
-                    
-                    if current_ack == last_ack:
-                        missed_heartbeats += 1
-                        logger.warning(f"Missed heartbeat detected: {missed_heartbeats} in a row")
-                        
-                        if missed_heartbeats >= self.heartbeat_missed_threshold:
-                            logger.error("Multiple missed heartbeats - connection may be unstable")
-                            # Force reconnection if we've missed too many heartbeats
-                            if hasattr(self.ws, 'close'):
-                                await self.ws.close(code=1000)
-                                logger.info("Closed websocket to force reconnection")
-                                missed_heartbeats = 0
-                    else:
-                        if missed_heartbeats > 0:
-                            logger.info(f"Heartbeat resumed after {missed_heartbeats} missed beats")
-                        missed_heartbeats = 0
-                        
-                    last_ack = current_ack
-            except Exception as e:
-                logger.error(f"Error in heartbeat monitor: {e}")
-                await asyncio.sleep(5)
-                
-    async def periodic_metrics_report(self):
-        """Report periodic metrics for monitoring"""
-        while True:
-            try:
-                await asyncio.sleep(3600)  # Report every hour
-                
-                # Calculate uptime
-                uptime = datetime.now() - self.startup_time
-                hours, remainder = divmod(uptime.total_seconds(), 3600)
-                minutes, seconds = divmod(remainder, 60)
-                
-                # Get memory usage
-                memory = psutil.Process().memory_info().rss / 1024 ** 2  # MB
-                
-                # Calculate average processing time if any metrics exist
-                avg_time = 0
-                if self.metrics['processing_times']:
-                    recent_times = [t[0] for t in self.metrics['processing_times'][-100:]]
-                    if recent_times:
-                        avg_time = sum(recent_times) / len(recent_times)
-                
-                # Collect and log metrics
-                logger.info(
-                    f"Metrics Report | Uptime: {int(hours)}h {int(minutes)}m | "
-                    f"Memory: {memory:.1f}MB | "
-                    f"Processed: {self.metrics['processed_count']} | "
-                    f"Avg Processing: {avg_time:.4f}s"
-                )
-                
-                self.last_metrics_report = datetime.now()
-            except Exception as e:
-                logger.error(f"Error in metrics report: {e}")
 
     async def setup_hook(self):
         """Setup hook that runs before the bot is ready"""
@@ -198,7 +65,7 @@ class CryptoBot(commands.Bot):
         
         # Start background tasks with tracking
         self.start_background_task(self.cleanup_metrics(), "metrics_cleanup")
-        self.start_background_task(monitor_memory_usage(), "memory_monitor")
+        self.start_background_task(self.monitor_memory_usage(), "memory_monitor")
         self.start_background_task(self.heartbeat_monitor(), "heartbeat_monitor")
         self.start_background_task(self.periodic_metrics_report(), "metrics_report")
 
@@ -210,6 +77,7 @@ class CryptoBot(commands.Bot):
         await setup_events(self)
         
         try:
+            logger.info("Starting command synchronization...")
             synced = await self.tree.sync()
             logger.info(f"Successfully synced {len(synced)} command(s)")
         except Exception as e:
@@ -226,6 +94,7 @@ class CryptoBot(commands.Bot):
         )
         
         logger.info(f"Logged in as {self.user} (ID: {self.user.id})")
+        logger.info(f"Bot connected to {len(self.guilds)} server(s)")
 
         # Helper function to fetch channel info
         async def get_channel_info(ch_id):
@@ -314,6 +183,179 @@ class CryptoBot(commands.Bot):
             logger.error(f"Error closing database pool: {e}")
         
         await super().close()
+    
+    def start_background_task(self, coro, name=None):
+        """
+        Start and track a background task
+        
+        Args:
+            coro: Coroutine to run as background task
+            name: Optional name for the task
+        """
+        task = self.loop.create_task(coro)
+        if name:
+            task.set_name(name)
+        self.bg_tasks.append(task)
+        return task
+        
+    async def cleanup_metrics(self):
+        """Efficient metrics cleanup using batch operations"""
+        logger.info("Starting periodic metrics cleanup service...")
+        while True:
+            try:
+                await asyncio.sleep(36000)  # Run every 10 hours
+                start_time = datetime.now()
+                # Batch cleanup in one operation
+                self.metrics['processing_times'] = [
+                    t for t in self.metrics['processing_times'][-1000:]  # Keep last 1000 entries max
+                    if start_time.timestamp() - t[1] < 3600  # Only from last hour
+                ]
+                logger.info(f"Cleaned processing times")
+
+                # Reset processed count periodically to prevent integer overflow
+                if self.metrics['processed_count'] > 1_000_000:
+                    self.metrics['processed_count'] = 0
+                    logger.info(f"Cleared processed counts after hitting processed limit.")
+
+                # Clear error counts
+                from utils.cache import get_error_count, clear_error_counts  
+                error_count = get_error_count()  # Fetch current error count
+                
+                if error_count > 1000:
+                    clear_error_counts()  # Clear errors
+                    logger.info(f"Cleared error counts after exceeding error limit")
+
+                # Suggest garbage collection
+                logger.info("Initiating garbage collection")
+                gc.collect()
+                
+                self.metrics['last_cleanup'] = start_time.timestamp()
+                logger.info(f"Metrics cleanup completed in {(datetime.now() - start_time).total_seconds():.2f} seconds. Next cleanup at {(start_time + timedelta(hours=10)).strftime('%Y-%m-%d %H:%M:%S')}")
+            except Exception as e:
+                logger.error(f"Metrics cleanup error: {e}")
+
+    async def _monitor_reconnection(self):
+        """Monitor whether the auto-reconnection succeeds, use manual reconnect as fallback"""
+        # Wait for a reasonable time for auto-reconnect
+        await asyncio.sleep(60)
+        
+        # If we're still disconnected, try manual reconnection
+        if not self.is_ready():
+            logger.warning("Auto-reconnection appears to have failed, attempting manual reconnect")
+            success = await self.attempt_reconnect()
+            if not success:
+                logger.critical("All reconnection attempts failed. Bot will need to be restarted manually.")
+        
+    async def attempt_reconnect(self):
+        """Handle reconnection with exponential backoff"""
+        attempts = 0
+        while attempts < self.max_reconnect_attempts:
+            try:
+                logger.info(f"Reconnection attempt {attempts+1}/{self.max_reconnect_attempts}")
+                await self.connect(reconnect=True)
+                return True
+            except Exception as e:
+                attempts += 1
+                wait_time = self.reconnect_delay * (2 ** attempts)
+                logger.error(f"Reconnection failed: {e}. Waiting {wait_time}s before retry.")
+                await asyncio.sleep(wait_time)
+        return False
+    
+    async def heartbeat_monitor(self):
+        """Monitor Discord heartbeats to detect connection issues early"""
+        last_ack = None
+        missed_heartbeats = 0
+        
+        while True:
+            try:
+                await asyncio.sleep(30)  # Check every 30 seconds
+                
+                if hasattr(self.ws, 'last_heartbeat_ack'):
+                    current_ack = self.ws.last_heartbeat_ack
+                    
+                    if current_ack == last_ack:
+                        missed_heartbeats += 1
+                        logger.warning(f"Missed heartbeat detected: {missed_heartbeats} in a row")
+                        
+                        if missed_heartbeats >= self.heartbeat_missed_threshold:
+                            logger.error("Multiple missed heartbeats - connection may be unstable")
+                            # Force reconnection if we've missed too many heartbeats
+                            if hasattr(self.ws, 'close'):
+                                await self.ws.close(code=1000)
+                                logger.info("Closed websocket to force reconnection")
+                                missed_heartbeats = 0
+                    else:
+                        if missed_heartbeats > 0:
+                            logger.info(f"Heartbeat resumed after {missed_heartbeats} missed beats")
+                        missed_heartbeats = 0
+                        
+                    last_ack = current_ack
+            except Exception as e:
+                logger.error(f"Error in heartbeat monitor: {e}")
+                await asyncio.sleep(5)
+                
+    async def periodic_metrics_report(self):
+        """Report periodic metrics for monitoring"""
+        while True:
+            try:
+                await asyncio.sleep(3600)  # Report every hour
+                
+                # Calculate uptime
+                uptime = datetime.now() - self.startup_time
+                hours, remainder = divmod(uptime.total_seconds(), 3600)
+                minutes, seconds = divmod(remainder, 60)
+                
+                # Get memory usage
+                memory = psutil.Process().memory_info().rss / 1024 ** 2  # MB
+                
+                # Calculate average processing time if any metrics exist
+                avg_time = 0
+                if self.metrics['processing_times']:
+                    recent_times = [t[0] for t in self.metrics['processing_times'][-100:]]
+                    if recent_times:
+                        avg_time = sum(recent_times) / len(recent_times)
+                
+                # Collect and log metrics
+                logger.info(
+                    f"Metrics Report | Uptime: {int(hours)}h {int(minutes)}m | "
+                    f"Memory: {memory:.1f}MB | "
+                    f"Processed: {self.metrics['processed_count']} | "
+                    f"Avg Processing: {avg_time:.4f}s"
+                )
+                
+                self.last_metrics_report = datetime.now()
+            except Exception as e:
+                logger.error(f"Error in metrics report: {e}")
+
+    async def monitor_memory_usage(self, threshold_mb=300, check_interval=3600):
+        """
+        Monitor and manage memory usage
+        
+        Args:
+            threshold_mb: Memory threshold in MB to trigger cleanup
+            check_interval: Check interval in seconds
+        """
+        logger.info(f"Memory monitor started (threshold: {threshold_mb}MB, interval: {check_interval}s)")
+        
+        while True:
+            memory = psutil.Process().memory_info().rss / 1024 ** 2  # Get memory usage in MB
+            
+            if memory > threshold_mb:
+                logger.warning(f"Memory cleanup triggered at {memory:.1f}MB")
+                
+                # Clear caches
+                pre_cleanup = memory
+                from utils.validators import ADDRESS_CACHE
+                ADDRESS_CACHE.clear()
+                
+                # Suggest garbage collection
+                gc.collect()
+                
+                # Check memory after cleanup
+                post_cleanup = psutil.Process().memory_info().rss / 1024 ** 2
+                logger.info(f"Memory cleanup: {pre_cleanup:.1f}MB → {post_cleanup:.1f}MB (saved: {pre_cleanup-post_cleanup:.1f}MB)")
+            
+            await asyncio.sleep(check_interval)  # Check periodically
 
     def record_metric(self, processing_time):
         """

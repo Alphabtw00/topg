@@ -98,6 +98,7 @@ async def on_error(event, *args, **kwargs):
 async def on_disconnect():
     """Handle bot disconnection events"""
     logger.warning("Bot disconnected from Discord. Attempting to reconnect...")
+    _bot.loop.create_task(_bot._monitor_reconnection())
 
 async def on_resumed():
     """Called when the bot reconnects to Discord after disconnection"""

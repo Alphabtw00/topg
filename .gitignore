@@ -1,0 +1,21 @@
+# # Ignore compiled Python files
+# __pycache__/
+# *.pyc
+# *.pyo
+# *.pyd
+
+# # Ignore virtual environment
+# venv/
+# .env
+
+# # Ignore logs
+# logs/
+# *.log
+
+# # Ignore JSON response files (if generated for debugging)
+# *.json
+
+
+# # Ignore VS Code settings (optional)
+# .vscode/
+# /bot.py
