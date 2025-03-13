@@ -289,7 +289,7 @@ def create_github_analysis_embed(repo_info, analysis, start_time, interaction):
         icon_url="https://github.githubassets.com/assets/GitHub-Mark-ea2971cee799.png"
     )
 
-    # Owner avatar
+    # Owner avatar, if not present sets default github profile img
     embed.set_thumbnail(url=repo_info["owner_avatar"])
     
     # Top summary section with verdict
@@ -334,9 +334,12 @@ def create_github_analysis_embed(repo_info, analysis, start_time, interaction):
 
     # Investment assessment 
     ranking = code_review.get("investmentRanking", {})
-    rating = ranking.get("rating", "N/A")
+    rating = ranking.get("rating")
     confidence = ranking.get("confidence", 0)
     
+    if not rating:
+        rating = "N/A"
+
     rating_emoji = {
         "Strong Buy": "🟢", 
         "Buy": "🟢",
@@ -348,6 +351,8 @@ def create_github_analysis_embed(repo_info, analysis, start_time, interaction):
         "Low": "🔴"
     }.get(rating, "⚪")
     
+ 
+
     embed.add_field(
         name="💰 Investment Rating",
         value=(
@@ -360,24 +365,33 @@ def create_github_analysis_embed(repo_info, analysis, start_time, interaction):
     # Enhanced repo info with more details
     created_date = format_date(repo_info.get("created_at"))
     updated_date = format_date(repo_info.get("updated_at"))
-    size = format_size(repo_info.get("size"))
+    size = format_size(repo_info.get("size", 0))
+    language = repo_info.get("language", "Unknown")
+    license_info = repo_info.get("license", "No license")
 
     # Group basic repository details under "General Info"
     general_info = "\n".join([
-        f"**Primary Language:** `{repo_info.get('language')}`",
-        f"**License:** `{repo_info.get('license')}`",
+        f"**Primary Language:** `{language}`",
+        f"**License:** `{license_info}`",
         f"**Size:** `{size}`",
         f"**Created:** `{created_date}`",
         f"**Updated:** `{updated_date}`",
     ])
 
+
+    stars = repo_info.get("stars", 0)
+    forks = repo_info.get("forks", 0)
+    watchers = repo_info.get("watchers", 0)
+    open_issues = repo_info.get("open_issues", 0)
+
+
     # Group engagement metrics under "Community Stats"
     community_stats = "\n".join([
-        f"**Owner:** [{repo_info.get('owner')}](https://github.com/{repo_info.get('owner', 'Unknown')})",
-        f"**Stars:** `{repo_info.get('stars'):,}`",
-        f"**Forks:** `{repo_info.get('forks'):,}`",
-        f"**Watchers:** `{repo_info.get('watchers'):,}`",
-        f"**Open Issues:** `{repo_info.get('open_issues'):,}`",
+        f"**Owner:** [{owner}](https://github.com/{owner})",
+        f"**Stars:** `{stars:,}`",
+        f"**Forks:** `{forks:,}`",
+        f"**Watchers:** `{watchers:,}`",
+        f"**Open Issues:** `{open_issues:,}`",
     ])
 
     # Add two inline fields to the embed with the new headings
@@ -401,6 +415,12 @@ def create_github_analysis_embed(repo_info, analysis, start_time, interaction):
             value=flags_formatted if flags_formatted else "No significant issues detected",
             inline=False
         )
+    else:
+        embed.add_field(
+            name="🚩 Security Concerns",
+            value="No significant issues detected",
+            inline=False
+        )
     
     # Key insights
     reasoning = ranking.get("reasoning", [])
@@ -413,6 +433,12 @@ def create_github_analysis_embed(repo_info, analysis, start_time, interaction):
                 value=insights_text,
                 inline=False
             )
+    else:
+        embed.add_field(
+            name="⚡ Key Insights",
+            value="No insights available",
+            inline=False
+        )
 
     # AI implementation 
     if ai_analysis.get("hasAI", False):
@@ -433,16 +459,22 @@ def create_github_analysis_embed(repo_info, analysis, start_time, interaction):
                 )
     
     # Overall assessment
-    if code_review.get("overallAssessment"):
-        assessment = code_review.get("overallAssessment")
+    overall_assessment = code_review.get("overallAssessment")
+    if overall_assessment:
         
         # Split into paragraphs and get just the first one for brevity
-        paragraphs = assessment.split("\n\n")
+        paragraphs = overall_assessment.split("\n\n")
         first_paragraph = paragraphs[0]
         
         embed.add_field(
             name="👨‍💻 Expert Opinion",
             value=f"> {first_paragraph}",
+            inline=False
+        )
+    else:
+        embed.add_field(
+            name="👨‍💻 Expert Opinion",
+            value="> No expert opinion available",
             inline=False
         )
     
@@ -454,73 +486,131 @@ def create_github_analysis_embed(repo_info, analysis, start_time, interaction):
     
     return embed
 
-def create_health_embed(bot, user) -> discord.Embed:
+async def create_health_embed(bot, user):
     """
-    Create an embed for bot health information
+    Create an improved embed with bot health information
     
     Args:
-        bot: Bot instance
-        user: User who requested the health check
+        bot: The bot instance
+        user: User who requested health info
         
     Returns:
-        discord.Embed: Formatted health embed
+        discord.Embed: Health information embed
     """
     import psutil
-    from utils.cache import get_error_count
-    from utils.formatters import create_progress_bar, relative_time
+    from datetime import datetime, timedelta
+    import platform
     
+    # Calculate uptime
+    uptime = datetime.now() - bot.startup_time
+    days, remainder = divmod(uptime.total_seconds(), 86400)
+    hours, remainder = divmod(remainder, 3600)
+    minutes, seconds = divmod(remainder, 60)
+    
+    # Format uptime nicely
+    uptime_str = ""
+    if days > 0:
+        uptime_str += f"{int(days)}d "
+    if hours > 0 or days > 0:
+        uptime_str += f"{int(hours)}h "
+    uptime_str += f"{int(minutes)}m {int(seconds)}s"
+    
+    # System metrics
+    process = psutil.Process()
+    memory_used = process.memory_info().rss / (1024 ** 2)  # MB
+    cpu_percent = process.cpu_percent(interval=0.1)
+    system_memory = psutil.virtual_memory()
+    memory_percent = system_memory.percent
+    
+    # Discord metrics
+    latency = round(bot.latency * 1000)  # Convert to ms
+    
+    # Performance color coding
+    if memory_used < 200 and cpu_percent < 10:
+        color = 0x4CAF50  # Green
+    elif memory_used < 400 and cpu_percent < 30:
+        color = 0xFFC107  # Amber
+    else:
+        color = 0xF44336  # Red
+    
+    # Calculate average processing time from recent data only (last 5 minutes)
     current_time = datetime.now().timestamp()
-    recent_times = [
+    recent_processing = [
         t[0] for t in bot.metrics['processing_times'] 
-        if current_time - t[1] < 3600
+        if current_time - t[1] < 300  # Only from last 5 minutes
     ]
-    avg_req_time = sum(recent_times) / len(recent_times) if recent_times else 0
-
+    
+    avg_time = 0 if not recent_processing else sum(recent_processing) / len(recent_processing)
+    
+    # Get most used commands
+    top_commands = sorted(
+        bot.metrics['command_usage'].items(),
+        key=lambda x: x[1],
+        reverse=True
+    )[:3]
+    
+    # Database metrics
+    from handlers.mysql_handler import get_db_pool_stats
+    db_stats = await get_db_pool_stats()
+    
+    # Create embed
     embed = discord.Embed(
-        title="🤖 Bot Health Monitor",
-        color=0x6BA1FF,
-        timestamp=datetime.now()
+        title="🔍 Bot Health Monitor",
+        description=f"Status snapshot taken <t:{int(datetime.now().timestamp())}:R>",
+        timestamp=datetime.now(),
+        color=color
     )
-
-    # Performance Metrics
-    embed.add_field(
-        name="🚀 Performance",
-        value=(
-            f"Uptime: **`{str(datetime.now() - bot.startup_time).split('.')[0]}`**\n"
-            f"Latency: **`{bot.latency * 1000:.1f}ms`**\n"
-            f"Memory: **`{psutil.Process().memory_info().rss / 1024 ** 2:.1f}MB`**\n"
-            f"Response: **`{avg_req_time:.2f}s`**"
-        ),
-        inline=True
+    banner = "https://i.imgur.com/fQOYDpO.gif"  # Direct GIF link
+    embed.set_image(url=banner) 
+    
+    # System section
+    system_info = (
+        f"**OS:** {platform.system()} {platform.release()}\n"
+        f"**Python:** {platform.python_version()}\n"
+        f"**CPU Usage:** {cpu_percent:.1f}%\n"
+        f"**Memory:** {memory_used:.1f}MB / {system_memory.total/(1024**3):.1f}GB ({memory_percent}%)"
     )
-
-    # Activity Metrics
-    embed.add_field(
-        name="📈 Activity",
-        value=(
-            f"Processed: **`{bot.metrics['processed_count']:,}`**\n"
-            f"Errors: **`{get_error_count():,}`**\n"
-            f"Last Cleanup: **`{relative_time(bot.metrics['last_cleanup'] * 1000, include_ago=True)}`**"
-        ),
-        inline=True
+    embed.add_field(name="💻 System", value=system_info, inline=False)
+    
+    # Bot metrics section
+    bot_info = (
+        f"**Uptime:** {uptime_str}\n"
+        f"**Latency:** {latency}ms\n"
+        f"**Messages Processed:** {bot.metrics['processed_count']}\n"
+        f"**Avg. Processing:** {avg_time*1000:.1f}ms"
     )
-
-    # System Health
-    cpu_usage = psutil.cpu_percent()
-    mem_usage = psutil.virtual_memory().percent
-    embed.add_field(
-        name="🖥️ System Health",
-        value=(
-            f"CPU: **`{cpu_usage}%`** {create_progress_bar(cpu_usage)}\n"
-            f"RAM: **`{mem_usage}%`** {create_progress_bar(mem_usage)}\n"
-            f"Tasks: **`{len(asyncio.all_tasks())}`**"
-        ),
-        inline=False
-    )
-
+    embed.add_field(name="🤖 Bot Status", value=bot_info, inline=True)
+    
+    # Database section
+    if db_stats:
+        db_info = (
+            f"**Pool Size:** {db_stats.get('size', 'Unknown')}\n"
+            f"**Free:** {db_stats.get('free', 'Unknown')}\n"
+            f"**Used:** {db_stats.get('used', 'Unknown')}"
+        )
+        embed.add_field(name="🗄️ Database", value=db_info, inline=True)
+    
+    # API Performance section
+    api_latency = ""
+    if bot.metrics['api_latency']:
+        for endpoint, latencies in sorted(bot.metrics['api_latency'].items())[:3]:  # Limit to top 3
+            if latencies:
+                # Only use recent latencies (last 5 minutes)
+                avg_latency = sum(latencies[-20:]) / min(len(latencies), 20)
+                api_latency += f"**{endpoint}:** {avg_latency*1000:.0f}ms\n"
+        
+        if api_latency:
+            embed.add_field(name="🌐 API Performance", value=api_latency, inline=False)
+    
+    # Command usage section if there are commands used
+    if top_commands:
+        usage_info = "\n".join([f"**{cmd}:** {count} uses" for cmd, count in top_commands])
+        embed.add_field(name="📊 Top Commands", value=usage_info, inline=False)
+    
+    # Set footer with timestamp
     embed.set_footer(
-        text=f"Requested by {user.display_name}",
+        text=f"Requested by {user}", 
         icon_url=user.display_avatar.url
     )
-
+    
     return embed

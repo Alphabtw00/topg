@@ -70,19 +70,20 @@ class GithubChecker(commands.Cog):
             logger.info(f"GitHub analysis completed for {repo_url}")
                 
         except asyncio.TimeoutError:
-            logger.error(f"Analysis timeout for {repo_url}")
+            logger.warning(f"Analysis timeout for {repo_url}")
             await interaction.followup.send(
                 "⌛ Analysis timed out (3+ minutes). GitHub repository analysis can take time for larger repositories. Please try again later.",
                 ephemeral=True,
             )
         except Exception as e:
-            logger.error(f"Repo analysis error for {repo_url}: {str(e)}")
+            logger.error(f"Repo analysis error for {repo_url}: {str(e)}", exc_info=False)
             await interaction.followup.send(
-                "❌ Failed to analyze repository. Please ensure the URL is valid and try again. If the problem persists, the analysis service may be experiencing issues.",
+                "❌ Failed to analyze repository. The analysis service may be experiencing issues. Please try again later.",
                 ephemeral=True
             )
     
     # Register error handler
     @check_repo.error
     async def github_error(self, interaction, error):
-        await create_error_handler("github-checker")(self, interaction, error)
+        error_handler = create_error_handler("github-checker")
+        await error_handler(self, interaction, error)

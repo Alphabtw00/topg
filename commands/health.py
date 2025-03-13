@@ -30,11 +30,16 @@ class Health(commands.Cog):
             return
 
         try:
-            embed = create_health_embed(self.bot, interaction.user)
+            embed = await create_health_embed(self.bot, interaction.user)
             await interaction.response.send_message(embed=embed, ephemeral=True)
             logger.info(f"Health command used by {interaction.user}")
+            self.bot.record_command_usage("health")
         except Exception as e:
             logger.error(f"Health command error: {e}")
+            await interaction.followup.send(
+                "Error generating health report. Please try again.",
+                ephemeral=True
+            )
             
     # Register error handler
     @health_slash.error

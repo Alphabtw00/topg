@@ -2,6 +2,7 @@
 Formatting utilities for values, dates, and other display elements
 """
 from datetime import datetime
+from typing import Dict, Set
 
 def format_value(value) -> str:
     """
@@ -173,3 +174,32 @@ def score_bar(percentage: float) -> str:
     
     # Create bar with appropriate coloring
     return filled_char * filled + "⬜" * (5 - filled)
+
+# Parse channel colors
+def parse_channel_colors(colors_str: str, bot_input_channel_ids: Set[int]) -> Dict[int, int]:
+    """Parse channel-specific colors from environment variable"""
+    color_dict = {}
+    
+    # Check if we have channel-specific colors in format: channel_id:color,channel_id:color
+    if ":" in colors_str:
+        pairs = colors_str.split(",")
+        for pair in pairs:
+            if ":" in pair:
+                ch_id, color = pair.strip().split(":")
+                if ch_id.isdigit() and color.strip():
+                    try:
+                        color_dict[int(ch_id)] = int(color.strip(), 16)
+                    except ValueError:
+                        pass
+    else:
+        # Just a list of colors to assign sequentially
+        colors = colors_str.split(",")
+        colors = [int(color.strip(), 16) for color in colors if color.strip()]
+        
+        # Map colors to input channels
+        for i, channel_id in enumerate(bot_input_channel_ids):
+            # Use the corresponding color if available, otherwise use the first or default color
+            color_index = min(i, len(colors) - 1) if colors else 0
+            color_dict[channel_id] = colors[color_index] if colors else 0x3498db
+    
+    return color_dict

@@ -4,7 +4,7 @@ Configuration and environment settings
 import os
 import discord
 from dotenv import load_dotenv
-
+from utils.formatters import parse_channel_colors
 # Load environment variables
 load_dotenv()
 
@@ -13,13 +13,22 @@ TOKEN = os.getenv("DISCORD_BOT_TOKEN")
 if not TOKEN:
     raise ValueError("DISCORD_BOT_TOKEN not found in environment")
 
-# Channel and User IDs
+# Auto message allowed channels
 TARGET_CHANNEL_IDS = {int(id.strip()) for id in os.getenv("TARGET_CHANNEL_IDS", "").split(",") if id.strip().isdigit()}
+
+# Admin users
 ALLOWED_USER_IDS = {int(uid.strip()) for uid in os.getenv("ALLOWED_USER_IDS", "").split(",") if uid.strip().isdigit()}
-#ids to copy messages from
-INPUT_CHANNEL_IDS = {int(id.strip()) for id in os.getenv("INPUT_CHANNEL_IDS", "").split(",") if id.strip().isdigit()}
-#ids to forward messages to
-OUTPUT_CHANNEL_IDS = {int(id.strip()) for id in os.getenv("OUTPUT_CHANNEL_IDS", "").split(",") if id.strip().isdigit()}
+
+#echo bot forwarding
+BOT_INPUT_CHANNEL_IDS = {int(id.strip()) for id in os.getenv("BOT_INPUT_CHANNEL_IDS", "").split(",") if id.strip().isdigit()}
+BOT_OUTPUT_CHANNEL_IDS = {int(id.strip()) for id in os.getenv("BOT_OUTPUT_CHANNEL_IDS", "").split(",") if id.strip().isdigit()}
+FORWARD_BOT_IDS = {int(id.strip()) for id in os.getenv("FORWARD_BOT_IDS", "").split(",") if id.strip().isdigit()}
+BOT_CHANNEL_COLORS = parse_channel_colors(os.getenv("BOT_EMBED_COLOR", "0x3498db"), BOT_INPUT_CHANNEL_IDS)
+#dani messages forwarding
+USER_INPUT_CHANNEL_IDS = {int(id.strip()) for id in os.getenv("USER_INPUT_CHANNEL_IDS", "").split(",") if id.strip().isdigit()}
+USER_OUTPUT_CHANNEL_IDS = {int(id.strip()) for id in os.getenv("USER_OUTPUT_CHANNEL_IDS", "").split(",") if id.strip().isdigit()}
+FORWARD_USER_IDS = {int(id.strip()) for id in os.getenv("FORWARD_USER_IDS", "").split(",") if id.strip().isdigit()}
+PROCESS_CRYPTO_IN_FORWARDS = os.getenv("PROCESS_CRYPTO_IN_FORWARDS", "True").lower() in ("true", "1", "yes")
 
 
 # API Endpoints
@@ -33,7 +42,7 @@ TRADING_PLATFORMS = {
     "Neo BullX": "https://neo.bullx.io/terminal?chainId=1399811149&address={address}",
 }
 
-
+# Database configuration
 DB_HOST = os.getenv("DB_HOST", "localhost")
 DB_PORT = int(os.getenv("DB_PORT", "3306"))
 DB_USER = os.getenv("DB_USER", "root")
@@ -41,8 +50,6 @@ DB_PASSWORD = os.getenv("DB_PASSWORD", "")
 DB_NAME = os.getenv("DB_NAME", "crypto_bot")
 DB_POOL_MIN_SIZE = int(os.getenv("DB_POOL_MIN_SIZE", "1"))
 DB_POOL_MAX_SIZE = int(os.getenv("DB_POOL_MAX_SIZE", "10"))
-
-
 
 # Regex Patterns
 ADDRESS_REGEX_PATTERN = r"\b[1-9A-HJ-NP-Za-km-z]{32,44}\b"
@@ -74,5 +81,4 @@ INTENTS.presences = False
 INTENTS.integrations = False
 
 # Prefix Commands Registry
-# To be populated at runtime
 PREFIX_COMMANDS = {}

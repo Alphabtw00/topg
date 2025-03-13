@@ -1,8 +1,10 @@
+# api/http_client.py
 """
 HTTP client for API requests
 """
 import aiohttp
 import asyncio
+import time
 import logging
 from config import (
     HTTP_TIMEOUT, CONNECT_TIMEOUT, SOCK_READ_TIMEOUT,
@@ -47,7 +49,7 @@ async def setup_http_session():
 
 async def fetch_data(session: aiohttp.ClientSession, url: str, max_retries=2):
     """
-    Fetch data from an API endpoint with retry logic
+    Fetch data from an API endpoint with retry logic and latency tracking
     
     Args:
         session: HTTP session
@@ -57,11 +59,21 @@ async def fetch_data(session: aiohttp.ClientSession, url: str, max_retries=2):
     Returns:
         dict or None: JSON response or None on failure
     """
-    endpoint = url.split('/')[3]
+    endpoint = url.split('/')[3] if len(url.split('/')) > 3 else url.split('//')[-1].split('/')[0]
+    
+    # Get bot instance for metrics
+    from bot.events import _bot
+    bot = _bot
     
     for attempt in range(max_retries + 1):
+        start_time = time.time()
         try:
-            async with session.get(url, timeout=10) as response:
+            async with session.get(url, timeout=HTTP_TIMEOUT) as response:
+                # Record API latency if bot is available
+                latency = time.time() - start_time
+                if bot:
+                    bot.record_api_latency(endpoint, latency)
+                
                 if response.status == 200:
                     return await response.json()
                 else:
@@ -72,8 +84,18 @@ async def fetch_data(session: aiohttp.ClientSession, url: str, max_retries=2):
                         logger.critical(f"Endpoint {endpoint} experiencing high error rate")
                         
                     if response.status == 429:  # Rate limited
+                        wait_time = 1
+                        # Get retry-after header if available
+                        retry_after = response.headers.get('Retry-After')
+                        if retry_after:
+                            try:
+                                wait_time = float(retry_after)
+                            except ValueError:
+                                pass
+                                
                         if attempt < max_retries:
-                            await asyncio.sleep(1 * (attempt + 1))  # Exponential backoff
+                            logger.warning(f"Rate limited for {endpoint}, waiting {wait_time}s")
+                            await asyncio.sleep(wait_time)
                             continue
                     
                     logger.warning(f"API returned status {response.status} for URL: {url}")
@@ -90,7 +112,7 @@ async def fetch_data(session: aiohttp.ClientSession, url: str, max_retries=2):
 
 async def fetch_data_post(session: aiohttp.ClientSession, url: str, json_data=None, max_retries=2, timeout=180):
     """
-    Post data to an API endpoint with retry logic
+    Post data to an API endpoint with retry logic and latency tracking
     
     Args:
         session: HTTP session
@@ -104,9 +126,19 @@ async def fetch_data_post(session: aiohttp.ClientSession, url: str, json_data=No
     """
     endpoint = url.split('/')[-1]
     
+    # Get bot instance for metrics
+    from bot.events import _bot
+    bot = _bot
+    
     for attempt in range(max_retries + 1):
+        start_time = time.time()
         try:
             async with session.post(url, json=json_data, timeout=timeout) as response:
+                # Record API latency if bot is available
+                latency = time.time() - start_time
+                if bot:
+                    bot.record_api_latency(endpoint, latency)
+                    
                 if response.status == 200:
                     return await response.json()
                 else:
@@ -117,8 +149,18 @@ async def fetch_data_post(session: aiohttp.ClientSession, url: str, json_data=No
                         logger.critical(f"Endpoint {endpoint} experiencing high error rate")
                         
                     if response.status == 429:  # Rate limited
+                        wait_time = 1 * (attempt + 1)
+                        # Get retry-after header if available
+                        retry_after = response.headers.get('Retry-After')
+                        if retry_after:
+                            try:
+                                wait_time = float(retry_after)
+                            except ValueError:
+                                pass
+                                
                         if attempt < max_retries:
-                            await asyncio.sleep(1 * (attempt + 1))  # Exponential backoff
+                            logger.warning(f"Rate limited for {endpoint}, waiting {wait_time}s")
+                            await asyncio.sleep(wait_time)
                             continue
                     
                     logger.warning(f"API returned status {response.status} for URL: {url}")

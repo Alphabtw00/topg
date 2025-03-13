@@ -2,6 +2,7 @@
 GitHub repository analysis API client
 """
 import aiohttp
+import asyncio
 from datetime import datetime
 from utils.cache import GITHUB_ANALYSIS_CACHE
 from api.http_client import fetch_data_post
@@ -39,7 +40,7 @@ async def analyze_github_repo(session: aiohttp.ClientSession, repo_url: str):
         
         if not data or not data.get("success"):
             error_msg = data.get('error', 'Unknown error') if data else "No data returned"
-            logger.error(f"API reported failure for {repo_url}: {error_msg}")
+            logger.warning(f"API reported failure for {repo_url}: {error_msg}")
             return None
             
         # Extract result and cache it
@@ -59,10 +60,16 @@ async def analyze_github_repo(session: aiohttp.ClientSession, repo_url: str):
         GITHUB_ANALYSIS_CACHE[repo_url] = cached_result
         return cached_result
         
-    except Exception as e:
-        logger.error(f"Repo analysis error for {repo_url}: {str(e)}")
+    except aiohttp.ClientError as ce:
+        logger.warning(f"HTTP error during repo analysis for {repo_url}: {str(ce)}")
         return None
-
+    except asyncio.TimeoutError:
+        logger.warning(f"Timeout during repo analysis for {repo_url}")
+        return None
+    except Exception as e:
+        logger.error(f"Unexpected error during repo analysis for {repo_url}: {str(e)}", exc_info=True)
+        return None
+    
 def _extract_repo_info(result):
     """
     Extract repository info from API result, handling both cached and non-cached responses
