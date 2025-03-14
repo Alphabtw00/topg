@@ -16,16 +16,15 @@ async def main():
         logger.info("Starting bot...")
         bot = CryptoBot(command_prefix="!", intents=INTENTS, help_command=None)
         await bot.start(TOKEN)
+        if bot.shutdown_in_progress:
+            logger.info("Bot shutting down due to initialization failure")
     except Exception as e:
         logger.critical(f"Failed to start bot: {e}")
         exit(1)
     finally:
         if bot:
             await bot.close()
-            # Add explicit database pool cleanup
-            from handlers.mysql_handler import close_db_pool
-            await close_db_pool()
-
+            
 if __name__ == "__main__":
     try:
         # Use asyncio.run() in Python 3.7+

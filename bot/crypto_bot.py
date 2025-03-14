@@ -12,7 +12,7 @@ from utils.logger import get_logger
 from api.http_client import setup_http_session
 from commands.health import Health
 from commands.github_checker import GithubChecker
-from handlers.mysql_handler import setup_db_pool
+from handlers.mysql_handler import setup_db_pool, close_db_pool
 
 logger = get_logger()
 
@@ -23,7 +23,7 @@ class CryptoBot(commands.Bot):
     __slots__ = (
         "http_session", "startup_time", "metrics", "bg_tasks", 
         "max_reconnect_attempts", "reconnect_delay", "heartbeat_missed_threshold",
-        "is_first_connect", "last_metrics_report"
+        "is_first_connect", "last_metrics_report", "shutdown_in_progress"
     )
     
     def __init__(self, *args, **kwargs):
@@ -35,6 +35,7 @@ class CryptoBot(commands.Bot):
         self.heartbeat_missed_threshold = 3
         self.is_first_connect = True
         self.last_metrics_report = datetime.now()
+        self.shutdown_in_progress = False
         
         # Tracked background tasks
         self.bg_tasks = []
@@ -55,14 +56,30 @@ class CryptoBot(commands.Bot):
     async def setup_hook(self):
         """Setup hook that runs before the bot is ready"""
         # This runs before on_ready
-        self.http_session = await setup_http_session()
 
-        db_connected = await setup_db_pool()
-        if db_connected:
+        # Start http session
+        try:
+            self.http_session = await setup_http_session()
+            logger.info("HTTP session initialized")
+        except Exception as e:
+            logger.critical(f"Failed to initialize HTTP session: {e}")
+            # Flag shutdown but let the main function handle actual exit
+            self.shutdown_in_progress = True
+            return
+
+        # Set up database connection
+        try:
+            db_connected = await setup_db_pool()
+            if not db_connected:
+                logger.critical("Failed to establish database connection")
+                self.shutdown_in_progress = True
+                return
             logger.info("Database connection successful")
-        else:
-            logger.critical("Failed to establish database connection")
-        
+        except Exception as e:
+            logger.critical(f"Database connection error: {e}")
+            self.shutdown_in_progress = True
+            return
+
         # Start background tasks with tracking
         self.start_background_task(self.cleanup_metrics(), "metrics_cleanup")
         self.start_background_task(self.monitor_memory_usage(), "memory_monitor")
@@ -77,13 +94,10 @@ class CryptoBot(commands.Bot):
         await setup_events(self)
         
         try:
-            logger.info("Starting command synchronization...")
             synced = await self.tree.sync()
             logger.info(f"Successfully synced {len(synced)} command(s)")
         except Exception as e:
             logger.error(f"Failed to sync commands: {e}")
-            
-        logger.info("HTTP session initialized")
 
     async def on_ready(self):
         """Event handler for when the bot is ready"""
@@ -155,14 +169,20 @@ class CryptoBot(commands.Bot):
 
     async def close(self):
         """Properly close resources when the bot is shutting down"""
+        # Prevent duplicate shutdown logs
+        if self.shutdown_in_progress:
+            return
+            
+        self.shutdown_in_progress = True
         logger.info("Bot is shutting down...")
         
         # Cancel all background tasks
         for task in self.bg_tasks:
             task_name = task.get_name() if hasattr(task, 'get_name') else str(task)
             try:
-                task.cancel()
-                logger.info(f"Background task '{task_name}' canceled")
+                if not task.done() and not task.cancelled():
+                    task.cancel()
+                    logger.info(f"Background task '{task_name}' canceled")
             except Exception as e:
                 logger.error(f"Error canceling background task '{task_name}': {e}")
                 
@@ -176,7 +196,6 @@ class CryptoBot(commands.Bot):
             
         # Close the database pool
         try:
-            from handlers.mysql_handler import close_db_pool
             await close_db_pool()
             logger.info("Database connection pool closed successfully")
         except Exception as e:
@@ -200,7 +219,6 @@ class CryptoBot(commands.Bot):
         
     async def cleanup_metrics(self):
         """Efficient metrics cleanup using batch operations"""
-        logger.info("Starting periodic metrics cleanup service...")
         while True:
             try:
                 await asyncio.sleep(36000)  # Run every 10 hours
@@ -231,6 +249,8 @@ class CryptoBot(commands.Bot):
                 
                 self.metrics['last_cleanup'] = start_time.timestamp()
                 logger.info(f"Metrics cleanup completed in {(datetime.now() - start_time).total_seconds():.2f} seconds. Next cleanup at {(start_time + timedelta(hours=10)).strftime('%Y-%m-%d %H:%M:%S')}")
+            except asyncio.CancelledError:
+                break
             except Exception as e:
                 logger.error(f"Metrics cleanup error: {e}")
 
@@ -290,6 +310,8 @@ class CryptoBot(commands.Bot):
                         missed_heartbeats = 0
                         
                     last_ack = current_ack
+            except asyncio.CancelledError:
+                break
             except Exception as e:
                 logger.error(f"Error in heartbeat monitor: {e}")
                 await asyncio.sleep(5)
@@ -324,6 +346,8 @@ class CryptoBot(commands.Bot):
                 )
                 
                 self.last_metrics_report = datetime.now()
+            except asyncio.CancelledError:
+                break
             except Exception as e:
                 logger.error(f"Error in metrics report: {e}")
 
@@ -338,24 +362,30 @@ class CryptoBot(commands.Bot):
         logger.info(f"Memory monitor started (threshold: {threshold_mb}MB, interval: {check_interval}s)")
         
         while True:
-            memory = psutil.Process().memory_info().rss / 1024 ** 2  # Get memory usage in MB
-            
-            if memory > threshold_mb:
-                logger.warning(f"Memory cleanup triggered at {memory:.1f}MB")
+            try:
+                memory = psutil.Process().memory_info().rss / 1024 ** 2  # Get memory usage in MB
                 
-                # Clear caches
-                pre_cleanup = memory
-                from utils.validators import ADDRESS_CACHE
-                ADDRESS_CACHE.clear()
+                if memory > threshold_mb:
+                    logger.warning(f"Memory cleanup triggered at {memory:.1f}MB")
+                    
+                    # Clear caches
+                    pre_cleanup = memory
+                    from utils.validators import ADDRESS_CACHE
+                    ADDRESS_CACHE.clear()
+                    
+                    # Suggest garbage collection
+                    gc.collect()
+                    
+                    # Check memory after cleanup
+                    post_cleanup = psutil.Process().memory_info().rss / 1024 ** 2
+                    logger.info(f"Memory cleanup: {pre_cleanup:.1f}MB → {post_cleanup:.1f}MB (saved: {pre_cleanup-post_cleanup:.1f}MB)")
                 
-                # Suggest garbage collection
-                gc.collect()
-                
-                # Check memory after cleanup
-                post_cleanup = psutil.Process().memory_info().rss / 1024 ** 2
-                logger.info(f"Memory cleanup: {pre_cleanup:.1f}MB → {post_cleanup:.1f}MB (saved: {pre_cleanup-post_cleanup:.1f}MB)")
-            
-            await asyncio.sleep(check_interval)  # Check periodically
+                await asyncio.sleep(check_interval)  # Check periodically
+            except asyncio.CancelledError:
+                break
+            except Exception as e:
+                logger.error(f"Error in memory monitor: {e}")
+                await asyncio.sleep(60)  # Shorter interval if error occurs
 
     def record_metric(self, processing_time):
         """

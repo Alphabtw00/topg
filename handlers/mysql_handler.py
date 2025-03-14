@@ -18,9 +18,22 @@ async def setup_db_pool():
     Initialize the database connection pool
     """
     global pool
+    
+    # Check if pool already exists
+    if pool is not None:
+        logger.info("Database pool already initialized")
+        return True
+        
     try:
         # Filter out MySQL warnings to prevent them from flooding the terminal
         warnings.filterwarnings('ignore', category=Warning)
+        
+        # Check for required package
+        try:
+            import cryptography
+        except ImportError:
+            logger.critical("Required package 'cryptography' is missing for MySQL authentication")
+            return False
         
         pool = await aiomysql.create_pool(
             host=DB_HOST,
@@ -81,7 +94,7 @@ async def close_db_pool():
     if pool:
         pool.close()
         await pool.wait_closed()
-        logger.info("Database connection pool closed")
+        pool = None
 
 async def store_first_call(token_address, user_id, user_name, initial_fdv, initial_price):
     """

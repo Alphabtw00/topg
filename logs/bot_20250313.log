@@ -1,0 +1,34 @@
+2025-03-13 10:41:56,874 - ERROR - Database connection error: 'cryptography' package is required for sha256_password or caching_sha2_password auth methods
+2025-03-13 10:41:56,874 - CRITICAL - Failed to establish database connection
+2025-03-13 11:28:59,011 - ERROR - Database pool not initialized
+2025-03-13 11:28:59,913 - ERROR - Database pool not initialized
+2025-03-13 11:31:57,448 - ERROR - Database pool not initialized
+2025-03-13 11:31:58,309 - ERROR - Database pool not initialized
+2025-03-13 11:42:17,065 - ERROR - Database pool not initialized
+2025-03-13 11:42:17,645 - ERROR - Database pool not initialized
+2025-03-13 11:47:19,118 - ERROR - Database pool not initialized
+2025-03-13 11:47:19,993 - ERROR - Database pool not initialized
+2025-03-13 11:47:30,750 - ERROR - Database pool not initialized
+2025-03-13 11:47:31,326 - ERROR - Database pool not initialized
+2025-03-13 11:47:35,187 - ERROR - Database pool not initialized
+2025-03-13 11:47:35,857 - ERROR - Database pool not initialized
+2025-03-13 11:48:22,647 - ERROR - Database pool not initialized
+2025-03-13 11:48:23,309 - ERROR - Database pool not initialized
+2025-03-13 11:49:55,446 - ERROR - Database pool not initialized
+2025-03-13 11:49:55,994 - ERROR - Database pool not initialized
+2025-03-13 12:00:22,231 - ERROR - Database pool not initialized
+2025-03-13 12:00:23,487 - ERROR - Database pool not initialized
+2025-03-13 12:00:31,866 - WARNING - Message processing timed out for message 1349819391100981248
+2025-03-13 12:02:24,742 - ERROR - Database pool not initialized
+2025-03-13 12:02:25,889 - ERROR - Database pool not initialized
+2025-03-13 12:08:54,830 - ERROR - Database connection error: 'cryptography' package is required for sha256_password or caching_sha2_password auth methods
+2025-03-13 12:08:54,831 - CRITICAL - Failed to establish database connection
+2025-03-13 12:08:54,831 - CRITICAL - Shutting down due to database connection failure
+2025-03-13 13:00:40,875 - WARNING - API returned status 404 for URL: https://api.dexscreener.com/orders/v1/solana/factory/osmo1n3n75av8awcnw4jl62n3l48e6e4sxqmaf97w5ua6ddu4s475q5qq9udvx4/alloyed/allSOL
+2025-03-13 13:00:41,090 - WARNING - API returned status 500 for URL: https://production-api.mobula.io/api/1/market/history/pair?address=1960&blockchain=solana&period=30d
+2025-03-13 13:03:33,138 - WARNING - API returned status 500 for URL: https://production-api.mobula.io/api/1/market/history/pair?address=HXZhPrDgRAGJ2rEDUzigeXp7HMP32s4czh6WuqbH9Ew8&blockchain=solana&period=1min
+2025-03-13 14:11:56,151 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-03-13 15:26:43,126 - ERROR - Failed to forward user message to channel 1335081896807497839: 400 Bad Request (error code: 50006): Cannot send an empty message
+2025-03-13 15:35:33,727 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-03-13 16:25:34,744 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-03-13 17:23:19,164 - WARNING - Bot disconnected from Discord. Attempting to reconnect...

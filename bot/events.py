@@ -35,7 +35,7 @@ async def setup_events(bot: CryptoBot):
     bot.add_listener(on_resumed, "on_resumed")
     bot.add_listener(on_socket_response, "on_socket_response")
     
-    logger.info("Event handlers registered")
+    logger.info("Discord Events Registered")
 
 async def on_message(message: discord.Message):
     """
