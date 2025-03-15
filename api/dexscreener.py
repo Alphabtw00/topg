@@ -85,12 +85,18 @@ async def get_order_status(session: aiohttp.ClientSession, token_address: str):
         for order in data:
             if order.get("type") == "tokenProfile":
                 status = order.get("status")
+                timestamp = order.get("paymentTimestamp")
+                time_ago = f" ({relative_time(timestamp, include_ago=True)})" if timestamp else ""
                 if status == "approved":
-                    timestamp = order.get("paymentTimestamp")
-                    time_ago = f" ({relative_time(timestamp, include_ago=True)})" if timestamp else ""
                     return f"✅ Dex Paid{time_ago}"
                 elif status == "on-hold":
-                    return "⏳ Dex On Hold"
+                    return f"⏳ Dex On Hold{time_ago}"
+                elif status == "cancelled":
+                    return f"🚫 Dex Cancelled{time_ago}"
+                else:
+                    # Handle any other status dynamically
+                    return f"ℹ️ Dex {status.capitalize()}{time_ago}"
+       
         
         return "❌ Dex Not Paid"
     

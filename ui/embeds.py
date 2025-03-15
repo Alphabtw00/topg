@@ -107,18 +107,9 @@ def create_token_embed(entry: dict, address: str, order_status: str) -> discord.
         if banner:
             embed.set_image(url=banner)
         
-        # Footer with price, time created, and DEX status
-        footer_parts = []
-        
-        # Add DEX status
-        footer_parts.append(f"{order_status}")
-
-        # Add creation time with emoji
+        #created ago
         if pair_created_at:
-            footer_parts.append(f"⏱️ {relative_time(pair_created_at, include_ago=True)}")
-        
-        # Set footer text
-        embed.set_footer(text=" • ".join(footer_parts))
+            embed.set_footer(text=f"🕒 {relative_time(pair_created_at, include_ago=True)}")
         
         # Set token logo as thumbnail
         img = info.get("imageUrl")
@@ -213,10 +204,10 @@ def update_first_call_in_embed(embed_dict, first_call_data, current_price, curre
         # Create first call text
         if is_first_call:
             # This is the first call - current user is the first caller
-            first_call_text = f"🎯 You're First! @ ${format_value(initial_fdv)}"
+            first_call_text = f"⚡ You're First! @ ${format_value(initial_fdv)}"
         else:
             if price_multiple >= 2:
-                first_call_text = f"🏆 {user_name} @ ${format_value(initial_fdv)} 📈{int(price_multiple)}x"
+                first_call_text = f"🏆 {user_name} @ ${format_value(initial_fdv)} ({int(price_multiple)}x)"
             else:
                 first_call_text = f"🏆 {user_name} @ ${format_value(initial_fdv)}"
         
@@ -235,6 +226,39 @@ def update_first_call_in_embed(embed_dict, first_call_data, current_price, curre
         
     except Exception as e:
         logger.error(f"Error updating first call in embed: {e}")
+        return embed_dict
+
+def update_dex_in_embed(embed_dict: dict, order_status: str) -> dict:
+    """
+    Update the DEX order status in an embed dictionary
+    
+    Args:
+        embed_dict: Embed dictionary
+        order_status: DEX order status string
+        
+    Returns:
+        dict: Updated embed dictionary
+    """
+    try:
+        if not order_status:
+            return embed_dict
+            
+        # Get existing footer text if it exists
+        footer_text = embed_dict.get("footer", {}).get("text", "")
+        
+        # Combine footer texts
+        if footer_text:
+            footer_text = f"{order_status} • {footer_text}"
+        else:
+            # No footer yet, just use DEX info
+            footer_text = order_status
+            
+        # Update embed footer
+        embed_dict["footer"] = {"text": footer_text}
+        
+        return embed_dict
+    except Exception as e:
+        logger.error(f"Error updating DEX status in embed: {e}")
         return embed_dict
 
 def create_github_analysis_embed(repo_info, analysis, start_time, interaction):

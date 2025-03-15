@@ -222,6 +222,7 @@ class CryptoBot(commands.Bot):
         while True:
             try:
                 await asyncio.sleep(36000)  # Run every 10 hours
+                logger.info("Starting periodic metrics cleanup task...")
                 start_time = datetime.now()
                 # Batch cleanup in one operation
                 self.metrics['processing_times'] = [
@@ -244,8 +245,8 @@ class CryptoBot(commands.Bot):
                     logger.info(f"Cleared error counts after exceeding error limit")
 
                 # Suggest garbage collection
-                logger.info("Initiating garbage collection")
                 gc.collect()
+                logger.info("Garbage collection completed successfully.")
                 
                 self.metrics['last_cleanup'] = start_time.timestamp()
                 logger.info(f"Metrics cleanup completed in {(datetime.now() - start_time).total_seconds():.2f} seconds. Next cleanup at {(start_time + timedelta(hours=10)).strftime('%Y-%m-%d %H:%M:%S')}")
