@@ -387,7 +387,14 @@ class CryptoBot(commands.Bot):
             except Exception as e:
                 logger.error(f"Error in memory monitor: {e}")
                 await asyncio.sleep(60)  # Shorter interval if error occurs
-
+    
+    async def process_commands(self, message):
+        """
+        Override the process_commands method to completely disable command processing
+        """
+        # Do nothing, effectively disabling command processing
+        return
+    
     def record_metric(self, processing_time):
         """
         Record a processing metric

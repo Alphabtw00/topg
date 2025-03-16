@@ -67,7 +67,7 @@ class GithubChecker(commands.Cog):
             
             # Update metrics
             self.bot.record_metric(datetime.now().timestamp() - start_time)
-            logger.info(f"GitHub analysis completed for {repo_url}")
+            logger.info(f"GitHub analysis called by {interaction.user} for {repo_url}")
                 
         except asyncio.TimeoutError:
             logger.warning(f"Analysis timeout for {repo_url}")

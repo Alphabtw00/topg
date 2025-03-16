@@ -58,7 +58,6 @@ GITHUB_URL_REGEX_PATTERN = r"^https://github\.com/[a-zA-Z0-9-]+/[a-zA-Z0-9._-]+/
 
 # Performance settings
 MAX_ERROR_THRESHOLD = 50
-MAX_CONCURRENT_PROCESSES = 5
 
 # Timeouts and Limits
 HTTP_TIMEOUT = 15  # seconds

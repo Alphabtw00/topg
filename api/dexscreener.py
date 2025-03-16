@@ -95,7 +95,7 @@ async def get_order_status(session: aiohttp.ClientSession, token_address: str):
                     return f"🚫 Dex Cancelled{time_ago}"
                 else:
                     # Handle any other status dynamically
-                    return f"ℹ️ Dex {status.capitalize()}{time_ago}"
+                    return f"❕ Dex {status.capitalize()}{time_ago}"
        
         
         return "❌ Dex Not Paid"

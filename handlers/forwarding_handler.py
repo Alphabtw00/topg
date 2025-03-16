@@ -1,225 +1,300 @@
-"""
-Message forwarding system that handles different forwarding configurations
-"""
 import discord
 import asyncio
 from datetime import datetime
 from utils.logger import get_logger
+from discord import MessageFlags, AllowedMentions
 from utils.validators import get_addresses_from_content, get_tickers_from_content
 from handlers.message_processor import process_message
+from functools import lru_cache
 
 logger = get_logger()
 
+# Cache for webhooks to avoid repeated lookups
+webhook_cache = {}
+
+@lru_cache(maxsize=128)
+def should_forward_bot_message(channel_id, author_id):
+    """Fast filtering function for bot messages"""
+    from config import BOT_INPUT_CHANNEL_IDS, FORWARD_BOT_IDS
+    
+    if BOT_INPUT_CHANNEL_IDS and channel_id not in BOT_INPUT_CHANNEL_IDS:
+        return False
+    if FORWARD_BOT_IDS and author_id not in FORWARD_BOT_IDS:
+        return False
+    return True
+
+@lru_cache(maxsize=128)
+def should_forward_user_message(channel_id, author_id):
+    """Fast filtering function for user messages"""
+    from config import USER_INPUT_CHANNEL_IDS, FORWARD_USER_IDS
+    
+    if USER_INPUT_CHANNEL_IDS and channel_id not in USER_INPUT_CHANNEL_IDS:
+        return False
+    if FORWARD_USER_IDS and author_id not in FORWARD_USER_IDS:
+        return False
+    return True
+
+async def get_webhook_for_channel(channel, bot):
+    """Get or create a webhook for the channel, with caching"""
+    cache_key = channel.id
+    
+    if cache_key in webhook_cache:
+        #verify webhook still valid
+        try:
+            await webhook_cache[cache_key].fetch()  
+            return webhook_cache[cache_key]
+        except discord.NotFound:
+            # Webhook was deleted, remove from cache
+            del webhook_cache[cache_key]
+        except Exception:
+            # Other error, just proceed to get a new webhook
+            pass
+    
+    try:
+        webhooks = await channel.webhooks()
+        webhook = next((w for w in webhooks if w.user and w.user.id == bot.user.id), None)
+        
+        if not webhook:
+            webhook = await channel.create_webhook(name=f"{bot.user.name} Forwarding")
+        
+        webhook_cache[cache_key] = webhook
+        return webhook
+    except Exception as e:
+        logger.error(f"Failed to get webhook for channel {channel.id}: {e}")
+        return None
+
 async def forward_bot_messages(message, bot):
-    """
-    Forward messages from specified bots in input channels to output channels
+    """Forward messages from bots to output channels"""
+    from config import BOT_OUTPUT_CHANNEL_IDS, BOT_CHANNEL_COLORS
     
-    Args:
-        message: Discord message
-        bot: Bot instance
-    """
-    from config import BOT_INPUT_CHANNEL_IDS, BOT_OUTPUT_CHANNEL_IDS, FORWARD_BOT_IDS, BOT_CHANNEL_COLORS
-    
-    # Skip if configuration is incomplete
+    # Quick return for incomplete configuration
     if not BOT_OUTPUT_CHANNEL_IDS:
         return
-        
-    # Check if message is in an input channel (if specified)
-    if BOT_INPUT_CHANNEL_IDS and message.channel.id not in BOT_INPUT_CHANNEL_IDS:
-        return
-        
-    # Skip if not from a bot
-    if not message.author.bot:
-        return
-        
-    # If FORWARD_BOT_IDS is set, filter by author ID
-    if FORWARD_BOT_IDS and message.author.id not in FORWARD_BOT_IDS:
+    
+    # Fast filtering using cached function
+    if not should_forward_bot_message(message.channel.id, message.author.id):
         return
     
-    # Get source channel info for footer
+    # Prepare data once before sending to multiple channels
     source_channel_name = message.channel.name if hasattr(message.channel, 'name') else f"Channel {message.channel.id}"
-    
-    # Get color for this channel
     embed_color = BOT_CHANNEL_COLORS.get(message.channel.id, 0x3498db)
     
-    # Forward to all output channels
-    for channel_id in BOT_OUTPUT_CHANNEL_IDS:
+    # Prepare embeds ahead of time
+    prepared_embeds = []
+    if message.embeds:
+        for embed in message.embeds:
+            new_embed = embed.copy()
+            new_embed.color = embed_color
+            
+            footer_text = f"Called in: #{source_channel_name}"
+            if new_embed.footer and new_embed.footer.text:
+                footer_text = f"{new_embed.footer.text} | {footer_text}"
+            
+            new_embed.set_footer(text=footer_text, icon_url=new_embed.footer.icon_url if new_embed.footer else None)
+            prepared_embeds.append(new_embed)
+    elif message.content:
+        embed = discord.Embed(
+            description=message.content,
+            color=embed_color
+        )
+        embed.set_footer(text=f"From #{source_channel_name}")
+        
+        if hasattr(message.author, 'name') and hasattr(message.author, 'display_avatar'):
+            embed.set_author(
+                name=message.author.name,
+                icon_url=message.author.display_avatar.url
+            )
+        
+        prepared_embeds.append(embed)
+    
+    # Download attachments once if needed
+    files = None
+    if message.attachments:
         try:
-            channel = bot.get_channel(channel_id)
-            if not channel:
-                logger.warning(f"Could not find output channel with ID {channel_id}")
-                continue
-            
-            # Handle embeds
-            if message.embeds:
-                for embed in message.embeds:
-                    # Create a copy of the embed
-                    new_embed = embed.copy()
-                    
-                    # Set color based on source channel
-                    new_embed.color = embed_color
-                    
-                    # Update footer with source channel info
-                    footer_text = f"Called in: #{source_channel_name}"
-                    if new_embed.footer and new_embed.footer.text:
-                        footer_text = f"{new_embed.footer.text} | {footer_text}"
-                    
-                    new_embed.set_footer(text=footer_text, icon_url=new_embed.footer.icon_url if new_embed.footer else None)
-                    await channel.send(embed=new_embed)
-            else:
-                # Create a new embed for text messages for consistent styling
-                if message.content:
-                    embed = discord.Embed(
-                        description=message.content,
-                        color=embed_color
-                    )
-                    embed.set_footer(text=f"From #{source_channel_name}")
-                    
-                    # Set author info if possible
-                    if hasattr(message.author, 'name') and hasattr(message.author, 'display_avatar'):
-                        embed.set_author(
-                            name=message.author.name,
-                            icon_url=message.author.display_avatar.url
-                        )
-                    
-                    await channel.send(embed=embed)
-                
-                # Send any attachments
-                if message.attachments:
-                    files = [await attachment.to_file() for attachment in message.attachments]
-                    await channel.send(files=files)
-            
+            files = [await attachment.to_file() for attachment in message.attachments]
         except Exception as e:
-            logger.error(f"Failed to forward bot message to channel {channel_id}: {e}")
+            logger.error(f"Failed to download attachments: {e}")
+    
+    # Forward to all output channels concurrently
+    tasks = []
+    for channel_id in BOT_OUTPUT_CHANNEL_IDS:
+        tasks.append(forward_bot_to_channel(
+            channel_id, bot, prepared_embeds, 
+            files.copy() if files else None
+        ))
+    
+    if tasks:
+        await asyncio.gather(*tasks, return_exceptions=True)
+
+async def forward_bot_to_channel(channel_id, bot, embeds, files):
+    """Helper to forward bot message to a specific channel"""
+    try:
+        channel = bot.get_channel(channel_id)
+        if not channel:
+            logger.warning(f"Could not find output channel with ID {channel_id}")
+            return
+        
+        if embeds:
+            await channel.send(embeds=embeds)
+        
+        if files:
+            await channel.send(files=files)
+            
+    except Exception as e:
+        logger.error(f"Failed to forward bot message to channel {channel_id}: {e}")
 
 async def forward_user_messages(message, bot):
-    """
-    Forward messages from specified users to output channels
+    """Forward user messages with optimized handling"""
+    from config import USER_OUTPUT_CHANNEL_IDS, PROCESS_CRYPTO_IN_FORWARDS
     
-    Args:
-        message: Discord message
-        bot: Bot instance
-    """
-    from config import USER_INPUT_CHANNEL_IDS, USER_OUTPUT_CHANNEL_IDS, FORWARD_USER_IDS, PROCESS_CRYPTO_IN_FORWARDS
-    
-    # Skip if configuration is incomplete
+    # Quick return for incomplete configuration
     if not USER_OUTPUT_CHANNEL_IDS:
         return
     
-    # Skip if from a bot
-    if message.author.bot:
-        return
-        
-    # Check if message is in an input channel (if specified)
-    if USER_INPUT_CHANNEL_IDS and message.channel.id not in USER_INPUT_CHANNEL_IDS:
-        return
-        
-    # If FORWARD_USER_IDS is set, filter by author ID
-    if FORWARD_USER_IDS and message.author.id not in FORWARD_USER_IDS:
+    # Fast filtering using cached function
+    if not should_forward_user_message(message.channel.id, message.author.id):
         return
     
-    # Get source info for attribution
-    source_info = f"#{message.channel.name}" if hasattr(message.channel, 'name') else f"Channel {message.channel.id}"
-    if hasattr(message.guild, 'name'):
-        source_info = f"{source_info} in {message.guild.name}"
+    # Prepare common webhook parameters once
+    base_webhook_params = {
+        'username': message.author.display_name,
+        'avatar_url': message.author.display_avatar.url,
+        'wait': True,
+        'allowed_mentions': AllowedMentions(everyone=False, users=False, roles=False, replied_user=False),
+        'suppress_embeds': False
+    }
     
-    # Forward to all output channels
-    for channel_id in USER_OUTPUT_CHANNEL_IDS:
+    # Get reference content upfront if needed
+    quoted_content = ""
+    reference_files = None
+    reference_embeds = None
+    
+    if message.reference:
         try:
-            channel = bot.get_channel(channel_id)
-            if not channel:
-                logger.warning(f"Could not find output channel with ID {channel_id}")
-                continue
-            
-            # Create webhook for user-like messages
-            webhooks = await channel.webhooks()
-            webhook = next((w for w in webhooks if w.user and w.user.id == bot.user.id), None)
-            
-            if not webhook:
-                webhook = await channel.create_webhook(name=f"{bot.user.name} Forwarding")
-            
-            # Build webhook parameters
-            webhook_params = {
-                'content': message.content or None,
-                'username': message.author.display_name,
-                'avatar_url': message.author.display_avatar.url,
-                'embeds': message.embeds,
-                'wait': True
-            }
-            
-            # Add attachments if present
-            if message.attachments:
-                webhook_params['files'] = [await a.to_file() for a in message.attachments]
-            
-            # Send the message
-            sent_message = await webhook.send(**webhook_params)
-            
-            # Process for crypto addresses if requested
-            if PROCESS_CRYPTO_IN_FORWARDS and message.content:
-                addresses = get_addresses_from_content(message.content)
-                tickers = get_tickers_from_content(message.content)
+            reference_channel = bot.get_channel(message.reference.channel_id)
+            if reference_channel:
+                original_msg = await reference_channel.fetch_message(message.reference.message_id)
+                is_reply = message.channel.id == message.reference.channel_id
                 
-                if addresses or tickers:                    
-                    try:
-                        # Process it through the normal flow
-                        await process_message(message, bot, reply_to=sent_message)
-                        
-                    except Exception as e:
-                        logger.error(f"Error processing crypto in forwarded message: {e}")
-                        await sent_message.reply("⚠️ Error analyzing crypto content", mention_author=False)
+                # Only include embeds/files for forwards, not replies
+                if not is_reply:
+                    if original_msg.embeds:
+                        reference_embeds = original_msg.embeds
+                    
+                    if original_msg.attachments:
+                        reference_files = [await a.to_file() for a in original_msg.attachments]
+                
+                # Add quoted content for both forwards and replies
+                if original_msg.content:
+                    timestamp = original_msg.created_at.strftime("%H:%M:%S")
+                    quoted_content = f"> {original_msg.content}\n"
+                    base_webhook_params['suppress_embeds'] = True
                 
         except Exception as e:
-            logger.error(f"Failed to forward user message to channel {channel_id}: {e}")
-
-async def process_message(message, bot, reply_to=None):
-    """
-    Process a message for crypto addresses and tickers
+            logger.warning(f"Could not fetch original message for forwarding: {e}")
     
-    Args:
-        message: Original message with content to analyze
-        bot: Bot instance
-        reply_to: Optional message to update with results, otherwise replies to original
-    """
-    from handlers.address_handler import process_addresses
-    from handlers.ticker_handler import process_tickers
+    # Prepare content
+    if message.content:
+        if quoted_content:
+            base_webhook_params['content'] = quoted_content + message.content
+        else:
+            base_webhook_params['content'] = message.content
+    elif quoted_content:
+        base_webhook_params['content'] = quoted_content
     
-    # Extract addresses and tickers
-    content = message.content
-    addresses = get_addresses_from_content(content)
-    tickers = get_tickers_from_content(content)
+    # Add message embeds and files
+    if message.embeds:
+        base_webhook_params['embeds'] = message.embeds if not reference_embeds else message.embeds + reference_embeds
+    elif reference_embeds:
+        base_webhook_params['embeds'] = reference_embeds
     
-    if not addresses and not tickers:
+    message_files = None
+    if message.attachments:
+        message_files = [await a.to_file() for a in message.attachments]
+    
+    if message_files or reference_files:
+        combined_files = []
+        if message_files:
+            combined_files.extend(message_files)
+        if reference_files:
+            combined_files.extend(reference_files)
+        base_webhook_params['files'] = combined_files
+    
+    # Skip if nothing to send
+    if not base_webhook_params.get('content') and not base_webhook_params.get('embeds') and not base_webhook_params.get('files'):
+        logger.info(f"Skipping empty message from {message.author.display_name}")
         return
     
-    # Process in parallel
-    tasks = []
-    target_message = reply_to or message
+    # Forward to all output channels concurrently
+    processing_tasks = []
+    forward_tasks = []
     
-    if addresses:
-        tasks.append(process_addresses(target_message, bot.http_session, addresses))
+    for channel_id in USER_OUTPUT_CHANNEL_IDS:
+        forward_tasks.append(forward_user_to_channel(
+            channel_id, bot, base_webhook_params, 
+            PROCESS_CRYPTO_IN_FORWARDS, message, processing_tasks
+        ))
     
-    if tickers:
-        tasks.append(process_tickers(target_message, bot.http_session, tickers))
+    # Wait for all forwards to complete
+    sent_messages = await asyncio.gather(*forward_tasks, return_exceptions=True)
     
-    # Run tasks
-    if tasks:
-        start_time = datetime.now().timestamp()
-        await asyncio.gather(*tasks)
+    # Now execute any crypto processing tasks that were created
+    if processing_tasks:
+        await asyncio.gather(*processing_tasks, return_exceptions=True)
+
+async def forward_user_to_channel(channel_id, bot, webhook_params, process_crypto, original_message, processing_tasks):
+    """Helper to forward user message to a specific channel"""
+    try:
+        channel = bot.get_channel(channel_id)
+        if not channel:
+            logger.warning(f"Could not find output channel with ID {channel_id}")
+            return None
         
-        # Record metrics
-        processing_time = datetime.now().timestamp() - start_time
-        bot.record_metric(processing_time)
+        # Get or create webhook
+        webhook = await get_webhook_for_channel(channel, bot)
+        if not webhook:
+            return None
         
+        # Deep copy the webhook params to ensure files aren't reused
+        params = webhook_params.copy()
+        if 'files' in params:
+            # Create new file objects to avoid "file already sent" errors
+            new_files = []
+            for file in params['files']:
+                new_file = discord.File(file.fp, filename=file.filename)
+                new_files.append(new_file)
+            params['files'] = new_files
+        
+        # Send the message
+        sent_message = await webhook.send(**params)
+        
+        # Schedule crypto processing if needed (will be executed later)
+        if process_crypto and params.get('content'):
+            content = params.get('content')
+            addresses = get_addresses_from_content(content)
+            tickers = get_tickers_from_content(content)
+            
+            if addresses or tickers:
+                task = process_message(original_message, bot, reply_to=sent_message)
+                processing_tasks.append(task)
+        
+        return sent_message
+        
+    except Exception as e:
+        logger.error(f"Failed to forward user message to channel {channel_id}: {e}")
+        return None
+
 async def forward_message(message, bot):
     """
-    Main entry point for message forwarding - handles multiple forwarding configurations
+    Main entry point for message forwarding - handles multiple forwarding configurations concurrently
     
     Args:
         message: Discord message
         bot: Bot instance
     """
-    # First try the user forwarding config
-    await forward_user_messages(message, bot)
-    
-    # Then try the bot forwarding config
-    await forward_bot_messages(message, bot)
+    # Run both forwarding methods concurrently
+    await asyncio.gather(
+        forward_user_messages(message, bot),
+        forward_bot_messages(message, bot),
+        return_exceptions=True
+    )

@@ -53,7 +53,7 @@ def get_tickers_from_content(content: str) -> list:
     Returns:
         list: List of ticker symbols without the $ prefix
     """
-    return list(set(TICKER_REGEX.findall(content)))
+    return list(set(TICKER_REGEX.findall(content.lower())))
 
 def validate_github_url(url: str) -> bool:
     """

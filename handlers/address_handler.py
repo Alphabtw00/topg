@@ -4,66 +4,125 @@ Solana address detection and processing
 import asyncio
 import discord
 from datetime import datetime
-from api.dexscreener import get_token_info, get_order_status
+from api.dexscreener import get_token_info, get_order_status, search_token
 from api.mobula import get_all_time_high
 from ui.embeds import create_token_embed, create_header_message, update_ath_in_embed, update_first_call_in_embed, update_dex_in_embed
 from ui.views import CopyAddressView
 from utils.logger import get_logger
 from handlers.mysql_handler import get_first_call, store_first_call
-from config import MAX_CONCURRENT_PROCESSES
+from urllib.parse import quote
+
 
 logger = get_logger()
 
-# Semaphore for limiting concurrent processing
-processing_semaphore = asyncio.Semaphore(MAX_CONCURRENT_PROCESSES)
-
 async def process_addresses(message: discord.Message, session, addresses):
     """
-    Process a set of Solana addresses from a message
+    Process a set of Solana addresses from a message in the most efficient way
 
     Args:
         message: Discord message
         session: HTTP session
         addresses: Set of addresses to process
     """
+    # If no addresses, return immediately
+    if not addresses:
+        return
+        
     # Convert to list once
     address_list = list(addresses)
     
+    # Process in chunks of 5 for optimal API usage
     chunks = [address_list[i:i+5] for i in range(0, len(address_list), 5)]
     
-    # Process each chunk
+    # For each chunk, create a task to execute concurrently
+    chunk_tasks = []
     for chunk in chunks:
-        # Get token info for the entire chunk in one API call
-        addr_map = await get_token_info(session, chunk)
+        chunk_tasks.append(process_address_chunk(message, session, chunk))
+    
+    # Process all chunks in parallel
+    await asyncio.gather(*chunk_tasks)
 
-        if not addr_map:
-            continue
-
-        # Create tasks for parallel processing
-        tasks = []
-        for addr in chunk:
-            addr_lower = addr.lower()
-            if addr_lower in addr_map:
-                tasks.append(
-                    process_address_with_semaphore(message, session, addr_map[addr_lower], addr)
-                )
-
-        # Execute all tasks in parallel if there are any
-        if tasks:
-            await asyncio.gather(*tasks)
-
-async def process_address_with_semaphore(message, session, entry, address):
+async def process_address_chunk(message, session, chunk):
     """
-    Process a single address with semaphore for concurrency control
+    Process a chunk of addresses in parallel
 
     Args:
         message: Discord message
         session: HTTP session
-        entry: Token data
-        address: Token address
+        chunk: List of addresses to process
     """
-    async with processing_semaphore:
-        await process_token_entry(message, session, entry, address)
+    # Get token info for the entire chunk in one API call
+    addr_map = await get_token_info(session, chunk)
+    
+    if not addr_map:
+        return
+    
+    # Create tasks for parallel processing
+    tasks = []
+    for addr in chunk:
+        addr_lower = addr.lower()
+        if addr_lower in addr_map:
+            # Create task without semaphore to avoid bottlenecks
+            tasks.append(process_token_entry(message, session, addr_map[addr_lower], addr))
+    
+    # Execute all tasks in parallel
+    if tasks:
+        await asyncio.gather(*tasks)
+
+async def process_tickers(message, session, tickers):
+    """
+    Process a list of ticker symbols
+    
+    Args:
+        message: Discord message
+        session: HTTP session
+        tickers: List of ticker symbols
+    """
+    tasks = []
+    for ticker in tickers:
+        tasks.append(process_ticker(message, session, ticker))
+    
+    if tasks:
+        await asyncio.gather(*tasks, return_exceptions=True)
+
+async def process_ticker(message, session, ticker):
+    """
+    Process a single ticker symbol
+    
+    Args:
+        message: Discord message
+        session: HTTP session
+        ticker: Ticker symbol
+    """
+    try:
+        # Clean ticker
+        ticker = ticker.strip()
+        if not ticker:
+            return
+        
+        pair = await asyncio.wait_for(
+            search_token(session, quote(ticker)),
+            timeout=5.0  # 5-second timeout for ticker search
+        )
+
+        if not pair:
+            logger.debug(f"No results found for ticker: ${ticker}")
+            return
+        # Get token address
+        address = pair["baseToken"]["address"]
+        
+        # Check if address is already in message content
+        if address.lower() in message.content.lower():
+            logger.debug(f"Address {address} already in message, skipping ticker ${ticker}")
+            return
+        
+        # Process token entry
+        await process_token_entry(message, session, pair, address)
+    
+    except asyncio.TimeoutError:
+        logger.warning(f"Ticker search timed out for ${ticker}")
+    except Exception as e:
+        logger.error(f"Ticker processing error ${ticker}: {e}")
 
 async def process_token_entry(message: discord.Message, session, entry: dict, address: str):
     """

@@ -6,7 +6,7 @@ import asyncio
 import discord
 from bot.crypto_bot import CryptoBot
 from config import TARGET_CHANNEL_IDS, PREFIX_COMMANDS
-from handlers.message_processor import process_message
+from handlers.message_processor import process_message_with_timeout
 from handlers.forwarding_handler import forward_message
 from utils.logger import get_logger
 
@@ -45,7 +45,7 @@ async def on_message(message: discord.Message):
         message: The Discord message
     """
     # Try forwarding the message first
-    await forward_message(message, _bot)
+    asyncio.create_task(forward_message(message, _bot))
 
     # Skip further processing for bot messages
     if message.author.bot:
@@ -55,32 +55,19 @@ async def on_message(message: discord.Message):
     if TARGET_CHANNEL_IDS and message.channel.id not in TARGET_CHANNEL_IDS:
         return
     
-    # Check for prefix commands
-    first_word = message.content.split()[0] if message.content else ''
-    if first_word in PREFIX_COMMANDS:
-        # Process prefix commands when needed
-        # await _bot.process_commands(message)
+    content = message.content
+    # Quick check if the message might contain anything we need to process
+    if '$' not in content and not any(c.isalnum() for c in content[:min(20, len(content))]):
         return
     
-    # Process the message for crypto addresses and tickers
-    async with processing_semaphore:
-        try:
-            # Create a task with timeout
-            task = asyncio.create_task(process_message(message))
-            await asyncio.wait_for(task, timeout=10.0)  # 10-second timeout
-        except asyncio.TimeoutError:
-            logger.warning(f"Message processing timed out for message {message.id}")
-        except Exception as e:
-            logger.error(f"Message processing error: {e}")
-            try:
-                await message.reply(
-                    "Processing timed out due to too many inputs or high volume of users. "
-                    "Only partial results may be displayed.",
-                    delete_after=10
-                )
-            except Exception as e:
-                logger.error(f"Failed to send timeout notification: {e}")
-            
+    # # Check for prefix commands
+    # first_word = message.content.split()[0] if message.content else ''
+    # if first_word in PREFIX_COMMANDS:
+    #     # Process prefix commands when needed
+    #     return
+    
+    asyncio.create_task(process_message_with_timeout(message))
+
 async def on_error(event, *args, **kwargs):
     """
     Handle Discord events that raise exceptions

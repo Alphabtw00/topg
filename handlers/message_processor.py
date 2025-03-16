@@ -5,11 +5,34 @@ import asyncio
 import discord
 from datetime import datetime
 from utils.validators import get_addresses_from_content, get_tickers_from_content
-from handlers.address_handler import process_addresses
-from handlers.ticker_handler import process_tickers
+from handlers.address_handler import process_addresses, process_tickers
 from utils.logger import get_logger
 
 logger = get_logger()
+
+
+async def process_message_with_timeout(message: discord.Message):
+    """
+    Process a message with timeout protection
+    
+    Args:
+        message: The Discord message
+    """
+    try:
+        # Use wait_for for timeout without blocking the event loop
+        await asyncio.wait_for(process_message(message), timeout=10.0)
+    except asyncio.TimeoutError:
+        logger.warning(f"Message processing timed out for message {message.id}")
+        try:
+            await message.reply(
+                "Processing timed out due to too many inputs or high volume of users. "
+                "Only partial results may be displayed.",
+                delete_after=10
+            )
+        except Exception as e:
+            logger.error(f"Failed to send timeout notification: {e}")
+    except Exception as e:
+        logger.error(f"Message processing error: {e}")
 
 async def process_message(message: discord.Message):
     """
@@ -19,10 +42,6 @@ async def process_message(message: discord.Message):
         message: The Discord message to process
     """
     content = message.content
-    
-    # Quick check to see if we should process this message
-    if '$' not in content and not any(c.isalnum() for c in content[:min(20, len(content))]):
-        return
     
     # Get bot instance and session
     bot = message.guild.me._state._get_client()
