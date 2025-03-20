@@ -102,7 +102,7 @@ class CryptoBot(commands.Bot):
     async def on_ready(self):
         """Event handler for when the bot is ready"""
         from config import (
-            TARGET_CHANNEL_IDS, ALLOWED_USER_IDS, 
+            TARGET_CHANNEL_IDS, ADMIN_USER_IDS, 
             BOT_INPUT_CHANNEL_IDS, BOT_OUTPUT_CHANNEL_IDS, FORWARD_BOT_IDS,
             USER_INPUT_CHANNEL_IDS, USER_OUTPUT_CHANNEL_IDS, FORWARD_USER_IDS
         )
@@ -154,9 +154,9 @@ class CryptoBot(commands.Bot):
             logger.info(f"Dani message forwarding: {len(FORWARD_USER_IDS)} users from {input_info} to {len(USER_OUTPUT_CHANNEL_IDS)} channels")
         
         # Fetch and log admin user info
-        if ALLOWED_USER_IDS:
+        if ADMIN_USER_IDS:
             user_infos = [info for info in await asyncio.gather(
-                *[get_user_info(user_id) for user_id in ALLOWED_USER_IDS]
+                *[get_user_info(user_id) for user_id in ADMIN_USER_IDS]
             ) if info]
             if user_infos:
                 logger.info(f"Allowed admin users: {', '.join(user_infos)}")
@@ -255,6 +255,7 @@ class CryptoBot(commands.Bot):
             except Exception as e:
                 logger.error(f"Metrics cleanup error: {e}")
 
+    #manual reconnect only if discord fails auto connect
     async def _monitor_reconnection(self):
         """Monitor whether the auto-reconnection succeeds, use manual reconnect as fallback"""
         # Wait for a reasonable time for auto-reconnect

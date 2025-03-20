@@ -40,7 +40,7 @@ async def process_addresses(message: discord.Message, session, addresses):
         chunk_tasks.append(process_address_chunk(message, session, chunk))
     
     # Process all chunks in parallel
-    await asyncio.gather(*chunk_tasks)
+    await asyncio.gather(*chunk_tasks, return_exceptions=True)
 
 async def process_address_chunk(message, session, chunk):
     """
@@ -67,7 +67,7 @@ async def process_address_chunk(message, session, chunk):
     
     # Execute all tasks in parallel
     if tasks:
-        await asyncio.gather(*tasks)
+        await asyncio.gather(*tasks, return_exceptions=True)
 
 async def process_tickers(message, session, tickers):
     """
@@ -139,8 +139,8 @@ async def process_token_entry(message: discord.Message, session, entry: dict, ad
         # Extract data once
         current_price = float(entry.get("priceUsd", 0))
         current_fdv = float(entry.get("fdv", 0))
-        pair_address = entry.get("pairAddress")
         creation_timestamp = entry.get("pairCreatedAt")
+        chain_id = entry.get("chainId", "solana")
 
         # Create and send initial embed
         initial_embed = create_token_embed(entry, address, "")
@@ -156,74 +156,79 @@ async def process_token_entry(message: discord.Message, session, entry: dict, ad
         )
 
         # Launch all tasks concurrently
-        tasks = []
+        tasks = {}
         
-        order_status_task = asyncio.create_task(get_order_status(session, address))
-        tasks.append(order_status_task)
-        first_call_task = asyncio.create_task(get_first_call(address))
-        tasks.append(first_call_task)    
-        ath_task = None
-        if pair_address:
-            ath_task = asyncio.create_task(get_all_time_high(session, pair_address, creation_timestamp))
-            tasks.append(ath_task)
+        tasks["order_status"] = asyncio.create_task(get_order_status(session, address))
+        tasks["first_call"] = asyncio.create_task(get_first_call(address))
+        
+        if address:
+            tasks["ath"] = asyncio.create_task(
+                get_all_time_high(session, address, creation_timestamp, chain_id)
+            )
 
-        # Wait for all tasks to complete
-        await asyncio.gather(*tasks, return_exceptions=True)
+        completed, pending = await asyncio.wait(
+            tasks.values(), 
+            timeout=5
+        )
+        for task in pending:
+            task.cancel()
         
         # Process results and update embed only once
         embed_dict = initial_embed.to_dict()
         updates_made = False
 
         # Process order status
-        try:
-            order_status = order_status_task.result()
-            if order_status:
-                embed_dict = update_dex_in_embed(embed_dict, order_status)
-                updates_made = True
-        except Exception:
-            pass
+        if "order_status" in tasks and tasks["order_status"] in completed:
+            try:
+                order_status = tasks["order_status"].result()
+                if order_status and not isinstance(order_status, Exception):
+                    embed_dict = update_dex_in_embed(embed_dict, order_status)
+                    updates_made = True
+            except Exception as e:
+                logger.warning(f"Error processing order status: {e}")
 
         # Process first call data
-        try:
-            first_call_data = first_call_task.result()
-            if not first_call_data:
-                user_id = message.author.id
-                user_name = message.author.display_name
-                await store_first_call(address, user_id, user_name, current_fdv, current_price)
-                first_call_data = {
-                    'user_id': user_id,
-                    'user_name': user_name,
-                    'initial_fdv': current_fdv,
-                    'initial_price': current_price,
-                    'call_timestamp': datetime.now(),
-                    'is_first_call': True
-                }
-            
-            embed_dict = update_first_call_in_embed(
-                embed_dict,
-                first_call_data,
-                current_price,
-                message.author
-            )
-            updates_made = True
-        except Exception:
-            pass
-
-        # Process ATH data
-        if ath_task:
+        if "first_call" in tasks and tasks["first_call"] in completed:
             try:
-                ath_price, ath_timestamp = ath_task.result()
-                if ath_price or ath_timestamp:
-                    embed_dict = update_ath_in_embed(
+                first_call_data = tasks["first_call"].result()
+                if not first_call_data or isinstance(first_call_data, Exception):
+                    user_id = message.author.id
+                    user_name = message.author.display_name
+                    await store_first_call(address, user_id, user_name, current_fdv, current_price)
+                    first_call_data = {
+                        'user_id': user_id,
+                        'user_name': user_name,
+                        'initial_fdv': current_fdv,
+                        'initial_price': current_price,
+                        'call_timestamp': datetime.now(),
+                        'is_first_call': True
+                    }
+                
+                if first_call_data:
+                    embed_dict = update_first_call_in_embed(
                         embed_dict,
-                        ath_price,
-                        ath_timestamp,
+                        first_call_data,
                         current_price,
-                        current_fdv
+                        message.author
                     )
                     updates_made = True
+            except Exception as e:
+                logger.warning(f"Error processing first call: {e}")
+
+        # Process ATH data
+        ath_price = ath_timestamp = None       
+        # Process ATH data if the task ran and completed
+        if "ath" in tasks and tasks["ath"] in completed:
+            try:
+                result = tasks["ath"].result()
+                if isinstance(result, tuple) and len(result) == 2:
+                    ath_price, ath_timestamp = result
             except Exception:
                 pass
+                
+        # Update ATH field in embed
+        embed_dict = update_ath_in_embed(embed_dict, ath_price, ath_timestamp, current_price, current_fdv)
+        updates_made = True
 
         # Update only once if needed
         if updates_made:
@@ -231,7 +236,7 @@ async def process_token_entry(message: discord.Message, session, entry: dict, ad
 
         # Record processing time
         processing_time = datetime.now().timestamp() - start_time
+        
         logger.debug(f"Token {address} processed in {processing_time:.2f}s")
-
     except Exception as e:
         logger.error(f"Processing error for {address}: {e}")

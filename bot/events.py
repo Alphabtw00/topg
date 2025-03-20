@@ -2,6 +2,7 @@
 Event handlers for the Discord bot
 """
 import sys
+import re
 import asyncio
 import discord
 from bot.crypto_bot import CryptoBot
@@ -57,8 +58,10 @@ async def on_message(message: discord.Message):
     
     content = message.content
     # Quick check if the message might contain anything we need to process
-    if '$' not in content and not any(c.isalnum() for c in content[:min(20, len(content))]):
+    if '$' not in content and not re.search(r'[a-zA-Z0-9]{26,}', content):
         return
+    
+
     
     # # Check for prefix commands
     # first_word = message.content.split()[0] if message.content else ''

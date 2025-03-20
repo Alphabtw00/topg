@@ -2,7 +2,7 @@
 DexScreener API client
 """
 import aiohttp
-from config import BASE_URL
+from config import DEXSCREENER_BASE_URL
 from api.http_client import fetch_data
 from utils.logger import get_logger
 
@@ -27,7 +27,7 @@ async def get_token_info(session: aiohttp.ClientSession, addresses: list):
     result = {}
     
     for chunk in chunks:
-        url = f"{BASE_URL}/tokens/v1/solana/{','.join(chunk)}"
+        url = f"{DEXSCREENER_BASE_URL}/token-pairs/v1/solana/{','.join(chunk)}"
         tokens_data = await fetch_data(session, url)
         
         if tokens_data:
@@ -51,7 +51,7 @@ async def search_token(session: aiohttp.ClientSession, ticker: str):
     Returns:
         dict or None: Token data or None if not found
     """
-    url = f"{BASE_URL}/latest/dex/search?q={ticker}"
+    url = f"{DEXSCREENER_BASE_URL}/latest/dex/search?q={ticker}"
     search_data = await fetch_data(session, url)
     
     if search_data and search_data.get("pairs"):
@@ -73,7 +73,7 @@ async def get_order_status(session: aiohttp.ClientSession, token_address: str):
     from utils.formatters import relative_time
     
     try:
-        url = f"{BASE_URL}/orders/v1/solana/{token_address}"
+        url = f"{DEXSCREENER_BASE_URL}/orders/v1/solana/{token_address}"
         data = await fetch_data(session, url)
         
         if data is None:

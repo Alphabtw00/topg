@@ -5,7 +5,7 @@ import discord
 from discord import app_commands
 from discord.ext import commands
 from bot.error_handler import create_error_handler
-from config import ALLOWED_USER_IDS
+from config import ADMIN_USER_IDS
 from ui.embeds import create_health_embed
 from utils.logger import get_logger
 
@@ -21,7 +21,7 @@ class Health(commands.Cog):
     @app_commands.checks.cooldown(1, 5)
     async def health_slash(self, interaction: discord.Interaction):
         """Health check command (slash version)"""
-        if interaction.user.id not in ALLOWED_USER_IDS:
+        if interaction.user.id not in ADMIN_USER_IDS:
             await interaction.response.send_message(
                 "You don't have permission to use this command.",
                 ephemeral=True,

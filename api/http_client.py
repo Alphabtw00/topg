@@ -27,7 +27,8 @@ async def setup_http_session():
         limit=MAX_CONNECTIONS,  # Maximum number of concurrent connections
         ttl_dns_cache=DNS_CACHE_TTL,  # Cache DNS results
         use_dns_cache=True,
-        ssl=True         
+        ssl=True,
+        keepalive_timeout=60.0         
     )
     
     timeout = aiohttp.ClientTimeout(

@@ -1,10 +1,11 @@
 import discord
 import asyncio
+import re
 from datetime import datetime
 from utils.logger import get_logger
 from discord import MessageFlags, AllowedMentions
 from utils.validators import get_addresses_from_content, get_tickers_from_content
-from handlers.message_processor import process_message
+from handlers.message_processor import process_message_with_timeout
 from functools import lru_cache
 
 logger = get_logger()
@@ -155,6 +156,14 @@ async def forward_user_messages(message, bot):
     if not should_forward_user_message(message.channel.id, message.author.id):
         return
     
+    crypto_detected = False
+    content = message.content
+    if PROCESS_CRYPTO_IN_FORWARDS and content:
+        if ('$' in content or
+            re.search(r'[a-zA-Z0-9]{26,}', content)): 
+            crypto_detected = True
+
+
     # Prepare common webhook parameters once
     base_webhook_params = {
         'username': message.author.display_name,
@@ -194,13 +203,9 @@ async def forward_user_messages(message, bot):
             logger.warning(f"Could not fetch original message for forwarding: {e}")
     
     # Prepare content
-    if message.content:
-        if quoted_content:
-            base_webhook_params['content'] = quoted_content + message.content
-        else:
-            base_webhook_params['content'] = message.content
-    elif quoted_content:
-        base_webhook_params['content'] = quoted_content
+    if content or quoted_content:
+        base_webhook_params['content'] = (quoted_content or '') + (content or '')
+
     
     # Add message embeds and files
     if message.embeds:
@@ -232,17 +237,17 @@ async def forward_user_messages(message, bot):
     for channel_id in USER_OUTPUT_CHANNEL_IDS:
         forward_tasks.append(forward_user_to_channel(
             channel_id, bot, base_webhook_params, 
-            PROCESS_CRYPTO_IN_FORWARDS, message, processing_tasks
+            PROCESS_CRYPTO_IN_FORWARDS, crypto_detected, processing_tasks
         ))
     
     # Wait for all forwards to complete
-    sent_messages = await asyncio.gather(*forward_tasks, return_exceptions=True)
+    await asyncio.gather(*forward_tasks, return_exceptions=True)
     
     # Now execute any crypto processing tasks that were created
     if processing_tasks:
         await asyncio.gather(*processing_tasks, return_exceptions=True)
 
-async def forward_user_to_channel(channel_id, bot, webhook_params, process_crypto, original_message, processing_tasks):
+async def forward_user_to_channel(channel_id, bot, webhook_params, process_crypto, crypto_detected, processing_tasks):
     """Helper to forward user message to a specific channel"""
     try:
         channel = bot.get_channel(channel_id)
@@ -255,7 +260,7 @@ async def forward_user_to_channel(channel_id, bot, webhook_params, process_crypt
         if not webhook:
             return None
         
-        # Deep copy the webhook params to ensure files aren't reused
+        # Deep copy the webhook params to ensure files aren't reused (for more than 1 output channels so dont give error)
         params = webhook_params.copy()
         if 'files' in params:
             # Create new file objects to avoid "file already sent" errors
@@ -269,14 +274,9 @@ async def forward_user_to_channel(channel_id, bot, webhook_params, process_crypt
         sent_message = await webhook.send(**params)
         
         # Schedule crypto processing if needed (will be executed later)
-        if process_crypto and params.get('content'):
-            content = params.get('content')
-            addresses = get_addresses_from_content(content)
-            tickers = get_tickers_from_content(content)
-            
-            if addresses or tickers:
-                task = process_message(original_message, bot, reply_to=sent_message)
-                processing_tasks.append(task)
+        if process_crypto and crypto_detected:
+            task = process_message_with_timeout(sent_message)
+            processing_tasks.append(task)
         
         return sent_message
         

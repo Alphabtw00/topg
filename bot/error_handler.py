@@ -56,3 +56,16 @@ def create_error_handler(command_name):
                 )
             
     return error_handler
+
+def global_exception_handler(loop, context):
+    """
+    Global exception handler for catching all unhandled exceptions.
+    Logs the exception and message details.
+    """
+    exception = context.get("exception")
+    message = context.get("message")
+    logger.error(
+        f"Unhandled exception in event loop: {exception} | {message}",
+        exc_info=exception
+    )
+    loop.default_exception_handler(context)

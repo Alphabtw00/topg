@@ -1,0 +1,34 @@
+2025-03-17 08:05:35,586 - ERROR - Processing error for CniPCE4b3s8gSUPhUiyMjXnytrEqUrMfSsnbBjLCpump: wait() got an unexpected keyword argument 'return_exceptions'
+2025-03-17 08:06:11,202 - ERROR - Processing error for CniPCE4b3s8gSUPhUiyMjXnytrEqUrMfSsnbBjLCpump: wait() got an unexpected keyword argument 'return_exceptions'
+2025-03-17 08:06:46,681 - ERROR - Processing error for AQRV8fXRCaCPFKtvALFkNnfCzJRVbJsEBAMTFmJ1pump: wait() got an unexpected keyword argument 'return_exceptions'
+2025-03-17 08:11:44,316 - ERROR - Processing error for AQRV8fXRCaCPFKtvALFkNnfCzJRVbJsEBAMTFmJ1pump: wait() got an unexpected keyword argument 'return_exceptions'
+2025-03-17 08:14:50,506 - ERROR - Processing error for EzP9x9p5wAQYXLTEKbdqKrKHGYPcKJv93FFgrzxkpump: wait() got an unexpected keyword argument 'return_exceptions'
+2025-03-17 08:29:37,937 - ERROR - Processing error for Dbyu5P3D683GAATXiihDD4XP56edJLzQskH2o5empump: wait() got an unexpected keyword argument 'return_exceptions'
+2025-03-17 08:31:05,616 - ERROR - Processing error for hYni8MckoGRsCtrjhmFx3MLEJXC3GBfT7cWUsKmpump: wait() got an unexpected keyword argument 'return_exceptions'
+2025-03-17 08:37:09,089 - ERROR - Processing error for hYni8MckoGRsCtrjhmFx3MLEJXC3GBfT7cWUsKmpump: wait() got an unexpected keyword argument 'return_exceptions'
+2025-03-17 08:45:46,180 - WARNING - API returned status 500 for URL: https://production-api.mobula.io/api/1/market/history/pair?address=1960&blockchain=solana&period=30d
+2025-03-17 08:45:46,181 - WARNING - API returned status 404 for URL: https://api.dexscreener.com/orders/v1/solana/factory/osmo1n3n75av8awcnw4jl62n3l48e6e4sxqmaf97w5ua6ddu4s475q5qq9udvx4/alloyed/allSOL
+2025-03-17 08:45:47,468 - WARNING - API returned status 500 for URL: https://production-api.mobula.io/api/1/market/history/pair?address=1960&blockchain=solana&period=30d
+2025-03-17 08:45:48,175 - WARNING - API returned status 500 for URL: https://production-api.mobula.io/api/1/market/history/pair?address=1960&blockchain=solana&period=30d
+2025-03-17 08:45:49,068 - WARNING - API returned status 500 for URL: https://production-api.mobula.io/api/1/market/history/pair?address=1960&blockchain=solana&period=30d
+2025-03-17 08:51:50,520 - WARNING - API returned status 404 for URL: https://api.dexscreener.com/orders/v1/solana/factory/osmo1n3n75av8awcnw4jl62n3l48e6e4sxqmaf97w5ua6ddu4s475q5qq9udvx4/alloyed/allSOL
+2025-03-17 08:51:50,609 - WARNING - API returned status 500 for URL: https://production-api.mobula.io/api/1/market/history/pair?address=1960&blockchain=solana&period=30d
+2025-03-17 08:51:51,257 - WARNING - API returned status 500 for URL: https://production-api.mobula.io/api/1/market/history/pair?address=1960&blockchain=solana&period=30d
+2025-03-17 08:51:51,952 - WARNING - API returned status 500 for URL: https://production-api.mobula.io/api/1/market/history/pair?address=1960&blockchain=solana&period=30d
+2025-03-17 08:51:53,239 - WARNING - API returned status 500 for URL: https://production-api.mobula.io/api/1/market/history/pair?address=1960&blockchain=solana&period=30d
+2025-03-17 09:35:32,822 - ERROR - Health command error: name 'FFFFFF' is not defined
+2025-03-17 09:35:35,776 - ERROR - health command error: Command 'health' raised an exception: NotFound: 404 Not Found (error code: 10015): Unknown Webhook
+2025-03-17 10:11:24,801 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-03-17 12:52:35,172 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-03-17 14:13:25,390 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-03-17 15:55:41,112 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-03-17 18:02:37,612 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-03-17 19:23:39,257 - WARNING - API returned status 404 for URL: https://api.dexscreener.com/orders/v1/solana/factory/osmo1n3n75av8awcnw4jl62n3l48e6e4sxqmaf97w5ua6ddu4s475q5qq9udvx4/alloyed/allSOL
+2025-03-17 19:23:39,290 - WARNING - API returned status 500 for URL: https://production-api.mobula.io/api/1/market/history/pair?address=1960&blockchain=solana&period=30d
+2025-03-17 19:23:39,808 - WARNING - API returned status 500 for URL: https://production-api.mobula.io/api/1/market/history/pair?address=1960&blockchain=solana&period=30d
+2025-03-17 19:23:41,454 - WARNING - API returned status 500 for URL: https://production-api.mobula.io/api/1/market/history/pair?address=1960&blockchain=solana&period=30d
+2025-03-17 19:23:42,357 - WARNING - API returned status 500 for URL: https://production-api.mobula.io/api/1/market/history/pair?address=1960&blockchain=solana&period=30d
+2025-03-17 20:25:00,497 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-03-17 21:53:44,155 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-03-17 22:45:09,883 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-03-17 23:36:22,322 - WARNING - Bot disconnected from Discord. Attempting to reconnect...

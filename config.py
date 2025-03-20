@@ -17,7 +17,7 @@ if not TOKEN:
 TARGET_CHANNEL_IDS = {int(id.strip()) for id in os.getenv("TARGET_CHANNEL_IDS", "").split(",") if id.strip().isdigit()}
 
 # Admin users
-ALLOWED_USER_IDS = {int(uid.strip()) for uid in os.getenv("ALLOWED_USER_IDS", "").split(",") if uid.strip().isdigit()}
+ADMIN_USER_IDS = {int(uid.strip()) for uid in os.getenv("ADMIN_USER_IDS", "").split(",") if uid.strip().isdigit()}
 
 #echo bot forwarding
 BOT_INPUT_CHANNEL_IDS = {int(id.strip()) for id in os.getenv("BOT_INPUT_CHANNEL_IDS", "").split(",") if id.strip().isdigit()}
@@ -32,8 +32,9 @@ PROCESS_CRYPTO_IN_FORWARDS = os.getenv("PROCESS_CRYPTO_IN_FORWARDS", "True").low
 
 
 # API Endpoints
-BASE_URL = "https://api.dexscreener.com"
+DEXSCREENER_BASE_URL = "https://api.dexscreener.com"
 TWITTER_SEARCH_URL = "https://x.com/search?q={query}&f=live"
+MOBULA_ATH_URL = "https://production-api.mobula.io/api/1/market/history/pair?asset={contact_address}&blockchain={blockchain}&period={period}"
 
 # Trading Platforms
 TRADING_PLATFORMS = {

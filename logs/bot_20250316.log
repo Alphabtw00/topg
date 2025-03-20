@@ -15,3 +15,48 @@
 2025-03-16 19:18:15,522 - ERROR - Message processing error: cannot access local variable 'tickers' where it is not associated with a value
 2025-03-16 19:27:09,620 - ERROR - Message processing error: cannot access local variable 'tickers' where it is not associated with a value
 2025-03-16 19:27:24,597 - ERROR - Message processing error: cannot access local variable 'tickers' where it is not associated with a value
+2025-03-16 21:44:09,870 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-03-16 22:08:58,723 - ERROR - Failed to forward user message to channel 1335081896807497839: process_message() got an unexpected keyword argument 'reply_to'
+2025-03-16 22:09:32,230 - ERROR - Failed to forward user message to channel 1335081896807497839: process_message() got an unexpected keyword argument 'reply_to'
+2025-03-16 23:14:32,891 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-03-17 01:15:39,216 - ERROR - Failed to forward user message to channel 1335081896807497839: process_message() got an unexpected keyword argument 'reply_to'
+2025-03-17 01:16:32,588 - ERROR - Failed to forward user message to channel 1335081896807497839: process_message() got an unexpected keyword argument 'reply_to'
+2025-03-17 01:20:11,582 - ERROR - Failed to forward user message to channel 1335081896807497839: process_message() got an unexpected keyword argument 'reply_to'
+2025-03-17 01:43:40,327 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-03-17 02:24:15,146 - ERROR - Failed to forward user message to channel 1335081896807497839: process_message() got an unexpected keyword argument 'reply_to'
+2025-03-17 03:00:48,905 - WARNING - API returned status 404 for URL: https://production-api.mobula.io/api/1/market/history/pair?address=8W8ipoNCHEFrXMqdqyuG6nVqpjJFT2XBfESmuCJDjfow&blockchain=solana&period=1min
+2025-03-17 03:03:45,127 - WARNING - API returned status 404 for URL: https://production-api.mobula.io/api/1/market/history/pair?address=FmcaWuD8Wx6uqCHCM1JFsfU4ak2uPHe6afcJqykhip2Q&blockchain=solana&period=1min
+2025-03-17 03:34:34,760 - ERROR - Failed to forward user message to channel 1335081896807497839: process_message() got an unexpected keyword argument 'reply_to'
+2025-03-17 03:40:17,359 - WARNING - API returned status 404 for URL: https://production-api.mobula.io/api/1/market/history/pair?address=Fw5rQ9R6MmnUQNB62c57hCXNJ949iUCoW3YNSLyNFExk&blockchain=solana&period=1min
+2025-03-17 03:47:50,713 - WARNING - API returned status 404 for URL: https://production-api.mobula.io/api/1/market/history/pair?address=8dp8AYCBbzomFJ1xRirr1VGjEVFxFdNZWLuxZPWLCNPd&blockchain=solana&period=1min
+2025-03-17 04:15:22,225 - WARNING - API returned status 500 for URL: https://production-api.mobula.io/api/1/market/history/pair?address=CE3ymLsGcCTRMBRRP4ebxdrQtoWJ6D6RPkiQN2XkJqTC&blockchain=solana&period=1min
+2025-03-17 04:23:28,613 - WARNING - API returned status 404 for URL: https://production-api.mobula.io/api/1/market/history/pair?address=E7MpckXAoEUaXrdjfeiuPEEEHXRbxKJ295gDkL8XgqMd&blockchain=solana&period=1min
+2025-03-17 04:24:02,840 - WARNING - API returned status 404 for URL: https://production-api.mobula.io/api/1/market/history/pair?address=E7MpckXAoEUaXrdjfeiuPEEEHXRbxKJ295gDkL8XgqMd&blockchain=solana&period=1min
+2025-03-17 04:25:07,567 - WARNING - API returned status 404 for URL: https://production-api.mobula.io/api/1/market/history/pair?address=E7MpckXAoEUaXrdjfeiuPEEEHXRbxKJ295gDkL8XgqMd&blockchain=solana&period=1min
+2025-03-17 04:29:36,301 - WARNING - API returned status 404 for URL: https://production-api.mobula.io/api/1/market/history/pair?address=E7MpckXAoEUaXrdjfeiuPEEEHXRbxKJ295gDkL8XgqMd&blockchain=solana&period=1min
+2025-03-17 04:45:16,898 - ERROR - Failed to forward user message to channel 1335081896807497839: process_message() got an unexpected keyword argument 'reply_to'
+2025-03-17 04:47:02,757 - ERROR - Failed to forward user message to channel 1335081896807497839: process_message() got an unexpected keyword argument 'reply_to'
+2025-03-17 04:49:23,081 - ERROR - Failed to forward user message to channel 1335081896807497839: process_message() got an unexpected keyword argument 'reply_to'
+2025-03-17 04:55:56,847 - ERROR - Failed to forward user message to channel 1335081896807497839: process_message() got an unexpected keyword argument 'reply_to'
+2025-03-17 04:57:05,801 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-03-17 05:02:24,669 - ERROR - Failed to forward user message to channel 1335081896807497839: process_message() got an unexpected keyword argument 'reply_to'
+2025-03-17 05:06:48,963 - ERROR - Failed to forward user message to channel 1335081896807497839: process_message() got an unexpected keyword argument 'reply_to'
+2025-03-17 05:11:22,030 - ERROR - Failed to forward user message to channel 1335081896807497839: process_message() got an unexpected keyword argument 'reply_to'
+2025-03-17 05:13:35,616 - ERROR - Failed to forward user message to channel 1335081896807497839: process_message() got an unexpected keyword argument 'reply_to'
+2025-03-17 05:43:16,493 - ERROR - Failed to forward user message to channel 1335081896807497839: process_message() got an unexpected keyword argument 'reply_to'
+2025-03-17 05:44:50,193 - ERROR - Failed to forward user message to channel 1335081896807497839: process_message() got an unexpected keyword argument 'reply_to'
+2025-03-17 05:45:08,333 - ERROR - Failed to forward user message to channel 1335081896807497839: process_message() got an unexpected keyword argument 'reply_to'
+2025-03-17 06:03:51,671 - ERROR - Failed to forward user message to channel 1335081896807497839: process_message() got an unexpected keyword argument 'reply_to'
+2025-03-17 06:08:46,448 - ERROR - Failed to forward user message to channel 1335081896807497839: process_message() got an unexpected keyword argument 'reply_to'
+2025-03-17 06:13:27,440 - ERROR - Failed to forward user message to channel 1335081896807497839: process_message() got an unexpected keyword argument 'reply_to'
+2025-03-17 06:15:58,323 - ERROR - Failed to forward user message to channel 1335081896807497839: process_message() got an unexpected keyword argument 'reply_to'
+2025-03-17 06:42:56,207 - ERROR - Failed to forward user message to channel 1335081896807497839: process_message() got an unexpected keyword argument 'reply_to'
+2025-03-17 06:43:22,743 - ERROR - Failed to forward user message to channel 1335081896807497839: process_message() got an unexpected keyword argument 'reply_to'
+2025-03-17 06:43:26,926 - ERROR - Failed to forward user message to channel 1335081896807497839: process_message() got an unexpected keyword argument 'reply_to'
+2025-03-17 06:52:44,333 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-03-17 06:53:12,379 - ERROR - Failed to forward user message to channel 1335081896807497839: process_message() got an unexpected keyword argument 'reply_to'
+2025-03-17 06:56:40,081 - ERROR - Failed to forward user message to channel 1335081896807497839: process_message() got an unexpected keyword argument 'reply_to'
+2025-03-17 06:58:46,464 - ERROR - Failed to forward user message to channel 1335081896807497839: process_message() got an unexpected keyword argument 'reply_to'
+2025-03-17 07:01:35,116 - ERROR - Failed to forward user message to channel 1335081896807497839: process_message() got an unexpected keyword argument 'reply_to'
+2025-03-17 07:41:17,330 - ERROR - Failed to forward user message to channel 1335081896807497839: process_message() got an unexpected keyword argument 'reply_to'
+2025-03-17 07:45:41,577 - ERROR - Failed to forward user message to channel 1335081896807497839: process_message() got an unexpected keyword argument 'reply_to'

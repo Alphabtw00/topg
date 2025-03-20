@@ -2,19 +2,21 @@
 Mobula API client for historical price data
 """
 import aiohttp
+import asyncio
 from datetime import datetime
 from api.http_client import fetch_data
 from utils.logger import get_logger
+from config import MOBULA_ATH_URL
 
 logger = get_logger()
 
-async def get_all_time_high(session: aiohttp.ClientSession, pair_address: str, creation_timestamp: int = None):
+async def get_all_time_high(session: aiohttp.ClientSession, address: str, creation_timestamp: int = None,chain_id: str = "solana", max_retries=3):
     """
     Get all-time high price data for a token
     
     Args:
         session: HTTP session
-        pair_address: Pair address
+        address: Contact address
         creation_timestamp: Creation timestamp in milliseconds
         
     Returns:
@@ -26,43 +28,54 @@ async def get_all_time_high(session: aiohttp.ClientSession, pair_address: str, c
         token_age = current_time - (creation_timestamp or 0)
         
         # Select period granularity based on token age - optimized for accuracy
-        if token_age < 1 * 60 * 60 * 1000:  
+        if token_age < 1 * 60 * 60 * 1000:  #1 hour below
             period = "1min"
-        elif token_age < 5 * 60 * 60 * 1000:  
+        elif token_age < 5 * 60 * 60 * 1000:   #5 hour below
             period = "5min"
-        elif token_age < 15 * 60 * 60 * 1000:  # 8 to 24 hours
+        elif token_age < 15 * 60 * 60 * 1000:  # 15 hour below
             period = "15min"
-        elif token_age < 3 * 24 * 60 * 60 * 1000:  # 1 day to 3 days
+        elif token_age < 3 * 24 * 60 * 60 * 1000:  # 3 days below
             period = "1h"
-        elif token_age < 7 * 24 * 60 * 60 * 1000:  # 3 days to 7 days
+        elif token_age < 7 * 24 * 60 * 60 * 1000:  # 1 week below
             period = "2h"
-        elif token_age < 14 * 24 * 60 * 60 * 1000:  # 7 days to 14 days
+        elif token_age < 14 * 24 * 60 * 60 * 1000:  # 2 week below
             period = "4h"
-        elif token_age < 70 * 24 * 60 * 60 * 1000:  # 14 days to 1 month (approx. 30 days)
+        elif token_age < 70 * 24 * 60 * 60 * 1000:  # 70 days below (10 weeks)
             period = "1d"
-        elif token_age < 365 * 24 * 60 * 60 * 1000:  # 1 month to 1 year (approx. 365 days)
+        elif token_age < 365 * 24 * 60 * 60 * 1000:  # 1 year below
             period = "7d"
         else:  # Older than 1 year
             period = "30d"
-            
+
         # Always request the maximum number of candles (1000)
         # This ensures we don't miss any potential ATH within the API's limit
-        url = f"https://production-api.mobula.io/api/1/market/history/pair?address={pair_address}&blockchain=solana&period={period}"
-        data = await fetch_data(session, url)
-        
-        if not data or not data.get("data"):
-            return None, None
+        # url = f"https://production-api.mobula.io/api/1/market/history/pair?address={pair_address}&blockchain=solana&period={period}"
+        url = MOBULA_ATH_URL.format(contact_address=address, period=period, blockchain=chain_id)
+        for retry in range(max_retries + 1):
+            data = await fetch_data(session, url)
             
-        # Find ATH using max() with key function - more efficient than iterating manually
-        valid_candles = [c for c in data["data"] if c.get("high") is not None]
-        if not valid_candles:
-            return None, None
+            # Check for valid data
+            if data and data.get("data"):
+                # Find ATH using max() with key function - more efficient
+                valid_candles = [c for c in data["data"] if c.get("high") is not None]
+                if valid_candles:
+                    ath_candle = max(valid_candles, key=lambda x: x["high"])
+                    return ath_candle["high"], ath_candle["time"]
+                return None, None
             
-        ath_candle = max(valid_candles, key=lambda x: x["high"])
-        return ath_candle["high"], ath_candle["time"]
-        
+            #not retrying on 404
+            elif data is None and retry < max_retries:
+                # Only retry for potential 5xx errors (data is None)
+                await asyncio.sleep(0.2 * (retry + 1))  # Exponential backoff
+                continue
+            
+            # Return None for definitive failures (404) or after all retries
+            break
+            
+        return None, None
+       
     except Exception as e:
-        logger.error(f"ATH fetch error for {pair_address}: {e}")
+        logger.error(f"ATH fetch error for {address}: {e}")
         return None, None
 
 def calculate_ath_marketcap(ath_price: float, current_price: float, current_fdv: float):
@@ -77,11 +90,11 @@ def calculate_ath_marketcap(ath_price: float, current_price: float, current_fdv:
     Returns:
         float or None: Calculated ATH market cap or None if input data is invalid
     """
-    if not ath_price or not current_price or not current_fdv:
+    if not all([ath_price, current_price, current_fdv]):
         return None
     
     try:
         fdv_price_ratio = current_fdv / current_price
         return ath_price * fdv_price_ratio
-    except ZeroDivisionError:
+    except (ZeroDivisionError, TypeError, ValueError):
         return None

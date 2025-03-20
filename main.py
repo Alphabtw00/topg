@@ -6,14 +6,17 @@ import asyncio
 from bot.crypto_bot import CryptoBot
 from config import TOKEN, INTENTS
 from utils.logger import setup_logger
+from bot.error_handler import global_exception_handler
 
 # Initialize logger
 logger = setup_logger()
 
 async def main():
     """Main entry point for the bot"""
+    bot = None
     try:
         logger.info("Starting bot...")
+        asyncio.get_running_loop().set_exception_handler(global_exception_handler)
         bot = CryptoBot(command_prefix="!", intents=INTENTS, help_command=None)
         await bot.start(TOKEN)
         if bot.shutdown_in_progress:

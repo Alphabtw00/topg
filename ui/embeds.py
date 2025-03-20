@@ -147,38 +147,35 @@ def create_header_message(entry: dict) -> str:
 def update_ath_in_embed(embed_dict, ath_price, ath_timestamp, current_price, current_fdv):
     """
     Update the ATH field in an embed dictionary
-    
+   
     Args:
         embed_dict: Embed dictionary
         ath_price: All-time high price
         ath_timestamp: All-time high timestamp
         current_price: Current price
         current_fdv: Current fully diluted valuation
-        
+       
     Returns:
         dict: Updated embed dictionary
     """
     from api.mobula import calculate_ath_marketcap
-    
-    if ath_price:
-        # Calculate ATH market cap
-        ath_mcap = calculate_ath_marketcap(ath_price, current_price, current_fdv)
-        
-        # Format time ago
-        time_display = relative_time(ath_timestamp, include_ago=True)
-        
-        # Update the ATH field
-        for field in embed_dict["fields"]:
-            if field["name"] == "🏆 ATH":
-                field["value"] = f"**`${format_value(ath_mcap)}` [{time_display}]**"
-                break
-    else:
-        # Update with N/A if ATH data couldn't be fetched
-        for field in embed_dict["fields"]:
-            if field["name"] == "🏆 ATH":
+    # Find the ATH field
+    for field in embed_dict["fields"]:
+        if field["name"] == "🏆 ATH":
+            if ath_price and ath_timestamp:
+                # Calculate ATH market cap
+                ath_mcap = calculate_ath_marketcap(ath_price, current_price, current_fdv)
+                
+                if ath_mcap:
+                    # Format time ago
+                    time_display = relative_time(ath_timestamp, include_ago=True)
+                    field["value"] = f"**`${format_value(ath_mcap)}` [{time_display}]**"
+                else:
+                    field["value"] = "**`N/A`**"
+            else:
                 field["value"] = "**`N/A`**"
-                break
-    
+            break
+   
     return embed_dict
 
 def update_first_call_in_embed(embed_dict, first_call_data, current_price, current_user):
