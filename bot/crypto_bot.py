@@ -221,15 +221,20 @@ class CryptoBot(commands.Bot):
         """Efficient metrics cleanup using batch operations"""
         while True:
             try:
-                await asyncio.sleep(36000)  # Run every 10 hours
+                await asyncio.sleep(12000)  # Run every 10 hours
                 logger.info("Starting periodic metrics cleanup task...")
+
                 start_time = datetime.now()
-                # Batch cleanup in one operation
-                self.metrics['processing_times'] = [
-                    t for t in self.metrics['processing_times'][-1000:]  # Keep last 1000 entries max
-                    if start_time.timestamp() - t[1] < 3600  # Only from last hour
-                ]
-                logger.info(f"Cleaned processing times")
+                current_time = start_time.timestamp()
+                cutoff_time = current_time - 3600
+
+                if len(self.metrics['processing_times']) > 1000:
+                    self.metrics['processing_times'] = [
+                        t for t in self.metrics['processing_times'][-1000:]
+                        if t[1] > cutoff_time
+                    ]
+                    logger.info("Cleaned processing times")
+            
 
                 # Reset processed count periodically to prevent integer overflow
                 if self.metrics['processed_count'] > 1_000_000:
@@ -238,11 +243,9 @@ class CryptoBot(commands.Bot):
 
                 # Clear error counts
                 from utils.cache import get_error_count, clear_error_counts  
-                error_count = get_error_count()  # Fetch current error count
-                
-                if error_count > 1000:
-                    clear_error_counts()  # Clear errors
-                    logger.info(f"Cleared error counts after exceeding error limit")
+                if get_error_count() > 1000:
+                    clear_error_counts()
+                    logger.info("Cleared error counts after exceeding error limit")
 
                 # Suggest garbage collection
                 gc.collect()

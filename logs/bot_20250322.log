@@ -1,0 +1,13 @@
+2025-03-22 20:46:24,540 - WARNING - API returned status 404 for URL: https://production-api.mobula.io/api/1/market/history/pair?asset=0x6F6A1B9FC3D355fc147a7d0b0a599411fE16A8f4&blockchain=solana&amount=1000000000
+2025-03-22 20:46:25,011 - WARNING - API returned status 404 for URL: https://production-api.mobula.io/api/1/market/history/pair?asset=0x6F6A1B9FC3D355fc147a7d0b0a599411fE16A8f4&blockchain=solana&amount=1000000000
+2025-03-22 20:46:25,682 - WARNING - API returned status 404 for URL: https://production-api.mobula.io/api/1/market/history/pair?asset=0x6F6A1B9FC3D355fc147a7d0b0a599411fE16A8f4&blockchain=solana&amount=1000000000
+2025-03-22 20:46:26,552 - WARNING - API returned status 404 for URL: https://production-api.mobula.io/api/1/market/history/pair?asset=0x6F6A1B9FC3D355fc147a7d0b0a599411fE16A8f4&blockchain=solana&amount=1000000000
+2025-03-22 20:54:44,220 - WARNING - API returned status 404 for URL: https://production-api.mobula.io/api/1/market/history/pair?asset=0x6F6A1B9FC3D355fc147a7d0b0a599411fE16A8f4&blockchain=solana&amount=1000000000
+2025-03-22 20:54:44,716 - WARNING - API returned status 404 for URL: https://production-api.mobula.io/api/1/market/history/pair?asset=0x6F6A1B9FC3D355fc147a7d0b0a599411fE16A8f4&blockchain=solana&amount=1000000000
+2025-03-22 20:54:45,474 - WARNING - API returned status 404 for URL: https://production-api.mobula.io/api/1/market/history/pair?asset=0x6F6A1B9FC3D355fc147a7d0b0a599411fE16A8f4&blockchain=solana&amount=1000000000
+2025-03-22 20:54:46,382 - WARNING - API returned status 404 for URL: https://production-api.mobula.io/api/1/market/history/pair?asset=0x6F6A1B9FC3D355fc147a7d0b0a599411fE16A8f4&blockchain=solana&amount=1000000000
+2025-03-22 21:36:00,981 - WARNING - API returned status 404 for URL: https://production-api.mobula.io/api/1/market/history/pair?asset=0x6F6A1B9FC3D355fc147a7d0b0a599411fE16A8f4&blockchain=solana&amount=1000000000
+2025-03-22 21:36:01,471 - WARNING - API returned status 404 for URL: https://production-api.mobula.io/api/1/market/history/pair?asset=0x6F6A1B9FC3D355fc147a7d0b0a599411fE16A8f4&blockchain=solana&amount=1000000000
+2025-03-22 21:36:02,162 - WARNING - API returned status 404 for URL: https://production-api.mobula.io/api/1/market/history/pair?asset=0x6F6A1B9FC3D355fc147a7d0b0a599411fE16A8f4&blockchain=solana&amount=1000000000
+2025-03-22 21:36:03,054 - WARNING - API returned status 404 for URL: https://production-api.mobula.io/api/1/market/history/pair?asset=0x6F6A1B9FC3D355fc147a7d0b0a599411fE16A8f4&blockchain=solana&amount=1000000000
+2025-03-22 23:08:44,749 - WARNING - Bot disconnected from Discord. Attempting to reconnect...

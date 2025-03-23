@@ -7,6 +7,7 @@ from datetime import datetime
 from utils.validators import get_addresses_from_content, get_tickers_from_content
 from handlers.address_handler import process_addresses, process_tickers
 from utils.logger import get_logger
+from config import MAX_ITEMS_PER_MESSAGE
 
 logger = get_logger()
 
@@ -56,14 +57,16 @@ async def process_message(message: discord.Message):
     if not addresses and not tickers:
         return
     
+    message_semaphore = asyncio.Semaphore(MAX_ITEMS_PER_MESSAGE)
+
     # Process in parallel
     tasks = []
     
     if addresses:
-        tasks.append(process_addresses(message, bot.http_session, addresses))
+        tasks.append(process_addresses(message, bot.http_session, addresses, message_semaphore))
     
     if tickers:
-        tasks.append(process_tickers(message, bot.http_session, tickers))
+        tasks.append(process_tickers(message, bot.http_session, tickers, message_semaphore))
 
     
     # Run tasks

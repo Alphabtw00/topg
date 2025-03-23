@@ -24,33 +24,37 @@ async def get_all_time_high(session: aiohttp.ClientSession, address: str, creati
     """
     try:
         # Determine appropriate time period based on token age
-        current_time = int(datetime.now().timestamp() * 1000)
-        token_age = current_time - (creation_timestamp or 0)
+        # current_time = int(datetime.now().timestamp() * 1000)
+        # token_age = current_time - (creation_timestamp or 0)
         
-        # Select period granularity based on token age - optimized for accuracy
-        if token_age < 1 * 60 * 60 * 1000:  #1 hour below
-            period = "1min"
-        elif token_age < 5 * 60 * 60 * 1000:   #5 hour below
-            period = "5min"
-        elif token_age < 15 * 60 * 60 * 1000:  # 15 hour below
-            period = "15min"
-        elif token_age < 3 * 24 * 60 * 60 * 1000:  # 3 days below
-            period = "1h"
-        elif token_age < 7 * 24 * 60 * 60 * 1000:  # 1 week below
-            period = "2h"
-        elif token_age < 14 * 24 * 60 * 60 * 1000:  # 2 week below
-            period = "4h"
-        elif token_age < 70 * 24 * 60 * 60 * 1000:  # 70 days below (10 weeks)
-            period = "1d"
-        elif token_age < 365 * 24 * 60 * 60 * 1000:  # 1 year below
-            period = "7d"
-        else:  # Older than 1 year
-            period = "30d"
+        # # Select period granularity based on token age - optimized for accuracy
+        # if token_age < 1 * 60 * 60 * 1000:  #1 hour below
+        #     period = "1min"
+        # elif token_age < 5 * 60 * 60 * 1000:   #5 hour below
+        #     period = "5min"
+        # elif token_age < 15 * 60 * 60 * 1000:  # 15 hour below
+        #     period = "15min"
+        # elif token_age < 3 * 24 * 60 * 60 * 1000:  # 3 days below
+        #     period = "1h"
+        # elif token_age < 7 * 24 * 60 * 60 * 1000:  # 1 week below
+        #     period = "2h"
+        # elif token_age < 14 * 24 * 60 * 60 * 1000:  # 2 week below
+        #     period = "4h"
+        # elif token_age < 70 * 24 * 60 * 60 * 1000:  # 70 days below (10 weeks)
+        #     period = "1d"
+        # elif token_age < 365 * 24 * 60 * 60 * 1000:  # 1 year below
+        #     period = "7d"
+        # else:  # Older than 1 year
+        #     period = "30d"
 
         # Always request the maximum number of candles (1000)
         # This ensures we don't miss any potential ATH within the API's limit
         # url = f"https://production-api.mobula.io/api/1/market/history/pair?address={pair_address}&blockchain=solana&period={period}"
-        url = MOBULA_ATH_URL.format(contact_address=address, period=period, blockchain=chain_id)
+        # logger.info(f"Fetching ATH for {address} with period {period} (token age: {token_age/1000/60/60:.2f} hours)")
+
+        # url = MOBULA_ATH_URL.format(contact_address=address, period=period, blockchain=chain_id)
+
+        url = f"https://production-api.mobula.io/api/1/market/history/pair?asset={address}&blockchain=solana&amount=1000000000"
         for retry in range(max_retries + 1):
             data = await fetch_data(session, url)
             
@@ -58,8 +62,20 @@ async def get_all_time_high(session: aiohttp.ClientSession, address: str, creati
             if data and data.get("data"):
                 # Find ATH using max() with key function - more efficient
                 valid_candles = [c for c in data["data"] if c.get("high") is not None]
+                # logger.info(f"Found {len(valid_candles)} valid candles for ATH calculation")
                 if valid_candles:
+                    # sorted_candles = sorted(valid_candles, key=lambda x: x["high"], reverse=True)
+                    # top_candles = sorted_candles[:3]  # Top 3 highest candles
+                    
+                    # for i, candle in enumerate(top_candles):
+                    #     candle_time = datetime.fromtimestamp(candle["time"]/1000).strftime('%Y-%m-%d %H:%M:%S')
+                    #     logger.info(f"Top {i+1} candle: high={candle['high']}, time={candle_time}")
+                    
+                    # # Get the highest candle
                     ath_candle = max(valid_candles, key=lambda x: x["high"])
+                    # ath_time = datetime.fromtimestamp(ath_candle["time"]/1000).strftime('%Y-%m-%d %H:%M:%S')
+                    # logger.info(f"ATH identified: price={ath_candle['high']}, time={ath_time}")
+                    
                     return ath_candle["high"], ath_candle["time"]
                 return None, None
             
@@ -79,6 +95,7 @@ async def get_all_time_high(session: aiohttp.ClientSession, address: str, creati
         return None, None
 
 def calculate_ath_marketcap(ath_price: float, current_price: float, current_fdv: float):
+    # logger.info(f"ATH calculation inputs: ath_price={ath_price}, current_price={current_price}, current_fdv={current_fdv}")
     """
     Calculate ATH market cap based on ATH price and current FDV
     
@@ -95,6 +112,10 @@ def calculate_ath_marketcap(ath_price: float, current_price: float, current_fdv:
     
     try:
         fdv_price_ratio = current_fdv / current_price
+
+        # ath_marketcap = ath_price * fdv_price_ratio
+        # logger.info(f"ATH calculation: fdv_price_ratio={fdv_price_ratio}, ath_marketcap={ath_marketcap}")
+
         return ath_price * fdv_price_ratio
     except (ZeroDivisionError, TypeError, ValueError):
         return None

@@ -1,12 +1,59 @@
 """
-DexScreener API client
+DexScreener API client - Optimized for single token addressing
 """
 import aiohttp
+import asyncio
 from config import DEXSCREENER_BASE_URL
 from api.http_client import fetch_data
 from utils.logger import get_logger
 
 logger = get_logger()
+
+# async def get_token_info(session: aiohttp.ClientSession, addresses: list):
+#     """
+#     Get token information for a list of addresses - Using concurrent approach for speed
+    
+#     Args:
+#         session: HTTP session
+#         addresses: List of token addresses
+        
+#     Returns:
+#         dict: Token data mapped by address
+#     """
+#     if not addresses:
+#         return {}
+    
+#     # Create tasks for all addresses concurrently
+#     tasks = [_fetch_single_token(session, address) for address in addresses]
+#     results = await asyncio.gather(*tasks, return_exceptions=True)
+    
+#     # Process results into a single dictionary
+#     tokens_map = {}
+#     for address, result in zip(addresses, results):
+#         if isinstance(result, Exception):
+#             logger.error(f"Error fetching token {address}: {result}")
+#             continue
+            
+#         if result:
+#             address_lower = address.lower()
+#             # Only take the first result (most liquid pair) for each token
+#             tokens_map[address_lower] = result[0] if result else None
+    
+#     return tokens_map
+
+# async def _fetch_single_token(session: aiohttp.ClientSession, address: str):
+#     """
+#     Fetch data for a single token address - helper for get_token_info
+    
+#     Args:
+#         session: HTTP session
+#         address: Token address
+        
+#     Returns:
+#         list: Token pairs data
+#     """
+#     url = f"{DEXSCREENER_BASE_URL}/token-pairs/v1/solana/{address}"
+#     return await fetch_data(session, url)
 
 async def get_token_info(session: aiohttp.ClientSession, addresses: list):
     """
@@ -22,23 +69,24 @@ async def get_token_info(session: aiohttp.ClientSession, addresses: list):
     if not addresses:
         return {}
     
-    # Process addresses in chunks to avoid URL length limits
-    chunks = [addresses[i:i+5] for i in range(0, len(addresses), 5)]
-    result = {}
-    
-    for chunk in chunks:
-        url = f"{DEXSCREENER_BASE_URL}/token-pairs/v1/solana/{','.join(chunk)}"
+    results = {}
+    try:
+        url = f"{DEXSCREENER_BASE_URL}/tokens/v1/solana/{','.join(addresses)}"
         tokens_data = await fetch_data(session, url)
         
         if tokens_data:
             # Map each entry by address for easy lookup
             for entry in tokens_data:
                 base_token = entry.get("baseToken", {})
-                address = base_token.get("address", "").lower()
+                address = base_token.get("address", "")
                 if address:
-                    result[address] = entry
+                    results[address] = entry
     
-    return result
+    except Exception as e:
+        logger.error(f"Error fetching token info: {e}")
+    
+    return results
+
 
 async def search_token(session: aiohttp.ClientSession, ticker: str):
     """

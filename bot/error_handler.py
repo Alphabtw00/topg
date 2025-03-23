@@ -64,6 +64,9 @@ def global_exception_handler(loop, context):
     """
     exception = context.get("exception")
     message = context.get("message")
+    if isinstance(exception, ConnectionResetError) and "call_connection_lost" in str(message):
+        logger.debug(f"Connection reset during cleanup: {exception}")
+        return  
     logger.error(
         f"Unhandled exception in event loop: {exception} | {message}",
         exc_info=exception

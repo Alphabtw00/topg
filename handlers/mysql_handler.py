@@ -135,7 +135,7 @@ async def store_first_call(token_address, user_id, user_name, initial_fdv, initi
                     (token_address, user_id, user_name, initial_fdv, initial_price) 
                     VALUES (%s, %s, %s, %s, %s)
                     ''',
-                    (token_address.lower(), user_id, user_name, initial_fdv, initial_price)
+                    (token_address, user_id, user_name, initial_fdv, initial_price)
                 )
                 
                 return cursor.rowcount > 0
@@ -166,7 +166,7 @@ async def get_first_call(token_address):
                     SELECT * FROM token_first_calls 
                     WHERE token_address = %s
                     ''',
-                    (token_address.lower(),)
+                    (token_address,)
                 )
                 
                 result = await cursor.fetchone()

@@ -60,6 +60,9 @@ GITHUB_URL_REGEX_PATTERN = r"^https://github\.com/[a-zA-Z0-9-]+/[a-zA-Z0-9._-]+/
 # Performance settings
 MAX_ERROR_THRESHOLD = 50
 
+#max items per message for auto reply
+MAX_ITEMS_PER_MESSAGE = 5
+
 # Timeouts and Limits
 HTTP_TIMEOUT = 15  # seconds
 CONNECT_TIMEOUT = 5  # seconds
@@ -69,7 +72,7 @@ DNS_CACHE_TTL = 300  # seconds
 
 # Cache settings
 GITHUB_ANALYSIS_CACHE_SIZE = 100
-GITHUB_ANALYSIS_CACHE_TTL = 3600  # seconds
+GITHUB_ANALYSIS_CACHE_TTL = 36000  # seconds
 ADDRESS_CACHE_SIZE = 10_000
 ADDRESS_CACHE_TTL = 300  # seconds
 

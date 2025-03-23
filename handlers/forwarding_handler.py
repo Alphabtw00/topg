@@ -195,8 +195,8 @@ async def forward_user_messages(message, bot):
                 
                 # Add quoted content for both forwards and replies
                 if original_msg.content:
-                    timestamp = original_msg.created_at.strftime("%H:%M:%S")
-                    quoted_content = f"> {original_msg.content}\n"
+                    lines = original_msg.content.split('\n')
+                    quoted_content = '\n'.join([f"> {line}" for line in lines]) + '\n'
                     base_webhook_params['suppress_embeds'] = True
                 
         except Exception as e:
