@@ -4,9 +4,13 @@ GitHub repository analysis API client
 import aiohttp
 import asyncio
 from datetime import datetime
-from utils.cache import GITHUB_ANALYSIS_CACHE
 from api.http_client import fetch_data_post
 from utils.logger import get_logger
+from cachetools import TTLCache
+from config import GITHUB_ANALYSIS_CACHE_SIZE, GITHUB_ANALYSIS_CACHE_TTL
+
+# Cache for GitHub analysis results
+GITHUB_ANALYSIS_CACHE = TTLCache(maxsize=GITHUB_ANALYSIS_CACHE_SIZE, ttl=GITHUB_ANALYSIS_CACHE_TTL)
 
 logger = get_logger()
 

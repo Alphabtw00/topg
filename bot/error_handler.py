@@ -2,9 +2,9 @@
 Centralized error handling for bot commands
 """
 import discord
+import aiohttp
 from discord import app_commands
 from utils.logger import get_logger
-from utils.cache import increment_error_count
 
 logger = get_logger()
 
@@ -39,7 +39,7 @@ def create_error_handler(command_name):
                 )
         # Handle other common errors
         else:
-            increment_error_count(f"{command_name}_error")
+            self.bot.increment_error_count(f"{command_name}_error")
             
             try:
                 await interaction.response.send_message(
@@ -64,11 +64,15 @@ def global_exception_handler(loop, context):
     """
     exception = context.get("exception")
     message = context.get("message")
-    if isinstance(exception, ConnectionResetError) and "call_connection_lost" in str(message):
-        logger.debug(f"Connection reset during cleanup: {exception}")
-        return  
-    logger.error(
-        f"Unhandled exception in event loop: {exception} | {message}",
-        exc_info=exception
-    )
+
+    if isinstance(exception, (
+        aiohttp.client_exceptions.ClientConnectorDNSError,
+        ConnectionResetError, 
+        ConnectionRefusedError,
+        aiohttp.client_exceptions.ClientConnectorError
+    )):
+        logger.warning(f"Network error: {exception.__class__.__name__}. Attempting to reconnect...")
+        return
+    
+    logger.error(f"Unhandled exception in event loop: {exception} | {message}")
     loop.default_exception_handler(context)

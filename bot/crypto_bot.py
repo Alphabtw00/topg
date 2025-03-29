@@ -12,7 +12,9 @@ from utils.logger import get_logger
 from api.http_client import setup_http_session
 from commands.health import Health
 from commands.github_checker import GithubChecker
+from commands.settings import SettingsCommands
 from handlers.mysql_handler import setup_db_pool, close_db_pool
+from utils.formatters import relative_time
 
 logger = get_logger()
 
@@ -31,7 +33,7 @@ class CryptoBot(commands.Bot):
         self.http_session = None
         self.startup_time = datetime.now()
         self.max_reconnect_attempts = 5
-        self.reconnect_delay = 5 
+        self.reconnect_delay = 5
         self.heartbeat_missed_threshold = 3
         self.is_first_connect = True
         self.last_metrics_report = datetime.now()
@@ -46,17 +48,13 @@ class CryptoBot(commands.Bot):
             'processing_times': [],
             'last_cleanup': datetime.now().timestamp(),
             'command_usage': {},
-            'errors': {
-                'count': 0,
-                'last_errors': []
-            },
+            'errors' : {},
             'api_latency': {}
         }
 
     async def setup_hook(self):
         """Setup hook that runs before the bot is ready"""
         # This runs before on_ready
-
         # Start http session
         try:
             self.http_session = await setup_http_session()
@@ -75,6 +73,14 @@ class CryptoBot(commands.Bot):
                 self.shutdown_in_progress = True
                 return
             logger.info("Database connection successful")
+            
+            # Set up settings tables
+            from utils.auto_message_settings import setup_settings_tables
+            settings_setup = await setup_settings_tables()
+            if settings_setup:
+                logger.debug("Settings tables initialized successfully")
+            else:
+                logger.warning("Settings tables initialization had issues, but will continue")
         except Exception as e:
             logger.critical(f"Database connection error: {e}")
             self.shutdown_in_progress = True
@@ -89,6 +95,7 @@ class CryptoBot(commands.Bot):
         # Register commands
         await self.add_cog(Health(self))
         await self.add_cog(GithubChecker(self))
+        await self.add_cog(SettingsCommands(self))
 
         from bot.events import setup_events  # Adjust import based on your project structure
         await setup_events(self)
@@ -102,46 +109,12 @@ class CryptoBot(commands.Bot):
     async def on_ready(self):
         """Event handler for when the bot is ready"""
         from config import (
-            TARGET_CHANNEL_IDS, ADMIN_USER_IDS, 
             BOT_INPUT_CHANNEL_IDS, BOT_OUTPUT_CHANNEL_IDS, FORWARD_BOT_IDS,
             USER_INPUT_CHANNEL_IDS, USER_OUTPUT_CHANNEL_IDS, FORWARD_USER_IDS
         )
         
         logger.info(f"Logged in as {self.user} (ID: {self.user.id})")
         logger.info(f"Bot connected to {len(self.guilds)} server(s)")
-
-        # Helper function to fetch channel info
-        async def get_channel_info(ch_id):
-            channel = self.get_channel(ch_id)
-            if channel is None:
-                try:
-                    channel = await self.fetch_channel(ch_id)
-                except Exception as e:
-                    logger.error(f"Could not fetch channel with ID {ch_id}: {e}")
-                    return None
-            guild_name = channel.guild.name if hasattr(channel, 'guild') and channel.guild else "DMs"
-            return f"{channel.name} (Server: {guild_name})"
-
-        # Helper function to fetch user info
-        async def get_user_info(user_id):
-            try:
-                user = self.get_user(user_id)
-                if user is None:
-                    user = await self.fetch_user(user_id)
-                return f"{user.name}#{user.discriminator if hasattr(user, 'discriminator') else '0'} (ID: {user.id})"
-            except Exception as e:
-                logger.error(f"Could not fetch user with ID {user_id}: {e}")
-                return None
-
-        # Log target channels
-        if TARGET_CHANNEL_IDS:
-            target_infos = [info for info in await asyncio.gather(
-                *[get_channel_info(ch_id) for ch_id in TARGET_CHANNEL_IDS]
-            ) if info]
-            if target_infos:
-                logger.info(f"Bot will respond in channels: {', '.join(target_infos)}")
-        else:
-            logger.info("Bot will respond in all channels.")
                 
         # Log bot forwarding configuration if enabled
         if BOT_OUTPUT_CHANNEL_IDS and FORWARD_BOT_IDS:
@@ -153,14 +126,6 @@ class CryptoBot(commands.Bot):
             input_info = "all channels" if not USER_INPUT_CHANNEL_IDS else f"{len(USER_INPUT_CHANNEL_IDS)} channels"
             logger.info(f"Dani message forwarding: {len(FORWARD_USER_IDS)} users from {input_info} to {len(USER_OUTPUT_CHANNEL_IDS)} channels")
         
-        # Fetch and log admin user info
-        if ADMIN_USER_IDS:
-            user_infos = [info for info in await asyncio.gather(
-                *[get_user_info(user_id) for user_id in ADMIN_USER_IDS]
-            ) if info]
-            if user_infos:
-                logger.info(f"Allowed admin users: {', '.join(user_infos)}")
-                
         # Set the first connect flag to false
         if self.is_first_connect:
             self.is_first_connect = False
@@ -242,9 +207,8 @@ class CryptoBot(commands.Bot):
                     logger.info(f"Cleared processed counts after hitting processed limit.")
 
                 # Clear error counts
-                from utils.cache import get_error_count, clear_error_counts  
-                if get_error_count() > 1000:
-                    clear_error_counts()
+                if sum(self.metrics['errors'].values()) > 1000:
+                    self.clear_error_counts()
                     logger.info("Cleared error counts after exceeding error limit")
 
                 # Suggest garbage collection
@@ -258,69 +222,6 @@ class CryptoBot(commands.Bot):
             except Exception as e:
                 logger.error(f"Metrics cleanup error: {e}")
 
-    #manual reconnect only if discord fails auto connect
-    async def _monitor_reconnection(self):
-        """Monitor whether the auto-reconnection succeeds, use manual reconnect as fallback"""
-        # Wait for a reasonable time for auto-reconnect
-        await asyncio.sleep(60)
-        
-        # If we're still disconnected, try manual reconnection
-        if not self.is_ready():
-            logger.warning("Auto-reconnection appears to have failed, attempting manual reconnect")
-            success = await self.attempt_reconnect()
-            if not success:
-                logger.critical("All reconnection attempts failed. Bot will need to be restarted manually.")
-        
-    async def attempt_reconnect(self):
-        """Handle reconnection with exponential backoff"""
-        attempts = 0
-        while attempts < self.max_reconnect_attempts:
-            try:
-                logger.info(f"Reconnection attempt {attempts+1}/{self.max_reconnect_attempts}")
-                await self.connect(reconnect=True)
-                return True
-            except Exception as e:
-                attempts += 1
-                wait_time = self.reconnect_delay * (2 ** attempts)
-                logger.error(f"Reconnection failed: {e}. Waiting {wait_time}s before retry.")
-                await asyncio.sleep(wait_time)
-        return False
-    
-    async def heartbeat_monitor(self):
-        """Monitor Discord heartbeats to detect connection issues early"""
-        last_ack = None
-        missed_heartbeats = 0
-        
-        while True:
-            try:
-                await asyncio.sleep(30)  # Check every 30 seconds
-                
-                if hasattr(self.ws, 'last_heartbeat_ack'):
-                    current_ack = self.ws.last_heartbeat_ack
-                    
-                    if current_ack == last_ack:
-                        missed_heartbeats += 1
-                        logger.warning(f"Missed heartbeat detected: {missed_heartbeats} in a row")
-                        
-                        if missed_heartbeats >= self.heartbeat_missed_threshold:
-                            logger.error("Multiple missed heartbeats - connection may be unstable")
-                            # Force reconnection if we've missed too many heartbeats
-                            if hasattr(self.ws, 'close'):
-                                await self.ws.close(code=1000)
-                                logger.info("Closed websocket to force reconnection")
-                                missed_heartbeats = 0
-                    else:
-                        if missed_heartbeats > 0:
-                            logger.info(f"Heartbeat resumed after {missed_heartbeats} missed beats")
-                        missed_heartbeats = 0
-                        
-                    last_ack = current_ack
-            except asyncio.CancelledError:
-                break
-            except Exception as e:
-                logger.error(f"Error in heartbeat monitor: {e}")
-                await asyncio.sleep(5)
-                
     async def periodic_metrics_report(self):
         """Report periodic metrics for monitoring"""
         while True:
@@ -342,12 +243,31 @@ class CryptoBot(commands.Bot):
                     if recent_times:
                         avg_time = sum(recent_times) / len(recent_times)
                 
+                total_errors = self.get_error_count()
+                error_types = len(self.metrics['errors'])
+                top_errors = sorted(
+                self.metrics['errors'].items(), 
+                    key=lambda x: x[1], 
+                    reverse=True
+                )[:3]
+                
+                # Format top errors for logging
+                top_errors_formatted = ", ".join(
+                    f"{key}={count}" for key, count in top_errors
+                ) if top_errors else "none"
+                
+                last_cleanup_ms = self.metrics['last_cleanup'] * 1000  # Convert to milliseconds for relative_time
+                cleanup_time_str = datetime.fromtimestamp(self.metrics['last_cleanup']).strftime('%Y-%m-%d %H:%M:%S')
+                cleanup_relative = relative_time(last_cleanup_ms, include_ago=True)
+
                 # Collect and log metrics
                 logger.info(
                     f"Metrics Report | Uptime: {int(hours)}h {int(minutes)}m | "
                     f"Memory: {memory:.1f}MB | "
                     f"Processed: {self.metrics['processed_count']} | "
-                    f"Avg Processing: {avg_time:.4f}s"
+                    f"Avg Processing: {avg_time:.4f}s | "
+                    f"Errors: {total_errors} ({error_types} types, Top: {top_errors_formatted}) | "
+                    f"Last Cleanup: {cleanup_time_str} ({cleanup_relative})"
                 )
                 
                 self.last_metrics_report = datetime.now()
@@ -436,3 +356,108 @@ class CryptoBot(commands.Bot):
         self.metrics['api_latency'][endpoint] = (
             self.metrics['api_latency'][endpoint][-99:] + [latency]
         )
+
+    def increment_error_count(self, error_key):
+        """
+        Record an error for a specific key
+        
+        Args:
+            error_key: Key to track the error
+            
+        Returns:
+            int: Updated error count
+        """
+        # Initialize the error key if not present
+        if error_key not in self.metrics['errors']:
+            self.metrics['errors'][error_key] = 0
+        
+        # Increment the error count
+        self.metrics['errors'][error_key] = self.metrics['errors'][error_key] + 1
+        count = self.metrics['errors'][error_key]
+        
+        return count
+
+    def get_error_count(self, error_key=None):
+        """
+        Get the count of a specific error or all errors
+        
+        Args:
+            error_key: Optional key to get specific error count
+            
+        Returns:
+            int: Error count for the specified key or total
+        """
+        if error_key is None:
+            # Sum all error counts
+            return sum(self.metrics['errors'].values())
+        
+        # Return count for specific key or 0 if not found
+        return self.metrics['errors'].get(error_key, 0)
+
+    def clear_error_counts(self):
+        """Clear all error counts"""
+        self.metrics['errors'] = {}
+        logger.debug("Error counts cleared")
+
+    #manual reconnect (not needed in most cases) only if discord fails auto connect
+    async def _monitor_reconnection(self):
+        """Monitor whether the auto-reconnection succeeds, use manual reconnect as fallback"""
+        # Wait for a reasonable time for auto-reconnect
+        await asyncio.sleep(60)
+        
+        # If we're still disconnected, try manual reconnection
+        if not self.is_ready():
+            logger.warning("Auto-reconnection appears to have failed, attempting manual reconnect")
+            success = await self.attempt_reconnect()
+            if not success:
+                logger.critical("All reconnection attempts failed. Bot will need to be restarted manually.")
+        
+    async def attempt_reconnect(self):
+        """Handle reconnection with exponential backoff"""
+        attempts = 0
+        while attempts < self.max_reconnect_attempts:
+            try:
+                logger.info(f"Reconnection attempt {attempts+1}/{self.max_reconnect_attempts}")
+                await self.connect(reconnect=True)
+                return True
+            except Exception as e:
+                attempts += 1
+                wait_time = self.reconnect_delay * (2 ** attempts)
+                logger.error(f"Reconnection failed: {e}. Waiting {wait_time}s before retry.")
+                await asyncio.sleep(wait_time)
+        return False
+    
+    async def heartbeat_monitor(self):
+        """Monitor Discord heartbeats to detect connection issues early"""
+        last_ack = None
+        missed_heartbeats = 0
+        
+        while True:
+            try:
+                await asyncio.sleep(30)  # Check every 30 seconds
+                
+                if hasattr(self.ws, 'last_heartbeat_ack'):
+                    current_ack = self.ws.last_heartbeat_ack
+                    
+                    if current_ack == last_ack:
+                        missed_heartbeats += 1
+                        logger.warning(f"Missed heartbeat detected: {missed_heartbeats} in a row")
+                        
+                        if missed_heartbeats >= self.heartbeat_missed_threshold:
+                            logger.error("Multiple missed heartbeats - connection may be unstable")
+                            # Force reconnection if we've missed too many heartbeats
+                            if hasattr(self.ws, 'close'):
+                                await self.ws.close(code=1000)
+                                logger.info("Closed websocket to force reconnection")
+                                missed_heartbeats = 0
+                    else:
+                        if missed_heartbeats > 0:
+                            logger.info(f"Heartbeat resumed after {missed_heartbeats} missed beats")
+                        missed_heartbeats = 0
+                        
+                    last_ack = current_ack
+            except asyncio.CancelledError:
+                break
+            except Exception as e:
+                logger.error(f"Error in heartbeat monitor: {e}")
+                await asyncio.sleep(5)

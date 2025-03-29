@@ -1,0 +1,4 @@
+2025-03-29 07:47:14,356 - ERROR - Error in metrics report: cannot access local variable 'top_errors_formatted' where it is not associated with a value
+2025-03-29 08:36:53,817 - ERROR - settings command error: Command 'status' raised an exception: AttributeError: 'User' object has no attribute 'guild_permissions'
+2025-03-29 08:36:53,818 - WARNING - Error count for settings_error reached 1
+2025-03-29 09:07:38,945 - WARNING - Bot disconnected from Discord. Attempting to reconnect...

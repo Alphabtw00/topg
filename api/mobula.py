@@ -24,37 +24,37 @@ async def get_all_time_high(session: aiohttp.ClientSession, address: str, creati
     """
     try:
         # Determine appropriate time period based on token age
-        # current_time = int(datetime.now().timestamp() * 1000)
-        # token_age = current_time - (creation_timestamp or 0)
+        current_time = int(datetime.now().timestamp() * 1000)
+        token_age = current_time - (creation_timestamp or 0)
         
-        # # Select period granularity based on token age - optimized for accuracy
-        # if token_age < 1 * 60 * 60 * 1000:  #1 hour below
-        #     period = "1min"
-        # elif token_age < 5 * 60 * 60 * 1000:   #5 hour below
-        #     period = "5min"
-        # elif token_age < 15 * 60 * 60 * 1000:  # 15 hour below
-        #     period = "15min"
-        # elif token_age < 3 * 24 * 60 * 60 * 1000:  # 3 days below
-        #     period = "1h"
-        # elif token_age < 7 * 24 * 60 * 60 * 1000:  # 1 week below
-        #     period = "2h"
-        # elif token_age < 14 * 24 * 60 * 60 * 1000:  # 2 week below
-        #     period = "4h"
-        # elif token_age < 70 * 24 * 60 * 60 * 1000:  # 70 days below (10 weeks)
-        #     period = "1d"
-        # elif token_age < 365 * 24 * 60 * 60 * 1000:  # 1 year below
-        #     period = "7d"
-        # else:  # Older than 1 year
-        #     period = "30d"
+        # Select period granularity based on token age - optimized for accuracy
+        if token_age < 1 * 60 * 60 * 1000:  #1 hour below
+            period = "1min"
+        elif token_age < 5 * 60 * 60 * 1000:   #5 hour below
+            period = "5min"
+        elif token_age < 15 * 60 * 60 * 1000:  # 15 hour below
+            period = "15min"
+        elif token_age < 3 * 24 * 60 * 60 * 1000:  # 3 days below
+            period = "1h"
+        elif token_age < 7 * 24 * 60 * 60 * 1000:  # 1 week below
+            period = "2h"
+        elif token_age < 14 * 24 * 60 * 60 * 1000:  # 2 week below
+            period = "4h"
+        elif token_age < 70 * 24 * 60 * 60 * 1000:  # 70 days below (10 weeks)
+            period = "1d"
+        elif token_age < 365 * 24 * 60 * 60 * 1000:  # 1 year below
+            period = "7d"
+        else:  # Older than 1 year
+            period = "30d"
 
         # Always request the maximum number of candles (1000)
         # This ensures we don't miss any potential ATH within the API's limit
         # url = f"https://production-api.mobula.io/api/1/market/history/pair?address={pair_address}&blockchain=solana&period={period}"
         # logger.info(f"Fetching ATH for {address} with period {period} (token age: {token_age/1000/60/60:.2f} hours)")
 
-        # url = MOBULA_ATH_URL.format(contact_address=address, period=period, blockchain=chain_id)
+        url = MOBULA_ATH_URL.format(contact_address=address, period=period, blockchain=chain_id)
 
-        url = f"https://production-api.mobula.io/api/1/market/history/pair?asset={address}&blockchain=solana&amount=1000000000"
+        # url = f"https://production-api.mobula.io/api/1/market/history/pair?asset={address}&blockchain=solana&amount=1000000000"
         for retry in range(max_retries + 1):
             data = await fetch_data(session, url)
             

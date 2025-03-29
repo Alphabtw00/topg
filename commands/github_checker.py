@@ -22,6 +22,7 @@ class GithubChecker(commands.Cog):
         self.bot = bot
     
     @app_commands.command(name="github-checker", description="Analyze a GitHub repository for legitimacy")
+    @app_commands.guild_only()
     @app_commands.checks.cooldown(1, 15)
     async def check_repo(self, interaction: discord.Interaction, repo_url: str):
         """Analyze a GitHub repository for potential scam indicators in crypto projects"""
@@ -65,8 +66,7 @@ class GithubChecker(commands.Cog):
             
             await interaction.followup.send(embed=embed, view=view)
             
-            # Update metrics
-            self.bot.record_metric(datetime.now().timestamp() - start_time)
+            self.bot.record_command_usage("github-checker")
             logger.info(f"GitHub analysis called by {interaction.user} for {repo_url}")
                 
         except asyncio.TimeoutError:

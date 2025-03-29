@@ -11,7 +11,7 @@ from config import (
     MAX_CONNECTIONS, DNS_CACHE_TTL, MAX_ERROR_THRESHOLD
 )
 from utils.logger import get_logger
-from utils.cache import increment_error_count, get_error_count
+
 
 logger = get_logger()
 
@@ -28,7 +28,10 @@ async def setup_http_session():
         ttl_dns_cache=DNS_CACHE_TTL,  # Cache DNS results
         use_dns_cache=True,
         ssl=True,
-        keepalive_timeout=60.0         
+        keepalive_timeout=60.0,
+        force_close=False,
+        enable_cleanup_closed=True,
+        limit_per_host=10         
     )
     
     timeout = aiohttp.ClientTimeout(
@@ -79,7 +82,7 @@ async def fetch_data(session: aiohttp.ClientSession, url: str, max_retries=2):
                     return await response.json()
                 else:
                     # Track errors by endpoint
-                    error_count = increment_error_count(endpoint)
+                    error_count = bot.increment_error_count(f"api_{endpoint}")
                     
                     if error_count > MAX_ERROR_THRESHOLD:
                         logger.critical(f"Endpoint {endpoint} experiencing high error rate")
@@ -144,7 +147,7 @@ async def fetch_data_post(session: aiohttp.ClientSession, url: str, json_data=No
                     return await response.json()
                 else:
                     # Track errors by endpoint
-                    error_count = increment_error_count(endpoint)
+                    error_count = bot.increment_error_count(f"api_{endpoint}")
                     
                     if error_count > MAX_ERROR_THRESHOLD:
                         logger.critical(f"Endpoint {endpoint} experiencing high error rate")

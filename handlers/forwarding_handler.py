@@ -292,9 +292,11 @@ async def forward_message(message, bot):
         message: Discord message
         bot: Bot instance
     """
+    start_time = datetime.now().timestamp()
     # Run both forwarding methods concurrently
     await asyncio.gather(
         forward_user_messages(message, bot),
         forward_bot_messages(message, bot),
         return_exceptions=True
     )
+    bot.record_metric(datetime.now().timestamp() - start_time)

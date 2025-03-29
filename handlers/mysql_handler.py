@@ -1,5 +1,5 @@
 """
-Database handlers for storing token data and user information
+Database handlers for storing token data, user information, and settings
 """
 import aiomysql
 import asyncio
@@ -15,26 +15,34 @@ pool = None
 
 async def setup_db_pool():
     """
-    Initialize the database connection pool
+    Initialize the database connection pool with optimized settings
+    and connection validation
     """
     global pool
     
     # Check if pool already exists
     if pool is not None:
-        logger.info("Database pool already initialized")
-        return True
+        # Verify pool is healthy before returning
+        try:
+            async with pool.acquire() as conn:
+                async with conn.cursor() as cursor:
+                    await cursor.execute("SELECT 1")
+                    await cursor.fetchone()
+            logger.info("Database pool is healthy and reused")
+            return True
+        except Exception as e:
+            logger.warning(f"Existing database pool is unhealthy, recreating: {e}")
+            try:
+                pool.close()
+                await pool.wait_closed()
+            except Exception:
+                pass
         
     try:
         # Filter out MySQL warnings to prevent them from flooding the terminal
         warnings.filterwarnings('ignore', category=Warning)
         
-        # Check for required package
-        try:
-            import cryptography
-        except ImportError:
-            logger.critical("Required package 'cryptography' is missing for MySQL authentication")
-            return False
-        
+        # Optimized pool settings
         pool = await aiomysql.create_pool(
             host=DB_HOST,
             port=DB_PORT,
@@ -43,7 +51,13 @@ async def setup_db_pool():
             db=DB_NAME,
             autocommit=True,
             maxsize=DB_POOL_MAX_SIZE,
-            minsize=DB_POOL_MIN_SIZE
+            minsize=DB_POOL_MIN_SIZE,
+            echo=False,  # Set to True only for debugging
+            pool_recycle=3600,  # Recycle connections older than 1 hour
+            connect_timeout=10,  # Timeout for establishing connections
+            charset='utf8mb4',
+            use_unicode=True,
+            loop=asyncio.get_event_loop()
         )
         
         # Create tables if they don't exist or update schema if needed
@@ -64,23 +78,42 @@ async def setup_db_pool():
                             initial_fdv DECIMAL(36, 18) NOT NULL,
                             initial_price DECIMAL(65, 30) NOT NULL,
                             call_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-                            UNIQUE KEY unique_token (token_address)
+                            UNIQUE KEY unique_token (token_address),
+                            INDEX idx_user_id (user_id),
+                            INDEX idx_call_timestamp (call_timestamp)
                         )
                     ''')
-                    logger.info("Created token_first_calls table")
+                    logger.info("Created token_first_calls table with optimized indexes")
                 else:
-                    # Alter table to increase column size for existing table
+                    # Check for and add missing indexes
                     try:
+                        await cursor.execute('''
+                            SELECT COUNT(*) 
+                            FROM information_schema.statistics 
+                            WHERE table_schema = DATABASE() 
+                            AND table_name = 'token_first_calls' 
+                            AND index_name = 'idx_user_id'
+                        ''')
+                        has_user_index = await cursor.fetchone()
+                        
+                        if has_user_index and has_user_index[0] == 0:
+                            await cursor.execute('ALTER TABLE token_first_calls ADD INDEX idx_user_id (user_id)')
+                            logger.info("Added missing user_id index to token_first_calls")
+                            
+                        # Add more index checks as needed
+                        
+                        # Update column sizes if needed
                         await cursor.execute('''
                             ALTER TABLE token_first_calls 
                             MODIFY initial_fdv DECIMAL(36, 18) NOT NULL,
                             MODIFY initial_price DECIMAL(65, 30) NOT NULL
                         ''')
-                        logger.info("Updated token_first_calls table schema")
+                        logger.debug("Updated token_first_calls table schema")
                     except Exception as e:
                         logger.warning(f"Could not update table schema: {e}")
-                
-        logger.info("Database connection pool established")
+        
+        # Log pool stats
+        logger.info(f"Database connection pool established: size={DB_POOL_MIN_SIZE}-{DB_POOL_MAX_SIZE}")
         return True
     except Exception as e:
         logger.error(f"Database connection error: {e}")
@@ -95,6 +128,95 @@ async def close_db_pool():
         pool.close()
         await pool.wait_closed()
         pool = None
+
+# Add a more robust execute_query function with retries
+async def execute_query(query, params=None, retries=2):
+    """
+    Execute a SQL query with retry logic
+    
+    Args:
+        query: SQL query string
+        params: Query parameters (tuple)
+        retries: Number of retries on connection errors
+        
+    Returns:
+        int: Number of affected rows or None on error
+    """
+    global pool
+    if not pool:
+        logger.error("Database pool not initialized")
+        return None
+        
+    for attempt in range(retries + 1):
+        try:
+            async with pool.acquire() as conn:
+                async with conn.cursor() as cursor:
+                    await cursor.execute(query, params)
+                    return cursor.rowcount
+        except (aiomysql.OperationalError, aiomysql.InternalError) as e:
+            # Connection or database internal errors - retry
+            if attempt < retries:
+                logger.warning(f"Database operation error, retrying ({attempt+1}/{retries}): {e}")
+                await asyncio.sleep(0.5 * (attempt + 1))  # Exponential backoff
+                continue
+            logger.error(f"Database operation failed after {retries} retries: {e}")
+            return None
+        except Exception as e:
+            logger.error(f"Database error executing query: {e}")
+            logger.debug(f"Query: {query}, Params: {params}")
+            return None
+
+async def fetch_one(query, params=None):
+    """
+    Fetch a single row from the database
+    
+    Args:
+        query: SQL query string
+        params: Query parameters (tuple)
+        
+    Returns:
+        tuple: Row data or None if not found
+    """
+    global pool
+    if not pool:
+        logger.error("Database pool not initialized")
+        return None
+        
+    try:
+        async with pool.acquire() as conn:
+            async with conn.cursor() as cursor:
+                await cursor.execute(query, params)
+                return await cursor.fetchone()
+    except Exception as e:
+        logger.error(f"Database error fetching row: {e}")
+        logger.debug(f"Query: {query}, Params: {params}")
+        return None
+
+async def fetch_all(query, params=None):
+    """
+    Fetch all rows from the database
+    
+    Args:
+        query: SQL query string
+        params: Query parameters (tuple)
+        
+    Returns:
+        list: List of rows or empty list if none found
+    """
+    global pool
+    if not pool:
+        logger.error("Database pool not initialized")
+        return []
+        
+    try:
+        async with pool.acquire() as conn:
+            async with conn.cursor() as cursor:
+                await cursor.execute(query, params)
+                return await cursor.fetchall()
+    except Exception as e:
+        logger.error(f"Database error fetching rows: {e}")
+        logger.debug(f"Query: {query}, Params: {params}")
+        return []
 
 async def store_first_call(token_address, user_id, user_name, initial_fdv, initial_price):
     """

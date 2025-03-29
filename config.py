@@ -13,12 +13,9 @@ TOKEN = os.getenv("DISCORD_BOT_TOKEN")
 if not TOKEN:
     raise ValueError("DISCORD_BOT_TOKEN not found in environment")
 
-# Auto message allowed channels
-TARGET_CHANNEL_IDS = {int(id.strip()) for id in os.getenv("TARGET_CHANNEL_IDS", "").split(",") if id.strip().isdigit()}
 
-# Admin users
-ADMIN_USER_IDS = {int(uid.strip()) for uid in os.getenv("ADMIN_USER_IDS", "").split(",") if uid.strip().isdigit()}
-
+#forwarding servers
+FORWARD_GUILD_IDS = {int(id.strip()) for id in os.getenv("FORWARD_GUILD_IDS", "").split(",") if id.strip().isdigit()}
 #echo bot forwarding
 BOT_INPUT_CHANNEL_IDS = {int(id.strip()) for id in os.getenv("BOT_INPUT_CHANNEL_IDS", "").split(",") if id.strip().isdigit()}
 BOT_OUTPUT_CHANNEL_IDS = {int(id.strip()) for id in os.getenv("BOT_OUTPUT_CHANNEL_IDS", "").split(",") if id.strip().isdigit()}
@@ -73,8 +70,16 @@ DNS_CACHE_TTL = 300  # seconds
 # Cache settings
 GITHUB_ANALYSIS_CACHE_SIZE = 100
 GITHUB_ANALYSIS_CACHE_TTL = 36000  # seconds
+
 ADDRESS_CACHE_SIZE = 10_000
-ADDRESS_CACHE_TTL = 300  # seconds
+ADDRESS_CACHE_TTL = 3600  # seconds
+
+SERVER_SETTINGS_CACHE_SIZE = 100
+SERVER_SETTINGS_CACHE_TTL = 86400  # seconds
+
+CHANNEL_SETTINGS_CACHE_SIZE = 1000
+CHANNEL_SETTINGS_CACHE_TTL = 86400 # seconds
+
 
 # Initialize Discord intents with optimizations
 INTENTS = discord.Intents.default()

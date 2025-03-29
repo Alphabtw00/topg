@@ -11,12 +11,11 @@ from ui.views import CopyAddressView
 from utils.logger import get_logger
 from handlers.mysql_handler import get_first_call, store_first_call
 from urllib.parse import quote
+from config import MAX_ITEMS_PER_MESSAGE
 
 
 logger = get_logger()
 
-# Optimal concurrent requests - adjust based on API limits and performance
-MAX_ITEMS_PER_MESSAGE = 5 
 
 # async def process_addresses(message: discord.Message, session, addresses):
 #     """
@@ -68,7 +67,10 @@ MAX_ITEMS_PER_MESSAGE = 5
 #             # Process the token with the most liquid pair data
 #             await process_token_entry(message, session, addr_map[addr_lower], address)
 
-async def process_addresses(message: discord.Message, session, addresses, semaphore):
+message_semaphore = asyncio.Semaphore(MAX_ITEMS_PER_MESSAGE)
+
+
+async def process_addresses(message: discord.Message, session, addresses):
     """
     Process a set of Solana addresses from a message in the most efficient way
 
@@ -82,18 +84,18 @@ async def process_addresses(message: discord.Message, session, addresses, semaph
     if not addresses:
         return
     
-
-     # Get token info for all addresses in a single API call - more efficient
-    addr_map = await get_token_info(session, addresses)
+    batch = list(addresses)[:MAX_ITEMS_PER_MESSAGE]
     
+    addr_map = await get_token_info(session, batch)
+
     if not addr_map:
         return
     
     tasks = []
-    for addr in addresses:
+    for addr in batch:
         if addr in addr_map:
             tasks.append(process_token_with_semaphore(
-                message, session, addr_map[addr], addr, semaphore
+                message, session, addr_map[addr], addr, message_semaphore
             ))
     
     # Execute all tasks (they will be limited by the semaphore)
@@ -117,8 +119,7 @@ async def process_token_with_semaphore(message, session, entry, address, semapho
         except Exception as e:
             logger.error(f"Token processing error {address}: {e}")
 
-
-async def process_tickers(message, session, tickers, semaphore):
+async def process_tickers(message, session, tickers):
     """
     Process a list of ticker symbols with rate limiting
     
@@ -131,7 +132,7 @@ async def process_tickers(message, session, tickers, semaphore):
     # Create tasks with semaphore control
     tasks = []
     for ticker in tickers:
-        task = process_ticker(message, session, ticker, semaphore)
+        task = process_ticker(message, session, ticker, message_semaphore)
         tasks.append(task)
     
     if tasks:
