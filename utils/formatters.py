@@ -2,7 +2,7 @@
 Formatting utilities for values, dates, and other display elements
 """
 from datetime import datetime
-from typing import Dict, Set
+from typing import Dict, Set, Any
 
 def format_value(value) -> str:
     """
@@ -203,3 +203,197 @@ def parse_channel_colors(colors_str: str, bot_input_channel_ids: Set[int]) -> Di
             color_dict[channel_id] = colors[color_index] if colors else 0x3498db
     
     return color_dict
+
+def calculate_trust_score(code_review: Dict[str, Any]) -> Dict[str, Any]:
+    """
+    Calculate trust score based on code review.
+    
+    Args:
+        code_review: Code review data
+        
+    Returns:
+        Dictionary with trust score and details
+    """
+    # Count issues
+    red_flags_count = len(code_review.get("redFlags", []))
+    larp_indicators_count = len(code_review.get("larpIndicators", []))
+    
+    # Check for misrepresentation concerns
+    misrepresentation_count = sum(
+        1 for check in code_review.get("misrepresentationChecks", [])
+        if any(term in check.lower() for term in ["suspicious", "concern", "issue", "problem"])
+    )
+    
+    # AI-specific factors
+    ai_analysis = code_review.get("aiAnalysis", {})
+    
+    misleading_level = ai_analysis.get("misleadingLevel", "None")
+    ai_misleading_penalty = {
+        "None": 0,
+        "Low": 10,
+        "Medium": 20,
+        "High": 30
+    }.get(misleading_level, 0)
+    
+    ai_concerns_penalty = len(ai_analysis.get("concerns", [])) * 5
+    
+    # Start with base trust score
+    trust_score = 100
+    
+    # Apply penalties for issues
+    penalties = {
+        "red_flags": red_flags_count * 15,  # -15 points per red flag
+        "larp_indicators": larp_indicators_count * 10,  # -10 points per LARP indicator
+        "misrepresentation": misrepresentation_count * 20,  # -20 points per misrepresentation
+        "ai_misleading": ai_misleading_penalty,
+        "ai_concerns": ai_concerns_penalty
+    }
+    
+    # Apply all penalties
+    for penalty_name, penalty_value in penalties.items():
+        trust_score -= penalty_value
+    
+    # Ensure range 0-100
+    trust_score = max(0, min(100, trust_score))
+    
+    return {
+        "score": trust_score,
+        "penalties": penalties,
+        "red_flags_count": red_flags_count,
+        "larp_indicators_count": larp_indicators_count,
+        "misleading_level": misleading_level
+    }
+
+def calculate_final_legitimacy_score(technical_score: int, trust_score: int) -> int:
+    """
+    Calculate final legitimacy score.
+    
+    Args:
+        technical_score: Technical score (0-100)
+        trust_score: Trust score (0-100)
+        
+    Returns:
+        Final legitimacy score (0-100)
+    """
+    # Weight technical score more than trust score
+    # Technical merit matters more than subjective trust factors
+    return round((technical_score * 0.6) + (trust_score * 0.4))
+
+def calculate_verdict(scores: Dict[str, Any], trust_result: Dict[str, Any], code_review: Dict[str, Any]) -> Dict[str, Any]:
+    """
+    Calculate verdict with transparent weighting of factors.
+    Optimistically biased to favor positive outcomes.
+    
+    Args:
+        scores: Technical scores data
+        trust_result: Trust calculation result
+        code_review: Code review data
+        
+    Returns:
+        Verdict information
+    """
+    # Get core scores
+    technical_score = scores.get("technicalScore", 0)
+    trust_score = trust_result.get("score", 0)
+    
+    # Get additional metrics that influence the verdict
+    ranking = code_review.get("investmentRanking", {})
+    rating = ranking.get("rating", "Unknown")
+    confidence = ranking.get("confidence", 0)
+    
+    # First, convert investment rating to a numeric value
+    rating_value = {
+        "Strong Buy": 95,
+        "Buy": 85,
+        "High": 85, 
+        "Medium": 70,
+        "Medium-High": 75,
+        "Hold": 65, 
+        "Sell": 50,
+        "Strong Sell": 40,
+        "Low": 50
+    }.get(rating, 60)  # Default is positive
+    
+    # Apply confidence adjustment to rating value
+    # Low confidence reduces the impact of the rating
+    adjusted_rating = rating_value * (confidence / 100) if confidence > 0 else rating_value * 0.5
+    
+    # Clear weighting of factors for transparency
+    weights = {
+        "technical": 0.5,    # Technical quality is most important
+        "trust": 0.3,        # Trust factors matter but less than technical merit
+        "rating": 0.2        # Investment rating has some influence
+    }
+    
+    # Calculate composite score - with a small positive boost
+    composite_score = (
+        (technical_score * weights["technical"]) + 
+        (trust_score * weights["trust"]) + 
+        (adjusted_rating * weights["rating"]) +
+        5  # Small positive boost to favor good outcomes
+    )
+    
+    # Ensure score is within bounds
+    composite_score = max(0, min(100, composite_score))
+    
+    # Determine verdict based on composite score with optimistic thresholds
+    if composite_score >= 70:  # Lowered from traditional 75
+        return {
+            "color": 0x00FF00,  # Green
+            "verdict": "INVESTMENT RECOMMENDED",
+            "emoji": "✅",
+            "investment_advice": "Appears to be a solid project with good technical foundation",
+            "score": composite_score,
+            "factors": {
+                "technical_score": technical_score,
+                "trust_score": trust_score,
+                "rating_value": rating_value,
+                "adjusted_rating": adjusted_rating,
+                "weights": weights
+            }
+        }
+    elif composite_score >= 55:  # Lowered from traditional 60
+        return {
+            "color": 0xFFD700,  # Gold
+            "verdict": "POTENTIALLY VIABLE",
+            "emoji": "⚠️",
+            "investment_advice": "Shows promise but exercise caution and conduct additional research",
+            "score": composite_score,
+            "factors": {
+                "technical_score": technical_score,
+                "trust_score": trust_score,
+                "rating_value": rating_value,
+                "adjusted_rating": adjusted_rating,
+                "weights": weights
+            }
+        }
+    elif composite_score >= 40:  # Lowered from traditional 45
+        return {
+            "color": 0xFF8C00,  # Dark Orange
+            "verdict": "HIGH RISK INVESTMENT",
+            "emoji": "⚠️",
+            "investment_advice": "Significant concerns detected - thorough investigation recommended",
+            "score": composite_score,
+            "factors": {
+                "technical_score": technical_score,
+                "trust_score": trust_score,
+                "rating_value": rating_value,
+                "adjusted_rating": adjusted_rating,
+                "weights": weights
+            }
+        }
+    else:
+        return {
+            "color": 0xFF0000,  # Red
+            "verdict": "NOT RECOMMENDED",
+            "emoji": "🚨",
+            "investment_advice": "Multiple critical issues found - investment not advised",
+            "score": composite_score,
+            "factors": {
+                "technical_score": technical_score,
+                "trust_score": trust_score,
+                "rating_value": rating_value,
+                "adjusted_rating": adjusted_rating,
+                "weights": weights
+            }
+        }

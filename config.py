@@ -2,31 +2,60 @@
 Configuration and environment settings
 """
 import os
+import re
 import discord
 from dotenv import load_dotenv
 from utils.formatters import parse_channel_colors
+
 # Load environment variables
 load_dotenv()
 
-# Discord Bot Token
+# ==============================================
+# Discord Bot Configuration
+# ==============================================
+# Core settings
 TOKEN = os.getenv("DISCORD_BOT_TOKEN")
 if not TOKEN:
     raise ValueError("DISCORD_BOT_TOKEN not found in environment")
+PREFIX_COMMANDS = {}
 
+# Discord intents with optimizations
+INTENTS = discord.Intents.default()
+INTENTS.message_content = True
+INTENTS.typing = False
+INTENTS.presences = False
+INTENTS.integrations = False
 
-#forwarding servers
+# ==============================================
+# Message Forwarding Configuration
+# ==============================================
+# Guild settings
 FORWARD_GUILD_IDS = {int(id.strip()) for id in os.getenv("FORWARD_GUILD_IDS", "").split(",") if id.strip().isdigit()}
-#echo bot forwarding
+PROCESS_CRYPTO_IN_FORWARDS = os.getenv("PROCESS_CRYPTO_IN_FORWARDS", "True").lower() in ("true", "1", "yes")
+
+# Bot message forwarding
 BOT_INPUT_CHANNEL_IDS = {int(id.strip()) for id in os.getenv("BOT_INPUT_CHANNEL_IDS", "").split(",") if id.strip().isdigit()}
 BOT_OUTPUT_CHANNEL_IDS = {int(id.strip()) for id in os.getenv("BOT_OUTPUT_CHANNEL_IDS", "").split(",") if id.strip().isdigit()}
 FORWARD_BOT_IDS = {int(id.strip()) for id in os.getenv("FORWARD_BOT_IDS", "").split(",") if id.strip().isdigit()}
 BOT_CHANNEL_COLORS = parse_channel_colors(os.getenv("BOT_EMBED_COLOR", "0x3498db"), BOT_INPUT_CHANNEL_IDS)
-#dani messages forwarding
+
+# User message forwarding
 USER_INPUT_CHANNEL_IDS = {int(id.strip()) for id in os.getenv("USER_INPUT_CHANNEL_IDS", "").split(",") if id.strip().isdigit()}
 USER_OUTPUT_CHANNEL_IDS = {int(id.strip()) for id in os.getenv("USER_OUTPUT_CHANNEL_IDS", "").split(",") if id.strip().isdigit()}
 FORWARD_USER_IDS = {int(id.strip()) for id in os.getenv("FORWARD_USER_IDS", "").split(",") if id.strip().isdigit()}
-PROCESS_CRYPTO_IN_FORWARDS = os.getenv("PROCESS_CRYPTO_IN_FORWARDS", "True").lower() in ("true", "1", "yes")
 
+# ==============================================
+# API Keys & External Services
+# ==============================================
+# GitHub API
+GITHUB_TOKEN = os.getenv("GITHUB_TOKEN")
+if not GITHUB_TOKEN:
+    raise ValueError("GITHUB_TOKEN not found in environment")
+
+# Anthropic API
+ANTHROPIC_API_KEY = os.getenv("ANTHROPIC_API_KEY")
+if not ANTHROPIC_API_KEY:
+    raise ValueError("ANTHROPIC_API_KEY not found in environment")
 
 # API Endpoints
 DEXSCREENER_BASE_URL = "https://api.dexscreener.com"
@@ -40,7 +69,9 @@ TRADING_PLATFORMS = {
     "Neo BullX": "https://neo.bullx.io/terminal?chainId=1399811149&address={address}",
 }
 
-# Database configuration
+# ==============================================
+# Database Configuration
+# ==============================================
 DB_HOST = os.getenv("DB_HOST", "localhost")
 DB_PORT = int(os.getenv("DB_PORT", "3306"))
 DB_USER = os.getenv("DB_USER", "root")
@@ -49,44 +80,41 @@ DB_NAME = os.getenv("DB_NAME", "crypto_bot")
 DB_POOL_MIN_SIZE = int(os.getenv("DB_POOL_MIN_SIZE", "1"))
 DB_POOL_MAX_SIZE = int(os.getenv("DB_POOL_MAX_SIZE", "10"))
 
-# Regex Patterns
-ADDRESS_REGEX_PATTERN = r"\b[1-9A-HJ-NP-Za-km-z]{32,44}\b"
-TICKER_REGEX_PATTERN = r"\$([^\s]{1,10})"
-GITHUB_URL_REGEX_PATTERN = r"^https://github\.com/[a-zA-Z0-9-]+/[a-zA-Z0-9._-]+/?$"
-
-# Performance settings
-MAX_ERROR_THRESHOLD = 50
-
-#max items per message for auto reply
-MAX_ITEMS_PER_MESSAGE = 5
-
-# Timeouts and Limits
+# ==============================================
+# Performance & Limits
+# ==============================================
+# Network settings
 HTTP_TIMEOUT = 15  # seconds
 CONNECT_TIMEOUT = 5  # seconds
 SOCK_READ_TIMEOUT = 10  # seconds
 MAX_CONNECTIONS = 50
 DNS_CACHE_TTL = 300  # seconds
 
-# Cache settings
+# Error handling
+MAX_ERROR_THRESHOLD = 50
+MAX_ITEMS_PER_MESSAGE = 5
+
+# GitHub analyzer settings
+GITHUB_MAX_FILES_TO_FETCH = 30
+
+# ==============================================
+# Cache Settings
+# ==============================================
+# GitHub cache
 GITHUB_ANALYSIS_CACHE_SIZE = 100
 GITHUB_ANALYSIS_CACHE_TTL = 36000  # seconds
 
+# Other caches
 ADDRESS_CACHE_SIZE = 10_000
 ADDRESS_CACHE_TTL = 3600  # seconds
-
 SERVER_SETTINGS_CACHE_SIZE = 100
 SERVER_SETTINGS_CACHE_TTL = 86400  # seconds
-
 CHANNEL_SETTINGS_CACHE_SIZE = 1000
-CHANNEL_SETTINGS_CACHE_TTL = 86400 # seconds
+CHANNEL_SETTINGS_CACHE_TTL = 86400  # seconds
 
-
-# Initialize Discord intents with optimizations
-INTENTS = discord.Intents.default()
-INTENTS.message_content = True
-INTENTS.typing = False
-INTENTS.presences = False
-INTENTS.integrations = False
-
-# Prefix Commands Registry
-PREFIX_COMMANDS = {}
+# ==============================================
+# Regular Expressions
+# ==============================================
+ADDRESS_REGEX_PATTERN = r"\b[1-9A-HJ-NP-Za-km-z]{32,44}\b"
+TICKER_REGEX_PATTERN = r"\$([^\s]{1,10})"
+GITHUB_REPO_REGEX = re.compile(r'^(?:https?://)?(?:www\.)?github\.com/([^/\s]+)/([^/\s]+?)(?:\.git)?/?$', re.IGNORECASE)

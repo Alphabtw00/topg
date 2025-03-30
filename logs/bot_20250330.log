@@ -1,0 +1,112 @@
+2025-03-30 11:08:46,355 - ERROR - Error during code analysis: Timeout on reading data from socket
+2025-03-30 11:08:46,356 - WARNING - Analysis failed for https://github.com/Alphabtw00/Customer-Management
+2025-03-30 11:08:46,356 - ERROR - Repo analysis error for https://github.com/Alphabtw00/Customer-Management: 'NoneType' object has no attribute 'get'
+Traceback (most recent call last):
+  File "C:\Users\ansha\Documents\VsCode\TOPG\commands\github_checker.py", line 52, in check_repo
+    is_cached = result.get('cached', False)
+                ^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'get'
+2025-03-30 11:19:45,114 - ERROR - Error during code analysis: Timeout on reading data from socket
+2025-03-30 11:19:45,115 - WARNING - Analysis failed for https://github.com/Alphabtw00/Customer-Management
+2025-03-30 11:26:54,178 - ERROR - Error analyzing repository https://github.com/Alphabtw00/Customer-Management: calculate_verdict() missing 2 required positional arguments: 'trust_result' and 'code_review'
+2025-03-30 11:40:19,235 - ERROR - Unexpected error during code analysis: calculate_verdict() takes 1 positional argument but 3 were given
+2025-03-30 11:40:19,235 - WARNING - Analysis failed for https://github.com/Alphabtw00/Customer-Management
+2025-03-30 11:45:20,036 - ERROR - Error analyzing repository https://github.com/Alphabtw00/Customer-Management: 'NoneType' object has no attribute 'get'
+2025-03-30 11:51:30,214 - WARNING - No match found for section: logicFlow
+2025-03-30 11:51:30,214 - WARNING - No match found for section: processArchitecture
+2025-03-30 11:51:30,215 - WARNING - No match found for section: codeOrganization
+2025-03-30 11:51:30,215 - WARNING - No match found for section: criticalPath
+2025-03-30 11:51:30,215 - WARNING - No match found for section: misrepresentationChecks
+2025-03-30 11:51:30,216 - WARNING - No match found for section: larpIndicators
+2025-03-30 11:51:30,218 - WARNING - No AI Score found in AI section
+2025-03-30 11:51:30,218 - WARNING - No Misleading Level found in AI section
+2025-03-30 11:51:30,219 - WARNING - No Implementation Quality found in AI section
+2025-03-30 11:51:32,810 - ERROR - Error analyzing repository https://github.com/Alphabtw00/Customer-Management: slice(None, 500, None)
+2025-03-30 11:57:35,967 - ERROR - Error extracting code review: 'function' object has no attribute 'info'
+2025-03-30 11:57:35,967 - WARNING - Analysis failed for https://github.com/Alphabtw00/Customer-Management
+2025-03-30 12:00:43,363 - WARNING - No match found for section: logicFlow
+2025-03-30 12:00:43,363 - WARNING - No match found for section: processArchitecture
+2025-03-30 12:00:43,363 - WARNING - No match found for section: codeOrganization
+2025-03-30 12:00:43,364 - WARNING - No match found for section: criticalPath
+2025-03-30 12:00:43,364 - WARNING - No match found for section: misrepresentationChecks
+2025-03-30 12:00:43,364 - WARNING - No match found for section: larpIndicators
+2025-03-30 12:00:43,366 - WARNING - No match found for section: investmentRanking
+2025-03-30 12:00:43,366 - WARNING - No AI Score found in AI section
+2025-03-30 12:00:43,367 - WARNING - No Misleading Level found in AI section
+2025-03-30 12:00:43,367 - WARNING - No Implementation Quality found in AI section
+2025-03-30 12:00:46,203 - ERROR - Error analyzing repository https://github.com/Alphabtw00/Customer-Management: slice(None, 500, None)
+2025-03-30 12:04:11,141 - WARNING - No match found for section: logicFlow
+2025-03-30 12:04:11,141 - WARNING - No match found for section: processArchitecture
+2025-03-30 12:04:11,142 - WARNING - No match found for section: codeOrganization
+2025-03-30 12:04:11,142 - WARNING - No match found for section: criticalPath
+2025-03-30 12:04:11,142 - WARNING - No match found for section: misrepresentationChecks
+2025-03-30 12:04:11,142 - WARNING - No match found for section: larpIndicators
+2025-03-30 12:04:11,145 - WARNING - No AI Score found in AI section
+2025-03-30 12:04:11,145 - WARNING - No Misleading Level found in AI section
+2025-03-30 12:04:11,146 - WARNING - No Implementation Quality found in AI section
+2025-03-30 12:04:13,844 - ERROR - Error analyzing repository https://github.com/Alphabtw00/Customer-Management: 'NoneType' object has no attribute 'get'
+Traceback (most recent call last):
+  File "C:\Users\ansha\Documents\VsCode\TOPG\api\github_analyzer.py", line 105, in analyze_github_repo
+    'license': repo_details.get('license', {}).get('name', 'No license')
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'get'
+2025-03-30 12:10:39,450 - WARNING - No match found for section: logicFlow
+2025-03-30 12:10:39,451 - WARNING - No match found for section: processArchitecture
+2025-03-30 12:10:39,451 - WARNING - No match found for section: codeOrganization
+2025-03-30 12:10:39,451 - WARNING - No match found for section: criticalPath
+2025-03-30 12:10:39,452 - WARNING - No match found for section: misrepresentationChecks
+2025-03-30 12:10:39,452 - WARNING - No match found for section: larpIndicators
+2025-03-30 12:10:39,454 - WARNING - No AI Score found in AI section
+2025-03-30 12:10:39,454 - WARNING - No Misleading Level found in AI section
+2025-03-30 12:10:39,455 - WARNING - No Implementation Quality found in AI section
+2025-03-30 12:10:41,766 - ERROR - Repo analysis error for https://github.com/Alphabtw00/Customer-Management: 'GithubChecker' object has no attribute 'create_github_analysis_embed'
+Traceback (most recent call last):
+  File "C:\Users\ansha\Documents\VsCode\TOPG\commands\github_checker.py", line 61, in check_repo
+    embed = self.create_github_analysis_embed(
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'GithubChecker' object has no attribute 'create_github_analysis_embed'
+2025-03-30 12:13:52,368 - WARNING - No match found for section: logicFlow
+2025-03-30 12:13:52,369 - WARNING - No match found for section: processArchitecture
+2025-03-30 12:13:52,369 - WARNING - No match found for section: codeOrganization
+2025-03-30 12:13:52,370 - WARNING - No match found for section: criticalPath
+2025-03-30 12:13:52,370 - WARNING - No match found for section: misrepresentationChecks
+2025-03-30 12:13:52,370 - WARNING - No match found for section: larpIndicators
+2025-03-30 12:13:52,373 - WARNING - No AI Score found in AI section
+2025-03-30 12:13:52,373 - WARNING - No Misleading Level found in AI section
+2025-03-30 12:13:52,374 - WARNING - No Implementation Quality found in AI section
+2025-03-30 12:13:55,189 - ERROR - Repo analysis error for https://github.com/Alphabtw00/Customer-Management: create_github_analysis_embed() missing 1 required positional argument: 'interaction'
+Traceback (most recent call last):
+  File "C:\Users\ansha\Documents\VsCode\TOPG\commands\github_checker.py", line 61, in check_repo
+    embed = create_github_analysis_embed(
+        result['repo_info'],
+    ...<2 lines>...
+        interaction
+    )
+TypeError: create_github_analysis_embed() missing 1 required positional argument: 'interaction'
+2025-03-30 12:15:59,716 - WARNING - No match found for section: logicFlow
+2025-03-30 12:15:59,717 - WARNING - No match found for section: processArchitecture
+2025-03-30 12:15:59,717 - WARNING - No match found for section: codeOrganization
+2025-03-30 12:15:59,717 - WARNING - No match found for section: criticalPath
+2025-03-30 12:15:59,718 - WARNING - No match found for section: misrepresentationChecks
+2025-03-30 12:15:59,718 - WARNING - No match found for section: larpIndicators
+2025-03-30 12:15:59,722 - WARNING - No AI Score found in AI section
+2025-03-30 12:15:59,722 - WARNING - No Misleading Level found in AI section
+2025-03-30 12:15:59,722 - WARNING - No Implementation Quality found in AI section
+2025-03-30 12:37:52,045 - WARNING - No match found for section: logicFlow
+2025-03-30 12:37:52,045 - WARNING - No match found for section: processArchitecture
+2025-03-30 12:37:52,045 - WARNING - No match found for section: codeOrganization
+2025-03-30 12:37:52,045 - WARNING - No match found for section: criticalPath
+2025-03-30 12:37:52,045 - WARNING - No match found for section: misrepresentationChecks
+2025-03-30 12:37:52,046 - WARNING - No match found for section: larpIndicators
+2025-03-30 12:37:52,046 - WARNING - No match found for section: redFlags
+2025-03-30 12:37:52,046 - WARNING - No match found for section: overallAssessment
+2025-03-30 12:37:52,047 - WARNING - No Misleading Level found in AI section
+2025-03-30 15:04:15,688 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-03-30 18:53:08,987 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-03-30 22:14:57,630 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-03-30 22:29:45,786 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-03-30 22:29:56,912 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-03-30 22:30:08,346 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-03-30 22:30:11,193 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-03-30 22:30:11,252 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-03-30 22:30:13,158 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
