@@ -222,8 +222,6 @@ def extract_code_review(analysis: str) -> Dict[str, Any]:
                         for line in match.group(1).split('\n')
                         if line.strip().startswith('-')
                     ]                    
-            else:
-                logger.warning(f"No match found for section: {key}")
         except Exception as e:
             logger.error(f"Error processing section {key}: {str(e)}")
     

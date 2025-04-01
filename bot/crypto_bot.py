@@ -9,12 +9,12 @@ import psutil
 from datetime import datetime, timedelta
 from discord.ext import commands, tasks
 from utils.logger import get_logger
-from api.http_client import setup_http_session
 from commands.health import Health
 from commands.github_checker import GithubChecker
 from commands.settings import SettingsCommands
 from handlers.mysql_handler import setup_db_pool, close_db_pool
 from utils.formatters import relative_time
+from api.provider import ServiceProvider
 
 logger = get_logger()
 
@@ -23,14 +23,14 @@ class CryptoBot(commands.Bot):
     Main Discord bot class with extended functionality for crypto tracking
     """
     __slots__ = (
-        "http_session", "startup_time", "metrics", "bg_tasks", 
+        "startup_time", "metrics", "bg_tasks", 
         "max_reconnect_attempts", "reconnect_delay", "heartbeat_missed_threshold",
         "is_first_connect", "last_metrics_report", "shutdown_in_progress"
     )
     
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.http_session = None
+        self.services = None
         self.startup_time = datetime.now()
         self.max_reconnect_attempts = 5
         self.reconnect_delay = 5
@@ -55,18 +55,12 @@ class CryptoBot(commands.Bot):
     async def setup_hook(self):
         """Setup hook that runs before the bot is ready"""
         # This runs before on_ready
-        # Start http session
-        try:
-            self.http_session = await setup_http_session()
-            logger.info("HTTP session initialized")
-        except Exception as e:
-            logger.critical(f"Failed to initialize HTTP session: {e}")
-            # Flag shutdown but let the main function handle actual exit
-            self.shutdown_in_progress = True
-            return
-
         # Set up database connection
         try:
+
+            self.services = await ServiceProvider(self).setup()
+            logger.info("Services provider initialized")
+
             db_connected = await setup_db_pool()
             if not db_connected:
                 logger.critical("Failed to establish database connection")
@@ -141,6 +135,11 @@ class CryptoBot(commands.Bot):
         self.shutdown_in_progress = True
         logger.info("Bot is shutting down...")
         
+        # Close services
+        if hasattr(self, 'services'):
+            await self.services.close()
+            logger.info("Services closed successfully")
+        
         # Cancel all background tasks
         for task in self.bg_tasks:
             task_name = task.get_name() if hasattr(task, 'get_name') else str(task)
@@ -150,16 +149,7 @@ class CryptoBot(commands.Bot):
                     logger.info(f"Background task '{task_name}' canceled")
             except Exception as e:
                 logger.error(f"Error canceling background task '{task_name}': {e}")
-                
-        # Close the HTTP session
-        if self.http_session:
-            try:
-                await self.http_session.close()
-                logger.info("HTTP session closed successfully")
-            except Exception as e:
-                logger.error(f"Error closing HTTP session: {e}")
-            
-        # Close the database pool
+    
         try:
             await close_db_pool()
             logger.info("Database connection pool closed successfully")
@@ -167,7 +157,7 @@ class CryptoBot(commands.Bot):
             logger.error(f"Error closing database pool: {e}")
         
         await super().close()
-    
+
     def start_background_task(self, coro, name=None):
         """
         Start and track a background task

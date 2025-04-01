@@ -3,8 +3,7 @@ import asyncio
 import re
 from datetime import datetime
 from utils.logger import get_logger
-from discord import MessageFlags, AllowedMentions
-from utils.validators import get_addresses_from_content, get_tickers_from_content
+from discord import AllowedMentions
 from handlers.message_processor import process_message_with_timeout
 from functools import lru_cache
 

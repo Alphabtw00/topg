@@ -1,34 +1,32 @@
 """
-GitHub repository analysis command
+GitHub repository analysis command - Refactored
 """
 import asyncio
 from datetime import datetime
 import discord
 from discord import app_commands
 from discord.ext import commands
-from api.github_analyzer import analyze_github_repo
 from ui.embeds import create_github_analysis_embed
 from ui.views import GitHubAnalysisView
-from utils.validators import validate_github_url, parse_github_url
+from utils.validators import validate_github_url
 from bot.error_handler import create_error_handler
 from utils.logger import get_logger
-
 
 logger = get_logger()
 
 class GithubChecker(commands.Cog):
     """GitHub repository analysis command"""
-    
+   
     def __init__(self, bot):
         self.bot = bot
-    
+   
     @app_commands.command(name="github-checker", description="Analyze a GitHub repository for legitimacy")
     @app_commands.guild_only()
     @app_commands.checks.cooldown(1, 15)  # 15 seconds cooldown
     async def check_repo(self, interaction: discord.Interaction, repo_url: str):
         """
         Analyze a GitHub repository for potential scam indicators in crypto projects.
-        
+       
         Args:
             interaction: Discord interaction
             repo_url: GitHub repository URL
@@ -39,24 +37,25 @@ class GithubChecker(commands.Cog):
                 "❌ Invalid GitHub repository URL. Format should be: https://github.com/username/repository",
                 ephemeral=True
             )
-        
+       
         # Defer response to allow time for processing
         await interaction.response.defer(thinking=True)
-        
+       
         # Record start time for metrics
         start_time = datetime.now().timestamp()
-        
+       
         try:            
-            # Get the analysis result - directly using the function
-            result = await analyze_github_repo(self.bot.http_session, repo_url)
-
+            # Use the GitHub analyzer from the service provider
+            result = await self.bot.services.github_analyzer.analyze_repo(repo_url)
+            
             if not result:
                 return await interaction.followup.send(
                     "❌ Failed to analyze repository. Please ensure the URL is valid and try again.",
                     ephemeral=True
                 )
+                
             is_cached = result.get('cached', False)
-
+            
             # Create embed from result data
             embed = create_github_analysis_embed(
                 result['repo_info'],
@@ -64,18 +63,18 @@ class GithubChecker(commands.Cog):
                 start_time,
                 interaction
             )
-            
+           
             # Create and send view with buttons
             view = GitHubAnalysisView(repo_url)
-            
+           
             await interaction.followup.send(embed=embed, view=view)
-            
+           
             # Record command usage metrics
             self.bot.record_command_usage("github-checker")
-            
+           
             # Log usage
             logger.info(f"GitHub analysis called by {interaction.user} for {repo_url} (cached: {is_cached})")
-                
+               
         except asyncio.TimeoutError:
             logger.warning(f"Analysis timeout for {repo_url}")
             await interaction.followup.send(
@@ -88,7 +87,7 @@ class GithubChecker(commands.Cog):
                 "❌ Failed to analyze repository. The analysis service may be experiencing issues. Please try again later.",
                 ephemeral=True
             )
-    
+   
     # Register error handler
     @check_repo.error
     async def github_error(self, interaction, error):

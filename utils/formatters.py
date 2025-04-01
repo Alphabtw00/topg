@@ -204,6 +204,27 @@ def parse_channel_colors(colors_str: str, bot_input_channel_ids: Set[int]) -> Di
     
     return color_dict
 
+def calculate_ath_marketcap(ath_price: float, current_price: float, current_fdv: float):
+    """
+    Calculate ATH market cap based on ATH price and current FDV
+    
+    Args:
+        ath_price: All-time high price
+        current_price: Current price
+        current_fdv: Current fully diluted valuation
+        
+    Returns:
+        float or None: Calculated ATH market cap or None if input data is invalid
+    """
+    if not all([ath_price, current_price, current_fdv]):
+        return None
+    
+    try:
+        fdv_price_ratio = current_fdv / current_price
+        return ath_price * fdv_price_ratio
+    except (ZeroDivisionError, TypeError, ValueError):
+        return None
+
 def calculate_trust_score(code_review: Dict[str, Any]) -> Dict[str, Any]:
     """
     Calculate trust score based on code review.

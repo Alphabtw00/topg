@@ -138,20 +138,22 @@ async def on_resumed():
             from handlers.mysql_handler import fetch_one
             db_result = await fetch_one("SELECT 1")
             
-            # Check HTTP client
-            http_healthy = bot.http_session and not bot.http_session.closed
+            # Check Api client
+            api_client_healthy = (hasattr(bot, 'services') and 
+                               bot.services and 
+                               bot.services.api_client and 
+                               not bot.services.api_client.session.closed)
             
             # Log reconnection health status
-            logger.info(f"Post-reconnection health check: Database={bool(db_result)}, HTTP={http_healthy}")
+            logger.info(f"Post-reconnection health check: Database={bool(db_result)}, API Client={api_client_healthy}")
             
             # Attempt to repair any unhealthy connections
-            if not http_healthy and bot.http_session.closed:
-                from api.http_client import setup_http_session
+            if not api_client_healthy and hasattr(bot, 'services'):
                 try:
-                    bot.http_session = await setup_http_session()
-                    logger.info("Successfully recreated HTTP session after reconnection")
+                    await bot.services.api_client.setup()
+                    logger.info("Successfully recreated API client after reconnection")
                 except Exception as e:
-                    logger.error(f"Failed to recreate HTTP session: {e}")
+                    logger.error(f"Failed to recreate API client: {e}")
     except Exception as e:
         logger.error(f"Error in post-reconnection health check: {e}")
 

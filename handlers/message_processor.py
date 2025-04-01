@@ -1,3 +1,4 @@
+# handlers/message_processor.py
 """
 Message content processing
 """
@@ -10,67 +11,52 @@ from utils.logger import get_logger
 
 logger = get_logger()
 
-
-async def process_message_with_timeout(message: discord.Message):
+async def process_message_with_timeout(message):
     """
-    Process a message with timeout protection
+    Process a message and extract crypto addresses and tickers with timeout
     
     Args:
-        message: The Discord message
+        message: Discord message
     """
     try:
-        # Use wait_for for timeout without blocking the event loop
-        await asyncio.wait_for(process_message(message), timeout=10.0)
-    except asyncio.TimeoutError:
-        logger.warning(f"Message processing timed out for message {message.id}")
-        try:
-            await message.reply(
-                "Processing timed out due to too many inputs or high volume of users. "
-                "Only partial results may be displayed.",
-                delete_after=10
-            )
-        except Exception as e:
-            logger.error(f"Failed to send timeout notification: {e}")
-    except Exception as e:
-        logger.error(f"Message processing error: {e}")
-
-async def process_message(message: discord.Message):
-    """
-    Process a Discord message for crypto addresses and tickers
-    
-    Args:
-        message: The Discord message to process
-    """
-    content = message.content
-    
-    # Get bot instance and session
-    bot = message.guild.me._state._get_client()
-    if not bot or not bot.http_session:
-        logger.error("Bot or HTTP session not available")
-        return
-    
-    # Extract addresses and tickers
-    addresses = get_addresses_from_content(content)
-    tickers = get_tickers_from_content(content)
-    
-    if not addresses and not tickers:
-        return
-
-    # Process in parallel
-    tasks = []
-    
-    if addresses:
-        tasks.append(process_addresses(message, bot.http_session, addresses))
-    
-    if tickers:
-        tasks.append(process_tickers(message, bot.http_session, tickers))
-
-    
-    # Run tasks
-    if tasks:
+        # Start time for performance tracking
         start_time = datetime.now().timestamp()
-        await asyncio.gather(*tasks)
+        
+        # Get bot client once
+        bot = message.guild.me._state._get_client()
+        if not bot or not hasattr(bot, 'services'):
+            logger.error("Bot client or services not available")
+            return
+        
+        # Extract content
+        content = message.content
+        
+        # Get addresses from content
+        addresses = get_addresses_from_content(content)
+        
+        # Get tickers from content
+        tickers = get_tickers_from_content(content)
+        
+        if not addresses and not tickers:
+            return
+        
+        # Process with appropriate timeout
+        try:
+            timeout = max(15, min(len(addresses) + len(tickers), 30))
+            await asyncio.wait_for(
+                asyncio.gather(
+                    process_addresses(message, addresses, bot),
+                    process_tickers(message, tickers, bot),
+                    return_exceptions=True
+                ),
+                timeout=timeout
+            )
+        except asyncio.TimeoutError:
+            logger.warning(f"Message processing timeout for {message.author} in {message.channel}")
         
         # Record metrics
         processing_time = datetime.now().timestamp() - start_time
         bot.record_metric(processing_time)
+        
+    except Exception as e:
+        logger.error(f"Error processing message {message.id}: {str(e)}")

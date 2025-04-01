@@ -159,7 +159,7 @@ def update_ath_in_embed(embed_dict, ath_price, ath_timestamp, current_price, cur
     Returns:
         dict: Updated embed dictionary
     """
-    from api.mobula import calculate_ath_marketcap
+    from utils.formatters import calculate_ath_marketcap
     # Find the ATH field
     for field in embed_dict["fields"]:
         if field["name"] == "🏆 ATH":
@@ -343,7 +343,7 @@ def create_github_analysis_embed(repo_info, analysis, start_time, interaction):
             warning_text += f"⚠️ **NOTE:** Critical implementation issues detected.\n"
         
         if warning_text:
-            warning_text += "━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n"
+            warning_text += "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n"
         
         embed.description = (
             f"## {verdict_emoji} VERDICT: {verdict} {verdict_emoji}\n"

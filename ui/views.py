@@ -1,10 +1,9 @@
 """
-Discord UI components
+Discord UI components - Updated for service provider architecture
 """
 import asyncio
 import discord
 from datetime import datetime, timedelta
-from api.github_analyzer import clear_repo_from_cache
 from utils.logger import get_logger
 
 logger = get_logger()
@@ -102,8 +101,8 @@ class GitHubAnalysisView(discord.ui.View):
             
         # Handle the cache clear request
         try:
-            # Clear this repo from cache to force reanalysis
-            cleared = clear_repo_from_cache(self.repo_url)
+            # Clear this repo from cache to force reanalysis using service provider
+            cleared = await interaction.client.services.github_analyzer.clear_from_cache(self.repo_url)
             
             # Send appropriate response
             if cleared:
