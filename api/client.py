@@ -19,7 +19,7 @@ class ApiEndpoint(Enum):
     DEXSCREENER = "dexscreener"
     GITHUB = "github"
     MOBULA = "mobula"
-    WEBSITE = "website"  # For future implementation
+    WEBSITE = "website"
 
 class ApiClient:
     """Unified API client for all external service requests"""
@@ -141,6 +141,14 @@ class ApiClient:
                         self.bot.record_api_latency(endpoint_name, latency)
                     
                     if response.status == 200:
+                        if endpoint == ApiEndpoint.WEBSITE:
+                            # Return dict with text, headers, etc.
+                            return {
+                                "text": await response.text(),
+                                "headers": dict(response.headers),
+                                "status": response.status,
+                                "url": str(response.url)
+                            }
                         return await response.json()
                     else:
                         # Track errors by endpoint

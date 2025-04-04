@@ -5,8 +5,8 @@ import re
 import base58
 from typing import Dict, Optional, Any
 from cachetools import TTLCache, cached
-from config import ADDRESS_REGEX_PATTERN, TICKER_REGEX_PATTERN, GITHUB_REPO_REGEX, ADDRESS_CACHE_SIZE, ADDRESS_CACHE_TTL
-
+from config import ADDRESS_REGEX_PATTERN, TICKER_REGEX_PATTERN, GITHUB_REPO_REGEX_PATTERN, WEBSITE_REGEX_PATTERN,  ADDRESS_CACHE_SIZE, ADDRESS_CACHE_TTL
+from urllib.parse import urlparse
 from utils.logger import get_logger
 
 logger = get_logger()
@@ -14,6 +14,8 @@ logger = get_logger()
 # Compile regex patterns for efficiency
 ADDRESS_REGEX = re.compile(ADDRESS_REGEX_PATTERN)
 TICKER_REGEX = re.compile(TICKER_REGEX_PATTERN)
+GITHUB_REPO_REGEX = re.compile(GITHUB_REPO_REGEX_PATTERN, re.IGNORECASE)
+WEBSITE_REGEX = re.compile(WEBSITE_REGEX_PATTERN, re.IGNORECASE)
 
 # Cache for address validation
 ADDRESS_CACHE = TTLCache(maxsize=ADDRESS_CACHE_SIZE, ttl=ADDRESS_CACHE_TTL)
@@ -268,3 +270,29 @@ def extract_code_review(analysis: str) -> Dict[str, Any]:
         logger.error(f"Error processing AI section: {str(e)}")
     
     return code_review
+
+
+def validate_url(url: str) -> bool:
+    """
+    Validate if a string is a valid URL
+    
+    Args:
+        url: String to validate
+        
+    Returns:
+        bool: True if valid URL, False otherwise
+    """
+    # Add http:// if missing
+    if url and not url.startswith(('http://', 'https://')):
+        url = 'https://' + url
+    
+    # Fast regex check
+    if not WEBSITE_REGEX.match(url):
+        return False
+    
+    # More thorough validation
+    try:
+        result = urlparse(url)
+        return all([result.scheme, result.netloc])
+    except Exception:
+        return False

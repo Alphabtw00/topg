@@ -4,6 +4,7 @@ Discord UI components - Updated for service provider architecture
 import asyncio
 import discord
 from datetime import datetime, timedelta
+from urllib.parse import urlparse
 from utils.logger import get_logger
 
 logger = get_logger()
@@ -151,6 +152,150 @@ class GitHubAnalysisView(discord.ui.View):
                 ephemeral=True
             )
        
+    def stop(self):
+        """Clean up when the view is no longer needed"""
+        if self.timeout_task:
+            self.timeout_task.cancel()
+        super().stop()
+
+class WebsiteAnalysisView(discord.ui.View):
+    """Interactive view for website analysis"""
+    
+    def __init__(self, website_url: str, bot):
+        # The view itself doesn't time out
+        super().__init__(timeout=None)
+        self.website_url = website_url
+        self.bot = bot
+        self.timeout_task = None
+        self.cooldown_end = None
+        # Set expiry time 10 minutes from now
+        self.expiry_time = datetime.now() + timedelta(minutes=10)
+        
+        # Add website link button
+        self.add_item(discord.ui.Button(
+            label="Visit Website",
+            url=website_url if website_url.startswith(('http://', 'https://')) else f"https://{website_url}",
+            emoji="🌐",
+            style=discord.ButtonStyle.link
+        ))
+        
+        # Add VirusTotal button
+        domain = urlparse(website_url).netloc
+        virustotal_url = f"https://www.virustotal.com/gui/domain/{domain}/detection"
+        self.add_item(discord.ui.Button(
+            label="Check on VirusTotal",
+            url=virustotal_url,
+            emoji="🔍",
+            style=discord.ButtonStyle.link
+        ))
+        
+        # Reanalyze button with gray style
+        self.reanalyze_button = discord.ui.Button(
+            label="Reanalyze Website",
+            style=discord.ButtonStyle.gray,
+            custom_id="reanalyze_website",
+            emoji="🔄"
+        )
+        self.reanalyze_button.callback = self.reanalyze_callback
+        self.add_item(self.reanalyze_button)
+        
+        # Start timeout task for the reanalyze button (10 minutes)
+        self.start_timeout_task()
+    
+    def start_timeout_task(self):
+        """Start the timeout task for the reanalyze button"""
+        async def disable_after_timeout():
+            try:
+                # Wait 10 minutes
+                await asyncio.sleep(600)
+                self.reanalyze_button.disabled = True
+                self.reanalyze_button.label = "Reanalyze Website (Expired)"
+            except asyncio.CancelledError:
+                pass
+        
+        # Create task
+        self.timeout_task = asyncio.create_task(disable_after_timeout())
+    
+    async def reanalyze_callback(self, interaction: discord.Interaction) -> None:
+        """Handle reanalyze button interactions"""
+        now = datetime.now()
+        
+        # If we're on cooldown, show the time remaining
+        if self.cooldown_end and now < self.cooldown_end:
+            # Calculate remaining time
+            remaining = self.cooldown_end - now
+            seconds = max(1, int(remaining.total_seconds()))
+            
+            await interaction.response.send_message(
+                f"⏱️ This button is on cooldown. Please wait {seconds} seconds before trying again.",
+                ephemeral=True
+            )
+            return
+            
+        # If we're past the expiry time, disable permanently
+        if now >= self.expiry_time:
+            self.reanalyze_button.disabled = True
+            self.reanalyze_button.label = "Reanalyze Website (Expired)"
+            await interaction.message.edit(view=self)
+            
+            await interaction.response.send_message(
+                "⏱️ This button has expired and can no longer be used.",
+                ephemeral=True
+            )
+            return
+            
+        # Handle the cache clear request
+        try:
+            # Clear this website from cache to force reanalysis
+            cleared = await self.bot.services.website_analyzer.clear_from_cache(self.website_url)
+            
+            # Send appropriate response
+            if cleared:
+                await interaction.response.send_message(
+                    "✅ Website has been cleared from cache. Next analysis will be performed from scratch.",
+                    ephemeral=True
+                )
+            else:
+                await interaction.response.send_message(
+                    "ℹ️ Website was not in cache. A fresh analysis will be performed on next check.",
+                    ephemeral=True
+                )
+            
+            # Set cooldown (60 seconds from now)
+            self.cooldown_end = now + timedelta(seconds=60)
+            original_label = "Reanalyze Website"
+            self.reanalyze_button.label = "Reanalyze Website (60s cooldown)"
+            await interaction.message.edit(view=self)
+            
+            # Reset after delay (if still within expiry window)
+            await asyncio.sleep(60)
+            
+            # Check if we're still within the 10-minute expiry window
+            if datetime.now() < self.expiry_time:
+                self.cooldown_end = None
+                self.reanalyze_button.label = original_label
+                try:
+                    await interaction.message.edit(view=self)
+                except discord.NotFound:
+                    # Message might have been deleted
+                    pass
+            else:
+                # We've passed the 10-minute window, disable it
+                self.reanalyze_button.disabled = True
+                self.reanalyze_button.label = "Reanalyze Website (Expired)"
+                try:
+                    await interaction.message.edit(view=self)
+                except discord.NotFound:
+                    # Message might have been deleted
+                    pass
+                
+        except Exception as e:
+            # Handle any unexpected errors
+            await interaction.response.send_message(
+                f"❌ An error occurred: {str(e)}",
+                ephemeral=True
+            )
+    
     def stop(self):
         """Clean up when the view is no longer needed"""
         if self.timeout_task:

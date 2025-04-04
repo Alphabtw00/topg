@@ -12,6 +12,7 @@ from utils.logger import get_logger
 from commands.health import Health
 from commands.github_checker import GithubChecker
 from commands.settings import SettingsCommands
+from commands.website_info import WebsiteChecker
 from handlers.mysql_handler import setup_db_pool, close_db_pool
 from utils.formatters import relative_time
 from api.provider import ServiceProvider
@@ -90,6 +91,7 @@ class CryptoBot(commands.Bot):
         await self.add_cog(Health(self))
         await self.add_cog(GithubChecker(self))
         await self.add_cog(SettingsCommands(self))
+        await self.add_cog(WebsiteChecker(self))
 
         from bot.events import setup_events  # Adjust import based on your project structure
         await setup_events(self)

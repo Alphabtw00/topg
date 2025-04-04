@@ -57,6 +57,11 @@ ANTHROPIC_API_KEY = os.getenv("ANTHROPIC_API_KEY")
 if not ANTHROPIC_API_KEY:
     raise ValueError("ANTHROPIC_API_KEY not found in environment")
 
+#VirusTotal ApI
+VIRUS_TOTAL_API_KEY = os.getenv("VIRUS_TOTAL_API_KEY")
+if not VIRUS_TOTAL_API_KEY:
+    raise ValueError("VIRUS_TOTAL_API_KEY not found in environment")
+
 # API Endpoints
 DEXSCREENER_BASE_URL = "https://api.dexscreener.com"
 TWITTER_SEARCH_URL = "https://x.com/search?q={query}&f=live"
@@ -104,6 +109,10 @@ GITHUB_MAX_FILES_TO_FETCH = 30
 GITHUB_ANALYSIS_CACHE_SIZE = 100
 GITHUB_ANALYSIS_CACHE_TTL = 36000  # seconds
 
+WEBSITE_ANALYSIS_CACHE_SIZE = 100
+WEBSITE_ANALYSIS_CACHE_TTL = 3600 * 12  # 12 hours
+WHOIS_CACHE_TTL = 3600 * 24 * 7  # 7 days
+
 # Other caches
 ADDRESS_CACHE_SIZE = 10_000
 ADDRESS_CACHE_TTL = 3600  # seconds
@@ -117,4 +126,10 @@ CHANNEL_SETTINGS_CACHE_TTL = 86400  # seconds
 # ==============================================
 ADDRESS_REGEX_PATTERN = r"\b[1-9A-HJ-NP-Za-km-z]{32,44}\b"
 TICKER_REGEX_PATTERN = r"\$([^\s]{1,10})"
-GITHUB_REPO_REGEX = re.compile(r'^(?:https?://)?(?:www\.)?github\.com/([^/\s]+)/([^/\s]+?)(?:\.git)?/?$', re.IGNORECASE)
+WEBSITE_REGEX_PATTERN = r'^(?:http|https)://'  # http:// or https://
+r'(?:(?:[A-Z0-9](?:[A-Z0-9-]{0,61}[A-Z0-9])?\.)+(?:[A-Z]{2,6}\.?|[A-Z0-9-]{2,}\.?)|'  # domain
+r'localhost|'  # localhost
+r'\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})'  # or IP
+r'(?::\d+)?'  # optional port
+r'(?:/?|[/?]\S+)$'
+GITHUB_REPO_REGEX_PATTERN = r'^(?:https?://)?(?:www\.)?github\.com/([^/\s]+)/([^/\s]+?)(?:\.git)?/?$'

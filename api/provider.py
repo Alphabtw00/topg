@@ -5,7 +5,7 @@ from api.client import ApiClient, ApiEndpoint
 from api.dexscreener import DexScreenerService
 from api.mobula import MobulaService
 from api.github_analyzer import GitHubAnalyzer
-# Future: from analyzers.website_analyzer import WebsiteAnalyzer
+from api.website_analyzer import WebsiteAnalyzer
 from utils.logger import get_logger
 
 logger = get_logger()
@@ -20,7 +20,7 @@ class ServiceProvider:
         self.dexscreener = None
         self.mobula = None
         self.github_analyzer = None
-        # self.website_analyzer = None
+        self.website_analyzer = None
     
     async def setup(self):
         """Set up all services"""
@@ -33,7 +33,7 @@ class ServiceProvider:
         self.dexscreener = DexScreenerService(self.api_client)
         self.mobula = MobulaService(self.api_client)
         self.github_analyzer = GitHubAnalyzer(self.api_client)
-        # self.website_analyzer = WebsiteAnalyzer(self.api_client)
+        self.website_analyzer = WebsiteAnalyzer(self.api_client)
         logger.info("All API services initialized")
         
         return self

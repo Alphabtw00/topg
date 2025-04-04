@@ -579,6 +579,221 @@ def create_github_analysis_embed(repo_info, analysis, start_time, interaction):
         
         return embed
 
+def _create_website_embed(result, interaction, start_time):
+    """Create a comprehensive embed for the website analysis result
+    
+    Args:
+        result: The analysis result dictionary
+        interaction: Discord interaction object
+        start_time: Timestamp when analysis started
+        
+    Returns:
+        discord.Embed: Formatted embed with all analysis results
+    """
+    # Extract key data
+    url = result.get("url", "")
+    domain = result.get("domain", "")
+    title = result.get("title", "No title")
+    description = result.get("description", "No description")
+    
+    # Get risk assessment
+    risk = result.get("risk_assessment", {})
+    risk_level = risk.get("risk_level", "UNKNOWN")
+    risk_color = risk.get("color", 0x808080)  # Default gray
+    risk_emoji = risk.get("emoji", "❓")
+    risk_issues = risk.get("issues", [])
+    risk_strengths = risk.get("strengths", [])
+    investment_advice = risk.get("investment_advice", "")
+    
+    # Get scores
+    scores = result.get("scores", {})
+    overall_score = result.get("legitimacy_score", 0)
+    
+    # Create the embed
+    embed = discord.Embed(
+        title=f"Website Analysis: {domain}",
+        description=f"{risk_emoji} **Risk Level: {risk_level}** {risk_emoji}\n{investment_advice}\n\n**{title}**\n{description}",
+        color=risk_color,
+        url=url,
+        timestamp=datetime.now()
+    )
+    
+    # Set favicon as thumbnail (will be replaced if we have the actual file)
+    favicon_url = result.get("favicon_url")
+    if favicon_url:
+        embed.set_thumbnail(url=favicon_url)
+    
+    # Overall score with visual bar
+    embed.add_field(
+        name="📊 Overall Score",
+        value=f"{score_bar(overall_score)} `{overall_score}/100`",
+        inline=False
+    )
+    
+    # Domain info
+    domain_info = result.get("domain_info", {})
+    domain_age = domain_info.get("age_days", 0)
+    domain_created = domain_info.get("creation_date", "Unknown")
+    
+    embed.add_field(
+        name="🌐 Domain",
+        value=f"Age: `{domain_age} days`\nCreated: `{domain_created}`",
+        inline=True
+    )
+    
+    # SSL info
+    ssl_info = result.get("ssl_info", {})
+    ssl_status = "✅ Enabled" if ssl_info.get("has_ssl", False) else "❌ Not enabled"
+    ssl_expiry = ssl_info.get("expiry", "N/A") if ssl_info.get("has_ssl", False) else "N/A"
+    
+    embed.add_field(
+        name="🔒 Security",
+        value=f"SSL: `{ssl_status}`\nExpiry: `{ssl_expiry}`\nScore: `{scores.get('security', 0)}/100`",
+        inline=True
+    )
+    
+    # Technology
+    tech_stack = result.get("tech_stack", [])
+    tech_names = [tech["name"] for tech in tech_stack[:3]]
+    tech_text = ", ".join(tech_names) if tech_names else "No technologies detected"
+    if len(tech_stack) > 3:
+        tech_text += f" (+{len(tech_stack) - 3} more)"
+        
+    embed.add_field(
+        name="💻 Technology",
+        value=f"{tech_text}\nScore: `{scores.get('tech', 0)}/100`",
+        inline=True
+    )
+    
+    # Blockchain integration
+    blockchain_info = result.get("blockchain_info", {})
+    has_integration = blockchain_info.get("has_integration", False)
+    blockchains = blockchain_info.get("blockchains", [])
+    wallet_connections = blockchain_info.get("wallet_connections", [])
+    
+    if has_integration:
+        blockchain_text = "✅ Blockchain integration detected\n"
+        if blockchains:
+            blockchain_text += f"Chains: `{', '.join(blockchains[:2])}`\n"
+        if wallet_connections:
+            blockchain_text += f"Wallet: `{wallet_connections[0]}`"
+        blockchain_text += f"\nScore: `{scores.get('blockchain', 0)}/100`"
+    else:
+        blockchain_text = "❌ No blockchain integration detected"
+        
+    embed.add_field(
+        name="⛓️ Blockchain",
+        value=blockchain_text,
+        inline=True
+    )
+    
+    # Social media
+    social_media = result.get("social_media", {})
+    platforms = social_media.get("platforms", [])
+    
+    if platforms:
+        social_text = "\n".join([f"- **{p['name']}**" for p in platforms[:3]])
+        if len(platforms) > 3:
+            social_text += f"\n- *+{len(platforms) - 3} more*"
+        social_text += f"\nScore: `{scores.get('social', 0)}/100`"
+    else:
+        social_text = "No social media links detected"
+        
+    embed.add_field(
+        name="📱 Social Media",
+        value=social_text,
+        inline=True
+    )
+    
+    # Content & SEO
+    content_quality = result.get("content_quality", {})
+    seo_info = result.get("seo_info", {})
+    
+    content_seo_text = (
+        f"Word count: `{content_quality.get('word_count', 0)}`\n"
+        f"Headings: `{content_quality.get('heading_count', 0)}`\n"
+        f"SEO Score: `{seo_info.get('score', 0)}/100`\n"
+        f"Content Score: `{scores.get('content', 0)}/100`"
+    )
+    
+    embed.add_field(
+        name="📝 Content & SEO",
+        value=content_seo_text,
+        inline=True
+    )
+    
+    # Add issues and strengths section
+    if risk_issues:
+        issues_text = "\n".join([f"- {issue}" for issue in risk_issues])
+        embed.add_field(
+            name="⚠️ Issues Detected",
+            value=issues_text,
+            inline=False
+        )
+    
+    if risk_strengths:
+        strengths_text = "\n".join([f"- {strength}" for strength in risk_strengths])
+        embed.add_field(
+            name="💪 Strengths",
+            value=strengths_text,
+            inline=False
+        )
+    
+    # Add performance information
+    performance = result.get("performance", {})
+    resources = result.get("resources", {})
+    
+    perf_text = (
+        f"Load time: `{performance.get('load_time', 0):.2f}s`\n"
+        f"Resources: `{resources.get('total_count', 0)}`\n"
+        f"CDN Used: `{'Yes' if resources.get('has_cdn', False) else 'No'}`\n"
+        f"Score: `{scores.get('performance', 0)}/100`"
+    )
+    
+    embed.add_field(
+        name="⚡ Performance",
+        value=perf_text,
+        inline=True
+    )
+    
+    # Add template analysis information
+    template = result.get("template_analysis", {})
+    
+    if template.get("is_template", False):
+        template_text = (
+            f"⚠️ **Template site detected**\n"
+            f"Confidence: `{template.get('template_confidence', 0)}%`\n"
+        )
+        
+        if template.get("template_indicators", []):
+            indicators = template.get("template_indicators", [])[:2]
+            template_text += f"Indicators: `{', '.join(indicators)}`"
+    else:
+        template_text = "✅ No template patterns detected"
+    
+    embed.add_field(
+        name="🧩 Template Analysis",
+        value=template_text,
+        inline=True
+    )
+    
+    # Add cache status if available
+    cache_text = "🔄 Fresh analysis" if not result.get("cached", False) else "⏱️ Cached result"
+    analysis_time_ms = result.get("analysis_time_ms", 0)
+    
+    embed.add_field(
+        name="🔍 Analysis Info",
+        value=f"{cache_text}\nTime: `{analysis_time_ms}ms`",
+        inline=True
+    )
+
+    embed.set_footer(
+        text=f"Requested by {interaction.user.display_name} • ⌛Analysis Time: {(datetime.now().timestamp() - start_time):.1f}s", 
+        icon_url=interaction.user.display_avatar.url
+    )
+    
+    return embed
+
 async def create_health_embed(bot, user):
     """
     Create an optimized health status embed without system metrics
