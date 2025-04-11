@@ -12,10 +12,12 @@ from utils.logger import get_logger
 from commands.health import Health
 from commands.github_checker import GithubChecker
 from commands.settings import SettingsCommands
+from commands.truth_commands import TruthCommands
 from commands.website_info import WebsiteChecker
 from handlers.mysql_handler import setup_db_pool, close_db_pool
 from utils.formatters import relative_time
-from api.provider import ServiceProvider
+from handlers.truth_tracker import start_tracking
+from api.provider import ApiServiceProvider
 
 logger = get_logger()
 
@@ -59,7 +61,7 @@ class CryptoBot(commands.Bot):
         # Set up database connection
         try:
 
-            self.services = await ServiceProvider(self).setup()
+            self.services = await ApiServiceProvider(self).setup()
             logger.info("Services provider initialized")
 
             db_connected = await setup_db_pool()
@@ -70,12 +72,21 @@ class CryptoBot(commands.Bot):
             logger.info("Database connection successful")
             
             # Set up settings tables
-            from utils.auto_message_settings import setup_settings_tables
+            from service.auto_message_settings import setup_settings_tables
             settings_setup = await setup_settings_tables()
             if settings_setup:
                 logger.debug("Settings tables initialized successfully")
             else:
                 logger.warning("Settings tables initialization had issues, but will continue")
+            
+            # Set up truthsocial tables
+            from repository.truth_repo import setup_truth_tables
+            truth_setup = await setup_truth_tables()
+            if truth_setup:
+                logger.debug("Truth tables initialized successfully")
+            else:
+                logger.warning("Truth tables initialization had issues, but will continue")
+
         except Exception as e:
             logger.critical(f"Database connection error: {e}")
             self.shutdown_in_progress = True
@@ -86,12 +97,14 @@ class CryptoBot(commands.Bot):
         self.start_background_task(self.monitor_memory_usage(), "memory_monitor")
         self.start_background_task(self.heartbeat_monitor(), "heartbeat_monitor")
         self.start_background_task(self.periodic_metrics_report(), "metrics_report")
+        self.start_background_task(start_tracking(self), "truth_tracker")
 
         # Register commands
         await self.add_cog(Health(self))
         await self.add_cog(GithubChecker(self))
         await self.add_cog(SettingsCommands(self))
         await self.add_cog(WebsiteChecker(self))
+        await self.add_cog(TruthCommands(self))
 
         from bot.events import setup_events  # Adjust import based on your project structure
         await setup_events(self)

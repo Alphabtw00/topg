@@ -5,6 +5,7 @@ import os
 import re
 import discord
 from dotenv import load_dotenv
+from itertools import count
 from utils.formatters import parse_channel_colors
 
 # Load environment variables
@@ -20,7 +21,7 @@ if not TOKEN:
 PREFIX_COMMANDS = {}
 
 # Discord intents with optimizations
-INTENTS = discord.Intents.default()
+INTENTS = discord.Intents.all()
 INTENTS.message_content = True
 INTENTS.typing = False
 INTENTS.presences = False
@@ -57,17 +58,21 @@ ANTHROPIC_API_KEY = os.getenv("ANTHROPIC_API_KEY")
 if not ANTHROPIC_API_KEY:
     raise ValueError("ANTHROPIC_API_KEY not found in environment")
 
-#VirusTotal ApI
+# VirusTotal API
 VIRUS_TOTAL_API_KEY = os.getenv("VIRUS_TOTAL_API_KEY")
 if not VIRUS_TOTAL_API_KEY:
     raise ValueError("VIRUS_TOTAL_API_KEY not found in environment")
 
+# ==============================================
 # API Endpoints
+# ==============================================
 DEXSCREENER_BASE_URL = "https://api.dexscreener.com"
 TWITTER_SEARCH_URL = "https://x.com/search?q={query}&f=live"
 MOBULA_ATH_URL = "https://production-api.mobula.io/api/1/market/history/pair?asset={contact_address}&blockchain={blockchain}&period={period}"
 
+# ==============================================
 # Trading Platforms
+# ==============================================
 TRADING_PLATFORMS = {
     "Axiom": "https://axiom.trade/meme/{pair}",
     "Photon": "https://photon-sol.tinyastro.io/en/lp/{pair}",
@@ -109,6 +114,7 @@ GITHUB_MAX_FILES_TO_FETCH = 30
 GITHUB_ANALYSIS_CACHE_SIZE = 100
 GITHUB_ANALYSIS_CACHE_TTL = 36000  # seconds
 
+# Website cache
 WEBSITE_ANALYSIS_CACHE_SIZE = 100
 WEBSITE_ANALYSIS_CACHE_TTL = 3600 * 12  # 12 hours
 WHOIS_CACHE_TTL = 3600 * 24 * 7  # 7 days
@@ -133,3 +139,72 @@ r'\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})'  # or IP
 r'(?::\d+)?'  # optional port
 r'(?:/?|[/?]\S+)$'
 GITHUB_REPO_REGEX_PATTERN = r'^(?:https?://)?(?:www\.)?github\.com/([^/\s]+)/([^/\s]+?)(?:\.git)?/?$'
+
+# ==============================================
+# Truth Social Configuration
+# ==============================================
+# Truth Social accounts
+TRUTH_ACCOUNTS = []
+for index in count(1):
+    username = os.getenv(f"TRUTHSOCIAL_USERNAME_{index}")
+    password = os.getenv(f"TRUTHSOCIAL_PASSWORD_{index}")
+    if not username or not password:
+        break
+    TRUTH_ACCOUNTS.append({"username": username, "password": password})
+
+# Fallback to standard environment variables if no indexed accounts found
+if not TRUTH_ACCOUNTS and os.getenv("TRUTHSOCIAL_USERNAME") and os.getenv("TRUTHSOCIAL_PASSWORD"):
+    TRUTH_ACCOUNTS.append({
+        "username": os.getenv("TRUTHSOCIAL_USERNAME"),
+        "password": os.getenv("TRUTHSOCIAL_PASSWORD")
+    })
+
+# Tracking settings
+TRUTH_DEFAULT_INTERVAL = 5
+TRUTH_MIN_INTERVAL = 1
+TRUTH_MAX_INTERVAL = 60
+TRUTH_NIGHT_INTERVAL = 60
+
+# Trump's timezone settings (Eastern Time)
+TRUMP_TIMEZONE = "US/Eastern"
+TRUMP_ACTIVE_START_HOUR = 6  # 6 AM ET
+TRUMP_ACTIVE_END_HOUR = 23  # 11 PM ET
+
+# Avatar images to be used in embeds
+TRUMP_IMAGE_URL = "https://i.imgur.com/XtQThJU.jpeg"
+DEFAULT_AVATAR = "https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y"
+
+# Pink verified emoji to use in truth social embed
+VERIFIED_EMOJI = "<:Pink_Verified:1360315088837415135>"
+
+# ==============================================
+# Moderation Configuration
+# ==============================================
+# Server-specific username ban configuration
+USERNAME_BAN_SERVER_ID = int(os.getenv('USERNAME_BAN_SERVER_ID', 0)) or None
+USERNAME_BAN_LOG_CHANNEL = int(os.getenv('USERNAME_BAN_LOG_CHANNEL', 0)) or None
+
+# Ban keywords - Add some common variations
+BAN_KEYWORDS = ["daniworldwide", "dani worldwide", "dani_worldwide", "d@ni w0rldwide"]
+
+# Fallback simpler regex for just detecting "daniworldwide" (case insensitive)
+SIMPLE_DANI_REGEX = r"(?i)d\W*a\W*n\W*i\W*w\W*o\W*r\W*l\W*d\W*w\W*i\W*d\W*e"
+
+# Enhanced regex pattern with MORE Cyrillic lookalikes
+DANI_WORLDWIDE_REGEX = r"(?i)\b[dⅾᗪｄDᴅdDдДⅆ][^a-zA-Z]*[aａaAäÄ@4ᴀаАaáàäâ][^a-zA-Z]*[nｎnNⁿᴨNηᴎнНńñ][^a-zA-Z]*[iｉiI1!|ιɪɩиИìíîï][^a-zA-Z]*[wｗwWѡѡѠᴡшШщЩŵẃẁẅ][^a-zA-Z]*[oｏoO0öÖøØоОòóôöõ][^a-zA-Z]*[rｒrRᴙʀрРŕŗř][^a-zA-Z]*[lｌlL1|ʟлЛĺļľł][^a-zA-Z]*[dⅾᗪｄDᴅdDдДⅆ][^a-zA-Z]*[wｗwWѡѡѠᴡшШщЩŵẃẁẅ][^a-zA-Z]*[iｉiI1!|ιɪɩиИìíîï][^a-zA-Z]*[dⅾᗪｄDᴅdDдДⅆ][^a-zA-Z]*[eｅeE3ëËεɛеЕэЭèéêë]"
+
+USERNAME_BAN_REGEXES = [
+    DANI_WORLDWIDE_REGEX,
+    SIMPLE_DANI_REGEX,
+    # Add more regex patterns here if needed
+]
+COMPILED_BAN_REGEXES = [re.compile(pattern) for pattern in USERNAME_BAN_REGEXES]
+
+# Funny ban reasons for embeds
+BAN_FUNNY_REASONS = [
+    "KYS",
+    "Nice try, Diddy!"
+]
+
+# Ban GIF URL
+BAN_GIF_URL = "https://i.imgur.com/sGySZT3.gif"

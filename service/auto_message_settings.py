@@ -43,7 +43,6 @@ TABLES = [
     ) ENGINE=InnoDB
     """
 ]
-
 # Server-wide settings (default)
 DEFAULT_SETTINGS = {
     "server_wide": True,

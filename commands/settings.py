@@ -6,7 +6,7 @@ from discord import app_commands
 from discord.ext import commands
 from bot.error_handler import create_error_handler
 from utils.logger import get_logger
-from utils.auto_message_settings import (
+from service.auto_message_settings import (
     get_server_settings, 
     enable_server_wide, 
     disable_server_wide,

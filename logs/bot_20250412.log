@@ -1,0 +1,17 @@
+2025-04-12 00:31:04,724 - INFO - Starting bot...
+2025-04-12 00:31:05,656 - INFO - API client initialized
+2025-04-12 00:31:05,656 - INFO - WebsiteAnalyzer initialized with concurrency limit of 15
+2025-04-12 00:31:05,656 - INFO - All API services initialized
+2025-04-12 00:31:05,656 - INFO - Services provider initialized
+2025-04-12 00:31:05,695 - INFO - Database connection pool established: size=1-10
+2025-04-12 00:31:05,695 - INFO - Database connection successful
+2025-04-12 00:31:05,705 - INFO - WebsiteChecker cog initialized
+2025-04-12 00:31:05,711 - INFO - Discord Events Registered | Username Ban Server ID: 1313758082974879774
+2025-04-12 00:31:05,712 - INFO - Memory monitor started (threshold: 300MB, interval: 3600s)
+2025-04-12 00:31:05,712 - INFO - Truth Social tracking started
+2025-04-12 00:31:06,290 - INFO - Successfully synced 5 command(s)
+2025-04-12 00:31:09,220 - INFO - Logged in as TOPG#4967 (ID: 1340722186100408340)
+2025-04-12 00:31:09,220 - INFO - Bot connected to 4 server(s)
+2025-04-12 00:31:09,220 - INFO - Echo bot message forwarding: 1 bots from 11 channels to 1 channels
+2025-04-12 00:31:09,220 - INFO - Dani message forwarding: 1 users from 2 channels to 1 channels
+2025-04-12 00:32:24,019 - ERROR - Error getting latest post from realDonaldTrump: argument of type 'NoneType' is not iterable

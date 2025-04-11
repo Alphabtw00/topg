@@ -1,3 +1,4 @@
+# bot/events.py
 """
 Event handlers for the Discord bot
 """
@@ -8,9 +9,13 @@ import discord
 from bot.crypto_bot import CryptoBot
 from handlers.message_processor import process_message_with_timeout
 from handlers.forwarding_handler import forward_message
-from utils.auto_message_settings import should_process_channel
+from service.auto_message_settings import should_process_channel
+from handlers.username_ban import check_username, ban_user  # Correct import path
 from utils.logger import get_logger
-from config import FORWARD_GUILD_IDS
+from config import (
+    FORWARD_GUILD_IDS,
+    USERNAME_BAN_SERVER_ID
+)
 from datetime import datetime
 
 logger = get_logger()
@@ -30,13 +35,18 @@ async def setup_events(bot: CryptoBot):
     # Register message handler
     bot.add_listener(on_message, "on_message")
     
+    # Register username ban handlers
+    bot.add_listener(on_member_join, "on_member_join")
+    bot.add_listener(on_member_update, "on_member_update")
+    bot.add_listener(on_user_update, "on_user_update")
+    
     # Register error handlers
     bot.add_listener(on_error, "on_error")
     bot.add_listener(on_disconnect, "on_disconnect")
     bot.add_listener(on_resumed, "on_resumed")
     bot.add_listener(on_socket_response, "on_socket_response")
     
-    logger.info("Discord Events Registered")
+    logger.info(f"Discord Events Registered | Username Ban Server ID: {USERNAME_BAN_SERVER_ID}")
 
 async def on_message(message: discord.Message):
     """
@@ -63,14 +73,98 @@ async def on_message(message: discord.Message):
     # Quick check if the message might contain anything we need to process
     if '$' not in content and not re.search(r'[a-zA-Z0-9]{26,}', content):
         return
-       
-    # # Check for prefix commands
-    # first_word = message.content.split()[0] if message.content else ''
-    # if first_word in PREFIX_COMMANDS:
-    #     # Process prefix commands when needed
-    #     return
     
     asyncio.create_task(process_message_with_timeout(message))
+
+async def on_member_join(member):
+    """
+    Handle new member joins - check usernames against banned patterns
+    
+    Args:
+        member: The Discord member who joined
+    """
+    logger.debug(f"Member joined: {member.id} ({str(member)}) in guild {member.guild.id}")
+    
+    # Only check for the specified server
+    if not USERNAME_BAN_SERVER_ID:
+        logger.debug(f"USERNAME_BAN_SERVER_ID not configured, skipping ban check for {member.id}")
+        return
+        
+    if member.guild.id != USERNAME_BAN_SERVER_ID:
+        logger.debug(f"Member {member.id} joined guild {member.guild.id}, not ban server {USERNAME_BAN_SERVER_ID}")
+        return
+    
+    # Check username against patterns
+    should_ban, reason = await check_username(member)
+    
+    if should_ban:
+        ban_result = await ban_user(_bot, member, reason)
+        logger.debug(f"Ban result for {member.id}: {ban_result}")
+    else:
+        logger.debug(f"Member {member.id} ({str(member)}) passed username check")
+
+async def on_member_update(before, after):
+    """
+    Handle member updates for nickname/display name changes
+    
+    Args:
+        before: The member before the update
+        after: The member after the update
+    """
+    # Only check for the specified server
+    if not USERNAME_BAN_SERVER_ID:
+        return
+        
+    if after.guild.id != USERNAME_BAN_SERVER_ID:
+        return
+    
+    # Log name changes to debug level
+    if before.display_name != after.display_name or before.nick != after.nick:
+        logger.debug(f"Name change detected - User: {after.id} ({str(after)}) | Before: {before.display_name} | After: {after.display_name}")
+
+    # ALWAYS check the username when a member update occurs in the ban server
+    should_ban, reason = await check_username(after)
+    if should_ban:
+        ban_result = await ban_user(_bot, after, reason)
+        logger.debug(f"Ban result for {after.id}: {ban_result}")
+
+async def on_user_update(before, after):
+    """
+    Handle global username changes
+    
+    Args:
+        before: The user before the update
+        after: The user after the update
+    """
+    # Only if username changed
+    if str(before) == str(after):
+        return
+    
+    # We only need to check in our specific server
+    if not USERNAME_BAN_SERVER_ID:
+        return
+    
+    logger.debug(f"User {after.id} changed username from {str(before)} to {str(after)}")
+        
+    # Get our specific server
+    bot = _bot
+    if not bot:
+        logger.warning("Bot instance not available for user_update check")
+        return
+        
+    # Check if the user is in our server
+    guild = bot.get_guild(USERNAME_BAN_SERVER_ID)
+    if not guild:
+        return
+        
+    member = guild.get_member(after.id)
+    if member:
+        should_ban, reason = await check_username(member)
+        if should_ban:
+            ban_result = await ban_user(bot, member, reason)
+            logger.debug(f"Ban result for {after.id}: {ban_result}")
+    else:
+        logger.debug(f"User {after.id} not found in ban server {USERNAME_BAN_SERVER_ID}")
 
 async def on_error(event, *args, **kwargs):
     """

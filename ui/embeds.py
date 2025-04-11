@@ -3,12 +3,15 @@ Discord embed creation for different types of data
 """
 import discord
 import asyncio
+import re
 from datetime import datetime
-from config import TWITTER_SEARCH_URL, TRADING_PLATFORMS
+from typing import Dict
+from config import TWITTER_SEARCH_URL, TRADING_PLATFORMS, VERIFIED_EMOJI, DEFAULT_AVATAR, TRUMP_IMAGE_URL
 from utils.formatters import (
     format_value, format_date, format_size, 
     relative_time, get_color_from_change, score_bar
 )
+import service.truth_service as truth_service
 from utils.logger import get_logger
 
 
@@ -929,3 +932,109 @@ async def create_health_embed(bot, user):
     )
     
     return embed
+
+def create_truth_embed(post: Dict) -> discord.Embed:
+    """Create an embed for a Truth Social post"""
+    try:
+        # Extract data
+        handle, name, avatar = truth_service.get_profile_info(post)
+        content = truth_service.extract_text_content(post)
+        post_id = post.get('id', '')
+        created_at = post.get('created_at')
+        
+        # Create timestamp
+        if created_at:
+            try:
+                if isinstance(created_at, str):
+                    timestamp = datetime.fromisoformat(created_at.replace('Z', '+00:00'))
+                else:
+                    timestamp = created_at
+            except Exception:
+                timestamp = datetime.now()
+        else:
+            timestamp = datetime.now()
+        
+        # Create post URL
+        post_url = truth_service.get_post_url(handle, post_id)
+        
+        # Create embed with Truth Social colors
+        embed = discord.Embed(
+            description=content,
+            color=0xE12626,  # Truth Social red
+            timestamp=timestamp
+        )
+        
+        # Check for verified status and Trump's account
+        is_trump = handle.lower() == "realdonaldtrump"
+        is_verified = post.get('account', {}).get('verified', False)
+        
+        # Determine avatar
+        if is_trump:
+            avatar = TRUMP_IMAGE_URL
+        
+        # Create display name with verification
+        display_name = name
+        if is_verified:
+            # Use custom emoji if it exists and is not an empty string, otherwise use simple checkmark
+            display_name += f" {VERIFIED_EMOJI}" if VERIFIED_EMOJI else " 💹"
+        
+        # Set author with handle and profile pic
+        if avatar:
+            embed.set_author(
+                name=f"{display_name} (@{handle})", 
+                icon_url=avatar, 
+                url=f"https://truthsocial.com/@{handle}"
+            )
+        else:
+            embed.set_author(
+                name=f"{display_name} (@{handle})", 
+                url=f"https://truthsocial.com/@{handle}"
+            )
+        
+        # Add post link
+        embed.add_field(
+            name="🔗 View Truth", 
+            value=f"[Open on Truth Social]({post_url})",
+            inline=False
+        )
+        
+        # Add post stats if available
+        replies = post.get('replies_count', 0)
+        reblogs = post.get('reblogs_count', 0) 
+        likes = post.get('favourites_count', 0)
+        
+        if any([replies, reblogs, likes]):
+            stats = []
+            if replies: stats.append(f"💬 {replies}")
+            if reblogs: stats.append(f"🔄 {reblogs}")
+            if likes: stats.append(f"❤️ {likes}")
+            
+            if stats:
+                embed.add_field(
+                    name="Stats", 
+                    value=" • ".join(stats),
+                    inline=False
+                )
+        
+        # Add media if present
+        media_attachments = post.get('media_attachments', [])
+        if media_attachments and len(media_attachments) > 0:
+            media = media_attachments[0]  # Use first media item
+            if media.get('url') and (media.get('type') == 'image' or 'image' in media.get('type', '')):
+                embed.set_image(url=media['url'])
+        
+        # Set footer
+        embed.set_footer(
+            text="Truth Social Tracker", 
+            icon_url="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTGQlZkYBgEbptbNjrWpJjzqEhPfY8ugpIsXA&s"
+        )
+        
+        return embed
+    except Exception as e:
+        logger.error(f"Error creating Truth embed: {e}")
+        # Fallback simple embed if we encounter an error
+        return discord.Embed(
+            title="New Truth Social Post",
+            description="Error creating rich embed. View the post on Truth Social.",
+            color=0xE12626
+        )

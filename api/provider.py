@@ -10,7 +10,7 @@ from utils.logger import get_logger
 
 logger = get_logger()
 
-class ServiceProvider:
+class ApiServiceProvider:
     """Provider for all API services"""
     
     def __init__(self, bot=None):
