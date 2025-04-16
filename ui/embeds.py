@@ -3,6 +3,7 @@ Discord embed creation for different types of data
 """
 import discord
 import asyncio
+import dateutil.parser as date_parse
 import re
 from datetime import datetime
 from typing import Dict
@@ -171,9 +172,12 @@ def update_ath_in_embed(embed_dict, ath_price, ath_timestamp, current_price, cur
                 ath_mcap = calculate_ath_marketcap(ath_price, current_price, current_fdv)
                 
                 if ath_mcap:
-                    # Format time ago
-                    time_display = relative_time(ath_timestamp, include_ago=True)
-                    field["value"] = f"**`${format_value(ath_mcap)}` [{time_display}]**"
+                    if current_fdv > ath_mcap:
+                        field["value"] = f"**`${format_value(current_fdv)}` [Now!]**"
+                    else:
+                        # Format time ago
+                        time_display = relative_time(ath_timestamp, include_ago=True)
+                        field["value"] = f"**`${format_value(ath_mcap)}` [{time_display}]**"
                 else:
                     field["value"] = "**`N/A`**"
             else:
@@ -208,7 +212,7 @@ def update_first_call_in_embed(embed_dict, first_call_data, current_price, curre
             first_call_text = f"⚡ You're First! @ ${format_value(initial_fdv)}"
         else:
             if price_multiple >= 2:
-                first_call_text = f"🏆 {user_name} @ ${format_value(initial_fdv)} ({int(price_multiple)}x)"
+                first_call_text = f"🏆 {user_name} @ ${format_value(initial_fdv)} 🚀{int(price_multiple)}x"
             else:
                 first_call_text = f"🏆 {user_name} @ ${format_value(initial_fdv)}"
         
@@ -945,14 +949,9 @@ def create_truth_embed(post: Dict) -> discord.Embed:
         # Create timestamp
         if created_at:
             try:
-                if isinstance(created_at, str):
-                    timestamp = datetime.fromisoformat(created_at.replace('Z', '+00:00'))
-                else:
-                    timestamp = created_at
-            except Exception:
-                timestamp = datetime.now()
-        else:
-            timestamp = datetime.now()
+                embed.timestamp = date_parse.parse(created_at)
+            except:
+                embed.timestamp = datetime.now()
         
         # Create post URL
         post_url = truth_service.get_post_url(handle, post_id)
@@ -960,8 +959,7 @@ def create_truth_embed(post: Dict) -> discord.Embed:
         # Create embed with Truth Social colors
         embed = discord.Embed(
             description=content,
-            color=0xE12626,  # Truth Social red
-            timestamp=timestamp
+            color=0xE12626
         )
         
         # Check for verified status and Trump's account
@@ -973,23 +971,14 @@ def create_truth_embed(post: Dict) -> discord.Embed:
             avatar = TRUMP_IMAGE_URL
         
         # Create display name with verification
-        display_name = name
-        if is_verified:
-            # Use custom emoji if it exists and is not an empty string, otherwise use simple checkmark
-            display_name += f" {VERIFIED_EMOJI}" if VERIFIED_EMOJI else " 💹"
+        name_with_verification = f"{name} {VERIFIED_EMOJI if is_verified and VERIFIED_EMOJI else '✓' if is_verified else ''}"
         
         # Set author with handle and profile pic
-        if avatar:
-            embed.set_author(
-                name=f"{display_name} (@{handle})", 
-                icon_url=avatar, 
-                url=f"https://truthsocial.com/@{handle}"
-            )
-        else:
-            embed.set_author(
-                name=f"{display_name} (@{handle})", 
-                url=f"https://truthsocial.com/@{handle}"
-            )
+        embed.set_author(
+            name=f"{name_with_verification} (@{handle})", 
+            icon_url=avatar, 
+            url=f"https://truthsocial.com/@{handle}"
+        )
         
         # Add post link
         embed.add_field(
@@ -1005,9 +994,9 @@ def create_truth_embed(post: Dict) -> discord.Embed:
         
         if any([replies, reblogs, likes]):
             stats = []
-            if replies: stats.append(f"💬 {replies}")
-            if reblogs: stats.append(f"🔄 {reblogs}")
-            if likes: stats.append(f"❤️ {likes}")
+            if replies: stats.append(f"💬 {format_value(replies)}")
+            if reblogs: stats.append(f"🔄 {format_value(reblogs)}")
+            if likes: stats.append(f"❤️ {format_value(likes)}")
             
             if stats:
                 embed.add_field(
@@ -1038,3 +1027,162 @@ def create_truth_embed(post: Dict) -> discord.Embed:
             description="Error creating rich embed. View the post on Truth Social.",
             color=0xE12626
         )
+
+# def create_truth_embed(post: Dict) -> discord.Embed:
+#     """Create a Discord embed for a Truth Social post"""
+#     try:
+#         # Extract basic post info
+#         post_id = post.get('id', '')
+#         content = clean_html(post.get('content', '*[No content]*'))
+#         created_at = post.get('created_at', '')
+#         media_attachments = post.get('media_attachments', [])
+        
+#         # Extract account info
+#         account = post.get('account', {})
+#         display_name = account.get('display_name', 'Unknown')
+#         username = account.get('username', 'unknown')
+#         verified = account.get('verified', False)
+#         avatar_url = account.get('avatar', DEFAULT_AVATAR)
+        
+#         # Special case for Trump
+#         if username.lower() == 'realdonaldtrump':
+#             avatar_url = TRUMP_IMAGE_URL or avatar_url
+        
+#         # Create embed with Truth Social colors
+#         embed = discord.Embed(
+#             description=content,
+#             color=0xE12626  # Truth Social red
+#         )
+        
+#         # Set post timestamp
+#         if created_at:
+#             try:
+#                 embed.timestamp = date_parse.parse(created_at)
+#             except:
+#                 # Skip timestamp if parsing fails
+#                 pass
+        
+#         # Add verification badge if verified
+#         name_with_verification = f"{display_name} {VERIFIED_EMOJI if verified and VERIFIED_EMOJI else '✓' if verified else ''}"
+        
+#         # Set author with proper attribution
+#         embed.set_author(
+#             name=f"{name_with_verification} (@{username})",
+#             url=f"https://truthsocial.com/@{username}",
+#             icon_url=avatar_url
+#         )
+        
+#         # Add post link
+#         post_url = f"https://truthsocial.com/@{username}/posts/{post_id}"
+#         embed.add_field(
+#             name="🔗 View Truth",
+#             value=f"[Open on Truth Social]({post_url})",
+#             inline=False
+#         )
+        
+#         # Add media attachments if any (first one only for embed)
+#         if media_attachments and len(media_attachments) > 0:
+#             media = media_attachments[0]
+#             if media.get('type') == 'image':
+#                 # Process image URL to get higher resolution version
+#                 image_url = (media.get('url', ''))
+#                 if image_url:
+#                     embed.set_image(url=image_url)
+#             elif media.get('type') == 'video':
+#                 # Videos can't be embedded directly, so we'll use the preview image
+#                 if media.get('preview_url'):
+#                     embed.set_image(url=(media.get('preview_url', '')))
+#                     embed.add_field(
+#                         name="📹 Video",
+#                         value=f"*This post contains a video - click the link above to view it*",
+#                         inline=False
+#                     )
+           
+#             # Mention if there are more attachments
+#             if len(media_attachments) > 1:
+#                 embed.add_field(
+#                     name="Additional Media",
+#                     value=f"*+{len(media_attachments)-1} more attachment(s) will follow*",
+#                     inline=False
+#                 )
+        
+#         # Add post metrics
+#         reply_count = post.get('replies_count', 0)
+#         reblogs_count = post.get('reblogs_count', 0)
+#         faves_count = post.get('favourites_count', 0)
+        
+#         if reply_count > 0 or reblogs_count > 0 or faves_count > 0:
+#             metrics = []
+#             if reply_count > 0:
+#                 metrics.append(f"💬 {format_value(reply_count)}")
+#             if reblogs_count > 0:
+#                 metrics.append(f"🔄 {format_value(reblogs_count)}")
+#             if faves_count > 0:
+#                 metrics.append(f"❤️ {format_value(faves_count)}")
+                
+#             embed.add_field(
+#                 name="Stats",
+#                 value=" • ".join(metrics),
+#                 inline=False
+#             )
+        
+#         if reply_count > 0 or reblogs_count > 0 or faves_count > 0:
+#             metrics = []
+#             if reply_count > 0:
+#                 metrics.append(f"💬 {format_value(reply_count)}")
+#             if reblogs_count > 0:
+#                 metrics.append(f"🔄 {format_value(reblogs_count)}")
+#             if faves_count > 0:
+#                 metrics.append(f"❤️ {format_value(faves_count)}")
+                
+#             embed.add_field(
+#                 name="Stats",
+#                 value=" • ".join(metrics),
+#                 inline=False
+#             )
+        
+#         # Handle reply, quote, and reblog info
+#         if post.get('in_reply_to_id'):
+#             reply_to = post.get('in_reply_to', {})
+#             reply_author = reply_to.get('account', {}).get('username', 'someone')
+#             embed.add_field(
+#                 name="",
+#                 value=f"*Replying to @{reply_author}*",
+#                 inline=False
+#             )
+#         elif post.get('quote_id'):
+#             quote = post.get('quote', {})
+#             quote_author = quote.get('account', {}).get('username', 'someone')
+#             embed.add_field(
+#                 name="",
+#                 value=f"*Quoting @{quote_author}*",
+#                 inline=False
+#             )
+#         elif post.get('reblog'):
+#             reblog = post.get('reblog', {})
+#             reblog_author = reblog.get('account', {}).get('username', 'someone')
+#             reblog_content = clean_html(reblog.get('content', ''))
+            
+#             if reblog_content:
+#                 embed.add_field(
+#                     name=f"🔄 Retruth from @{reblog_author}",
+#                     value=f"{reblog_content[:250]}{'...' if len(reblog_content) > 250 else ''}",
+#                     inline=False
+#                 )
+        
+#         # Set footer with Truth Social branding
+#         embed.set_footer(
+#             text="Truth Social",
+#             icon_url="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTGQlZkYBgEbptbNjrWpJjzqEhPfY8ugpIsXA&s"
+#         )
+        
+#         return embed
+        
+#     except Exception as e:
+#         logger.error(f"Error creating embed: {e}")
+#         # Fallback simple embed if we encounter an error
+#         return discord.Embed(
+#             title="New Truth Social Post",
+#             description=clean_html(post.get('content', "Error creating rich embed. View the post on Truth Social.")),
+#             color=0xE12626  # Truth Social red
+#         )

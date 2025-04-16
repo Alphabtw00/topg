@@ -20,7 +20,7 @@ class CopyAddressView(discord.ui.View):
     @discord.ui.button(label="📋", style=discord.ButtonStyle.grey, custom_id="copy_address", row=0)
     async def copy_address(self, interaction: discord.Interaction, _: discord.ui.Button):
         """Button handler to copy address to clipboard"""
-        await interaction.response.send_message(self.address, ephemeral=True)
+        await interaction.response.send_message(f"```\n{self.address}\n```", ephemeral=True)
         await asyncio.sleep(30)
         await interaction.delete_original_response()
 

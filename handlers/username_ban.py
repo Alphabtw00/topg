@@ -7,11 +7,11 @@ from datetime import datetime
 from utils.logger import get_logger
 from config import (
     BAN_KEYWORDS,
-    COMPILED_BAN_REGEXES,  # Note the double underscore in variable name
+    COMPILED_BAN_REGEXES,
     USERNAME_BAN_LOG_CHANNEL,
     USERNAME_BAN_SERVER_ID,
-    BAN_FUNNY_REASONS,  # New config for funny ban reasons
-    BAN_GIF_URL  # New config for ban GIF
+    BAN_FUNNY_REASONS,
+    BAN_GIF_URL
 )
 import random
 
@@ -76,7 +76,7 @@ async def check_username(member):
     logger.debug(f"All name checks passed for {member.id} ({str(member)})")
     return False, None
 
-async def ban_user(bot, member, reason):
+async def ban_user(bot, member, reason, delete_days=1):
     """
     Ban a user and log the action
     
@@ -84,6 +84,7 @@ async def ban_user(bot, member, reason):
         bot: Discord bot instance
         member: Discord member to ban
         reason: Reason for the ban
+        delete_days: Number of days of messages to delete (default: 1)
         
     Returns:
         bool: Success or failure
@@ -122,9 +123,12 @@ async def ban_user(bot, member, reason):
             'avatar_url': str(member.avatar.url) if member.avatar else None
         }
         
+        # Ensure delete_days is within Discord's limits (0-7)
+        delete_days = max(0, min(7, delete_days))
+        
         # Only log once with all necessary info
         safe_display_name = sanitize_for_logging(member.display_name)
-        logger.warning(f"Banning user {member.id} | Username: {str(member)} | Display Name: {safe_display_name} | Reason: {reason}")
+        logger.warning(f"Banning user {member.id} | Username: {str(member)} | Display Name: {safe_display_name} | Reason: {reason} | Delete Messages: {delete_days} days")
         
         # Try to send DM to the user before banning
         try:
@@ -150,10 +154,11 @@ async def ban_user(bot, member, reason):
         
         # Ban the user
         ban_reason = f"Automatic ban: {reason}"
-        await guild.ban(member, reason=ban_reason, delete_message_days=1)
+        await guild.ban(member, reason=ban_reason, delete_message_days=delete_days)
         
         # Send log message if channel is configured
         if USERNAME_BAN_LOG_CHANNEL:
+            user_info['delete_days'] = delete_days  # Add delete_days to log
             log_result = await send_ban_log(bot, guild.id, user_info, reason)
             logger.debug(f"Ban log message sent: {log_result}")
             
@@ -198,6 +203,11 @@ async def send_ban_log(bot, guild_id, user_info, reason):
         # Add user info
         embed.add_field(name="User ID", value=user_info['id'], inline=True)
         embed.add_field(name="Reason", value=reason, inline=False)
+        
+        # Add delete_days info if available
+        if 'delete_days' in user_info:
+            days_text = f"{user_info['delete_days']} day(s)" if user_info['delete_days'] > 0 else "None"
+            embed.add_field(name="Message History Deleted", value=days_text, inline=True)
         
         # Set author with user icon
         if user_info.get('avatar_url'):

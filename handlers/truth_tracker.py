@@ -122,6 +122,8 @@ async def tracking_loop(bot):
                 dynamic_interval = truth_service.get_optimized_interval()
                 is_active = truth_service.is_active_hours()
                 
+                logger.info(f"Polling Truth Social at {last_check_time.strftime('%Y-%m-%d %H:%M:%S')} | " 
+                           f"Interval: {dynamic_interval}s | Active hours: {is_active}")
                 # Process each guild independently
                 tasks = []
                 for guild_data in guilds:

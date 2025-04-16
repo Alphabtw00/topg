@@ -75,6 +75,7 @@ class WebsiteChecker(commands.Cog):
                 await interaction.followup.send(embed=embed, view=view)
             
             # Log usage
+            self.bot.record_command_usage("health")
             logger.info(f"Website analysis called by {interaction.user} for {website_url} (cached: {result.get('cached', False)})")
             
         except asyncio.TimeoutError:

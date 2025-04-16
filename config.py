@@ -11,9 +11,9 @@ from utils.formatters import parse_channel_colors
 # Load environment variables
 load_dotenv()
 
-# ==============================================
+# ========================================================================================================================================================================================
 # Discord Bot Configuration
-# ==============================================
+# ========================================================================================================================================================================================
 # Core settings
 TOKEN = os.getenv("DISCORD_BOT_TOKEN")
 if not TOKEN:
@@ -27,9 +27,11 @@ INTENTS.typing = False
 INTENTS.presences = False
 INTENTS.integrations = False
 
-# ==============================================
+ADMIN_USER_IDS = {int(id.strip()) for id in os.getenv("ADMIN_USER_IDS", "").split(",") if id.strip().isdigit()}
+
+# ========================================================================================================================================================================================
 # Message Forwarding Configuration
-# ==============================================
+# ========================================================================================================================================================================================
 # Guild settings
 FORWARD_GUILD_IDS = {int(id.strip()) for id in os.getenv("FORWARD_GUILD_IDS", "").split(",") if id.strip().isdigit()}
 PROCESS_CRYPTO_IN_FORWARDS = os.getenv("PROCESS_CRYPTO_IN_FORWARDS", "True").lower() in ("true", "1", "yes")
@@ -45,9 +47,9 @@ USER_INPUT_CHANNEL_IDS = {int(id.strip()) for id in os.getenv("USER_INPUT_CHANNE
 USER_OUTPUT_CHANNEL_IDS = {int(id.strip()) for id in os.getenv("USER_OUTPUT_CHANNEL_IDS", "").split(",") if id.strip().isdigit()}
 FORWARD_USER_IDS = {int(id.strip()) for id in os.getenv("FORWARD_USER_IDS", "").split(",") if id.strip().isdigit()}
 
-# ==============================================
+# ========================================================================================================================================================================================
 # API Keys & External Services
-# ==============================================
+# ========================================================================================================================================================================================
 # GitHub API
 GITHUB_TOKEN = os.getenv("GITHUB_TOKEN")
 if not GITHUB_TOKEN:
@@ -63,25 +65,25 @@ VIRUS_TOTAL_API_KEY = os.getenv("VIRUS_TOTAL_API_KEY")
 if not VIRUS_TOTAL_API_KEY:
     raise ValueError("VIRUS_TOTAL_API_KEY not found in environment")
 
-# ==============================================
+# ========================================================================================================================================================================================
 # API Endpoints
-# ==============================================
+# ========================================================================================================================================================================================
 DEXSCREENER_BASE_URL = "https://api.dexscreener.com"
 TWITTER_SEARCH_URL = "https://x.com/search?q={query}&f=live"
 MOBULA_ATH_URL = "https://production-api.mobula.io/api/1/market/history/pair?asset={contact_address}&blockchain={blockchain}&period={period}"
 
-# ==============================================
+# ========================================================================================================================================================================================
 # Trading Platforms
-# ==============================================
+# ========================================================================================================================================================================================
 TRADING_PLATFORMS = {
     "Axiom": "https://axiom.trade/meme/{pair}",
     "Photon": "https://photon-sol.tinyastro.io/en/lp/{pair}",
     "Neo BullX": "https://neo.bullx.io/terminal?chainId=1399811149&address={address}",
 }
 
-# ==============================================
+# ========================================================================================================================================================================================
 # Database Configuration
-# ==============================================
+# ========================================================================================================================================================================================
 DB_HOST = os.getenv("DB_HOST", "localhost")
 DB_PORT = int(os.getenv("DB_PORT", "3306"))
 DB_USER = os.getenv("DB_USER", "root")
@@ -90,9 +92,9 @@ DB_NAME = os.getenv("DB_NAME", "crypto_bot")
 DB_POOL_MIN_SIZE = int(os.getenv("DB_POOL_MIN_SIZE", "1"))
 DB_POOL_MAX_SIZE = int(os.getenv("DB_POOL_MAX_SIZE", "10"))
 
-# ==============================================
+# ========================================================================================================================================================================================
 # Performance & Limits
-# ==============================================
+# ========================================================================================================================================================================================
 # Network settings
 HTTP_TIMEOUT = 15  # seconds
 CONNECT_TIMEOUT = 5  # seconds
@@ -160,7 +162,7 @@ if not TRUTH_ACCOUNTS and os.getenv("TRUTHSOCIAL_USERNAME") and os.getenv("TRUTH
     })
 
 # Tracking settings
-TRUTH_DEFAULT_INTERVAL = 5
+TRUTH_DEFAULT_INTERVAL = 60
 TRUTH_MIN_INTERVAL = 1
 TRUTH_MAX_INTERVAL = 60
 TRUTH_NIGHT_INTERVAL = 60
@@ -207,4 +209,4 @@ BAN_FUNNY_REASONS = [
 ]
 
 # Ban GIF URL
-BAN_GIF_URL = "https://i.imgur.com/sGySZT3.gif"
+BAN_GIF_URL = "https://i.imgur.com/sGySZT3.gif" 
