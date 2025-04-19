@@ -1,0 +1,26 @@
+2025-04-20 04:29:36,396 - INFO - Starting bot...
+2025-04-20 04:29:37,306 - INFO - API client initialized
+2025-04-20 04:29:37,306 - INFO - WebsiteAnalyzer initialized with concurrency limit of 15
+2025-04-20 04:29:37,307 - INFO - All API services initialized
+2025-04-20 04:29:37,307 - INFO - Services provider initialized
+2025-04-20 04:29:37,467 - INFO - Database connection pool established: size=1-10
+2025-04-20 04:29:37,468 - INFO - Database connection successful
+2025-04-20 04:29:37,487 - INFO - WebsiteChecker cog initialized
+2025-04-20 04:29:37,500 - INFO - Discord Events Registered | Username Ban Server ID: 1313758082974879774
+2025-04-20 04:29:37,500 - INFO - Memory monitor started (threshold: 300MB, interval: 3600s)
+2025-04-20 04:29:38,886 - INFO - Successfully synced 4 command(s)
+2025-04-20 04:29:41,933 - INFO - Logged in as TOPG#4967 (ID: 1340722186100408340)
+2025-04-20 04:29:41,934 - INFO - Bot connected to 4 server(s)
+2025-04-20 04:29:41,934 - INFO - Echo bot message forwarding: 1 bots from 11 channels to 1 channels
+2025-04-20 04:29:41,934 - INFO - Dani message forwarding: 1 users from 2 channels to 1 channels
+2025-04-20 04:30:15,355 - INFO - GitHub analysis called by alphabtw_ for https://github.com/BioTech-Ai/BioTechAi (cached: False)
+2025-04-20 04:36:01,212 - INFO - GitHub analysis called by alphabtw_ for https://github.com/Alphabtw00/TOPG (cached: False)
+2025-04-20 05:06:09,198 - INFO - Bot is shutting down...
+2025-04-20 05:06:09,199 - INFO - API client closed
+2025-04-20 05:06:09,199 - INFO - Services closed successfully
+2025-04-20 05:06:09,200 - INFO - Background task 'metrics_cleanup' canceled
+2025-04-20 05:06:09,200 - INFO - Background task 'memory_monitor' canceled
+2025-04-20 05:06:09,200 - INFO - Background task 'heartbeat_monitor' canceled
+2025-04-20 05:06:09,200 - INFO - Background task 'metrics_report' canceled
+2025-04-20 05:06:09,201 - INFO - Database connection pool closed successfully
+2025-04-20 05:06:09,204 - INFO - Bot stopped by user

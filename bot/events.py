@@ -66,6 +66,10 @@ async def on_message(message: discord.Message):
     if message.author.bot:
         return
     
+    # if await should_send_fudded_reply(message):
+    #     from config import FIGHT_BACK_GIF_URL
+    #     await message.reply(f"{FIGHT_BACK_GIF_URL}")
+    
     if not await should_process_channel(message.guild.id, message.channel.id):
         return
         
@@ -75,6 +79,26 @@ async def on_message(message: discord.Message):
         return
     
     asyncio.create_task(process_message_with_timeout(message))
+
+
+async def should_send_fudded_reply(message: discord.Message) -> bool:
+    """
+    Check if we should reply with the fudded message
+    
+    Args:
+        message: The Discord message
+    
+    Returns:
+        bool: True if we should reply with the fudded message
+    """
+    # Replace these with the actual user IDs and channel IDs you want to target
+    TARGET_USER_IDS = [581470835898974208]  # Add the user IDs you want to target
+    TARGET_CHANNEL_IDS = [1330987514059554907]  # Add the channel IDs you want to monitor
+    
+    return (
+        message.author.id in TARGET_USER_IDS and 
+        message.channel.id in TARGET_CHANNEL_IDS
+    )
 
 async def on_member_join(member):
     """

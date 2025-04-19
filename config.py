@@ -210,3 +210,4 @@ BAN_FUNNY_REASONS = [
 
 # Ban GIF URL
 BAN_GIF_URL = "https://i.imgur.com/sGySZT3.gif" 
+FIGHT_BACK_GIF_URL = "https://i.imgur.com/3fJo5ne.gif"

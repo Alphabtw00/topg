@@ -97,14 +97,14 @@ class CryptoBot(commands.Bot):
         self.start_background_task(self.monitor_memory_usage(), "memory_monitor")
         self.start_background_task(self.heartbeat_monitor(), "heartbeat_monitor")
         self.start_background_task(self.periodic_metrics_report(), "metrics_report")
-        self.start_background_task(start_tracking(self), "truth_tracker")
+        # self.start_background_task(start_tracking(self), "truth_tracker")
 
         # Register commands
         await self.add_cog(Health(self))
         await self.add_cog(GithubChecker(self))
         await self.add_cog(SettingsCommands(self))
         await self.add_cog(WebsiteChecker(self))
-        await self.add_cog(TruthCommands(self))
+        # await self.add_cog(TruthCommands(self))
 
         from bot.events import setup_events  # Adjust import based on your project structure
         await setup_events(self)

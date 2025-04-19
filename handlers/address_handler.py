@@ -173,7 +173,7 @@ async def process_token_entry(message: discord.Message, entry: dict, address: st
             )
 
         # Use a short timeout for auxiliary data to keep responses fast
-        completed, pending = await asyncio.wait(tasks.values())
+        completed, pending = await asyncio.wait(tasks.values(), timeout=5)
         
         # Cancel any pending tasks to avoid resource leaks
         for task in pending:
