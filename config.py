@@ -70,7 +70,7 @@ if not VIRUS_TOTAL_API_KEY:
 # ========================================================================================================================================================================================
 DEXSCREENER_BASE_URL = "https://api.dexscreener.com"
 TWITTER_SEARCH_URL = "https://x.com/search?q={query}&f=live"
-MOBULA_ATH_URL = "https://production-api.mobula.io/api/1/market/history/pair?asset={contact_address}&blockchain={blockchain}&period={period}"
+MOBULA_ATH_URL = "https://api.mobula.io/api/1/market/history/pair?asset={contact_address}&blockchain={blockchain}&period={period}&amount=100000"
 
 # ========================================================================================================================================================================================
 # Trading Platforms

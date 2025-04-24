@@ -14,6 +14,7 @@ from commands.github_checker import GithubChecker
 from commands.settings import SettingsCommands
 from commands.truth_commands import TruthCommands
 from commands.website_info import WebsiteChecker
+from commands.ban import BanCommand
 from handlers.mysql_handler import setup_db_pool, close_db_pool
 from utils.formatters import relative_time
 from handlers.truth_tracker import start_tracking
@@ -97,14 +98,15 @@ class CryptoBot(commands.Bot):
         self.start_background_task(self.monitor_memory_usage(), "memory_monitor")
         self.start_background_task(self.heartbeat_monitor(), "heartbeat_monitor")
         self.start_background_task(self.periodic_metrics_report(), "metrics_report")
-        # self.start_background_task(start_tracking(self), "truth_tracker")
+        self.start_background_task(start_tracking(self), "truth_tracker")
 
         # Register commands
         await self.add_cog(Health(self))
         await self.add_cog(GithubChecker(self))
         await self.add_cog(SettingsCommands(self))
         await self.add_cog(WebsiteChecker(self))
-        # await self.add_cog(TruthCommands(self))
+        await self.add_cog(BanCommand(self))
+        await self.add_cog(TruthCommands(self))
 
         from bot.events import setup_events  # Adjust import based on your project structure
         await setup_events(self)

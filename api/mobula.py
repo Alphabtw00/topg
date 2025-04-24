@@ -36,24 +36,22 @@ class MobulaService:
             token_age = current_time - (creation_timestamp or 0)
             
             # Select period granularity based on token age - optimized for accuracy
-            if token_age < 1 * 60 * 60 * 1000:  #1 hour below
+            if token_age < 30 * 60 * 1000:  #30 mins below
+                period = "1s"
+            if token_age < 2 * 60 * 60 * 1000:  #1 hour below
                 period = "1min"
             elif token_age < 5 * 60 * 60 * 1000:   #5 hour below
                 period = "5min"
-            elif token_age < 15 * 60 * 60 * 1000:  # 15 hour below
+            elif token_age < 24 * 60 * 60 * 1000:  # 1 day below
                 period = "15min"
             elif token_age < 3 * 24 * 60 * 60 * 1000:  # 3 days below
                 period = "1h"
             elif token_age < 7 * 24 * 60 * 60 * 1000:  # 1 week below
                 period = "2h"
-            elif token_age < 14 * 24 * 60 * 60 * 1000:  # 2 week below
+            elif token_age < 30 * 24 * 60 * 60 * 1000:  # 30 days below
                 period = "4h"
-            elif token_age < 70 * 24 * 60 * 60 * 1000:  # 70 days below (10 weeks)
-                period = "1d"
-            elif token_age < 365 * 24 * 60 * 60 * 1000:  # 1 year below
-                period = "7d"
             else:  # Older than 1 year
-                period = "30d"
+                period = "1d"
 
             url = MOBULA_ATH_URL.format(contact_address=address, period=period, blockchain=chain_id)
 
