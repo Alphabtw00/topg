@@ -17,7 +17,7 @@ class BanCommand(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
    
-    @app_commands.command(name="ban", description="Ban a user in this server")
+    @app_commands.command(name="ban", description="Ban a user in this server with funny reply")
     @app_commands.guild_only()
     @app_commands.default_permissions(ban_members=True)
     @app_commands.checks.cooldown(1, 5)

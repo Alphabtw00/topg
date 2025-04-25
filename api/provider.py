@@ -6,6 +6,7 @@ from api.dexscreener import DexScreenerService
 from api.mobula import MobulaService
 from api.github_analyzer import GitHubAnalyzer
 from api.website_analyzer import WebsiteAnalyzer
+from api.truthsocial import TruthSocialService
 from utils.logger import get_logger
 
 logger = get_logger()
@@ -21,6 +22,7 @@ class ApiServiceProvider:
         self.mobula = None
         self.github_analyzer = None
         self.website_analyzer = None
+        self.truthsocial = None
     
     async def setup(self):
         """Set up all services"""
@@ -34,6 +36,8 @@ class ApiServiceProvider:
         self.mobula = MobulaService(self.api_client)
         self.github_analyzer = GitHubAnalyzer(self.api_client)
         self.website_analyzer = WebsiteAnalyzer(self.api_client)
+        self.truthsocial = TruthSocialService(self.api_client)
+        await self.truthsocial.setup()
         logger.info("All API services initialized")
         
         return self

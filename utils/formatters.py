@@ -127,6 +127,16 @@ def get_color_from_change(change: float) -> int:
     else:
         return 0x0000FF  # Blue
 
+def clean_html(html_content: str) -> str:
+    """Remove HTML tags from content"""
+    if not html_content:
+        return ""
+    
+    # Simple regex-based HTML tag removal
+    import re
+    clean_text = re.sub(r'<[^>]+>', '', html_content)
+    return clean_text.strip()
+
 def create_progress_bar(percentage: float, max_bars: int = 10) -> str:
     """
     Create a progress bar with appropriate color indicator

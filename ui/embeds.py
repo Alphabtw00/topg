@@ -10,9 +10,8 @@ from typing import Dict
 from config import TWITTER_SEARCH_URL, TRADING_PLATFORMS, VERIFIED_EMOJI, DEFAULT_AVATAR, TRUMP_IMAGE_URL
 from utils.formatters import (
     format_value, format_date, format_size, 
-    relative_time, get_color_from_change, score_bar
+    relative_time, get_color_from_change, score_bar, clean_html
 )
-import service.truth_service as truth_service
 from utils.logger import get_logger
 
 
@@ -628,7 +627,9 @@ def _create_website_embed(result, interaction, start_time):
     # Set favicon as thumbnail (will be replaced if we have the actual file)
     favicon_url = result.get("favicon_url")
     if favicon_url:
-        embed.set_thumbnail(url=favicon_url)
+        if len(favicon_url) < 2000 and favicon_url.startswith(('http://', 'https://')):
+            embed.set_thumbnail(url=favicon_url)
+
     
     # Overall score with visual bar
     embed.add_field(
@@ -940,93 +941,145 @@ async def create_health_embed(bot, user):
 def create_truth_embed(post: Dict) -> discord.Embed:
     """Create an embed for a Truth Social post"""
     try:
-        # Extract data
-        handle, name, avatar = truth_service.get_profile_info(post)
-        content = truth_service.extract_text_content(post)
+        # Extract basic post info
         post_id = post.get('id', '')
-        created_at = post.get('created_at')
+        content = clean_html(post.get('content', '*[No content]*'))
+        created_at = post.get('created_at', '')
+        media_attachments = post.get('media_attachments', [])
         
-        # Create timestamp
-        if created_at:
-            try:
-                embed.timestamp = date_parse.parse(created_at)
-            except:
-                embed.timestamp = datetime.now()
-        
-        # Create post URL
-        post_url = truth_service.get_post_url(handle, post_id)
+        # Extract account info
+        account = post.get('account', {})
+        display_name = account.get('display_name', 'Unknown')
+        username = account.get('username', 'unknown')
+        verified = account.get('verified', False)
+        avatar_url = account.get('avatar', DEFAULT_AVATAR)
         
         # Create embed with Truth Social colors
         embed = discord.Embed(
             description=content,
-            color=0xE12626
+            color=0xE12626  # Truth Social red
         )
         
-        # Check for verified status and Trump's account
-        is_trump = handle.lower() == "realdonaldtrump"
-        is_verified = post.get('account', {}).get('verified', False)
+        # Set post timestamp
+        if created_at:
+            try:
+                from dateutil import parser
+                embed.timestamp = parser.parse(created_at)
+            except Exception:
+                # Skip timestamp if parsing fails
+                embed.timestamp = datetime.now()
         
-        # Determine avatar
-        if is_trump:
-            avatar = TRUMP_IMAGE_URL
+        # Add verification badge if verified
+        name_with_verification = f"{display_name} {VERIFIED_EMOJI if verified and VERIFIED_EMOJI else '✓' if verified else ''}"
         
-        # Create display name with verification
-        name_with_verification = f"{name} {VERIFIED_EMOJI if is_verified and VERIFIED_EMOJI else '✓' if is_verified else ''}"
-        
-        # Set author with handle and profile pic
+        # Set author with proper attribution
         embed.set_author(
-            name=f"{name_with_verification} (@{handle})", 
-            icon_url=avatar, 
-            url=f"https://truthsocial.com/@{handle}"
+            name=f"{name_with_verification} (@{username})",
+            url=f"https://truthsocial.com/@{username}",
+            icon_url=avatar_url
         )
         
         # Add post link
+        post_url = f"https://truthsocial.com/@{username}/posts/{post_id}"
         embed.add_field(
-            name="🔗 View Truth", 
+            name="🔗 View Truth",
             value=f"[Open on Truth Social]({post_url})",
             inline=False
         )
         
-        # Add post stats if available
-        replies = post.get('replies_count', 0)
-        reblogs = post.get('reblogs_count', 0) 
-        likes = post.get('favourites_count', 0)
-        
-        if any([replies, reblogs, likes]):
-            stats = []
-            if replies: stats.append(f"💬 {format_value(replies)}")
-            if reblogs: stats.append(f"🔄 {format_value(reblogs)}")
-            if likes: stats.append(f"❤️ {format_value(likes)}")
-            
-            if stats:
+        # Add media attachments if any (first one only for embed)
+        if media_attachments and len(media_attachments) > 0:
+            media = media_attachments[0]
+            if media.get('type') == 'image':
+                # Process image URL to get higher resolution version
+                image_url = (media.get('url', ''))
+                if image_url:
+                    embed.set_image(url=image_url)
+            elif media.get('type') == 'video':
+                # Videos can't be embedded directly, so we'll use the preview image
+                if media.get('preview_url'):
+                    embed.set_image(url=(media.get('preview_url', '')))
+                    embed.add_field(
+                        name="📹 Video",
+                        value=f"*This post contains a video - click the link above to view it*",
+                        inline=False
+                    )
+           
+            # Mention if there are more attachments
+            if len(media_attachments) > 1:
                 embed.add_field(
-                    name="Stats", 
-                    value=" • ".join(stats),
+                    name="Additional Media",
+                    value=f"*+{len(media_attachments)-1} more attachment(s) will follow*",
                     inline=False
                 )
         
-        # Add media if present
-        media_attachments = post.get('media_attachments', [])
-        if media_attachments and len(media_attachments) > 0:
-            media = media_attachments[0]  # Use first media item
-            if media.get('url') and (media.get('type') == 'image' or 'image' in media.get('type', '')):
-                embed.set_image(url=media['url'])
+        # Add post metrics
+        reply_count = post.get('replies_count', 0)
+        reblogs_count = post.get('reblogs_count', 0)
+        faves_count = post.get('favourites_count', 0)
         
-        # Set footer
+        if reply_count > 0 or reblogs_count > 0 or faves_count > 0:
+            metrics = []
+            if reply_count > 0:
+                metrics.append(f"💬 {format_value(reply_count)}")
+            if reblogs_count > 0:
+                metrics.append(f"🔄 {format_value(reblogs_count)}")
+            if faves_count > 0:
+                metrics.append(f"❤️ {format_value(faves_count)}")
+                
+            embed.add_field(
+                name="Stats",
+                value=" • ".join(metrics),
+                inline=False
+            )
+        
+        # Handle reply, quote, and reblog info
+        if post.get('in_reply_to_id'):
+            reply_to = post.get('in_reply_to', {})
+            reply_author = reply_to.get('account', {}).get('username', 'someone')
+            embed.add_field(
+                name="",
+                value=f"*Replying to @{reply_author}*",
+                inline=False
+            )
+        elif post.get('quote_id'):
+            quote = post.get('quote', {})
+            quote_author = quote.get('account', {}).get('username', 'someone')
+            embed.add_field(
+                name="",
+                value=f"*Quoting @{quote_author}*",
+                inline=False
+            )
+        elif post.get('reblog'):
+            reblog = post.get('reblog', {})
+            reblog_author = reblog.get('account', {}).get('username', 'someone')
+            reblog_content = clean_html(reblog.get('content', ''))
+            
+            if reblog_content:
+                embed.add_field(
+                    name=f"🔄 Retruth from @{reblog_author}",
+                    value=f"{reblog_content[:250]}{'...' if len(reblog_content) > 250 else ''}",
+                    inline=False
+                )
+        
+        # Set footer with Truth Social branding
         embed.set_footer(
-            text="Truth Social Tracker", 
+            text="Truth Social",
             icon_url="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTGQlZkYBgEbptbNjrWpJjzqEhPfY8ugpIsXA&s"
         )
         
         return embed
+        
     except Exception as e:
-        logger.error(f"Error creating Truth embed: {e}")
+        logger.error(f"Error creating embed: {e}")
         # Fallback simple embed if we encounter an error
         return discord.Embed(
             title="New Truth Social Post",
-            description="Error creating rich embed. View the post on Truth Social.",
-            color=0xE12626
+            description=clean_html(post.get('content', "Error creating rich embed. View the post on Truth Social.")),
+            color=0xE12626  # Truth Social red
         )
+
+
 
 # def create_truth_embed(post: Dict) -> discord.Embed:
 #     """Create a Discord embed for a Truth Social post"""

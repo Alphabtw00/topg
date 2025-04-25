@@ -1,1 +1,565 @@
 2025-04-25 02:05:29,764 - INFO - Starting bot...
+2025-04-25 02:05:30,709 - INFO - API client initialized
+2025-04-25 02:05:30,710 - INFO - WebsiteAnalyzer initialized with concurrency limit of 15
+2025-04-25 02:05:30,710 - INFO - All API services initialized
+2025-04-25 02:05:30,710 - INFO - Services provider initialized
+2025-04-25 02:05:30,850 - INFO - Database connection pool established: size=1-10
+2025-04-25 02:05:30,851 - INFO - Database connection successful
+2025-04-25 02:05:30,872 - INFO - WebsiteChecker cog initialized
+2025-04-25 02:05:30,880 - INFO - Discord Events Registered | Username Ban Server ID: 1313758082974879774
+2025-04-25 02:05:30,881 - INFO - Memory monitor started (threshold: 300MB, interval: 3600s)
+2025-04-25 02:05:30,882 - INFO - Truth Social tracking started
+2025-04-25 02:05:31,777 - INFO - Successfully synced 6 command(s)
+2025-04-25 02:05:34,620 - INFO - Logged in as TOPG#4967 (ID: 1340722186100408340)
+2025-04-25 02:05:34,620 - INFO - Bot connected to 4 server(s)
+2025-04-25 02:05:34,620 - INFO - Echo bot message forwarding: 1 bots from 11 channels to 1 channels
+2025-04-25 02:05:34,620 - INFO - Dani message forwarding: 1 users from 2 channels to 1 channels
+2025-04-25 02:30:11,800 - INFO - Starting website analysis for https://www.investiqate.pro
+2025-04-25 02:30:11,802 - INFO - Parsed domain: www.investiqate.pro
+2025-04-25 02:30:11,802 - INFO - Generated cache key: www.investiqate.pro
+2025-04-25 02:30:11,802 - INFO - Cache miss for www.investiqate.pro, running analysis
+2025-04-25 02:30:11,907 - INFO - Successfully fetched main page for https://www.investiqate.pro
+2025-04-25 02:30:12,377 - INFO - Check 'security_headers' completed in 0.428s
+2025-04-25 02:30:12,459 - INFO - Successfully checked SSL certificate for www.investiqate.pro
+2025-04-25 02:30:12,460 - INFO - Check 'ssl_certificate' completed in 0.512s
+2025-04-25 02:30:12,463 - WARNING - API website returned status 404 for URL: https://www.investiqate.pro/favicon.ico
+2025-04-25 02:30:12,464 - INFO - Check 'favicon' completed in 0.088s
+2025-04-25 02:30:13,965 - INFO - Check 'virustotal' completed in 2.016s
+2025-04-25 02:30:18,306 - INFO - Successfully checked Wayback Machine for www.investiqate.pro
+2025-04-25 02:30:18,307 - INFO - Check 'wayback_history' completed in 6.357s
+2025-04-25 02:30:23,620 - INFO - Fetched fresh WHOIS data for investiqate.pro
+2025-04-25 02:30:23,621 - INFO - Check 'domain_info' completed in 11.675s
+2025-04-25 02:30:23,723 - INFO - Check summary: 14 succeeded, 0 failed
+2025-04-25 02:30:23,723 - INFO - Scores and risk assessment calculated in 0.000s
+2025-04-25 02:30:23,723 - INFO - Analysis of https://www.investiqate.pro completed in 11.92s
+2025-04-25 02:30:24,405 - INFO - Website analysis called by alphabtw_ for https://www.investiqate.pro (cached: False)
+2025-04-25 02:42:22,169 - WARNING - API mobula returned status 404 for URL: https://api.mobula.io/api/1/market/history/pair?asset=9F16p8va59m6dsrBpeRwHHPSkhZkgiT432AvekTDpump&blockchain=solana&period=1min&amount=100000
+2025-04-25 02:42:22,661 - WARNING - API mobula returned status 404 for URL: https://api.mobula.io/api/1/market/history/pair?asset=9F16p8va59m6dsrBpeRwHHPSkhZkgiT432AvekTDpump&blockchain=solana&period=1min&amount=100000
+2025-04-25 02:43:14,751 - INFO - Starting website analysis for http://theguardian-news.com/lifeandstyle/2025/apr/22/
+2025-04-25 02:43:14,751 - INFO - Parsed domain: theguardian-news.com
+2025-04-25 02:43:14,751 - INFO - Generated cache key: theguardian-news.com
+2025-04-25 02:43:14,751 - INFO - Cache miss for theguardian-news.com, running analysis
+2025-04-25 02:43:16,554 - INFO - Successfully fetched main page for http://theguardian-news.com/lifeandstyle/2025/apr/22/
+2025-04-25 02:43:17,095 - ERROR - website request error: data:image/x-icon;base64,AAABAAEAICAAAAEAIACoEAAAFgAAACgAAAAgAAAAQAAAAAEAIAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAWInAmBgKAOZYScE4WEnBOFiKQX/YikF/2EnBOFhJwThYCgDmWInAmAAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABXycHIGAoA5liKQX/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/2EnBOFgKAOZXycHIAAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAWEnA4BiKQX/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YCgDmQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAV8nByBhJwThYikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/4thRv+LYUb/nXlj/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YScE4V8nByAAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAFfJwcgYScE4WIpBf9iKQX/YikF/2IpBf9iKQX/nXlj/9rNxP//////8ezp/515Y/96Siv/YikF/4thRv//////2s3E/4thRv9iKQX/YikF/2IpBf9iKQX/YScE4V8nByAAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABXycHIGEnBOFiKQX/YikF/2IpBf9iKQX/ekor//Hs6f////////////Hs6f96Siv/YikF/2IpBf9iKQX/i2FG/////////////////9rNxP+LYUb/YikF/2IpBf9iKQX/YScE4V8nByAAAAABAAAAAQAAAAEAAAABAAAAAQAAAAFhJwThYikF/2IpBf9iKQX/YikF/66Rfv//////////////////////i2FG/2IpBf9iKQX/YikF/2IpBf+LYUb///////////////////////////+LYUb/YikF/2IpBf9iKQX/YScE4QAAAAEAAAABAAAAAQAAAAEAAAABYCgDmWIpBf9iKQX/YikF/2IpBf+ukX7//////////////////////9rNxP9iKQX/YikF/2IpBf9iKQX/YikF/4thRv///////////////////////////515Y/9iKQX/YikF/2IpBf9iKQX/YScDgAAAAAEAAAABAAAAAV8nByBiKQX/YikF/2IpBf9iKQX/rpF+////////////////////////////nXlj/2IpBf9iKQX/YikF/2IpBf9iKQX/i2FG////////////////////////////nXlj/2IpBf9iKQX/YikF/2IpBf9iKQX/XycHIAAAAAEAAAABYCgDmWIpBf9iKQX/YikF/2IpBf/x7On///////////////////////////9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf+LYUb///////////////////////////+deWP/YikF/2IpBf9iKQX/YikF/2IpBf9gKAOZAAAAAV8nByBhJwThYikF/2IpBf9iKQX/rpF+////////////////////////////2s3E/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/4thRv///////////////////////////515Y/9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf8AAAABYicCYGIpBf9iKQX/YikF/2IpBf/x7On////////////////////////////FsaP/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/i2FG////////////////////////////nXlj/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/2InAmBgKAOZYikF/2IpBf9iKQX/i2FG/////////////////////////////////66Rfv9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf+LYUb///////////////////////////+deWP/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YCgDmWEnBOFiKQX/YikF/2IpBf/FsaP/////////////////////////////////nXlj/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/4thRv///////////////////////////515Y/9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf9hJwThYScE4WIpBf9iKQX/YikF/8Wxo/////////////////////////////////+deWP/YikF/2IpBf9iKQX/YikF/2IpBf+LYUb/xbGj////////////////////////////2s3E/515Y/9iKQX/YikF/2IpBf9iKQX/YikF/2EnBOFiKQX/YikF/2IpBf9iKQX/2s3E/////////////////////////////////515Y/9iKQX/YikF/2IpBf9iKQX/YikF/515Y/+deWP/nXlj/515Y/+deWP/nXlj/515Y/+deWP/nXlj/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf/azcT/////////////////////////////////nXlj/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YScE4WIpBf9iKQX/YikF/8Wxo/////////////////////////////////+deWP/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/2EnBOFhJwThYikF/2IpBf9iKQX/rpF+/////////////////////////////////66Rfv9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YScE4WAoA5liKQX/YikF/2IpBf+LYUb/////////////////////////////////rpF+/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf9gKAOZYicCYGIpBf9iKQX/YikF/2IpBf/x7On////////////////////////////FsaP/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf96Siv/ekor/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/2InAmAAAAABYikF/2IpBf9iKQX/YikF/8Wxo////////////////////////////9rNxP9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/9rNxP+deWP/YikF/2IpBf9iKQX/YikF/2IpBf9hJwThAAAAAQAAAAFgKAOZYikF/2IpBf9iKQX/ekor//Hs6f///////////////////////////3pKK/9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf+ukX7//////515Y/9iKQX/YikF/2IpBf9iKQX/YikF/2AoA5kAAAABAAAAAV8nACBiKQX/YikF/2IpBf9iKQX/nXlj////////////////////////////nXlj/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/i2FG////////////nXlj/2IpBf9iKQX/YikF/2IpBf9iKQX/XycAIAAAAAEAAAABAAAAAWEnA4BiKQX/YikF/2IpBf9iKQX/rpF+///////////////////////x7On/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/3pKK//x7On///////////+deWP/YikF/2IpBf9iKQX/YikF/2AoA5kAAAABAAAAAQAAAAEAAAABAAAAAWEnBOFiKQX/YikF/2IpBf9iKQX/rpF+//////////////////////+deWP/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/2s3E////////////8ezp/3pKK/9iKQX/YikF/2IpBf9hJwThAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABXycAIGEnBOFiKQX/YikF/2IpBf9iKQX/ekor/9rNxP////////////Hs6f96Siv/YikF/2IpBf9iKQX/YikF/66Rfv///////////8Wxo/96Siv/YikF/2IpBf9iKQX/YScE4V8nACAAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABXycAIGEnBOFiKQX/YikF/2IpBf9iKQX/YikF/4thRv/azcT/8ezp//Hs6f+ukX7/i2FG/2IpBf96Siv/8ezp/8Wxo/96Siv/YikF/2IpBf9iKQX/YikF/2EnBOFfJwAgAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABXycAIGEnBOFiKQX/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/ekor/4thRv+deWP/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf9hJwThXycAIAAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAWAoA5liKQX/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YScDgAAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAV8nByBgKAOZYScE4WIpBf9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YCgDmV8nACAAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABYicCYGAoA5lhJwThYScE4WIpBf9iKQX/YScE4WEnBOFgKAOZYicCYAAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA= for URL: data:image/x-icon;base64,AAABAAEAICAAAAEAIACoEAAAFgAAACgAAAAgAAAAQAAAAAEAIAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAWInAmBgKAOZYScE4WEnBOFiKQX/YikF/2EnBOFhJwThYCgDmWInAmAAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABXycHIGAoA5liKQX/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/2EnBOFgKAOZXycHIAAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAWEnA4BiKQX/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YCgDmQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAV8nByBhJwThYikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/4thRv+LYUb/nXlj/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YScE4V8nByAAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAFfJwcgYScE4WIpBf9iKQX/YikF/2IpBf9iKQX/nXlj/9rNxP//////8ezp/515Y/96Siv/YikF/4thRv//////2s3E/4thRv9iKQX/YikF/2IpBf9iKQX/YScE4V8nByAAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABXycHIGEnBOFiKQX/YikF/2IpBf9iKQX/ekor//Hs6f////////////Hs6f96Siv/YikF/2IpBf9iKQX/i2FG/////////////////9rNxP+LYUb/YikF/2IpBf9iKQX/YScE4V8nByAAAAABAAAAAQAAAAEAAAABAAAAAQAAAAFhJwThYikF/2IpBf9iKQX/YikF/66Rfv//////////////////////i2FG/2IpBf9iKQX/YikF/2IpBf+LYUb///////////////////////////+LYUb/YikF/2IpBf9iKQX/YScE4QAAAAEAAAABAAAAAQAAAAEAAAABYCgDmWIpBf9iKQX/YikF/2IpBf+ukX7//////////////////////9rNxP9iKQX/YikF/2IpBf9iKQX/YikF/4thRv///////////////////////////515Y/9iKQX/YikF/2IpBf9iKQX/YScDgAAAAAEAAAABAAAAAV8nByBiKQX/YikF/2IpBf9iKQX/rpF+////////////////////////////nXlj/2IpBf9iKQX/YikF/2IpBf9iKQX/i2FG////////////////////////////nXlj/2IpBf9iKQX/YikF/2IpBf9iKQX/XycHIAAAAAEAAAABYCgDmWIpBf9iKQX/YikF/2IpBf/x7On///////////////////////////9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf+LYUb///////////////////////////+deWP/YikF/2IpBf9iKQX/YikF/2IpBf9gKAOZAAAAAV8nByBhJwThYikF/2IpBf9iKQX/rpF+////////////////////////////2s3E/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/4thRv///////////////////////////515Y/9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf8AAAABYicCYGIpBf9iKQX/YikF/2IpBf/x7On////////////////////////////FsaP/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/i2FG////////////////////////////nXlj/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/2InAmBgKAOZYikF/2IpBf9iKQX/i2FG/////////////////////////////////66Rfv9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf+LYUb///////////////////////////+deWP/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YCgDmWEnBOFiKQX/YikF/2IpBf/FsaP/////////////////////////////////nXlj/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/4thRv///////////////////////////515Y/9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf9hJwThYScE4WIpBf9iKQX/YikF/8Wxo/////////////////////////////////+deWP/YikF/2IpBf9iKQX/YikF/2IpBf+LYUb/xbGj////////////////////////////2s3E/515Y/9iKQX/YikF/2IpBf9iKQX/YikF/2EnBOFiKQX/YikF/2IpBf9iKQX/2s3E/////////////////////////////////515Y/9iKQX/YikF/2IpBf9iKQX/YikF/515Y/+deWP/nXlj/515Y/+deWP/nXlj/515Y/+deWP/nXlj/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf/azcT/////////////////////////////////nXlj/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YScE4WIpBf9iKQX/YikF/8Wxo/////////////////////////////////+deWP/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/2EnBOFhJwThYikF/2IpBf9iKQX/rpF+/////////////////////////////////66Rfv9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YScE4WAoA5liKQX/YikF/2IpBf+LYUb/////////////////////////////////rpF+/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf9gKAOZYicCYGIpBf9iKQX/YikF/2IpBf/x7On////////////////////////////FsaP/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf96Siv/ekor/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/2InAmAAAAABYikF/2IpBf9iKQX/YikF/8Wxo////////////////////////////9rNxP9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/9rNxP+deWP/YikF/2IpBf9iKQX/YikF/2IpBf9hJwThAAAAAQAAAAFgKAOZYikF/2IpBf9iKQX/ekor//Hs6f///////////////////////////3pKK/9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf+ukX7//////515Y/9iKQX/YikF/2IpBf9iKQX/YikF/2AoA5kAAAABAAAAAV8nACBiKQX/YikF/2IpBf9iKQX/nXlj////////////////////////////nXlj/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/i2FG////////////nXlj/2IpBf9iKQX/YikF/2IpBf9iKQX/XycAIAAAAAEAAAABAAAAAWEnA4BiKQX/YikF/2IpBf9iKQX/rpF+///////////////////////x7On/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/3pKK//x7On///////////+deWP/YikF/2IpBf9iKQX/YikF/2AoA5kAAAABAAAAAQAAAAEAAAABAAAAAWEnBOFiKQX/YikF/2IpBf9iKQX/rpF+//////////////////////+deWP/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/2s3E////////////8ezp/3pKK/9iKQX/YikF/2IpBf9hJwThAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABXycAIGEnBOFiKQX/YikF/2IpBf9iKQX/ekor/9rNxP////////////Hs6f96Siv/YikF/2IpBf9iKQX/YikF/66Rfv///////////8Wxo/96Siv/YikF/2IpBf9iKQX/YScE4V8nACAAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABXycAIGEnBOFiKQX/YikF/2IpBf9iKQX/YikF/4thRv/azcT/8ezp//Hs6f+ukX7/i2FG/2IpBf96Siv/8ezp/8Wxo/96Siv/YikF/2IpBf9iKQX/YikF/2EnBOFfJwAgAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABXycAIGEnBOFiKQX/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/ekor/4thRv+deWP/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf9hJwThXycAIAAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAWAoA5liKQX/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YScDgAAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAV8nByBgKAOZYScE4WIpBf9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YCgDmV8nACAAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABYicCYGAoA5lhJwThYScE4WIpBf9iKQX/YScE4WEnBOFgKAOZYicCYAAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=
+2025-04-25 02:43:17,096 - INFO - Check 'favicon' completed in 0.001s
+2025-04-25 02:43:17,148 - INFO - Successfully checked SSL certificate for theguardian-news.com
+2025-04-25 02:43:17,148 - INFO - Check 'ssl_certificate' completed in 0.476s
+2025-04-25 02:43:17,201 - INFO - Check 'security_headers' completed in 0.529s
+2025-04-25 02:43:17,553 - INFO - Check 'virustotal' completed in 0.880s
+2025-04-25 02:43:19,894 - INFO - Successfully checked Wayback Machine for theguardian-news.com
+2025-04-25 02:43:19,894 - INFO - Check 'wayback_history' completed in 3.221s
+2025-04-25 02:43:34,832 - INFO - Fetched fresh WHOIS data for theguardian-news.com
+2025-04-25 02:43:34,832 - INFO - Check 'domain_info' completed in 18.161s
+2025-04-25 02:43:36,648 - INFO - Check summary: 14 succeeded, 0 failed
+2025-04-25 02:43:36,648 - INFO - Scores and risk assessment calculated in 0.000s
+2025-04-25 02:43:36,648 - INFO - Analysis of http://theguardian-news.com/lifeandstyle/2025/apr/22/ completed in 21.90s
+2025-04-25 02:43:37,002 - ERROR - Website analysis error for http://theguardian-news.com/lifeandstyle/2025/apr/22/: 400 Bad Request (error code: 50035): Invalid Form Body
+In embeds.0.thumbnail.url: Must be 2048 or fewer in length. Not a well formed URL.
+Traceback (most recent call last):
+  File "C:\Users\ansha\Documents\VsCode\TOPG\commands\website_info.py", line 75, in check_website
+    await interaction.followup.send(embed=embed, view=view)
+  File "C:\Users\ansha\Documents\VsCode\TOPG\venv\Lib\site-packages\discord\webhook\async_.py", line 1857, in send
+    data = await adapter.execute_webhook(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<11 lines>...
+    )
+    ^
+  File "C:\Users\ansha\Documents\VsCode\TOPG\venv\Lib\site-packages\discord\webhook\async_.py", line 226, in request
+    raise HTTPException(response, data)
+discord.errors.HTTPException: 400 Bad Request (error code: 50035): Invalid Form Body
+In embeds.0.thumbnail.url: Must be 2048 or fewer in length. Not a well formed URL.
+2025-04-25 02:48:21,585 - INFO - Bot is shutting down...
+2025-04-25 02:48:21,585 - INFO - API client closed
+2025-04-25 02:48:21,585 - INFO - Services closed successfully
+2025-04-25 02:48:21,586 - INFO - Background task 'metrics_cleanup' canceled
+2025-04-25 02:48:21,586 - INFO - Background task 'memory_monitor' canceled
+2025-04-25 02:48:21,586 - INFO - Background task 'heartbeat_monitor' canceled
+2025-04-25 02:48:21,586 - INFO - Background task 'metrics_report' canceled
+2025-04-25 02:48:21,587 - INFO - Database connection pool closed successfully
+2025-04-25 02:48:21,589 - INFO - Truth Social tracking task cancelled
+2025-04-25 02:48:21,589 - INFO - Truth Social tracking loop cancelled
+2025-04-25 02:48:21,590 - INFO - Bot stopped by user
+2025-04-25 02:48:25,784 - INFO - Starting bot...
+2025-04-25 02:48:26,669 - INFO - API client initialized
+2025-04-25 02:48:26,670 - INFO - WebsiteAnalyzer initialized with concurrency limit of 15
+2025-04-25 02:48:26,670 - INFO - All API services initialized
+2025-04-25 02:48:26,670 - INFO - Services provider initialized
+2025-04-25 02:48:26,721 - INFO - Database connection pool established: size=1-10
+2025-04-25 02:48:26,721 - INFO - Database connection successful
+2025-04-25 02:48:26,732 - INFO - WebsiteChecker cog initialized
+2025-04-25 02:48:26,734 - INFO - Discord Events Registered | Username Ban Server ID: 1313758082974879774
+2025-04-25 02:48:26,735 - INFO - Memory monitor started (threshold: 300MB, interval: 3600s)
+2025-04-25 02:48:26,736 - INFO - Truth Social tracking started
+2025-04-25 02:48:27,239 - INFO - Successfully synced 6 command(s)
+2025-04-25 02:48:30,195 - INFO - Logged in as TOPG#4967 (ID: 1340722186100408340)
+2025-04-25 02:48:30,195 - INFO - Bot connected to 4 server(s)
+2025-04-25 02:48:30,196 - INFO - Echo bot message forwarding: 1 bots from 11 channels to 1 channels
+2025-04-25 02:48:30,196 - INFO - Dani message forwarding: 1 users from 2 channels to 1 channels
+2025-04-25 02:48:41,179 - INFO - Starting website analysis for https://www.investiqate.pro
+2025-04-25 02:48:41,179 - INFO - Parsed domain: www.investiqate.pro
+2025-04-25 02:48:41,180 - INFO - Generated cache key: www.investiqate.pro
+2025-04-25 02:48:41,180 - INFO - Cache miss for www.investiqate.pro, running analysis
+2025-04-25 02:48:41,281 - INFO - Successfully fetched main page for https://www.investiqate.pro
+2025-04-25 02:48:41,779 - INFO - Check 'security_headers' completed in 0.457s
+2025-04-25 02:48:41,830 - INFO - Successfully checked SSL certificate for www.investiqate.pro
+2025-04-25 02:48:41,831 - INFO - Check 'ssl_certificate' completed in 0.509s
+2025-04-25 02:48:41,860 - WARNING - API website returned status 404 for URL: https://www.investiqate.pro/favicon.ico
+2025-04-25 02:48:41,860 - INFO - Check 'favicon' completed in 0.082s
+2025-04-25 02:48:42,340 - INFO - Check 'virustotal' completed in 1.012s
+2025-04-25 02:48:46,534 - INFO - Fetched fresh WHOIS data for investiqate.pro
+2025-04-25 02:48:46,534 - INFO - Check 'domain_info' completed in 5.213s
+2025-04-25 02:48:47,667 - INFO - Successfully checked Wayback Machine for www.investiqate.pro
+2025-04-25 02:48:47,667 - INFO - Check 'wayback_history' completed in 6.339s
+2025-04-25 02:48:47,765 - INFO - Check summary: 14 succeeded, 0 failed
+2025-04-25 02:48:47,766 - INFO - Scores and risk assessment calculated in 0.000s
+2025-04-25 02:48:47,766 - INFO - Analysis of https://www.investiqate.pro completed in 6.59s
+2025-04-25 02:48:48,630 - INFO - Website analysis called by alphabtw_ for https://www.investiqate.pro (cached: False)
+2025-04-25 02:49:18,878 - INFO - Starting website analysis for http://theguardian-news.com/lifeandstyle/2025/apr/22/
+2025-04-25 02:49:18,878 - INFO - Parsed domain: theguardian-news.com
+2025-04-25 02:49:18,879 - INFO - Generated cache key: theguardian-news.com
+2025-04-25 02:49:18,879 - INFO - Cache miss for theguardian-news.com, running analysis
+2025-04-25 02:49:20,646 - INFO - Successfully fetched main page for http://theguardian-news.com/lifeandstyle/2025/apr/22/
+2025-04-25 02:49:21,352 - ERROR - website request error: data:image/x-icon;base64,AAABAAEAICAAAAEAIACoEAAAFgAAACgAAAAgAAAAQAAAAAEAIAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAWInAmBgKAOZYScE4WEnBOFiKQX/YikF/2EnBOFhJwThYCgDmWInAmAAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABXycHIGAoA5liKQX/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/2EnBOFgKAOZXycHIAAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAWEnA4BiKQX/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YCgDmQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAV8nByBhJwThYikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/4thRv+LYUb/nXlj/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YScE4V8nByAAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAFfJwcgYScE4WIpBf9iKQX/YikF/2IpBf9iKQX/nXlj/9rNxP//////8ezp/515Y/96Siv/YikF/4thRv//////2s3E/4thRv9iKQX/YikF/2IpBf9iKQX/YScE4V8nByAAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABXycHIGEnBOFiKQX/YikF/2IpBf9iKQX/ekor//Hs6f////////////Hs6f96Siv/YikF/2IpBf9iKQX/i2FG/////////////////9rNxP+LYUb/YikF/2IpBf9iKQX/YScE4V8nByAAAAABAAAAAQAAAAEAAAABAAAAAQAAAAFhJwThYikF/2IpBf9iKQX/YikF/66Rfv//////////////////////i2FG/2IpBf9iKQX/YikF/2IpBf+LYUb///////////////////////////+LYUb/YikF/2IpBf9iKQX/YScE4QAAAAEAAAABAAAAAQAAAAEAAAABYCgDmWIpBf9iKQX/YikF/2IpBf+ukX7//////////////////////9rNxP9iKQX/YikF/2IpBf9iKQX/YikF/4thRv///////////////////////////515Y/9iKQX/YikF/2IpBf9iKQX/YScDgAAAAAEAAAABAAAAAV8nByBiKQX/YikF/2IpBf9iKQX/rpF+////////////////////////////nXlj/2IpBf9iKQX/YikF/2IpBf9iKQX/i2FG////////////////////////////nXlj/2IpBf9iKQX/YikF/2IpBf9iKQX/XycHIAAAAAEAAAABYCgDmWIpBf9iKQX/YikF/2IpBf/x7On///////////////////////////9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf+LYUb///////////////////////////+deWP/YikF/2IpBf9iKQX/YikF/2IpBf9gKAOZAAAAAV8nByBhJwThYikF/2IpBf9iKQX/rpF+////////////////////////////2s3E/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/4thRv///////////////////////////515Y/9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf8AAAABYicCYGIpBf9iKQX/YikF/2IpBf/x7On////////////////////////////FsaP/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/i2FG////////////////////////////nXlj/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/2InAmBgKAOZYikF/2IpBf9iKQX/i2FG/////////////////////////////////66Rfv9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf+LYUb///////////////////////////+deWP/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YCgDmWEnBOFiKQX/YikF/2IpBf/FsaP/////////////////////////////////nXlj/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/4thRv///////////////////////////515Y/9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf9hJwThYScE4WIpBf9iKQX/YikF/8Wxo/////////////////////////////////+deWP/YikF/2IpBf9iKQX/YikF/2IpBf+LYUb/xbGj////////////////////////////2s3E/515Y/9iKQX/YikF/2IpBf9iKQX/YikF/2EnBOFiKQX/YikF/2IpBf9iKQX/2s3E/////////////////////////////////515Y/9iKQX/YikF/2IpBf9iKQX/YikF/515Y/+deWP/nXlj/515Y/+deWP/nXlj/515Y/+deWP/nXlj/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf/azcT/////////////////////////////////nXlj/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YScE4WIpBf9iKQX/YikF/8Wxo/////////////////////////////////+deWP/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/2EnBOFhJwThYikF/2IpBf9iKQX/rpF+/////////////////////////////////66Rfv9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YScE4WAoA5liKQX/YikF/2IpBf+LYUb/////////////////////////////////rpF+/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf9gKAOZYicCYGIpBf9iKQX/YikF/2IpBf/x7On////////////////////////////FsaP/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf96Siv/ekor/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/2InAmAAAAABYikF/2IpBf9iKQX/YikF/8Wxo////////////////////////////9rNxP9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/9rNxP+deWP/YikF/2IpBf9iKQX/YikF/2IpBf9hJwThAAAAAQAAAAFgKAOZYikF/2IpBf9iKQX/ekor//Hs6f///////////////////////////3pKK/9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf+ukX7//////515Y/9iKQX/YikF/2IpBf9iKQX/YikF/2AoA5kAAAABAAAAAV8nACBiKQX/YikF/2IpBf9iKQX/nXlj////////////////////////////nXlj/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/i2FG////////////nXlj/2IpBf9iKQX/YikF/2IpBf9iKQX/XycAIAAAAAEAAAABAAAAAWEnA4BiKQX/YikF/2IpBf9iKQX/rpF+///////////////////////x7On/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/3pKK//x7On///////////+deWP/YikF/2IpBf9iKQX/YikF/2AoA5kAAAABAAAAAQAAAAEAAAABAAAAAWEnBOFiKQX/YikF/2IpBf9iKQX/rpF+//////////////////////+deWP/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/2s3E////////////8ezp/3pKK/9iKQX/YikF/2IpBf9hJwThAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABXycAIGEnBOFiKQX/YikF/2IpBf9iKQX/ekor/9rNxP////////////Hs6f96Siv/YikF/2IpBf9iKQX/YikF/66Rfv///////////8Wxo/96Siv/YikF/2IpBf9iKQX/YScE4V8nACAAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABXycAIGEnBOFiKQX/YikF/2IpBf9iKQX/YikF/4thRv/azcT/8ezp//Hs6f+ukX7/i2FG/2IpBf96Siv/8ezp/8Wxo/96Siv/YikF/2IpBf9iKQX/YikF/2EnBOFfJwAgAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABXycAIGEnBOFiKQX/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/ekor/4thRv+deWP/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf9hJwThXycAIAAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAWAoA5liKQX/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YScDgAAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAV8nByBgKAOZYScE4WIpBf9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YCgDmV8nACAAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABYicCYGAoA5lhJwThYScE4WIpBf9iKQX/YScE4WEnBOFgKAOZYicCYAAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA= for URL: data:image/x-icon;base64,AAABAAEAICAAAAEAIACoEAAAFgAAACgAAAAgAAAAQAAAAAEAIAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAWInAmBgKAOZYScE4WEnBOFiKQX/YikF/2EnBOFhJwThYCgDmWInAmAAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABXycHIGAoA5liKQX/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/2EnBOFgKAOZXycHIAAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAWEnA4BiKQX/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YCgDmQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAV8nByBhJwThYikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/4thRv+LYUb/nXlj/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YScE4V8nByAAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAFfJwcgYScE4WIpBf9iKQX/YikF/2IpBf9iKQX/nXlj/9rNxP//////8ezp/515Y/96Siv/YikF/4thRv//////2s3E/4thRv9iKQX/YikF/2IpBf9iKQX/YScE4V8nByAAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABXycHIGEnBOFiKQX/YikF/2IpBf9iKQX/ekor//Hs6f////////////Hs6f96Siv/YikF/2IpBf9iKQX/i2FG/////////////////9rNxP+LYUb/YikF/2IpBf9iKQX/YScE4V8nByAAAAABAAAAAQAAAAEAAAABAAAAAQAAAAFhJwThYikF/2IpBf9iKQX/YikF/66Rfv//////////////////////i2FG/2IpBf9iKQX/YikF/2IpBf+LYUb///////////////////////////+LYUb/YikF/2IpBf9iKQX/YScE4QAAAAEAAAABAAAAAQAAAAEAAAABYCgDmWIpBf9iKQX/YikF/2IpBf+ukX7//////////////////////9rNxP9iKQX/YikF/2IpBf9iKQX/YikF/4thRv///////////////////////////515Y/9iKQX/YikF/2IpBf9iKQX/YScDgAAAAAEAAAABAAAAAV8nByBiKQX/YikF/2IpBf9iKQX/rpF+////////////////////////////nXlj/2IpBf9iKQX/YikF/2IpBf9iKQX/i2FG////////////////////////////nXlj/2IpBf9iKQX/YikF/2IpBf9iKQX/XycHIAAAAAEAAAABYCgDmWIpBf9iKQX/YikF/2IpBf/x7On///////////////////////////9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf+LYUb///////////////////////////+deWP/YikF/2IpBf9iKQX/YikF/2IpBf9gKAOZAAAAAV8nByBhJwThYikF/2IpBf9iKQX/rpF+////////////////////////////2s3E/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/4thRv///////////////////////////515Y/9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf8AAAABYicCYGIpBf9iKQX/YikF/2IpBf/x7On////////////////////////////FsaP/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/i2FG////////////////////////////nXlj/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/2InAmBgKAOZYikF/2IpBf9iKQX/i2FG/////////////////////////////////66Rfv9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf+LYUb///////////////////////////+deWP/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YCgDmWEnBOFiKQX/YikF/2IpBf/FsaP/////////////////////////////////nXlj/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/4thRv///////////////////////////515Y/9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf9hJwThYScE4WIpBf9iKQX/YikF/8Wxo/////////////////////////////////+deWP/YikF/2IpBf9iKQX/YikF/2IpBf+LYUb/xbGj////////////////////////////2s3E/515Y/9iKQX/YikF/2IpBf9iKQX/YikF/2EnBOFiKQX/YikF/2IpBf9iKQX/2s3E/////////////////////////////////515Y/9iKQX/YikF/2IpBf9iKQX/YikF/515Y/+deWP/nXlj/515Y/+deWP/nXlj/515Y/+deWP/nXlj/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf/azcT/////////////////////////////////nXlj/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YScE4WIpBf9iKQX/YikF/8Wxo/////////////////////////////////+deWP/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/2EnBOFhJwThYikF/2IpBf9iKQX/rpF+/////////////////////////////////66Rfv9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YScE4WAoA5liKQX/YikF/2IpBf+LYUb/////////////////////////////////rpF+/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf9gKAOZYicCYGIpBf9iKQX/YikF/2IpBf/x7On////////////////////////////FsaP/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf96Siv/ekor/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/2InAmAAAAABYikF/2IpBf9iKQX/YikF/8Wxo////////////////////////////9rNxP9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/9rNxP+deWP/YikF/2IpBf9iKQX/YikF/2IpBf9hJwThAAAAAQAAAAFgKAOZYikF/2IpBf9iKQX/ekor//Hs6f///////////////////////////3pKK/9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf+ukX7//////515Y/9iKQX/YikF/2IpBf9iKQX/YikF/2AoA5kAAAABAAAAAV8nACBiKQX/YikF/2IpBf9iKQX/nXlj////////////////////////////nXlj/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/i2FG////////////nXlj/2IpBf9iKQX/YikF/2IpBf9iKQX/XycAIAAAAAEAAAABAAAAAWEnA4BiKQX/YikF/2IpBf9iKQX/rpF+///////////////////////x7On/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/3pKK//x7On///////////+deWP/YikF/2IpBf9iKQX/YikF/2AoA5kAAAABAAAAAQAAAAEAAAABAAAAAWEnBOFiKQX/YikF/2IpBf9iKQX/rpF+//////////////////////+deWP/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/2s3E////////////8ezp/3pKK/9iKQX/YikF/2IpBf9hJwThAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABXycAIGEnBOFiKQX/YikF/2IpBf9iKQX/ekor/9rNxP////////////Hs6f96Siv/YikF/2IpBf9iKQX/YikF/66Rfv///////////8Wxo/96Siv/YikF/2IpBf9iKQX/YScE4V8nACAAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABXycAIGEnBOFiKQX/YikF/2IpBf9iKQX/YikF/4thRv/azcT/8ezp//Hs6f+ukX7/i2FG/2IpBf96Siv/8ezp/8Wxo/96Siv/YikF/2IpBf9iKQX/YikF/2EnBOFfJwAgAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABXycAIGEnBOFiKQX/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/ekor/4thRv+deWP/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf9hJwThXycAIAAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAWAoA5liKQX/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YScDgAAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAV8nByBgKAOZYScE4WIpBf9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YikF/2IpBf9iKQX/YCgDmV8nACAAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABYicCYGAoA5lhJwThYScE4WIpBf9iKQX/YScE4WEnBOFgKAOZYicCYAAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=
+2025-04-25 02:49:21,353 - INFO - Check 'favicon' completed in 0.001s
+2025-04-25 02:49:21,355 - INFO - Check 'virustotal' completed in 0.540s
+2025-04-25 02:49:21,362 - INFO - Check 'security_headers' completed in 0.548s
+2025-04-25 02:49:21,433 - INFO - Successfully checked SSL certificate for theguardian-news.com
+2025-04-25 02:49:21,433 - INFO - Check 'ssl_certificate' completed in 0.619s
+2025-04-25 02:49:27,246 - INFO - Successfully checked Wayback Machine for theguardian-news.com
+2025-04-25 02:49:27,247 - INFO - Check 'wayback_history' completed in 6.431s
+2025-04-25 02:49:38,930 - INFO - Fetched fresh WHOIS data for theguardian-news.com
+2025-04-25 02:49:38,930 - INFO - Check 'domain_info' completed in 18.116s
+2025-04-25 02:49:40,744 - INFO - Check summary: 14 succeeded, 0 failed
+2025-04-25 02:49:40,745 - INFO - Scores and risk assessment calculated in 0.000s
+2025-04-25 02:49:40,745 - INFO - Analysis of http://theguardian-news.com/lifeandstyle/2025/apr/22/ completed in 21.87s
+2025-04-25 02:49:41,207 - INFO - Website analysis called by alphabtw_ for http://theguardian-news.com/lifeandstyle/2025/apr/22/ (cached: False)
+2025-04-25 02:50:09,574 - INFO - Starting website analysis for http://theguardian-news.com/lifeandstyle/2025/apr/22/
+2025-04-25 02:50:09,575 - INFO - Parsed domain: theguardian-news.com
+2025-04-25 02:50:09,575 - INFO - Generated cache key: theguardian-news.com
+2025-04-25 02:50:09,575 - INFO - Cache hit for theguardian-news.com
+2025-04-25 02:50:10,044 - INFO - Website analysis called by alphabtw_ for http://theguardian-news.com/lifeandstyle/2025/apr/22/ (cached: True)
+2025-04-25 03:00:21,995 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-04-25 03:00:22,632 - INFO - Reconnected to Discord after disconnection
+2025-04-25 03:00:22,633 - INFO - Post-reconnection health check: Database=True, API Client=True
+2025-04-25 03:00:26,999 - INFO - Bot automatically reconnected
+2025-04-25 03:09:18,147 - ERROR - Error getting latest post from kash: argument of type 'NoneType' is not iterable
+2025-04-25 03:09:18,149 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-04-25 03:09:18,799 - INFO - Reconnected to Discord after disconnection
+2025-04-25 03:09:18,802 - INFO - Post-reconnection health check: Database=True, API Client=True
+2025-04-25 03:09:23,150 - INFO - Bot automatically reconnected
+2025-04-25 03:10:18,251 - INFO - Polling Truth Social at 2025-04-25 03:10:18 | Interval: 60s | Active hours: True
+2025-04-25 03:10:22,100 - ERROR - Error getting new posts from kash: argument of type 'NoneType' is not iterable
+2025-04-25 03:48:26,741 - INFO - Metrics Report | Uptime: 1h 0m | Memory: 47.3MB | Processed: 506 | Avg Processing: 0.0614s | Errors: 1 (1 types, Top: api_website=1) | Last Cleanup: 2025-04-25 02:48:25 (1h ago)
+2025-04-25 03:50:40,760 - INFO - Bot is shutting down...
+2025-04-25 03:50:40,762 - INFO - API client closed
+2025-04-25 03:50:40,763 - INFO - Services closed successfully
+2025-04-25 03:50:40,763 - INFO - Background task 'metrics_cleanup' canceled
+2025-04-25 03:50:40,764 - INFO - Background task 'memory_monitor' canceled
+2025-04-25 03:50:40,766 - INFO - Background task 'heartbeat_monitor' canceled
+2025-04-25 03:50:40,767 - INFO - Background task 'metrics_report' canceled
+2025-04-25 03:50:40,768 - INFO - Database connection pool closed successfully
+2025-04-25 03:50:40,775 - INFO - Truth Social tracking task cancelled
+2025-04-25 03:50:40,775 - INFO - Truth Social tracking loop cancelled
+2025-04-25 03:50:40,779 - INFO - Bot stopped by user
+2025-04-25 03:51:00,771 - INFO - Starting bot...
+2025-04-25 03:51:01,684 - INFO - API client initialized
+2025-04-25 03:51:01,684 - INFO - WebsiteAnalyzer initialized with concurrency limit of 15
+2025-04-25 03:51:01,684 - INFO - All API services initialized
+2025-04-25 03:51:01,684 - INFO - Services provider initialized
+2025-04-25 03:51:01,765 - INFO - Database connection pool established: size=1-10
+2025-04-25 03:51:01,765 - INFO - Database connection successful
+2025-04-25 03:51:01,775 - INFO - WebsiteChecker cog initialized
+2025-04-25 03:51:01,780 - INFO - Discord Events Registered | Username Ban Server ID: 1313758082974879774
+2025-04-25 03:51:01,781 - INFO - Memory monitor started (threshold: 300MB, interval: 3600s)
+2025-04-25 03:51:01,781 - INFO - Truth Social tracking started
+2025-04-25 03:51:02,676 - INFO - Successfully synced 6 command(s)
+2025-04-25 03:51:05,701 - INFO - Logged in as TOPG#4967 (ID: 1340722186100408340)
+2025-04-25 03:51:05,701 - INFO - Bot connected to 4 server(s)
+2025-04-25 03:51:05,702 - INFO - Echo bot message forwarding: 1 bots from 11 channels to 1 channels
+2025-04-25 03:51:05,702 - INFO - Dani message forwarding: 1 users from 2 channels to 1 channels
+2025-04-25 03:52:01,789 - INFO - Polling Truth Social at 2025-04-25 03:52:01 | Interval: 60s | Active hours: True
+2025-04-25 03:53:00,550 - ERROR - Error getting new posts from kash: argument of type 'NoneType' is not iterable
+2025-04-25 03:53:00,552 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-04-25 03:53:02,274 - INFO - Reconnected to Discord after disconnection
+2025-04-25 03:53:02,275 - INFO - Post-reconnection health check: Database=True, API Client=True
+2025-04-25 03:53:05,567 - INFO - Bot automatically reconnected
+2025-04-25 04:15:57,270 - INFO - Starting bot...
+2025-04-25 04:15:58,136 - INFO - API client initialized
+2025-04-25 04:15:58,137 - INFO - WebsiteAnalyzer initialized with concurrency limit of 15
+2025-04-25 04:15:58,137 - INFO - All API services initialized
+2025-04-25 04:15:58,137 - INFO - Services provider initialized
+2025-04-25 04:15:58,159 - INFO - Database connection pool established: size=1-10
+2025-04-25 04:15:58,159 - INFO - Database connection successful
+2025-04-25 04:15:58,167 - INFO - WebsiteChecker cog initialized
+2025-04-25 04:15:58,170 - INFO - Discord Events Registered | Username Ban Server ID: 1313758082974879774
+2025-04-25 04:15:58,171 - INFO - Memory monitor started (threshold: 300MB, interval: 3600s)
+2025-04-25 04:15:58,171 - INFO - Truth Social tracking started
+2025-04-25 04:15:59,567 - INFO - Successfully synced 6 command(s)
+2025-04-25 04:16:02,622 - INFO - Logged in as TOPG#4967 (ID: 1340722186100408340)
+2025-04-25 04:16:02,622 - INFO - Bot connected to 4 server(s)
+2025-04-25 04:16:02,622 - INFO - Echo bot message forwarding: 1 bots from 11 channels to 1 channels
+2025-04-25 04:16:02,622 - INFO - Dani message forwarding: 1 users from 2 channels to 1 channels
+2025-04-25 04:16:58,185 - INFO - Polling Truth Social at 2025-04-25 04:16:58 | Interval: 60s | Active hours: True
+2025-04-25 04:16:59,048 - INFO - Using proxy: None
+2025-04-25 04:16:59,048 - ERROR - Error setting up proxy: Api.__init__() got an unexpected keyword argument 'proxies'
+2025-04-25 04:16:59,048 - INFO - Creating new API instance without proxy
+2025-04-25 04:17:59,391 - ERROR - Error getting new posts from kash: argument of type 'NoneType' is not iterable
+2025-04-25 04:17:59,392 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-04-25 04:18:00,336 - INFO - Reconnected to Discord after disconnection
+2025-04-25 04:18:00,336 - INFO - Post-reconnection health check: Database=True, API Client=True
+2025-04-25 04:18:04,405 - INFO - Bot automatically reconnected
+2025-04-25 05:15:58,176 - INFO - Metrics Report | Uptime: 1h 0m | Memory: 46.8MB | Processed: 359 | Avg Processing: 0.0206s | Errors: 0 (0 types, Top: none) | Last Cleanup: 2025-04-25 04:15:57 (1h ago)
+2025-04-25 05:48:32,797 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-04-25 05:48:33,421 - INFO - Reconnected to Discord after disconnection
+2025-04-25 05:48:33,421 - INFO - Post-reconnection health check: Database=True, API Client=True
+2025-04-25 05:48:37,803 - INFO - Bot automatically reconnected
+2025-04-25 06:15:58,184 - INFO - Metrics Report | Uptime: 2h 0m | Memory: 46.1MB | Processed: 699 | Avg Processing: 0.0366s | Errors: 0 (0 types, Top: none) | Last Cleanup: 2025-04-25 04:15:57 (2h ago)
+2025-04-25 07:06:02,162 - ERROR - Database error fetching rows: (1146, "Table 'topg.truth_settings' doesn't exist")
+2025-04-25 07:06:43,985 - WARNING - API mobula returned status 404 for URL: https://api.mobula.io/api/1/market/history/pair?asset=Fe5vvCtayzFnFu1WtimmmKFPkjWRM1cfJqqfJitmpump&blockchain=solana&period=1min&amount=100000
+2025-04-25 07:06:44,484 - WARNING - API mobula returned status 404 for URL: https://api.mobula.io/api/1/market/history/pair?asset=Fe5vvCtayzFnFu1WtimmmKFPkjWRM1cfJqqfJitmpump&blockchain=solana&period=1min&amount=100000
+2025-04-25 07:06:45,168 - WARNING - API mobula returned status 404 for URL: https://api.mobula.io/api/1/market/history/pair?asset=Fe5vvCtayzFnFu1WtimmmKFPkjWRM1cfJqqfJitmpump&blockchain=solana&period=1min&amount=100000
+2025-04-25 07:06:46,226 - WARNING - API mobula returned status 404 for URL: https://api.mobula.io/api/1/market/history/pair?asset=Fe5vvCtayzFnFu1WtimmmKFPkjWRM1cfJqqfJitmpump&blockchain=solana&period=1min&amount=100000
+2025-04-25 07:07:02,178 - ERROR - Error in Truth Social tracking loop: '>' not supported between instances of 'datetime.timedelta' and 'int'
+2025-04-25 07:07:02,298 - ERROR - Traceback (most recent call last):
+  File "C:\Users\ansha\Documents\VsCode\TOPG\handlers\mysql_handler.py", line 214, in fetch_all
+    await cursor.execute(query, params)
+  File "C:\Users\ansha\Documents\VsCode\TOPG\venv\Lib\site-packages\aiomysql\cursors.py", line 239, in execute
+    await self._query(query)
+  File "C:\Users\ansha\Documents\VsCode\TOPG\venv\Lib\site-packages\aiomysql\cursors.py", line 457, in _query
+    await conn.query(q)
+  File "C:\Users\ansha\Documents\VsCode\TOPG\venv\Lib\site-packages\aiomysql\connection.py", line 469, in query
+    await self._read_query_result(unbuffered=unbuffered)
+  File "C:\Users\ansha\Documents\VsCode\TOPG\venv\Lib\site-packages\aiomysql\connection.py", line 683, in _read_query_result
+    await result.read()
+  File "C:\Users\ansha\Documents\VsCode\TOPG\venv\Lib\site-packages\aiomysql\connection.py", line 1164, in read
+    first_packet = await self.connection._read_packet()
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ansha\Documents\VsCode\TOPG\venv\Lib\site-packages\aiomysql\connection.py", line 652, in _read_packet
+    packet.raise_for_error()
+    ~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\ansha\Documents\VsCode\TOPG\venv\Lib\site-packages\pymysql\protocol.py", line 219, in raise_for_error
+    err.raise_mysql_exception(self._data)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "C:\Users\ansha\Documents\VsCode\TOPG\venv\Lib\site-packages\pymysql\err.py", line 150, in raise_mysql_exception
+    raise errorclass(errno, errval)
+pymysql.err.ProgrammingError: (1146, "Table 'topg.truth_settings' doesn't exist")
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\ansha\Documents\VsCode\TOPG\handlers\truth_tracker.py", line 115, in tracking_loop
+    del _cached_channels_timestamp[guild_id]
+                     ~~~~~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\ansha\Documents\VsCode\TOPG\handlers\truth_tracker.py", line 87, in get_cached_guilds
+    if current_time - _cached_guilds_timestamp > CACHE_TTL:
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ansha\Documents\VsCode\TOPG\repository\truth_repo.py", line 232, in get_all_enabled_guilds
+  File "C:\Users\ansha\Documents\VsCode\TOPG\handlers\mysql_handler.py", line 217, in fetch_all
+    logger.error(f"Database error fetching rows: {e}")
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ansha\Documents\VsCode\TOPG\utils\logger.py", line 72, in error
+    if msg_hash in self.last_reported and (current_time - self.last_reported[msg_hash]) > self.time_window:
+                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: '>' not supported between instances of 'datetime.timedelta' and 'int'
+
+2025-04-25 07:07:12,306 - ERROR - Fatal error in Truth Social tracking: '>' not supported between instances of 'datetime.timedelta' and 'int'
+2025-04-25 07:07:12,310 - ERROR - Traceback (most recent call last):
+  File "C:\Users\ansha\Documents\VsCode\TOPG\handlers\mysql_handler.py", line 214, in fetch_all
+    await cursor.execute(query, params)
+  File "C:\Users\ansha\Documents\VsCode\TOPG\venv\Lib\site-packages\aiomysql\cursors.py", line 239, in execute
+    await self._query(query)
+  File "C:\Users\ansha\Documents\VsCode\TOPG\venv\Lib\site-packages\aiomysql\cursors.py", line 457, in _query
+    await conn.query(q)
+  File "C:\Users\ansha\Documents\VsCode\TOPG\venv\Lib\site-packages\aiomysql\connection.py", line 469, in query
+    await self._read_query_result(unbuffered=unbuffered)
+  File "C:\Users\ansha\Documents\VsCode\TOPG\venv\Lib\site-packages\aiomysql\connection.py", line 683, in _read_query_result
+    await result.read()
+  File "C:\Users\ansha\Documents\VsCode\TOPG\venv\Lib\site-packages\aiomysql\connection.py", line 1164, in read
+    first_packet = await self.connection._read_packet()
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ansha\Documents\VsCode\TOPG\venv\Lib\site-packages\aiomysql\connection.py", line 652, in _read_packet
+    packet.raise_for_error()
+    ~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\ansha\Documents\VsCode\TOPG\venv\Lib\site-packages\pymysql\protocol.py", line 219, in raise_for_error
+    err.raise_mysql_exception(self._data)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "C:\Users\ansha\Documents\VsCode\TOPG\venv\Lib\site-packages\pymysql\err.py", line 150, in raise_mysql_exception
+    raise errorclass(errno, errval)
+pymysql.err.ProgrammingError: (1146, "Table 'topg.truth_settings' doesn't exist")
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\ansha\Documents\VsCode\TOPG\handlers\truth_tracker.py", line 115, in tracking_loop
+    del _cached_channels_timestamp[guild_id]
+                     ~~~~~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\ansha\Documents\VsCode\TOPG\handlers\truth_tracker.py", line 87, in get_cached_guilds
+    if current_time - _cached_guilds_timestamp > CACHE_TTL:
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ansha\Documents\VsCode\TOPG\repository\truth_repo.py", line 232, in get_all_enabled_guilds
+  File "C:\Users\ansha\Documents\VsCode\TOPG\handlers\mysql_handler.py", line 217, in fetch_all
+    logger.error(f"Database error fetching rows: {e}")
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ansha\Documents\VsCode\TOPG\utils\logger.py", line 72, in error
+    if msg_hash in self.last_reported and (current_time - self.last_reported[msg_hash]) > self.time_window:
+                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: '>' not supported between instances of 'datetime.timedelta' and 'int'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\ansha\Documents\VsCode\TOPG\handlers\truth_tracker.py", line 153, in tracking_loop
+    for guild_id, post_set in processed_posts.items():
+  File "C:\Users\ansha\Documents\VsCode\TOPG\utils\logger.py", line 72, in error
+    if msg_hash in self.last_reported and (current_time - self.last_reported[msg_hash]) > self.time_window:
+                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: '>' not supported between instances of 'datetime.timedelta' and 'int'
+
+2025-04-25 07:15:58,195 - INFO - Metrics Report | Uptime: 3h 0m | Memory: 47.7MB | Processed: 1001 | Avg Processing: 0.1762s | Errors: 4 (1 types, Top: api_mobula=4) | Last Cleanup: 2025-04-25 04:15:57 (3h ago)
+2025-04-25 07:35:58,178 - INFO - Starting periodic metrics cleanup task...
+2025-04-25 07:35:58,179 - INFO - Cleaned processing times
+2025-04-25 07:35:58,269 - INFO - Garbage collection completed successfully.
+2025-04-25 07:35:58,270 - INFO - Metrics cleanup completed in 0.09 seconds. Next cleanup at 2025-04-25 17:35:58
+2025-04-25 07:41:23,432 - INFO - Bot is shutting down...
+2025-04-25 07:41:23,432 - INFO - API client closed
+2025-04-25 07:41:23,432 - INFO - Services closed successfully
+2025-04-25 07:41:23,433 - INFO - Background task 'metrics_cleanup' canceled
+2025-04-25 07:41:23,433 - INFO - Background task 'memory_monitor' canceled
+2025-04-25 07:41:23,433 - INFO - Background task 'heartbeat_monitor' canceled
+2025-04-25 07:41:23,433 - INFO - Background task 'metrics_report' canceled
+2025-04-25 07:41:23,433 - INFO - Database connection pool closed successfully
+2025-04-25 07:41:23,435 - INFO - Bot stopped by user
+2025-04-25 07:41:34,920 - INFO - Starting bot...
+2025-04-25 07:41:35,911 - INFO - API client initialized
+2025-04-25 07:41:35,912 - INFO - WebsiteAnalyzer initialized with concurrency limit of 15
+2025-04-25 07:41:35,912 - INFO - Setting up 2 Truth Social accounts...
+2025-04-25 07:41:35,912 - ERROR - Error getting auth token: ApiClient.post() missing 1 required positional argument: 'endpoint'
+2025-04-25 07:41:35,912 - ERROR - Failed to authenticate Truth Social account: visheshbtw
+2025-04-25 07:41:35,912 - ERROR - Error authenticating Truth Social account: '>' not supported between instances of 'datetime.timedelta' and 'int'
+2025-04-25 07:41:35,913 - INFO - Successfully authenticated 0/2 Truth Social accounts
+2025-04-25 07:41:35,913 - INFO - All API services initialized
+2025-04-25 07:41:35,913 - INFO - Services provider initialized
+2025-04-25 07:41:35,934 - INFO - Database connection pool established: size=1-10
+2025-04-25 07:41:35,934 - INFO - Database connection successful
+2025-04-25 07:41:36,020 - INFO - WebsiteChecker cog initialized
+2025-04-25 07:41:36,024 - INFO - Discord Events Registered | Username Ban Server ID: 1313758082974879774
+2025-04-25 07:41:36,025 - INFO - Memory monitor started (threshold: 300MB, interval: 3600s)
+2025-04-25 07:41:37,450 - INFO - Successfully synced 6 command(s)
+2025-04-25 07:41:40,408 - INFO - Logged in as TOPG#4967 (ID: 1340722186100408340)
+2025-04-25 07:41:40,408 - INFO - Bot connected to 4 server(s)
+2025-04-25 07:41:40,408 - INFO - Echo bot message forwarding: 1 bots from 11 channels to 1 channels
+2025-04-25 07:41:40,409 - INFO - Dani message forwarding: 1 users from 2 channels to 1 channels
+2025-04-25 07:44:12,259 - INFO - Added channel 1332057617844932690 for Truth Social updates in guild 1313758082974879774
+2025-04-25 07:45:16,007 - ERROR - No valid Truth Social account available
+2025-04-25 07:45:17,022 - ERROR - Error tracking Truth Social account: '>' not supported between instances of 'datetime.timedelta' and 'int'
+2025-04-25 08:25:59,628 - INFO - Bot is shutting down...
+2025-04-25 08:25:59,629 - INFO - API client closed
+2025-04-25 08:25:59,630 - INFO - Services closed successfully
+2025-04-25 08:25:59,630 - INFO - Background task 'metrics_cleanup' canceled
+2025-04-25 08:25:59,630 - INFO - Background task 'memory_monitor' canceled
+2025-04-25 08:25:59,630 - INFO - Background task 'heartbeat_monitor' canceled
+2025-04-25 08:25:59,630 - INFO - Background task 'metrics_report' canceled
+2025-04-25 08:25:59,631 - INFO - Database connection pool closed successfully
+2025-04-25 08:25:59,634 - INFO - Bot stopped by user
+2025-04-25 08:27:17,740 - INFO - Starting bot...
+2025-04-25 08:27:19,960 - INFO - API client initialized
+2025-04-25 08:27:19,960 - INFO - WebsiteAnalyzer initialized with concurrency limit of 15
+2025-04-25 08:27:19,960 - INFO - Setting up 2 Truth Social accounts...
+2025-04-25 08:27:19,960 - ERROR - Error getting auth token: ApiClient.post() missing 1 required positional argument: 'endpoint'
+2025-04-25 08:27:19,961 - ERROR - Failed to authenticate Truth Social account: visheshbtw
+2025-04-25 08:27:19,961 - ERROR - Error authenticating Truth Social account: '>' not supported between instances of 'datetime.timedelta' and 'int'
+2025-04-25 08:27:19,961 - INFO - Successfully authenticated 0/2 Truth Social accounts
+2025-04-25 08:27:19,961 - INFO - All API services initialized
+2025-04-25 08:27:19,961 - INFO - Services provider initialized
+2025-04-25 08:27:20,002 - INFO - Database connection pool established: size=1-10
+2025-04-25 08:27:20,003 - INFO - Database connection successful
+2025-04-25 08:27:20,014 - INFO - WebsiteChecker cog initialized
+2025-04-25 08:27:20,017 - INFO - Discord Events Registered | Username Ban Server ID: 1313758082974879774
+2025-04-25 08:27:20,018 - INFO - Memory monitor started (threshold: 300MB, interval: 3600s)
+2025-04-25 08:27:20,524 - INFO - Successfully synced 6 command(s)
+2025-04-25 08:27:23,527 - INFO - Logged in as TOPG#4967 (ID: 1340722186100408340)
+2025-04-25 08:27:23,528 - INFO - Bot connected to 4 server(s)
+2025-04-25 08:27:23,528 - INFO - Echo bot message forwarding: 1 bots from 11 channels to 1 channels
+2025-04-25 08:27:23,528 - INFO - Dani message forwarding: 1 users from 2 channels to 1 channels
+2025-04-25 08:27:47,315 - ERROR - No valid Truth Social account available
+2025-04-25 08:27:48,320 - ERROR - Error tracking Truth Social account: '>' not supported between instances of 'datetime.timedelta' and 'int'
+2025-04-25 08:35:26,472 - INFO - Bot is shutting down...
+2025-04-25 08:35:26,473 - INFO - API client closed
+2025-04-25 08:35:26,473 - INFO - Services closed successfully
+2025-04-25 08:35:26,473 - INFO - Background task 'metrics_cleanup' canceled
+2025-04-25 08:35:26,473 - INFO - Background task 'memory_monitor' canceled
+2025-04-25 08:35:26,473 - INFO - Background task 'heartbeat_monitor' canceled
+2025-04-25 08:35:26,474 - INFO - Background task 'metrics_report' canceled
+2025-04-25 08:35:26,474 - INFO - Database connection pool closed successfully
+2025-04-25 08:35:26,475 - INFO - Bot stopped by user
+2025-04-25 08:35:32,780 - INFO - Starting bot...
+2025-04-25 08:35:33,918 - INFO - API client initialized
+2025-04-25 08:35:33,919 - INFO - WebsiteAnalyzer initialized with concurrency limit of 15
+2025-04-25 08:35:33,919 - INFO - Setting up 2 Truth Social accounts...
+2025-04-25 08:35:33,919 - ERROR - Error getting auth token: ApiClient.post() missing 1 required positional argument: 'endpoint'
+2025-04-25 08:35:33,919 - ERROR - Failed to authenticate Truth Social account: visheshbtw
+2025-04-25 08:35:33,919 - ERROR - Error authenticating Truth Social account: '>' not supported between instances of 'datetime.timedelta' and 'int'
+2025-04-25 08:35:33,920 - INFO - Successfully authenticated 0/2 Truth Social accounts
+2025-04-25 08:35:33,920 - INFO - All API services initialized
+2025-04-25 08:35:33,920 - INFO - Services provider initialized
+2025-04-25 08:35:33,942 - INFO - Database connection pool established: size=1-10
+2025-04-25 08:35:33,942 - INFO - Database connection successful
+2025-04-25 08:35:33,956 - INFO - WebsiteChecker cog initialized
+2025-04-25 08:35:33,960 - INFO - Discord Events Registered | Username Ban Server ID: 1313758082974879774
+2025-04-25 08:35:33,961 - INFO - Memory monitor started (threshold: 300MB, interval: 3600s)
+2025-04-25 08:35:34,468 - INFO - Successfully synced 6 command(s)
+2025-04-25 08:35:37,440 - INFO - Logged in as TOPG#4967 (ID: 1340722186100408340)
+2025-04-25 08:35:37,440 - INFO - Bot connected to 4 server(s)
+2025-04-25 08:35:37,440 - INFO - Echo bot message forwarding: 1 bots from 11 channels to 1 channels
+2025-04-25 08:35:37,440 - INFO - Dani message forwarding: 1 users from 2 channels to 1 channels
+2025-04-25 08:35:46,108 - ERROR - No valid Truth Social account available
+2025-04-25 08:35:47,120 - ERROR - Error in get_user_info for kash: '>' not supported between instances of 'datetime.timedelta' and 'int'
+2025-04-25 08:50:42,169 - INFO - Bot is shutting down...
+2025-04-25 08:50:42,169 - INFO - API client closed
+2025-04-25 08:50:42,169 - INFO - Services closed successfully
+2025-04-25 08:50:42,170 - INFO - Background task 'metrics_cleanup' canceled
+2025-04-25 08:50:42,170 - INFO - Background task 'memory_monitor' canceled
+2025-04-25 08:50:42,170 - INFO - Background task 'heartbeat_monitor' canceled
+2025-04-25 08:50:42,170 - INFO - Background task 'metrics_report' canceled
+2025-04-25 08:50:42,171 - INFO - Database connection pool closed successfully
+2025-04-25 08:50:42,172 - INFO - Bot stopped by user
+2025-04-25 08:50:47,092 - INFO - Starting bot...
+2025-04-25 08:50:48,049 - INFO - API client initialized
+2025-04-25 08:50:48,049 - INFO - WebsiteAnalyzer initialized with concurrency limit of 15
+2025-04-25 08:50:48,049 - INFO - Setting up 2 Truth Social accounts...
+2025-04-25 08:50:48,050 - ERROR - Error getting auth token: ApiClient.post() missing 1 required positional argument: 'endpoint'
+2025-04-25 08:50:48,050 - ERROR - Failed to authenticate Truth Social account: visheshbtw
+2025-04-25 08:50:48,050 - ERROR - Error authenticating Truth Social account: '>' not supported between instances of 'datetime.timedelta' and 'int'
+2025-04-25 08:50:48,051 - INFO - Successfully authenticated 0/2 Truth Social accounts
+2025-04-25 08:50:48,051 - INFO - All API services initialized
+2025-04-25 08:50:48,051 - INFO - Services provider initialized
+2025-04-25 08:50:48,068 - INFO - Database connection pool established: size=1-10
+2025-04-25 08:50:48,068 - INFO - Database connection successful
+2025-04-25 08:50:48,078 - INFO - WebsiteChecker cog initialized
+2025-04-25 08:50:48,080 - INFO - Discord Events Registered | Username Ban Server ID: 1313758082974879774
+2025-04-25 08:50:48,081 - INFO - Memory monitor started (threshold: 300MB, interval: 3600s)
+2025-04-25 08:50:48,841 - INFO - Successfully synced 6 command(s)
+2025-04-25 08:50:51,774 - INFO - Logged in as TOPG#4967 (ID: 1340722186100408340)
+2025-04-25 08:50:51,774 - INFO - Bot connected to 4 server(s)
+2025-04-25 08:50:51,774 - INFO - Echo bot message forwarding: 1 bots from 11 channels to 1 channels
+2025-04-25 08:50:51,775 - INFO - Dani message forwarding: 1 users from 2 channels to 1 channels
+2025-04-25 08:52:25,410 - ERROR - No valid Truth Social account available
+2025-04-25 08:52:26,424 - ERROR - Error in get_user_info for kash: '>' not supported between instances of 'datetime.timedelta' and 'int'
+2025-04-25 09:10:01,533 - ERROR - Error in get_user_info for alphabtw: '>' not supported between instances of 'datetime.timedelta' and 'int'
+2025-04-25 09:10:21,907 - ERROR - Error tracking Truth Social account: '>' not supported between instances of 'datetime.timedelta' and 'int'
+2025-04-25 09:11:12,164 - ERROR - Error in get_user_info for realDonaldTrump: '>' not supported between instances of 'datetime.timedelta' and 'int'
+2025-04-25 09:11:33,024 - ERROR - truth_commands command error: Command 'track' raised an exception: TypeError: '>' not supported between instances of 'datetime.timedelta' and 'int'
+2025-04-25 09:11:33,025 - ERROR - Unhandled exception in event loop: Webhook.send() got an unexpected keyword argument 'delete_after' | Task exception was never retrieved
+2025-04-25 09:13:27,921 - INFO - Bot is shutting down...
+2025-04-25 09:13:27,921 - INFO - API client closed
+2025-04-25 09:13:27,922 - INFO - Services closed successfully
+2025-04-25 09:13:27,922 - INFO - Background task 'metrics_cleanup' canceled
+2025-04-25 09:13:27,922 - INFO - Background task 'memory_monitor' canceled
+2025-04-25 09:13:27,922 - INFO - Background task 'heartbeat_monitor' canceled
+2025-04-25 09:13:27,923 - INFO - Background task 'metrics_report' canceled
+2025-04-25 09:13:27,923 - INFO - Database connection pool closed successfully
+2025-04-25 09:13:27,924 - INFO - Bot stopped by user
+2025-04-25 09:13:32,390 - INFO - Starting bot...
+2025-04-25 09:13:33,245 - INFO - API client initialized
+2025-04-25 09:13:33,245 - INFO - WebsiteAnalyzer initialized with concurrency limit of 15
+2025-04-25 09:13:33,245 - INFO - Setting up 2 Truth Social accounts...
+2025-04-25 09:13:33,246 - ERROR - Error getting auth token: ApiClient.post() missing 1 required positional argument: 'endpoint'
+2025-04-25 09:13:33,246 - ERROR - Failed to authenticate Truth Social account: visheshbtw
+2025-04-25 09:13:33,246 - ERROR - Error authenticating Truth Social account: '>' not supported between instances of 'datetime.timedelta' and 'int'
+2025-04-25 09:13:33,247 - INFO - Successfully authenticated 0/2 Truth Social accounts
+2025-04-25 09:13:33,247 - INFO - All API services initialized
+2025-04-25 09:13:33,247 - INFO - Services provider initialized
+2025-04-25 09:13:33,275 - INFO - Database connection pool established: size=1-10
+2025-04-25 09:13:33,275 - INFO - Database connection successful
+2025-04-25 09:13:33,285 - INFO - WebsiteChecker cog initialized
+2025-04-25 09:13:33,287 - INFO - Discord Events Registered | Username Ban Server ID: 1313758082974879774
+2025-04-25 09:13:33,288 - INFO - Memory monitor started (threshold: 300MB, interval: 3600s)
+2025-04-25 09:13:33,894 - INFO - Successfully synced 6 command(s)
+2025-04-25 09:13:36,840 - INFO - Logged in as TOPG#4967 (ID: 1340722186100408340)
+2025-04-25 09:13:36,840 - INFO - Bot connected to 4 server(s)
+2025-04-25 09:13:36,841 - INFO - Echo bot message forwarding: 1 bots from 11 channels to 1 channels
+2025-04-25 09:13:36,841 - INFO - Dani message forwarding: 1 users from 2 channels to 1 channels
+2025-04-25 09:13:58,497 - ERROR - No valid Truth Social account available
+2025-04-25 09:13:59,501 - ERROR - Error in get_user_info for kash: '>' not supported between instances of 'datetime.timedelta' and 'int'
+2025-04-25 09:58:19,345 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-04-25 09:58:19,993 - INFO - Reconnected to Discord after disconnection
+2025-04-25 09:58:19,994 - INFO - Post-reconnection health check: Database=True, API Client=True
+2025-04-25 09:58:24,355 - INFO - Bot automatically reconnected
+2025-04-25 10:13:33,292 - INFO - Metrics Report | Uptime: 1h 0m | Memory: 43.6MB | Processed: 361 | Avg Processing: 0.0250s | Errors: 0 (0 types, Top: none) | Last Cleanup: 2025-04-25 09:13:32 (1h ago)
+2025-04-25 11:13:33,300 - INFO - Metrics Report | Uptime: 2h 0m | Memory: 48.6MB | Processed: 656 | Avg Processing: 0.0181s | Errors: 0 (0 types, Top: none) | Last Cleanup: 2025-04-25 09:13:32 (2h ago)
+2025-04-25 11:40:38,302 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-04-25 11:40:38,974 - INFO - Reconnected to Discord after disconnection
+2025-04-25 11:40:38,976 - INFO - Post-reconnection health check: Database=True, API Client=True
+2025-04-25 11:40:43,313 - INFO - Bot automatically reconnected
+2025-04-25 12:13:33,309 - INFO - Metrics Report | Uptime: 3h 0m | Memory: 49.7MB | Processed: 862 | Avg Processing: 0.0212s | Errors: 0 (0 types, Top: none) | Last Cleanup: 2025-04-25 09:13:32 (3h ago)
+2025-04-25 12:33:33,291 - INFO - Starting periodic metrics cleanup task...
+2025-04-25 12:33:33,673 - INFO - Garbage collection completed successfully.
+2025-04-25 12:33:33,674 - INFO - Metrics cleanup completed in 0.38 seconds. Next cleanup at 2025-04-25 22:33:33
+2025-04-25 12:46:18,119 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-04-25 12:46:18,783 - INFO - Reconnected to Discord after disconnection
+2025-04-25 12:46:18,786 - INFO - Post-reconnection health check: Database=True, API Client=True
+2025-04-25 12:46:23,125 - INFO - Bot automatically reconnected
+2025-04-25 13:13:33,318 - INFO - Metrics Report | Uptime: 4h 0m | Memory: 70.2MB | Processed: 1005 | Avg Processing: 0.0292s | Errors: 0 (0 types, Top: none) | Last Cleanup: 2025-04-25 12:33:33 (40m ago)
+2025-04-25 14:13:33,325 - INFO - Metrics Report | Uptime: 5h 0m | Memory: 70.5MB | Processed: 1150 | Avg Processing: 0.0886s | Errors: 0 (0 types, Top: none) | Last Cleanup: 2025-04-25 12:33:33 (1h ago)
+2025-04-25 15:13:33,341 - INFO - Metrics Report | Uptime: 6h 0m | Memory: 70.8MB | Processed: 1277 | Avg Processing: 0.0196s | Errors: 0 (0 types, Top: none) | Last Cleanup: 2025-04-25 12:33:33 (2h ago)
+2025-04-25 15:53:33,683 - INFO - Starting periodic metrics cleanup task...
+2025-04-25 15:53:33,684 - INFO - Cleaned processing times
+2025-04-25 15:53:33,761 - INFO - Garbage collection completed successfully.
+2025-04-25 15:53:33,764 - INFO - Metrics cleanup completed in 0.08 seconds. Next cleanup at 2025-04-26 01:53:33
+2025-04-25 15:57:38,300 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-04-25 15:57:39,019 - INFO - Reconnected to Discord after disconnection
+2025-04-25 15:57:39,089 - INFO - Post-reconnection health check: Database=True, API Client=True
+2025-04-25 15:57:43,303 - INFO - Bot automatically reconnected
+2025-04-25 16:13:33,347 - INFO - Metrics Report | Uptime: 7h 0m | Memory: 71.1MB | Processed: 1431 | Avg Processing: 0.0374s | Errors: 0 (0 types, Top: none) | Last Cleanup: 2025-04-25 15:53:33 (19m ago)
+2025-04-25 17:08:18,130 - WARNING - Ticker search timed out for $genie
+2025-04-25 17:13:33,362 - INFO - Metrics Report | Uptime: 8h 0m | Memory: 70.9MB | Processed: 1606 | Avg Processing: 0.0721s | Errors: 0 (0 types, Top: none) | Last Cleanup: 2025-04-25 15:53:33 (1h ago)
+2025-04-25 18:13:33,370 - INFO - Metrics Report | Uptime: 9h 0m | Memory: 72.2MB | Processed: 1948 | Avg Processing: 0.0207s | Errors: 0 (0 types, Top: none) | Last Cleanup: 2025-04-25 15:53:33 (2h ago)
+2025-04-25 18:47:51,614 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-04-25 18:47:52,272 - INFO - Reconnected to Discord after disconnection
+2025-04-25 18:47:52,275 - INFO - Post-reconnection health check: Database=True, API Client=True
+2025-04-25 18:47:56,628 - INFO - Bot automatically reconnected
+2025-04-25 19:13:33,396 - INFO - Metrics Report | Uptime: 10h 0m | Memory: 33.6MB | Processed: 2275 | Avg Processing: 0.0001s | Errors: 0 (0 types, Top: none) | Last Cleanup: 2025-04-25 15:53:33 (3h ago)
+2025-04-25 19:13:33,774 - INFO - Starting periodic metrics cleanup task...
+2025-04-25 19:13:33,782 - INFO - Cleaned processing times
+2025-04-25 19:13:33,974 - INFO - Garbage collection completed successfully.
+2025-04-25 19:13:33,975 - INFO - Metrics cleanup completed in 0.20 seconds. Next cleanup at 2025-04-26 05:13:33
+2025-04-25 20:13:33,413 - INFO - Metrics Report | Uptime: 11h 0m | Memory: 34.5MB | Processed: 2559 | Avg Processing: 0.0001s | Errors: 0 (0 types, Top: none) | Last Cleanup: 2025-04-25 19:13:33 (59m ago)
+2025-04-25 21:13:33,427 - INFO - Metrics Report | Uptime: 12h 0m | Memory: 35.1MB | Processed: 2869 | Avg Processing: 0.0001s | Errors: 0 (0 types, Top: none) | Last Cleanup: 2025-04-25 19:13:33 (1h ago)
+2025-04-25 22:13:19,424 - WARNING - API mobula returned status 503 for URL: https://api.mobula.io/api/1/market/history/pair?asset=DitHyRMQiSDhn5cnKMJV2CDDt6sVct96YrECiM49pump&blockchain=solana&period=1d&amount=100000
+2025-04-25 22:13:19,915 - WARNING - API mobula returned status 503 for URL: https://api.mobula.io/api/1/market/history/pair?asset=DitHyRMQiSDhn5cnKMJV2CDDt6sVct96YrECiM49pump&blockchain=solana&period=1d&amount=100000
+2025-04-25 22:13:20,612 - WARNING - API mobula returned status 503 for URL: https://api.mobula.io/api/1/market/history/pair?asset=DitHyRMQiSDhn5cnKMJV2CDDt6sVct96YrECiM49pump&blockchain=solana&period=1d&amount=100000
+2025-04-25 22:13:21,510 - WARNING - API mobula returned status 503 for URL: https://api.mobula.io/api/1/market/history/pair?asset=DitHyRMQiSDhn5cnKMJV2CDDt6sVct96YrECiM49pump&blockchain=solana&period=1d&amount=100000
+2025-04-25 22:13:33,437 - INFO - Metrics Report | Uptime: 13h 0m | Memory: 45.0MB | Processed: 3186 | Avg Processing: 0.0367s | Errors: 4 (1 types, Top: api_mobula=4) | Last Cleanup: 2025-04-25 19:13:33 (2h ago)
+2025-04-25 22:33:33,979 - INFO - Starting periodic metrics cleanup task...
+2025-04-25 22:33:33,981 - INFO - Cleaned processing times
+2025-04-25 22:33:34,119 - INFO - Garbage collection completed successfully.
+2025-04-25 22:33:34,119 - INFO - Metrics cleanup completed in 0.14 seconds. Next cleanup at 2025-04-26 08:33:33
+2025-04-25 22:36:08,563 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-04-25 22:36:09,201 - INFO - Reconnected to Discord after disconnection
+2025-04-25 22:36:09,202 - INFO - Post-reconnection health check: Database=True, API Client=True
+2025-04-25 22:36:13,579 - INFO - Bot automatically reconnected
+2025-04-25 23:13:33,448 - INFO - Metrics Report | Uptime: 14h 0m | Memory: 69.9MB | Processed: 3597 | Avg Processing: 0.0001s | Errors: 4 (1 types, Top: api_mobula=4) | Last Cleanup: 2025-04-25 22:33:33 (39m ago)
+2025-04-25 23:27:57,540 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-04-25 23:27:58,175 - INFO - Reconnected to Discord after disconnection
+2025-04-25 23:27:58,177 - INFO - Post-reconnection health check: Database=True, API Client=True
+2025-04-25 23:28:02,552 - INFO - Bot automatically reconnected
+2025-04-25 23:50:58,366 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-04-25 23:50:59,049 - INFO - Reconnected to Discord after disconnection
+2025-04-25 23:50:59,051 - INFO - Post-reconnection health check: Database=True, API Client=True
+2025-04-25 23:51:03,370 - INFO - Bot automatically reconnected
+2025-04-26 00:13:33,454 - INFO - Metrics Report | Uptime: 15h 0m | Memory: 44.3MB | Processed: 3956 | Avg Processing: 0.0383s | Errors: 4 (1 types, Top: api_mobula=4) | Last Cleanup: 2025-04-25 22:33:33 (1h ago)
+2025-04-26 01:13:33,478 - INFO - Metrics Report | Uptime: 16h 0m | Memory: 38.5MB | Processed: 4292 | Avg Processing: 0.0001s | Errors: 4 (1 types, Top: api_mobula=4) | Last Cleanup: 2025-04-25 22:33:33 (2h ago)
+2025-04-26 01:35:46,958 - ERROR - Error tracking Truth Social account: '>' not supported between instances of 'datetime.timedelta' and 'int'
+2025-04-26 01:53:34,129 - INFO - Starting periodic metrics cleanup task...
+2025-04-26 01:53:34,130 - INFO - Cleaned processing times
+2025-04-26 01:53:34,309 - INFO - Garbage collection completed successfully.
+2025-04-26 01:53:34,310 - INFO - Metrics cleanup completed in 0.18 seconds. Next cleanup at 2025-04-26 11:53:34
+2025-04-26 02:03:32,641 - INFO - Bot is shutting down...
+2025-04-26 02:03:32,642 - INFO - API client closed
+2025-04-26 02:03:32,642 - INFO - Services closed successfully
+2025-04-26 02:03:32,642 - INFO - Background task 'metrics_cleanup' canceled
+2025-04-26 02:03:32,642 - INFO - Background task 'memory_monitor' canceled
+2025-04-26 02:03:32,642 - INFO - Background task 'heartbeat_monitor' canceled
+2025-04-26 02:03:32,643 - INFO - Background task 'metrics_report' canceled
+2025-04-26 02:03:32,643 - INFO - Database connection pool closed successfully
+2025-04-26 02:03:32,647 - INFO - Bot stopped by user

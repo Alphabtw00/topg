@@ -1,3 +1,6 @@
+"""
+Database operations for Truth Social tracking
+"""
 from typing import Dict, List, Optional, Any
 from datetime import datetime
 from handlers.mysql_handler import execute_query, fetch_one, fetch_all
@@ -6,8 +9,8 @@ from config import TRUTH_DEFAULT_INTERVAL
 
 logger = get_logger()
 
-# Updated table structure - server-based accounts
-tables = [
+# Table definitions
+TABLES = [
     """
     CREATE TABLE IF NOT EXISTS truth_accounts (
         id INT AUTO_INCREMENT PRIMARY KEY,
@@ -37,19 +40,20 @@ tables = [
     CREATE TABLE IF NOT EXISTS truth_settings (
         id INT AUTO_INCREMENT PRIMARY KEY,
         guild_id BIGINT NOT NULL,
-        enabled BOOLEAN NOT NULL DEFAULT TRUE,
-        check_interval INT NOT NULL DEFAULT 5,
+        enabled BOOLEAN NOT NULL DEFAULT FALSE,
+        check_interval INT NOT NULL DEFAULT %s,
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
         updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
         UNIQUE KEY unique_guild (guild_id)
     )
-    """
+    """ % TRUTH_DEFAULT_INTERVAL
 ]
 
-async def setup_truth_tables():
-    """Create Truth Social tables if they don't exist"""
+async def setup_truth_tables() -> bool:
+    """Create Truth Social tracking tables if they don't exist"""
     success = True
-    for table_query in tables:
+    
+    for table_query in TABLES:
         try:
             await execute_query(table_query)
         except Exception as e:
@@ -58,7 +62,6 @@ async def setup_truth_tables():
     
     return success
 
-# Account management - all modified for guild_id
 async def add_truth_account(guild_id: int, handle: str, account_id: str, display_name: str = None) -> bool:
     """Add a Truth Social account to tracking for a specific server"""
     query = """
@@ -147,7 +150,36 @@ async def remove_truth_account(guild_id: int, handle: str) -> bool:
     result = await execute_query(query, (guild_id, handle))
     return result is not None
 
-# Settings management
+async def add_truth_channel(guild_id: int, channel_id: int) -> bool:
+    """Add a channel for Truth Social tracking"""
+    query = """
+    INSERT INTO truth_channels 
+    (guild_id, channel_id) 
+    VALUES (%s, %s)
+    ON DUPLICATE KEY UPDATE
+    created_at = created_at
+    """
+    
+    result = await execute_query(query, (guild_id, channel_id))
+    return result is not None
+
+async def remove_truth_channel(guild_id: int, channel_id: int) -> bool:
+    """Remove a channel from Truth Social tracking"""
+    query = "DELETE FROM truth_channels WHERE guild_id = %s AND channel_id = %s"
+    
+    result = await execute_query(query, (guild_id, channel_id))
+    return result is not None
+
+async def get_truth_channels(guild_id: int) -> List[int]:
+    """Get channels configured for Truth Social tracking in a server"""
+    query = "SELECT channel_id FROM truth_channels WHERE guild_id = %s"
+    
+    results = await fetch_all(query, (guild_id,))
+    if not results:
+        return []
+    
+    return [int(row[0]) for row in results]
+
 async def get_guild_settings(guild_id: int) -> Dict:
     """Get Truth Social tracker settings for a guild"""
     query = """
@@ -162,7 +194,7 @@ async def get_guild_settings(guild_id: int) -> Dict:
         # Insert default settings
         default_settings = {
             'guild_id': guild_id,
-            'enabled': True,
+            'enabled': False,
             'check_interval': TRUTH_DEFAULT_INTERVAL
         }
         
@@ -217,8 +249,26 @@ async def update_guild_settings(guild_id: int, settings: Dict) -> bool:
     result = await execute_query(query, tuple(params))
     if not result:
         # Settings might not exist yet, try to insert
-        default_settings = await get_guild_settings(guild_id)
-        return default_settings is not None
+        settings['guild_id'] = guild_id
+        
+        # If there's an enabled field, use it; otherwise default to False
+        enabled = settings.get('enabled', False)
+        
+        # If there's a check_interval field, use it; otherwise use the default
+        check_interval = settings.get('check_interval', TRUTH_DEFAULT_INTERVAL)
+        
+        insert_query = """
+        INSERT INTO truth_settings 
+        (guild_id, enabled, check_interval) 
+        VALUES (%s, %s, %s)
+        ON DUPLICATE KEY UPDATE
+        enabled = VALUES(enabled),
+        check_interval = VALUES(check_interval)
+        """
+        
+        result = await execute_query(insert_query, (guild_id, enabled, check_interval))
+        return result is not None
+    
     return True
 
 async def get_all_enabled_guilds() -> List[Dict]:
@@ -245,34 +295,3 @@ async def get_all_enabled_guilds() -> List[Dict]:
         })
     
     return guilds
-
-# Channel management
-async def add_truth_channel(guild_id: int, channel_id: int) -> bool:
-    """Add a channel for Truth Social tracking"""
-    query = """
-    INSERT INTO truth_channels 
-    (guild_id, channel_id) 
-    VALUES (%s, %s)
-    ON DUPLICATE KEY UPDATE
-    created_at = created_at
-    """
-    
-    result = await execute_query(query, (guild_id, channel_id))
-    return result is not None
-
-async def remove_truth_channel(guild_id: int, channel_id: int) -> bool:
-    """Remove a channel from Truth Social tracking"""
-    query = "DELETE FROM truth_channels WHERE guild_id = %s AND channel_id = %s"
-    
-    result = await execute_query(query, (guild_id, channel_id))
-    return result is not None
-
-async def get_truth_channels(guild_id: int) -> List[int]:
-    """Get channels configured for Truth Social tracking in a server"""
-    query = "SELECT channel_id FROM truth_channels WHERE guild_id = %s"
-    
-    results = await fetch_all(query, (guild_id,))
-    if not results:
-        return []
-    
-    return [int(row[0]) for row in results]
