@@ -58,7 +58,7 @@ class TruthCommands(commands.Cog):
     @app_commands.describe(handle="Truth Social handle to track (with or without @)")
     async def track_command(self, interaction: discord.Interaction, handle: str):
         """Add a Truth Social account to tracking"""
-        await interaction.response.defer(ephemeral=True, thinking=True)
+        await interaction.response.defer(ephemeral=False, thinking=True)
         
         # Clean handle
         handle = handle.strip().lstrip('@')

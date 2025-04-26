@@ -31,7 +31,6 @@ _cached_channels_timestamp = {}
 CACHE_TTL = 60  # 60 seconds cache TTL
 
 # Efficient processed posts tracking with limited memory usage
-# Now uses guild_id+post_id as key to prevent cross-server duplicates
 processed_posts = {}  # guild_id -> set of post_ids
 MAX_PROCESSED_CACHE = 500  # Maximum size of processed posts cache per guild
 
@@ -41,20 +40,25 @@ _task_lock = asyncio.Lock()
 async def init_proxy_rotator(countries=None, protocol="http"):
     """Initialize proxy rotator if not already initialized"""
     global proxy_rotator
-    if proxy_rotator is None:
-        proxy_rotator = ProxyRotator(
-            countries=countries or [],
-            protocol=protocol,
-            auto_rotate=True,
-            max_proxies=20,
-            debug=False
-        )
+    try:
+        if proxy_rotator is None:
+            proxy_rotator = ProxyRotator(
+                countries=countries or [],
+                protocol=protocol,
+                auto_rotate=True,
+                max_proxies=20,
+                debug=False
+            )
+        return True
+    except Exception as e:
+        logger.error(f"Failed to initialize proxy rotator: {e}")
+        return False
 
 async def start_tracking(bot):
     """Start the Truth Social tracking loop"""
     global tracking_task, is_tracking
     
-    # Initialize proxy rotator if not already done
+    # Try to initialize proxy rotator
     await init_proxy_rotator()
     
     async with _task_lock:

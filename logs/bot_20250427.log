@@ -1,0 +1,155 @@
+2025-04-27 01:07:42,256 - INFO - Starting bot...
+2025-04-27 01:07:43,133 - INFO - API client initialized
+2025-04-27 01:07:43,133 - INFO - WebsiteAnalyzer initialized with concurrency limit of 15
+2025-04-27 01:07:43,137 - INFO - Setting up 2 Truth Social accounts...
+2025-04-27 01:07:44,654 - INFO - Authenticated Truth Social account: visheshbtw
+2025-04-27 01:07:46,128 - INFO - Authenticated Truth Social account: alphabtw
+2025-04-27 01:07:46,129 - INFO - Successfully authenticated 2/2 Truth Social accounts
+2025-04-27 01:07:46,129 - INFO - All API services initialized
+2025-04-27 01:07:46,130 - INFO - Services provider initialized
+2025-04-27 01:07:46,387 - INFO - Database connection pool established: size=1-10
+2025-04-27 01:07:46,388 - INFO - Database connection successful
+2025-04-27 01:07:46,433 - INFO - WebsiteChecker cog initialized
+2025-04-27 01:07:46,434 - INFO - Proxy rotator initialized with http protocol
+2025-04-27 01:07:46,434 - INFO - Proxy rotator initialized for Truth commands
+2025-04-27 01:07:46,453 - INFO - Discord Events Registered | Username Ban Server ID: 1313758082974879774
+2025-04-27 01:07:46,454 - INFO - Memory monitor started (threshold: 300MB, interval: 3600s)
+2025-04-27 01:07:47,049 - INFO - Successfully synced 6 command(s)
+2025-04-27 01:07:50,104 - INFO - Logged in as TOPG#4967 (ID: 1340722186100408340)
+2025-04-27 01:07:50,105 - INFO - Bot connected to 4 server(s)
+2025-04-27 01:07:50,105 - INFO - Echo bot message forwarding: 1 bots from 11 channels to 1 channels
+2025-04-27 01:07:50,106 - INFO - Dani message forwarding: 1 users from 2 channels to 1 channels
+2025-04-27 01:10:53,554 - INFO - Bot is shutting down...
+2025-04-27 01:10:53,555 - INFO - API client closed
+2025-04-27 01:10:53,555 - INFO - Services closed successfully
+2025-04-27 01:10:53,555 - INFO - Background task 'metrics_cleanup' canceled
+2025-04-27 01:10:53,556 - INFO - Background task 'memory_monitor' canceled
+2025-04-27 01:10:53,556 - INFO - Background task 'heartbeat_monitor' canceled
+2025-04-27 01:10:53,556 - INFO - Background task 'metrics_report' canceled
+2025-04-27 01:10:53,556 - INFO - Database connection pool closed successfully
+2025-04-27 01:10:53,559 - INFO - Bot stopped by user
+2025-04-27 01:10:59,195 - INFO - Starting bot...
+2025-04-27 01:11:00,134 - INFO - API client initialized
+2025-04-27 01:11:00,135 - INFO - WebsiteAnalyzer initialized with concurrency limit of 15
+2025-04-27 01:11:00,135 - INFO - Setting up 2 Truth Social accounts...
+2025-04-27 01:11:01,668 - INFO - Authenticated Truth Social account: visheshbtw
+2025-04-27 01:11:03,045 - INFO - Authenticated Truth Social account: alphabtw
+2025-04-27 01:11:03,046 - INFO - Successfully authenticated 2/2 Truth Social accounts
+2025-04-27 01:11:03,046 - INFO - All API services initialized
+2025-04-27 01:11:03,046 - INFO - Services provider initialized
+2025-04-27 01:11:03,115 - INFO - Database connection pool established: size=1-10
+2025-04-27 01:11:03,115 - INFO - Database connection successful
+2025-04-27 01:11:03,134 - INFO - WebsiteChecker cog initialized
+2025-04-27 01:11:03,135 - INFO - Proxy rotator initialized with http protocol
+2025-04-27 01:11:03,136 - INFO - Proxy rotator initialized for Truth commands
+2025-04-27 01:11:03,147 - INFO - Discord Events Registered | Username Ban Server ID: 1313758082974879774
+2025-04-27 01:11:03,148 - INFO - Memory monitor started (threshold: 300MB, interval: 3600s)
+2025-04-27 01:11:03,787 - INFO - Successfully synced 6 command(s)
+2025-04-27 01:11:06,795 - INFO - Logged in as TOPG#4967 (ID: 1340722186100408340)
+2025-04-27 01:11:06,795 - INFO - Bot connected to 4 server(s)
+2025-04-27 01:11:06,795 - INFO - Echo bot message forwarding: 1 bots from 11 channels to 1 channels
+2025-04-27 01:11:06,795 - INFO - Dani message forwarding: 1 users from 2 channels to 1 channels
+2025-04-27 01:12:30,934 - INFO - GitHub analysis called by alphabtw_ for https://github.com/Alphabtw00/User-Track- (cached: False)
+2025-04-27 01:14:41,502 - WARNING - API github returned status 400 for URL: https://api.anthropic.com/v1/messages
+2025-04-27 01:14:41,503 - ERROR - Empty response from Claude API
+2025-04-27 01:14:43,496 - WARNING - API github returned status 400 for URL: https://api.anthropic.com/v1/messages
+2025-04-27 01:14:43,497 - ERROR - Unexpected error during code analysis: '>' not supported between instances of 'datetime.timedelta' and 'int'
+2025-04-27 01:14:46,466 - WARNING - API github returned status 400 for URL: https://api.anthropic.com/v1/messages
+2025-04-27 01:14:46,466 - ERROR - Unexpected error during repo analysis for https://github.com/Ubheee/chainainexus-cloud: '>' not supported between instances of 'datetime.timedelta' and 'int'
+Traceback (most recent call last):
+  File "C:\Users\ansha\Documents\VsCode\TOPG\api\github_analyzer.py", line 461, in _analyze_code
+    logger.error("Empty response from Claude API")
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ansha\Documents\VsCode\TOPG\utils\logger.py", line 72, in error
+    if msg_hash in self.last_reported and (current_time - self.last_reported[msg_hash]) > self.time_window:
+                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: '>' not supported between instances of 'datetime.timedelta' and 'int'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\ansha\Documents\VsCode\TOPG\api\github_analyzer.py", line 76, in analyze_repo
+    code_analysis = await self._analyze_code(repo_details, repo_contents)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ansha\Documents\VsCode\TOPG\api\github_analyzer.py", line 486, in _analyze_code
+    logger.error(f"Unexpected error during code analysis: {str(e)}")
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ansha\Documents\VsCode\TOPG\utils\logger.py", line 72, in error
+    if msg_hash in self.last_reported and (current_time - self.last_reported[msg_hash]) > self.time_window:
+                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: '>' not supported between instances of 'datetime.timedelta' and 'int'
+2025-04-27 01:44:24,872 - INFO - Bot is shutting down...
+2025-04-27 01:44:24,874 - INFO - API client closed
+2025-04-27 01:44:24,874 - INFO - Services closed successfully
+2025-04-27 01:44:24,874 - INFO - Background task 'metrics_cleanup' canceled
+2025-04-27 01:44:24,874 - INFO - Background task 'memory_monitor' canceled
+2025-04-27 01:44:24,874 - INFO - Background task 'heartbeat_monitor' canceled
+2025-04-27 01:44:24,875 - INFO - Background task 'metrics_report' canceled
+2025-04-27 01:44:24,875 - INFO - Database connection pool closed successfully
+2025-04-27 01:44:24,884 - INFO - Bot stopped by user
+2025-04-27 01:44:30,094 - INFO - Starting bot...
+2025-04-27 01:44:30,976 - INFO - API client initialized
+2025-04-27 01:44:30,976 - INFO - WebsiteAnalyzer initialized with concurrency limit of 15
+2025-04-27 01:44:30,976 - INFO - Setting up 2 Truth Social accounts...
+2025-04-27 01:44:32,346 - INFO - Authenticated Truth Social account: visheshbtw
+2025-04-27 01:44:33,854 - INFO - Authenticated Truth Social account: alphabtw
+2025-04-27 01:44:33,855 - INFO - Successfully authenticated 2/2 Truth Social accounts
+2025-04-27 01:44:33,855 - INFO - All API services initialized
+2025-04-27 01:44:33,855 - INFO - Services provider initialized
+2025-04-27 01:44:33,909 - INFO - Database connection pool established: size=1-10
+2025-04-27 01:44:33,909 - INFO - Database connection successful
+2025-04-27 01:44:33,922 - INFO - WebsiteChecker cog initialized
+2025-04-27 01:44:33,922 - INFO - Proxy rotator initialized with http protocol
+2025-04-27 01:44:33,922 - INFO - Proxy rotator initialized for Truth commands
+2025-04-27 01:44:33,926 - INFO - Discord Events Registered | Username Ban Server ID: 1313758082974879774
+2025-04-27 01:44:33,927 - INFO - Memory monitor started (threshold: 300MB, interval: 3600s)
+2025-04-27 01:44:34,404 - INFO - Successfully synced 6 command(s)
+2025-04-27 01:44:37,416 - INFO - Logged in as TOPG#4967 (ID: 1340722186100408340)
+2025-04-27 01:44:37,416 - INFO - Bot connected to 4 server(s)
+2025-04-27 01:44:37,416 - INFO - Echo bot message forwarding: 1 bots from 11 channels to 1 channels
+2025-04-27 01:44:37,416 - INFO - Dani message forwarding: 1 users from 2 channels to 1 channels
+2025-04-27 02:44:33,935 - INFO - Metrics Report | Uptime: 1h 0m | Memory: 36.5MB | Processed: 447 | Avg Processing: 0.0001s | Errors: 0 (0 types, Top: none) | Last Cleanup: 2025-04-27 01:44:30 (1h ago)
+2025-04-27 03:27:36,028 - INFO - Proxy rotator initialized with http protocol
+2025-04-27 03:27:36,029 - INFO - Truth Social tracking started
+2025-04-27 03:27:36,030 - INFO - Polling Truth Social for 1 guilds at 2025-04-27 03:27:36
+2025-04-27 03:27:36,532 - INFO - alphabtw_ enabled Truth Social tracking in server 'HabibiFNF'
+2025-04-27 03:27:39,094 - INFO - Found 1 new post(s) from @kash for guild 1313758082974879774
+2025-04-27 03:28:39,102 - INFO - Polling Truth Social for 1 guilds at 2025-04-27 03:28:39
+2025-04-27 03:29:41,716 - INFO - Polling Truth Social for 1 guilds at 2025-04-27 03:29:41
+2025-04-27 03:30:44,456 - INFO - Polling Truth Social for 1 guilds at 2025-04-27 03:30:44
+2025-04-27 03:31:47,060 - INFO - Polling Truth Social for 1 guilds at 2025-04-27 03:31:47
+2025-04-27 03:32:49,604 - INFO - Polling Truth Social for 1 guilds at 2025-04-27 03:32:49
+2025-04-27 03:33:52,150 - INFO - Polling Truth Social for 1 guilds at 2025-04-27 03:33:52
+2025-04-27 03:34:54,815 - INFO - Polling Truth Social for 1 guilds at 2025-04-27 03:34:54
+2025-04-27 03:35:50,046 - INFO - Bot is shutting down...
+2025-04-27 03:35:50,048 - INFO - API client closed
+2025-04-27 03:35:50,048 - INFO - Services closed successfully
+2025-04-27 03:35:50,048 - INFO - Background task 'metrics_cleanup' canceled
+2025-04-27 03:35:50,048 - INFO - Background task 'memory_monitor' canceled
+2025-04-27 03:35:50,048 - INFO - Background task 'heartbeat_monitor' canceled
+2025-04-27 03:35:50,048 - INFO - Background task 'metrics_report' canceled
+2025-04-27 03:35:50,049 - INFO - Database connection pool closed successfully
+2025-04-27 03:35:50,052 - INFO - Truth Social tracking task cancelled
+2025-04-27 03:35:50,052 - INFO - Truth Social tracking loop cancelled
+2025-04-27 03:35:50,056 - INFO - Bot stopped by user
+2025-04-27 03:39:26,974 - INFO - Starting bot...
+2025-04-27 03:39:27,814 - INFO - API client initialized
+2025-04-27 03:39:27,814 - INFO - WebsiteAnalyzer initialized with concurrency limit of 15
+2025-04-27 03:39:27,815 - INFO - Setting up 2 Truth Social accounts...
+2025-04-27 03:39:29,144 - INFO - Authenticated Truth Social account: visheshbtw
+2025-04-27 03:39:30,638 - INFO - Authenticated Truth Social account: alphabtw
+2025-04-27 03:39:30,639 - INFO - Successfully authenticated 2/2 Truth Social accounts
+2025-04-27 03:39:30,639 - INFO - All API services initialized
+2025-04-27 03:39:30,639 - INFO - Services provider initialized
+2025-04-27 03:39:30,678 - INFO - Database connection pool established: size=1-10
+2025-04-27 03:39:30,678 - INFO - Database connection successful
+2025-04-27 03:39:30,690 - INFO - WebsiteChecker cog initialized
+2025-04-27 03:39:30,690 - INFO - Proxy rotator initialized with http protocol
+2025-04-27 03:39:30,691 - INFO - Proxy rotator initialized for Truth commands
+2025-04-27 03:39:30,695 - INFO - Discord Events Registered | Username Ban Server ID: 1313758082974879774
+2025-04-27 03:39:30,697 - INFO - Memory monitor started (threshold: 300MB, interval: 3600s)
+2025-04-27 03:39:31,417 - INFO - Successfully synced 6 command(s)
+2025-04-27 03:39:34,450 - INFO - Logged in as TOPG#4967 (ID: 1340722186100408340)
+2025-04-27 03:39:34,450 - INFO - Bot connected to 4 server(s)
+2025-04-27 03:39:34,451 - INFO - Echo bot message forwarding: 1 bots from 11 channels to 1 channels
+2025-04-27 03:39:34,451 - INFO - Dani message forwarding: 1 users from 2 channels to 1 channels

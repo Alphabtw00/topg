@@ -49,7 +49,10 @@ class WebsiteChecker(commands.Cog):
         
         try:
             # Use the website analyzer from the services provider
-            result = await self.bot.services.website_analyzer.analyze_website(website_url)
+            result = await asyncio.wait_for(
+                self.bot.services.website_analyzer.analyze_website(website_url),
+                timeout=60  # 2 minutes timeout
+            )
             
             if not result:
                 return await interaction.followup.send(

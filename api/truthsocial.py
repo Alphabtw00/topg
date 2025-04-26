@@ -1,14 +1,13 @@
 """
-Truth Social API client for direct integration with Truth Social
+Truth Social API service with improved Cloudflare handling
 """
-import aiohttp
-import asyncio
-import json
-import random
 import time
-from datetime import datetime, timezone, timedelta
-from typing import Dict, List, Optional, Any, Tuple
+import asyncio
+import random
+from typing import Dict, Optional, Any, List, Tuple
+from datetime import datetime
 from utils.logger import get_logger
+from curl_cffi import requests as curl_requests
 from config import (
     TRUTH_ACCOUNTS,
     TRUTH_DEFAULT_INTERVAL
@@ -88,39 +87,36 @@ class TruthSocialService:
             return False
     
     async def _get_auth_token(self, username, password):
-        """Get authentication token for an account"""
-        url = f"{BASE_URL}/oauth/token"
-        payload = {
-            "client_id": CLIENT_ID,
-            "client_secret": CLIENT_SECRET,
-            "grant_type": "password",
-            "username": username,
-            "password": password,
-            "redirect_uri": "urn:ietf:wg:oauth:2.0:oob",
-            "scope": "read"
-        }
-        
+        """Get authentication token for an account using curl_cffi like truthbrush"""
         try:
-            headers = {
-                "User-Agent": USER_AGENT,
-                "Content-Type": "application/json"
+            url = f"{BASE_URL}/oauth/token"
+            payload = {
+                "client_id": CLIENT_ID,
+                "client_secret": CLIENT_SECRET,
+                "grant_type": "password",
+                "username": username,
+                "password": password,
+                "redirect_uri": "urn:ietf:wg:oauth:2.0:oob",
+                "scope": "read"
             }
             
-            async with aiohttp.ClientSession() as session:
-                async with session.post(
-                    url,
-                    json=payload,
-                    headers=headers,
-                    timeout=15
-                ) as response:
-                    if response.status == 200:
-                        data = await response.json()
-                        if "access_token" in data:
-                            return data["access_token"]
-                    
-                    logger.error(f"Auth error: Status {response.status}")
-                    return None
-                    
+            # Use curl_cffi which handles Cloudflare better
+            response = curl_requests.post(
+                url,
+                json=payload,
+                impersonate="chrome123",  # This helps bypass Cloudflare
+                headers={"User-Agent": USER_AGENT},
+                timeout=15
+            )
+            
+            if response.status_code == 200:
+                data = response.json()
+                if "access_token" in data:
+                    return data["access_token"]
+            
+            logger.error(f"Auth error: Status {response.status_code}")
+            return None
+            
         except Exception as e:
             logger.error(f"Error getting auth token: {e}")
             return None
@@ -130,7 +126,7 @@ class TruthSocialService:
         if not TRUTH_ACCOUNTS:
             logger.error("No Truth Social accounts configured")
             return None, None
-        
+            
         # Try to find an account that hasn't been used recently and isn't rate limited
         current_time = time.time()
         best_account_idx = self.current_account_index
@@ -177,33 +173,28 @@ class TruthSocialService:
     
     def _handle_rate_limit(self, account: str, headers: Dict):
         """Handle rate limiting from response headers"""
-        # Check for rate limit headers
-        if "x-ratelimit-remaining" in headers:
-            try:
-                remaining = int(headers["x-ratelimit-remaining"])
-                if remaining <= 5:  # Low on remaining requests
-                    # Set rate limit for a short cooldown (1 minute)
-                    self.account_rate_limited_until[account] = time.time() + 60
-                    logger.warning(f"Account {account} approaching rate limit, cooling down for 60s")
-            except (ValueError, TypeError):
-                pass
-                
+        # Use a simple timestamp-based approach
+        current_time = time.time()
+        
+        # Default cooldown of 60 seconds for low rate limit
+        cooldown = 60
+        
         # Check for retry-after header
-        if "retry-after" in headers:
+        retry_after = headers.get("retry-after")
+        if retry_after:
             try:
-                retry_seconds = int(headers["retry-after"])
-                # Fix: ensure we're adding seconds to a timestamp, not comparing timedelta with int
-                self.account_rate_limited_until[account] = time.time() + retry_seconds + 5  # Add a small buffer
-                logger.warning(f"Account {account} rate limited, retry after {retry_seconds}s")
+                cooldown = int(retry_after) + 5  # Add a small buffer
             except (ValueError, TypeError):
-                # Default cooldown of 5 minutes if parse fails
-                self.account_rate_limited_until[account] = time.time() + 300
-                logger.warning(f"Account {account} rate limited, using default 300s cooldown")
+                cooldown = 300  # Default 5-minute cooldown if parse fails
+        
+        # Set rate limit expiry as a timestamp
+        self.account_rate_limited_until[account] = current_time + cooldown
+        logger.warning(f"Account {account} rate limited, cooling down for {cooldown}s")
     
     async def _api_request(self, method, url, params=None, json_data=None, proxy=None, retry_count=2):
         """Make an API request with account rotation and rate limiting"""
         for attempt in range(retry_count + 1):
-            # Get account credentials
+            # Get account credentials 
             account, token = await self._get_next_account_credentials()
             if not account or not token:
                 logger.error("No valid Truth Social account available")
@@ -220,77 +211,53 @@ class TruthSocialService:
             }
             
             try:
-                # Create a temporary session
-                async with aiohttp.ClientSession() as session:
-                    request_kwargs = {
-                        "headers": headers,
-                        "timeout": 15
-                    }
+                # Use curl_cffi which handles Cloudflare better
+                request_kwargs = {
+                    "headers": headers,
+                    "impersonate": "chrome123",  # Bypass Cloudflare
+                    "timeout": 15
+                }
+                
+                if params:
+                    request_kwargs["params"] = params
                     
-                    if params:
-                        request_kwargs["params"] = params
+                if json_data:
+                    request_kwargs["json"] = json_data
+                
+                # Add proxy if provided
+                if proxy:
+                    request_kwargs["proxies"] = {"http": proxy, "https": proxy}
+                
+                # Make the request using curl_cffi
+                if method.upper() == "GET":
+                    response = curl_requests.get(url, **request_kwargs)
+                elif method.upper() == "POST":
+                    response = curl_requests.post(url, **request_kwargs)
+                else:
+                    logger.error(f"Unsupported HTTP method: {method}")
+                    return None
+                    
+                # Handle rate limiting
+                if response.status_code == 429:  # Rate limited
+                    self._handle_rate_limit(account, response.headers)
+                    
+                    if attempt < retry_count:
+                        # Try again with a different account
+                        continue
                         
-                    if json_data:
-                        request_kwargs["json"] = json_data
+                # Check for other issues
+                if response.status_code != 200:
+                    logger.warning(f"API error: Status {response.status_code}")
                     
-                    # Add proxy if provided
-                    if proxy:
-                        request_kwargs["proxy"] = proxy
-                    
-                    if method.upper() == "GET":
-                        async with session.get(url, **request_kwargs) as response:
-                            # Handle rate limiting
-                            if response.status == 429:  # Rate limited
-                                self._handle_rate_limit(account, response.headers)
-                                
-                                if attempt < retry_count:
-                                    # Try again with a different account
-                                    continue
-                                    
-                            # Check for other issues
-                            if response.status != 200:
-                                logger.warning(f"API error: Status {response.status}")
-                                
-                                if attempt < retry_count:
-                                    await asyncio.sleep(1)
-                                    continue
-                                    
-                                return None
-                                
-                            # Success case
-                            return await response.json()
-                    
-                    elif method.upper() == "POST":
-                        async with session.post(url, **request_kwargs) as response:
-                            # Handle rate limiting
-                            if response.status == 429:  # Rate limited
-                                self._handle_rate_limit(account, response.headers)
-                                
-                                if attempt < retry_count:
-                                    # Try again with a different account
-                                    continue
-                                    
-                            # Check for other issues
-                            if response.status != 200:
-                                logger.warning(f"API error: Status {response.status}")
-                                
-                                if attempt < retry_count:
-                                    await asyncio.sleep(1)
-                                    continue
-                                    
-                                return None
-                                
-                            # Success case
-                            return await response.json()
-                    else:
-                        logger.error(f"Unsupported HTTP method: {method}")
-                        return None
+                    if attempt < retry_count:
+                        await asyncio.sleep(1)
+                        continue
                         
-            except (aiohttp.ClientError, asyncio.TimeoutError) as e:
-                logger.warning(f"Request error: {e}")
-                if attempt < retry_count:
-                    await asyncio.sleep(1)
-                    continue
+                    return None
+                    
+                # Success case
+                return response.json()
+                        
             except Exception as e:
                 logger.error(f"Error in API request: {e}")
                 if attempt < retry_count:

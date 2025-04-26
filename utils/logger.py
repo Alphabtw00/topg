@@ -69,7 +69,7 @@ class RateLimitedLoggerAdapter(logging.LoggerAdapter):
         current_time = datetime.now()
         
         # Reset counter if it's been more than time_window since last occurrence
-        if msg_hash in self.last_reported and (current_time - self.last_reported[msg_hash]) > self.time_window:
+        if msg_hash in self.last_reported and (current_time - self.last_reported[msg_hash]).total_seconds() > self.time_window:
             self.message_counts[msg_hash] = 0
         
         # Increment counter
