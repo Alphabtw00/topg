@@ -1,5 +1,5 @@
 """
-Commands for managing Truth Social tracking
+Optimized Truth Social commands with improved account tracking system
 """
 import discord
 from discord import app_commands
@@ -9,10 +9,11 @@ from typing import Optional
 import repository.truth_repo as truth_db
 import handlers.truth_tracker as tracker
 from service.proxy_handler import ProxyRotator
-from config import VERIFIED_EMOJI, TRUTH_DEFAULT_INTERVAL
+from config import TRUTH_DEFAULT_INTERVAL, VERIFIED_EMOJI
 from utils.logger import get_logger
 from utils.formatters import format_value, format_date
 from bot.error_handler import create_error_handler
+from utils.formatters import proxy_url
 
 logger = get_logger()
 
@@ -98,6 +99,12 @@ class TruthCommands(commands.Cog):
             avatar_url = user_info.get('avatar', '')
             header_url = user_info.get('header', '')
             
+            # Apply proxy URL to images
+            if avatar_url:
+                avatar_url = proxy_url(avatar_url)
+            if header_url:
+                header_url = proxy_url(header_url)
+            
             # Format the created_at date
             formatted_date = format_date(created_at) if created_at else "Unknown"
             
@@ -112,8 +119,7 @@ class TruthCommands(commands.Cog):
             success = await truth_db.add_truth_account(interaction.guild.id, handle, account_id, display_name)
             
             if success:
-                # Just set a placeholder last_post_id value
-                # We'll use "0" - this will catch all new posts going forward
+                # Set last_post_id to "0" to only retrieve the latest post on first check
                 await truth_db.update_last_post(interaction.guild.id, handle, "0")
                 
                 # Clear cache to ensure the new account is picked up immediately
@@ -126,9 +132,10 @@ class TruthCommands(commands.Cog):
                     color=0xE12626  # Truth Social red
                 )
                 
-                # Add the verified emoji if account is verified
-                name_with_verification = f"{display_name} {VERIFIED_EMOJI if verified and VERIFIED_EMOJI else '✓' if verified else ''}"
+                # Add verified emoji if account is verified
+                name_with_verification = f"{display_name} {VERIFIED_EMOJI if verified and VERIFIED_EMOJI else '💹' if verified else ''}"
                 embed.description = f"**{name_with_verification}**\n\n"
+
                 
                 # Add stats in a single line with formatting
                 embed.description += f"**{format_value(followers_count)}** Followers  •  **{format_value(following_count)}** Following  •  **{format_value(statuses_count)}** Posts"
@@ -215,7 +222,7 @@ class TruthCommands(commands.Cog):
             logger.error(f"Error untracking Truth Social account: {e}")
             await interaction.followup.send(f"Error untracking @{handle}. Please try again later.", ephemeral=True)
     
-    @truth_group.command(name="addchannel", description="Set a channel for Truth Social updates")
+    @truth_group.command(name="add-channel", description="Set a channel for Truth Social updates")
     @app_commands.describe(channel="Channel to send Truth Social updates to (defaults to current channel if none specified)")
     async def addchannel_command(self, interaction: discord.Interaction, channel: Optional[discord.TextChannel] = None):
         """Add a channel for Truth Social updates"""
@@ -260,7 +267,7 @@ class TruthCommands(commands.Cog):
             logger.error(f"Error adding Truth Social channel: {e}")
             await interaction.followup.send(f"❌ Error adding {channel.mention} to Truth Social Updates. Please try again later.", ephemeral=True)
     
-    @truth_group.command(name="removechannel", description="Remove a channel from Truth Social updates")
+    @truth_group.command(name="remove-channel", description="Remove a channel from Truth Social updates")
     @app_commands.describe(channel="Channel to remove (defaults to current channel if none specified)")
     async def removechannel_command(self, interaction: discord.Interaction, channel: Optional[discord.TextChannel] = None):
         """Remove a channel from Truth Social updates"""
@@ -412,7 +419,6 @@ class TruthCommands(commands.Cog):
             is_tracking = tracking_status.get('is_tracking', False) and settings.get('enabled', False)
             
             # Create embed
-            check_interval = settings.get('check_interval', TRUTH_DEFAULT_INTERVAL)
             color = 0x2ECC71 if is_tracking else 0xE74C3C
             
             # Emoji for status
@@ -437,17 +443,10 @@ class TruthCommands(commands.Cog):
             # Check interval
             embed.add_field(
                 name=f"⏰ Check Interval",
-                value=f"**{check_interval}s**",
+                value=f"**{TRUTH_DEFAULT_INTERVAL}s**",
                 inline=False
             )
             
-            # Proxy status
-            proxy_enabled = tracking_status.get('proxy_enabled', False) or (self.proxy_rotator is not None and self.proxy_rotator.enabled)
-            embed.add_field(
-                name=f"🌐 Proxy Rotation",
-                value=f"{'✅ Enabled' if proxy_enabled else '❌ Disabled'}",
-                inline=False
-            )
             
             # Accounts section - server-specific
             if active_accounts:
@@ -501,188 +500,6 @@ class TruthCommands(commands.Cog):
             logger.error(f"Error getting Truth Social status: {e}")
             await interaction.followup.send(f"❌ Error getting Truth Social status for server", ephemeral=True)
     
-    @truth_group.command(name="search", description="Search Truth Social for users, posts, or hashtags")
-    @app_commands.describe(
-        query="What to search for",
-        search_type="Type of search to perform",
-        limit="Maximum number of results (default: 10)"
-    )
-    @app_commands.choices(search_type=[
-        app_commands.Choice(name="Accounts", value="accounts"),
-        app_commands.Choice(name="Posts", value="statuses"),
-        app_commands.Choice(name="Hashtags", value="hashtags"),
-        app_commands.Choice(name="Groups", value="groups")
-    ])
-    async def search_command(self, interaction: discord.Interaction, 
-                            query: str, 
-                            search_type: str,
-                            limit: Optional[int] = 10):
-        """Search Truth Social for different types of content"""
-        await interaction.response.defer(thinking=True)
-        
-        if limit > 40:
-            limit = 40  # Cap maximum results at 40 to prevent overload
-        
-        try:
-            # Get proxy for request
-            proxy = await self.get_proxy(force_new=True)
-            
-            # Perform search
-            results = await self.bot.services.truthsocial.search(
-                searchtype=search_type,
-                query=query,
-                limit=limit,
-                proxy=proxy
-            )
-            
-            if not results:
-                await interaction.followup.send(f"No results found for '{query}'")
-                return
-                
-            # Extract the correct result type
-            items = results.get(search_type, [])
-            
-            if not items:
-                await interaction.followup.send(f"No {search_type} found matching '{query}'")
-                return
-                
-            # Create embed based on search type
-            if search_type == "accounts":
-                embed = self.create_account_search_embed(query, items)
-            elif search_type == "statuses":
-                embed = self.create_status_search_embed(query, items)
-            elif search_type == "hashtags":
-                embed = self.create_hashtag_search_embed(query, items)
-            elif search_type == "groups":
-                embed = self.create_group_search_embed(query, items)
-            else:
-                embed = discord.Embed(
-                    title=f"Search results for '{query}'",
-                    description=f"Found {len(items)} {search_type}",
-                    color=0xE12626  # Truth Social red
-                )
-                
-            await interaction.followup.send(embed=embed)
-            
-            # Track command usage
-            self.bot.record_command_usage(f"truth_search_{search_type}")
-            
-        except Exception as e:
-            logger.error(f"Error searching Truth Social: {e}")
-            await interaction.followup.send(f"❌ Error searching Truth Social. Please try again later.")
-    
-    def create_account_search_embed(self, query, accounts):
-        """Create an embed for account search results"""
-        embed = discord.Embed(
-            title=f"Account search results for '{query}'",
-            description=f"Found {len(accounts)} accounts",
-            color=0xE12626  # Truth Social red
-        )
-        
-        for i, account in enumerate(accounts[:10]):  # Show top 10 accounts
-            name = account.get("display_name", "Unknown")
-            username = account.get("username", "unknown")
-            verified = account.get("verified", False)
-            followers = account.get("followers_count", 0)
-            
-            # Format name with verification badge if applicable
-            name_display = f"{name} {VERIFIED_EMOJI if verified else ''}"
-            
-            embed.add_field(
-                name=f"{i+1}. {name_display} (@{username})",
-                value=f"[Profile](https://truthsocial.com/@{username}) • {format_value(followers)} followers",
-                inline=False
-            )
-            
-        if len(accounts) > 10:
-            embed.set_footer(text=f"Showing 10 of {len(accounts)} results")
-            
-        return embed
-    
-    def create_status_search_embed(self, query, statuses):
-        """Create an embed for status search results"""
-        embed = discord.Embed(
-            title=f"Post search results for '{query}'",
-            description=f"Found {len(statuses)} posts",
-            color=0xE12626  # Truth Social red
-        )
-        
-        for i, status in enumerate(statuses[:5]):  # Show top 5 statuses
-            content = status.get("content", "")
-            
-            # Remove HTML tags from content (simple version)
-            import re
-            clean_content = re.sub(r'<[^>]+>', '', content)
-            if len(clean_content) > 200:
-                clean_content = clean_content[:197] + "..."
-                
-            account = status.get("account", {})
-            name = account.get("display_name", "Unknown")
-            username = account.get("username", "unknown")
-            verified = account.get("verified", False)
-            
-            # Format name with verification badge if applicable
-            name_display = f"{name} {VERIFIED_EMOJI if verified else ''}"
-            
-            embed.add_field(
-                name=f"{i+1}. {name_display} (@{username})",
-                value=f"{clean_content}\n[View Post](https://truthsocial.com/@{username}/posts/{status.get('id')})",
-                inline=False
-            )
-            
-        if len(statuses) > 5:
-            embed.set_footer(text=f"Showing 5 of {len(statuses)} results")
-            
-        return embed
-    
-    def create_hashtag_search_embed(self, query, hashtags):
-        """Create an embed for hashtag search results"""
-        embed = discord.Embed(
-            title=f"Hashtag search results for '{query}'",
-            description=f"Found {len(hashtags)} hashtags",
-            color=0xE12626  # Truth Social red
-        )
-        
-        for i, hashtag in enumerate(hashtags[:15]):  # Show top 15 hashtags
-            name = hashtag.get("name", "unknown")
-            url = f"https://truthsocial.com/tags/{name}"
-            count = hashtag.get("history", [{}])[0].get("uses", 0)
-            
-            embed.add_field(
-                name=f"{i+1}. #{name}",
-                value=f"[View Tag]({url}) • {format_value(count)} uses",
-                inline=True
-            )
-            
-        if len(hashtags) > 15:
-            embed.set_footer(text=f"Showing 15 of {len(hashtags)} results")
-            
-        return embed
-    
-    def create_group_search_embed(self, query, groups):
-        """Create an embed for group search results"""
-        embed = discord.Embed(
-            title=f"Group search results for '{query}'",
-            description=f"Found {len(groups)} groups",
-            color=0xE12626  # Truth Social red
-        )
-        
-        for i, group in enumerate(groups[:10]):  # Show top 10 groups
-            name = group.get("title", "Unknown")
-            group_id = group.get("id", "")
-            members = group.get("member_count", 0)
-            
-            embed.add_field(
-                name=f"{i+1}. {name}",
-                value=f"[View Group](https://truthsocial.com/groups/{group_id}) • {format_value(members)} members",
-                inline=False
-            )
-            
-        if len(groups) > 10:
-            embed.set_footer(text=f"Showing 10 of {len(groups)} results")
-            
-        return embed
-    
     # Add error handlers for all commands
     @track_command.error
     @untrack_command.error
@@ -691,7 +508,6 @@ class TruthCommands(commands.Cog):
     @enable_command.error
     @disable_command.error
     @status_command.error
-    @search_command.error
     async def truth_command_error(self, interaction, error):
         """Handle errors in Truth Social commands"""
         error_handler = create_error_handler("truth_commands")

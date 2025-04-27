@@ -162,19 +162,7 @@ if not TRUTH_ACCOUNTS and os.getenv("TRUTHSOCIAL_USERNAME") and os.getenv("TRUTH
     })
 
 # Tracking settings
-TRUTH_DEFAULT_INTERVAL = 30
-TRUTH_MIN_INTERVAL = 1
-TRUTH_MAX_INTERVAL = 60
-TRUTH_NIGHT_INTERVAL = 60
-
-# Trump's timezone settings (Eastern Time)
-TRUMP_TIMEZONE = "US/Eastern"
-TRUMP_ACTIVE_START_HOUR = 6  # 6 AM ET
-TRUMP_ACTIVE_END_HOUR = 23  # 11 PM ET
-
-# Avatar images to be used in embeds
-TRUMP_IMAGE_URL = "https://i.imgur.com/XtQThJU.jpeg"
-DEFAULT_AVATAR = "https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y"
+TRUTH_DEFAULT_INTERVAL = 10
 
 # Pink verified emoji to use in truth social embed
 VERIFIED_EMOJI = "<:Pink_Verified:1360315088837415135>"

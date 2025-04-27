@@ -56,6 +56,14 @@ class TruthSocialService:
         # Count successful authentications
         success_count = sum(1 for result in results if result is True)
         logger.info(f"Successfully authenticated {success_count}/{len(TRUTH_ACCOUNTS)} Truth Social accounts")
+        try:
+            from handlers.truth_tracker import get_cached_guilds, start_tracking
+            enabled_guilds = await get_cached_guilds()
+            if enabled_guilds:
+                await start_tracking(self)
+                logger.info(f"Found {len(enabled_guilds)} guilds with tracking enabled, Auto-started Truth Social tracking")
+        except Exception as e:
+            logger.error(f"Error auto-starting tracking: {e}")
         
         return success_count > 0
     

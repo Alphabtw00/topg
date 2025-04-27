@@ -1,5 +1,5 @@
 """
-Tracking handler for Truth Social posts
+Optimized Truth Social tracker for Discord
 """
 import asyncio
 import discord
@@ -10,7 +10,8 @@ from typing import Dict, Optional, Set, List, Any
 from utils.logger import get_logger
 import repository.truth_repo as truth_db
 from ui.embeds import create_truth_embed
-from service.proxy_handler import ProxyRotator
+from config import TRUTH_DEFAULT_INTERVAL
+
 
 logger = get_logger()
 
@@ -38,30 +39,33 @@ MAX_PROCESSED_CACHE = 500  # Maximum size of processed posts cache per guild
 _task_lock = asyncio.Lock()
 
 async def init_proxy_rotator(countries=None, protocol="http"):
-    """Initialize proxy rotator if not already initialized"""
+    """Initialize proxy rotator if needed"""
     global proxy_rotator
     try:
         if proxy_rotator is None:
+            from service.proxy_handler import ProxyRotator
             proxy_rotator = ProxyRotator(
-                countries=countries or [],
+                countries=countries or ["US"],
                 protocol=protocol,
                 auto_rotate=True,
                 max_proxies=20,
                 debug=False
             )
+            logger.info("Proxy rotator initialized for Truth Social tracking")
         return True
     except Exception as e:
         logger.error(f"Failed to initialize proxy rotator: {e}")
         return False
 
 async def start_tracking(bot):
-    """Start the Truth Social tracking loop"""
+    """Start the Truth Social tracking loop with auto-restart capability"""
     global tracking_task, is_tracking
     
     # Try to initialize proxy rotator
     await init_proxy_rotator()
     
     async with _task_lock:
+        # Check if task is already running
         if tracking_task and not tracking_task.done():
             logger.info("Truth Social tracking already running")
             return True
@@ -138,12 +142,18 @@ async def clear_cache_for_guild(guild_id: int):
     # Force refresh of guild list
     global _cached_guilds_timestamp
     _cached_guilds_timestamp = 0
+    
+    logger.debug(f"Cache cleared for guild {guild_id}")
 
 async def tracking_loop(bot):
-    """Main tracking loop for Truth Social posts"""
+    """Main tracking loop for Truth Social posts with restart capability"""
     global last_check_time, next_check_time, processed_posts
     
     try:
+        # On startup, make sure accounts are authenticated
+        if bot.services and bot.services.truthsocial:
+            await bot.services.truthsocial.setup()
+        
         while True:
             try:
                 # Update timing info
@@ -158,17 +168,17 @@ async def tracking_loop(bot):
                 
                 logger.info(f"Polling Truth Social for {len(guilds)} guilds at {last_check_time.strftime('%Y-%m-%d %H:%M:%S')}")
                 
-                # Process each guild with its specific interval
+                # Set a fixed tracking limit per run to prevent API overload
+                MAX_ACCOUNTS_PER_RUN = 25
+                
+                # Process all guilds concurrently for faster updates
+                guild_tasks = []
                 for guild_data in guilds:
-                    # Get guild-specific polling interval
-                    guild_id = guild_data.get('guild_id')
-                    check_interval = guild_data.get('check_interval', 60)
-                    
-                    # Set a fixed tracking limit per run to prevent API overload
-                    MAX_ACCOUNTS_PER_RUN = 25
-                    
-                    # Process guild's accounts
-                    await process_guild(bot, guild_data, max_accounts=MAX_ACCOUNTS_PER_RUN)
+                    task = process_guild(bot, guild_data, max_accounts=MAX_ACCOUNTS_PER_RUN)
+                    guild_tasks.append(task)
+                
+                # Wait for all guild processing to complete
+                await asyncio.gather(*guild_tasks, return_exceptions=True)
                 
                 # Clean up processed posts cache for each guild if it gets too large
                 for guild_id, post_set in processed_posts.items():
@@ -178,11 +188,11 @@ async def tracking_loop(bot):
                 
                 # Set next check time based on the smallest interval
                 # This ensures we check frequently enough for all guilds
-                min_interval = min([g.get('check_interval', 60) for g in guilds]) if guilds else 30
-                next_check_time = datetime.now().timestamp() + min_interval
+                
+                next_check_time = datetime.now().timestamp() + TRUTH_DEFAULT_INTERVAL
                 
                 # Sleep until next check
-                await asyncio.sleep(min_interval)
+                await asyncio.sleep(TRUTH_DEFAULT_INTERVAL)
                 
             except asyncio.CancelledError:
                 logger.info("Truth Social tracking task cancelled")
@@ -196,6 +206,13 @@ async def tracking_loop(bot):
         logger.info("Truth Social tracking loop cancelled")
     except Exception as e:
         logger.error(f"Fatal error in Truth Social tracking: {e}")
+        # Try to restart the tracking task if it fails
+        bot.loop.create_task(restart_tracking(bot))
+
+async def restart_tracking(bot):
+    """Try to restart the tracking task after a delay"""
+    await asyncio.sleep(60)  # Wait a minute before trying to restart
+    await start_tracking(bot)
 
 async def process_guild(bot, guild_data: Dict, max_accounts: int = 25):
     """Process a single guild for Truth Social updates"""
@@ -239,10 +256,11 @@ async def process_guild(bot, guild_data: Dict, max_accounts: int = 25):
             # Sort by last checked time to prioritize accounts that haven't been checked recently
             active_accounts.sort(key=lambda a: a.get('last_checked', datetime.min))
         
-        # Process the selected accounts (up to max_accounts)
+        # Process all accounts concurrently for faster updates
         account_tasks = []
         for account in active_accounts[:max_accounts]:
-            account_tasks.append(process_account(bot, guild_id, account, channels))
+            task = process_account(bot, guild_id, account, channels)
+            account_tasks.append(task)
         
         # Wait for all account processing to complete
         if account_tasks:
@@ -287,6 +305,34 @@ async def process_account(bot, guild_id: int, account: Dict, channels: List[disc
         # Process count
         posts_processed = 0
         
+        # Special case: if last_post_id is "0" (first run), only post the most recent one
+        if last_post_id == "0" and new_posts:
+            newest = new_posts[0]
+            newest_post_id = newest.get('id', '')
+            
+            # Skip if already processed
+            if newest_post_id in processed_posts[guild_id]:
+                return
+                
+            # Add to processed set
+            processed_posts[guild_id].add(newest_post_id)
+            
+            # Create embed
+            embed = create_truth_embed(newest)
+            
+            # Send to all channels for this guild
+            for channel in channels:
+                try:
+                    await channel.send(embed=embed)
+                    logger.debug(f"Sent initial post from @{handle} to channel {channel.id}")
+                except Exception as e:
+                    logger.error(f"Error sending post to channel {channel.id}: {e}")
+                    
+            # Update database with newest post ID
+            await truth_db.update_last_post(guild_id, handle, newest_post_id)
+            logger.info(f"Sent 1 initial post from @{handle} for guild {guild_id}")
+            return
+            
         # Post updates (oldest first to maintain chronology)
         for post in reversed(new_posts):
             if not post or 'id' not in post:
@@ -295,10 +341,6 @@ async def process_account(bot, guild_id: int, account: Dict, channels: List[disc
             # Skip already processed posts for this guild
             post_id = post.get('id', '')
             if post_id in processed_posts[guild_id]:
-                continue
-            
-            # For special case of "0" as last_post_id, only show the most recent post
-            if last_post_id == "0" and posts_processed > 0:
                 continue
             
             # Add to processed set for this guild
@@ -336,6 +378,6 @@ def get_tracking_status() -> Dict:
         'is_tracking': is_tracking,
         'last_check': last_check_time,
         'next_check': next_check_time,
-        'account_count': len(processed_posts.keys()),
+        'account_count': sum(len(accounts) for accounts in _cached_guild_accounts.values()),
         'proxy_enabled': proxy_rotator is not None and proxy_rotator.enabled
     }

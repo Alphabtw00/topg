@@ -41,12 +41,11 @@ TABLES = [
         id INT AUTO_INCREMENT PRIMARY KEY,
         guild_id BIGINT NOT NULL,
         enabled BOOLEAN NOT NULL DEFAULT FALSE,
-        check_interval INT NOT NULL DEFAULT %s,
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
         updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
         UNIQUE KEY unique_guild (guild_id)
     )
-    """ % TRUTH_DEFAULT_INTERVAL
+    """
 ]
 
 async def setup_truth_tables() -> bool:
@@ -183,7 +182,7 @@ async def get_truth_channels(guild_id: int) -> List[int]:
 async def get_guild_settings(guild_id: int) -> Dict:
     """Get Truth Social tracker settings for a guild"""
     query = """
-    SELECT id, guild_id, enabled, check_interval, created_at, updated_at 
+    SELECT id, guild_id, enabled, created_at, updated_at 
     FROM truth_settings 
     WHERE guild_id = %s
     """
@@ -194,22 +193,20 @@ async def get_guild_settings(guild_id: int) -> Dict:
         # Insert default settings
         default_settings = {
             'guild_id': guild_id,
-            'enabled': False,
-            'check_interval': TRUTH_DEFAULT_INTERVAL
+            'enabled': False
         }
         
         insert_query = """
         INSERT INTO truth_settings 
-        (guild_id, enabled, check_interval) 
-        VALUES (%s, %s, %s)
+        (guild_id, enabled) 
+        VALUES (%s, %s)
         """
         
         await execute_query(
             insert_query, 
             (
                 guild_id, 
-                default_settings['enabled'], 
-                default_settings['check_interval']
+                default_settings['enabled']
             )
         )
         
@@ -219,14 +216,13 @@ async def get_guild_settings(guild_id: int) -> Dict:
         'id': result[0],
         'guild_id': result[1],
         'enabled': bool(result[2]),
-        'check_interval': result[3],
-        'created_at': result[4],
-        'updated_at': result[5]
+        'created_at': result[3],
+        'updated_at': result[4]
     }
 
 async def update_guild_settings(guild_id: int, settings: Dict) -> bool:
     """Update Truth Social tracker settings for a guild"""
-    valid_fields = ['enabled', 'check_interval']
+    valid_fields = ['enabled']
     set_clauses = []
     params = []
     
@@ -254,19 +250,15 @@ async def update_guild_settings(guild_id: int, settings: Dict) -> bool:
         # If there's an enabled field, use it; otherwise default to False
         enabled = settings.get('enabled', False)
         
-        # If there's a check_interval field, use it; otherwise use the default
-        check_interval = settings.get('check_interval', TRUTH_DEFAULT_INTERVAL)
-        
         insert_query = """
         INSERT INTO truth_settings 
-        (guild_id, enabled, check_interval) 
-        VALUES (%s, %s, %s)
+        (guild_id, enabled) 
+        VALUES (%s, %s)
         ON DUPLICATE KEY UPDATE
-        enabled = VALUES(enabled),
-        check_interval = VALUES(check_interval)
+        enabled = VALUES(enabled)
         """
         
-        result = await execute_query(insert_query, (guild_id, enabled, check_interval))
+        result = await execute_query(insert_query, (guild_id, enabled))
         return result is not None
     
     return True
@@ -274,7 +266,7 @@ async def update_guild_settings(guild_id: int, settings: Dict) -> bool:
 async def get_all_enabled_guilds() -> List[Dict]:
     """Get all guilds with Truth Social tracking enabled"""
     query = """
-    SELECT id, guild_id, enabled, check_interval, created_at, updated_at 
+    SELECT id, guild_id, enabled, created_at, updated_at 
     FROM truth_settings 
     WHERE enabled = TRUE
     """
@@ -289,9 +281,8 @@ async def get_all_enabled_guilds() -> List[Dict]:
             'id': row[0],
             'guild_id': row[1],
             'enabled': bool(row[2]),
-            'check_interval': row[3],
-            'created_at': row[4],
-            'updated_at': row[5]
+            'created_at': row[3],
+            'updated_at': row[4]
         })
     
     return guilds

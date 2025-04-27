@@ -6,11 +6,12 @@ import asyncio
 import dateutil.parser as date_parse
 import re
 from datetime import datetime
-from typing import Dict
-from config import TWITTER_SEARCH_URL, TRADING_PLATFORMS, VERIFIED_EMOJI, DEFAULT_AVATAR, TRUMP_IMAGE_URL
+from typing import Dict, Any
+from config import TWITTER_SEARCH_URL, TRADING_PLATFORMS, VERIFIED_EMOJI
 from utils.formatters import (
     format_value, format_date, format_size, 
-    relative_time, get_color_from_change, score_bar, clean_html
+    relative_time, get_color_from_change, score_bar, clean_html,
+    format_metrics, proxy_url
 )
 from utils.logger import get_logger
 
@@ -351,12 +352,22 @@ def create_github_analysis_embed(repo_info, analysis, start_time, interaction):
         if warning_text:
             warning_text += "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n"
         
+
+        overall_assessment = code_review.get("overallAssessment")
+        assessment_section = ""
+        if overall_assessment:
+            assessment_text = overall_assessment.split('\n\n')[0]  # Only first paragraph
+            assessment_section = (
+                f"{assessment_text}\n"
+                f"━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n"
+            )
+
         embed.description = (
             f"## {verdict_emoji} VERDICT: {verdict} {verdict_emoji}\n"
             f"### {investment_advice}\n"
             f"━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n"
             f"{warning_text}"
-            f"{analysis.get('summary', 'No summary available')}"
+            f"{assessment_section}"
         )
                     
         # --- SCORE SECTION (MOST IMPORTANT) ---
@@ -564,16 +575,12 @@ def create_github_analysis_embed(repo_info, analysis, start_time, interaction):
                 inline=False
             )
         
-        # Overall assessment
-        overall_assessment = code_review.get("overallAssessment")
-        if overall_assessment:
-            # # Split into paragraphs and get just the first one for brevity
-            # paragraphs = overall_assessment.split("\n\n")
-            # first_paragraph = paragraphs[0]
-            formatted_assessment = overall_assessment.replace("\n", "\n> ")
+        #summary
+        summary = analysis.get("summary", "")
+        if summary:
             embed.add_field(
-                name="👨‍💻 Expert Opinion",
-                value=f"> {formatted_assessment}",
+                name="📝 Summary",
+                value=f"> {summary.replace('\\n', '\\n> ')}",
                 inline=False
             )
         
@@ -938,304 +945,327 @@ async def create_health_embed(bot, user):
     
     return embed
 
-def create_truth_embed(post: Dict) -> discord.Embed:
-    """Create an embed for a Truth Social post"""
-    try:
-        # Extract basic post info
-        post_id = post.get('id', '')
-        content = clean_html(post.get('content', '*[No content]*'))
-        created_at = post.get('created_at', '')
-        media_attachments = post.get('media_attachments', [])
+def create_truth_embed(post: Dict[str, Any]) -> discord.Embed:
+    """
+    Create a Discord embed for a Truth Social post with proper image handling
+    
+    Args:
+        post: Truth Social post data
         
-        # Extract account info
-        account = post.get('account', {})
-        display_name = account.get('display_name', 'Unknown')
-        username = account.get('username', 'unknown')
-        verified = account.get('verified', False)
-        avatar_url = account.get('avatar', DEFAULT_AVATAR)
+    Returns:
+        discord.Embed: Formatted embed ready for Discord
+    """
+    # Extract basic post info
+    post_id = post.get('id', '')
+    content = clean_html(post.get('content', ''))
+    created_at = post.get('created_at', '')
+    media_attachments = post.get('media_attachments', [])
+    post_url = f"https://truthsocial.com/@{post.get('account', {}).get('username', 'unknown')}/posts/{post_id}"
+    
+    # Extract account info
+    account = post.get('account', {})
+    display_name = account.get('display_name', 'Unknown')
+    username = account.get('username', 'unknown')
+    avatar_url = account.get('avatar', '')
+    
+    # Apply proxy to avatar URL if needed
+    if avatar_url:
+        avatar_url = proxy_url(avatar_url)
+    
+    # Create embed with Truth Social colors
+    embed = discord.Embed(color=0xE12626)  # Truth Social red
+    
+    # Set post timestamp
+    if created_at:
+        try:
+            embed.timestamp = datetime.fromisoformat(created_at.replace('Z', '+00:00'))
+        except Exception:
+            pass
+    
+    # Set author without verification badge
+    embed.set_author(
+        name=f"{display_name} (@{username})",
+        url=f"https://truthsocial.com/@{username}",
+        icon_url=avatar_url
+    )
+    
+    # Process by post type
+    if post.get('reblog'):
+        # 1. RETWEET: Show action first
+        reblog = post.get('reblog', {})
+        reblog_account = reblog.get('account', {})
+        reblog_display_name = reblog_account.get('display_name', 'Unknown')
+        reblog_username = reblog_account.get('username', 'unknown')
+        reblog_verified = reblog_account.get('verified', False)
+        reblog_content = clean_html(reblog.get('content', ''))
         
-        # Create embed with Truth Social colors
-        embed = discord.Embed(
-            description=content,
-            color=0xE12626  # Truth Social red
-        )
-        
-        # Set post timestamp
-        if created_at:
-            try:
-                from dateutil import parser
-                embed.timestamp = parser.parse(created_at)
-            except Exception:
-                # Skip timestamp if parsing fails
-                embed.timestamp = datetime.now()
-        
-        # Add verification badge if verified
-        name_with_verification = f"{display_name} {VERIFIED_EMOJI if verified and VERIFIED_EMOJI else '✓' if verified else ''}"
-        
-        # Set author with proper attribution
-        embed.set_author(
-            name=f"{name_with_verification} (@{username})",
-            url=f"https://truthsocial.com/@{username}",
-            icon_url=avatar_url
-        )
-        
-        # Add post link
-        post_url = f"https://truthsocial.com/@{username}/posts/{post_id}"
+        # Add action field without verification emoji
         embed.add_field(
-            name="🔗 View Truth",
-            value=f"[Open on Truth Social]({post_url})",
+            name="",
+            value=f"🔄 [{display_name} retweeted {reblog_display_name}]({post_url})",
             inline=False
         )
         
-        # Add media attachments if any (first one only for embed)
-        if media_attachments and len(media_attachments) > 0:
-            media = media_attachments[0]
+        # 2. Stats of original post
+        reblog_metrics = format_metrics(reblog)
+        if reblog_metrics:
+            embed.add_field(
+                name="",
+                value=reblog_metrics,
+                inline=False
+            )
+        
+        # 3. Quoted content block
+        quoted_text = f"> **{reblog_display_name}** "
+        quoted_text += f"[(@{reblog_username})](https://truthsocial.com/@{reblog_username})"
+        if reblog_verified:
+            quoted_text += f" {VERIFIED_EMOJI}\n"
+        else:
+            quoted_text += "\n"
+            
+        if reblog_content:
+            lines = reblog_content.split('\n')
+            quoted_text += "\n".join([f"> {line}" for line in lines])
+        
+        # Add quoted content
+        embed.add_field(
+            name="",
+            value=quoted_text,
+            inline=False
+        )
+        
+        # 4. Handle media attachments from reblog
+        reblog_media = reblog.get('media_attachments', [])
+        if reblog_media:
+            # If more than one attachment, add the count first
+            if len(reblog_media) > 1:
+                embed.add_field(
+                    name="",
+                    value=f"> ⬇️ *+{len(reblog_media)-1} more quoted attachment(s)*",
+                    inline=False
+                )
+                
+            # Display the first image/video
+            media = reblog_media[0]
             if media.get('type') == 'image':
-                # Process image URL to get higher resolution version
-                image_url = (media.get('url', ''))
-                if image_url:
-                    embed.set_image(url=image_url)
-            elif media.get('type') == 'video':
-                # Videos can't be embedded directly, so we'll use the preview image
-                if media.get('preview_url'):
-                    embed.set_image(url=(media.get('preview_url', '')))
-                    embed.add_field(
-                        name="📹 Video",
-                        value=f"*This post contains a video - click the link above to view it*",
-                        inline=False
-                    )
-           
-            # Mention if there are more attachments
+                embed.set_image(url=proxy_url(media.get('url', '')))
+            elif media.get('type') == 'video' and media.get('preview_url'):
+                embed.set_image(url=proxy_url(media.get('preview_url', '')))
+                embed.add_field(
+                    name="",
+                    value="> 📹 *Quoted post contains a video*",
+                    inline=False
+                )
+                
+    elif post.get('quote_id'):
+        # 1. QUOTE: Show action first
+        quote = post.get('quote', {})
+        quote_account = quote.get('account', {})
+        quote_display_name = quote_account.get('display_name', 'Unknown')
+        quote_username = quote_account.get('username', 'unknown')
+        quote_verified = quote_account.get('verified', False)
+        quote_content = clean_html(quote.get('content', ''))
+        
+        # Add action field
+        embed.add_field(
+            name="",
+            value=f"💬 [{display_name} quoted {quote_display_name}]({post_url})",
+            inline=False
+        )
+        
+        # 2. Add main post content if any
+        if content:
+            embed.add_field(
+                name="",
+                value=content,
+                inline=False
+            )
+        
+        # 3. Add post metrics
+        metrics = format_metrics(post)
+        if metrics:
+            embed.add_field(
+                name="",
+                value=metrics,
+                inline=False
+            )
+        
+        # 4. Handle main post attachments
+        has_main_media = False
+        if media_attachments:
+            has_main_media = True
+            # If more than one attachment, add the count
             if len(media_attachments) > 1:
                 embed.add_field(
-                    name="Additional Media",
-                    value=f"*+{len(media_attachments)-1} more attachment(s) will follow*",
+                    name="",
+                    value=f"⬇️ *+{len(media_attachments)-1} more attachment(s)*",
                     inline=False
                 )
-        
-        # Add post metrics
-        reply_count = post.get('replies_count', 0)
-        reblogs_count = post.get('reblogs_count', 0)
-        faves_count = post.get('favourites_count', 0)
-        
-        if reply_count > 0 or reblogs_count > 0 or faves_count > 0:
-            metrics = []
-            if reply_count > 0:
-                metrics.append(f"💬 {format_value(reply_count)}")
-            if reblogs_count > 0:
-                metrics.append(f"🔄 {format_value(reblogs_count)}")
-            if faves_count > 0:
-                metrics.append(f"❤️ {format_value(faves_count)}")
                 
-            embed.add_field(
-                name="Stats",
-                value=" • ".join(metrics),
-                inline=False
-            )
-        
-        # Handle reply, quote, and reblog info
-        if post.get('in_reply_to_id'):
-            reply_to = post.get('in_reply_to', {})
-            reply_author = reply_to.get('account', {}).get('username', 'someone')
-            embed.add_field(
-                name="",
-                value=f"*Replying to @{reply_author}*",
-                inline=False
-            )
-        elif post.get('quote_id'):
-            quote = post.get('quote', {})
-            quote_author = quote.get('account', {}).get('username', 'someone')
-            embed.add_field(
-                name="",
-                value=f"*Quoting @{quote_author}*",
-                inline=False
-            )
-        elif post.get('reblog'):
-            reblog = post.get('reblog', {})
-            reblog_author = reblog.get('account', {}).get('username', 'someone')
-            reblog_content = clean_html(reblog.get('content', ''))
-            
-            if reblog_content:
+            # Display the first image/video
+            media = media_attachments[0]
+            if media.get('type') == 'image':
+                embed.set_image(url=proxy_url(media.get('url', '')))
+            elif media.get('type') == 'video' and media.get('preview_url'):
+                embed.set_image(url=proxy_url(media.get('preview_url', '')))
                 embed.add_field(
-                    name=f"🔄 Retruth from @{reblog_author}",
-                    value=f"{reblog_content[:250]}{'...' if len(reblog_content) > 250 else ''}",
+                    name="",
+                    value="📹 *This post contains a video*",
                     inline=False
                 )
         
-        # Set footer with Truth Social branding
-        embed.set_footer(
-            text="Truth Social",
-            icon_url="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTGQlZkYBgEbptbNjrWpJjzqEhPfY8ugpIsXA&s"
-        )
-        
-        return embed
-        
-    except Exception as e:
-        logger.error(f"Error creating embed: {e}")
-        # Fallback simple embed if we encounter an error
-        return discord.Embed(
-            title="New Truth Social Post",
-            description=clean_html(post.get('content', "Error creating rich embed. View the post on Truth Social.")),
-            color=0xE12626  # Truth Social red
-        )
-
-
-
-# def create_truth_embed(post: Dict) -> discord.Embed:
-#     """Create a Discord embed for a Truth Social post"""
-#     try:
-#         # Extract basic post info
-#         post_id = post.get('id', '')
-#         content = clean_html(post.get('content', '*[No content]*'))
-#         created_at = post.get('created_at', '')
-#         media_attachments = post.get('media_attachments', [])
-        
-#         # Extract account info
-#         account = post.get('account', {})
-#         display_name = account.get('display_name', 'Unknown')
-#         username = account.get('username', 'unknown')
-#         verified = account.get('verified', False)
-#         avatar_url = account.get('avatar', DEFAULT_AVATAR)
-        
-#         # Special case for Trump
-#         if username.lower() == 'realdonaldtrump':
-#             avatar_url = TRUMP_IMAGE_URL or avatar_url
-        
-#         # Create embed with Truth Social colors
-#         embed = discord.Embed(
-#             description=content,
-#             color=0xE12626  # Truth Social red
-#         )
-        
-#         # Set post timestamp
-#         if created_at:
-#             try:
-#                 embed.timestamp = date_parse.parse(created_at)
-#             except:
-#                 # Skip timestamp if parsing fails
-#                 pass
-        
-#         # Add verification badge if verified
-#         name_with_verification = f"{display_name} {VERIFIED_EMOJI if verified and VERIFIED_EMOJI else '✓' if verified else ''}"
-        
-#         # Set author with proper attribution
-#         embed.set_author(
-#             name=f"{name_with_verification} (@{username})",
-#             url=f"https://truthsocial.com/@{username}",
-#             icon_url=avatar_url
-#         )
-        
-#         # Add post link
-#         post_url = f"https://truthsocial.com/@{username}/posts/{post_id}"
-#         embed.add_field(
-#             name="🔗 View Truth",
-#             value=f"[Open on Truth Social]({post_url})",
-#             inline=False
-#         )
-        
-#         # Add media attachments if any (first one only for embed)
-#         if media_attachments and len(media_attachments) > 0:
-#             media = media_attachments[0]
-#             if media.get('type') == 'image':
-#                 # Process image URL to get higher resolution version
-#                 image_url = (media.get('url', ''))
-#                 if image_url:
-#                     embed.set_image(url=image_url)
-#             elif media.get('type') == 'video':
-#                 # Videos can't be embedded directly, so we'll use the preview image
-#                 if media.get('preview_url'):
-#                     embed.set_image(url=(media.get('preview_url', '')))
-#                     embed.add_field(
-#                         name="📹 Video",
-#                         value=f"*This post contains a video - click the link above to view it*",
-#                         inline=False
-#                     )
-           
-#             # Mention if there are more attachments
-#             if len(media_attachments) > 1:
-#                 embed.add_field(
-#                     name="Additional Media",
-#                     value=f"*+{len(media_attachments)-1} more attachment(s) will follow*",
-#                     inline=False
-#                 )
-        
-#         # Add post metrics
-#         reply_count = post.get('replies_count', 0)
-#         reblogs_count = post.get('reblogs_count', 0)
-#         faves_count = post.get('favourites_count', 0)
-        
-#         if reply_count > 0 or reblogs_count > 0 or faves_count > 0:
-#             metrics = []
-#             if reply_count > 0:
-#                 metrics.append(f"💬 {format_value(reply_count)}")
-#             if reblogs_count > 0:
-#                 metrics.append(f"🔄 {format_value(reblogs_count)}")
-#             if faves_count > 0:
-#                 metrics.append(f"❤️ {format_value(faves_count)}")
-                
-#             embed.add_field(
-#                 name="Stats",
-#                 value=" • ".join(metrics),
-#                 inline=False
-#             )
-        
-#         if reply_count > 0 or reblogs_count > 0 or faves_count > 0:
-#             metrics = []
-#             if reply_count > 0:
-#                 metrics.append(f"💬 {format_value(reply_count)}")
-#             if reblogs_count > 0:
-#                 metrics.append(f"🔄 {format_value(reblogs_count)}")
-#             if faves_count > 0:
-#                 metrics.append(f"❤️ {format_value(faves_count)}")
-                
-#             embed.add_field(
-#                 name="Stats",
-#                 value=" • ".join(metrics),
-#                 inline=False
-#             )
-        
-#         # Handle reply, quote, and reblog info
-#         if post.get('in_reply_to_id'):
-#             reply_to = post.get('in_reply_to', {})
-#             reply_author = reply_to.get('account', {}).get('username', 'someone')
-#             embed.add_field(
-#                 name="",
-#                 value=f"*Replying to @{reply_author}*",
-#                 inline=False
-#             )
-#         elif post.get('quote_id'):
-#             quote = post.get('quote', {})
-#             quote_author = quote.get('account', {}).get('username', 'someone')
-#             embed.add_field(
-#                 name="",
-#                 value=f"*Quoting @{quote_author}*",
-#                 inline=False
-#             )
-#         elif post.get('reblog'):
-#             reblog = post.get('reblog', {})
-#             reblog_author = reblog.get('account', {}).get('username', 'someone')
-#             reblog_content = clean_html(reblog.get('content', ''))
+        # 5. Add quoted content
+        quoted_text = f"> **{quote_display_name}** "
+        quoted_text += f"[(@{quote_username})](https://truthsocial.com/@{quote_username})"
+        if quote_verified:
+            quoted_text += f" {VERIFIED_EMOJI}\n"
+        else:
+            quoted_text += "\n"
             
-#             if reblog_content:
-#                 embed.add_field(
-#                     name=f"🔄 Retruth from @{reblog_author}",
-#                     value=f"{reblog_content[:250]}{'...' if len(reblog_content) > 250 else ''}",
-#                     inline=False
-#                 )
+        if quote_content:
+            lines = quote_content.split('\n')
+            quoted_text += "\n".join([f"> {line}" for line in lines])
+            
+        embed.add_field(
+            name="",
+            value=quoted_text,
+            inline=False
+        )
         
-#         # Set footer with Truth Social branding
-#         embed.set_footer(
-#             text="Truth Social",
-#             icon_url="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTGQlZkYBgEbptbNjrWpJjzqEhPfY8ugpIsXA&s"
-#         )
+        # 6. Handle quoted post media
+        quote_media = quote.get('media_attachments', [])
+        if quote_media and not has_main_media:
+            # If quoted post has media and main post doesn't
+            if len(quote_media) > 1:
+                embed.add_field(
+                    name="",
+                    value=f"> ⬇️ *+{len(quote_media)-1} more quoted attachment(s)*",
+                    inline=False
+                )
+                
+            # Display the first quoted media
+            media = quote_media[0]
+            if media.get('type') == 'image':
+                embed.set_image(url=proxy_url(media.get('url', '')))
+            elif media.get('type') == 'video' and media.get('preview_url'):
+                embed.set_image(url=proxy_url(media.get('preview_url', '')))
+                embed.add_field(
+                    name="",
+                    value="> 📹 *Quoted post contains a video*",
+                    inline=False
+                )
+        elif quote_media and has_main_media:
+            # Just indicate media exists
+            media_type = "📷" if quote_media[0].get('type') == 'image' else "📹"
+            embed.add_field(
+                name="",
+                value=f"> {media_type} *Quoted post contains media*",
+                inline=False
+            )
+            
+    elif post.get('in_reply_to_id'):
+        # 1. REPLY: Show action first
+        reply_to = post.get('in_reply_to', {})
+        reply_account = reply_to.get('account', {})
+        reply_display_name = reply_account.get('display_name', 'Unknown')
         
-#         return embed
+        # Add action field
+        embed.add_field(
+            name="",
+            value=f"↩️ [{display_name} replied to {reply_display_name}]({post_url})",
+            inline=False
+        )
         
-#     except Exception as e:
-#         logger.error(f"Error creating embed: {e}")
-#         # Fallback simple embed if we encounter an error
-#         return discord.Embed(
-#             title="New Truth Social Post",
-#             description=clean_html(post.get('content', "Error creating rich embed. View the post on Truth Social.")),
-#             color=0xE12626  # Truth Social red
-#         )
+        # 2. Add post content
+        if content:
+            embed.add_field(
+                name="",
+                value=content,
+                inline=False
+            )
+        
+        # 3. Add metrics
+        metrics = format_metrics(post)
+        if metrics:
+            embed.add_field(
+                name="",
+                value=metrics,
+                inline=False
+            )
+        
+        # 4. Handle media attachments
+        if media_attachments:
+            # If more than one attachment, add the count
+            if len(media_attachments) > 1:
+                embed.add_field(
+                    name="",
+                    value=f"⬇️ *+{len(media_attachments)-1} more attachment(s)*",
+                    inline=False
+                )
+                
+            # Display the first media
+            media = media_attachments[0]
+            if media.get('type') == 'image':
+                embed.set_image(url=proxy_url(media.get('url', '')))
+            elif media.get('type') == 'video' and media.get('preview_url'):
+                embed.set_image(url=proxy_url(media.get('preview_url', '')))
+                embed.add_field(
+                    name="",
+                    value="📹 *This post contains a video*",
+                    inline=False
+                )
+    
+    else:
+        # 1. REGULAR POST: Show action first
+        embed.add_field(
+            name="",
+            value=f"🔗 [{display_name} posted]({post_url})",
+            inline=False
+        )
+        
+        # 2. Add post content
+        if content:
+            embed.add_field(
+                name="",
+                value=content,
+                inline=False
+            )
+        
+        # 3. Add metrics
+        metrics = format_metrics(post)
+        if metrics:
+            embed.add_field(
+                name="",
+                value=metrics,
+                inline=False
+            )
+        
+        # 4. Handle media attachments
+        if media_attachments:
+            # If more than one attachment, add the count
+            if len(media_attachments) > 1:
+                embed.add_field(
+                    name="",
+                    value=f"⬇️ *+{len(media_attachments)-1} more attachment(s)*",
+                    inline=False
+                )
+                
+            # Display the first media
+            media = media_attachments[0]
+            if media.get('type') == 'image':
+                embed.set_image(url=proxy_url(media.get('url', '')))
+            elif media.get('type') == 'video' and media.get('preview_url'):
+                embed.set_image(url=proxy_url(media.get('preview_url', '')))
+                embed.add_field(
+                    name="",
+                    value="📹 *This post contains a video*",
+                    inline=False
+                )
+    
+    # Set footer with Truth Social branding
+    embed.set_footer(
+        text="Truth Social Tracker",
+        icon_url="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTGQlZkYBgEbptbNjrWpJjzqEhPfY8ugpIsXA&s"
+    )
+    
+    return embed

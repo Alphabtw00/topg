@@ -3,6 +3,9 @@ Formatting utilities for values, dates, and other display elements
 """
 from datetime import datetime
 from typing import Dict, Set, Any
+from functools import lru_cache
+import re
+import urllib.parse
 
 def format_value(value) -> str:
     """
@@ -126,16 +129,6 @@ def get_color_from_change(change: float) -> int:
         return 0xFF0000  # Red
     else:
         return 0x0000FF  # Blue
-
-def clean_html(html_content: str) -> str:
-    """Remove HTML tags from content"""
-    if not html_content:
-        return ""
-    
-    # Simple regex-based HTML tag removal
-    import re
-    clean_text = re.sub(r'<[^>]+>', '', html_content)
-    return clean_text.strip()
 
 def create_progress_bar(percentage: float, max_bars: int = 10) -> str:
     """
@@ -524,3 +517,70 @@ def calculate_verdict(scores: Dict[str, Any], trust_result: Dict[str, Any],
                 "weights": weights
             }
         }
+
+@lru_cache(maxsize=100)
+def proxy_url(url: str) -> str:
+    """
+    Convert any URL to a proxied version through images.weserv.nl
+    
+    Args:
+        url: Original image URL
+        
+    Returns:
+        str: Proxied URL that will work in Discord embeds
+    """
+    if not url:
+        return ""
+        
+    # Make sure URL is properly encoded
+    return f"https://images.weserv.nl/?url={urllib.parse.quote(url)}"
+
+def clean_html(html_content: str) -> str:
+    """
+    Remove HTML tags from content
+    
+    Args:
+        html_content: HTML content string
+        
+    Returns:
+        str: Plain text content
+    """
+    if not html_content:
+        return ""
+    
+    # Remove <br/> with newlines before removing all tags
+    content = html_content.replace("<br/>", "\n").replace("<br>", "\n")
+    
+    # Simple regex-based HTML tag removal
+    content = re.sub(r'<[^>]+>', '', content)
+    
+    # Clean up extra spaces and newlines
+    content = re.sub(r'\n\s*\n', '\n\n', content)
+    return content.strip()
+
+def format_metrics(post: Dict[str, Any]) -> str:
+    """
+    Format post metrics (replies, reblogs, likes)
+    
+    Args:
+        post: Truth Social post data
+        
+    Returns:
+        str: Formatted metrics string
+    """
+    metrics = []
+    
+    reply_count = post.get('replies_count', 0)
+    reblogs_count = post.get('reblogs_count', 0)
+    faves_count = post.get('favourites_count', 0) or post.get('upvotes_count', 0)
+    
+    if reply_count > 0:
+        metrics.append(f"💬 {format_value(reply_count)}")
+    
+    if reblogs_count > 0:
+        metrics.append(f"🔄 {format_value(reblogs_count)}")
+    
+    if faves_count > 0:
+        metrics.append(f"❤️ {format_value(faves_count)}")
+    
+    return " • ".join(metrics) if metrics else ""
