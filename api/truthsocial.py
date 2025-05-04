@@ -1,7 +1,9 @@
 """
-Truth Social API service with improved Cloudflare handling
+Truth Social API service with improved authentication and caching
 """
+import os
 import time
+import json
 import asyncio
 import random
 from typing import Dict, Optional, Any, List, Tuple
@@ -10,7 +12,8 @@ from utils.logger import get_logger
 from curl_cffi import requests as curl_requests
 from config import (
     TRUTH_ACCOUNTS,
-    TRUTH_DEFAULT_INTERVAL
+    TRUTH_DEFAULT_INTERVAL,
+    MIN_ACCOUNT_USAGE_INTERVAL
 )
 
 logger = get_logger()
@@ -27,17 +30,24 @@ USER_AGENT = (
 CLIENT_ID = "9X1Fdd-pxNsAgEDNi_SfhJWi8T-vLuV2WVzKIbkTCw4"
 CLIENT_SECRET = "ozF8jzI4968oTKFkEnsBC-UbLPCdrSv0MkXGQu2o_-M"
 
+# Token storage location
+TOKEN_FILE = "data/truth_tokens.json"
+TOKEN_EXPIRY = 86400 * 7  # 7 days in seconds
+
 class TruthSocialService:
     """Service for Truth Social API interactions"""
     
     def __init__(self, api_client):
         """Initialize with API client"""
         self.api_client = api_client
-        self.auth_tokens = {}  # Map username to token
+        self.auth_tokens = {}  # Map username to token info
         self.current_account_index = 0
         self.account_last_used = {}  # Track when account was last used
         self.account_rate_limited_until = {}  # Store timestamps when rate limits expire
-        self.MIN_ACCOUNT_USAGE_INTERVAL = 2  # seconds between account usage
+        
+        # Create data directory if it doesn't exist
+        os.makedirs("data", exist_ok=True)
+
     
     async def setup(self):
         """Set up the service by authenticating all accounts"""
@@ -45,27 +55,76 @@ class TruthSocialService:
             logger.error("No Truth Social accounts configured")
             return False
             
-        # Pre-authenticate all accounts
-        logger.info(f"Setting up {len(TRUTH_ACCOUNTS)} Truth Social accounts...")
-        tasks = []
+        # Load any existing tokens
+        self._load_tokens()
+        
+        # Authenticate accounts with expired or missing tokens
+        accounts_to_authenticate = []
         for account in TRUTH_ACCOUNTS:
-            tasks.append(self._authenticate_account(account))
+            username = account.get('username')
+            if not self._is_token_valid(username):
+                accounts_to_authenticate.append(account)
+        
+        if accounts_to_authenticate:
+            logger.info(f"Authenticating {len(accounts_to_authenticate)} Truth Social accounts with missing or expired tokens...")
             
-        results = await asyncio.gather(*tasks, return_exceptions=True)
+            # Authenticate in parallel with batching to avoid overwhelming the API
+            batch_size = 5
+            for i in range(0, len(accounts_to_authenticate), batch_size):
+                batch = accounts_to_authenticate[i:i+batch_size]
+                tasks = [self._authenticate_account(account) for account in batch]
+                results = await asyncio.gather(*tasks, return_exceptions=True)
+                
+                # Small delay between batches
+                if i + batch_size < len(accounts_to_authenticate):
+                    await asyncio.sleep(1)
         
-        # Count successful authentications
-        success_count = sum(1 for result in results if result is True)
-        logger.info(f"Successfully authenticated {success_count}/{len(TRUTH_ACCOUNTS)} Truth Social accounts")
+        # Count valid tokens
+        valid_tokens = sum(1 for username in self.auth_tokens if self._is_token_valid(username))
+        logger.info(f"Successfully authenticated {valid_tokens}/{len(TRUTH_ACCOUNTS)} Truth Social accounts")
+        
+        # Save tokens to file
+        self._save_tokens()
+        
+        return valid_tokens > 0
+    
+    def _load_tokens(self):
+        """Load authentication tokens from file"""
         try:
-            from handlers.truth_tracker import get_cached_guilds, start_tracking
-            enabled_guilds = await get_cached_guilds()
-            if enabled_guilds:
-                await start_tracking(self)
-                logger.info(f"Found {len(enabled_guilds)} guilds with tracking enabled, Auto-started Truth Social tracking")
+            if os.path.exists(TOKEN_FILE):
+                with open(TOKEN_FILE, 'r') as f:
+                    token_data = json.load(f)
+                    
+                    # Check token format
+                    if isinstance(token_data, dict):
+                        self.auth_tokens = token_data
+                        logger.info(f"Loaded {len(self.auth_tokens)} Truth Social tokens from file")
         except Exception as e:
-            logger.error(f"Error auto-starting tracking: {e}")
-        
-        return success_count > 0
+            logger.error(f"Error loading Truth Social tokens: {e}")
+            self.auth_tokens = {}
+    
+    def _save_tokens(self):
+        """Save authentication tokens to file"""
+        try:
+            with open(TOKEN_FILE, 'w') as f:
+                json.dump(self.auth_tokens, f)
+            logger.info(f"Saved {len(self.auth_tokens)} Truth Social tokens to file")
+        except Exception as e:
+            logger.error(f"Error saving Truth Social tokens: {e}")
+    
+    def _is_token_valid(self, username):
+        """Check if token is valid and not expired"""
+        if username not in self.auth_tokens:
+            return False
+            
+        token_info = self.auth_tokens[username]
+        if not isinstance(token_info, dict) or 'token' not in token_info:
+            return False
+            
+        # Check if token is expired
+        expiry = token_info.get('expiry', 0)
+        current_time = time.time()
+        return expiry > current_time
     
     async def _authenticate_account(self, account_data):
         """Authenticate a single account"""
@@ -76,15 +135,15 @@ class TruthSocialService:
             if not username or not password:
                 logger.error(f"Missing username or password for Truth Social account")
                 return False
-                
-            # Check if we already have a token
-            if username in self.auth_tokens:
-                return True
-                
+            
             # Get authentication token
             token = await self._get_auth_token(username, password)
             if token:
-                self.auth_tokens[username] = token
+                # Store token with expiry time
+                self.auth_tokens[username] = {
+                    'token': token,
+                    'expiry': time.time() + TOKEN_EXPIRY
+                }
                 logger.info(f"Authenticated Truth Social account: {username}")
                 return True
             
@@ -155,7 +214,7 @@ class TruthSocialService:
                 
             # Check when account was last used
             last_used = self.account_last_used.get(account_key, 0)
-            wait_time = last_used + self.MIN_ACCOUNT_USAGE_INTERVAL - current_time
+            wait_time = last_used + MIN_ACCOUNT_USAGE_INTERVAL - current_time
             
             if wait_time <= 0:
                 # This account is ready to use now
@@ -177,7 +236,11 @@ class TruthSocialService:
         # Update last used time
         self.account_last_used[account_key] = time.time()
         
-        return username, self.auth_tokens.get(username)
+        # Get token
+        token_info = self.auth_tokens.get(username, {})
+        token = token_info.get('token') if isinstance(token_info, dict) else None
+        
+        return username, token
     
     def _handle_rate_limit(self, account: str, headers: Dict):
         """Handle rate limiting from response headers"""
@@ -211,6 +274,7 @@ class TruthSocialService:
                     continue
                 return None
             
+            logger.info(f"polling truth social with account username: {account}, token: {token}")
             # Prepare headers
             headers = {
                 "Authorization": f"Bearer {token}",
@@ -284,8 +348,9 @@ class TruthSocialService:
         except Exception as e:
             logger.error(f"Error in get_user_info for {handle}: {e}")
             return None
-    
-    async def get_user_statuses(self, account_id: str, exclude_replies=True, max_id=None, limit=20, proxy=None) -> List[Dict]:
+
+    async def get_user_statuses(self, account_id: str, exclude_replies=True, max_id=None, 
+                            limit=5, proxy=None, since_id=None) -> List[Dict]:
         """Get posts from a user (their timeline)"""
         url = f"{API_BASE_URL}/v1/accounts/{account_id}/statuses"
         
@@ -294,154 +359,70 @@ class TruthSocialService:
             params["exclude_replies"] = "true"
         if max_id:
             params["max_id"] = max_id
+        if since_id:
+            params["since_id"] = since_id
         if limit:
             params["limit"] = str(limit)
         
         return await self._api_request("GET", url, params=params, proxy=proxy)
     
-    async def get_new_posts(self, handle: str, last_post_id: Optional[str] = None, exclude_replies=True, proxy=None) -> List[Dict]:
-        """Get new posts since the last checked post ID"""
-        # Get user info
-        user_info = await self.get_user_info(handle, proxy=proxy)
-        if not user_info or "id" not in user_info:
-            logger.error(f"Failed to get user info for handle: {handle}")
+    async def get_latest_posts(self, account_id: str, last_post_id: Optional[str] = None,
+                            exclude_replies=True, proxy=None) -> List[Dict]:
+        """
+        Get latest posts for an account since the last_post_id
+        Ultra-optimized for high-frequency polling
+        
+        Args:
+            account_id: The Truth Social account ID
+            last_post_id: The last post ID we've seen (for filtering)
+            exclude_replies: Whether to exclude replies
+            proxy: Optional proxy to use
+            
+        Returns:
+            List of posts, sorted by recency (newest first)
+        """
+        try:
+            # If this is the first run or disabled, just get the latest post
+            if not last_post_id or last_post_id == "0" or last_post_id == "DISABLED":
+                posts = await self.get_user_statuses(
+                    account_id, 
+                    exclude_replies=exclude_replies,
+                    limit=1,
+                    proxy=proxy
+                )
+                logger.info(f"First-time poll for {account_id}: found {len(posts) if posts else 0} posts")
+                return posts if posts and isinstance(posts, list) else []
+            
+            # Get latest posts since last_post_id (up to 5 to handle bursts of activity)
+            url = f"{API_BASE_URL}/v1/accounts/{account_id}/statuses"
+            
+            params = {
+                "limit": "5",  # Get up to 5 posts to handle bursts of activity
+                "since_id": last_post_id  # Only get posts newer than last_post_id
+            }
+            
+            if exclude_replies:
+                params["exclude_replies"] = "true"
+            
+            # Make the API request and handle rate limiting
+            response = await self._api_request("GET", url, params=params, proxy=proxy)
+            
+            if not response or not isinstance(response, list):
+                return []
+            
+            # Log the response for debugging
+            username = "unknown"
+            for account in TRUTH_ACCOUNTS:
+                if account.get('username'):
+                    username = account.get('username')
+                    break
+                    
+            logger.info(f"polling truth social with account username: {username}, token: {self.auth_tokens.get(username, {}).get('token', '')[:40]}")
+            
+            # Return the posts (sorted by recency in the pipeline)
+            return response
+        
+        except Exception as e:
+            logger.error(f"Error in get_latest_posts for {account_id}: {e}")
             return []
-        
-        account_id = user_info["id"]
-        
-        # If no last_post_id, just get the latest post
-        if not last_post_id or last_post_id == "DISABLED" or last_post_id == "0":
-            posts = await self.get_user_statuses(account_id, exclude_replies=exclude_replies, limit=1, proxy=proxy)
-            return posts if posts and isinstance(posts, list) else []
-        
-        # Get posts since last_post_id
-        params = {
-            "exclude_replies": "true" if exclude_replies else "false",
-            "since_id": last_post_id,
-        }
-        
-        url = f"{API_BASE_URL}/v1/accounts/{account_id}/statuses"
-        response = await self._api_request("GET", url, params=params, proxy=proxy)
-        
-        if not response or not isinstance(response, list):
-            return []
-        
-        return response
     
-    # Add methods from truthbrush
-    async def search(self, searchtype: str, query: str, limit: int = 40, resolve: bool = 4, 
-                    offset: int = 0, min_id: str = "0", max_id: str = None, proxy=None) -> Optional[dict]:
-        """Search users, statuses or hashtags."""
-        params = {
-            "q": query,
-            "resolve": resolve,
-            "limit": limit,
-            "type": searchtype,
-            "offset": offset,
-            "min_id": min_id
-        }
-        
-        if max_id:
-            params["max_id"] = max_id
-            
-        url = f"{API_BASE_URL}/v2/search"
-        return await self._api_request("GET", url, params=params, proxy=proxy)
-    
-    async def trending(self, limit=10, proxy=None):
-        """Return trending truths."""
-        url = f"{API_BASE_URL}/v1/truth/trending/truths"
-        params = {"limit": limit}
-        return await self._api_request("GET", url, params=params, proxy=proxy)
-    
-    async def tags(self, proxy=None):
-        """Return trending tags."""
-        url = f"{API_BASE_URL}/v1/trends"
-        return await self._api_request("GET", url, proxy=proxy)
-    
-    async def suggested(self, maximum: int = 50, proxy=None) -> dict:
-        """Return a list of suggested users to follow."""
-        url = f"{API_BASE_URL}/v2/suggestions"
-        params = {"limit": maximum}
-        return await self._api_request("GET", url, params=params, proxy=proxy)
-    
-    async def trending_groups(self, limit=10, proxy=None):
-        """Return trending group truths."""
-        url = f"{API_BASE_URL}/v1/truth/trends/groups"
-        params = {"limit": limit}
-        return await self._api_request("GET", url, params=params, proxy=proxy)
-    
-    async def group_tags(self, proxy=None):
-        """Return trending group tags."""
-        url = f"{API_BASE_URL}/v1/groups/tags"
-        return await self._api_request("GET", url, proxy=proxy)
-    
-    async def suggested_groups(self, maximum: int = 50, proxy=None) -> dict:
-        """Return a list of suggested groups to follow."""
-        url = f"{API_BASE_URL}/v1/truth/suggestions/groups"
-        params = {"limit": maximum}
-        return await self._api_request("GET", url, params=params, proxy=proxy)
-    
-    async def ads(self, device: str = "desktop", proxy=None) -> dict:
-        """Return a list of ads from Rumble's Ad Platform via Truth Social API."""
-        url = f"{API_BASE_URL}/v3/truth/ads"
-        params = {"device": device}
-        return await self._api_request("GET", url, params=params, proxy=proxy)
-    
-    async def user_likes(self, post: str, include_all: bool = False, top_num: int = 40, proxy=None):
-        """Return the top_num most recent (or all) users who liked the post."""
-        post = post.split("/")[-1]
-        url = f"{API_BASE_URL}/v1/statuses/{post}/favourited_by"
-        params = {"limit": 80}
-        
-        response = await self._api_request("GET", url, params=params, proxy=proxy)
-        if not response:
-            return []
-            
-        # Limit results if not including all
-        if not include_all and top_num > 0:
-            return response[:top_num]
-        return response
-    
-    async def pull_comments(self, post: str, include_all: bool = False, only_first: bool = False, 
-                            top_num: int = 40, proxy=None):
-        """Return the replies to a post."""
-        post = post.split("/")[-1]
-        url = f"{API_BASE_URL}/v1/statuses/{post}/context/descendants"
-        params = {"sort": "oldest"}
-        
-        response = await self._api_request("GET", url, params=params, proxy=proxy)
-        if not response:
-            return []
-            
-        # Filter responses if only getting direct replies
-        if only_first:
-            response = [r for r in response if r.get("in_reply_to_id") == post]
-            
-        # Limit results if not including all
-        if not include_all and top_num > 0:
-            return response[:top_num]
-        return response
-    
-    async def group_posts(self, group_id: str, limit=20, proxy=None):
-        """Get posts from a group's timeline"""
-        url = f"{API_BASE_URL}/v1/timelines/group/{group_id}"
-        params = {"limit": limit}
-        
-        posts = await self._api_request("GET", url, params=params, proxy=proxy)
-        if not posts:
-            return []
-            
-        timeline = posts
-        
-        # If we need more posts and have some already, paginate
-        while len(timeline) < limit and posts:
-            max_id = posts[-1]["id"]
-            next_params = {"limit": limit - len(timeline), "max_id": max_id}
-            posts = await self._api_request("GET", url, params=next_params, proxy=proxy)
-            
-            if not posts:
-                break
-                
-            timeline.extend(posts)
-            
-        return timeline

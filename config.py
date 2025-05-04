@@ -162,7 +162,9 @@ if not TRUTH_ACCOUNTS and os.getenv("TRUTHSOCIAL_USERNAME") and os.getenv("TRUTH
     })
 
 # Tracking settings
-TRUTH_DEFAULT_INTERVAL = 10
+TRUTH_DEFAULT_INTERVAL = 8
+TRUTH_MAX_ACCOUNTS_PER_SERVER = 5 
+MIN_ACCOUNT_USAGE_INTERVAL = 25.0 #in seconds
 
 # Pink verified emoji to use in truth social embed
 VERIFIED_EMOJI = "<:Pink_Verified:1360315088837415135>"
@@ -192,8 +194,8 @@ COMPILED_BAN_REGEXES = [re.compile(pattern) for pattern in USERNAME_BAN_REGEXES]
 
 # Funny ban reasons for embeds
 BAN_FUNNY_REASONS = [
-    "KYS",
-    "Nice try, Diddy!"
+    "KYS Nigger"
+    # "Nice try, Diddy!"
 ]
 
 # Ban GIF URL

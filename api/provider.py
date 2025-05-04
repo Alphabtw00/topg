@@ -47,3 +47,12 @@ class ApiServiceProvider:
         if self.api_client:
             await self.api_client.close()
             logger.info("API client closed")
+        
+        try:
+            from handlers.truth_tracker import stop_tracking
+            await stop_tracking()
+            logger.info("Truth Social tracking stopped")
+        except Exception as e:
+            logger.error(f"Error stopping Truth Social tracking: {e}")
+        
+        return True

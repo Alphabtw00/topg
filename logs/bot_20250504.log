@@ -1,0 +1,1193 @@
+2025-05-04 03:16:14,904 - INFO - Starting bot...
+2025-05-04 03:16:15,797 - INFO - API client initialized
+2025-05-04 03:16:15,797 - INFO - WebsiteAnalyzer initialized with concurrency limit of 15
+2025-05-04 03:16:15,798 - INFO - Loaded 4 Truth Social tokens from file
+2025-05-04 03:16:15,798 - INFO - All API services initialized
+2025-05-04 03:16:15,798 - INFO - Services provider initialized
+2025-05-04 03:16:15,814 - INFO - Database connection pool established: size=1-10
+2025-05-04 03:16:15,814 - INFO - Database connection successful
+2025-05-04 03:16:15,944 - INFO - WebsiteChecker cog initialized
+2025-05-04 03:16:15,944 - INFO - Proxy rotator initialized with http protocol
+2025-05-04 03:16:15,944 - INFO - Proxy rotator initialized for Truth commands
+2025-05-04 03:16:15,946 - INFO - Discord Events Registered | Username Ban Server ID: 1313758082974879774
+2025-05-04 03:16:15,948 - INFO - Memory monitor started (threshold: 300MB, interval: 3600s)
+2025-05-04 03:16:15,948 - INFO - Initializing Truth Social tracking...
+2025-05-04 03:16:15,948 - INFO - Authenticating 4 Truth Social accounts...
+2025-05-04 03:16:15,957 - INFO - Proxy rotator initialized with http protocol
+2025-05-04 03:16:15,957 - INFO - Proxy rotator initialized for Truth Social tracking
+2025-05-04 03:16:15,959 - INFO - All Truth Social caches refreshed
+2025-05-04 03:16:15,959 - INFO - No guilds with Truth Social tracking enabled
+2025-05-04 03:16:15,959 - INFO - Truth Social tracking initialization complete
+2025-05-04 03:16:16,869 - INFO - Successfully synced 6 command(s)
+2025-05-04 03:16:19,886 - INFO - Logged in as TOPG#4967 (ID: 1340722186100408340)
+2025-05-04 03:16:19,886 - INFO - Bot connected to 4 server(s)
+2025-05-04 03:16:19,886 - INFO - Echo bot message forwarding: 1 bots from 11 channels to 1 channels
+2025-05-04 03:16:19,887 - INFO - Dani message forwarding: 1 users from 2 channels to 1 channels
+2025-05-04 03:16:33,128 - INFO - Bot is shutting down...
+2025-05-04 03:16:33,128 - INFO - API client closed
+2025-05-04 03:16:33,129 - INFO - Services closed successfully
+2025-05-04 03:16:33,129 - INFO - Background task 'metrics_cleanup' canceled
+2025-05-04 03:16:33,129 - INFO - Background task 'memory_monitor' canceled
+2025-05-04 03:16:33,129 - INFO - Background task 'heartbeat_monitor' canceled
+2025-05-04 03:16:33,129 - INFO - Background task 'metrics_report' canceled
+2025-05-04 03:16:33,130 - INFO - Database connection pool closed successfully
+2025-05-04 03:16:33,131 - INFO - Bot stopped by user
+2025-05-04 03:16:38,925 - INFO - Starting bot...
+2025-05-04 03:16:39,849 - INFO - API client initialized
+2025-05-04 03:16:39,849 - INFO - WebsiteAnalyzer initialized with concurrency limit of 15
+2025-05-04 03:16:39,849 - ERROR - Error loading Truth Social tokens: Expecting value: line 1 column 1 (char 0)
+2025-05-04 03:16:39,849 - INFO - All API services initialized
+2025-05-04 03:16:39,850 - INFO - Services provider initialized
+2025-05-04 03:16:39,862 - INFO - Database connection pool established: size=1-10
+2025-05-04 03:16:39,862 - INFO - Database connection successful
+2025-05-04 03:16:39,874 - INFO - WebsiteChecker cog initialized
+2025-05-04 03:16:39,875 - INFO - Proxy rotator initialized with http protocol
+2025-05-04 03:16:39,875 - INFO - Proxy rotator initialized for Truth commands
+2025-05-04 03:16:39,878 - INFO - Discord Events Registered | Username Ban Server ID: 1313758082974879774
+2025-05-04 03:16:39,880 - INFO - Memory monitor started (threshold: 300MB, interval: 3600s)
+2025-05-04 03:16:39,880 - INFO - Initializing Truth Social tracking...
+2025-05-04 03:16:39,880 - INFO - Authenticating 4 Truth Social accounts...
+2025-05-04 03:16:39,887 - INFO - Proxy rotator initialized with http protocol
+2025-05-04 03:16:39,887 - INFO - Proxy rotator initialized for Truth Social tracking
+2025-05-04 03:16:39,888 - INFO - All Truth Social caches refreshed
+2025-05-04 03:16:39,889 - INFO - No guilds with Truth Social tracking enabled
+2025-05-04 03:16:39,889 - INFO - Truth Social tracking initialization complete
+2025-05-04 03:16:53,329 - INFO - Bot is shutting down...
+2025-05-04 03:16:53,329 - INFO - API client closed
+2025-05-04 03:16:53,330 - INFO - Services closed successfully
+2025-05-04 03:16:53,330 - INFO - Background task 'metrics_cleanup' canceled
+2025-05-04 03:16:53,330 - INFO - Background task 'memory_monitor' canceled
+2025-05-04 03:16:53,330 - INFO - Background task 'heartbeat_monitor' canceled
+2025-05-04 03:16:53,330 - INFO - Background task 'metrics_report' canceled
+2025-05-04 03:16:53,330 - INFO - Database connection pool closed successfully
+2025-05-04 03:16:53,331 - INFO - Bot stopped by user
+2025-05-04 03:16:57,754 - INFO - Starting bot...
+2025-05-04 03:16:58,613 - INFO - API client initialized
+2025-05-04 03:16:58,613 - INFO - WebsiteAnalyzer initialized with concurrency limit of 15
+2025-05-04 03:16:58,614 - INFO - All API services initialized
+2025-05-04 03:16:58,614 - INFO - Services provider initialized
+2025-05-04 03:16:58,626 - INFO - Database connection pool established: size=1-10
+2025-05-04 03:16:58,627 - INFO - Database connection successful
+2025-05-04 03:16:58,638 - INFO - WebsiteChecker cog initialized
+2025-05-04 03:16:58,638 - INFO - Proxy rotator initialized with http protocol
+2025-05-04 03:16:58,638 - INFO - Proxy rotator initialized for Truth commands
+2025-05-04 03:16:58,640 - INFO - Discord Events Registered | Username Ban Server ID: 1313758082974879774
+2025-05-04 03:16:58,641 - INFO - Memory monitor started (threshold: 300MB, interval: 3600s)
+2025-05-04 03:16:58,642 - INFO - Initializing Truth Social tracking...
+2025-05-04 03:16:58,642 - INFO - Authenticating 4 Truth Social accounts...
+2025-05-04 03:16:58,649 - INFO - Proxy rotator initialized with http protocol
+2025-05-04 03:16:58,649 - INFO - Proxy rotator initialized for Truth Social tracking
+2025-05-04 03:16:58,651 - INFO - All Truth Social caches refreshed
+2025-05-04 03:16:58,651 - INFO - No guilds with Truth Social tracking enabled
+2025-05-04 03:16:58,651 - INFO - Truth Social tracking initialization complete
+2025-05-04 03:17:46,437 - INFO - Successfully synced 6 command(s)
+2025-05-04 03:17:49,341 - INFO - Logged in as TOPG#4967 (ID: 1340722186100408340)
+2025-05-04 03:17:49,342 - INFO - Bot connected to 4 server(s)
+2025-05-04 03:17:49,342 - INFO - Echo bot message forwarding: 1 bots from 11 channels to 1 channels
+2025-05-04 03:17:49,342 - INFO - Dani message forwarding: 1 users from 2 channels to 1 channels
+2025-05-04 03:20:33,540 - INFO - Bot is shutting down...
+2025-05-04 03:20:33,540 - INFO - API client closed
+2025-05-04 03:20:33,540 - INFO - Services closed successfully
+2025-05-04 03:20:33,540 - INFO - Background task 'metrics_cleanup' canceled
+2025-05-04 03:20:33,541 - INFO - Background task 'memory_monitor' canceled
+2025-05-04 03:20:33,541 - INFO - Background task 'heartbeat_monitor' canceled
+2025-05-04 03:20:33,541 - INFO - Background task 'metrics_report' canceled
+2025-05-04 03:20:33,541 - INFO - Database connection pool closed successfully
+2025-05-04 03:20:33,543 - INFO - Bot stopped by user
+2025-05-04 03:20:39,723 - INFO - Starting bot...
+2025-05-04 03:20:40,643 - INFO - API client initialized
+2025-05-04 03:20:40,643 - INFO - WebsiteAnalyzer initialized with concurrency limit of 15
+2025-05-04 03:20:40,644 - INFO - Authenticating 4 Truth Social accounts with missing or expired tokens...
+2025-05-04 03:20:41,671 - INFO - Authenticated Truth Social account: alphabtw
+2025-05-04 03:20:42,686 - INFO - Authenticated Truth Social account: visheshbtw
+2025-05-04 03:20:43,711 - INFO - Authenticated Truth Social account: sakshambtw
+2025-05-04 03:20:44,738 - INFO - Authenticated Truth Social account: mayankbtw
+2025-05-04 03:20:44,739 - INFO - Successfully authenticated 4/4 Truth Social accounts
+2025-05-04 03:20:44,740 - INFO - Saved 4 Truth Social tokens to file
+2025-05-04 03:20:44,740 - ERROR - Error initializing tracker: cannot import name 'init_tracker' from 'handlers.truth_tracker' (C:\Users\ansha\Documents\VsCode\TOPG\handlers\truth_tracker.py)
+2025-05-04 03:20:44,740 - INFO - All API services initialized
+2025-05-04 03:20:44,741 - INFO - Services provider initialized
+2025-05-04 03:20:44,762 - INFO - Database connection pool established: size=1-10
+2025-05-04 03:20:44,762 - INFO - Database connection successful
+2025-05-04 03:20:44,774 - INFO - WebsiteChecker cog initialized
+2025-05-04 03:20:44,774 - INFO - Proxy rotator initialized with http protocol
+2025-05-04 03:20:44,775 - INFO - Proxy rotator initialized for Truth commands
+2025-05-04 03:20:44,777 - INFO - Discord Events Registered | Username Ban Server ID: 1313758082974879774
+2025-05-04 03:20:44,778 - INFO - Memory monitor started (threshold: 300MB, interval: 3600s)
+2025-05-04 03:20:44,778 - INFO - Initializing Truth Social tracking...
+2025-05-04 03:20:44,784 - INFO - Proxy rotator initialized with http protocol
+2025-05-04 03:20:44,785 - INFO - Proxy rotator initialized for Truth Social tracking
+2025-05-04 03:20:44,786 - INFO - All Truth Social caches refreshed
+2025-05-04 03:20:44,786 - INFO - No guilds with Truth Social tracking enabled
+2025-05-04 03:20:44,786 - INFO - Truth Social tracking initialization complete
+2025-05-04 03:20:45,312 - INFO - Successfully synced 6 command(s)
+2025-05-04 03:20:48,276 - INFO - Logged in as TOPG#4967 (ID: 1340722186100408340)
+2025-05-04 03:20:48,277 - INFO - Bot connected to 4 server(s)
+2025-05-04 03:20:48,277 - INFO - Echo bot message forwarding: 1 bots from 11 channels to 1 channels
+2025-05-04 03:20:48,277 - INFO - Dani message forwarding: 1 users from 2 channels to 1 channels
+2025-05-04 03:30:15,258 - INFO - Bot is shutting down...
+2025-05-04 03:30:15,258 - INFO - API client closed
+2025-05-04 03:30:15,258 - INFO - Services closed successfully
+2025-05-04 03:30:15,259 - INFO - Background task 'metrics_cleanup' canceled
+2025-05-04 03:30:15,259 - INFO - Background task 'memory_monitor' canceled
+2025-05-04 03:30:15,259 - INFO - Background task 'heartbeat_monitor' canceled
+2025-05-04 03:30:15,259 - INFO - Background task 'metrics_report' canceled
+2025-05-04 03:30:15,260 - INFO - Database connection pool closed successfully
+2025-05-04 03:30:15,261 - INFO - Bot stopped by user
+2025-05-04 03:30:39,534 - INFO - Starting bot...
+2025-05-04 03:30:40,436 - INFO - API client initialized
+2025-05-04 03:30:40,437 - INFO - WebsiteAnalyzer initialized with concurrency limit of 15
+2025-05-04 03:30:40,437 - INFO - Loaded 4 Truth Social tokens from file
+2025-05-04 03:30:40,437 - INFO - Loaded 4 Truth Social tokens from file
+2025-05-04 03:30:40,438 - INFO - Successfully authenticated 4/4 Truth Social accounts
+2025-05-04 03:30:40,439 - INFO - Saved 4 Truth Social tokens to file
+2025-05-04 03:30:40,439 - INFO - All API services initialized
+2025-05-04 03:30:40,439 - INFO - Services provider initialized
+2025-05-04 03:30:40,455 - INFO - Database connection pool established: size=1-10
+2025-05-04 03:30:40,455 - INFO - Database connection successful
+2025-05-04 03:30:40,468 - INFO - WebsiteChecker cog initialized
+2025-05-04 03:30:40,469 - INFO - Proxy rotator initialized with http protocol
+2025-05-04 03:30:40,469 - INFO - Proxy rotator initialized for Truth commands
+2025-05-04 03:30:40,471 - INFO - Discord Events Registered | Username Ban Server ID: 1313758082974879774
+2025-05-04 03:30:40,473 - INFO - Memory monitor started (threshold: 300MB, interval: 3600s)
+2025-05-04 03:30:40,473 - INFO - Initializing Truth Social tracking...
+2025-05-04 03:30:40,482 - INFO - Proxy rotator initialized with http protocol
+2025-05-04 03:30:40,482 - INFO - Proxy rotator initialized for Truth Social tracking
+2025-05-04 03:30:40,485 - INFO - All Truth Social caches refreshed
+2025-05-04 03:30:40,486 - INFO - No guilds with Truth Social tracking enabled
+2025-05-04 03:30:40,486 - INFO - Truth Social tracking initialization complete
+2025-05-04 03:30:40,963 - INFO - Successfully synced 6 command(s)
+2025-05-04 03:30:43,951 - INFO - Logged in as TOPG#4967 (ID: 1340722186100408340)
+2025-05-04 03:30:43,952 - INFO - Bot connected to 4 server(s)
+2025-05-04 03:30:43,952 - INFO - Echo bot message forwarding: 1 bots from 11 channels to 1 channels
+2025-05-04 03:30:43,952 - INFO - Dani message forwarding: 1 users from 2 channels to 1 channels
+2025-05-04 03:41:53,569 - INFO - All Truth Social caches refreshed
+2025-05-04 03:41:54,032 - INFO - alphabtw_ added channel #user-test-1 in server 'HabibiFNF' for Truth Social tracking
+2025-05-04 03:42:04,110 - INFO - All Truth Social caches refreshed
+2025-05-04 03:42:15,363 - INFO - All Truth Social caches refreshed
+2025-05-04 03:42:16,998 - INFO - alphabtw_ added @kash in server 'HabibiFNF' for tracking
+2025-05-04 03:42:32,328 - INFO - All Truth Social caches refreshed
+2025-05-04 03:42:32,328 - INFO - Truth Social tracking started
+2025-05-04 03:42:32,330 - INFO - All Truth Social caches refreshed
+2025-05-04 03:42:32,330 - INFO - Polling Truth Social for 1 accounts at 2025-05-04 03:42:32
+2025-05-04 03:42:32,747 - INFO - alphabtw_ enabled Truth Social tracking in server 'HabibiFNF'
+2025-05-04 03:42:35,464 - INFO - Sent 1 new post(s) from @kash to guild 1313758082974879774
+2025-05-04 03:42:40,337 - INFO - Polling Truth Social for 1 accounts at 2025-05-04 03:42:40
+2025-05-04 03:42:42,528 - INFO - Sent 1 new post(s) from @kash to guild 1313758082974879774
+2025-05-04 03:42:48,352 - INFO - Polling Truth Social for 1 accounts at 2025-05-04 03:42:48
+2025-05-04 03:42:51,419 - INFO - Sent 1 new post(s) from @kash to guild 1313758082974879774
+2025-05-04 03:42:56,361 - INFO - Polling Truth Social for 1 accounts at 2025-05-04 03:42:56
+2025-05-04 03:42:59,383 - INFO - Sent 1 new post(s) from @kash to guild 1313758082974879774
+2025-05-04 03:43:04,371 - INFO - Polling Truth Social for 1 accounts at 2025-05-04 03:43:04
+2025-05-04 03:43:06,690 - INFO - All Truth Social caches refreshed
+2025-05-04 03:43:07,121 - INFO - alphabtw_ disabled Truth Social tracking in server 'HabibiFNF'
+2025-05-04 03:43:07,146 - INFO - Sent 1 new post(s) from @kash to guild 1313758082974879774
+2025-05-04 03:43:27,392 - INFO - All Truth Social caches refreshed
+2025-05-04 04:29:56,224 - INFO - Bot is shutting down...
+2025-05-04 04:29:56,227 - INFO - API client closed
+2025-05-04 04:29:56,228 - INFO - Truth Social tracking task cancelled
+2025-05-04 04:29:56,228 - INFO - Truth Social tracking loop cancelled
+2025-05-04 04:29:56,228 - INFO - Truth Social tracking stopped
+2025-05-04 04:29:56,229 - INFO - Truth Social tracking stopped
+2025-05-04 04:29:56,229 - INFO - Services closed successfully
+2025-05-04 04:29:56,229 - INFO - Background task 'metrics_cleanup' canceled
+2025-05-04 04:29:56,229 - INFO - Background task 'memory_monitor' canceled
+2025-05-04 04:29:56,229 - INFO - Background task 'heartbeat_monitor' canceled
+2025-05-04 04:29:56,230 - INFO - Background task 'metrics_report' canceled
+2025-05-04 04:29:56,231 - INFO - Database connection pool closed successfully
+2025-05-04 04:29:56,238 - INFO - Bot stopped by user
+2025-05-04 04:30:02,570 - INFO - Starting bot...
+2025-05-04 04:30:03,626 - INFO - API client initialized
+2025-05-04 04:30:03,627 - INFO - WebsiteAnalyzer initialized with concurrency limit of 15
+2025-05-04 04:30:03,627 - INFO - Loaded 4 Truth Social tokens from file
+2025-05-04 04:30:03,628 - INFO - Successfully authenticated 4/4 Truth Social accounts
+2025-05-04 04:30:03,628 - INFO - Saved 4 Truth Social tokens to file
+2025-05-04 04:30:03,628 - INFO - All API services initialized
+2025-05-04 04:30:03,629 - INFO - Services provider initialized
+2025-05-04 04:30:03,653 - INFO - Database connection pool established: size=1-10
+2025-05-04 04:30:03,653 - INFO - Database connection successful
+2025-05-04 04:30:03,667 - INFO - WebsiteChecker cog initialized
+2025-05-04 04:30:03,667 - INFO - Proxy rotator initialized with http protocol
+2025-05-04 04:30:03,668 - INFO - Proxy rotator initialized for Truth commands
+2025-05-04 04:30:03,671 - INFO - Discord Events Registered | Username Ban Server ID: 1313758082974879774
+2025-05-04 04:30:03,673 - INFO - Memory monitor started (threshold: 300MB, interval: 3600s)
+2025-05-04 04:30:03,674 - INFO - Initializing Truth Social tracking...
+2025-05-04 04:30:03,683 - INFO - Proxy rotator initialized with http protocol
+2025-05-04 04:30:03,683 - INFO - Proxy rotator initialized for Truth Social tracking
+2025-05-04 04:30:03,686 - INFO - All Truth Social caches refreshed
+2025-05-04 04:30:03,686 - INFO - No guilds with Truth Social tracking enabled
+2025-05-04 04:30:03,687 - INFO - Truth Social tracking initialization complete
+2025-05-04 04:30:04,210 - INFO - Successfully synced 6 command(s)
+2025-05-04 04:30:07,336 - INFO - Logged in as TOPG#4967 (ID: 1340722186100408340)
+2025-05-04 04:30:07,336 - INFO - Bot connected to 4 server(s)
+2025-05-04 04:30:07,336 - INFO - Echo bot message forwarding: 1 bots from 11 channels to 1 channels
+2025-05-04 04:30:07,336 - INFO - Dani message forwarding: 1 users from 2 channels to 1 channels
+2025-05-04 04:30:41,379 - INFO - All Truth Social caches refreshed
+2025-05-04 04:30:41,380 - INFO - Truth Social tracking started
+2025-05-04 04:30:41,383 - INFO - All Truth Social caches refreshed
+2025-05-04 04:30:41,811 - INFO - alphabtw_ enabled Truth Social tracking in server 'HabibiFNF'
+2025-05-04 04:30:42,390 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 04:30:50,401 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 04:30:58,414 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 04:31:06,414 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 04:31:14,427 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 04:31:22,447 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 04:31:30,446 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 04:31:38,452 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 04:31:46,463 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 04:31:54,469 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 04:32:02,480 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 04:32:10,488 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 04:32:18,508 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 04:32:26,508 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 04:32:34,537 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 04:32:42,533 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 04:32:50,544 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 04:32:58,549 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 04:33:06,573 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 04:33:09,441 - INFO - All Truth Social caches refreshed
+2025-05-04 04:33:14,571 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 04:33:22,587 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 04:33:30,585 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 04:33:38,596 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 04:33:46,611 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 04:33:54,606 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 04:34:02,616 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 04:34:10,629 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 04:34:18,635 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 04:34:26,648 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 04:34:34,656 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 04:34:42,663 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 04:34:50,674 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 04:34:58,676 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 04:35:06,688 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 04:35:14,703 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 04:35:22,715 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 04:35:30,728 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 04:35:38,741 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 04:35:46,754 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 04:35:54,761 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 04:36:02,774 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 04:36:10,788 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 04:36:18,785 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 04:36:26,804 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 04:36:34,801 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 04:36:42,817 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 04:36:50,828 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 04:36:58,826 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 04:37:06,832 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 04:37:14,843 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 04:37:22,852 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 04:37:30,852 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 04:37:38,868 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 04:37:46,873 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 04:37:54,884 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 04:38:02,889 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 04:38:10,911 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 04:38:18,914 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 04:38:26,925 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 04:38:34,916 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 04:38:42,935 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 04:38:50,952 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 04:38:58,951 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 04:39:06,971 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 04:39:14,980 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 04:39:22,978 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 04:39:30,984 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 04:39:38,995 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 04:39:47,006 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 04:39:54,995 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 04:40:03,011 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 04:40:11,027 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 04:40:19,016 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 04:40:27,029 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 04:40:35,031 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 04:40:43,032 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 04:40:51,045 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 04:40:59,068 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 04:41:07,065 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 04:41:15,073 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 04:41:23,074 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 04:41:31,084 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 04:41:39,093 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 04:41:47,111 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 04:41:55,118 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 04:42:03,117 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 04:42:11,121 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 04:42:19,139 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 04:42:27,149 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 04:42:35,161 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 04:42:43,170 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 04:42:51,183 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 04:42:59,183 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 04:43:07,189 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 04:43:15,197 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 04:43:23,206 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 04:43:31,224 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 04:43:39,237 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 04:43:47,243 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 04:43:55,238 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 04:44:03,249 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 04:44:11,266 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 04:44:19,272 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 04:44:27,272 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 04:44:35,286 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 04:44:43,288 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 04:44:51,286 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 04:44:59,303 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 04:45:07,309 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 04:45:15,308 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 04:45:23,314 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 04:45:31,318 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 04:45:39,322 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 04:45:47,341 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 04:45:55,349 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 04:46:03,356 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 04:46:11,373 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 04:46:19,371 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 04:46:27,375 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 04:46:35,388 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 04:46:43,399 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 04:46:51,419 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 04:46:59,433 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 04:47:07,448 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 04:47:15,444 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 04:47:23,451 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 04:47:31,464 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 04:47:39,472 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 04:47:47,481 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 04:47:55,490 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 04:48:03,499 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 04:48:11,496 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 04:48:19,514 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 04:48:27,514 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 04:48:35,521 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 04:48:43,543 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 04:48:51,547 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 04:48:59,546 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 04:49:07,552 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 04:49:15,556 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 04:49:23,566 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 04:49:31,576 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 04:49:39,579 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 04:49:47,584 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 04:49:55,595 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 04:50:03,604 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 04:50:11,624 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 04:50:19,626 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 04:50:27,640 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 04:50:35,642 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 04:50:43,657 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 04:50:51,661 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 04:50:59,672 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 04:51:07,677 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 04:51:15,682 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 04:51:23,239 - WARNING - API mobula returned status 404 for URL: https://api.mobula.io/api/1/market/history/pair?asset=diHUdFV6SytcK3TdmHRp5heVGN1WhGNcv7Ag6wvjZ5v&blockchain=solana&period=1min&amount=100000
+2025-05-04 04:51:23,688 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 04:51:24,560 - WARNING - API mobula returned status 404 for URL: https://api.mobula.io/api/1/market/history/pair?asset=diHUdFV6SytcK3TdmHRp5heVGN1WhGNcv7Ag6wvjZ5v&blockchain=solana&period=1min&amount=100000
+2025-05-04 04:51:25,252 - WARNING - API mobula returned status 404 for URL: https://api.mobula.io/api/1/market/history/pair?asset=diHUdFV6SytcK3TdmHRp5heVGN1WhGNcv7Ag6wvjZ5v&blockchain=solana&period=1min&amount=100000
+2025-05-04 04:51:26,292 - WARNING - API mobula returned status 404 for URL: https://api.mobula.io/api/1/market/history/pair?asset=diHUdFV6SytcK3TdmHRp5heVGN1WhGNcv7Ag6wvjZ5v&blockchain=solana&period=1min&amount=100000
+2025-05-04 04:51:31,697 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 04:51:39,709 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 04:51:47,723 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 04:51:55,732 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 04:52:03,744 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 04:52:11,754 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 04:52:19,775 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 04:52:27,783 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 04:52:35,792 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 04:52:43,806 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 04:52:51,820 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 04:52:59,831 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 04:53:07,834 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 04:53:15,841 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 04:53:23,850 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 04:53:31,852 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 04:53:39,874 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 04:53:47,873 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 04:53:55,898 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 04:54:03,896 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 04:54:11,910 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 04:54:19,910 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 04:54:27,928 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 04:54:35,940 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 04:54:43,947 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 04:54:51,935 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 04:54:59,940 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 04:55:07,953 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 04:55:15,967 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 04:55:23,966 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 04:55:31,968 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 04:55:39,985 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 04:55:47,989 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 04:55:56,001 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 04:56:04,015 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 04:56:12,025 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 04:56:20,038 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 04:56:28,037 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 04:56:36,046 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 04:56:44,051 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 04:56:52,053 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 04:57:00,059 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 04:57:08,067 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 04:57:16,081 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 04:57:24,097 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 04:57:32,112 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 04:57:40,120 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 04:57:48,128 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 04:57:56,135 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 04:58:04,142 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 04:58:12,157 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 04:58:20,178 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 04:58:28,175 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 04:58:36,187 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 04:58:44,201 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 04:58:52,217 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 04:59:00,224 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 04:59:08,220 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 04:59:16,236 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 04:59:24,251 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 04:59:32,254 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 04:59:40,262 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 04:59:48,269 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 04:59:56,274 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 05:00:04,293 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 05:00:12,311 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 05:00:20,310 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 05:00:28,314 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 05:00:36,319 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 05:00:44,319 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 05:00:52,336 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 05:01:00,326 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 05:01:08,330 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 05:01:16,349 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 05:01:24,354 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 05:01:32,362 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 05:01:40,373 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 05:01:48,390 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 05:01:56,395 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 05:02:04,389 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 05:02:12,395 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 05:02:20,406 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 05:02:28,412 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 05:02:36,413 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 05:02:44,420 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 05:02:52,428 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 05:03:00,428 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 05:03:08,435 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 05:03:16,432 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 05:03:24,457 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 05:03:32,466 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 05:03:40,461 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 05:03:48,461 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 05:03:56,468 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 05:04:04,474 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 05:04:12,483 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 05:04:20,490 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 05:04:28,498 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 05:04:36,501 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 05:04:44,527 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 05:04:52,525 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 05:05:00,528 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 05:05:08,529 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 05:05:16,537 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 05:05:24,541 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 05:05:32,556 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 05:05:40,555 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 05:05:48,563 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 05:05:56,566 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 05:06:04,569 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 05:06:12,579 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 05:06:20,586 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 05:06:28,594 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 05:06:36,608 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 05:06:44,617 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 05:06:52,627 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 05:07:00,633 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 05:07:08,642 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 05:07:16,651 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 05:07:24,664 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 05:07:32,676 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 05:07:40,691 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 05:07:48,698 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 05:07:56,712 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 05:08:04,721 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 05:08:12,722 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 05:08:20,737 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 05:08:28,745 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 05:08:36,746 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 05:08:44,748 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 05:08:52,755 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 05:09:00,764 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 05:09:08,776 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 05:09:16,793 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 05:09:24,807 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 05:09:32,808 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 05:09:40,819 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 05:09:48,824 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 05:09:56,832 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 05:10:04,845 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 05:10:12,847 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 05:10:20,849 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 05:10:28,852 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 05:10:36,855 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 05:10:44,863 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 05:10:52,870 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 05:11:00,879 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 05:11:08,894 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 05:11:16,898 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 05:11:24,914 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 05:11:32,921 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 05:11:40,931 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 05:11:48,937 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 05:11:56,944 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 05:12:04,947 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 05:12:12,962 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 05:12:20,959 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 05:12:28,969 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 05:12:36,977 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 05:12:44,988 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 05:12:53,003 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 05:13:01,002 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 05:13:09,018 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 05:13:17,021 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 05:13:25,031 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 05:13:33,043 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 05:13:41,057 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 05:13:49,056 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 05:13:57,061 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 05:14:05,067 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 05:14:13,083 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 05:14:21,096 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 05:14:29,111 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 05:14:37,112 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 05:14:45,129 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 05:14:53,135 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 05:15:01,138 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 05:15:09,148 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 05:15:17,156 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 05:15:25,156 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 05:15:33,170 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 05:15:41,172 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 05:15:49,172 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 05:15:57,175 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 05:16:05,193 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 05:16:13,187 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 05:16:21,193 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 05:16:29,215 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 05:16:37,214 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 05:16:45,219 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 05:16:53,230 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 05:17:01,224 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 05:17:09,243 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 05:17:17,250 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 05:17:25,254 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 05:17:33,264 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 05:17:41,278 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 05:17:49,295 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 05:17:52,632 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-05-04 05:17:53,260 - INFO - Reconnected to Discord after disconnection
+2025-05-04 05:17:53,261 - INFO - Post-reconnection health check: Database=True, API Client=True
+2025-05-04 05:17:57,304 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 05:17:57,938 - INFO - Bot automatically reconnected
+2025-05-04 05:18:05,309 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 05:18:13,323 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 05:18:21,336 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 05:18:29,337 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 05:18:37,353 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 05:18:45,349 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 05:18:53,354 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 05:19:01,371 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 05:19:09,379 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 05:19:17,376 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 05:19:25,387 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 05:19:33,382 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 05:19:41,393 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 05:19:49,405 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 05:19:57,412 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 05:20:05,428 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 05:20:13,420 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 05:20:21,438 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 05:20:29,451 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 05:20:37,460 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 05:20:45,471 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 05:20:53,481 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 05:21:01,487 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 05:21:09,502 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 05:21:17,504 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 05:21:25,511 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 05:21:33,518 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 05:21:41,542 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 05:21:49,538 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 05:21:57,548 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 05:22:05,561 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 05:22:13,557 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 05:22:21,569 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 05:22:29,595 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 05:22:37,595 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 05:22:45,596 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 05:22:53,615 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 05:23:01,638 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 05:23:09,638 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 05:23:17,647 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 05:23:25,644 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 05:23:33,657 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 05:23:41,666 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 05:23:49,678 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 05:23:57,692 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 05:24:05,703 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 05:24:13,714 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 05:24:21,719 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 05:24:29,720 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 05:24:37,728 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 05:24:45,733 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 05:24:53,751 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 05:25:01,761 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 05:25:09,768 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 05:25:17,767 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 05:25:25,787 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 05:25:33,792 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 05:25:41,812 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 05:25:49,816 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 05:25:57,824 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 05:26:05,828 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 05:26:13,844 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 05:26:21,852 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 05:26:29,853 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 05:26:37,877 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 05:26:45,884 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 05:26:53,887 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 05:27:01,892 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 05:27:09,896 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 05:27:17,910 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 05:27:25,908 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 05:27:33,921 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 05:27:41,933 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 05:27:49,947 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 05:27:57,939 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 05:28:05,959 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 05:28:13,955 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 05:28:21,958 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 05:28:29,967 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 05:28:37,974 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 05:28:45,986 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 05:28:53,993 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 05:29:02,002 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 05:29:10,013 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 05:29:18,028 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 05:29:26,041 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 05:29:34,045 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 05:29:42,051 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 05:29:50,059 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 05:29:58,062 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 05:30:03,677 - INFO - Metrics Report | Uptime: 1h 0m | Memory: 45.6MB | Processed: 198 | Avg Processing: 0.0494s | Errors: 4 (1 types, Top: api_mobula=4) | Last Cleanup: 2025-05-04 04:30:02 (1h ago)
+2025-05-04 05:30:06,065 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 05:30:14,074 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 05:30:22,076 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 05:30:30,089 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 05:30:38,098 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 05:30:46,104 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 05:30:54,112 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 05:31:02,118 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 05:31:10,131 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 05:31:18,150 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 05:31:26,152 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 05:31:34,167 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 05:31:42,174 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 05:31:50,179 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 05:31:58,192 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 05:32:06,203 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 05:32:14,211 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 05:32:22,221 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 05:32:30,224 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 05:32:38,235 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 05:32:46,250 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 05:32:54,261 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 05:33:02,266 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 05:33:10,265 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 05:33:18,269 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 05:33:26,284 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 05:33:34,291 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 05:33:42,298 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 05:33:50,304 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 05:33:58,313 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 05:34:06,316 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 05:34:14,313 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 05:34:22,324 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 05:34:30,325 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 05:34:38,343 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 05:34:46,342 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 05:34:54,347 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 05:35:02,362 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 05:35:10,373 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 05:35:18,383 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 05:35:26,390 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 05:35:34,392 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 05:35:42,404 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 05:35:50,416 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 05:35:58,422 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 05:36:06,433 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 05:36:14,444 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 05:36:22,450 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 05:36:30,467 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 05:36:38,467 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 05:36:46,481 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 05:36:54,486 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 05:37:02,494 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 05:37:10,513 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 05:37:18,508 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 05:37:26,516 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 05:37:34,521 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 05:37:42,534 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 05:37:50,536 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 05:37:58,548 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 05:38:06,543 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 05:38:14,555 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 05:38:22,560 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 05:38:30,568 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 05:38:38,581 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 05:38:46,573 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 05:38:54,586 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 05:39:02,591 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 05:39:10,592 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 05:39:18,602 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 05:39:26,608 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 05:39:34,618 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 05:39:42,618 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 05:39:50,628 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 05:39:51,544 - INFO - Bot is shutting down...
+2025-05-04 05:39:51,545 - INFO - API client closed
+2025-05-04 05:39:51,545 - INFO - Truth Social tracking task cancelled
+2025-05-04 05:39:51,545 - INFO - Truth Social tracking loop cancelled
+2025-05-04 05:39:51,545 - INFO - Truth Social tracking stopped
+2025-05-04 05:39:51,546 - INFO - Truth Social tracking stopped
+2025-05-04 05:39:51,546 - INFO - Services closed successfully
+2025-05-04 05:39:51,546 - INFO - Background task 'metrics_cleanup' canceled
+2025-05-04 05:39:51,546 - INFO - Background task 'memory_monitor' canceled
+2025-05-04 05:39:51,546 - INFO - Background task 'heartbeat_monitor' canceled
+2025-05-04 05:39:51,547 - INFO - Background task 'metrics_report' canceled
+2025-05-04 05:39:51,547 - INFO - Database connection pool closed successfully
+2025-05-04 05:39:51,550 - INFO - Bot stopped by user
+2025-05-04 05:40:01,095 - INFO - Starting bot...
+2025-05-04 05:40:01,954 - INFO - API client initialized
+2025-05-04 05:40:01,955 - INFO - WebsiteAnalyzer initialized with concurrency limit of 15
+2025-05-04 05:40:01,963 - INFO - Loaded 4 Truth Social tokens from file
+2025-05-04 05:40:01,963 - INFO - Successfully authenticated 4/4 Truth Social accounts
+2025-05-04 05:40:01,964 - INFO - Saved 4 Truth Social tokens to file
+2025-05-04 05:40:01,964 - INFO - All API services initialized
+2025-05-04 05:40:01,964 - INFO - Services provider initialized
+2025-05-04 05:40:01,990 - INFO - Database connection pool established: size=1-10
+2025-05-04 05:40:01,991 - INFO - Database connection successful
+2025-05-04 05:40:02,004 - INFO - WebsiteChecker cog initialized
+2025-05-04 05:40:02,005 - INFO - Proxy rotator initialized with http protocol
+2025-05-04 05:40:02,005 - INFO - Proxy rotator initialized for Truth commands
+2025-05-04 05:40:02,008 - INFO - Discord Events Registered | Username Ban Server ID: 1313758082974879774
+2025-05-04 05:40:02,009 - INFO - Memory monitor started (threshold: 300MB, interval: 3600s)
+2025-05-04 05:40:02,009 - INFO - Initializing Truth Social tracking...
+2025-05-04 05:40:02,015 - INFO - Proxy rotator initialized with http protocol
+2025-05-04 05:40:02,016 - INFO - Proxy rotator initialized for Truth Social tracking
+2025-05-04 05:40:02,018 - INFO - All Truth Social caches refreshed
+2025-05-04 05:40:02,018 - INFO - Found 1 guilds with Truth Social tracking enabled
+2025-05-04 05:40:02,019 - INFO - Truth Social tracking started
+2025-05-04 05:40:02,019 - INFO - Truth Social tracking initialization complete
+2025-05-04 05:40:02,021 - INFO - All Truth Social caches refreshed
+2025-05-04 05:40:02,021 - INFO - Polling Truth Social for 1 accounts at 2025-05-04 05:40:02
+2025-05-04 05:40:02,596 - INFO - Successfully synced 6 command(s)
+2025-05-04 05:40:03,023 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 05:40:03,851 - INFO - Received poll results batch, processing 1 responses
+2025-05-04 05:40:06,398 - INFO - Logged in as TOPG#4967 (ID: 1340722186100408340)
+2025-05-04 05:40:06,399 - INFO - Bot connected to 4 server(s)
+2025-05-04 05:40:06,399 - INFO - Echo bot message forwarding: 1 bots from 11 channels to 1 channels
+2025-05-04 05:40:06,399 - INFO - Dani message forwarding: 1 users from 2 channels to 1 channels
+2025-05-04 05:40:10,023 - INFO - Polling Truth Social for 1 accounts at 2025-05-04 05:40:10
+2025-05-04 05:40:11,028 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 05:40:11,337 - INFO - Received poll results batch, processing 1 responses
+2025-05-04 05:40:12,287 - INFO - All Truth Social caches refreshed
+2025-05-04 05:40:12,677 - INFO - alphabtw_ removed @kash from tracking in server 'HabibiFNF'
+2025-05-04 05:40:23,007 - INFO - All Truth Social caches refreshed
+2025-05-04 05:40:35,173 - INFO - All Truth Social caches refreshed
+2025-05-04 05:40:35,627 - INFO - alphabtw_ disabled Truth Social tracking in server 'HabibiFNF'
+2025-05-04 05:41:00,769 - INFO - All Truth Social caches refreshed
+2025-05-04 05:42:04,784 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 05:42:05,682 - INFO - All Truth Social caches refreshed
+2025-05-04 05:42:06,388 - INFO - alphabtw_ added @kash in server 'HabibiFNF' for tracking
+2025-05-04 05:42:28,390 - INFO - All Truth Social caches refreshed
+2025-05-04 05:42:28,390 - INFO - Truth Social tracking already running
+2025-05-04 05:42:29,668 - INFO - alphabtw_ enabled Truth Social tracking in server 'HabibiFNF'
+2025-05-04 05:42:34,164 - INFO - Polling Truth Social for 1 accounts at 2025-05-04 05:42:34
+2025-05-04 05:42:35,171 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 05:42:36,018 - INFO - Received poll results batch, processing 1 responses
+2025-05-04 05:42:42,178 - INFO - Polling Truth Social for 1 accounts at 2025-05-04 05:42:42
+2025-05-04 05:42:43,193 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 05:42:44,103 - INFO - Received poll results batch, processing 1 responses
+2025-05-04 05:42:50,188 - INFO - Polling Truth Social for 1 accounts at 2025-05-04 05:42:50
+2025-05-04 05:42:51,192 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 05:42:52,119 - INFO - Received poll results batch, processing 1 responses
+2025-05-04 05:42:58,204 - INFO - Polling Truth Social for 1 accounts at 2025-05-04 05:42:58
+2025-05-04 05:42:59,211 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 05:43:00,035 - INFO - Received poll results batch, processing 1 responses
+2025-05-04 05:43:06,212 - INFO - Polling Truth Social for 1 accounts at 2025-05-04 05:43:06
+2025-05-04 05:43:07,212 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 05:43:08,313 - INFO - Received poll results batch, processing 1 responses
+2025-05-04 05:43:14,218 - INFO - Polling Truth Social for 1 accounts at 2025-05-04 05:43:14
+2025-05-04 05:43:15,219 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 05:43:16,071 - INFO - Received poll results batch, processing 1 responses
+2025-05-04 05:43:22,232 - INFO - Polling Truth Social for 1 accounts at 2025-05-04 05:43:22
+2025-05-04 05:43:23,247 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 05:43:24,101 - INFO - Received poll results batch, processing 1 responses
+2025-05-04 05:43:24,854 - INFO - All Truth Social caches refreshed
+2025-05-04 05:43:25,346 - INFO - alphabtw_ disabled Truth Social tracking in server 'HabibiFNF'
+2025-05-04 05:46:01,299 - INFO - All Truth Social caches refreshed
+2025-05-04 05:46:01,732 - INFO - alphabtw_ removed @kash from tracking in server 'HabibiFNF'
+2025-05-04 05:46:07,639 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 05:46:08,486 - INFO - All Truth Social caches refreshed
+2025-05-04 05:46:10,306 - INFO - alphabtw_ added @alphabtw in server 'HabibiFNF' for tracking
+2025-05-04 05:47:00,600 - INFO - All Truth Social caches refreshed
+2025-05-04 05:47:00,600 - INFO - Truth Social tracking already running
+2025-05-04 05:47:00,979 - INFO - GitHub analysis called by daniworldwidex for https://github.com/gainzy222/larpyExp (cached: False)
+2025-05-04 05:47:01,129 - INFO - alphabtw_ enabled Truth Social tracking in server 'HabibiFNF'
+2025-05-04 05:47:06,491 - INFO - Polling Truth Social for 1 accounts at 2025-05-04 05:47:06
+2025-05-04 05:47:07,499 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 05:47:08,369 - INFO - API Response for 114280944079864810 (alphabtw): [{'id': '114446684131107524', 'created_at': '2025-05-04T00:16:52.059Z', 'in_reply_to_id': None, 'quote_id': None, 'in_reply_to_account_id': None, 'sensitive': False, 'spoiler_text': '', 'visibility': 'public', 'language': 'en', 'uri': 'https://truthsocial.com/@alphabtw/114446684131107524', 'url': 'https://truthsocial.com/@alphabtw/114446684131107524', 'content': '<p>test for logs</p>', 'account': {'id': '114280944079864810', 'username': 'alphabtw', 'acct': 'alphabtw', 'display_name': 'alphabtw', 'locked': False, 'bot': False, 'discoverable': True, 'group': False, 'created_at': '2025-04-04T17:46:59.581Z', 'note': '<p>yoo</p>', 'url': 'https://truthsocial.com/@alphabtw', 'avatar': 'https://static-assets-1.truthsocial.com/tmtg:prime-ts-assets/accounts/avatars/114/280/944/079/864/810/original/171636634b26d372.webp', 'avatar_static': 'https://static-assets-1.truthsocial.com/tmtg:prime-ts-assets/accounts/avatars/114/280/944/079/864/810/original/171636634b26d372.webp', 'header': 'https://static-assets-1.truthsocial.com/tmtg:prime-ts-assets/accounts/headers/114/280/944/079/864/810/original/a128b9a2e20cebed.webp', 'header_static': 'https://static-assets-1.truthsocial.com/tmtg:prime-ts-assets/accounts/headers/114/280/944/079/864/810/original/a128b9a2e20cebed.webp', 'followers_count': 0, 'following_count': 46, 'statuses_count': 7, 'last_status_at': '2025-04-26', 'verified': False, 'location': '', 'website': '', 'unauth_visibility': True, 'chats_onboarded': True, 'feeds_onboarded': True, 'accepting_messages': True, 'show_nonmember_group_statuses': False, 'emojis': [], 'fields': [], 'tv_onboarded': True, 'tv_account': False}, 'media_attachments': [], 'mentions': [], 'tags': [], 'card': None, 'group': None, 'quote': None, 'in_reply_to': None, 'reblog': None, 'sponsored': False, 'replies_count': 0, 'reblogs_count': 0, 'favourites_count': 0, 'reaction': None, 'upvotes_count': 0, 'downvotes_count': 0, 'favourited': False, 'reblogged': False, 'muted': False, 'pinned': False, 'bookmarked': False, 'poll': None, 'emojis': [], 'votable': False}]
+2025-05-04 05:47:08,370 - INFO - Received poll results batch, processing 1 responses
+2025-05-04 05:47:08,370 - INFO - Processing result for account_id 114280944079864810: 1 new posts
+2025-05-04 05:47:08,370 - INFO - Starting send_posts_to_guilds for account 114280944079864810 with 1 posts
+2025-05-04 05:47:08,370 - INFO - Found 1 guilds for account 114280944079864810
+2025-05-04 05:47:09,228 - INFO - Sent 1 new post(s) from @alphabtw to guild 1313758082974879774
+2025-05-04 05:47:09,228 - INFO - Completed sending 1 posts for account 114280944079864810 to guild 1313758082974879774
+2025-05-04 05:47:14,500 - INFO - Polling Truth Social for 1 accounts at 2025-05-04 05:47:14
+2025-05-04 05:47:15,504 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 05:47:16,329 - INFO - Received poll results batch, processing 1 responses
+2025-05-04 05:47:20,946 - INFO - All Truth Social caches refreshed
+2025-05-04 05:47:21,416 - INFO - alphabtw_ disabled Truth Social tracking in server 'HabibiFNF'
+2025-05-04 06:40:02,021 - INFO - Metrics Report | Uptime: 1h 0m | Memory: 42.6MB | Processed: 172 | Avg Processing: 0.0237s | Errors: 0 (0 types, Top: none) | Last Cleanup: 2025-05-04 05:40:01 (1h ago)
+2025-05-04 07:02:07,251 - INFO - Bot is shutting down...
+2025-05-04 07:02:07,252 - INFO - API client closed
+2025-05-04 07:02:07,252 - INFO - Truth Social tracking task cancelled
+2025-05-04 07:02:07,252 - INFO - Truth Social tracking loop cancelled
+2025-05-04 07:02:07,252 - INFO - Truth Social tracking stopped
+2025-05-04 07:02:07,252 - INFO - Truth Social tracking stopped
+2025-05-04 07:02:07,253 - INFO - Services closed successfully
+2025-05-04 07:02:07,253 - INFO - Background task 'metrics_cleanup' canceled
+2025-05-04 07:02:07,253 - INFO - Background task 'memory_monitor' canceled
+2025-05-04 07:02:07,253 - INFO - Background task 'heartbeat_monitor' canceled
+2025-05-04 07:02:07,253 - INFO - Background task 'metrics_report' canceled
+2025-05-04 07:02:07,253 - INFO - Database connection pool closed successfully
+2025-05-04 07:02:07,257 - INFO - Bot stopped by user
+2025-05-04 07:02:56,387 - INFO - Starting bot...
+2025-05-04 07:02:58,754 - INFO - API client initialized
+2025-05-04 07:02:58,754 - INFO - WebsiteAnalyzer initialized with concurrency limit of 15
+2025-05-04 07:02:58,754 - INFO - Loaded 4 Truth Social tokens from file
+2025-05-04 07:02:58,755 - INFO - Successfully authenticated 4/4 Truth Social accounts
+2025-05-04 07:02:58,755 - INFO - Saved 4 Truth Social tokens to file
+2025-05-04 07:02:58,756 - INFO - All API services initialized
+2025-05-04 07:02:58,756 - INFO - Services provider initialized
+2025-05-04 07:02:58,769 - INFO - Database connection pool established: size=1-10
+2025-05-04 07:02:58,769 - INFO - Database connection successful
+2025-05-04 07:02:58,876 - INFO - WebsiteChecker cog initialized
+2025-05-04 07:02:58,876 - INFO - Proxy rotator initialized with http protocol
+2025-05-04 07:02:58,877 - INFO - Proxy rotator initialized for Truth commands
+2025-05-04 07:02:58,879 - INFO - Discord Events Registered | Username Ban Server ID: 1313758082974879774
+2025-05-04 07:02:58,880 - INFO - Memory monitor started (threshold: 300MB, interval: 3600s)
+2025-05-04 07:02:58,880 - INFO - Initializing Truth Social tracking...
+2025-05-04 07:02:58,890 - INFO - Proxy rotator initialized with http protocol
+2025-05-04 07:02:58,890 - INFO - Proxy rotator initialized for Truth Social tracking
+2025-05-04 07:02:58,891 - INFO - Ultra-optimized cache built: 0 accounts, 0 accounts with channels, 0 total channel mappings
+2025-05-04 07:02:58,892 - INFO - No guilds with Truth Social tracking enabled
+2025-05-04 07:02:58,892 - INFO - Truth Social tracking initialization complete
+2025-05-04 07:02:59,376 - INFO - Successfully synced 6 command(s)
+2025-05-04 07:03:02,287 - INFO - Logged in as TOPG#4967 (ID: 1340722186100408340)
+2025-05-04 07:03:02,287 - INFO - Bot connected to 4 server(s)
+2025-05-04 07:03:02,287 - INFO - Echo bot message forwarding: 1 bots from 11 channels to 1 channels
+2025-05-04 07:03:02,288 - INFO - Dani message forwarding: 1 users from 2 channels to 1 channels
+2025-05-04 07:03:38,996 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 07:03:39,876 - INFO - Ultra-optimized cache built: 0 accounts, 0 accounts with channels, 0 total channel mappings
+2025-05-04 07:03:39,877 - INFO - Ultra-optimized cache built: 0 accounts, 0 accounts with channels, 0 total channel mappings
+2025-05-04 07:03:40,814 - INFO - alphabtw_ added @kash in server 'HabibiFNF' for tracking
+2025-05-04 07:03:41,410 - INFO - Ultra-optimized cache built: 0 accounts, 0 accounts with channels, 0 total channel mappings
+2025-05-04 07:03:41,411 - INFO - Ultra-optimized cache built: 0 accounts, 0 accounts with channels, 0 total channel mappings
+2025-05-04 07:03:41,833 - INFO - alphabtw_ added channel #user-test-1 in server 'HabibiFNF' for Truth Social tracking
+2025-05-04 07:04:11,783 - INFO - Ultra-optimized cache built: 1 accounts, 1 accounts with channels, 1 total channel mappings
+2025-05-04 07:04:11,785 - INFO - Ultra-optimized cache built: 1 accounts, 1 accounts with channels, 1 total channel mappings
+2025-05-04 07:04:11,785 - INFO - Truth Social tracking started
+2025-05-04 07:04:11,786 - INFO - Polling Truth Social for 1 accounts at 2025-05-04 07:04:11
+2025-05-04 07:04:12,313 - INFO - alphabtw_ enabled Truth Social tracking in server 'HabibiFNF'
+2025-05-04 07:04:12,795 - ERROR - Error in get_latest_posts for 107826559359582068: 'TruthSocialService' object has no attribute 'get_user_statuses'
+2025-05-04 07:04:19,791 - INFO - Polling Truth Social for 1 accounts at 2025-05-04 07:04:19
+2025-05-04 07:04:25,633 - INFO - Ultra-optimized cache built: 0 accounts, 0 accounts with channels, 0 total channel mappings
+2025-05-04 07:04:25,634 - INFO - Ultra-optimized cache built: 0 accounts, 0 accounts with channels, 0 total channel mappings
+2025-05-04 07:04:26,120 - INFO - alphabtw_ disabled Truth Social tracking in server 'HabibiFNF'
+2025-05-04 07:05:16,529 - INFO - Bot is shutting down...
+2025-05-04 07:05:16,529 - INFO - API client closed
+2025-05-04 07:05:16,530 - INFO - Truth Social tracking task cancelled
+2025-05-04 07:05:16,530 - INFO - Truth Social tracking loop cancelled
+2025-05-04 07:05:16,530 - INFO - Truth Social tracking stopped
+2025-05-04 07:05:16,530 - INFO - Truth Social tracking stopped
+2025-05-04 07:05:16,530 - INFO - Services closed successfully
+2025-05-04 07:05:16,530 - INFO - Background task 'metrics_cleanup' canceled
+2025-05-04 07:05:16,531 - INFO - Background task 'memory_monitor' canceled
+2025-05-04 07:05:16,531 - INFO - Background task 'heartbeat_monitor' canceled
+2025-05-04 07:05:16,531 - INFO - Background task 'metrics_report' canceled
+2025-05-04 07:05:16,531 - INFO - Database connection pool closed successfully
+2025-05-04 07:05:16,532 - INFO - Bot stopped by user
+2025-05-04 07:05:29,116 - INFO - Starting bot...
+2025-05-04 07:05:30,185 - INFO - API client initialized
+2025-05-04 07:05:30,186 - INFO - WebsiteAnalyzer initialized with concurrency limit of 15
+2025-05-04 07:05:30,187 - INFO - Loaded 4 Truth Social tokens from file
+2025-05-04 07:05:30,188 - INFO - Successfully authenticated 4/4 Truth Social accounts
+2025-05-04 07:05:30,188 - INFO - Saved 4 Truth Social tokens to file
+2025-05-04 07:05:30,189 - INFO - All API services initialized
+2025-05-04 07:05:30,189 - INFO - Services provider initialized
+2025-05-04 07:05:30,203 - INFO - Database connection pool established: size=1-10
+2025-05-04 07:05:30,204 - INFO - Database connection successful
+2025-05-04 07:05:30,222 - INFO - WebsiteChecker cog initialized
+2025-05-04 07:05:30,222 - INFO - Proxy rotator initialized with http protocol
+2025-05-04 07:05:30,223 - INFO - Proxy rotator initialized for Truth commands
+2025-05-04 07:05:30,226 - INFO - Discord Events Registered | Username Ban Server ID: 1313758082974879774
+2025-05-04 07:05:30,229 - INFO - Memory monitor started (threshold: 300MB, interval: 3600s)
+2025-05-04 07:05:30,229 - INFO - Initializing Truth Social tracking...
+2025-05-04 07:05:30,238 - INFO - Proxy rotator initialized with http protocol
+2025-05-04 07:05:30,239 - INFO - Proxy rotator initialized for Truth Social tracking
+2025-05-04 07:05:30,240 - INFO - Ultra-optimized cache built: 0 accounts, 0 accounts with channels, 0 total channel mappings
+2025-05-04 07:05:30,241 - INFO - No guilds with Truth Social tracking enabled
+2025-05-04 07:05:30,242 - INFO - Truth Social tracking initialization complete
+2025-05-04 07:05:30,738 - INFO - Successfully synced 6 command(s)
+2025-05-04 07:05:33,687 - INFO - Logged in as TOPG#4967 (ID: 1340722186100408340)
+2025-05-04 07:05:33,688 - INFO - Bot connected to 4 server(s)
+2025-05-04 07:05:33,688 - INFO - Echo bot message forwarding: 1 bots from 11 channels to 1 channels
+2025-05-04 07:05:33,688 - INFO - Dani message forwarding: 1 users from 2 channels to 1 channels
+2025-05-04 07:05:42,259 - INFO - Ultra-optimized cache built: 1 accounts, 1 accounts with channels, 1 total channel mappings
+2025-05-04 07:05:42,260 - INFO - Ultra-optimized cache built: 1 accounts, 1 accounts with channels, 1 total channel mappings
+2025-05-04 07:05:42,260 - INFO - Truth Social tracking started
+2025-05-04 07:05:42,261 - INFO - Polling Truth Social for 1 accounts at 2025-05-04 07:05:42
+2025-05-04 07:05:42,713 - INFO - alphabtw_ enabled Truth Social tracking in server 'HabibiFNF'
+2025-05-04 07:05:43,270 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 07:05:44,132 - INFO - First-time poll for 107826559359582068: found 1 posts
+2025-05-04 07:05:44,603 - INFO - Broadcast 1 posts from @kash to 1 guilds (1 channels)
+2025-05-04 07:05:49,271 - INFO - Polling Truth Social for 1 accounts at 2025-05-04 07:05:49
+2025-05-04 07:05:50,277 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 07:05:56,272 - INFO - Polling Truth Social for 1 accounts at 2025-05-04 07:05:56
+2025-05-04 07:05:57,275 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 07:06:03,280 - INFO - Polling Truth Social for 1 accounts at 2025-05-04 07:06:03
+2025-05-04 07:06:04,290 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 07:06:10,290 - INFO - Polling Truth Social for 1 accounts at 2025-05-04 07:06:10
+2025-05-04 07:06:11,300 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 07:06:17,305 - INFO - Polling Truth Social for 1 accounts at 2025-05-04 07:06:17
+2025-05-04 07:06:18,321 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 07:06:21,459 - INFO - Bot is shutting down...
+2025-05-04 07:06:21,459 - INFO - API client closed
+2025-05-04 07:06:21,459 - INFO - Truth Social tracking task cancelled
+2025-05-04 07:06:21,459 - INFO - Truth Social tracking loop cancelled
+2025-05-04 07:06:21,459 - INFO - Truth Social tracking stopped
+2025-05-04 07:06:21,459 - INFO - Truth Social tracking stopped
+2025-05-04 07:06:21,460 - INFO - Services closed successfully
+2025-05-04 07:06:21,460 - INFO - Background task 'metrics_cleanup' canceled
+2025-05-04 07:06:21,460 - INFO - Background task 'memory_monitor' canceled
+2025-05-04 07:06:21,460 - INFO - Background task 'heartbeat_monitor' canceled
+2025-05-04 07:06:21,460 - INFO - Background task 'metrics_report' canceled
+2025-05-04 07:06:21,460 - INFO - Database connection pool closed successfully
+2025-05-04 07:06:21,462 - INFO - Bot stopped by user
+2025-05-04 07:06:39,411 - INFO - Starting bot...
+2025-05-04 07:06:40,306 - INFO - API client initialized
+2025-05-04 07:06:40,306 - INFO - WebsiteAnalyzer initialized with concurrency limit of 15
+2025-05-04 07:06:40,308 - INFO - Loaded 4 Truth Social tokens from file
+2025-05-04 07:06:40,308 - INFO - Successfully authenticated 4/4 Truth Social accounts
+2025-05-04 07:06:40,309 - INFO - Saved 4 Truth Social tokens to file
+2025-05-04 07:06:40,310 - INFO - All API services initialized
+2025-05-04 07:06:40,310 - INFO - Services provider initialized
+2025-05-04 07:06:40,324 - INFO - Database connection pool established: size=1-10
+2025-05-04 07:06:40,325 - INFO - Database connection successful
+2025-05-04 07:06:40,339 - INFO - WebsiteChecker cog initialized
+2025-05-04 07:06:40,340 - INFO - Proxy rotator initialized with http protocol
+2025-05-04 07:06:40,340 - INFO - Proxy rotator initialized for Truth commands
+2025-05-04 07:06:40,342 - INFO - Discord Events Registered | Username Ban Server ID: 1313758082974879774
+2025-05-04 07:06:40,344 - INFO - Memory monitor started (threshold: 300MB, interval: 3600s)
+2025-05-04 07:06:40,344 - INFO - Initializing Truth Social tracking...
+2025-05-04 07:06:40,351 - INFO - Proxy rotator initialized with http protocol
+2025-05-04 07:06:40,351 - INFO - Proxy rotator initialized for Truth Social tracking
+2025-05-04 07:06:40,354 - INFO - Ultra-optimized cache built: 1 accounts, 1 accounts with channels, 1 total channel mappings
+2025-05-04 07:06:40,355 - INFO - Found 1 guilds with Truth Social tracking enabled
+2025-05-04 07:06:40,355 - INFO - Truth Social tracking started
+2025-05-04 07:06:40,355 - INFO - Truth Social tracking initialization complete
+2025-05-04 07:06:40,900 - INFO - Successfully synced 6 command(s)
+2025-05-04 07:06:41,368 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 07:06:44,235 - INFO - Logged in as TOPG#4967 (ID: 1340722186100408340)
+2025-05-04 07:06:44,235 - INFO - Bot connected to 4 server(s)
+2025-05-04 07:06:44,236 - INFO - Echo bot message forwarding: 1 bots from 11 channels to 1 channels
+2025-05-04 07:06:44,236 - INFO - Dani message forwarding: 1 users from 2 channels to 1 channels
+2025-05-04 07:06:48,365 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 07:06:55,377 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 07:07:02,383 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 07:07:09,403 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 07:07:11,932 - INFO - Ultra-optimized cache built: 1 accounts, 1 accounts with channels, 2 total channel mappings
+2025-05-04 07:07:11,934 - INFO - Ultra-optimized cache built: 1 accounts, 1 accounts with channels, 2 total channel mappings
+2025-05-04 07:07:16,405 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 07:07:23,405 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 07:07:30,410 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 07:07:37,415 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 07:07:44,429 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 07:07:51,437 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 07:07:58,445 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 07:08:05,445 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 07:08:12,460 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 07:08:19,460 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 07:08:26,463 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 07:08:33,477 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 07:08:40,488 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 07:08:47,480 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 07:08:54,494 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 07:09:01,501 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 07:09:08,504 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 07:09:15,516 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 07:09:22,526 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 07:09:29,527 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 07:09:36,542 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 07:09:43,545 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 07:09:50,546 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 07:09:57,546 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 07:10:04,549 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 07:10:11,553 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 07:10:18,564 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 07:10:25,583 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 07:10:32,583 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 07:10:39,588 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 07:10:46,607 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 07:10:53,605 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 07:11:00,606 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 07:11:07,625 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 07:11:14,632 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 07:11:21,647 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 07:11:28,655 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 07:11:35,665 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 07:11:42,683 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 07:11:49,688 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 07:11:56,691 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 07:12:03,701 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 07:12:10,709 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 07:12:17,715 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 07:12:24,719 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 07:12:31,723 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 07:12:38,736 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 07:12:45,752 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 07:12:52,760 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 07:12:59,761 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 07:13:06,773 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 07:13:13,776 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 07:13:20,786 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 07:13:27,796 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 07:13:34,807 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 07:13:41,814 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 07:13:48,820 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 07:13:55,828 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 07:14:02,833 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 07:14:09,843 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 07:14:16,843 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 07:14:23,860 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 07:14:30,860 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 07:14:37,858 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 07:14:44,869 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 07:14:51,874 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 07:14:58,887 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 07:15:05,901 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 07:15:12,906 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 07:15:19,906 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 07:15:26,922 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 07:15:33,934 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 07:15:40,933 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 07:15:47,944 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 07:15:54,966 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 07:16:01,958 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 07:16:08,977 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 07:16:15,972 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 07:16:22,979 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 07:16:29,988 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 07:16:36,996 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 07:16:43,995 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 07:16:51,007 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 07:16:58,014 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 07:17:05,030 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 07:17:12,042 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 07:17:19,045 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 07:17:26,048 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 07:17:33,051 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 07:17:40,060 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 07:17:47,070 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 07:17:54,088 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 07:18:01,099 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 07:18:08,103 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 07:18:15,114 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 07:18:22,124 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 07:18:29,137 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 07:18:36,157 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 07:18:43,173 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 07:18:50,183 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 07:18:57,185 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 07:19:04,179 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 07:19:04,225 - WARNING - Account sakshambtw rate limited, cooling down for 5s
+2025-05-04 07:19:04,225 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 07:19:04,267 - WARNING - Account mayankbtw rate limited, cooling down for 5s
+2025-05-04 07:19:04,268 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 07:19:04,319 - WARNING - Account alphabtw rate limited, cooling down for 5s
+2025-05-04 07:19:04,319 - WARNING - API error: Status 429
+2025-05-04 07:19:11,200 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 07:19:18,214 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 07:19:18,253 - WARNING - Account sakshambtw rate limited, cooling down for 5s
+2025-05-04 07:19:18,253 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 07:19:18,294 - WARNING - Account mayankbtw rate limited, cooling down for 5s
+2025-05-04 07:19:18,295 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 07:19:18,335 - WARNING - Account alphabtw rate limited, cooling down for 5s
+2025-05-04 07:19:18,335 - WARNING - API error: Status 429
+2025-05-04 07:19:25,225 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 07:19:32,240 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 07:19:32,287 - WARNING - Account sakshambtw rate limited, cooling down for 5s
+2025-05-04 07:19:32,288 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 07:19:32,333 - WARNING - Account mayankbtw rate limited, cooling down for 5s
+2025-05-04 07:19:32,334 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 07:19:32,376 - WARNING - Account alphabtw rate limited, cooling down for 5s
+2025-05-04 07:19:32,376 - WARNING - API error: Status 429
+2025-05-04 07:19:39,236 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 07:19:39,283 - WARNING - Account visheshbtw rate limited, cooling down for 5s
+2025-05-04 07:19:39,283 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 07:19:39,323 - WARNING - Account sakshambtw rate limited, cooling down for 5s
+2025-05-04 07:19:39,323 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 07:19:39,364 - WARNING - Account mayankbtw rate limited, cooling down for 5s
+2025-05-04 07:19:39,364 - WARNING - API error: Status 429
+2025-05-04 07:19:46,249 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 07:19:53,257 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 07:19:53,298 - WARNING - Account visheshbtw rate limited, cooling down for 5s
+2025-05-04 07:19:53,298 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 07:19:53,336 - WARNING - Account sakshambtw rate limited, cooling down for 5s
+2025-05-04 07:19:53,336 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 07:19:53,380 - WARNING - Account mayankbtw rate limited, cooling down for 5s
+2025-05-04 07:19:53,380 - WARNING - API error: Status 429
+2025-05-04 07:20:00,269 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 07:20:07,273 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 07:20:14,276 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 07:20:14,350 - WARNING - Account sakshambtw rate limited, cooling down for 5s
+2025-05-04 07:20:14,350 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 07:20:14,388 - WARNING - Account mayankbtw rate limited, cooling down for 5s
+2025-05-04 07:20:14,389 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 07:20:14,445 - WARNING - Account alphabtw rate limited, cooling down for 5s
+2025-05-04 07:20:14,446 - WARNING - API error: Status 429
+2025-05-04 07:20:21,280 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 07:20:28,286 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 07:20:35,303 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 07:20:42,318 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 07:20:49,309 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 07:20:56,315 - INFO - polling truth social with account username: sakshambtw, token: 8QfTG89P0csLwLpE6GLmoOaMYGcUtPb5b3EyVK6ZEv8
+2025-05-04 07:21:03,321 - INFO - polling truth social with account username: mayankbtw, token: DhIDUm3kpaqPmv7UK8oniXsusnLW1OYMf4m5olULCBI
+2025-05-04 07:21:10,326 - INFO - polling truth social with account username: alphabtw, token: LSqi_rvdkGzpsNVL-b8uU1CuigyQS65Gu-aBiS2aEvg
+2025-05-04 07:21:17,335 - INFO - polling truth social with account username: visheshbtw, token: -DgQXldwPCH51AqJRhJjSRbRVejjfLTEQ4mp9rzE278
+2025-05-04 07:21:21,346 - INFO - Bot is shutting down...
+2025-05-04 07:21:21,346 - INFO - API client closed
+2025-05-04 07:21:21,346 - INFO - Truth Social tracking task cancelled
+2025-05-04 07:21:21,347 - INFO - Truth Social tracking loop cancelled
+2025-05-04 07:21:21,347 - INFO - Truth Social tracking stopped
+2025-05-04 07:21:21,347 - INFO - Truth Social tracking stopped
+2025-05-04 07:21:21,348 - INFO - Services closed successfully
+2025-05-04 07:21:21,348 - INFO - Background task 'metrics_cleanup' canceled
+2025-05-04 07:21:21,348 - INFO - Background task 'memory_monitor' canceled
+2025-05-04 07:21:21,348 - INFO - Background task 'heartbeat_monitor' canceled
+2025-05-04 07:21:21,349 - INFO - Background task 'metrics_report' canceled
+2025-05-04 07:21:21,349 - INFO - Database connection pool closed successfully
+2025-05-04 07:21:21,351 - INFO - Bot stopped by user

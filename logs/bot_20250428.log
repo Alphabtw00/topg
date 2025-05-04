@@ -1,0 +1,401 @@
+2025-04-28 07:17:25,930 - INFO - Starting bot...
+2025-04-28 07:17:26,918 - INFO - API client initialized
+2025-04-28 07:17:26,918 - INFO - WebsiteAnalyzer initialized with concurrency limit of 15
+2025-04-28 07:17:26,918 - INFO - Setting up 4 Truth Social accounts...
+2025-04-28 07:17:28,347 - INFO - Authenticated Truth Social account: visheshbtw
+2025-04-28 07:17:29,694 - INFO - Authenticated Truth Social account: alphabtw
+2025-04-28 07:17:31,214 - INFO - Authenticated Truth Social account: sakshambtw
+2025-04-28 07:17:32,552 - INFO - Authenticated Truth Social account: mayankbtw
+2025-04-28 07:17:32,552 - INFO - Successfully authenticated 4/4 Truth Social accounts
+2025-04-28 07:17:32,553 - ERROR - Database pool not initialized
+2025-04-28 07:17:32,553 - INFO - All API services initialized
+2025-04-28 07:17:32,554 - INFO - Services provider initialized
+2025-04-28 07:17:32,585 - INFO - Database connection pool established: size=1-10
+2025-04-28 07:17:32,585 - INFO - Database connection successful
+2025-04-28 07:17:32,684 - INFO - WebsiteChecker cog initialized
+2025-04-28 07:17:32,685 - INFO - Proxy rotator initialized with http protocol
+2025-04-28 07:17:32,685 - INFO - Proxy rotator initialized for Truth commands
+2025-04-28 07:17:32,687 - INFO - Discord Events Registered | Username Ban Server ID: 1313758082974879774
+2025-04-28 07:17:32,688 - INFO - Memory monitor started (threshold: 300MB, interval: 3600s)
+2025-04-28 07:17:33,232 - INFO - Successfully synced 6 command(s)
+2025-04-28 07:17:36,272 - INFO - Logged in as TOPG#4967 (ID: 1340722186100408340)
+2025-04-28 07:17:36,272 - INFO - Bot connected to 4 server(s)
+2025-04-28 07:17:36,272 - INFO - Echo bot message forwarding: 1 bots from 11 channels to 1 channels
+2025-04-28 07:17:36,272 - INFO - Dani message forwarding: 1 users from 2 channels to 1 channels
+2025-04-28 07:18:42,605 - ERROR - Error adding Truth Social channel: module 'handlers.truth_tracker' has no attribute 'clear_cache_for_guild'
+2025-04-28 07:30:18,158 - INFO - Bot is shutting down...
+2025-04-28 07:30:18,159 - INFO - API client closed
+2025-04-28 07:30:18,159 - INFO - Services closed successfully
+2025-04-28 07:30:18,159 - INFO - Background task 'metrics_cleanup' canceled
+2025-04-28 07:30:18,159 - INFO - Background task 'memory_monitor' canceled
+2025-04-28 07:30:18,159 - INFO - Background task 'heartbeat_monitor' canceled
+2025-04-28 07:30:18,159 - INFO - Background task 'metrics_report' canceled
+2025-04-28 07:30:18,160 - INFO - Database connection pool closed successfully
+2025-04-28 07:30:18,161 - INFO - Bot stopped by user
+2025-04-28 07:30:22,487 - INFO - Starting bot...
+2025-04-28 07:30:23,394 - INFO - API client initialized
+2025-04-28 07:30:23,395 - INFO - WebsiteAnalyzer initialized with concurrency limit of 15
+2025-04-28 07:30:23,395 - INFO - Setting up 4 Truth Social accounts...
+2025-04-28 07:30:24,759 - INFO - Authenticated Truth Social account: visheshbtw
+2025-04-28 07:30:26,089 - INFO - Authenticated Truth Social account: alphabtw
+2025-04-28 07:30:27,633 - INFO - Authenticated Truth Social account: sakshambtw
+2025-04-28 07:30:29,119 - INFO - Authenticated Truth Social account: mayankbtw
+2025-04-28 07:30:29,119 - INFO - Successfully authenticated 4/4 Truth Social accounts
+2025-04-28 07:30:29,119 - ERROR - Database pool not initialized
+2025-04-28 07:30:29,119 - INFO - All API services initialized
+2025-04-28 07:30:29,120 - INFO - Services provider initialized
+2025-04-28 07:30:29,154 - INFO - Database connection pool established: size=1-10
+2025-04-28 07:30:29,154 - INFO - Database connection successful
+2025-04-28 07:30:29,164 - INFO - WebsiteChecker cog initialized
+2025-04-28 07:30:29,164 - INFO - Proxy rotator initialized with http protocol
+2025-04-28 07:30:29,164 - INFO - Proxy rotator initialized for Truth commands
+2025-04-28 07:30:29,168 - INFO - Discord Events Registered | Username Ban Server ID: 1313758082974879774
+2025-04-28 07:30:29,169 - INFO - Memory monitor started (threshold: 300MB, interval: 3600s)
+2025-04-28 07:30:29,765 - INFO - Successfully synced 6 command(s)
+2025-04-28 07:30:32,854 - INFO - Logged in as TOPG#4967 (ID: 1340722186100408340)
+2025-04-28 07:30:32,854 - INFO - Bot connected to 4 server(s)
+2025-04-28 07:30:32,855 - INFO - Echo bot message forwarding: 1 bots from 11 channels to 1 channels
+2025-04-28 07:30:32,855 - INFO - Dani message forwarding: 1 users from 2 channels to 1 channels
+2025-04-28 07:30:48,254 - ERROR - Error adding Truth Social channel: module 'handlers.truth_tracker' has no attribute 'clear_cache_for_guild'
+2025-04-28 07:35:09,113 - INFO - Bot is shutting down...
+2025-04-28 07:35:09,114 - INFO - API client closed
+2025-04-28 07:35:09,114 - INFO - Services closed successfully
+2025-04-28 07:35:09,114 - INFO - Background task 'metrics_cleanup' canceled
+2025-04-28 07:35:09,114 - INFO - Background task 'memory_monitor' canceled
+2025-04-28 07:35:09,114 - INFO - Background task 'heartbeat_monitor' canceled
+2025-04-28 07:35:09,114 - INFO - Background task 'metrics_report' canceled
+2025-04-28 07:35:09,115 - INFO - Database connection pool closed successfully
+2025-04-28 07:35:09,116 - INFO - Bot stopped by user
+2025-04-28 07:35:12,960 - INFO - Starting bot...
+2025-04-28 07:35:13,906 - INFO - API client initialized
+2025-04-28 07:35:13,907 - INFO - WebsiteAnalyzer initialized with concurrency limit of 15
+2025-04-28 07:35:13,907 - INFO - Setting up 4 Truth Social accounts...
+2025-04-28 07:35:15,252 - INFO - Authenticated Truth Social account: visheshbtw
+2025-04-28 07:35:16,673 - INFO - Authenticated Truth Social account: alphabtw
+2025-04-28 07:35:17,541 - INFO - Authenticated Truth Social account: sakshambtw
+2025-04-28 07:35:18,960 - INFO - Authenticated Truth Social account: mayankbtw
+2025-04-28 07:35:18,960 - INFO - Successfully authenticated 4/4 Truth Social accounts
+2025-04-28 07:35:18,960 - ERROR - Database pool not initialized
+2025-04-28 07:35:18,960 - INFO - All API services initialized
+2025-04-28 07:35:18,961 - INFO - Services provider initialized
+2025-04-28 07:35:18,988 - INFO - Database connection pool established: size=1-10
+2025-04-28 07:35:18,988 - INFO - Database connection successful
+2025-04-28 07:35:18,999 - INFO - WebsiteChecker cog initialized
+2025-04-28 07:35:18,999 - INFO - Proxy rotator initialized with http protocol
+2025-04-28 07:35:19,000 - INFO - Proxy rotator initialized for Truth commands
+2025-04-28 07:35:19,002 - INFO - Discord Events Registered | Username Ban Server ID: 1313758082974879774
+2025-04-28 07:35:19,003 - INFO - Memory monitor started (threshold: 300MB, interval: 3600s)
+2025-04-28 07:35:19,505 - INFO - Successfully synced 6 command(s)
+2025-04-28 07:35:22,520 - INFO - Logged in as TOPG#4967 (ID: 1340722186100408340)
+2025-04-28 07:35:22,520 - INFO - Bot connected to 4 server(s)
+2025-04-28 07:35:22,521 - INFO - Echo bot message forwarding: 1 bots from 11 channels to 1 channels
+2025-04-28 07:35:22,521 - INFO - Dani message forwarding: 1 users from 2 channels to 1 channels
+2025-04-28 07:35:36,767 - ERROR - Error adding Truth Social channel: module 'handlers.truth_tracker' has no attribute 'clear_cache_for_guild'
+2025-04-28 07:40:03,436 - ERROR - Error removing Truth Social channel: module 'handlers.truth_tracker' has no attribute 'clear_cache_for_guild'
+2025-04-28 07:42:00,584 - INFO - Starting bot...
+2025-04-28 07:42:01,510 - INFO - API client initialized
+2025-04-28 07:42:01,510 - INFO - WebsiteAnalyzer initialized with concurrency limit of 15
+2025-04-28 07:42:01,510 - INFO - Setting up 4 Truth Social accounts...
+2025-04-28 07:42:03,017 - INFO - Authenticated Truth Social account: visheshbtw
+2025-04-28 07:42:04,491 - INFO - Authenticated Truth Social account: alphabtw
+2025-04-28 07:42:05,858 - INFO - Authenticated Truth Social account: sakshambtw
+2025-04-28 07:42:06,823 - INFO - Authenticated Truth Social account: mayankbtw
+2025-04-28 07:42:06,823 - INFO - Successfully authenticated 4/4 Truth Social accounts
+2025-04-28 07:42:06,823 - ERROR - Database pool not initialized
+2025-04-28 07:42:06,823 - INFO - All API services initialized
+2025-04-28 07:42:06,823 - INFO - Services provider initialized
+2025-04-28 07:42:06,849 - INFO - Database connection pool established: size=1-10
+2025-04-28 07:42:06,849 - INFO - Database connection successful
+2025-04-28 07:42:06,858 - INFO - WebsiteChecker cog initialized
+2025-04-28 07:42:06,859 - INFO - Proxy rotator initialized with http protocol
+2025-04-28 07:42:06,859 - INFO - Proxy rotator initialized for Truth commands
+2025-04-28 07:42:06,861 - INFO - Discord Events Registered | Username Ban Server ID: 1313758082974879774
+2025-04-28 07:42:06,861 - INFO - Memory monitor started (threshold: 300MB, interval: 3600s)
+2025-04-28 07:42:07,600 - INFO - Successfully synced 6 command(s)
+2025-04-28 07:42:10,537 - INFO - Logged in as TOPG#4967 (ID: 1340722186100408340)
+2025-04-28 07:42:10,537 - INFO - Bot connected to 4 server(s)
+2025-04-28 07:42:10,538 - INFO - Echo bot message forwarding: 1 bots from 11 channels to 1 channels
+2025-04-28 07:42:10,538 - INFO - Dani message forwarding: 1 users from 2 channels to 1 channels
+2025-04-28 07:42:44,067 - INFO - alphabtw_ added channel #user-test-1 in server 'HabibiFNF' for Truth Social tracking
+2025-04-28 07:43:17,323 - INFO - alphabtw_ added @kash in server 'HabibiFNF' for tracking
+2025-04-28 07:43:48,976 - INFO - Proxy rotator initialized with http protocol
+2025-04-28 07:43:48,976 - INFO - Proxy rotator initialized for Truth Social tracking
+2025-04-28 07:43:48,977 - INFO - Truth Social tracking started for 1 enabled guild(s)
+2025-04-28 07:43:48,977 - INFO - Setting up 4 Truth Social accounts...
+2025-04-28 07:43:48,978 - INFO - Successfully authenticated 4/4 Truth Social accounts
+2025-04-28 07:43:48,978 - INFO - Auto-starting Truth Social tracking for 1 guilds
+2025-04-28 07:43:48,978 - ERROR - Error auto-starting tracking: 'ApiClient' object has no attribute '_bot'
+2025-04-28 07:43:49,436 - INFO - alphabtw_ enabled Truth Social tracking in server 'HabibiFNF'
+2025-04-28 07:43:53,238 - INFO - Sent 1 initial post from @kash to 1 guild(s)
+2025-04-28 07:43:53,238 - INFO - Truth polling taking 4.26s (interval: 3s)
+2025-04-28 07:43:56,095 - INFO - Sent 1 initial post from @kash to 1 guild(s)
+2025-04-28 07:43:56,095 - INFO - Truth polling taking 2.76s (interval: 3s)
+2025-04-28 07:43:58,896 - INFO - Truth polling taking 2.54s (interval: 3s)
+2025-04-28 07:44:26,160 - INFO - Truth polling taking 2.75s (interval: 3s)
+2025-04-28 07:44:32,012 - INFO - Truth polling taking 2.58s (interval: 3s)
+2025-04-28 07:44:35,320 - INFO - Truth polling taking 2.89s (interval: 3s)
+2025-04-28 07:44:47,015 - INFO - Truth polling taking 2.55s (interval: 3s)
+2025-04-28 07:44:50,006 - INFO - Truth polling taking 2.53s (interval: 3s)
+2025-04-28 07:45:02,123 - INFO - Truth polling taking 2.61s (interval: 3s)
+2025-04-28 07:45:47,395 - INFO - Truth polling taking 2.75s (interval: 3s)
+2025-04-28 07:45:50,249 - INFO - Truth polling taking 2.60s (interval: 3s)
+2025-04-28 07:46:02,352 - INFO - Truth polling taking 2.66s (interval: 3s)
+2025-04-28 07:46:14,181 - INFO - Truth polling taking 2.46s (interval: 3s)
+2025-04-28 07:46:44,395 - INFO - Truth polling taking 2.60s (interval: 3s)
+2025-04-28 07:46:53,802 - INFO - Truth polling taking 2.98s (interval: 3s)
+2025-04-28 07:47:17,711 - INFO - Truth polling taking 2.73s (interval: 3s)
+2025-04-28 07:47:53,051 - WARNING - Account sakshambtw rate limited, cooling down for 5s
+2025-04-28 07:47:53,083 - WARNING - Account mayankbtw rate limited, cooling down for 5s
+2025-04-28 07:47:53,084 - WARNING - API error: Status 429 from account mayankbtw
+2025-04-28 07:47:55,953 - WARNING - Account alphabtw rate limited, cooling down for 5s
+2025-04-28 07:47:55,983 - WARNING - Account visheshbtw rate limited, cooling down for 5s
+2025-04-28 07:47:55,983 - WARNING - API error: Status 429 from account visheshbtw
+2025-04-28 07:47:59,057 - WARNING - Account mayankbtw rate limited, cooling down for 5s
+2025-04-28 07:47:59,111 - WARNING - Account sakshambtw rate limited, cooling down for 5s
+2025-04-28 07:47:59,111 - WARNING - API error: Status 429 from account sakshambtw
+2025-04-28 07:48:01,958 - WARNING - Account alphabtw rate limited, cooling down for 5s
+2025-04-28 07:48:01,995 - WARNING - Account visheshbtw rate limited, cooling down for 5s
+2025-04-28 07:48:01,995 - WARNING - API error: Status 429 from account visheshbtw
+2025-04-28 07:48:04,983 - WARNING - Account sakshambtw rate limited, cooling down for 5s
+2025-04-28 07:48:05,013 - WARNING - Account mayankbtw rate limited, cooling down for 5s
+2025-04-28 07:48:05,014 - WARNING - API error: Status 429 from account mayankbtw
+2025-04-28 07:48:07,453 - WARNING - Account alphabtw rate limited, cooling down for 5s
+2025-04-28 07:48:07,485 - WARNING - Account visheshbtw rate limited, cooling down for 5s
+2025-04-28 07:48:07,486 - WARNING - API error: Status 429 from account visheshbtw
+2025-04-28 07:48:11,012 - WARNING - Account mayankbtw rate limited, cooling down for 5s
+2025-04-28 07:48:11,043 - WARNING - Account sakshambtw rate limited, cooling down for 5s
+2025-04-28 07:48:11,044 - WARNING - API error: Status 429 from account sakshambtw
+2025-04-28 07:48:13,917 - WARNING - Account alphabtw rate limited, cooling down for 5s
+2025-04-28 07:48:13,946 - WARNING - Account visheshbtw rate limited, cooling down for 5s
+2025-04-28 07:48:13,946 - WARNING - API error: Status 429 from account visheshbtw
+2025-04-28 07:48:17,018 - WARNING - Account mayankbtw rate limited, cooling down for 5s
+2025-04-28 07:48:17,052 - WARNING - Account sakshambtw rate limited, cooling down for 5s
+2025-04-28 07:48:17,052 - WARNING - API error: Status 429 from account sakshambtw
+2025-04-28 07:48:20,074 - WARNING - Account alphabtw rate limited, cooling down for 5s
+2025-04-28 07:48:20,107 - WARNING - Account visheshbtw rate limited, cooling down for 5s
+2025-04-28 07:48:20,108 - WARNING - API error: Status 429 from account visheshbtw
+2025-04-28 07:48:22,515 - WARNING - Account mayankbtw rate limited, cooling down for 5s
+2025-04-28 07:48:22,541 - WARNING - Account sakshambtw rate limited, cooling down for 5s
+2025-04-28 07:48:22,542 - WARNING - API error: Status 429 from account sakshambtw
+2025-04-28 07:48:25,493 - WARNING - Account alphabtw rate limited, cooling down for 5s
+2025-04-28 07:48:25,522 - WARNING - Account visheshbtw rate limited, cooling down for 5s
+2025-04-28 07:48:25,522 - WARNING - API error: Status 429 from account visheshbtw
+2025-04-28 07:48:29,018 - WARNING - Account mayankbtw rate limited, cooling down for 5s
+2025-04-28 07:48:29,070 - WARNING - Account sakshambtw rate limited, cooling down for 5s
+2025-04-28 07:48:29,070 - WARNING - API error: Status 429 from account sakshambtw
+2025-04-28 07:48:31,971 - WARNING - Account alphabtw rate limited, cooling down for 5s
+2025-04-28 07:48:32,001 - WARNING - Account visheshbtw rate limited, cooling down for 5s
+2025-04-28 07:48:32,001 - WARNING - API error: Status 429 from account visheshbtw
+2025-04-28 07:48:34,590 - WARNING - Account mayankbtw rate limited, cooling down for 5s
+2025-04-28 07:48:34,616 - WARNING - Account sakshambtw rate limited, cooling down for 5s
+2025-04-28 07:48:34,616 - WARNING - API error: Status 429 from account sakshambtw
+2025-04-28 07:48:38,043 - WARNING - Account alphabtw rate limited, cooling down for 5s
+2025-04-28 07:48:38,077 - WARNING - Account visheshbtw rate limited, cooling down for 5s
+2025-04-28 07:48:38,077 - WARNING - API error: Status 429 from account visheshbtw
+2025-04-28 07:48:40,992 - WARNING - Account mayankbtw rate limited, cooling down for 5s
+2025-04-28 07:48:41,038 - WARNING - Account sakshambtw rate limited, cooling down for 5s
+2025-04-28 07:48:41,038 - WARNING - API error: Status 429 from account sakshambtw
+2025-04-28 07:48:43,994 - WARNING - Account alphabtw rate limited, cooling down for 5s
+2025-04-28 07:48:44,027 - WARNING - Account visheshbtw rate limited, cooling down for 5s
+2025-04-28 07:48:44,027 - WARNING - API error: Status 429 from account visheshbtw
+2025-04-28 07:48:48,649 - WARNING - Account mayankbtw rate limited, cooling down for 5s
+2025-04-28 07:48:48,710 - WARNING - Account sakshambtw rate limited, cooling down for 5s
+2025-04-28 07:48:48,711 - WARNING - API error: Status 429 from account sakshambtw
+2025-04-28 07:48:48,711 - INFO - Truth polling taking 3.50s (interval: 3s)
+2025-04-28 07:48:50,171 - WARNING - Account alphabtw rate limited, cooling down for 5s
+2025-04-28 07:48:50,205 - WARNING - Account visheshbtw rate limited, cooling down for 5s
+2025-04-28 07:48:50,205 - WARNING - API error: Status 429 from account visheshbtw
+2025-04-28 07:48:53,659 - WARNING - Account sakshambtw rate limited, cooling down for 5s
+2025-04-28 07:48:53,690 - WARNING - Account mayankbtw rate limited, cooling down for 5s
+2025-04-28 07:48:53,690 - WARNING - API error: Status 429 from account mayankbtw
+2025-04-28 07:48:56,176 - WARNING - Account alphabtw rate limited, cooling down for 5s
+2025-04-28 07:48:56,208 - WARNING - Account visheshbtw rate limited, cooling down for 5s
+2025-04-28 07:48:56,208 - WARNING - API error: Status 429 from account visheshbtw
+2025-04-28 07:48:59,680 - WARNING - Account mayankbtw rate limited, cooling down for 5s
+2025-04-28 07:48:59,712 - WARNING - Account sakshambtw rate limited, cooling down for 5s
+2025-04-28 07:48:59,712 - WARNING - API error: Status 429 from account sakshambtw
+2025-04-28 07:49:02,643 - WARNING - Account alphabtw rate limited, cooling down for 5s
+2025-04-28 07:49:02,674 - WARNING - Account visheshbtw rate limited, cooling down for 5s
+2025-04-28 07:49:02,674 - WARNING - API error: Status 429 from account visheshbtw
+2025-04-28 07:49:05,748 - WARNING - Account mayankbtw rate limited, cooling down for 5s
+2025-04-28 07:49:05,779 - WARNING - Account sakshambtw rate limited, cooling down for 5s
+2025-04-28 07:49:05,779 - WARNING - API error: Status 429 from account sakshambtw
+2025-04-28 07:49:08,664 - WARNING - Account alphabtw rate limited, cooling down for 5s
+2025-04-28 07:49:08,693 - WARNING - Account visheshbtw rate limited, cooling down for 5s
+2025-04-28 07:49:08,693 - WARNING - API error: Status 429 from account visheshbtw
+2025-04-28 07:49:11,756 - WARNING - Account mayankbtw rate limited, cooling down for 5s
+2025-04-28 07:49:11,787 - WARNING - Account sakshambtw rate limited, cooling down for 5s
+2025-04-28 07:49:11,788 - WARNING - API error: Status 429 from account sakshambtw
+2025-04-28 07:49:14,255 - WARNING - Account alphabtw rate limited, cooling down for 5s
+2025-04-28 07:49:14,287 - WARNING - Account visheshbtw rate limited, cooling down for 5s
+2025-04-28 07:49:14,287 - WARNING - API error: Status 429 from account visheshbtw
+2025-04-28 07:49:17,707 - WARNING - Account mayankbtw rate limited, cooling down for 5s
+2025-04-28 07:49:17,747 - WARNING - Account sakshambtw rate limited, cooling down for 5s
+2025-04-28 07:49:17,748 - WARNING - API error: Status 429 from account sakshambtw
+2025-04-28 07:49:20,690 - WARNING - Account alphabtw rate limited, cooling down for 5s
+2025-04-28 07:49:20,717 - WARNING - Account visheshbtw rate limited, cooling down for 5s
+2025-04-28 07:49:20,717 - WARNING - API error: Status 429 from account visheshbtw
+2025-04-28 07:49:23,897 - WARNING - Account mayankbtw rate limited, cooling down for 5s
+2025-04-28 07:49:23,931 - WARNING - Account sakshambtw rate limited, cooling down for 5s
+2025-04-28 07:49:23,932 - WARNING - API error: Status 429 from account sakshambtw
+2025-04-28 07:49:26,802 - WARNING - Account alphabtw rate limited, cooling down for 5s
+2025-04-28 07:49:26,833 - WARNING - Account visheshbtw rate limited, cooling down for 5s
+2025-04-28 07:49:26,833 - WARNING - API error: Status 429 from account visheshbtw
+2025-04-28 07:49:29,787 - WARNING - Account sakshambtw rate limited, cooling down for 5s
+2025-04-28 07:49:29,814 - WARNING - Account mayankbtw rate limited, cooling down for 5s
+2025-04-28 07:49:29,814 - WARNING - API error: Status 429 from account mayankbtw
+2025-04-28 07:49:32,795 - WARNING - Account alphabtw rate limited, cooling down for 5s
+2025-04-28 07:49:32,825 - WARNING - Account visheshbtw rate limited, cooling down for 5s
+2025-04-28 07:49:32,825 - WARNING - API error: Status 429 from account visheshbtw
+2025-04-28 07:49:35,891 - WARNING - Account mayankbtw rate limited, cooling down for 5s
+2025-04-28 07:49:35,923 - WARNING - Account sakshambtw rate limited, cooling down for 5s
+2025-04-28 07:49:35,923 - WARNING - API error: Status 429 from account sakshambtw
+2025-04-28 07:49:38,826 - WARNING - Account alphabtw rate limited, cooling down for 5s
+2025-04-28 07:49:38,856 - WARNING - Account visheshbtw rate limited, cooling down for 5s
+2025-04-28 07:49:38,856 - WARNING - API error: Status 429 from account visheshbtw
+2025-04-28 07:49:41,787 - WARNING - Account mayankbtw rate limited, cooling down for 5s
+2025-04-28 07:49:41,816 - WARNING - Account sakshambtw rate limited, cooling down for 5s
+2025-04-28 07:49:41,816 - WARNING - API error: Status 429 from account sakshambtw
+2025-04-28 07:49:44,850 - WARNING - Account alphabtw rate limited, cooling down for 5s
+2025-04-28 07:49:44,901 - WARNING - Account visheshbtw rate limited, cooling down for 5s
+2025-04-28 07:49:44,902 - WARNING - API error: Status 429 from account visheshbtw
+2025-04-28 07:49:47,328 - WARNING - Account mayankbtw rate limited, cooling down for 5s
+2025-04-28 07:49:47,356 - WARNING - Account sakshambtw rate limited, cooling down for 5s
+2025-04-28 07:49:47,356 - WARNING - API error: Status 429 from account sakshambtw
+2025-04-28 07:49:50,882 - WARNING - Account alphabtw rate limited, cooling down for 5s
+2025-04-28 07:49:50,918 - WARNING - Account visheshbtw rate limited, cooling down for 5s
+2025-04-28 07:49:50,919 - WARNING - API error: Status 429 from account visheshbtw
+2025-04-28 07:49:53,860 - WARNING - Account mayankbtw rate limited, cooling down for 5s
+2025-04-28 07:49:53,888 - WARNING - Account sakshambtw rate limited, cooling down for 5s
+2025-04-28 07:49:53,889 - WARNING - API error: Status 429 from account sakshambtw
+2025-04-28 07:49:56,337 - WARNING - Account alphabtw rate limited, cooling down for 5s
+2025-04-28 07:49:56,366 - WARNING - Account visheshbtw rate limited, cooling down for 5s
+2025-04-28 07:49:56,366 - WARNING - API error: Status 429 from account visheshbtw
+2025-04-28 07:49:59,324 - WARNING - Account mayankbtw rate limited, cooling down for 5s
+2025-04-28 07:49:59,354 - WARNING - Account sakshambtw rate limited, cooling down for 5s
+2025-04-28 07:49:59,354 - WARNING - API error: Status 429 from account sakshambtw
+2025-04-28 07:50:05,819 - WARNING - Account mayankbtw rate limited, cooling down for 5s
+2025-04-28 07:50:05,851 - WARNING - Account visheshbtw rate limited, cooling down for 5s
+2025-04-28 07:50:05,851 - WARNING - API error: Status 429 from account visheshbtw
+2025-04-28 07:50:11,813 - WARNING - Account visheshbtw rate limited, cooling down for 5s
+2025-04-28 07:50:11,841 - WARNING - Account alphabtw rate limited, cooling down for 5s
+2025-04-28 07:50:11,842 - WARNING - API error: Status 429 from account alphabtw
+2025-04-28 07:50:14,370 - WARNING - Account mayankbtw rate limited, cooling down for 5s
+2025-04-28 07:50:14,398 - WARNING - Account sakshambtw rate limited, cooling down for 5s
+2025-04-28 07:50:14,398 - WARNING - API error: Status 429 from account sakshambtw
+2025-04-28 07:50:20,979 - WARNING - Account mayankbtw rate limited, cooling down for 5s
+2025-04-28 07:50:21,009 - WARNING - Account visheshbtw rate limited, cooling down for 5s
+2025-04-28 07:50:21,009 - WARNING - API error: Status 429 from account visheshbtw
+2025-04-28 07:50:24,847 - INFO - Truth polling taking 2.81s (interval: 3s)
+2025-04-28 07:50:26,425 - WARNING - Account visheshbtw rate limited, cooling down for 5s
+2025-04-28 07:50:26,454 - WARNING - Account alphabtw rate limited, cooling down for 5s
+2025-04-28 07:50:26,455 - WARNING - API error: Status 429 from account alphabtw
+2025-04-28 07:50:29,432 - WARNING - Account mayankbtw rate limited, cooling down for 5s
+2025-04-28 07:50:29,461 - WARNING - Account sakshambtw rate limited, cooling down for 5s
+2025-04-28 07:50:29,462 - WARNING - API error: Status 429 from account sakshambtw
+2025-04-28 07:50:33,667 - INFO - Truth polling taking 2.60s (interval: 3s)
+2025-04-28 07:50:35,875 - WARNING - Account mayankbtw rate limited, cooling down for 5s
+2025-04-28 07:50:35,907 - WARNING - Account visheshbtw rate limited, cooling down for 5s
+2025-04-28 07:50:35,907 - WARNING - API error: Status 429 from account visheshbtw
+2025-04-28 07:50:41,900 - WARNING - Account visheshbtw rate limited, cooling down for 5s
+2025-04-28 07:50:41,927 - WARNING - Account alphabtw rate limited, cooling down for 5s
+2025-04-28 07:50:41,928 - WARNING - API error: Status 429 from account alphabtw
+2025-04-28 07:50:45,618 - INFO - alphabtw_ disabled Truth Social tracking in server 'HabibiFNF'
+2025-04-28 08:40:41,842 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-04-28 08:40:42,476 - INFO - Reconnected to Discord after disconnection
+2025-04-28 08:40:42,477 - INFO - Post-reconnection health check: Database=True, API Client=True
+2025-04-28 08:40:46,849 - INFO - Bot automatically reconnected
+2025-04-28 08:42:06,875 - INFO - Metrics Report | Uptime: 1h 0m | Memory: 40.2MB | Processed: 215 | Avg Processing: 0.0001s | Errors: 0 (0 types, Top: none) | Last Cleanup: 2025-04-28 07:42:00 (1h ago)
+2025-04-28 09:07:33,268 - WARNING - API dexscreener returned status 400 for URL: https://api.dexscreener.com/latest/dex/search?q=%5C
+2025-04-28 09:42:06,881 - INFO - Metrics Report | Uptime: 2h 0m | Memory: 41.4MB | Processed: 382 | Avg Processing: 0.0799s | Errors: 1 (1 types, Top: api_dexscreener=1) | Last Cleanup: 2025-04-28 07:42:00 (2h ago)
+2025-04-28 10:42:06,885 - INFO - Metrics Report | Uptime: 3h 0m | Memory: 42.7MB | Processed: 484 | Avg Processing: 0.0001s | Errors: 1 (1 types, Top: api_dexscreener=1) | Last Cleanup: 2025-04-28 07:42:00 (3h ago)
+2025-04-28 11:02:06,864 - INFO - Starting periodic metrics cleanup task...
+2025-04-28 11:02:06,999 - INFO - Garbage collection completed successfully.
+2025-04-28 11:02:07,000 - INFO - Metrics cleanup completed in 0.14 seconds. Next cleanup at 2025-04-28 21:02:06
+2025-04-28 11:32:40,020 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-04-28 11:32:40,674 - INFO - Reconnected to Discord after disconnection
+2025-04-28 11:32:40,677 - INFO - Post-reconnection health check: Database=True, API Client=True
+2025-04-28 11:32:45,031 - INFO - Bot automatically reconnected
+2025-04-28 11:42:06,902 - INFO - Metrics Report | Uptime: 4h 0m | Memory: 72.9MB | Processed: 623 | Avg Processing: 0.0215s | Errors: 1 (1 types, Top: api_dexscreener=1) | Last Cleanup: 2025-04-28 11:02:06 (40m ago)
+2025-04-28 12:11:35,959 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-04-28 12:11:36,604 - INFO - Reconnected to Discord after disconnection
+2025-04-28 12:11:36,608 - INFO - Post-reconnection health check: Database=True, API Client=True
+2025-04-28 12:11:40,974 - INFO - Bot automatically reconnected
+2025-04-28 12:42:06,911 - INFO - Metrics Report | Uptime: 5h 0m | Memory: 74.0MB | Processed: 1261 | Avg Processing: 0.0002s | Errors: 1 (1 types, Top: api_dexscreener=1) | Last Cleanup: 2025-04-28 11:02:06 (1h ago)
+2025-04-28 13:33:18,248 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-04-28 13:33:18,887 - INFO - Reconnected to Discord after disconnection
+2025-04-28 13:33:18,890 - INFO - Post-reconnection health check: Database=True, API Client=True
+2025-04-28 13:33:23,258 - INFO - Bot automatically reconnected
+2025-04-28 13:42:06,920 - INFO - Metrics Report | Uptime: 6h 0m | Memory: 73.7MB | Processed: 1392 | Avg Processing: 0.2460s | Errors: 1 (1 types, Top: api_dexscreener=1) | Last Cleanup: 2025-04-28 11:02:06 (2h ago)
+2025-04-28 13:52:06,888 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-04-28 13:52:07,563 - INFO - Reconnected to Discord after disconnection
+2025-04-28 13:52:07,566 - INFO - Post-reconnection health check: Database=True, API Client=True
+2025-04-28 13:52:11,905 - INFO - Bot automatically reconnected
+2025-04-28 14:22:07,005 - INFO - Starting periodic metrics cleanup task...
+2025-04-28 14:22:07,007 - INFO - Cleaned processing times
+2025-04-28 14:22:07,078 - INFO - Garbage collection completed successfully.
+2025-04-28 14:22:07,079 - INFO - Metrics cleanup completed in 0.07 seconds. Next cleanup at 2025-04-29 00:22:07
+2025-04-28 14:42:06,934 - INFO - Metrics Report | Uptime: 7h 0m | Memory: 74.0MB | Processed: 1436 | Avg Processing: 0.0669s | Errors: 1 (1 types, Top: api_dexscreener=1) | Last Cleanup: 2025-04-28 14:22:07 (19m ago)
+2025-04-28 15:42:06,942 - INFO - Metrics Report | Uptime: 8h 0m | Memory: 73.8MB | Processed: 1494 | Avg Processing: 0.0390s | Errors: 1 (1 types, Top: api_dexscreener=1) | Last Cleanup: 2025-04-28 14:22:07 (1h ago)
+2025-04-28 16:04:05,042 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-04-28 16:04:05,710 - INFO - Reconnected to Discord after disconnection
+2025-04-28 16:04:05,713 - INFO - Post-reconnection health check: Database=True, API Client=True
+2025-04-28 16:04:10,057 - INFO - Bot automatically reconnected
+2025-04-28 16:42:06,949 - INFO - Metrics Report | Uptime: 9h 0m | Memory: 74.1MB | Processed: 1579 | Avg Processing: 0.0568s | Errors: 1 (1 types, Top: api_dexscreener=1) | Last Cleanup: 2025-04-28 14:22:07 (2h ago)
+2025-04-28 17:42:06,964 - INFO - Metrics Report | Uptime: 10h 0m | Memory: 74.0MB | Processed: 1665 | Avg Processing: 0.0267s | Errors: 1 (1 types, Top: api_dexscreener=1) | Last Cleanup: 2025-04-28 14:22:07 (3h ago)
+2025-04-28 17:42:07,092 - INFO - Starting periodic metrics cleanup task...
+2025-04-28 17:42:07,167 - INFO - Garbage collection completed successfully.
+2025-04-28 17:42:07,168 - INFO - Metrics cleanup completed in 0.07 seconds. Next cleanup at 2025-04-29 03:42:07
+2025-04-28 18:03:19,316 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-04-28 18:03:20,009 - INFO - Reconnected to Discord after disconnection
+2025-04-28 18:03:20,012 - INFO - Post-reconnection health check: Database=True, API Client=True
+2025-04-28 18:03:24,329 - INFO - Bot automatically reconnected
+2025-04-28 18:42:06,980 - INFO - Metrics Report | Uptime: 11h 0m | Memory: 74.5MB | Processed: 1811 | Avg Processing: 0.0002s | Errors: 1 (1 types, Top: api_dexscreener=1) | Last Cleanup: 2025-04-28 17:42:07 (59m ago)
+2025-04-28 23:11:11,380 - INFO - Starting bot...
+2025-04-28 23:11:12,423 - INFO - API client initialized
+2025-04-28 23:11:12,423 - INFO - WebsiteAnalyzer initialized with concurrency limit of 15
+2025-04-28 23:11:12,424 - INFO - Setting up 4 Truth Social accounts...
+2025-04-28 23:11:13,763 - INFO - Authenticated Truth Social account: visheshbtw
+2025-04-28 23:11:15,127 - INFO - Authenticated Truth Social account: alphabtw
+2025-04-28 23:11:16,513 - INFO - Authenticated Truth Social account: sakshambtw
+2025-04-28 23:11:17,848 - INFO - Authenticated Truth Social account: mayankbtw
+2025-04-28 23:11:17,848 - INFO - Successfully authenticated 4/4 Truth Social accounts
+2025-04-28 23:11:17,848 - ERROR - Database pool not initialized
+2025-04-28 23:11:17,848 - INFO - All API services initialized
+2025-04-28 23:11:17,848 - INFO - Services provider initialized
+2025-04-28 23:11:17,953 - INFO - Database connection pool established: size=1-10
+2025-04-28 23:11:17,954 - INFO - Database connection successful
+2025-04-28 23:11:17,967 - INFO - WebsiteChecker cog initialized
+2025-04-28 23:11:17,967 - INFO - Proxy rotator initialized with http protocol
+2025-04-28 23:11:17,967 - INFO - Proxy rotator initialized for Truth commands
+2025-04-28 23:11:17,971 - INFO - Discord Events Registered | Username Ban Server ID: 1313758082974879774
+2025-04-28 23:11:17,973 - INFO - Memory monitor started (threshold: 300MB, interval: 3600s)
+2025-04-28 23:11:19,495 - INFO - Successfully synced 6 command(s)
+2025-04-28 23:11:22,518 - INFO - Logged in as TOPG#4967 (ID: 1340722186100408340)
+2025-04-28 23:11:22,519 - INFO - Bot connected to 4 server(s)
+2025-04-28 23:11:22,519 - INFO - Echo bot message forwarding: 1 bots from 11 channels to 1 channels
+2025-04-28 23:11:22,519 - INFO - Dani message forwarding: 1 users from 2 channels to 1 channels
+2025-04-28 23:34:03,256 - INFO - Starting bot...
+2025-04-28 23:34:04,269 - INFO - API client initialized
+2025-04-28 23:34:04,269 - INFO - WebsiteAnalyzer initialized with concurrency limit of 15
+2025-04-28 23:34:04,269 - INFO - Setting up 4 Truth Social accounts...
+2025-04-28 23:34:05,639 - INFO - Authenticated Truth Social account: visheshbtw
+2025-04-28 23:34:06,953 - INFO - Authenticated Truth Social account: alphabtw
+2025-04-28 23:34:08,344 - INFO - Authenticated Truth Social account: sakshambtw
+2025-04-28 23:34:09,825 - INFO - Authenticated Truth Social account: mayankbtw
+2025-04-28 23:34:09,825 - INFO - Successfully authenticated 4/4 Truth Social accounts
+2025-04-28 23:34:09,825 - ERROR - Database pool not initialized
+2025-04-28 23:34:09,825 - INFO - All API services initialized
+2025-04-28 23:34:09,825 - INFO - Services provider initialized
+2025-04-28 23:34:09,885 - INFO - Database connection pool established: size=1-10
+2025-04-28 23:34:09,885 - INFO - Database connection successful
+2025-04-28 23:34:09,907 - INFO - WebsiteChecker cog initialized
+2025-04-28 23:34:09,908 - INFO - Proxy rotator initialized with http protocol
+2025-04-28 23:34:09,908 - INFO - Proxy rotator initialized for Truth commands
+2025-04-28 23:34:09,914 - INFO - Discord Events Registered | Username Ban Server ID: 1313758082974879774
+2025-04-28 23:34:09,915 - INFO - Memory monitor started (threshold: 300MB, interval: 3600s)
+2025-04-28 23:34:10,432 - INFO - Successfully synced 6 command(s)
+2025-04-28 23:34:13,887 - INFO - Logged in as TOPG#4967 (ID: 1340722186100408340)
+2025-04-28 23:34:13,887 - INFO - Bot connected to 4 server(s)
+2025-04-28 23:34:13,888 - INFO - Echo bot message forwarding: 1 bots from 11 channels to 1 channels
+2025-04-28 23:34:13,888 - INFO - Dani message forwarding: 1 users from 2 channels to 1 channels

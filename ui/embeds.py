@@ -52,7 +52,7 @@ def create_token_embed(entry: dict, address: str, order_status: str) -> discord.
         embed.add_field(name="💧 Liquidity", value=f"**`${format_value(liquidity)}`**", inline=True)
         
         # Section 2: Performance Metrics (ATH, Volume, Change) - Reverted to old layout
-        embed.add_field(name="🏆 ATH", value="**`Fetching...`**", inline=True)
+        embed.add_field(name="🏆 ATH", value="**`N/A`**", inline=True)
         
         # Price change indicators
         emoji = "📉" if change < 0 else "📈"
@@ -73,13 +73,13 @@ def create_token_embed(entry: dict, address: str, order_status: str) -> discord.
         # Websites
         websites = info.get("websites", [])
         if websites:
-            sites_links = " ".join(f"[{site.get('label') or 'Website'}]({site['url']})" for site in websites)
+            sites_links = " | ".join(f"[{site.get('label') or 'Website'}]({site['url']})" for site in websites)
             links_parts.append(f"**Websites:** {sites_links}")
         
         # Socials
         socials = info.get("socials", [])
         if socials:
-            social_links = " ".join(f"[{soc.get('type', 'Social').title()}]({soc['url']})" for soc in socials)
+            social_links = " | ".join(f"[{soc.get('type', 'Social').title()}]({soc['url']})" for soc in socials)
             links_parts.append(f"**Socials:** {social_links}")
         
         # Chart
@@ -95,7 +95,7 @@ def create_token_embed(entry: dict, address: str, order_status: str) -> discord.
         from urllib.parse import quote
         embed.add_field(
             name="👀 Twitter Search",
-            value=f"[CA]({TWITTER_SEARCH_URL.format(query=address)})       [TICKER]({TWITTER_SEARCH_URL.format(query=quote(f'${symbol}'))})",
+            value=f"[CA]({TWITTER_SEARCH_URL.format(query=address)})    |    [TICKER]({TWITTER_SEARCH_URL.format(query=quote(f'${symbol}'))})",
             inline=False
         )
         
@@ -960,13 +960,13 @@ def create_truth_embed(post: Dict[str, Any]) -> discord.Embed:
     content = clean_html(post.get('content', ''))
     created_at = post.get('created_at', '')
     media_attachments = post.get('media_attachments', [])
-    post_url = f"https://truthsocial.com/@{post.get('account', {}).get('username', 'unknown')}/posts/{post_id}"
     
     # Extract account info
     account = post.get('account', {})
     display_name = account.get('display_name', 'Unknown')
     username = account.get('username', 'unknown')
     avatar_url = account.get('avatar', '')
+    post_url = f"https://truthsocial.com/@{username}/posts/{post_id}"
     
     # Apply proxy to avatar URL if needed
     if avatar_url:
@@ -1002,7 +1002,7 @@ def create_truth_embed(post: Dict[str, Any]) -> discord.Embed:
         # Add action field without verification emoji
         embed.add_field(
             name="",
-            value=f"🔄 [{display_name} retweeted {reblog_display_name}]({post_url})",
+            value=f"🔄 [{display_name} retruths {reblog_display_name}]({post_url})",
             inline=False
         )
         

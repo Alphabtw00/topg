@@ -11,9 +11,8 @@ import handlers.truth_tracker as tracker
 from service.proxy_handler import ProxyRotator
 from config import TRUTH_DEFAULT_INTERVAL, VERIFIED_EMOJI
 from utils.logger import get_logger
-from utils.formatters import format_value, format_date
+from utils.formatters import format_value, format_date, proxy_url
 from bot.error_handler import create_error_handler
-from utils.formatters import proxy_url
 
 logger = get_logger()
 
@@ -69,7 +68,7 @@ class TruthCommands(commands.Cog):
         
         try:
             # Check if already tracking this account in this server
-            existing = await truth_db.get_truth_account(interaction.guild.id, handle)
+            existing = await truth_db.get_guild_tracked_account_by_handle(interaction.guild.id, handle)
             if existing and existing.get('last_post_id') != "DISABLED":
                 await interaction.followup.send(f"Already tracking @{handle} in this server.", ephemeral=True)
                 return
@@ -115,15 +114,16 @@ class TruthCommands(commands.Cog):
                 )
                 return
             
-            # Add to database with guild_id
-            success = await truth_db.add_truth_account(interaction.guild.id, handle, account_id, display_name)
+            # Add to global accounts table
+            await truth_db.add_truth_account(handle, account_id, display_name)
+            
+            # Link to guild with initial last_post_id = "0" (only get latest on first check)
+            success = await truth_db.link_account_to_guild(interaction.guild.id, account_id, "0")
             
             if success:
-                # Set last_post_id to "0" to only retrieve the latest post on first check
-                await truth_db.update_last_post(interaction.guild.id, handle, "0")
-                
                 # Clear cache to ensure the new account is picked up immediately
                 await tracker.clear_cache_for_guild(interaction.guild.id)
+                await tracker.refresh_all_caches()
                 
                 # Create a rich embed profile-like display
                 embed = discord.Embed(
@@ -135,7 +135,6 @@ class TruthCommands(commands.Cog):
                 # Add verified emoji if account is verified
                 name_with_verification = f"{display_name} {VERIFIED_EMOJI if verified and VERIFIED_EMOJI else '💹' if verified else ''}"
                 embed.description = f"**{name_with_verification}**\n\n"
-
                 
                 # Add stats in a single line with formatting
                 embed.description += f"**{format_value(followers_count)}** Followers  •  **{format_value(following_count)}** Following  •  **{format_value(statuses_count)}** Posts"
@@ -193,18 +192,25 @@ class TruthCommands(commands.Cog):
         
         try:
             # Get account for this specific guild
-            account = await truth_db.get_truth_account(interaction.guild.id, handle)
+            account = await truth_db.get_guild_tracked_account_by_handle(interaction.guild.id, handle)
             
             if not account:
                 await interaction.followup.send(f"❌ Not tracking @{handle} in this server.", ephemeral=True)
                 return
             
-            # Remove the account
-            success = await truth_db.remove_truth_account(interaction.guild.id, handle)
+            # Get the account_id
+            account_id = account.get('account_id')
+            if not account_id:
+                await interaction.followup.send(f"❌ Error retrieving account information.", ephemeral=True)
+                return
+            
+            # Remove the account from this guild
+            success = await truth_db.remove_truth_account_from_guild(interaction.guild.id, account_id)
             
             if success:
                 # Clear cache to ensure the removed account is not tracked anymore
                 await tracker.clear_cache_for_guild(interaction.guild.id)
+                await tracker.refresh_all_caches()
                 
                 embed = discord.Embed(
                     title=f"Stopped tracking @{handle}",
@@ -250,6 +256,7 @@ class TruthCommands(commands.Cog):
             if success:
                 # Clear cache to ensure the new channel is used immediately
                 await tracker.clear_cache_for_guild(interaction.guild.id)
+                await tracker.refresh_all_caches()
                 
                 embed = discord.Embed(
                     title="Channel Added",
@@ -284,6 +291,7 @@ class TruthCommands(commands.Cog):
             if success:
                 # Clear cache to ensure the removed channel is not used anymore
                 await tracker.clear_cache_for_guild(interaction.guild.id)
+                await tracker.refresh_all_caches()
                 
                 embed = discord.Embed(
                     title="Channel Removed",
@@ -322,7 +330,7 @@ class TruthCommands(commands.Cog):
             
             if not channel_ids:
                 await interaction.followup.send(
-                    "❌ No channels configured for this server. Add channels first with `/truth addchannel`.", 
+                    "❌ No channels configured for this server. Add channels first with `/truth add-channel`.", 
                     ephemeral=True
                 )
                 return
@@ -334,6 +342,7 @@ class TruthCommands(commands.Cog):
             if success:
                 # Clear cache to ensure the enabled status is picked up immediately
                 await tracker.clear_cache_for_guild(interaction.guild.id)
+                await tracker.refresh_all_caches()
                 
                 # Ensure the tracking task is running
                 await tracker.start_tracking(self.bot)
@@ -376,6 +385,7 @@ class TruthCommands(commands.Cog):
             if success:
                 # Clear cache to ensure the disabled status is picked up immediately
                 await tracker.clear_cache_for_guild(interaction.guild.id)
+                await tracker.refresh_all_caches()
                 
                 embed = discord.Embed(
                     title="Tracking Disabled",
@@ -453,7 +463,7 @@ class TruthCommands(commands.Cog):
                 # Format with links
                 accounts_text = ""
                 for a in active_accounts[:5]:
-                    # Get account info to show pfp if available
+                    # Get account info to show handle
                     accounts_text += f"👤 [`@{a['handle']}`](https://truthsocial.com/@{a['handle']})\n"
                 
                 if len(active_accounts) > 5:
