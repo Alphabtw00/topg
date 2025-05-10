@@ -158,6 +158,7 @@ def extract_code_review(analysis: str) -> Dict[str, Any]:
         "larpIndicators": [],
         "redFlags": [],
         "overallAssessment": "",
+        "projectSummary": "",
         "investmentRanking": {
             "rating": "",
             "confidence": 0,
@@ -176,6 +177,7 @@ def extract_code_review(analysis: str) -> Dict[str, Any]:
     
     # Define regex patterns for sections
     sections = {
+        "projectSummary": r'# Project Summary\n([\s\S]*?)(?=\n#|$)',
         "logicFlow": r'## Logic Flow\n([\s\S]*?)(?=\n##|$)',
         "processArchitecture": r'## Process Architecture\n([\s\S]*?)(?=\n##|$)',
         "codeOrganization": r'## Code Organization Review\n([\s\S]*?)(?=\n##|$)',
@@ -195,7 +197,10 @@ def extract_code_review(analysis: str) -> Dict[str, Any]:
             if match:                
                 if key == "overallAssessment":
                     code_review[key] = match.group(1).strip()
-                    
+
+                elif key == "projectSummary":
+                    code_review[key] = match.group(1).strip()
+
                 elif key == "investmentRanking":
                     investment_section = match.group(1)
                     rating_match = re.search(r'Rating:\s*(.*?)(?:\n|$)', investment_section)

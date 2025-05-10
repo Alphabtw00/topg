@@ -274,7 +274,7 @@ class TruthSocialService:
                     continue
                 return None
             
-            logger.info(f"polling truth social with account username: {account}, token: {token}")
+            # logger.info(f"polling truth social with account username: {account}, token: {token}")
             # Prepare headers
             headers = {
                 "Authorization": f"Bearer {token}",
@@ -331,7 +331,7 @@ class TruthSocialService:
                 return response.json()
                         
             except Exception as e:
-                logger.error(f"Error in API request: {e}")
+                logger.error(f"Truthsocial request error: {e}")
                 if attempt < retry_count:
                     await asyncio.sleep(1)
                     continue
@@ -417,7 +417,7 @@ class TruthSocialService:
                     username = account.get('username')
                     break
                     
-            logger.info(f"polling truth social with account username: {username}, token: {self.auth_tokens.get(username, {}).get('token', '')[:40]}")
+            logger.debug(f"polling truth social with account username: {username}, token: {self.auth_tokens.get(username, {}).get('token', '')[:40]}")
             
             # Return the posts (sorted by recency in the pipeline)
             return response

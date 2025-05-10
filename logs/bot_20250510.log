@@ -1,0 +1,265 @@
+2025-05-10 00:51:06,474 - INFO - Starting bot...
+2025-05-10 00:51:09,059 - INFO - API client initialized
+2025-05-10 00:51:09,060 - INFO - WebsiteAnalyzer initialized with concurrency limit of 15
+2025-05-10 00:51:09,070 - INFO - Loaded 4 Truth Social tokens from file
+2025-05-10 00:51:09,070 - INFO - Successfully authenticated 4/4 Truth Social accounts
+2025-05-10 00:51:09,071 - INFO - Saved 4 Truth Social tokens to file
+2025-05-10 00:51:09,071 - INFO - All API services initialized
+2025-05-10 00:51:09,071 - INFO - Services provider initialized
+2025-05-10 00:51:09,134 - INFO - Database connection pool established: size=1-10
+2025-05-10 00:51:09,134 - INFO - Database connection successful
+2025-05-10 00:51:09,163 - INFO - WebsiteChecker cog initialized
+2025-05-10 00:51:09,163 - INFO - Proxy rotator initialized with http protocol
+2025-05-10 00:51:09,163 - INFO - Proxy rotator initialized for Truth commands
+2025-05-10 00:51:09,168 - INFO - Discord Events Registered | Username Ban Server ID: 1313758082974879774
+2025-05-10 00:51:09,170 - INFO - Memory monitor started (threshold: 300MB, interval: 3600s)
+2025-05-10 00:51:09,170 - INFO - Initializing Truth Social tracking...
+2025-05-10 00:51:09,171 - INFO - Initializing DexScreener live tracker...
+2025-05-10 00:51:09,186 - INFO - Built DexScreener tracking cache: 1 guilds with channels
+2025-05-10 00:51:09,186 - INFO - Proxy rotator initialized with http protocol
+2025-05-10 00:51:09,186 - INFO - Proxy rotator initialized for Truth Social tracking
+2025-05-10 00:51:09,188 - INFO - Found 1 guilds with DexScreener tracking enabled
+2025-05-10 00:51:09,188 - INFO - DexScreener tracking started
+2025-05-10 00:51:09,189 - INFO - DexScreener tracking initialization complete
+2025-05-10 00:51:09,190 - INFO - Fetching initial tokens to establish tracking baseline
+2025-05-10 00:51:09,195 - INFO - Ultra-optimized cache built: 1 accounts, 1 accounts with channels, 2 total channel mappings
+2025-05-10 00:51:09,196 - INFO - Found 1 guilds with Truth Social tracking enabled
+2025-05-10 00:51:09,196 - INFO - Truth Social tracking started
+2025-05-10 00:51:09,196 - INFO - Truth Social tracking initialization complete
+2025-05-10 00:51:09,905 - INFO - Successfully synced 7 command(s)
+2025-05-10 00:51:12,002 - INFO - Initialized DexScreener tracker with latest token: 2aBuoXsUBXXYPfPyRLZdTkumRYGrkKFgt4KnTF1rugfn on solana
+2025-05-10 00:51:15,944 - INFO - Logged in as TOPG#4967 (ID: 1340722186100408340)
+2025-05-10 00:51:15,945 - INFO - Bot connected to 4 server(s)
+2025-05-10 00:51:15,945 - INFO - Echo bot message forwarding: 1 bots from 9 channels to 1 channels
+2025-05-10 00:51:15,945 - INFO - Dani message forwarding: 1 users from 2 channels to 1 channels
+2025-05-10 00:56:44,818 - INFO - Bot is shutting down...
+2025-05-10 00:56:44,818 - INFO - API client closed
+2025-05-10 00:56:44,819 - INFO - Truth Social tracking task cancelled
+2025-05-10 00:56:44,819 - INFO - Truth Social tracking loop cancelled
+2025-05-10 00:56:44,819 - INFO - Truth Social tracking stopped
+2025-05-10 00:56:44,819 - INFO - Truth Social tracking stopped
+2025-05-10 00:56:44,819 - INFO - Services closed successfully
+2025-05-10 00:56:44,819 - INFO - Background task 'metrics_cleanup' canceled
+2025-05-10 00:56:44,819 - INFO - Background task 'memory_monitor' canceled
+2025-05-10 00:56:44,819 - INFO - Background task 'heartbeat_monitor' canceled
+2025-05-10 00:56:44,819 - INFO - Background task 'metrics_report' canceled
+2025-05-10 00:56:44,820 - INFO - DexScreener tracking task cancelled
+2025-05-10 00:56:44,820 - INFO - DexScreener tracking loop cancelled
+2025-05-10 00:56:44,820 - INFO - DexScreener tracking stopped
+2025-05-10 00:56:44,820 - INFO - DexScreener tracking stopped
+2025-05-10 00:56:44,820 - INFO - Database connection pool closed successfully
+2025-05-10 00:56:44,823 - INFO - Bot stopped by user
+2025-05-10 00:57:51,894 - INFO - Starting bot...
+2025-05-10 00:57:53,943 - INFO - API client initialized
+2025-05-10 00:57:53,943 - INFO - WebsiteAnalyzer initialized with concurrency limit of 15
+2025-05-10 00:57:53,944 - INFO - Loaded 4 Truth Social tokens from file
+2025-05-10 00:57:53,944 - INFO - Successfully authenticated 4/4 Truth Social accounts
+2025-05-10 00:57:53,945 - INFO - Saved 4 Truth Social tokens to file
+2025-05-10 00:57:53,945 - INFO - All API services initialized
+2025-05-10 00:57:53,945 - INFO - Services provider initialized
+2025-05-10 00:57:53,958 - INFO - Database connection pool established: size=1-10
+2025-05-10 00:57:53,958 - INFO - Database connection successful
+2025-05-10 00:57:53,969 - INFO - WebsiteChecker cog initialized
+2025-05-10 00:57:53,969 - INFO - Proxy rotator initialized with http protocol
+2025-05-10 00:57:53,969 - INFO - Proxy rotator initialized for Truth commands
+2025-05-10 00:57:53,972 - INFO - Discord Events Registered | Username Ban Server ID: 1313758082974879774
+2025-05-10 00:57:53,973 - INFO - Memory monitor started (threshold: 300MB, interval: 3600s)
+2025-05-10 00:57:53,974 - INFO - Initializing Truth Social tracking...
+2025-05-10 00:57:53,974 - INFO - Initializing DexScreener live tracker...
+2025-05-10 00:57:53,978 - INFO - Built DexScreener tracking cache: 1 guilds with channels
+2025-05-10 00:57:53,979 - INFO - Found 1 guilds with DexScreener tracking enabled
+2025-05-10 00:57:53,979 - INFO - DexScreener tracking started
+2025-05-10 00:57:53,979 - INFO - DexScreener tracking initialization complete
+2025-05-10 00:57:53,979 - INFO - Fetching initial tokens to establish tracking baseline
+2025-05-10 00:57:53,980 - INFO - Proxy rotator initialized with http protocol
+2025-05-10 00:57:53,980 - INFO - Proxy rotator initialized for Truth Social tracking
+2025-05-10 00:57:53,982 - INFO - Ultra-optimized cache built: 1 accounts, 1 accounts with channels, 2 total channel mappings
+2025-05-10 00:57:53,982 - INFO - Found 1 guilds with Truth Social tracking enabled
+2025-05-10 00:57:53,983 - INFO - Truth Social tracking started
+2025-05-10 00:57:53,983 - INFO - Truth Social tracking initialization complete
+2025-05-10 00:57:54,868 - INFO - Successfully synced 7 command(s)
+2025-05-10 00:57:57,358 - INFO - Initialized DexScreener tracker with latest token: 2aBuoXsUBXXYPfPyRLZdTkumRYGrkKFgt4KnTF1rugfn on solana
+2025-05-10 00:58:01,400 - INFO - Logged in as TOPG#4967 (ID: 1340722186100408340)
+2025-05-10 00:58:01,401 - INFO - Bot connected to 4 server(s)
+2025-05-10 00:58:01,401 - INFO - Echo bot message forwarding: 1 bots from 9 channels to 1 channels
+2025-05-10 00:58:01,401 - INFO - Dani message forwarding: 1 users from 2 channels to 1 channels
+2025-05-10 01:57:54,001 - INFO - Metrics Report | Uptime: 1h 0m | Memory: 61.1MB | Processed: 431 | Avg Processing: 0.0757s | Errors: 0 (0 types, Top: none) | Last Cleanup: 2025-05-10 00:57:51 (1h ago)
+2025-05-10 02:41:04,351 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-05-10 02:41:05,032 - INFO - Reconnected to Discord after disconnection
+2025-05-10 02:41:05,034 - INFO - Post-reconnection health check: Database=True, API Client=True
+2025-05-10 02:41:09,365 - INFO - Bot automatically reconnected
+2025-05-10 02:42:38,155 - INFO - Broadcast 1 posts from @realDonaldTrump to 1 guilds (2 channels)
+2025-05-10 02:47:34,483 - INFO - Broadcast 1 posts from @realDonaldTrump to 1 guilds (2 channels)
+2025-05-10 02:50:06,720 - INFO - Broadcast 1 posts from @realDonaldTrump to 1 guilds (2 channels)
+2025-05-10 02:51:18,516 - INFO - Broadcast 1 posts from @realDonaldTrump to 1 guilds (2 channels)
+2025-05-10 02:57:54,021 - INFO - Metrics Report | Uptime: 2h 0m | Memory: 64.3MB | Processed: 963 | Avg Processing: 0.0958s | Errors: 0 (0 types, Top: none) | Last Cleanup: 2025-05-10 00:57:51 (2h ago)
+2025-05-10 03:09:12,472 - INFO - Broadcast 1 posts from @realDonaldTrump to 1 guilds (2 channels)
+2025-05-10 03:11:12,485 - INFO - Broadcast 1 posts from @realDonaldTrump to 1 guilds (2 channels)
+2025-05-10 03:11:36,583 - INFO - Broadcast 1 posts from @realDonaldTrump to 1 guilds (2 channels)
+2025-05-10 03:11:53,277 - INFO - Broadcast 2 posts from @realDonaldTrump to 1 guilds (2 channels)
+2025-05-10 03:21:45,800 - INFO - Broadcast 1 posts from @realDonaldTrump to 1 guilds (2 channels)
+2025-05-10 03:57:54,024 - INFO - Metrics Report | Uptime: 3h 0m | Memory: 62.4MB | Processed: 1297 | Avg Processing: 0.1399s | Errors: 0 (0 types, Top: none) | Last Cleanup: 2025-05-10 00:57:51 (3h ago)
+2025-05-10 04:17:53,979 - INFO - Starting periodic metrics cleanup task...
+2025-05-10 04:17:53,981 - INFO - Cleaned processing times
+2025-05-10 04:17:54,258 - INFO - Garbage collection completed successfully.
+2025-05-10 04:17:54,259 - INFO - Metrics cleanup completed in 0.28 seconds. Next cleanup at 2025-05-10 14:17:53
+2025-05-10 04:32:51,767 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-05-10 04:32:52,443 - INFO - Reconnected to Discord after disconnection
+2025-05-10 04:32:52,445 - INFO - Post-reconnection health check: Database=True, API Client=True
+2025-05-10 04:32:56,775 - INFO - Bot automatically reconnected
+2025-05-10 04:57:54,040 - INFO - Metrics Report | Uptime: 4h 0m | Memory: 64.1MB | Processed: 1602 | Avg Processing: 0.0573s | Errors: 0 (0 types, Top: none) | Last Cleanup: 2025-05-10 04:17:53 (40m ago)
+2025-05-10 05:57:54,042 - INFO - Metrics Report | Uptime: 5h 0m | Memory: 66.1MB | Processed: 2123 | Avg Processing: 0.1041s | Errors: 0 (0 types, Top: none) | Last Cleanup: 2025-05-10 04:17:53 (1h ago)
+2025-05-10 06:09:21,060 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-05-10 06:09:21,700 - INFO - Reconnected to Discord after disconnection
+2025-05-10 06:09:21,701 - INFO - Post-reconnection health check: Database=True, API Client=True
+2025-05-10 06:09:26,068 - INFO - Bot automatically reconnected
+2025-05-10 06:33:03,523 - INFO - Broadcast 1 posts from @realDonaldTrump to 1 guilds (2 channels)
+2025-05-10 06:57:54,054 - INFO - Metrics Report | Uptime: 6h 0m | Memory: 63.4MB | Processed: 2296 | Avg Processing: 0.0569s | Errors: 0 (0 types, Top: none) | Last Cleanup: 2025-05-10 04:17:53 (2h ago)
+2025-05-10 07:37:54,860 - INFO - Starting periodic metrics cleanup task...
+2025-05-10 07:37:54,862 - INFO - Cleaned processing times
+2025-05-10 07:37:54,959 - INFO - Garbage collection completed successfully.
+2025-05-10 07:37:54,960 - INFO - Metrics cleanup completed in 0.10 seconds. Next cleanup at 2025-05-10 17:37:54
+2025-05-10 07:49:17,767 - INFO - Broadcast 1 posts from @realDonaldTrump to 1 guilds (2 channels)
+2025-05-10 07:57:54,069 - INFO - Metrics Report | Uptime: 7h 0m | Memory: 92.6MB | Processed: 2474 | Avg Processing: 0.0908s | Errors: 0 (0 types, Top: none) | Last Cleanup: 2025-05-10 07:37:54 (19m ago)
+2025-05-10 08:05:00,247 - INFO - Bot is shutting down...
+2025-05-10 08:05:00,248 - INFO - API client closed
+2025-05-10 08:05:00,248 - INFO - Truth Social tracking task cancelled
+2025-05-10 08:05:00,248 - INFO - Truth Social tracking loop cancelled
+2025-05-10 08:05:00,249 - INFO - Truth Social tracking stopped
+2025-05-10 08:05:00,249 - INFO - Truth Social tracking stopped
+2025-05-10 08:05:00,249 - INFO - Services closed successfully
+2025-05-10 08:05:00,249 - INFO - Background task 'metrics_cleanup' canceled
+2025-05-10 08:05:00,250 - INFO - Background task 'memory_monitor' canceled
+2025-05-10 08:05:00,250 - INFO - Background task 'heartbeat_monitor' canceled
+2025-05-10 08:05:00,250 - INFO - Background task 'metrics_report' canceled
+2025-05-10 08:05:00,251 - INFO - DexScreener tracking task cancelled
+2025-05-10 08:05:00,251 - INFO - DexScreener tracking loop cancelled
+2025-05-10 08:05:00,251 - INFO - DexScreener tracking stopped
+2025-05-10 08:05:00,251 - INFO - DexScreener tracking stopped
+2025-05-10 08:05:00,251 - INFO - Database connection pool closed successfully
+2025-05-10 08:05:00,254 - INFO - Bot stopped by user
+2025-05-10 08:05:08,071 - INFO - Starting bot...
+2025-05-10 08:05:08,979 - INFO - API client initialized
+2025-05-10 08:05:08,979 - INFO - WebsiteAnalyzer initialized with concurrency limit of 15
+2025-05-10 08:05:08,988 - INFO - Loaded 4 Truth Social tokens from file
+2025-05-10 08:05:08,988 - INFO - Successfully authenticated 4/4 Truth Social accounts
+2025-05-10 08:05:08,989 - INFO - Saved 4 Truth Social tokens to file
+2025-05-10 08:05:08,989 - INFO - All API services initialized
+2025-05-10 08:05:08,990 - INFO - Services provider initialized
+2025-05-10 08:05:09,030 - INFO - Database connection pool established: size=1-10
+2025-05-10 08:05:09,031 - INFO - Database connection successful
+2025-05-10 08:05:09,042 - INFO - WebsiteChecker cog initialized
+2025-05-10 08:05:09,042 - INFO - Proxy rotator initialized with http protocol
+2025-05-10 08:05:09,042 - INFO - Proxy rotator initialized for Truth commands
+2025-05-10 08:05:09,048 - INFO - Discord Events Registered | Username Ban Server ID: 1313758082974879774
+2025-05-10 08:05:09,049 - INFO - Memory monitor started (threshold: 300MB, interval: 3600s)
+2025-05-10 08:05:09,049 - INFO - Initializing Truth Social tracking...
+2025-05-10 08:05:09,050 - INFO - Initializing DexScreener live tracker...
+2025-05-10 08:05:09,054 - INFO - Built DexScreener tracking cache: 1 guilds with channels
+2025-05-10 08:05:09,055 - INFO - Found 1 guilds with DexScreener tracking enabled
+2025-05-10 08:05:09,055 - INFO - DexScreener tracking started
+2025-05-10 08:05:09,055 - INFO - DexScreener tracking initialization complete
+2025-05-10 08:05:09,055 - INFO - Fetching initial tokens to establish tracking baseline
+2025-05-10 08:05:09,060 - INFO - Proxy rotator initialized with http protocol
+2025-05-10 08:05:09,060 - INFO - Proxy rotator initialized for Truth Social tracking
+2025-05-10 08:05:09,063 - INFO - Ultra-optimized cache built: 1 accounts, 1 accounts with channels, 2 total channel mappings
+2025-05-10 08:05:09,064 - INFO - Found 1 guilds with Truth Social tracking enabled
+2025-05-10 08:05:09,064 - INFO - Truth Social tracking started
+2025-05-10 08:05:09,064 - INFO - Truth Social tracking initialization complete
+2025-05-10 08:05:09,103 - INFO - Initialized DexScreener tracker with latest token: G3vt9iyU1ep11a2qx1Pc9JuXASx6H5k2Mxmp36shpump on solana
+2025-05-10 08:05:09,559 - INFO - Successfully synced 7 command(s)
+2025-05-10 08:05:12,886 - INFO - Logged in as TOPG#4967 (ID: 1340722186100408340)
+2025-05-10 08:05:12,886 - INFO - Bot connected to 4 server(s)
+2025-05-10 08:05:12,886 - INFO - Echo bot message forwarding: 1 bots from 9 channels to 1 channels
+2025-05-10 08:05:12,886 - INFO - Dani message forwarding: 1 users from 2 channels to 1 channels
+2025-05-10 08:06:03,962 - ERROR - Unexpected error during repo analysis for https://github.com/Alphabtw00/TOPG: 'str' object has no attribute 'get'
+Traceback (most recent call last):
+  File "C:\Users\ansha\Documents\VsCode\TOPG\api\github_analyzer.py", line 101, in analyze_repo
+    project_summary = code_analysis.get("projectSummary", "")
+                      ^^^^^^^^^^^^^^^^^
+AttributeError: 'str' object has no attribute 'get'
+2025-05-10 08:23:46,212 - INFO - Bot is shutting down...
+2025-05-10 08:23:46,213 - INFO - API client closed
+2025-05-10 08:23:46,213 - INFO - Truth Social tracking task cancelled
+2025-05-10 08:23:46,213 - INFO - Truth Social tracking loop cancelled
+2025-05-10 08:23:46,213 - INFO - Truth Social tracking stopped
+2025-05-10 08:23:46,214 - INFO - Truth Social tracking stopped
+2025-05-10 08:23:46,214 - INFO - Services closed successfully
+2025-05-10 08:23:46,214 - INFO - Background task 'metrics_cleanup' canceled
+2025-05-10 08:23:46,214 - INFO - Background task 'memory_monitor' canceled
+2025-05-10 08:23:46,214 - INFO - Background task 'heartbeat_monitor' canceled
+2025-05-10 08:23:46,214 - INFO - Background task 'metrics_report' canceled
+2025-05-10 08:23:46,215 - INFO - DexScreener tracking task cancelled
+2025-05-10 08:23:46,215 - INFO - DexScreener tracking loop cancelled
+2025-05-10 08:23:46,215 - INFO - DexScreener tracking stopped
+2025-05-10 08:23:46,215 - INFO - DexScreener tracking stopped
+2025-05-10 08:23:46,215 - INFO - Database connection pool closed successfully
+2025-05-10 08:23:46,217 - INFO - Bot stopped by user
+2025-05-10 08:23:50,101 - INFO - Starting bot...
+2025-05-10 08:23:51,061 - INFO - API client initialized
+2025-05-10 08:23:51,062 - INFO - WebsiteAnalyzer initialized with concurrency limit of 15
+2025-05-10 08:23:51,063 - INFO - Loaded 4 Truth Social tokens from file
+2025-05-10 08:23:51,063 - INFO - Successfully authenticated 4/4 Truth Social accounts
+2025-05-10 08:23:51,064 - INFO - Saved 4 Truth Social tokens to file
+2025-05-10 08:23:51,065 - INFO - All API services initialized
+2025-05-10 08:23:51,065 - INFO - Services provider initialized
+2025-05-10 08:23:51,095 - INFO - Database connection pool established: size=1-10
+2025-05-10 08:23:51,096 - INFO - Database connection successful
+2025-05-10 08:23:51,107 - INFO - WebsiteChecker cog initialized
+2025-05-10 08:23:51,107 - INFO - Proxy rotator initialized with http protocol
+2025-05-10 08:23:51,108 - INFO - Proxy rotator initialized for Truth commands
+2025-05-10 08:23:51,111 - INFO - Discord Events Registered | Username Ban Server ID: 1313758082974879774
+2025-05-10 08:23:51,112 - INFO - Memory monitor started (threshold: 300MB, interval: 3600s)
+2025-05-10 08:23:51,113 - INFO - Initializing Truth Social tracking...
+2025-05-10 08:23:51,113 - INFO - Initializing DexScreener live tracker...
+2025-05-10 08:23:51,121 - INFO - Built DexScreener tracking cache: 1 guilds with channels
+2025-05-10 08:23:51,122 - INFO - Found 1 guilds with DexScreener tracking enabled
+2025-05-10 08:23:51,122 - INFO - DexScreener tracking started
+2025-05-10 08:23:51,122 - INFO - DexScreener tracking initialization complete
+2025-05-10 08:23:51,123 - INFO - Fetching initial tokens to establish tracking baseline
+2025-05-10 08:23:51,124 - INFO - Proxy rotator initialized with http protocol
+2025-05-10 08:23:51,125 - INFO - Proxy rotator initialized for Truth Social tracking
+2025-05-10 08:23:51,129 - INFO - Ultra-optimized cache built: 1 accounts, 1 accounts with channels, 2 total channel mappings
+2025-05-10 08:23:51,130 - INFO - Found 1 guilds with Truth Social tracking enabled
+2025-05-10 08:23:51,130 - INFO - Truth Social tracking started
+2025-05-10 08:23:51,130 - INFO - Truth Social tracking initialization complete
+2025-05-10 08:23:51,184 - INFO - Initialized DexScreener tracker with latest token: 921Hfz8gh5sYSzkzDUMr9jEes9wg6PQoDPnvyZwHpump on solana
+2025-05-10 08:23:51,608 - INFO - Successfully synced 7 command(s)
+2025-05-10 08:23:54,844 - INFO - Logged in as TOPG#4967 (ID: 1340722186100408340)
+2025-05-10 08:23:54,844 - INFO - Bot connected to 4 server(s)
+2025-05-10 08:23:54,844 - INFO - Echo bot message forwarding: 1 bots from 9 channels to 1 channels
+2025-05-10 08:23:54,845 - INFO - Dani message forwarding: 1 users from 2 channels to 1 channels
+2025-05-10 08:24:22,977 - INFO - Claude raw response (first 500 chars): # Project Summary
+This is a sophisticated Discord bot for crypto tracking and analysis, featuring GitHub repository scanning, website analysis, and Truth Social integration. The implementation stands out for its robust error handling, efficient rate limiting through semaphores, and comprehensive service provider architecture that cleanly separates concerns.
+
+# Analysis Categories
+
+## Code Quality (Score: 22/25)
+- Strong use of asyncio for concurrent operations
+- Comprehensive error handling with
+2025-05-10 08:24:24,146 - INFO - GitHub analysis called by alphabtw_ for https://github.com/Alphabtw00/TOPG (cached: False)
+2025-05-10 08:58:17,185 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-05-10 08:58:17,853 - INFO - Reconnected to Discord after disconnection
+2025-05-10 08:58:17,854 - INFO - Post-reconnection health check: Database=True, API Client=True
+2025-05-10 08:58:22,201 - INFO - Bot automatically reconnected
+2025-05-10 09:23:51,126 - INFO - Metrics Report | Uptime: 1h 0m | Memory: 49.1MB | Processed: 151 | Avg Processing: 0.0495s | Errors: 0 (0 types, Top: none) | Last Cleanup: 2025-05-10 08:23:50 (1h ago)
+2025-05-10 10:10:53,810 - WARNING - API mobula returned status 404 for URL: https://api.mobula.io/api/1/market/history/pair?asset=C3Tqmrgp7oKE6x5TmZaig5nVV4EPnQcw2BZyVRXboop&blockchain=solana&period=15min&amount=100000
+2025-05-10 10:19:09,425 - WARNING - API mobula returned status 500 for URL: https://api.mobula.io/api/1/market/history/pair?asset=BVW9SjeF9MxGDNdPeN92AiwiFfLDLQhMv8dowbVZpump&blockchain=solana&period=1d&amount=100000
+2025-05-10 10:23:51,133 - INFO - Metrics Report | Uptime: 2h 0m | Memory: 46.7MB | Processed: 350 | Avg Processing: 0.1492s | Errors: 2 (1 types, Top: api_mobula=2) | Last Cleanup: 2025-05-10 08:23:50 (2h ago)
+2025-05-10 10:53:52,159 - INFO - Bot is shutting down...
+2025-05-10 10:53:52,160 - INFO - API client closed
+2025-05-10 10:53:52,160 - INFO - Truth Social tracking task cancelled
+2025-05-10 10:53:52,160 - INFO - Truth Social tracking loop cancelled
+2025-05-10 10:53:52,161 - INFO - Truth Social tracking stopped
+2025-05-10 10:53:52,161 - INFO - Truth Social tracking stopped
+2025-05-10 10:53:52,161 - INFO - Services closed successfully
+2025-05-10 10:53:52,161 - INFO - Background task 'metrics_cleanup' canceled
+2025-05-10 10:53:52,161 - INFO - Background task 'memory_monitor' canceled
+2025-05-10 10:53:52,161 - INFO - Background task 'heartbeat_monitor' canceled
+2025-05-10 10:53:52,162 - INFO - Background task 'metrics_report' canceled
+2025-05-10 10:53:52,162 - INFO - DexScreener tracking task cancelled
+2025-05-10 10:53:52,162 - INFO - DexScreener tracking loop cancelled
+2025-05-10 10:53:52,163 - INFO - DexScreener tracking stopped
+2025-05-10 10:53:52,163 - INFO - DexScreener tracking stopped
+2025-05-10 10:53:52,164 - INFO - Database connection pool closed successfully
+2025-05-10 10:53:52,170 - INFO - Bot stopped by user

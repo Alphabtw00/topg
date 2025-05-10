@@ -14,7 +14,7 @@ class DexScreenerService:
         """Initialize with API client"""
         self.client = api_client
     
-    async def get_token_info(self, addresses: list):
+    async def get_token_info(self, addresses: list, chain_id="solana"):
         """
         Get token information for a list of addresses
         
@@ -29,7 +29,7 @@ class DexScreenerService:
         
         results = {}
         try:
-            url = f"{DEXSCREENER_BASE_URL}/tokens/v1/solana/{','.join(addresses)}"
+            url = f"{DEXSCREENER_BASE_URL}/tokens/v1/{chain_id}/{','.join(addresses)}"
             tokens_data = await self.client.get(url, ApiEndpoint.DEXSCREENER)
             
             if tokens_data:
@@ -62,6 +62,26 @@ class DexScreenerService:
             return search_data["pairs"][0]
         
         return None
+    
+    async def get_latest_token_profiles(self):
+        """
+        Get latest token profiles from DexScreener
+        
+        Returns:
+            list: Latest token profiles or empty list if none found
+        """
+        try:
+            url = f"{DEXSCREENER_BASE_URL}/token-profiles/latest/v1"
+            profiles_data = await self.client.get(url, ApiEndpoint.DEXSCREENER)
+            
+            if not profiles_data:
+                logger.warning("No token profiles returned from DexScreener API")
+                return []
+                
+            return profiles_data
+        except Exception as e:
+            logger.error(f"Error fetching latest token profiles: {e}")
+            return []
     
     async def get_order_status(self, token_address: str):
         """

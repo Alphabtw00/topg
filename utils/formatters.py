@@ -7,6 +7,12 @@ from functools import lru_cache
 import re
 import urllib.parse
 
+from utils.logger import get_logger
+
+
+logger = get_logger()
+
+
 def format_value(value) -> str:
     """
     Format a numerical value for display, with appropriate suffix
@@ -207,25 +213,55 @@ def parse_channel_colors(colors_str: str, bot_input_channel_ids: Set[int]) -> Di
     
     return color_dict
 
+# def calculate_ath_marketcap(ath_price: float, current_price: float, current_fdv: float):
+#     """
+#     Calculate ATH market cap based on ATH price and current FDV
+    
+#     Args:
+#         ath_price: All-time high price
+#         current_price: Current price
+#         current_fdv: Current fully diluted valuation
+        
+#     Returns:
+#         float or None: Calculated ATH market cap or None if input data is invalid
+#     """
+#     if not all([ath_price, current_price, current_fdv]):
+#         return None
+    
+#     try:
+#         fdv_price_ratio = current_fdv / current_price
+#         return ath_price * fdv_price_ratio
+#     except (ZeroDivisionError, TypeError, ValueError):
+#         return None
+    
+
 def calculate_ath_marketcap(ath_price: float, current_price: float, current_fdv: float):
     """
     Calculate ATH market cap based on ATH price and current FDV
-    
+   
     Args:
         ath_price: All-time high price
         current_price: Current price
         current_fdv: Current fully diluted valuation
-        
+   
     Returns:
         float or None: Calculated ATH market cap or None if input data is invalid
     """
     if not all([ath_price, current_price, current_fdv]):
+        logger.debug("[calc_ath_mcap] one or more inputs are falsy, returning None")
         return None
-    
+   
     try:
-        fdv_price_ratio = current_fdv / current_price
-        return ath_price * fdv_price_ratio
-    except (ZeroDivisionError, TypeError, ValueError):
+        if 0 < ath_price < 1e-6:
+            ath_price *= 1e3
+
+        # Calculate token supply
+        supply = current_fdv / float(current_price)
+        mcap = float(ath_price) * supply
+        return mcap
+        
+    except (ZeroDivisionError, TypeError, ValueError) as e:
+        logger.error(f"[calc_ath_mcap] error in calculation: {e}")
         return None
 
 def calculate_trust_score(code_review: Dict[str, Any]) -> Dict[str, Any]:
@@ -448,9 +484,9 @@ def calculate_verdict(scores: Dict[str, Any], trust_result: Dict[str, Any],
     composite_score = max(0, min(100, composite_score))
     
     # Adjust threshold for excellent technical implementations
-    recommend_threshold = 70  # Default threshold
+    recommend_threshold = 80  # Default threshold
     if technical_score >= 85:
-        recommend_threshold = 65  # Lower threshold for excellent projects
+        recommend_threshold = 75  # Lower threshold for excellent projects
     
     # Determine verdict based on composite score with adjusted thresholds
     if composite_score >= recommend_threshold:
@@ -458,7 +494,7 @@ def calculate_verdict(scores: Dict[str, Any], trust_result: Dict[str, Any],
             "color": 0x00FF00,  # Green
             "verdict": "INVESTMENT RECOMMENDED",
             "emoji": "✅",
-            "investment_advice": "Appears to be a solid project with good technical foundation",
+            "investment_advice": "Appears to be a solid project with good technical foundation. 📝 NFA-DYOR",
             "score": composite_score,
             "factors": {
                 "technical_score": technical_score,
@@ -474,7 +510,7 @@ def calculate_verdict(scores: Dict[str, Any], trust_result: Dict[str, Any],
             "color": 0xFFD700,  # Gold
             "verdict": "POTENTIALLY VIABLE",
             "emoji": "⚠️",
-            "investment_advice": "Shows promise but exercise caution and conduct additional research",
+            "investment_advice": "Shows promise but exercise caution and conduct additional research. 📝 NFA-DYOR",
             "score": composite_score,
             "factors": {
                 "technical_score": technical_score,
@@ -490,7 +526,7 @@ def calculate_verdict(scores: Dict[str, Any], trust_result: Dict[str, Any],
             "color": 0xFF8C00,  # Dark Orange
             "verdict": "HIGH RISK INVESTMENT",
             "emoji": "⚠️",
-            "investment_advice": "Significant concerns detected - thorough investigation recommended",
+            "investment_advice": "Significant concerns detected - thorough investigation recommended. 📝 NFA-DYOR",
             "score": composite_score,
             "factors": {
                 "technical_score": technical_score,
@@ -506,7 +542,7 @@ def calculate_verdict(scores: Dict[str, Any], trust_result: Dict[str, Any],
             "color": 0xFF0000,  # Red
             "verdict": "NOT RECOMMENDED",
             "emoji": "🚨",
-            "investment_advice": "Multiple critical issues found - investment not advised",
+            "investment_advice": "Multiple critical issues found - investment not advised. 📝 NFA-DYOR",
             "score": composite_score,
             "factors": {
                 "technical_score": technical_score,
@@ -534,6 +570,23 @@ def proxy_url(url: str) -> str:
         
     # Make sure URL is properly encoded
     return f"https://images.weserv.nl/?url={urllib.parse.quote(url)}"
+
+# Add this utility function for extreme cases where automatic handling isn't enough
+def safe_text(text):
+    """
+    Make any text safe for logging by replacing non-ASCII characters
+    For use in extreme cases where automatic handling isn't sufficient
+    """
+    if text is None:
+        return "None"
+    
+    if not isinstance(text, str):
+        try:
+            text = str(text)
+        except:
+            return "Unstringable object"
+    
+    return text.encode('ascii', 'replace').decode('ascii')
 
 def clean_html(html_content: str) -> str:
     """

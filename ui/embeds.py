@@ -7,6 +7,7 @@ import dateutil.parser as date_parse
 import re
 from datetime import datetime
 from typing import Dict, Any
+from urllib.parse import quote
 from config import TWITTER_SEARCH_URL, TRADING_PLATFORMS, VERIFIED_EMOJI
 from utils.formatters import (
     format_value, format_date, format_size, 
@@ -92,7 +93,7 @@ def create_token_embed(entry: dict, address: str, order_status: str) -> discord.
         base_token = entry.get('baseToken', {})
         symbol = base_token.get('symbol', '')
         
-        from urllib.parse import quote
+        
         embed.add_field(
             name="👀 Twitter Search",
             value=f"[CA]({TWITTER_SEARCH_URL.format(query=address)})    |    [TICKER]({TWITTER_SEARCH_URL.format(query=quote(f'${symbol}'))})",
@@ -266,333 +267,425 @@ def update_dex_in_embed(embed_dict: dict, order_status: str) -> dict:
         logger.error(f"Error updating DEX status in embed: {e}")
         return embed_dict
 
-def create_github_analysis_embed(repo_info, analysis, start_time, interaction):
-        """
-        Create an enhanced embed for GitHub repository analysis.
+def create_dex_tracker_embed(token_data, token_info):
+    """
+    Create a simplified embed for a newly paid DexScreener token
+    
+    Args:
+        token_data: Basic token data from the latest tokens API
+        token_info: Detailed token info from the tokens API
         
-        Args:
-            repo_info: Repository information dictionary
-            analysis: Analysis data with scores and review information
-            start_time: Analysis start time for tracking performance
-            interaction: Discord interaction object
-            is_cached: Whether this is from cache
-            
-        Returns:
-            discord.Embed: Formatted embed with comprehensive analysis
-        """
-        # Core metrics - most important data
-        legitimacy_score = analysis.get("legitimacyScore", 0)
-        trust_score = analysis.get("trustScore", 0)
-        detailed_scores = analysis.get("detailedScores", {})
-        code_review = analysis.get("codeReview", {})
-        ai_analysis = code_review.get("aiAnalysis", {})
+    Returns:
+        discord.Embed: Formatted embed
+    """
+    try:
+        # Extract token data
+        token_address = token_data.get("tokenAddress", "")
+        chain_id = token_data.get("chainId", "UNKNOWN").upper()
+        description = token_data.get("description", "No description")
         
-        # Get investment rating
-        ranking = code_review.get("investmentRanking", {})
-        rating = ranking.get("rating", "Unknown")
-        confidence = ranking.get("confidence", 0)
+        # Token icon and header
+        icon_url = token_data.get("icon", "")
+        header_url = token_data.get("header", "")
         
-        # Calculate technical quality average
-        code_quality = detailed_scores.get("codeQuality", 0)
-        project_structure = detailed_scores.get("projectStructure", 0)
-        implementation = detailed_scores.get("implementation", 0)
-        documentation = detailed_scores.get("documentation", 0)
+        # Extract more detailed info from token_info if available
+        name = "Unknown"
+        symbol = "UNKNOWN"
+        fdv = 0
         
-        # Get verdict from the analysis - already calculated in analyzer
-        verdict_data = analysis.get("verdict", {})
-        if not verdict_data:
-            # Fallback if verdict wasn't pre-calculated (shouldn't happen)
-            verdict_data = {
-                "color": 0x00FF00,
-                "verdict": "INVESTMENT RECOMMENDED",
-                "emoji": "✅",
-                "investment_advice": "Appears to be a solid project with good technical foundation"
-            }
-            
-        embed_color = verdict_data["color"]
-        verdict = verdict_data["verdict"]
-        verdict_emoji = verdict_data["emoji"]
-        investment_advice = verdict_data["investment_advice"]
+        if token_info:
+            base_token = token_info.get("baseToken", {})
+            name = base_token.get("name", "Unknown")
+            symbol = base_token.get("symbol", "UNKNOWN")
+            fdv = float(token_info.get("fdv", 0))
         
-        # Format repository name
-        repo_name = repo_info["name"]
-        owner = repo_info["owner"]
-        
-        # Create main embed
+        # Create embed with brand color
         embed = discord.Embed(
-            title=f"GitHub Analysis: {owner}/{repo_name}",                   
-            url=f"https://github.com/{owner}/{repo_name}",
-            color=embed_color,
+            title=f"DEX PAID FOR: {name} (${symbol})",
+            description=clean_html(description),
+            color=0xFF5C77,  # DexScreener red
             timestamp=datetime.now()
         )
         
-        # GitHub logo
-        embed.set_author(
-            name="GitHub Repository Analyzer", 
-            icon_url="https://github.githubassets.com/assets/GitHub-Mark-ea2971cee799.png"
-        )
-
-        # Owner avatar
-        embed.set_thumbnail(url=repo_info["owner_avatar"])
-        
-        # Top summary section with verdict
-        # Check for LARP indicators and critical path issues
-        larp_indicators = code_review.get("larpIndicators", [])
-        critical_path = code_review.get("criticalPath", [])
-        
-        warning_text = ""
-        if larp_indicators:
-            warning_text += f"⚠️ **IMPORTANT:** This project may have misleading claims.\n"
-        
-        if critical_path:
-            if warning_text:
-                warning_text += "\n"
-            warning_text += f"⚠️ **NOTE:** Critical implementation issues detected.\n"
-        
-        if warning_text:
-            warning_text += "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n"
-        
-
-        overall_assessment = code_review.get("overallAssessment")
-        assessment_section = ""
-        if overall_assessment:
-            assessment_text = overall_assessment.split('\n\n')[0]  # Only first paragraph
-            assessment_section = (
-                f"{assessment_text}\n"
-                f"━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n"
-            )
-
-        embed.description = (
-            f"## {verdict_emoji} VERDICT: {verdict} {verdict_emoji}\n"
-            f"### {investment_advice}\n"
-            f"━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n"
-            f"{warning_text}"
-            f"{assessment_section}"
-        )
-                    
-        # --- SCORE SECTION (MOST IMPORTANT) ---
-
-        # Overall assessment
-        # Include implementation quality if available
-        ai_score = ai_analysis.get('score', 0)
-        impl_quality = ai_analysis.get('implementationQuality', '')
-        ai_score_text = f"**AI Implementation:** {score_bar(ai_score)} `{ai_score}%`"
-        if impl_quality and impl_quality != "N/A":
-            ai_score_text += f" - `{impl_quality}`"
-        
-
+        # Add market cap (FDV)
         embed.add_field(
-            name="🛡️ Overall Assessment",
-            value=(
-                f"**Legitimacy Score:** {score_bar(legitimacy_score)} `{legitimacy_score}%`\n"
-                f"**Trust Score:** {score_bar(trust_score)} `{trust_score}%`\n"
-                f"{ai_score_text}\n"
-            ),
+            name="💰 Market Cap",
+            value=f"**`${format_value(fdv)}`**",
             inline=False
         )
         
-        # Detailed scores
+        # Add links
+        links = token_data.get("links", [])
+        
+        link_text = []
+        website = ""
+        twitter = ""
+        
+        for link in links:
+            link_type = link.get("type", "")
+            link_label = link.get("label", "")
+            link_url = link.get("url", "")
+            
+            if not link_url:
+                continue
+                
+            if link_type == "twitter" or "twitter" in link_url or "x.com" in link_url:
+                twitter = link_url
+                link_text.append(f"[Twitter]({link_url})")
+            elif link_label == "Website" or not link_type:
+                website = link_url
+                link_text.append(f"[Website]({link_url})")
+            else:
+                link_text.append(f"[{link_label or link_type.capitalize()}]({link_url})")
+        
+        if link_text:
+            embed.add_field(name="🔗 Links", value=" | ".join(link_text), inline=False)
+        
+        # Add contract info
         embed.add_field(
-            name="📚 Technical Quality",
-            value=(
-                f"**Code Quality:** {score_bar(code_quality*4)} `{code_quality}/25`\n"
-                f"**Project Structure:** {score_bar(project_structure*4)} `{project_structure}/25`\n"
-                f"**Implementation:** {score_bar(implementation*4)} `{implementation}/25`\n"
-                f"**Documentation:** {score_bar(documentation*4)} `{documentation}/25`"
-            ),
+            name=f"",
+            value=f"```{token_address}```",
             inline=False
         )
-
-        # Investment assessment 
-        rating_emoji = {
-            "Strong Buy": "🟢", 
-            "Buy": "🟢",
-            "High": "🟢",
-            "Medium": "🟡",
-            "Medium-High": "🟡",
-            "Hold": "🟡", 
-            "Sell": "🔴",
-            "Strong Sell": "🔴",
-            "Low": "🔴"
-        }.get(rating, "⚪")
         
-        if not rating:
-            rating = "Unknown"
+        # Set thumbnail and images
+        if icon_url:
+            embed.set_thumbnail(url=icon_url)
+            
+        if header_url:
+            embed.set_image(url=header_url)
         
-        embed.add_field(
-            name="💰 Investment Rating",
-            value=(
-                f"**Rating:** {rating_emoji} `{rating}`\n"
-                f"**Confidence in rating:** {score_bar(confidence)} `{confidence}%`\n"
-            ),
-            inline=False
-        )
-
-        # Enhanced repo info with more details
-        created_date = format_date(repo_info.get("created_at", "Unknown"))
-        updated_date = format_date(repo_info.get("updated_at", "Unknown"))
-        size = format_size(repo_info.get("size", 0))        
-        language = repo_info.get("language", "Unknown")
-        license_info = repo_info.get("license", "No license")
-
-        # Group basic repository details under "General Info"
-        general_info = "\n".join([
-            f"**Primary Language:** `{language}`",
-            f"**License:** `{license_info}`",
-            f"**Size:** `{size}`",
-            f"**Created:** `{created_date}`",
-            f"**Updated:** `{updated_date}`",
-        ])
-
-        stars = repo_info.get("stars", 0)
-        forks = repo_info.get("forks", 0)
-        watchers = repo_info.get("watchers", 0)
-        open_issues = repo_info.get("open_issues", 0)
-
-        # Group engagement metrics under "Community Stats"
-        community_stats = "\n".join([
-            f"**Owner:** [{owner}](https://github.com/{owner})",
-            f"**Stars:** `{stars:,}`",
-            f"**Forks:** `{forks:,}`",
-            f"**Watchers:** `{watchers:,}`",
-            f"**Open Issues:** `{open_issues:,}`",
-        ])
-
-        # Add two inline fields to the embed with the new headings
-        embed.add_field(
-            name="📁 Repo Info",
-            value=general_info,
-            inline=True
-        )
-        embed.add_field(
-            name="⭐ Community Stats",
-            value=community_stats,
-            inline=True
-        )
-                
-        # Red flags
-        red_flags = code_review.get("redFlags", [])
-        if red_flags:
-            flags_formatted = "\n".join(f"📉 {flag}" for flag in red_flags[:3])
-            embed.add_field(
-                name="🚩 Security Concerns",
-                value=flags_formatted if flags_formatted else "No significant issues detected",
-                inline=False
-            )
-        else:
-            embed.add_field(
-                name="🚩 Security Concerns",
-                value="No significant issues detected",
-                inline=False
-            )
-        
-        def format_with_markers(items):
-            """
-            Format items list with positive/negative markers
-            
-            Args:
-                items: List of items to format
-                
-            Returns:
-                Formatted text with appropriate emojis and 
-                a boolean indicating if a marker was found
-            """
-            improvement_markers = ["Areas needing improvement:", "Areas for improvement:", "Missing:"]
-            marker_index = -1
-            has_marker = False
-            
-            for marker in improvement_markers:
-                if marker in items:
-                    marker_index = items.index(marker)
-                    has_marker = True
-                    break
-            
-            formatted_text = ""
-            if has_marker:
-                # Format with positive/negative markers
-                positive_items = items[:marker_index]
-                negative_items = items[marker_index+1:]  # Skip the marker itself
-                
-                # Add up to 2 positive items
-                if positive_items:
-                    formatted_text += "\n".join(f"✅ {item}" for item in positive_items[:2])
-                
-                # Add up to 2 negative items
-                if negative_items:
-                    if formatted_text:
-                        formatted_text += "\n"
-                    formatted_text += "\n".join(f"⚠️ {item}" for item in negative_items[:2])
-            
-            return formatted_text, has_marker
-
-        # Process insights section
-        reasoning = ranking.get("reasoning", [])
-        if reasoning:
-            # Use the helper method for formatting
-            insights_text, has_marker = format_with_markers(reasoning)
-            
-            # If no marker was found, use neutral emoji formatting
-            if not has_marker:
-                insights_text = "\n".join(f"📍 {item}" for item in reasoning[:4])
-            
-            embed.add_field(
-                name="⚡ Key Insights",
-                value=insights_text if insights_text else "No insights available",
-                inline=False
-            )
-
-        # Process AI implementation section
-        if ai_analysis.get("hasAI", False):
-            ai_components = ai_analysis.get("components", [])
-            ai_concerns = ai_analysis.get("concerns", [])
-            
-            if ai_components:
-                # Use the helper method for formatting
-                ai_text, has_marker = format_with_markers(ai_components)
-                
-                # If no marker was found, use neutral emoji formatting
-                if not has_marker:
-                    ai_text = "\n".join(f"🔹 {item}" for item in ai_components[:4])
-                
-                # Add concerns with neutral emoji
-                if ai_concerns:
-                    if ai_text:
-                        ai_text += "\n"
-                    ai_text += "\n".join(f"🔹 {concern}" for concern in ai_concerns[:2])
-                
-                embed.add_field(
-                    name="🤖 AI Implementation",
-                    value=ai_text if ai_text else "No AI implementation details available",
-                    inline=False
-                )
-        
-        # Add misleading level warning if it exists and is not "None"
-        misleading_level = ai_analysis.get("misleadingLevel")
-        if misleading_level and misleading_level.lower() not in ["none", "n/a", ""]:
-            embed.add_field(
-                name="⚠️ Misleading Assessment",
-                value=f"**Level:** `{misleading_level}`",
-                inline=False
-            )
-        
-        #summary
-        summary = analysis.get("summary", "")
-        if summary:
-            embed.add_field(
-                name="📝 Summary",
-                value=f"> {summary.replace('\\n', '\\n> ')}",
-                inline=False
-            )
-        
-        # Footer
+        # Set footer with logo and timestamp
         embed.set_footer(
-            text=f"Requested by {interaction.user.display_name} • ⌛Analysis Time: {(datetime.now().timestamp() - start_time):.1f}s", 
-            icon_url=interaction.user.display_avatar.url
+            text="Dex Tracker",
+            icon_url="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSPVUi95mpqU3Q-UQZ7Ge82bhGABTToQQ3cLg&s"
         )
         
         return embed
+        
+    except Exception as e:
+        from utils.logger import get_logger
+        logger = get_logger()
+        logger.error(f"Error creating DexScreener tracker embed: {e}")
+        return None
 
-def _create_website_embed(result, interaction, start_time):
+def create_github_analysis_embed(repo_info, analysis, start_time, interaction):
+    """
+    Create an enhanced embed for GitHub repository analysis.
+    
+    Args:
+        repo_info: Repository information dictionary
+        analysis: Analysis data with scores and review information
+        start_time: Analysis start time for tracking performance
+        interaction: Discord interaction object
+        
+    Returns:
+        discord.Embed: Formatted embed with comprehensive analysis
+    """
+    # Core metrics - most important data
+    legitimacy_score = analysis.get("legitimacyScore", 0)
+    trust_score = analysis.get("trustScore", 0)
+    detailed_scores = analysis.get("detailedScores", {})
+    code_review = analysis.get("codeReview", {})
+    ai_analysis = code_review.get("aiAnalysis", {})
+    
+    # Get investment rating
+    ranking = code_review.get("investmentRanking", {})
+    rating = ranking.get("rating", "Unknown")
+    confidence = ranking.get("confidence", 0)
+    
+    # Calculate technical quality average
+    code_quality = detailed_scores.get("codeQuality", 0)
+    project_structure = detailed_scores.get("projectStructure", 0)
+    implementation = detailed_scores.get("implementation", 0)
+    documentation = detailed_scores.get("documentation", 0)
+    
+    # Get verdict from the analysis - already calculated in analyzer
+    verdict_data = analysis.get("verdict", {})
+    if not verdict_data:
+        # Fallback if verdict wasn't pre-calculated (shouldn't happen)
+        verdict_data = {
+            "color": 0x00FF00,
+            "verdict": "INVESTMENT RECOMMENDED",
+            "emoji": "✅",
+            "investment_advice": "Appears to be a solid project with good technical foundation"
+        }
+        
+    embed_color = verdict_data["color"]
+    verdict = verdict_data["verdict"]
+    verdict_emoji = verdict_data["emoji"]
+    investment_advice = verdict_data["investment_advice"]
+    
+    # Format repository name
+    repo_name = repo_info["name"]
+    owner = repo_info["owner"]
+    
+    # Create main embed
+    embed = discord.Embed(
+        title=f"GitHub Analysis: {owner}/{repo_name}",                   
+        url=f"https://github.com/{owner}/{repo_name}",
+        color=embed_color,
+        timestamp=datetime.now()
+    )
+    
+    # GitHub logo
+    embed.set_author(
+        name="GitHub Repository Analyzer", 
+        icon_url="https://github.githubassets.com/assets/GitHub-Mark-ea2971cee799.png"
+    )
+
+    # Owner avatar
+    embed.set_thumbnail(url=repo_info["owner_avatar"])
+    
+    # Top summary section with verdict
+    # Check for LARP indicators and critical path issues
+    larp_indicators = code_review.get("larpIndicators", [])
+    critical_path = code_review.get("criticalPath", [])
+    
+    warning_text = ""
+    if larp_indicators:
+        warning_text += f"⚠️ **IMPORTANT:** This project may have misleading claims.\n"
+    
+    if critical_path:
+        if warning_text:
+            warning_text += "\n"
+        warning_text += f"⚠️ **NOTE:** Critical implementation issues detected.\n"
+    
+    
+    # Get the project summary from the analysis
+    summary = code_review.get("projectSummary", "")
+
+    embed.description = (
+        f"## {verdict_emoji} VERDICT: {verdict} {verdict_emoji}\n"
+        f"### {investment_advice}\n"
+        f"{warning_text}"
+        f"━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n"
+        f"{summary}\n"
+    )
+                
+    # --- SCORE SECTION (MOST IMPORTANT) ---
+
+    # Overall assessment
+    # Include implementation quality if available
+    ai_score = ai_analysis.get('score', 0)
+    impl_quality = ai_analysis.get('implementationQuality', '')
+    ai_score_text = f"**AI Implementation:** {score_bar(ai_score)} `{ai_score}%`"
+    if impl_quality and impl_quality != "N/A":
+        ai_score_text += f" - `{impl_quality}`"
+    
+
+    embed.add_field(
+        name="🛡️ Overall Assessment",
+        value=(
+            f"**Legitimacy Score:** {score_bar(legitimacy_score)} `{legitimacy_score}%`\n"
+            f"**Trust Score:** {score_bar(trust_score)} `{trust_score}%`\n"
+            f"{ai_score_text}\n"
+        ),
+        inline=False
+    )
+    
+    # Detailed scores
+    embed.add_field(
+        name="📚 Technical Quality",
+        value=(
+            f"**Code Quality:** {score_bar(code_quality*4)} `{code_quality}/25`\n"
+            f"**Project Structure:** {score_bar(project_structure*4)} `{project_structure}/25`\n"
+            f"**Implementation:** {score_bar(implementation*4)} `{implementation}/25`\n"
+            f"**Documentation:** {score_bar(documentation*4)} `{documentation}/25`"
+        ),
+        inline=False
+    )
+
+    # Investment assessment 
+    rating_emoji = {
+        "Strong Buy": "🟢", 
+        "Buy": "🟢",
+        "High": "🟢",
+        "Medium": "🟡",
+        "Medium-High": "🟡",
+        "Hold": "🟡", 
+        "Sell": "🔴",
+        "Strong Sell": "🔴",
+        "Low": "🔴"
+    }.get(rating, "⚪")
+    
+    if not rating:
+        rating = "Unknown"
+    
+    embed.add_field(
+        name="💰 Investment Rating",
+        value=(
+            f"**Rating:** {rating_emoji} `{rating}`\n"
+            f"**Confidence in rating:** {score_bar(confidence)} `{confidence}%`\n"
+        ),
+        inline=False
+    )
+
+    # Enhanced repo info with more details
+    created_date = format_date(repo_info.get("created_at", "Unknown"))
+    updated_date = format_date(repo_info.get("updated_at", "Unknown"))
+    size = format_size(repo_info.get("size", 0))        
+    language = repo_info.get("language", "Unknown")
+    license_info = repo_info.get("license", "No license")
+
+    # Group basic repository details under "General Info"
+    general_info = "\n".join([
+        f"**Primary Language:** `{language}`",
+        f"**License:** `{license_info}`",
+        f"**Size:** `{size}`",
+        f"**Created:** `{created_date}`",
+        f"**Updated:** `{updated_date}`",
+    ])
+
+    stars = repo_info.get("stars", 0)
+    forks = repo_info.get("forks", 0)
+    watchers = repo_info.get("watchers", 0)
+    open_issues = repo_info.get("open_issues", 0)
+
+    # Group engagement metrics under "Community Stats"
+    community_stats = "\n".join([
+        f"**Owner:** [{owner}](https://github.com/{owner})",
+        f"**Stars:** `{stars:,}`",
+        f"**Forks:** `{forks:,}`",
+        f"**Watchers:** `{watchers:,}`",
+        f"**Open Issues:** `{open_issues:,}`",
+    ])
+
+    # Add two inline fields to the embed with the new headings
+    embed.add_field(
+        name="📁 Repo Info",
+        value=general_info,
+        inline=True
+    )
+    embed.add_field(
+        name="⭐ Community Stats",
+        value=community_stats,
+        inline=True
+    )
+            
+    # Red flags
+    red_flags = code_review.get("redFlags", [])
+    if red_flags:
+        flags_formatted = "\n".join(f"📉 {flag}" for flag in red_flags[:3])
+        embed.add_field(
+            name="🚩 Security Concerns",
+            value=flags_formatted if flags_formatted else "No significant issues detected",
+            inline=False
+        )
+    else:
+        embed.add_field(
+            name="🚩 Security Concerns",
+            value="No significant issues detected",
+            inline=False
+        )
+    
+    def format_with_markers(items):
+        """
+        Format items list with positive/negative markers
+        
+        Args:
+            items: List of items to format
+            
+        Returns:
+            Formatted text with appropriate emojis and 
+            a boolean indicating if a marker was found
+        """
+        improvement_markers = ["Areas needing improvement:", "Areas for improvement:", "Missing:"]
+        marker_index = -1
+        has_marker = False
+        
+        for marker in improvement_markers:
+            if marker in items:
+                marker_index = items.index(marker)
+                has_marker = True
+                break
+        
+        formatted_text = ""
+        if has_marker:
+            # Format with positive/negative markers
+            positive_items = items[:marker_index]
+            negative_items = items[marker_index+1:]  # Skip the marker itself
+            
+            # Add up to 2 positive items
+            if positive_items:
+                formatted_text += "\n".join(f"✅ {item}" for item in positive_items[:2])
+            
+            # Add up to 2 negative items
+            if negative_items:
+                if formatted_text:
+                    formatted_text += "\n"
+                formatted_text += "\n".join(f"⚠️ {item}" for item in negative_items[:2])
+        
+        return formatted_text, has_marker
+
+    # Process insights section
+    reasoning = ranking.get("reasoning", [])
+    if reasoning:
+        # Use the helper method for formatting
+        insights_text, has_marker = format_with_markers(reasoning)
+        
+        # If no marker was found, use neutral emoji formatting
+        if not has_marker:
+            insights_text = "\n".join(f"📍 {item}" for item in reasoning[:4])
+        
+        embed.add_field(
+            name="⚡ Key Insights",
+            value=insights_text if insights_text else "No insights available",
+            inline=False
+        )
+
+    # Process AI implementation section
+    if ai_analysis.get("hasAI", False):
+        ai_components = ai_analysis.get("components", [])
+        ai_concerns = ai_analysis.get("concerns", [])
+        
+        if ai_components:
+            # Use the helper method for formatting
+            ai_text, has_marker = format_with_markers(ai_components)
+            
+            # If no marker was found, use neutral emoji formatting
+            if not has_marker:
+                ai_text = "\n".join(f"🔹 {item}" for item in ai_components[:4])
+            
+            # Add concerns with neutral emoji
+            if ai_concerns:
+                if ai_text:
+                    ai_text += "\n"
+                ai_text += "\n".join(f"🔹 {concern}" for concern in ai_concerns[:2])
+            
+            embed.add_field(
+                name="🤖 AI Implementation",
+                value=ai_text if ai_text else "No AI implementation details available",
+                inline=False
+            )
+    
+    # Add misleading level warning if it exists and is not "None"
+    misleading_level = ai_analysis.get("misleadingLevel")
+    if misleading_level and misleading_level.lower() not in ["none", "n/a", ""]:
+        embed.add_field(
+            name="⚠️ Misleading Assessment",
+            value=f"**Level:** `{misleading_level}`",
+            inline=False
+        )
+    
+    # Overall Assessment (Expert Opinion)
+    overall_assessment = code_review.get("overallAssessment", "")
+    if overall_assessment:
+        embed.add_field(
+            name="🧠 Expert Opinion",
+            value=f"> {overall_assessment.replace('\\n', '\\n> ')}",
+            inline=False
+        )
+    
+    # Footer
+    embed.set_footer(
+        text=f"Requested by {interaction.user.display_name} • ⌛Analysis Time: {(datetime.now().timestamp() - start_time):.1f}s", 
+        icon_url=interaction.user.display_avatar.url
+    )
+    
+    return embed
+
+def create_website_embed(result, interaction, start_time):
     """Create a comprehensive embed for the website analysis result
     
     Args:

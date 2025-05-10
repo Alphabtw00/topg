@@ -47,7 +47,7 @@ async def check_username(member):
     if member.nick:  # Nickname (if set)
         names_to_check.append(member.nick)
     
-    logger.debug(f"Checking name variants for {member.id}: {[sanitize_for_logging(name) for name in names_to_check]}")
+    logger.debug(f"Checking name variants for {member.id}: {names_to_check}")
     
     # Check each name variant
     for name in names_to_check:
@@ -127,8 +127,7 @@ async def ban_user(bot, member, reason, delete_days=1):
         delete_days = max(0, min(7, delete_days))
         
         # Only log once with all necessary info
-        safe_display_name = sanitize_for_logging(member.display_name)
-        logger.warning(f"Banning user {member.id} | Username: {str(member)} | Display Name: {safe_display_name} | Reason: {reason} | Delete Messages: {delete_days} days")
+        logger.warning(f"Banning user {member.id} | Username: {str(member)} | Display Name: {member.display_name} | Reason: {reason} | Delete Messages: {delete_days} days")
         
         # Try to send DM to the user before banning
         try:
@@ -232,11 +231,3 @@ async def send_ban_log(bot, guild_id, user_info, reason):
     except Exception as e:
         logger.error(f"Failed to send ban log: {e}")
         return False
-
-def sanitize_for_logging(text):
-    """
-    Make text safe for logging by replacing non-ASCII characters
-    """
-    if text is None:
-        return "None"
-    return text.encode('ascii', 'replace').decode('ascii')

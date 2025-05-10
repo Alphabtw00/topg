@@ -11,7 +11,7 @@ from bot.error_handler import create_error_handler
 from urllib.parse import urlparse
 from utils.logger import get_logger
 from ui.views import WebsiteAnalysisView
-from ui.embeds import _create_website_embed
+from ui.embeds import create_website_embed
 import io 
 
 logger = get_logger()
@@ -61,7 +61,7 @@ class WebsiteChecker(commands.Cog):
                 )
             
             # Create embed for the result
-            embed = _create_website_embed(result, interaction, start_time)
+            embed = create_website_embed(result, interaction, start_time)
             
             # Create view with interactive buttons
             view = WebsiteAnalysisView(website_url, self.bot)

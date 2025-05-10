@@ -201,3 +201,15 @@ BAN_FUNNY_REASONS = [
 # Ban GIF URL
 BAN_GIF_URL = "https://i.imgur.com/sGySZT3.gif" 
 FIGHT_BACK_GIF_URL = "https://i.imgur.com/3fJo5ne.gif"
+
+
+# ==============================================
+# DexScreener Tracker Configuration
+# ==============================================
+# Tracking settings
+DEX_TRACKER_POLL_INTERVAL = 2  # seconds - Adjust as needed (1-5 seconds recommended)
+DEX_TRACKER_CHAINS = ["solana"]  # List of chain IDs to track
+
+# Cache settings
+DEX_TRACKER_CACHE_SIZE = 1000
+DEX_TRACKER_CACHE_TTL = 3600 *24  

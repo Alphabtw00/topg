@@ -48,7 +48,7 @@ class GithubChecker(commands.Cog):
             # Use the GitHub analyzer from the service provider
             result = await asyncio.wait_for(
                 self.bot.services.github_analyzer.analyze_repo(repo_url),
-                timeout=120  # 2 minutes timeout
+                timeout=300  # 2 minutes timeout
             )
             
             if not result:

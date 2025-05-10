@@ -27,7 +27,7 @@ _last_post_ids = {}  # account_id -> last_post_id (global)
 # Background Task Lock
 _task_lock = asyncio.Lock()
 
-async def initialize_and_start_tracking(bot):
+async def initialize_and_start_truth_tracking(bot):
     """Initialize and start Truth Social tracking"""
     try:
         logger.info("Initializing Truth Social tracking...")

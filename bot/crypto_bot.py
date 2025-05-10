@@ -14,8 +14,10 @@ from commands.github_checker import GithubChecker
 from commands.settings import SettingsCommands
 from commands.truth_commands import TruthCommands
 from commands.website_info import WebsiteChecker
+from commands.dex_tracker import DexTrackerCommands
 from commands.ban import BanCommand
-from handlers.truth_tracker import initialize_and_start_tracking
+from handlers.truth_tracker import initialize_and_start_truth_tracking
+from service.dex_tracker import initialize_and_start_dex_tracking
 from handlers.mysql_handler import setup_db_pool, close_db_pool
 from utils.formatters import relative_time
 from api.provider import ApiServiceProvider
@@ -98,7 +100,8 @@ class CryptoBot(commands.Bot):
         self.start_background_task(self.monitor_memory_usage(), "memory_monitor")
         self.start_background_task(self.heartbeat_monitor(), "heartbeat_monitor")
         self.start_background_task(self.periodic_metrics_report(), "metrics_report")
-        self.start_background_task(initialize_and_start_tracking(self), "truth_tracker_init")
+        self.start_background_task(initialize_and_start_truth_tracking(self), "truth_tracker_init")
+        self.start_background_task(initialize_and_start_dex_tracking(self), "dex_tracker_init")
         
         # Register commands
         await self.add_cog(Health(self))
@@ -107,6 +110,7 @@ class CryptoBot(commands.Bot):
         await self.add_cog(WebsiteChecker(self))
         await self.add_cog(BanCommand(self))
         await self.add_cog(TruthCommands(self))
+        await self.add_cog(DexTrackerCommands(self))
 
         from bot.events import setup_events  # Adjust import based on your project structure
         await setup_events(self)
@@ -166,7 +170,14 @@ class CryptoBot(commands.Bot):
                     logger.info(f"Background task '{task_name}' canceled")
             except Exception as e:
                 logger.error(f"Error canceling background task '{task_name}': {e}")
-    
+                
+        try:
+            from service.dex_tracker import stop_tracking
+            await stop_tracking()
+            logger.info("DexScreener tracking stopped")
+        except Exception as e:
+            logger.error(f"Error stopping DexScreener tracking: {e}")
+
         try:
             await close_db_pool()
             logger.info("Database connection pool closed successfully")

@@ -64,13 +64,16 @@ class GitHubAnalyzer:
         
         try:
             # Fetch repository information
-            repo_details = await self._fetch_repo_info(owner, repo)
+            repo_info_task = self._fetch_repo_info(owner, repo)
+            repo_contents_task = self._fetch_repo_contents(owner, repo)
+
+            # Await both tasks
+            repo_details, repo_contents = await asyncio.gather(repo_info_task, repo_contents_task)
+
+            # Check if repo_details failed
             if not repo_details:
                 logger.warning(f"Failed to fetch repository info for {owner}/{repo}")
                 return None
-            
-            # Fetch repository contents
-            repo_contents = await self._fetch_repo_contents(owner, repo)
             
             # Analyze repository code
             code_analysis = await self._analyze_code(repo_details, repo_contents)
@@ -94,8 +97,6 @@ class GitHubAnalyzer:
             # Determine final verdict
             verdict = calculate_verdict(scores, trust_result, code_review)
             
-            # Generate summary
-            summary = await self._generate_summary(code_review, scores)
             
             # Create full analysis result
             analysis_result = {
@@ -104,7 +105,6 @@ class GitHubAnalyzer:
                 "technicalScore": technical_score,
                 "detailedScores": scores["detailedScores"],
                 "codeReview": code_review,
-                "summary": summary,
                 "verdict": verdict
             }
             
@@ -179,80 +179,114 @@ class GitHubAnalyzer:
             logger.error(f"Error fetching repo info for {owner}/{repo}: {e}")
             return None
     
-    async def _fetch_repo_contents(self, owner: str, repo: str, path: str = "") -> List[Dict[str, Any]]:
-        """
-        Fetch repository contents recursively
+    async def _fetch_repo_contents(self, owner: str, repo: str):
+        """Fetch repository contents efficiently for all repository sizes"""
         
-        Args:
-            owner: Repository owner
-            repo: Repository name
-            path: Path within the repository
-            
-        Returns:
-            list: Repository contents
-        """
-        url = f"https://api.github.com/repos/{owner}/{repo}/contents/{path}"
-        headers = {
-            "Authorization": f"token {GITHUB_TOKEN}",
-            "Accept": "application/vnd.github.v3+json"
-        }
-        
-        contents = []
-        fetched_files = 0
+        # First, get the default branch from repo info API
+        repo_api_url = f"https://api.github.com/repos/{owner}/{repo}"
+        headers = {"Authorization": f"token {GITHUB_TOKEN}"}
         
         try:
-            data = await self.client.get(
-                url, 
-                ApiEndpoint.GITHUB,
-                headers=headers
+            # Get repo info to check default branch
+            repo_data = await self.client.get(repo_api_url, ApiEndpoint.GITHUB, headers=headers)
+            default_branch = repo_data.get("default_branch", "main")
+            
+            # Use Git Tree API to get all files in one request (MAJOR performance boost)
+            tree_url = f"https://api.github.com/repos/{owner}/{repo}/git/trees/{default_branch}?recursive=1"
+            tree_data = await self.client.get(tree_url, ApiEndpoint.GITHUB, headers=headers)
+            
+            if not tree_data or "tree" not in tree_data:
+                logger.warning(f"Tree API failed for {owner}/{repo}")
+                return []
+                
+            # Filter for code files we're interested in
+            code_files = []
+            for item in tree_data["tree"]:
+                if item["type"] == "blob":  # It's a file
+                    path = item.get("path", "")
+                    
+                    # Skip unwanted files/dirs
+                    if any(excluded in path.lower() for excluded in [
+                        'node_modules/', '.git/', 'dist/', 'build/', '.venv/', 'venv/',
+                        '.jpg', '.png', '.gif', '.pdf', '.zip', '.exe', '.dll', '.so', '.min.js',
+                        '.lock', '.map', '.md5', '.woff', '.woff2', '.ttf', '.eot'
+                    ]):
+                        continue
+                        
+                    # Check extensions
+                    ext = path.split(".")[-1].lower() if "." in path else ""
+                    if ext in ['js', 'jsx', 'ts', 'tsx', 'py', 'sol', 'java', 'go', 'rs', 'c', 'cpp', 'php']:
+                        code_files.append(item)
+            
+            # Smart file sorting for all repository types
+            def file_sort_key(item):
+                path = item.get("path", "").lower()
+                file_name = path.split('/')[-1]
+                
+                # 1. Essential project files
+                essential_files = ['readme.md', 'package.json', 'setup.py', 'cargo.toml', 
+                                'gemfile', 'requirements.txt', 'compose.yaml', 'dockerfile']
+                if file_name.lower() in essential_files:
+                    return 0
+                    
+                # 2. Main entry points
+                main_files = ['index.js', 'main.py', 'app.js', 'app.py', 'server.js', 
+                            'main.go', 'main.rs', 'main.c', 'main.cpp', 'Main.java']
+                if file_name in main_files:
+                    return 1
+                    
+                # 3. Root-level important files
+                if '/' not in path:
+                    return 2
+                    
+                # 4. Core source files (usually in src/lib/core directories)
+                if any(f'/{dir}/' in f'/{path}/' for dir in ['src', 'lib', 'core', 'app']):
+                    return 3
+                    
+                # 5. Config files (usually important)
+                config_files = ['config', 'settings', '.env.example']
+                if any(config in file_name for config in config_files):
+                    return 4
+                    
+                # 6. Everything else
+                return 5
+                    
+            code_files.sort(key=file_sort_key)
+                    
+            # Limit to max files
+            selected_files = code_files[:GITHUB_MAX_FILES_TO_FETCH]
+            
+            # Fetch file contents in parallel with a small concurrency limit to avoid rate limiting
+            semaphore = asyncio.Semaphore(10)  # Max 5 concurrent requests
+            
+            async def fetch_file(file_path):
+                async with semaphore:  # Limit concurrent requests
+                    url = f"https://api.github.com/repos/{owner}/{repo}/contents/{file_path}"
+                    content = await self._fetch_file_content(url)
+                    return {
+                        "name": file_path.split("/")[-1],
+                        "path": file_path,
+                        "type": "file",
+                        "content": content,
+                        "extension": get_file_extension(file_path)
+                    } if content else None
+            
+            # Gather all file content requests in parallel
+            contents = await asyncio.gather(
+                *[fetch_file(item["path"]) for item in selected_files]
             )
             
-            if not data or not isinstance(data, list):
-                return contents
-                
-            for item in data:
-                item_type = item.get("type")
-                item_path = item.get("path", "")
-                
-                # Skip large binary files, node_modules, etc.
-                if any(excluded in item_path.lower() for excluded in [
-                    'node_modules', '.git', 'dist', 'build', '.jpg', '.png', '.gif',
-                    '.pdf', '.zip', '.exe', '.dll', '.so', '.min.js'
-                ]):
-                    continue
-                
-                if item_type == "file":
-                    # Only fetch code files we're interested in
-                    ext = item_path.split(".")[-1].lower() if "." in item_path else ""
-                    if ext in ['js', 'jsx', 'ts', 'tsx', 'py', 'sol', 'java', 'go', 'rs', 'c', 'cpp', 'php']:
-                        if fetched_files < GITHUB_MAX_FILES_TO_FETCH:
-                            file_content = await self._fetch_file_content(item.get("url", ""))
-                            if file_content:
-                                contents.append({
-                                    "name": item.get("name", ""),
-                                    "path": item_path,
-                                    "type": "file",
-                                    "content": file_content,
-                                    "extension": get_file_extension(item_path)  # Use the helper function
-                                })
-                                fetched_files += 1
-                
-                elif item_type == "dir":
-                    # Recursively fetch contents of subdirectories
-                    # But limit depth to avoid too many API calls
-                    if path.count('/') < 2:  # Limit directory depth
-                        sub_contents = await self._fetch_repo_contents(owner, repo, item_path)
-                        contents.extend(sub_contents)
-                        
-                # Check if we've fetched enough files
-                if fetched_files >= GITHUB_MAX_FILES_TO_FETCH:
-                    break
+            # Filter out None results
+            valid_contents = [c for c in contents if c]
             
-            return contents
-        
+            # Log success
+            logger.debug(f"Successfully fetched {len(valid_contents)} files from {owner}/{repo}")
+            
+            return valid_contents
+            
         except Exception as e:
-            logger.error(f"Error fetching repo contents for {owner}/{repo}/{path}: {e}")
-            return contents
+            logger.error(f"Error fetching repo contents for {owner}/{repo}: {e}")
+            return []
     
     async def _fetch_file_content(self, url: str) -> Optional[str]:
         """
@@ -309,7 +343,10 @@ class GitHubAnalyzer:
             for file in repo_contents
         ])
 
-        analysis_prompt = f"""# Analysis Categories
+        analysis_prompt = f"""# Project Summary
+Tell me what's most interesting and notable about this repository in 1-2 conversational sentences. Focus on unique features, technical achievements, or interesting implementation details. Be specific but natural in tone. Remember to highlight what makes this repo special or noteworthy from a technical perspective.
+
+# Analysis Categories
 
 ## Code Quality (Score: [0-25]/25)
 - Architecture patterns and design principles
@@ -437,7 +474,7 @@ Provide scores as "Score: X/25" format. Include specific code examples to suppor
             "messages": [
                 {
                     "role": "user",
-                    "content": f"You are a technical code reviewer. Analyze this repository and provide a detailed assessment. Start directly with the scores and analysis without any introductory text.\n\n{analysis_prompt}"
+                    "content": f"You are a technical code reviewer. Analyze this repository and provide a detailed assessment. Start directly with the Project Summary, followed by the scores and analysis without any introductory text.\n\n{analysis_prompt}"
                 }
             ]
         }
@@ -492,48 +529,6 @@ Provide scores as "Score: X/25" format. Include specific code examples to suppor
         # If we get here, all retries failed
         logger.error("All retry attempts failed for code analysis")
         return None
-    
-    async def _generate_summary(self, code_review: Dict[str, Any], scores: Dict[str, Any]) -> str:
-        """
-        Generate a summary of the repository analysis
-        
-        Args:
-            code_review: Code review data
-            scores: Score data
-            
-        Returns:
-            str: Summary text
-        """
-        technical_score = scores.get("technicalScore", 0)
-        
-        # Get quality assessments
-        quality_words = {
-            (0, 40): "poor",
-            (40, 60): "basic",
-            (60, 75): "good",
-            (75, 101): "excellent"
-        }
-        
-        quality = next((desc for (low, high), desc in quality_words.items() 
-                     if low <= technical_score < high), "unknown")
-        
-        # Count issues
-        red_flags = len(code_review.get("redFlags", []))
-        larp_indicators = len(code_review.get("larpIndicators", []))
-        
-        # Generate summary
-        if red_flags == 0 and larp_indicators == 0:
-            risk_assessment = "No significant issues were detected."
-        elif red_flags > 0 and larp_indicators > 0:
-            risk_assessment = f"Analysis identified {red_flags} security concerns and {larp_indicators} potential misrepresentation issues."
-        elif red_flags > 0:
-            risk_assessment = f"Analysis identified {red_flags} security concerns."
-        else:
-            risk_assessment = f"Analysis identified {larp_indicators} potential misrepresentation issues."
-            
-        summary = f"This repository demonstrates {quality} technical implementation. {risk_assessment} The code architecture is {quality} with appropriate organization and error handling."
-        
-        return summary
     
     async def clear_from_cache(self, repo_url: str) -> bool:
         """
