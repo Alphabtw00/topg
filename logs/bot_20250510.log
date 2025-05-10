@@ -263,3 +263,55 @@ This is a sophisticated Discord bot for crypto tracking and analysis, featuring 
 2025-05-10 10:53:52,163 - INFO - DexScreener tracking stopped
 2025-05-10 10:53:52,164 - INFO - Database connection pool closed successfully
 2025-05-10 10:53:52,170 - INFO - Bot stopped by user
+2025-05-10 11:11:55,504 - INFO - Starting bot...
+2025-05-10 11:11:56,738 - INFO - API client initialized
+2025-05-10 11:11:56,739 - INFO - WebsiteAnalyzer initialized with concurrency limit of 15
+2025-05-10 11:11:56,739 - INFO - Loaded 4 Truth Social tokens from file
+2025-05-10 11:11:56,739 - INFO - Successfully authenticated 4/4 Truth Social accounts
+2025-05-10 11:11:56,740 - INFO - Saved 4 Truth Social tokens to file
+2025-05-10 11:11:56,740 - INFO - All API services initialized
+2025-05-10 11:11:56,740 - INFO - Services provider initialized
+2025-05-10 11:11:56,777 - INFO - Database connection pool established: size=1-10
+2025-05-10 11:11:56,778 - INFO - Database connection successful
+2025-05-10 11:11:56,791 - INFO - WebsiteChecker cog initialized
+2025-05-10 11:11:56,791 - INFO - Proxy rotator initialized with http protocol
+2025-05-10 11:11:56,792 - INFO - Proxy rotator initialized for Truth commands
+2025-05-10 11:11:56,812 - INFO - Discord Events Registered | Username Ban Server ID: 1313758082974879774
+2025-05-10 11:11:56,813 - INFO - Memory monitor started (threshold: 300MB, interval: 3600s)
+2025-05-10 11:11:56,814 - INFO - Initializing Truth Social tracking...
+2025-05-10 11:11:56,814 - INFO - Initializing DexScreener live tracker...
+2025-05-10 11:11:56,822 - INFO - Built DexScreener tracking cache: 1 guilds with channels
+2025-05-10 11:11:56,823 - INFO - Found 1 guilds with DexScreener tracking enabled
+2025-05-10 11:11:56,823 - INFO - DexScreener tracking started
+2025-05-10 11:11:56,823 - INFO - DexScreener tracking initialization complete
+2025-05-10 11:11:56,824 - INFO - Fetching initial tokens to establish tracking baseline
+2025-05-10 11:11:56,829 - INFO - Proxy rotator initialized with http protocol
+2025-05-10 11:11:56,829 - INFO - Proxy rotator initialized for Truth Social tracking
+2025-05-10 11:11:56,833 - INFO - Ultra-optimized cache built: 1 accounts, 1 accounts with channels, 2 total channel mappings
+2025-05-10 11:11:56,834 - INFO - Found 1 guilds with Truth Social tracking enabled
+2025-05-10 11:11:56,834 - INFO - Truth Social tracking started
+2025-05-10 11:11:56,835 - INFO - Truth Social tracking initialization complete
+2025-05-10 11:11:57,306 - INFO - Initialized DexScreener tracker with latest token: 3uwqmHBLUVoWjCeVDeNnWzYNinUi321TyH8P9qaepump on solana
+2025-05-10 11:11:57,343 - INFO - Successfully synced 7 command(s)
+2025-05-10 11:12:01,347 - INFO - Logged in as TOPG#4967 (ID: 1340722186100408340)
+2025-05-10 11:12:01,347 - INFO - Bot connected to 4 server(s)
+2025-05-10 11:12:01,348 - INFO - Echo bot message forwarding: 1 bots from 9 channels to 1 channels
+2025-05-10 11:12:01,348 - INFO - Dani message forwarding: 1 users from 2 channels to 1 channels
+2025-05-10 11:12:11,387 - INFO - Channel ??commands (ID: 1315391701589823571) added by alphabtw_ in HabibiFNF | Mode: Channel-specific
+2025-05-10 11:17:55,098 - INFO - Bot is shutting down...
+2025-05-10 11:17:55,098 - INFO - API client closed
+2025-05-10 11:17:55,098 - INFO - Truth Social tracking task cancelled
+2025-05-10 11:17:55,099 - INFO - Truth Social tracking loop cancelled
+2025-05-10 11:17:55,099 - INFO - Truth Social tracking stopped
+2025-05-10 11:17:55,099 - INFO - Truth Social tracking stopped
+2025-05-10 11:17:55,099 - INFO - Services closed successfully
+2025-05-10 11:17:55,099 - INFO - Background task 'metrics_cleanup' canceled
+2025-05-10 11:17:55,099 - INFO - Background task 'memory_monitor' canceled
+2025-05-10 11:17:55,099 - INFO - Background task 'heartbeat_monitor' canceled
+2025-05-10 11:17:55,100 - INFO - Background task 'metrics_report' canceled
+2025-05-10 11:17:55,100 - INFO - DexScreener tracking task cancelled
+2025-05-10 11:17:55,100 - INFO - DexScreener tracking loop cancelled
+2025-05-10 11:17:55,100 - INFO - DexScreener tracking stopped
+2025-05-10 11:17:55,100 - INFO - DexScreener tracking stopped
+2025-05-10 11:17:55,100 - INFO - Database connection pool closed successfully
+2025-05-10 11:17:55,102 - INFO - Bot stopped by user

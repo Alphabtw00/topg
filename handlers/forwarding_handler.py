@@ -6,6 +6,8 @@ from utils.logger import get_logger
 from discord import AllowedMentions
 from handlers.message_processor import process_message_with_timeout
 from functools import lru_cache
+from utils.formatters import safe_text
+
 
 logger = get_logger()
 
@@ -76,7 +78,7 @@ async def forward_bot_messages(message, bot):
         return
     
     # Prepare data once before sending to multiple channels
-    source_channel_name = message.channel.name if hasattr(message.channel, 'name') else f"Channel {message.channel.id}"
+    source_channel_name = safe_text(message.channel.name if hasattr(message.channel, 'name') else f"Channel {message.channel.id}")
     embed_color = BOT_CHANNEL_COLORS.get(message.channel.id, 0x3498db)
     
     # Prepare embeds ahead of time
@@ -226,7 +228,7 @@ async def forward_user_messages(message, bot):
     
     # Skip if nothing to send
     if not base_webhook_params.get('content') and not base_webhook_params.get('embeds') and not base_webhook_params.get('files'):
-        logger.info(f"Skipping empty message from {message.author.display_name}")
+        logger.info(f"Skipping empty message from {safe_text(message.author.display_name)}")
         return
     
     # Forward to all output channels concurrently

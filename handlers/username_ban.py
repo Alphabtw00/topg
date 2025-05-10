@@ -13,6 +13,7 @@ from config import (
     BAN_FUNNY_REASONS,
     BAN_GIF_URL
 )
+from utils.formatters import safe_text
 import random
 
 logger = get_logger()
@@ -47,7 +48,7 @@ async def check_username(member):
     if member.nick:  # Nickname (if set)
         names_to_check.append(member.nick)
     
-    logger.debug(f"Checking name variants for {member.id}: {names_to_check}")
+    logger.debug(f"Checking name variants for {member.id}: {[safe_text(name) for name in names_to_check]}")
     
     # Check each name variant
     for name in names_to_check:
@@ -127,7 +128,7 @@ async def ban_user(bot, member, reason, delete_days=1):
         delete_days = max(0, min(7, delete_days))
         
         # Only log once with all necessary info
-        logger.warning(f"Banning user {member.id} | Username: {str(member)} | Display Name: {member.display_name} | Reason: {reason} | Delete Messages: {delete_days} days")
+        logger.warning(f"Banning user {member.id} | Username: {safe_text(str(member))} | Display Name: {safe_text(member.display_name)} | Reason: {reason} | Delete Messages: {delete_days} days")
         
         # Try to send DM to the user before banning
         try:
