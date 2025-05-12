@@ -36,7 +36,7 @@ ADMIN_USER_IDS = {int(id.strip()) for id in os.getenv("ADMIN_USER_IDS", "").spli
 FORWARD_GUILD_IDS = {int(id.strip()) for id in os.getenv("FORWARD_GUILD_IDS", "").split(",") if id.strip().isdigit()}
 PROCESS_CRYPTO_IN_FORWARDS = os.getenv("PROCESS_CRYPTO_IN_FORWARDS", "True").lower() in ("true", "1", "yes")
 
-# Bot message forwarding
+# Echo Bot message forwarding
 BOT_INPUT_CHANNEL_IDS = {int(id.strip()) for id in os.getenv("BOT_INPUT_CHANNEL_IDS", "").split(",") if id.strip().isdigit()}
 BOT_OUTPUT_CHANNEL_IDS = {int(id.strip()) for id in os.getenv("BOT_OUTPUT_CHANNEL_IDS", "").split(",") if id.strip().isdigit()}
 FORWARD_BOT_IDS = {int(id.strip()) for id in os.getenv("FORWARD_BOT_IDS", "").split(",") if id.strip().isdigit()}
@@ -46,6 +46,10 @@ BOT_CHANNEL_COLORS = parse_channel_colors(os.getenv("BOT_EMBED_COLOR", "0x3498db
 USER_INPUT_CHANNEL_IDS = {int(id.strip()) for id in os.getenv("USER_INPUT_CHANNEL_IDS", "").split(",") if id.strip().isdigit()}
 USER_OUTPUT_CHANNEL_IDS = {int(id.strip()) for id in os.getenv("USER_OUTPUT_CHANNEL_IDS", "").split(",") if id.strip().isdigit()}
 FORWARD_USER_IDS = {int(id.strip()) for id in os.getenv("FORWARD_USER_IDS", "").split(",") if id.strip().isdigit()}
+
+# Token Lock monitoring
+TOKEN_LOCK_INPUT_CHANNEL_IDS = {int(id.strip()) for id in os.getenv("TOKEN_LOCK_INPUT_CHANNEL_IDS", "").split(",") if id.strip().isdigit()}
+TOKEN_LOCK_BOT_IDS = {int(id.strip()) for id in os.getenv("TOKEN_LOCK_BOT_IDS", "").split(",") if id.strip().isdigit()}
 
 # ========================================================================================================================================================================================
 # API Keys & External Services
@@ -212,4 +216,4 @@ DEX_TRACKER_CHAINS = ["solana"]  # List of chain IDs to track
 
 # Cache settings
 DEX_TRACKER_CACHE_SIZE = 1000
-DEX_TRACKER_CACHE_TTL = 3600 *24  
+DEX_TRACKER_CACHE_TTL = 3600 *24

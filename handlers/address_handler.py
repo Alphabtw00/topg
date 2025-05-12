@@ -142,6 +142,9 @@ async def process_token_entry(message: discord.Message, entry: dict, address: st
     """
     start_time = datetime.now().timestamp()
     try:
+        # Extract the guild ID
+        guild_id = message.guild.id if message.guild else 0
+        
         # Extract data once
         current_price = float(entry.get("priceUsd", 0))
         current_fdv = float(entry.get("fdv", 0))
@@ -165,7 +168,8 @@ async def process_token_entry(message: discord.Message, entry: dict, address: st
         tasks = {}
         
         tasks["order_status"] = asyncio.create_task(bot.services.dexscreener.get_order_status(address))
-        tasks["first_call"] = asyncio.create_task(get_first_call(address))
+        # Now get first call data for specific guild
+        tasks["first_call"] = asyncio.create_task(get_first_call(address, guild_id))
         
         if address:
             tasks["ath"] = asyncio.create_task(
@@ -198,15 +202,26 @@ async def process_token_entry(message: discord.Message, entry: dict, address: st
             try:
                 first_call_data = tasks["first_call"].result()
                 if not first_call_data or isinstance(first_call_data, Exception):
+                    # Store with guild_id, channel_id, and message_id
                     user_id = message.author.id
                     user_name = message.author.display_name
-                    await store_first_call(address, user_id, user_name, current_fdv, current_price)
+                    channel_id = message.channel.id
+                    message_id = str(message.id)
+                    
+                    await store_first_call(
+                        address, guild_id, user_id, user_name, 
+                        current_fdv, current_price, channel_id, message_id
+                    )
+                    
                     first_call_data = {
                         'user_id': user_id,
                         'user_name': user_name,
                         'initial_fdv': current_fdv,
                         'initial_price': current_price,
                         'call_timestamp': datetime.now(),
+                        'guild_id': guild_id,
+                        'channel_id': channel_id,
+                        'message_id': message_id,
                         'is_first_call': True
                     }
                 

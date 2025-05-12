@@ -14,6 +14,7 @@ from utils.formatters import (
     relative_time, get_color_from_change, score_bar, clean_html,
     format_metrics, proxy_url
 )
+from utils.helper import safe_add_field
 from utils.logger import get_logger
 
 
@@ -1099,14 +1100,6 @@ def create_truth_embed(post: Dict[str, Any]) -> discord.Embed:
             inline=False
         )
         
-        # 2. Stats of original post
-        reblog_metrics = format_metrics(reblog)
-        if reblog_metrics:
-            embed.add_field(
-                name="",
-                value=reblog_metrics,
-                inline=False
-            )
         
         # 3. Quoted content block
         quoted_text = f"> **{reblog_display_name}** "
@@ -1120,33 +1113,40 @@ def create_truth_embed(post: Dict[str, Any]) -> discord.Embed:
             lines = reblog_content.split('\n')
             quoted_text += "\n".join([f"> {line}" for line in lines])
         
+        reblog_metrics = format_metrics(reblog)
+        if reblog_metrics:
+            quoted_text += f"\n> {reblog_metrics}"
+        
         # Add quoted content
-        embed.add_field(
-            name="",
-            value=quoted_text,
-            inline=False
-        )
+        safe_add_field(embed, "", quoted_text, False)
         
         # 4. Handle media attachments from reblog
         reblog_media = reblog.get('media_attachments', [])
         if reblog_media:
-            # If more than one attachment, add the count first
-            if len(reblog_media) > 1:
-                embed.add_field(
-                    name="",
-                    value=f"> ⬇️ *+{len(reblog_media)-1} more quoted attachment(s)*",
-                    inline=False
-                )
-                
             # Display the first image/video
             media = reblog_media[0]
+            
+            # Prepare additional info text
+            additional_info = []
+            
+            # Add attachment count info if needed
+            if len(reblog_media) > 1:
+                additional_info.append(f"⬇️ *+{len(reblog_media)-1} more quoted attachment(s)*")
+            
+            # Handle media display based on type
             if media.get('type') == 'image':
                 embed.set_image(url=proxy_url(media.get('url', '')))
             elif media.get('type') == 'video' and media.get('preview_url'):
                 embed.set_image(url=proxy_url(media.get('preview_url', '')))
+                # Add video info with hyperlink to the actual video
+                video_url = media.get('url', '')
+                additional_info.append(f"⬇️📹 *Quoted post contains a [video]({video_url})*")
+            
+            # Add all additional info in a single field if we have any
+            if additional_info:
                 embed.add_field(
                     name="",
-                    value="> 📹 *Quoted post contains a video*",
+                    value="> " + "\n> ".join(additional_info),
                     inline=False
                 )
                 
@@ -1168,11 +1168,7 @@ def create_truth_embed(post: Dict[str, Any]) -> discord.Embed:
         
         # 2. Add main post content if any
         if content:
-            embed.add_field(
-                name="",
-                value=content,
-                inline=False
-            )
+            safe_add_field(embed, "", content, False)
         
         # 3. Add post metrics
         metrics = format_metrics(post)
@@ -1187,23 +1183,31 @@ def create_truth_embed(post: Dict[str, Any]) -> discord.Embed:
         has_main_media = False
         if media_attachments:
             has_main_media = True
-            # If more than one attachment, add the count
-            if len(media_attachments) > 1:
-                embed.add_field(
-                    name="",
-                    value=f"⬇️ *+{len(media_attachments)-1} more attachment(s)*",
-                    inline=False
-                )
-                
+            
             # Display the first image/video
             media = media_attachments[0]
+            
+            # Prepare additional info text
+            additional_info = []
+            
+            # Add attachment count info if needed
+            if len(media_attachments) > 1:
+                additional_info.append(f"⬇️ *+{len(media_attachments)-1} more attachment(s)*")
+            
+            # Handle media display based on type
             if media.get('type') == 'image':
                 embed.set_image(url=proxy_url(media.get('url', '')))
             elif media.get('type') == 'video' and media.get('preview_url'):
                 embed.set_image(url=proxy_url(media.get('preview_url', '')))
+                # Add video info with hyperlink to the actual video
+                video_url = media.get('url', '')
+                additional_info.append(f"📹 *This post contains a [video]({video_url})*")
+            
+            # Add all additional info in a single field if we have any
+            if additional_info:
                 embed.add_field(
                     name="",
-                    value="📹 *This post contains a video*",
+                    value="> " + "\n> ".join(additional_info),
                     inline=False
                 )
         
@@ -1218,41 +1222,36 @@ def create_truth_embed(post: Dict[str, Any]) -> discord.Embed:
         if quote_content:
             lines = quote_content.split('\n')
             quoted_text += "\n".join([f"> {line}" for line in lines])
-            
-        embed.add_field(
-            name="",
-            value=quoted_text,
-            inline=False
-        )
+
+        quote_metrics = format_metrics(quote)
+        if quote_metrics:
+            quoted_text += f"\n> {quote_metrics}" 
+
+        safe_add_field(embed, "", quoted_text, False)
         
         # 6. Handle quoted post media
         quote_media = quote.get('media_attachments', [])
-        if quote_media and not has_main_media:
-            # If quoted post has media and main post doesn't
-            if len(quote_media) > 1:
-                embed.add_field(
-                    name="",
-                    value=f"> ⬇️ *+{len(quote_media)-1} more quoted attachment(s)*",
-                    inline=False
-                )
-                
-            # Display the first quoted media
+        if quote_media:
             media = quote_media[0]
-            if media.get('type') == 'image':
-                embed.set_image(url=proxy_url(media.get('url', '')))
-            elif media.get('type') == 'video' and media.get('preview_url'):
-                embed.set_image(url=proxy_url(media.get('preview_url', '')))
-                embed.add_field(
-                    name="",
-                    value="> 📹 *Quoted post contains a video*",
-                    inline=False
-                )
-        elif quote_media and has_main_media:
-            # Just indicate media exists
-            media_type = "📷" if quote_media[0].get('type') == 'image' else "📹"
+            additional_info = []
+            if has_main_media:
+                if len(quote_media) > 1:
+                    additional_info.append(f"📷 *Quoted post has {len(quote_media)} attachments*")
+            else:
+                if len(quote_media) > 1:
+                    additional_info.append(f"⬇️ *+{len(quote_media)-1} more quoted attachment(s)*")
+
+                if media.get('type') == 'image':
+                    embed.set_image(url=proxy_url(media.get('url', '')))
+
+                elif media.get('type') == 'video' and media.get('preview_url'):
+                    embed.set_image(url=proxy_url(media.get('preview_url', '')))
+                    additional_info.append(f"⬇️📹 *Quoted [video]({video_url})*")
+        
+        if additional_info:
             embed.add_field(
                 name="",
-                value=f"> {media_type} *Quoted post contains media*",
+                value="> " + "\n> ".join(additional_info),
                 inline=False
             )
             
@@ -1271,11 +1270,7 @@ def create_truth_embed(post: Dict[str, Any]) -> discord.Embed:
         
         # 2. Add post content
         if content:
-            embed.add_field(
-                name="",
-                value=content,
-                inline=False
-            )
+            safe_add_field(embed, "", content, False)
         
         # 3. Add metrics
         metrics = format_metrics(post)
@@ -1288,23 +1283,25 @@ def create_truth_embed(post: Dict[str, Any]) -> discord.Embed:
         
         # 4. Handle media attachments
         if media_attachments:
+            media = media_attachments[0]
+            additional_info = []
+
             # If more than one attachment, add the count
             if len(media_attachments) > 1:
-                embed.add_field(
-                    name="",
-                    value=f"⬇️ *+{len(media_attachments)-1} more attachment(s)*",
-                    inline=False
-                )
-                
+                additional_info.append(f"⬇️ *+{len(media_attachments)-1} more attachment(s)*")
+
             # Display the first media
-            media = media_attachments[0]
             if media.get('type') == 'image':
                 embed.set_image(url=proxy_url(media.get('url', '')))
             elif media.get('type') == 'video' and media.get('preview_url'):
                 embed.set_image(url=proxy_url(media.get('preview_url', '')))
+                additional_info.append(f"⬇️📹 *This post contains a [video]({video_url})*")
+            
+            # Add all additional info in a single field if we have any
+            if additional_info:
                 embed.add_field(
                     name="",
-                    value="📹 *This post contains a video*",
+                    value="> " + "\n> ".join(additional_info),
                     inline=False
                 )
     
@@ -1318,11 +1315,7 @@ def create_truth_embed(post: Dict[str, Any]) -> discord.Embed:
         
         # 2. Add post content
         if content:
-            embed.add_field(
-                name="",
-                value=content,
-                inline=False
-            )
+            safe_add_field(embed, "", content, False)
         
         # 3. Add metrics
         metrics = format_metrics(post)
@@ -1335,26 +1328,28 @@ def create_truth_embed(post: Dict[str, Any]) -> discord.Embed:
         
         # 4. Handle media attachments
         if media_attachments:
+            media = media_attachments[0]
+            additional_info = []
+
             # If more than one attachment, add the count
             if len(media_attachments) > 1:
-                embed.add_field(
-                    name="",
-                    value=f"⬇️ *+{len(media_attachments)-1} more attachment(s)*",
-                    inline=False
-                )
-                
+                additional_info.append(f"⬇️ *+{len(media_attachments)-1} more attachment(s)*")
+
             # Display the first media
-            media = media_attachments[0]
             if media.get('type') == 'image':
                 embed.set_image(url=proxy_url(media.get('url', '')))
             elif media.get('type') == 'video' and media.get('preview_url'):
                 embed.set_image(url=proxy_url(media.get('preview_url', '')))
+                additional_info.append(f"⬇️📹 *This post contains a [video]({video_url})*")
+            
+            # Add all additional info in a single field if we have any
+            if additional_info:
                 embed.add_field(
                     name="",
-                    value="📹 *This post contains a video*",
+                    value="> " + "\n> ".join(additional_info),
                     inline=False
                 )
-    
+
     # Set footer with Truth Social branding
     embed.set_footer(
         text="Truth Social Tracker",

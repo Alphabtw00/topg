@@ -347,6 +347,8 @@ async def broadcast_posts(bot, account_id, posts, new_last_id):
         for post in reversed(posts):
             # Create embed once
             embed = create_truth_embed(post)
+            image_url = embed.image.url if embed.image else "No image set"
+            print(f"Post ID {post.get('id')} image URL: {image_url}")
             
             # Send to all channels concurrently
             channel_tasks = []

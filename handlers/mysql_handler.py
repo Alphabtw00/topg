@@ -73,20 +73,79 @@ async def setup_db_pool():
                         CREATE TABLE IF NOT EXISTS token_first_calls (
                             id INT AUTO_INCREMENT PRIMARY KEY,
                             token_address VARCHAR(64) NOT NULL,
+                            guild_id BIGINT NOT NULL,
                             user_id BIGINT NOT NULL,
                             user_name VARCHAR(255) NOT NULL,
                             initial_fdv DECIMAL(36, 18) NOT NULL,
                             initial_price DECIMAL(65, 30) NOT NULL,
+                            channel_id BIGINT NULL,
+                            message_id VARCHAR(64) NULL,
                             call_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-                            UNIQUE KEY unique_token (token_address),
+                            UNIQUE KEY unique_token_guild (token_address, guild_id),
                             INDEX idx_user_id (user_id),
+                            INDEX idx_guild_id (guild_id),
                             INDEX idx_call_timestamp (call_timestamp)
                         )
                     ''')
                     logger.info("Created token_first_calls table with optimized indexes")
                 else:
-                    # Check for and add missing indexes
+                    # Check for and add missing columns and indexes
                     try:
+                        # Check if guild_id column exists
+                        await cursor.execute('''
+                            SELECT COUNT(*) 
+                            FROM information_schema.columns 
+                            WHERE table_schema = DATABASE() 
+                            AND table_name = 'token_first_calls' 
+                            AND column_name = 'guild_id'
+                        ''')
+                        has_guild_column = await cursor.fetchone()
+                        
+                        if has_guild_column and has_guild_column[0] == 0:
+                            # Add guild_id column
+                            await cursor.execute('ALTER TABLE token_first_calls ADD COLUMN guild_id BIGINT NOT NULL DEFAULT 0')
+                            logger.info("Added guild_id column to token_first_calls")
+                            
+                            # Add index for guild_id
+                            await cursor.execute('ALTER TABLE token_first_calls ADD INDEX idx_guild_id (guild_id)')
+                            logger.info("Added guild_id index to token_first_calls")
+                            
+                            # Add composite unique key
+                            await cursor.execute('ALTER TABLE token_first_calls DROP INDEX unique_token')
+                            await cursor.execute('ALTER TABLE token_first_calls ADD UNIQUE KEY unique_token_guild (token_address, guild_id)')
+                            logger.info("Modified unique key to include guild_id in token_first_calls")
+                        
+                        # Check if channel_id column exists
+                        await cursor.execute('''
+                            SELECT COUNT(*) 
+                            FROM information_schema.columns 
+                            WHERE table_schema = DATABASE() 
+                            AND table_name = 'token_first_calls' 
+                            AND column_name = 'channel_id'
+                        ''')
+                        has_channel_column = await cursor.fetchone()
+                        
+                        if has_channel_column and has_channel_column[0] == 0:
+                            # Add channel_id column
+                            await cursor.execute('ALTER TABLE token_first_calls ADD COLUMN channel_id BIGINT NULL')
+                            logger.info("Added channel_id column to token_first_calls")
+                        
+                        # Check if message_id column exists
+                        await cursor.execute('''
+                            SELECT COUNT(*) 
+                            FROM information_schema.columns 
+                            WHERE table_schema = DATABASE() 
+                            AND table_name = 'token_first_calls' 
+                            AND column_name = 'message_id'
+                        ''')
+                        has_message_column = await cursor.fetchone()
+                        
+                        if has_message_column and has_message_column[0] == 0:
+                            # Add message_id column
+                            await cursor.execute('ALTER TABLE token_first_calls ADD COLUMN message_id VARCHAR(64) NULL')
+                            logger.info("Added message_id column to token_first_calls")
+                            
+                        # Check for user_id index
                         await cursor.execute('''
                             SELECT COUNT(*) 
                             FROM information_schema.statistics 
@@ -100,8 +159,6 @@ async def setup_db_pool():
                             await cursor.execute('ALTER TABLE token_first_calls ADD INDEX idx_user_id (user_id)')
                             logger.info("Added missing user_id index to token_first_calls")
                             
-                        # Add more index checks as needed
-                        
                         # Update column sizes if needed
                         await cursor.execute('''
                             ALTER TABLE token_first_calls 
@@ -218,16 +275,19 @@ async def fetch_all(query, params=None):
         logger.debug(f"Query: {query}, Params: {params}")
         return []
 
-async def store_first_call(token_address, user_id, user_name, initial_fdv, initial_price):
+async def store_first_call(token_address, guild_id, user_id, user_name, initial_fdv, initial_price, channel_id=None, message_id=None):
     """
-    Store information about the first call of a token
+    Store information about the first call of a token in a specific server
     
     Args:
         token_address: The token contract address
+        guild_id: Discord server ID
         user_id: Discord user ID who first called the token
         user_name: Discord username who first called the token
         initial_fdv: Initial fully diluted value
         initial_price: Initial token price
+        channel_id: Discord channel ID where token was called (optional)
+        message_id: Discord message ID of the call (optional)
         
     Returns:
         bool: True if successful, False otherwise
@@ -254,10 +314,10 @@ async def store_first_call(token_address, user_id, user_name, initial_fdv, initi
                 await cursor.execute(
                     '''
                     INSERT IGNORE INTO token_first_calls 
-                    (token_address, user_id, user_name, initial_fdv, initial_price) 
-                    VALUES (%s, %s, %s, %s, %s)
+                    (token_address, guild_id, user_id, user_name, initial_fdv, initial_price, channel_id, message_id) 
+                    VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
                     ''',
-                    (token_address, user_id, user_name, initial_fdv, initial_price)
+                    (token_address, guild_id, user_id, user_name, initial_fdv, initial_price, channel_id, message_id)
                 )
                 
                 return cursor.rowcount > 0
@@ -265,12 +325,13 @@ async def store_first_call(token_address, user_id, user_name, initial_fdv, initi
         logger.error(f"Database error storing first call: {e}")
         return False
 
-async def get_first_call(token_address):
+async def get_first_call(token_address, guild_id):
     """
-    Get information about the first call of a token
+    Get information about the first call of a token in a specific server
     
     Args:
         token_address: The token contract address
+        guild_id: Discord server ID
         
     Returns:
         dict: First call information or None if not found
@@ -286,9 +347,9 @@ async def get_first_call(token_address):
                 await cursor.execute(
                     '''
                     SELECT * FROM token_first_calls 
-                    WHERE token_address = %s
+                    WHERE token_address = %s AND guild_id = %s
                     ''',
-                    (token_address,)
+                    (token_address, guild_id)
                 )
                 
                 result = await cursor.fetchone()

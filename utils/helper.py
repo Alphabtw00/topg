@@ -67,3 +67,9 @@ def get_file_extension(filename: str) -> str:
     }
     
     return language_map.get(ext, ext)
+
+def safe_add_field(embed, name, content, inline=False):
+    # If content is too long, truncate with an indicator
+    if len(content) > 1024:
+        content = content[:1020] + "..."
+    embed.add_field(name=name, value=content, inline=False)

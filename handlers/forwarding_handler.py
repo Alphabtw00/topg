@@ -5,6 +5,7 @@ from datetime import datetime
 from utils.logger import get_logger
 from discord import AllowedMentions
 from handlers.message_processor import process_message_with_timeout
+from utils.validators import get_addresses_from_content
 from functools import lru_cache
 from utils.formatters import safe_text
 
@@ -33,6 +34,17 @@ def should_forward_user_message(channel_id, author_id):
     if USER_INPUT_CHANNEL_IDS and channel_id not in USER_INPUT_CHANNEL_IDS:
         return False
     if FORWARD_USER_IDS and author_id not in FORWARD_USER_IDS:
+        return False
+    return True
+
+@lru_cache(maxsize=128)
+def should_monitor_token_lock(channel_id, author_id):
+    """Fast filtering function for token lock messages"""
+    from config import TOKEN_LOCK_INPUT_CHANNEL_IDS, TOKEN_LOCK_BOT_IDS
+    
+    if TOKEN_LOCK_INPUT_CHANNEL_IDS and channel_id not in TOKEN_LOCK_INPUT_CHANNEL_IDS:
+        return False
+    if TOKEN_LOCK_BOT_IDS and author_id not in TOKEN_LOCK_BOT_IDS:
         return False
     return True
 
@@ -78,7 +90,7 @@ async def forward_bot_messages(message, bot):
         return
     
     # Prepare data once before sending to multiple channels
-    source_channel_name = safe_text(message.channel.name if hasattr(message.channel, 'name') else f"Channel {message.channel.id}")
+    source_channel_name = message.channel.name if hasattr(message.channel, 'name') else f"Channel {message.channel.id}"
     embed_color = BOT_CHANNEL_COLORS.get(message.channel.id, 0x3498db)
     
     # Prepare embeds ahead of time
@@ -285,6 +297,126 @@ async def forward_user_to_channel(channel_id, bot, webhook_params, process_crypt
         logger.error(f"Failed to forward user message to channel {channel_id}: {e}")
         return None
 
+async def process_token_lock_message(message, bot):
+    """
+    Process token lock messages and notify users who first called those tokens
+    
+    Args:
+        message: Discord message from token lock bot
+        bot: Bot instance
+    """
+    # Quick initial check
+    if not should_monitor_token_lock(message.channel.id, message.author.id):
+        return
+    
+    # Current guild ID
+    guild_id = message.guild.id if message.guild else 0
+    if not guild_id:
+        return
+    
+    # Extract token addresses from message content and embeds
+    addresses = set()
+    
+    # Check message content
+    if message.content:
+        addresses.update(get_addresses_from_content(message.content))
+    
+    # Check embeds
+    for embed in message.embeds:
+        # Check embed description
+        if embed.description:
+            addresses.update(get_addresses_from_content(embed.description))
+        
+        # Check embed fields
+        for field in embed.fields:
+            if field.value:
+                addresses.update(get_addresses_from_content(field.value))
+            if field.name:
+                addresses.update(get_addresses_from_content(field.name))
+        
+        # Check footer text
+        if embed.footer and embed.footer.text:
+            addresses.update(get_addresses_from_content(embed.footer.text))
+    
+    # Early return if no addresses found
+    if not addresses:
+        return
+    
+    # Process each address concurrently for maximum performance
+    tasks = []
+    for address in addresses:
+        tasks.append(notify_token_caller(address, guild_id, message, bot))
+    
+    if tasks:
+        await asyncio.gather(*tasks, return_exceptions=True)
+
+async def notify_token_caller(address, guild_id, lock_message, bot):
+    """
+    Notify a user who first called a token that has been locked
+    
+    Args:
+        address: Token address
+        guild_id: Guild ID
+        lock_message: Message containing lock info
+        bot: Bot instance
+    """
+    try:
+        # Get token info from database using standard fetch_one method
+        from handlers.mysql_handler import fetch_one
+        
+        # Use the generic query mechanism rather than a special-purpose function
+        query = """
+        SELECT user_id, channel_id, message_id 
+        FROM token_first_calls 
+        WHERE token_address = %s AND guild_id = %s
+        """
+        
+        result = await fetch_one(query, (address, guild_id))
+        if not result:
+            logger.debug(f"No first call found for token {address} in guild {guild_id}")
+            return
+        
+        # Extract info from the result tuple
+        user_id = result[0]
+        channel_id = result[1]
+        message_id = result[2]
+        
+        if not user_id or not channel_id:
+            return
+        
+        # Create notification message
+        notification = f"<@{user_id}> Your called token has been locked! 🔒"
+        
+        # Try to get original channel
+        channel = bot.get_channel(int(channel_id))
+        if not channel:
+            logger.warning(f"Channel {channel_id} not found for token lock notification")
+            return
+        
+        # Create copies of embeds WITHOUT the views/buttons
+        copied_embeds = []
+        for embed in lock_message.embeds:
+            # Create a clean copy without carrying over view components
+            new_embed = discord.Embed.from_dict(embed.to_dict())
+            copied_embeds.append(new_embed)
+        
+        # Try to reply to original message if available
+        if message_id:
+            try:
+                original_msg = await channel.fetch_message(int(message_id))
+                await original_msg.reply(content=notification, embeds=copied_embeds)
+                logger.info(f"Sent token lock notification as reply to original message for {address}")
+                return
+            except Exception as e:
+                logger.warning(f"Could not reply to original message: {e}")
+        else:
+            # Fallback: Send as new message
+            await channel.send(content=notification, embeds=copied_embeds)
+            logger.info(f"Sent token lock notification as new message for {address}")
+        
+    except Exception as e:
+        logger.error(f"Error sending token lock notification for {address}: {e}")
+
 async def forward_message(message, bot):
     """
     Main entry point for message forwarding - handles multiple forwarding configurations concurrently
@@ -294,10 +426,37 @@ async def forward_message(message, bot):
         bot: Bot instance
     """
     start_time = datetime.now().timestamp()
-    # Run both forwarding methods concurrently
-    await asyncio.gather(
-        forward_user_messages(message, bot),
-        forward_bot_messages(message, bot),
-        return_exceptions=True
-    )
+    
+    # Fast pre-filtering for all forwarding types
+    should_process = False
+    
+    # Check if message should be forwarded/processed for any type
+    if should_forward_user_message(message.channel.id, message.author.id):
+        should_process = True
+    elif should_forward_bot_message(message.channel.id, message.author.id):
+        should_process = True
+    elif should_monitor_token_lock(message.channel.id, message.author.id):
+        should_process = True
+    
+    # Early return if no forwarding needed
+    if not should_process:
+        return
+        
+    # Run all applicable forwarding methods concurrently
+    forwarding_tasks = []
+    
+    if should_forward_user_message(message.channel.id, message.author.id):
+        forwarding_tasks.append(forward_user_messages(message, bot))
+        
+    if should_forward_bot_message(message.channel.id, message.author.id):
+        forwarding_tasks.append(forward_bot_messages(message, bot))
+        
+    if should_monitor_token_lock(message.channel.id, message.author.id):
+        forwarding_tasks.append(process_token_lock_message(message, bot))
+    
+    # Execute all applicable tasks
+    if forwarding_tasks:
+        await asyncio.gather(*forwarding_tasks, return_exceptions=True)
+        
+    # Record processing metrics
     bot.record_metric(datetime.now().timestamp() - start_time)
