@@ -59,8 +59,8 @@ async def on_message(message: discord.Message):
     if not message.guild:
         return
 
-    if message.guild.id in FORWARD_GUILD_IDS:
-        asyncio.create_task(forward_message(message, _bot))
+    # if message.guild.id in FORWARD_GUILD_IDS:
+    #     asyncio.create_task(forward_message(message, _bot))
 
     # Skip further processing for bot messages
     if message.author.bot:
