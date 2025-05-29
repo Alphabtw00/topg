@@ -155,21 +155,22 @@ def create_progress_bar(percentage: float, max_bars: int = 10) -> str:
     )
     return f"{color} {'█' * filled}{'░' * (max_bars - filled)}"
 
-def score_bar(percentage: float) -> str:
+def score_bar(percentage: float, blocks: int = 5) -> str:
     """
-    Create a visual score bar for better readability
+    Create a visual score bar with configurable length
     
     Args:
         percentage: Value between 0 and 100
+        blocks: Number of total blocks (default: 5)
         
     Returns:
         str: Emoji-based score bar
     """
     if percentage <= 0:
-        return "⬜⬜⬜⬜⬜"
+        return "⬜" * blocks
     
     # Calculate filled and empty blocks
-    filled = min(5, max(0, round(percentage / 20)))
+    filled = min(blocks, max(0, round(percentage / (100 / blocks))))
     
     # Determine color based on score
     if percentage >= 80:
@@ -182,7 +183,7 @@ def score_bar(percentage: float) -> str:
         filled_char = "🟥"
     
     # Create bar with appropriate coloring
-    return filled_char * filled + "⬜" * (5 - filled)
+    return filled_char * filled + "⬜" * (blocks - filled)
 
 # Parse channel colors
 def parse_channel_colors(colors_str: str, bot_input_channel_ids: Set[int]) -> Dict[int, int]:
@@ -567,9 +568,9 @@ def proxy_url(url: str) -> str:
     """
     if not url:
         return ""
-        
+    encoded_url = urllib.parse.quote_plus(url)
     # Make sure URL is properly encoded
-    return f"https://images.weserv.nl/?url={urllib.parse.quote(url)}"
+    return f"https://images.weserv.nl/?url={encoded_url}"
 
 # Add this utility function for extreme cases where automatic handling isn't enough
 def safe_text(text):
@@ -637,3 +638,15 @@ def format_metrics(post: Dict[str, Any]) -> str:
         metrics.append(f"❤️ {format_value(faves_count)}")
     
     return " • ".join(metrics) if metrics else ""
+
+def format_category(category):
+    """Format bundle category for display"""
+    category_map = {
+        "new_wallet": "NEW WALLET",
+        "sniper": "SNIPER",
+        "regular": "REGULAR",
+        "copy_trader": "COPY TRADER",
+        "team_bundle": "TEAM BUNDLE"
+    }
+    
+    return category_map.get(category.lower(), category.upper())

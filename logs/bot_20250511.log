@@ -137,3 +137,37 @@ In embeds.0.fields.1.value: Must be 1024 or fewer in length.
 2025-05-12 04:48:54,359 - INFO - Starting periodic metrics cleanup task...
 2025-05-12 04:48:54,479 - INFO - Garbage collection completed successfully.
 2025-05-12 04:48:54,479 - INFO - Metrics cleanup completed in 0.12 seconds. Next cleanup at 2025-05-12 14:48:54
+2025-05-12 05:38:32,556 - INFO - Broadcast 1 posts from @realDonaldTrump to 1 guilds (2 channels)
+2025-05-12 05:48:53,606 - INFO - Metrics Report | Uptime: 21h 0m | Memory: 43.9MB | Processed: 388 | Avg Processing: 0.7585s | Errors: 5 (2 types, Top: api_mobula=4, api_dexscreener=1) | Last Cleanup: 2025-05-12 04:48:54 (59m ago)
+2025-05-12 05:58:00,028 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-05-12 05:58:01,397 - INFO - Reconnected to Discord after disconnection
+2025-05-12 05:58:01,398 - INFO - Post-reconnection health check: Database=True, API Client=True
+2025-05-12 05:58:05,040 - INFO - Bot automatically reconnected
+2025-05-12 06:00:36,342 - INFO - Starting website analysis for https://memeosapp.com/
+2025-05-12 06:00:36,342 - INFO - Parsed domain: memeosapp.com
+2025-05-12 06:00:36,342 - INFO - Generated cache key: memeosapp.com
+2025-05-12 06:00:36,343 - INFO - Cache miss for memeosapp.com, running analysis
+2025-05-12 06:00:36,846 - WARNING - API website returned status 404 for URL: https://memeosapp.com/
+2025-05-12 06:00:36,846 - INFO - Successfully fetched main page for https://memeosapp.com/
+2025-05-12 06:00:36,847 - ERROR - Failed to fetch https://memeosapp.com/
+2025-05-12 06:12:17,988 - INFO - Broadcast 1 posts from @realDonaldTrump to 1 guilds (2 channels)
+2025-05-12 06:34:39,913 - INFO - Sent token lock notification as reply to original message for 9vPVtup6eaA2WbF31sfvNvA7TAJWWcxn3v9rta3upump
+2025-05-12 06:41:00,648 - INFO - Sent token lock notification as reply to original message for 9vPVtup6eaA2WbF31sfvNvA7TAJWWcxn3v9rta3upump
+2025-05-12 06:48:53,607 - INFO - Metrics Report | Uptime: 22h 0m | Memory: 45.9MB | Processed: 402 | Avg Processing: 0.8616s | Errors: 6 (3 types, Top: api_mobula=4, api_dexscreener=1, api_website=1) | Last Cleanup: 2025-05-12 04:48:54 (1h ago)
+2025-05-12 07:15:29,959 - INFO - Bot is shutting down...
+2025-05-12 07:15:29,960 - INFO - API client closed
+2025-05-12 07:15:29,961 - INFO - Truth Social tracking task cancelled
+2025-05-12 07:15:29,961 - INFO - Truth Social tracking loop cancelled
+2025-05-12 07:15:29,961 - INFO - Truth Social tracking stopped
+2025-05-12 07:15:29,961 - INFO - Truth Social tracking stopped
+2025-05-12 07:15:29,962 - INFO - Services closed successfully
+2025-05-12 07:15:29,962 - INFO - Background task 'metrics_cleanup' canceled
+2025-05-12 07:15:29,962 - INFO - Background task 'memory_monitor' canceled
+2025-05-12 07:15:29,962 - INFO - Background task 'heartbeat_monitor' canceled
+2025-05-12 07:15:29,962 - INFO - Background task 'metrics_report' canceled
+2025-05-12 07:15:29,963 - INFO - DexScreener tracking task cancelled
+2025-05-12 07:15:29,963 - INFO - DexScreener tracking loop cancelled
+2025-05-12 07:15:29,963 - INFO - DexScreener tracking stopped
+2025-05-12 07:15:29,963 - INFO - DexScreener tracking stopped
+2025-05-12 07:15:29,964 - INFO - Database connection pool closed successfully
+2025-05-12 07:15:29,973 - INFO - Bot stopped by user

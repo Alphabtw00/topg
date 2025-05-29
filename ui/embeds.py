@@ -12,7 +12,7 @@ from config import TWITTER_SEARCH_URL, TRADING_PLATFORMS, VERIFIED_EMOJI
 from utils.formatters import (
     format_value, format_date, format_size, 
     relative_time, get_color_from_change, score_bar, clean_html,
-    format_metrics, proxy_url
+    format_metrics, proxy_url, format_category
 )
 from utils.helper import safe_add_field
 from utils.logger import get_logger
@@ -1039,6 +1039,89 @@ async def create_health_embed(bot, user):
     
     return embed
 
+def create_bundle_embed(data, contract_address):
+    """
+    Create an embed for bundle distribution analysis
+   
+    Args:
+        data: Bundle analysis data from TrenchBot
+        contract_address: Token contract address
+       
+    Returns:
+        discord.Embed: Formatted embed with bundle analysis
+    """
+   
+    # Extract key data
+    ticker = data.get("ticker", "Unknown")
+    total_bundles = data.get("total_bundles", 0)
+    total_percentage_bundled = data.get("total_percentage_bundled", 0)
+    total_holding_percentage = data.get("total_holding_percentage", 0)
+   
+    # Determine embed color based on total holding percentage
+    if total_holding_percentage < 15:
+        embed_color = 0x4CAF50  # Green
+    elif total_holding_percentage < 30:
+        embed_color = 0xFFC107  # Amber/Yellow
+    elif total_holding_percentage < 50:
+        embed_color = 0xFF9800  # Orange
+    else:
+        embed_color = 0xF44336  # Red
+   
+    # Create main embed
+    embed = discord.Embed(color=embed_color)
+   
+    # Set thumbnail
+    # embed.set_thumbnail(url="https://www.nftgators.com/wp-content/uploads/2024/11/Pump.fun-logo-800x450.jpg")
+
+    # Check if there are any bundles
+    if total_bundles == 0:
+        embed.description = f"## Bundle analysis for ${ticker}:\n\n❌ No bundles found"
+        return embed
+   
+    # Get bundle data sorted by token percentage
+    bundles = data.get("bundles", {})
+    sorted_bundles = sorted(
+        bundles.items(),
+        key=lambda x: x[1].get("token_percentage", 0),
+        reverse=True
+    )[:5]  # Get top 5 bundles
+   
+    # Add header info with title and main stats in description field
+    embed.description = (
+        f"# Bundle analysis for ${ticker}:\n\n"
+        f"Total bundles found: **{total_bundles}**\n"
+        f"Bundled Total: **{total_percentage_bundled:.2f}%**\n"
+        f"Bundle Held %: **{total_holding_percentage:.2f}%**\n\n"
+    )
+   
+    # Add each bundle to the description
+    for i, (bundle_id, bundle_data) in enumerate(sorted_bundles):
+        # Get bundle metrics
+        token_percentage = bundle_data.get("token_percentage", 0)
+        primary_category = bundle_data.get("bundle_analysis", {}).get("primary_category", "unknown")
+        unique_wallets = bundle_data.get("unique_wallets", 0)
+       
+        # Format primary category
+        formatted_category = format_category(primary_category)
+       
+        # Add bundle info to description
+        embed.description += (
+            f"## Bundle #{i+1} ({formatted_category})\n"
+            f"Total Bundled %: **{token_percentage:.2f}%**\n"
+            f"Unique Wallets: **{unique_wallets}**\n"
+            f"Remaining bundle:\n"
+            f"{score_bar(token_percentage, 10)} **{token_percentage:.2f}%**\n\n"
+        )
+    
+    # Add note to description
+    embed.description += (
+        f"**Note:**\n"
+        f"Bundle checker can result in false positives, so please do your own due diligence as well before taking results at face value!"
+    )
+       
+    return embed
+
+
 def create_truth_embed(post: Dict[str, Any]) -> discord.Embed:
     """
     Create a Discord embed for a Truth Social post with proper image handling
@@ -1246,6 +1329,7 @@ def create_truth_embed(post: Dict[str, Any]) -> discord.Embed:
 
                 elif media.get('type') == 'video' and media.get('preview_url'):
                     embed.set_image(url=proxy_url(media.get('preview_url', '')))
+                    video_url = media.get('url', '')
                     additional_info.append(f"⬇️📹 *Quoted [video]({video_url})*")
         
         if additional_info:
@@ -1295,6 +1379,7 @@ def create_truth_embed(post: Dict[str, Any]) -> discord.Embed:
                 embed.set_image(url=proxy_url(media.get('url', '')))
             elif media.get('type') == 'video' and media.get('preview_url'):
                 embed.set_image(url=proxy_url(media.get('preview_url', '')))
+                video_url = media.get('url', '')
                 additional_info.append(f"⬇️📹 *This post contains a [video]({video_url})*")
             
             # Add all additional info in a single field if we have any
@@ -1340,6 +1425,7 @@ def create_truth_embed(post: Dict[str, Any]) -> discord.Embed:
                 embed.set_image(url=proxy_url(media.get('url', '')))
             elif media.get('type') == 'video' and media.get('preview_url'):
                 embed.set_image(url=proxy_url(media.get('preview_url', '')))
+                video_url = media.get('url', '')
                 additional_info.append(f"⬇️📹 *This post contains a [video]({video_url})*")
             
             # Add all additional info in a single field if we have any

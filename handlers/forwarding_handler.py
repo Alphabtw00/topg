@@ -343,10 +343,11 @@ async def process_token_lock_message(message, bot):
         return
     
     # Process each address concurrently for maximum performance
-    tasks = []
-    for address in addresses:
-        tasks.append(notify_token_caller(address, guild_id, message, bot))
-    
+    if addresses:
+        tasks = [notify_token_caller(address, guild_id, message, bot) for address in addresses]
+        if tasks:
+            await asyncio.gather(*tasks, return_exceptions=True)
+
     if tasks:
         await asyncio.gather(*tasks, return_exceptions=True)
 
@@ -405,7 +406,7 @@ async def notify_token_caller(address, guild_id, lock_message, bot):
             try:
                 original_msg = await channel.fetch_message(int(message_id))
                 await original_msg.reply(content=notification, embeds=copied_embeds)
-                logger.info(f"Sent token lock notification as reply to original message for {address}")
+                logger.debug(f"Sent token lock notification as reply to original message for {address}")
                 return
             except Exception as e:
                 logger.warning(f"Could not reply to original message: {e}")

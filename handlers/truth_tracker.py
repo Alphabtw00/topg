@@ -348,14 +348,12 @@ async def broadcast_posts(bot, account_id, posts, new_last_id):
             # Create embed once
             embed = create_truth_embed(post)
             image_url = embed.image.url if embed.image else "No image set"
-            print(f"Post ID {post.get('id')} image URL: {image_url}")
+            logger.info(f"Post ID {post.get('id')} image URL: {image_url}")
             
             # Send to all channels concurrently
             channel_tasks = []
             for guild_id, channels in guild_channels.items():
-                for channel in channels:
-                    task = send_to_channel(channel, embed)
-                    channel_tasks.append(task)
+                channel_tasks.extend([send_to_channel(channel, embed) for channel in channels])
             
             # Wait for all sends to complete
             if channel_tasks:

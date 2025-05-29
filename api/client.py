@@ -20,6 +20,7 @@ class ApiEndpoint(Enum):
     GITHUB = "github"
     MOBULA = "mobula"
     WEBSITE = "website"
+    TRENCHBOT = "trenchbot"
 
 class ApiClient:
     """Unified API client for all external service requests"""

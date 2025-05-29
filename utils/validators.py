@@ -4,7 +4,7 @@ Validation utilities
 import re
 import base58
 from typing import Dict, Optional, Any
-from cachetools import TTLCache, cached
+from cachetools import TTLCache, cached, LRUCache
 from config import ADDRESS_REGEX_PATTERN, TICKER_REGEX_PATTERN, GITHUB_REPO_REGEX_PATTERN, WEBSITE_REGEX_PATTERN,  ADDRESS_CACHE_SIZE, ADDRESS_CACHE_TTL
 from urllib.parse import urlparse
 from utils.logger import get_logger
@@ -18,7 +18,7 @@ GITHUB_REPO_REGEX = re.compile(GITHUB_REPO_REGEX_PATTERN, re.IGNORECASE)
 WEBSITE_REGEX = re.compile(WEBSITE_REGEX_PATTERN, re.IGNORECASE)
 
 # Cache for address validation
-ADDRESS_CACHE = TTLCache(maxsize=ADDRESS_CACHE_SIZE, ttl=ADDRESS_CACHE_TTL)
+ADDRESS_CACHE = LRUCache(maxsize=ADDRESS_CACHE_SIZE)
 
 @cached(ADDRESS_CACHE)
 def validate_solana_address(candidate: str) -> bool:

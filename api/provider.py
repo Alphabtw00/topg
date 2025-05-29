@@ -7,6 +7,7 @@ from api.mobula import MobulaService
 from api.github_analyzer import GitHubAnalyzer
 from api.website_analyzer import WebsiteAnalyzer
 from api.truthsocial import TruthSocialService
+from api.trenchbot import TrenchBotService
 from utils.logger import get_logger
 
 logger = get_logger()
@@ -21,6 +22,7 @@ class ApiServiceProvider:
         self.dexscreener = None
         self.mobula = None
         self.github_analyzer = None
+        self.trenchbot = None
         self.website_analyzer = None
         self.truthsocial = None
     
@@ -37,6 +39,7 @@ class ApiServiceProvider:
         self.github_analyzer = GitHubAnalyzer(self.api_client)
         self.website_analyzer = WebsiteAnalyzer(self.api_client)
         self.truthsocial = TruthSocialService(self.api_client)
+        self.trenchbot = TrenchBotService(self.api_client)
         await self.truthsocial.setup()
         logger.info("All API services initialized")
         

@@ -21,6 +21,7 @@ from service.dex_tracker import initialize_and_start_dex_tracking
 from handlers.mysql_handler import setup_db_pool, close_db_pool
 from utils.formatters import relative_time
 from api.provider import ApiServiceProvider
+from commands.bundle_checker import BundleChecker
 
 logger = get_logger()
 
@@ -111,6 +112,7 @@ class CryptoBot(commands.Bot):
         await self.add_cog(BanCommand(self))
         await self.add_cog(TruthCommands(self))
         await self.add_cog(DexTrackerCommands(self))
+        await self.add_cog(BundleChecker(self))
 
         from bot.events import setup_events  # Adjust import based on your project structure
         await setup_events(self)

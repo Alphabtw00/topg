@@ -3,6 +3,7 @@ DexScreener live tracker service for real-time token listings
 """
 import asyncio
 import time
+import discord
 from datetime import datetime
 from typing import Dict, List, Set, Optional
 from utils.logger import get_logger
@@ -251,60 +252,77 @@ async def process_new_token(bot, token_data):
         token_address = token_data.get("tokenAddress", "")
         chain_id = token_data.get("chainId", "")
         
-        logger.debug(f"Processing new token: {token_address} on chain {chain_id}")
-        
         if not token_address or not chain_id:
-            logger.warning(f"Invalid token data, missing address or chain")
             return False
         
         # Get detailed token info from DexScreener
-        logger.debug(f"Fetching detailed token info for {token_address}")
         token_info = await bot.services.dexscreener.get_token_info([token_address], chain_id=chain_id)
-        
         if not token_info or token_address not in token_info:
-            logger.warning(f"Could not get token info for {token_address}")
             return False
         
         # Get the full token information
         full_token_info = token_info[token_address]
-        
-        # Get symbol and name for logging
         symbol = full_token_info.get("baseToken", {}).get("symbol", "UNKNOWN")
         name = full_token_info.get("baseToken", {}).get("name", "Unknown")
-        logger.debug(f"Processing token {symbol} ({name}) with address {token_address}")
         
-        # Create embed for the token
+        # Create embed for the token (only once)
         from ui.embeds import create_dex_tracker_embed
         embed = create_dex_tracker_embed(token_data, full_token_info)
-        
         if not embed:
-            logger.error(f"Failed to create embed for {token_address}")
             return False
         
-        # Broadcast to all channels
-        sent_count = 0
+        # Send to all guilds concurrently
+        tasks = []
         for guild_id, channel_ids in _guild_channels.items():
-            for channel_id in channel_ids:
-                try:
-                    channel = bot.get_channel(channel_id)
-                    if channel:
-                        await channel.send(embed=embed)
-                        sent_count += 1
-                        logger.debug(f"Sent DexScreener update for {symbol} ({token_address}) to channel {channel_id}")
-                except Exception as e:
-                    logger.error(f"Error sending DexScreener update to channel {channel_id}: {e}")
+            tasks.append(send_guild_updates(bot, guild_id, channel_ids, embed, token_address, symbol, name))
         
-        if sent_count > 0:
-            logger.debug(f"Successfully sent DexScreener update for {symbol} ({name}) to {sent_count} channels")
-        else:
-            logger.warning(f"Failed to send token {symbol} to any channels")
-        
-        # Return success
+        # Execute all guild tasks together
+        await asyncio.gather(*tasks, return_exceptions=True)
         return True
         
     except Exception as e:
-        logger.error(f"Error processing new DexScreener token {token_data.get('tokenAddress', '')}: {e}")
+        logger.error(f"Error processing token {token_address}: {e}")
         return False
+
+async def send_guild_updates(bot, guild_id, channel_ids, embed, token_address, symbol, name):
+    """Efficiently send updates to a guild with first call checking"""
+    # Start first call query immediately (non-blocking)
+    from handlers.mysql_handler import fetch_one
+    first_call_task = asyncio.create_task(fetch_one(
+        "SELECT user_id, channel_id, message_id FROM token_first_calls WHERE token_address = %s AND guild_id = %s",
+        (token_address, guild_id)
+    ))
+    
+    # More concise channel send creation with reusable objects and list comprehension
+    channels = {cid: bot.get_channel(cid) for cid in channel_ids if bot.get_channel(cid)}
+    channel_tasks = [asyncio.create_task(ch.send(embed=embed)) for ch in channels.values()]
+    
+    # Check for first call while channels are sending
+    try:
+        first_call = await first_call_task
+        if first_call:
+            user_id, call_channel_id, message_id = first_call
+            if user_id and call_channel_id and message_id:
+                notification = f"<@{user_id}> DEX paid for {name} (${symbol})!"
+                # Only modify the embed for the reply
+                reply_embed = discord.Embed.from_dict(embed.to_dict())
+                reply_embed.set_footer(text="DEX Alerts", icon_url=embed.footer.icon_url if embed.footer else None)
+                
+                # Get channel object (reuse if already fetched)
+                call_channel = channels.get(call_channel_id) or bot.get_channel(call_channel_id)
+                if call_channel:
+                    try:
+                        # Fetch and reply to original message
+                        orig_msg = await call_channel.fetch_message(int(message_id))
+                        await orig_msg.reply(content=f"<@{user_id}> DEX paid for {name} (${symbol})!", embed=reply_embed)
+                    except:
+                        if call_channel_id not in channel_ids: #dont send if already sent via normal flow
+                            await call_channel.send(content=notification, embed=reply_embed)
+    except:
+        pass  # Silently ignore first call errors to maintain performance
+    
+    # Wait for all regular channel sends to complete (already running)
+    await asyncio.gather(*channel_tasks, return_exceptions=True)
         
 
 def get_tracking_status() -> Dict:
