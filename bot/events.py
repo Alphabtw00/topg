@@ -50,34 +50,27 @@ async def setup_events(bot: CryptoBot):
 
 async def on_message(message: discord.Message):
     """
-    Handle incoming messages
-    
-    Args:
-        message: The Discord message
+    Handle incoming messages with optimized forwarding
     """
-
     if not message.guild:
         return
-
-    # if message.guild.id in FORWARD_GUILD_IDS:
-    #     asyncio.create_task(forward_message(message, _bot))
-
+    
+    # ULTRA-FAST forwarding check - only create task if needed
+    if should_process_forwarding(message.channel.id):
+        asyncio.create_task(forward_message(message, bot))
+    
     # Skip further processing for bot messages
     if message.author.bot:
         return
-    
-    # if await should_send_fudded_reply(message):
-    #     from config import FIGHT_BACK_GIF_URL
-    #     await message.reply(f"{FIGHT_BACK_GIF_URL}")
-    
+   
     if not await should_process_channel(message.guild.id, message.channel.id):
         return
-        
+       
     content = message.content
     # Quick check if the message might contain anything we need to process
     if '$' not in content and not re.search(r'[a-zA-Z0-9]{26,}', content):
         return
-    
+   
     asyncio.create_task(process_message_with_timeout(message))
 
 

@@ -1,0 +1,61 @@
+2025-05-30 02:23:43,566 - INFO - Starting bot...
+2025-05-30 02:23:44,964 - INFO - API client initialized
+2025-05-30 02:23:44,964 - INFO - WebsiteAnalyzer initialized with concurrency limit of 15
+2025-05-30 02:23:44,968 - INFO - Loaded 4 Truth Social tokens from file
+2025-05-30 02:23:44,968 - INFO - Successfully authenticated 4/4 Truth Social accounts
+2025-05-30 02:23:44,970 - INFO - Saved 4 Truth Social tokens to file
+2025-05-30 02:23:44,970 - INFO - All API services initialized
+2025-05-30 02:23:44,971 - INFO - Services provider initialized
+2025-05-30 02:23:45,392 - INFO - Database connection pool established: size=1-10
+2025-05-30 02:23:45,393 - INFO - Database connection successful
+2025-05-30 02:23:45,433 - INFO - WebsiteChecker cog initialized
+2025-05-30 02:23:45,433 - INFO - Proxy rotator initialized with http protocol
+2025-05-30 02:23:45,434 - INFO - Proxy rotator initialized for Truth commands
+2025-05-30 02:23:45,525 - CRITICAL - Failed to start bot: No module named 'forwarding_config'
+2025-05-30 02:23:45,526 - INFO - Bot is shutting down...
+2025-05-30 02:23:45,526 - INFO - Memory monitor started (threshold: 300MB, interval: 3600s)
+2025-05-30 02:23:45,527 - INFO - Initializing Truth Social tracking...
+2025-05-30 02:23:45,527 - INFO - Initializing DexScreener live tracker...
+2025-05-30 02:23:45,528 - INFO - API client closed
+2025-05-30 02:23:45,528 - INFO - Truth Social tracking stopped
+2025-05-30 02:23:45,528 - INFO - Truth Social tracking stopped
+2025-05-30 02:23:45,529 - INFO - Services closed successfully
+2025-05-30 02:23:45,530 - INFO - Background task 'metrics_cleanup' canceled
+2025-05-30 02:23:45,530 - INFO - Background task 'memory_monitor' canceled
+2025-05-30 02:23:45,530 - INFO - Background task 'heartbeat_monitor' canceled
+2025-05-30 02:23:45,531 - INFO - Background task 'metrics_report' canceled
+2025-05-30 02:23:45,531 - INFO - Background task 'truth_tracker_init' canceled
+2025-05-30 02:23:45,532 - INFO - Background task 'dex_tracker_init' canceled
+2025-05-30 02:23:45,532 - INFO - DexScreener tracking stopped
+2025-05-30 02:23:45,533 - INFO - DexScreener tracking stopped
+2025-05-30 02:23:45,534 - INFO - Database connection pool closed successfully
+2025-05-30 02:34:55,818 - INFO - Starting bot...
+2025-05-30 02:34:56,947 - INFO - API client initialized
+2025-05-30 02:34:56,948 - INFO - WebsiteAnalyzer initialized with concurrency limit of 15
+2025-05-30 02:34:56,951 - INFO - Loaded 4 Truth Social tokens from file
+2025-05-30 02:34:56,952 - INFO - Successfully authenticated 4/4 Truth Social accounts
+2025-05-30 02:34:56,953 - INFO - Saved 4 Truth Social tokens to file
+2025-05-30 02:34:56,953 - INFO - All API services initialized
+2025-05-30 02:34:56,953 - INFO - Services provider initialized
+2025-05-30 02:34:57,075 - INFO - Database connection pool established: size=1-10
+2025-05-30 02:34:57,075 - INFO - Database connection successful
+2025-05-30 02:34:57,089 - INFO - WebsiteChecker cog initialized
+2025-05-30 02:34:57,090 - INFO - Proxy rotator initialized with http protocol
+2025-05-30 02:34:57,090 - INFO - Proxy rotator initialized for Truth commands
+2025-05-30 02:34:57,119 - INFO - Discord Events Registered | Username Ban Server ID: 1313758082974879774
+2025-05-30 02:34:57,122 - INFO - Memory monitor started (threshold: 300MB, interval: 3600s)
+2025-05-30 02:34:57,123 - INFO - Initializing Truth Social tracking...
+2025-05-30 02:34:57,126 - INFO - Initializing DexScreener live tracker...
+2025-05-30 02:34:57,141 - INFO - Built DexScreener tracking cache: 0 guilds with channels
+2025-05-30 02:34:57,142 - INFO - No guilds with DexScreener tracking enabled
+2025-05-30 02:34:57,143 - INFO - DexScreener tracking initialization complete
+2025-05-30 02:34:57,152 - INFO - Proxy rotator initialized with http protocol
+2025-05-30 02:34:57,153 - INFO - Proxy rotator initialized for Truth Social tracking
+2025-05-30 02:34:57,160 - INFO - Ultra-optimized cache built: 0 accounts, 0 accounts with channels, 0 total channel mappings
+2025-05-30 02:34:57,161 - INFO - No guilds with Truth Social tracking enabled
+2025-05-30 02:34:57,162 - INFO - Truth Social tracking initialization complete
+2025-05-30 02:34:57,807 - INFO - Successfully synced 8 command(s)
+2025-05-30 02:35:02,123 - INFO - Logged in as TOPG#4967 (ID: 1340722186100408340)
+2025-05-30 02:35:02,123 - INFO - Bot connected to 7 server(s)
+2025-05-30 02:35:02,123 - INFO - Echo bot message forwarding: 1 bots from 9 channels to 1 channels
+2025-05-30 02:35:02,123 - INFO - Dani message forwarding: 1 users from 2 channels to 1 channels

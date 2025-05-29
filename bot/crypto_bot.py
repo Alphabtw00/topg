@@ -116,6 +116,11 @@ class CryptoBot(commands.Bot):
 
         from bot.events import setup_events  # Adjust import based on your project structure
         await setup_events(self)
+
+
+        from handlers.forwarding_handler import init_forwarding_cache
+        init_forwarding_cache()
+        
         
         try:
             synced = await self.tree.sync()

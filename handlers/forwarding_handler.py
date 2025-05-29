@@ -6,62 +6,46 @@ from utils.logger import get_logger
 from discord import AllowedMentions
 from handlers.message_processor import process_message_with_timeout
 from utils.validators import get_addresses_from_content
-from functools import lru_cache
 from utils.formatters import safe_text
-
 
 logger = get_logger()
 
 # Cache for webhooks to avoid repeated lookups
 webhook_cache = {}
 
-@lru_cache(maxsize=128)
-def should_forward_bot_message(channel_id, author_id):
-    """Fast filtering function for bot messages"""
-    from config import BOT_INPUT_CHANNEL_IDS, FORWARD_BOT_IDS
-    
-    if BOT_INPUT_CHANNEL_IDS and channel_id not in BOT_INPUT_CHANNEL_IDS:
-        return False
-    if FORWARD_BOT_IDS and author_id not in FORWARD_BOT_IDS:
-        return False
-    return True
+# Pre-computed channel sets for ultra-fast O(1) lookups
+_forwarding_channels = None
 
-@lru_cache(maxsize=128)
-def should_forward_user_message(channel_id, author_id):
-    """Fast filtering function for user messages"""
-    from config import USER_INPUT_CHANNEL_IDS, FORWARD_USER_IDS
+def init_forwarding_cache():
+    """Initialize forwarding channel sets for fast lookup - call once at bot startup"""
+    global _forwarding_channels
+    from config import (ENABLE_BOT_FORWARDING, ENABLE_USER_FORWARDING, ENABLE_TOKEN_LOCK_ALERTS,
+                       BOT_INPUT_CHANNEL_IDS, USER_INPUT_CHANNEL_IDS, TOKEN_LOCK_INPUT_CHANNEL_IDS)
     
-    if USER_INPUT_CHANNEL_IDS and channel_id not in USER_INPUT_CHANNEL_IDS:
-        return False
-    if FORWARD_USER_IDS and author_id not in FORWARD_USER_IDS:
-        return False
-    return True
+    _forwarding_channels = set()
+    
+    if ENABLE_BOT_FORWARDING:
+        _forwarding_channels.update(BOT_INPUT_CHANNEL_IDS)
+    if ENABLE_USER_FORWARDING:
+        _forwarding_channels.update(USER_INPUT_CHANNEL_IDS)
+    if ENABLE_TOKEN_LOCK_ALERTS:
+        _forwarding_channels.update(TOKEN_LOCK_INPUT_CHANNEL_IDS)
 
-@lru_cache(maxsize=128)
-def should_monitor_token_lock(channel_id, author_id):
-    """Fast filtering function for token lock messages"""
-    from config import TOKEN_LOCK_INPUT_CHANNEL_IDS, TOKEN_LOCK_BOT_IDS
-    
-    if TOKEN_LOCK_INPUT_CHANNEL_IDS and channel_id not in TOKEN_LOCK_INPUT_CHANNEL_IDS:
-        return False
-    if TOKEN_LOCK_BOT_IDS and author_id not in TOKEN_LOCK_BOT_IDS:
-        return False
-    return True
+def should_process_forwarding(channel_id):
+    """Ultra-fast check if ANY forwarding is needed for this channel"""
+    return _forwarding_channels and channel_id in _forwarding_channels
 
 async def get_webhook_for_channel(channel, bot):
     """Get or create a webhook for the channel, with caching"""
     cache_key = channel.id
     
     if cache_key in webhook_cache:
-        #verify webhook still valid
         try:
             await webhook_cache[cache_key].fetch()  
             return webhook_cache[cache_key]
         except discord.NotFound:
-            # Webhook was deleted, remove from cache
             del webhook_cache[cache_key]
         except Exception:
-            # Other error, just proceed to get a new webhook
             pass
     
     try:
@@ -79,21 +63,21 @@ async def get_webhook_for_channel(channel, bot):
 
 async def forward_bot_messages(message, bot):
     """Forward messages from bots to output channels"""
-    from config import BOT_OUTPUT_CHANNEL_IDS, BOT_CHANNEL_COLORS
+    from config import (ENABLE_BOT_FORWARDING, BOT_INPUT_CHANNEL_IDS, BOT_OUTPUT_CHANNEL_IDS, 
+                       BOT_CHANNEL_COLORS, FORWARD_BOT_IDS)
     
-    # Quick return for incomplete configuration
+    if not ENABLE_BOT_FORWARDING or message.channel.id not in BOT_INPUT_CHANNEL_IDS:
+        return
+    
     if not BOT_OUTPUT_CHANNEL_IDS:
         return
     
-    # Fast filtering using cached function
-    if not should_forward_bot_message(message.channel.id, message.author.id):
+    if FORWARD_BOT_IDS and message.author.id not in FORWARD_BOT_IDS:
         return
     
-    # Prepare data once before sending to multiple channels
     source_channel_name = message.channel.name if hasattr(message.channel, 'name') else f"Channel {message.channel.id}"
     embed_color = BOT_CHANNEL_COLORS.get(message.channel.id, 0x3498db)
     
-    # Prepare embeds ahead of time
     prepared_embeds = []
     if message.embeds:
         for embed in message.embeds:
@@ -107,21 +91,14 @@ async def forward_bot_messages(message, bot):
             new_embed.set_footer(text=footer_text, icon_url=new_embed.footer.icon_url if new_embed.footer else None)
             prepared_embeds.append(new_embed)
     elif message.content:
-        embed = discord.Embed(
-            description=message.content,
-            color=embed_color
-        )
+        embed = discord.Embed(description=message.content, color=embed_color)
         embed.set_footer(text=f"From #{source_channel_name}")
         
         if hasattr(message.author, 'name') and hasattr(message.author, 'display_avatar'):
-            embed.set_author(
-                name=message.author.name,
-                icon_url=message.author.display_avatar.url
-            )
+            embed.set_author(name=message.author.name, icon_url=message.author.display_avatar.url)
         
         prepared_embeds.append(embed)
     
-    # Download attachments once if needed
     files = None
     if message.attachments:
         try:
@@ -129,13 +106,9 @@ async def forward_bot_messages(message, bot):
         except Exception as e:
             logger.error(f"Failed to download attachments: {e}")
     
-    # Forward to all output channels concurrently
     tasks = []
     for channel_id in BOT_OUTPUT_CHANNEL_IDS:
-        tasks.append(forward_bot_to_channel(
-            channel_id, bot, prepared_embeds, 
-            files.copy() if files else None
-        ))
+        tasks.append(forward_bot_to_channel(channel_id, bot, prepared_embeds, files.copy() if files else None))
     
     if tasks:
         await asyncio.gather(*tasks, return_exceptions=True)
@@ -159,25 +132,24 @@ async def forward_bot_to_channel(channel_id, bot, embeds, files):
 
 async def forward_user_messages(message, bot):
     """Forward user messages with optimized handling"""
-    from config import USER_OUTPUT_CHANNEL_IDS, PROCESS_CRYPTO_IN_FORWARDS
+    from config import (ENABLE_USER_FORWARDING, USER_INPUT_CHANNEL_IDS, USER_OUTPUT_CHANNEL_IDS, 
+                       PROCESS_CRYPTO_IN_FORWARDS, FORWARD_USER_IDS)
     
-    # Quick return for incomplete configuration
+    if not ENABLE_USER_FORWARDING or message.channel.id not in USER_INPUT_CHANNEL_IDS:
+        return
+    
     if not USER_OUTPUT_CHANNEL_IDS:
         return
     
-    # Fast filtering using cached function
-    if not should_forward_user_message(message.channel.id, message.author.id):
+    if FORWARD_USER_IDS and message.author.id not in FORWARD_USER_IDS:
         return
     
     crypto_detected = False
     content = message.content
     if PROCESS_CRYPTO_IN_FORWARDS and content:
-        if ('$' in content or
-            re.search(r'[a-zA-Z0-9]{26,}', content)): 
+        if '$' in content or re.search(r'[a-zA-Z0-9]{26,}', content): 
             crypto_detected = True
 
-
-    # Prepare common webhook parameters once
     base_webhook_params = {
         'username': message.author.display_name,
         'avatar_url': message.author.display_avatar.url,
@@ -186,7 +158,6 @@ async def forward_user_messages(message, bot):
         'suppress_embeds': False
     }
     
-    # Get reference content upfront if needed
     quoted_content = ""
     reference_files = None
     reference_embeds = None
@@ -198,7 +169,6 @@ async def forward_user_messages(message, bot):
                 original_msg = await reference_channel.fetch_message(message.reference.message_id)
                 is_reply = message.channel.id == message.reference.channel_id
                 
-                # Only include embeds/files for forwards, not replies
                 if not is_reply:
                     if original_msg.embeds:
                         reference_embeds = original_msg.embeds
@@ -206,7 +176,6 @@ async def forward_user_messages(message, bot):
                     if original_msg.attachments:
                         reference_files = [await a.to_file() for a in original_msg.attachments]
                 
-                # Add quoted content for both forwards and replies
                 if original_msg.content:
                     lines = original_msg.content.split('\n')
                     quoted_content = '\n'.join([f"> {line}" for line in lines]) + '\n'
@@ -215,12 +184,9 @@ async def forward_user_messages(message, bot):
         except Exception as e:
             logger.warning(f"Could not fetch original message for forwarding: {e}")
     
-    # Prepare content
     if content or quoted_content:
         base_webhook_params['content'] = (quoted_content or '') + (content or '')
-
     
-    # Add message embeds and files
     if message.embeds:
         base_webhook_params['embeds'] = message.embeds if not reference_embeds else message.embeds + reference_embeds
     elif reference_embeds:
@@ -238,12 +204,10 @@ async def forward_user_messages(message, bot):
             combined_files.extend(reference_files)
         base_webhook_params['files'] = combined_files
     
-    # Skip if nothing to send
     if not base_webhook_params.get('content') and not base_webhook_params.get('embeds') and not base_webhook_params.get('files'):
         logger.info(f"Skipping empty message from {safe_text(message.author.display_name)}")
         return
     
-    # Forward to all output channels concurrently
     processing_tasks = []
     forward_tasks = []
     
@@ -253,10 +217,8 @@ async def forward_user_messages(message, bot):
             PROCESS_CRYPTO_IN_FORWARDS, crypto_detected, processing_tasks
         ))
     
-    # Wait for all forwards to complete
     await asyncio.gather(*forward_tasks, return_exceptions=True)
     
-    # Now execute any crypto processing tasks that were created
     if processing_tasks:
         await asyncio.gather(*processing_tasks, return_exceptions=True)
 
@@ -268,25 +230,20 @@ async def forward_user_to_channel(channel_id, bot, webhook_params, process_crypt
             logger.warning(f"Could not find output channel with ID {channel_id}")
             return None
         
-        # Get or create webhook
         webhook = await get_webhook_for_channel(channel, bot)
         if not webhook:
             return None
         
-        # Deep copy the webhook params to ensure files aren't reused (for more than 1 output channels so dont give error)
         params = webhook_params.copy()
         if 'files' in params:
-            # Create new file objects to avoid "file already sent" errors
             new_files = []
             for file in params['files']:
                 new_file = discord.File(file.fp, filename=file.filename)
                 new_files.append(new_file)
             params['files'] = new_files
         
-        # Send the message
         sent_message = await webhook.send(**params)
         
-        # Schedule crypto processing if needed (will be executed later)
         if process_crypto and crypto_detected:
             task = process_message_with_timeout(sent_message)
             processing_tasks.append(task)
@@ -298,162 +255,118 @@ async def forward_user_to_channel(channel_id, bot, webhook_params, process_crypt
         return None
 
 async def process_token_lock_message(message, bot):
-    """
-    Process token lock messages and notify users who first called those tokens
+    """Process token lock messages and notify users across ALL servers who first called those tokens"""
+    from config import ENABLE_TOKEN_LOCK_ALERTS, TOKEN_LOCK_INPUT_CHANNEL_IDS, TOKEN_LOCK_BOT_IDS
     
-    Args:
-        message: Discord message from token lock bot
-        bot: Bot instance
-    """
-    # Quick initial check
-    if not should_monitor_token_lock(message.channel.id, message.author.id):
+    if not ENABLE_TOKEN_LOCK_ALERTS or message.channel.id not in TOKEN_LOCK_INPUT_CHANNEL_IDS:
         return
     
-    # Current guild ID
-    guild_id = message.guild.id if message.guild else 0
-    if not guild_id:
+    if TOKEN_LOCK_BOT_IDS and message.author.id not in TOKEN_LOCK_BOT_IDS:
         return
     
     # Extract token addresses from message content and embeds
     addresses = set()
     
-    # Check message content
     if message.content:
         addresses.update(get_addresses_from_content(message.content))
     
-    # Check embeds
     for embed in message.embeds:
-        # Check embed description
         if embed.description:
             addresses.update(get_addresses_from_content(embed.description))
         
-        # Check embed fields
         for field in embed.fields:
             if field.value:
                 addresses.update(get_addresses_from_content(field.value))
             if field.name:
                 addresses.update(get_addresses_from_content(field.name))
         
-        # Check footer text
         if embed.footer and embed.footer.text:
             addresses.update(get_addresses_from_content(embed.footer.text))
     
-    # Early return if no addresses found
     if not addresses:
         return
     
-    # Process each address concurrently for maximum performance
-    if addresses:
-        tasks = [notify_token_caller(address, guild_id, message, bot) for address in addresses]
-        if tasks:
-            await asyncio.gather(*tasks, return_exceptions=True)
-
+    # Process each address concurrently for cross-server notifications
+    tasks = [notify_token_caller_all_servers(address, message, bot) for address in addresses]
     if tasks:
         await asyncio.gather(*tasks, return_exceptions=True)
 
-async def notify_token_caller(address, guild_id, lock_message, bot):
-    """
-    Notify a user who first called a token that has been locked
-    
-    Args:
-        address: Token address
-        guild_id: Guild ID
-        lock_message: Message containing lock info
-        bot: Bot instance
-    """
+async def notify_token_caller_all_servers(address, lock_message, bot):
+    """Notify users who first called a token across ALL servers"""
     try:
-        # Get token info from database using standard fetch_one method
-        from handlers.mysql_handler import fetch_one
+        from handlers.mysql_handler import fetch_all
         
-        # Use the generic query mechanism rather than a special-purpose function
+        # Get ALL first calls for this token across ALL servers
         query = """
-        SELECT user_id, channel_id, message_id 
+        SELECT user_id, channel_id, message_id, guild_id
         FROM token_first_calls 
-        WHERE token_address = %s AND guild_id = %s
+        WHERE token_address = %s
         """
         
-        result = await fetch_one(query, (address, guild_id))
-        if not result:
-            logger.debug(f"No first call found for token {address} in guild {guild_id}")
+        results = await fetch_all(query, (address,))
+        if not results:
+            logger.debug(f"No first calls found for token {address} across all servers")
             return
         
-        # Extract info from the result tuple
-        user_id = result[0]
-        channel_id = result[1]
-        message_id = result[2]
+        # Create copied embeds once (without views/buttons)
+        copied_embeds = []
+        for embed in lock_message.embeds:
+            new_embed = discord.Embed.from_dict(embed.to_dict())
+            copied_embeds.append(new_embed)
         
-        if not user_id or not channel_id:
-            return
+        # Notify each caller concurrently
+        notification_tasks = []
+        for result in results:
+            user_id, channel_id, message_id, guild_id = result
+            if user_id and channel_id:
+                notification_tasks.append(
+                    send_lock_notification(bot, user_id, channel_id, message_id, copied_embeds, address)
+                )
         
-        # Create notification message
-        notification = f"<@{user_id}> Your called token has been locked! 🔒"
+        if notification_tasks:
+            await asyncio.gather(*notification_tasks, return_exceptions=True)
         
-        # Try to get original channel
+    except Exception as e:
+        logger.error(f"Error processing token lock notifications for {address}: {e}")
+
+async def send_lock_notification(bot, user_id, channel_id, message_id, copied_embeds, address):
+    """Send individual lock notification"""
+    try:
         channel = bot.get_channel(int(channel_id))
         if not channel:
             logger.warning(f"Channel {channel_id} not found for token lock notification")
             return
         
-        # Create copies of embeds WITHOUT the views/buttons
-        copied_embeds = []
-        for embed in lock_message.embeds:
-            # Create a clean copy without carrying over view components
-            new_embed = discord.Embed.from_dict(embed.to_dict())
-            copied_embeds.append(new_embed)
+        notification = f"<@{user_id}> Your called token has been locked! 🔒"
         
         # Try to reply to original message if available
         if message_id:
             try:
                 original_msg = await channel.fetch_message(int(message_id))
                 await original_msg.reply(content=notification, embeds=copied_embeds)
-                logger.debug(f"Sent token lock notification as reply to original message for {address}")
+                logger.debug(f"Sent cross-server token lock notification as reply for {address}")
                 return
             except Exception as e:
                 logger.warning(f"Could not reply to original message: {e}")
-        else:
-            # Fallback: Send as new message
-            await channel.send(content=notification, embeds=copied_embeds)
-            logger.info(f"Sent token lock notification as new message for {address}")
+        
+        # Fallback: Send as new message
+        await channel.send(content=notification, embeds=copied_embeds)
+        logger.info(f"Sent cross-server token lock notification as new message for {address}")
         
     except Exception as e:
-        logger.error(f"Error sending token lock notification for {address}: {e}")
+        logger.error(f"Error sending individual lock notification for {address}: {e}")
 
 async def forward_message(message, bot):
-    """
-    Main entry point for message forwarding - handles multiple forwarding configurations concurrently
-    
-    Args:
-        message: Discord message
-        bot: Bot instance
-    """
+    """Ultra-fast forwarding entry point - only creates task if channel needs processing"""
     start_time = datetime.now().timestamp()
     
-    # Fast pre-filtering for all forwarding types
-    should_process = False
-    
-    # Check if message should be forwarded/processed for any type
-    if should_forward_user_message(message.channel.id, message.author.id):
-        should_process = True
-    elif should_forward_bot_message(message.channel.id, message.author.id):
-        should_process = True
-    elif should_monitor_token_lock(message.channel.id, message.author.id):
-        should_process = True
-    
-    # Early return if no forwarding needed
-    if not should_process:
-        return
-        
     # Run all applicable forwarding methods concurrently
     forwarding_tasks = []
     
-    if should_forward_user_message(message.channel.id, message.author.id):
-        forwarding_tasks.append(forward_user_messages(message, bot))
-        
-    if should_forward_bot_message(message.channel.id, message.author.id):
-        forwarding_tasks.append(forward_bot_messages(message, bot))
-        
-    if should_monitor_token_lock(message.channel.id, message.author.id):
-        forwarding_tasks.append(process_token_lock_message(message, bot))
+    # Check each forwarding type and add task if applicable
+    forwarding_tasks.append(forward_user_messages(message, bot))
+    forwarding_tasks.append(forward_bot_messages(message, bot))
+    forwarding_tasks.append(process_token_lock_message(message, bot))
     
     # Execute all applicable tasks
     if forwarding_tasks:

@@ -8,6 +8,8 @@ from datetime import datetime
 from utils.validators import get_addresses_from_content, get_tickers_from_content
 from handlers.address_handler import process_addresses, process_tickers
 from utils.logger import get_logger
+from utils.formatters import safe_text
+ 
 
 logger = get_logger()
 
@@ -52,7 +54,7 @@ async def process_message_with_timeout(message):
                 timeout=timeout
             )
         except asyncio.TimeoutError:
-            logger.warning(f"Message processing timeout for {message.author} in {message.channel}")
+            logger.warning(f"Message processing timeout for {message.author} in {safe_text(message.channel)}")
         
         # Record metrics
         processing_time = datetime.now().timestamp() - start_time

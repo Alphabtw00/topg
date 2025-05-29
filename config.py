@@ -51,6 +51,13 @@ FORWARD_USER_IDS = {int(id.strip()) for id in os.getenv("FORWARD_USER_IDS", "").
 TOKEN_LOCK_INPUT_CHANNEL_IDS = {int(id.strip()) for id in os.getenv("TOKEN_LOCK_INPUT_CHANNEL_IDS", "").split(",") if id.strip().isdigit()}
 TOKEN_LOCK_BOT_IDS = {int(id.strip()) for id in os.getenv("TOKEN_LOCK_BOT_IDS", "").split(",") if id.strip().isdigit()}
 
+
+ENABLE_BOT_FORWARDING = False
+ENABLE_USER_FORWARDING = False  
+ENABLE_TOKEN_LOCK_ALERTS = True
+
+
+
 # ========================================================================================================================================================================================
 # API Keys & External Services
 # ========================================================================================================================================================================================
