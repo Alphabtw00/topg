@@ -556,21 +556,12 @@ def calculate_verdict(scores: Dict[str, Any], trust_result: Dict[str, Any],
         }
 
 @lru_cache(maxsize=100)
-def proxy_url(url: str) -> str:
-    """
-    Convert any URL to a proxied version through images.weserv.nl
-    
-    Args:
-        url: Original image URL
-        
-    Returns:
-        str: Proxied URL that will work in Discord embeds
-    """
+def proxy_url_wp(url: str) -> str:
     if not url:
         return ""
-    encoded_url = urllib.parse.quote_plus(url)
-    # Make sure URL is properly encoded
-    return f"https://images.weserv.nl/?url={encoded_url}"
+    # Remove https:// from the original URL
+    clean_url = url.replace("https://", "").replace("http://", "")
+    return f"https://i0.wp.com/{clean_url}"
 
 # Add this utility function for extreme cases where automatic handling isn't enough
 def safe_text(text):
