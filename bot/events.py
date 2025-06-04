@@ -8,7 +8,7 @@ import asyncio
 import discord
 from bot.crypto_bot import CryptoBot
 from handlers.message_processor import process_message_with_timeout
-from handlers.forwarding_handler import forward_message
+from handlers.forwarding_handler import forward_message, should_process_forwarding
 from service.auto_message_settings import should_process_channel
 from handlers.username_ban import check_username, ban_user  # Correct import path
 from utils.logger import get_logger
@@ -57,7 +57,7 @@ async def on_message(message: discord.Message):
     
     # ULTRA-FAST forwarding check - only create task if needed
     if should_process_forwarding(message.channel.id):
-        asyncio.create_task(forward_message(message, bot))
+        asyncio.create_task(forward_message(message, _bot))
     
     # Skip further processing for bot messages
     if message.author.bot:
@@ -108,7 +108,7 @@ async def on_member_join(member):
         return
         
     if member.guild.id != USERNAME_BAN_SERVER_ID:
-        logger.debug(f"Member {member.id} joined guild {member.guild.id}, not ban server {USERNAME_BAN_SERVER_ID}")
+        logger.debug(f"Member {member.id} joined guild {member.guild.id}, not ban server {USERNAME_BAN_SERVER_ID}, check aborted")
         return
     
     # Check username against patterns

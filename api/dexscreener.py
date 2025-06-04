@@ -86,43 +86,54 @@ class DexScreenerService:
     async def get_order_status(self, token_address: str):
         """
         Get the payment status for a token
-        
+    
         Args:
             token_address: Token address
-            
+        
         Returns:
             str: Status message
         """
         from utils.formatters import relative_time
-        
+    
         try:
             url = f"{DEXSCREENER_BASE_URL}/orders/v1/solana/{token_address}"
             data = await self.client.get(url, ApiEndpoint.DEXSCREENER)
-            
+        
             if data is None:
                 return ""
-            
+        
             if not data:  # []
                 return "❌ Dex Not Paid"
+        
+            # Priority order: approved > processing > on-hold > cancelled
+            status_priority = {"approved": 1, "processing": 2, "on-hold": 3, "cancelled": 4}
+            best_order = None
             
             for order in data:
                 if order.get("type") == "tokenProfile":
-                    status = order.get("status")
-                    timestamp = order.get("paymentTimestamp")
-                    time_ago = f" ({relative_time(timestamp, include_ago=True)})" if timestamp else ""
-                    if status == "approved":
-                        return f"✅ Dex Paid{time_ago}"
-                    elif status == "on-hold":
-                        return f"⏳ Dex On Hold{time_ago}"
-                    elif status == "cancelled":
-                        return f"🚫 Dex Cancelled{time_ago}"
-                    else:
-                        # Handle any other status dynamically
-                        return f"❕ Dex {status.capitalize()}{time_ago}"
-           
+                    current_status = order.get("status")
+                    if not best_order or status_priority.get(current_status, 99) < status_priority.get(best_order.get("status"), 99):
+                        best_order = order
             
-            return "❌ Dex Not Paid"
+            if best_order:
+                status = best_order.get("status")
+                timestamp = best_order.get("paymentTimestamp")
+                time_ago = f" ({relative_time(timestamp, include_ago=True)})" if timestamp else ""
+                
+                if status == "approved":
+                    return f"✅ Dex Paid{time_ago}"
+                elif status == "on-hold":
+                    return f"⏳ Dex On Hold{time_ago}"
+                elif status == "processing":
+                    return f"⚡ Dex Processing{time_ago}"
+                elif status == "cancelled":
+                    return f"🚫 Dex Cancelled{time_ago}"
+                else:
+                    # Handle any other status dynamically (processing, etc.)
+                    return f"❕ Dex {status.capitalize()}{time_ago}"
         
+            return "❌ Dex Not Paid"
+    
         except Exception as e:
             logger.error(f"Order status error for {token_address}: {e}")
             return "❗ Dex Error"

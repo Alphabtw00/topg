@@ -556,7 +556,7 @@ def calculate_verdict(scores: Dict[str, Any], trust_result: Dict[str, Any],
         }
 
 @lru_cache(maxsize=100)
-def proxy_url_wp(url: str) -> str:
+def proxy_url(url: str) -> str:
     if not url:
         return ""
     # Remove https:// from the original URL

@@ -45,22 +45,14 @@ class BanCommand(commands.Cog):
     ):
         """Ban a user with the same system as auto-banning"""
         
-        # Check permissions
+        # Check if user has permission to ban
         if not interaction.user.guild_permissions.ban_members:
             await interaction.response.send_message(
                 "You need ban members permission to use this command.",
                 ephemeral=True
             )
             return
-            
-        # Check if user can be banned (not higher in hierarchy)
-        if not interaction.guild.me.top_role > user.top_role:
-            await interaction.response.send_message(
-                "You cannot ban this user because their highest role is above or equal to yours.",
-                ephemeral=True
-            )
-            return
-            
+
         # Prevent banning yourself
         if user.id == interaction.user.id:
             await interaction.response.send_message(
@@ -76,7 +68,7 @@ class BanCommand(commands.Cog):
             # Format the reason with moderator info
             formatted_reason = f"{reason} (Banned by {interaction.user})"
             
-            # Call ban_user with the specified delete_days
+            # The ban_user function now handles all permission checks
             ban_result = await ban_user(self.bot, user, formatted_reason, delete_days=delete_days)
             
             if ban_result:
@@ -97,12 +89,11 @@ class BanCommand(commands.Cog):
                 self.bot.record_command_usage("ban")
                 logger.info(f"Ban command used by {interaction.user} | Target: {user.id} ({str(user)})")
             else:
-                # Ban failed
+                # Ban failed - error is logged in ban_user
                 await interaction.followup.send(
-                    f"Failed to ban user {user.mention}. Check logs for details.",
+                    f"Failed to ban user {user.mention}. They may have a higher role than the bot, or the bot may lack permissions.",
                     ephemeral=True
                 )
-                logger.error(f"Ban command failed: Target {user.id} ({str(user)}) by {interaction.user.id} ({str(interaction.user)})")
         
         except Exception as e:
             logger.error(f"Ban command error: {e}")

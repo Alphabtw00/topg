@@ -1,0 +1,132 @@
+2025-06-04 00:55:31,789 - INFO - Starting bot...
+2025-06-04 00:55:32,852 - INFO - API client initialized
+2025-06-04 00:55:32,853 - INFO - WebsiteAnalyzer initialized with concurrency limit of 15
+2025-06-04 00:55:32,854 - INFO - Loaded 4 Truth Social tokens from file
+2025-06-04 00:55:32,854 - INFO - Successfully authenticated 4/4 Truth Social accounts
+2025-06-04 00:55:32,855 - INFO - Saved 4 Truth Social tokens to file
+2025-06-04 00:55:32,855 - INFO - All API services initialized
+2025-06-04 00:55:32,855 - INFO - Services provider initialized
+2025-06-04 00:55:32,894 - ERROR - Database connection error: 'cryptography' package is required for sha256_password or caching_sha2_password auth methods
+2025-06-04 00:55:32,894 - CRITICAL - Failed to establish database connection
+2025-06-04 00:55:36,459 - INFO - Logged in as TOPG#4967 (ID: 1340722186100408340)
+2025-06-04 00:55:36,459 - INFO - Bot connected to 6 server(s)
+2025-06-04 00:55:36,459 - INFO - Echo bot message forwarding: 1 bots from 9 channels to 1 channels
+2025-06-04 00:55:36,460 - INFO - Dani message forwarding: 1 users from 2 channels to 1 channels
+2025-06-04 00:56:43,915 - INFO - Bot stopped by user
+2025-06-04 00:56:58,643 - INFO - Starting bot...
+2025-06-04 00:56:59,572 - INFO - API client initialized
+2025-06-04 00:56:59,572 - INFO - WebsiteAnalyzer initialized with concurrency limit of 15
+2025-06-04 00:56:59,573 - INFO - Loaded 4 Truth Social tokens from file
+2025-06-04 00:56:59,573 - INFO - Successfully authenticated 4/4 Truth Social accounts
+2025-06-04 00:56:59,574 - INFO - Saved 4 Truth Social tokens to file
+2025-06-04 00:56:59,574 - INFO - All API services initialized
+2025-06-04 00:56:59,574 - INFO - Services provider initialized
+2025-06-04 00:56:59,606 - ERROR - Database connection error: (1045, "Access denied for user 'root'@'localhost' (using password: YES)")
+2025-06-04 00:56:59,606 - CRITICAL - Failed to establish database connection
+2025-06-04 00:57:03,285 - INFO - Logged in as TOPG#4967 (ID: 1340722186100408340)
+2025-06-04 00:57:03,286 - INFO - Bot connected to 6 server(s)
+2025-06-04 00:57:03,286 - INFO - Echo bot message forwarding: 1 bots from 9 channels to 1 channels
+2025-06-04 00:57:03,286 - INFO - Dani message forwarding: 1 users from 2 channels to 1 channels
+2025-06-04 00:57:22,300 - INFO - Bot stopped by user
+2025-06-04 00:57:28,692 - INFO - Starting bot...
+2025-06-04 00:57:29,892 - INFO - API client initialized
+2025-06-04 00:57:29,892 - INFO - WebsiteAnalyzer initialized with concurrency limit of 15
+2025-06-04 00:57:29,895 - INFO - Loaded 4 Truth Social tokens from file
+2025-06-04 00:57:29,895 - INFO - Successfully authenticated 4/4 Truth Social accounts
+2025-06-04 00:57:29,896 - INFO - Saved 4 Truth Social tokens to file
+2025-06-04 00:57:29,896 - INFO - All API services initialized
+2025-06-04 00:57:29,896 - INFO - Services provider initialized
+2025-06-04 00:57:29,917 - ERROR - Database connection error: (1045, "Access denied for user 'root'@'localhost' (using password: YES)")
+2025-06-04 00:57:29,918 - CRITICAL - Failed to establish database connection
+2025-06-04 00:57:33,511 - INFO - Logged in as TOPG#4967 (ID: 1340722186100408340)
+2025-06-04 00:57:33,511 - INFO - Bot connected to 6 server(s)
+2025-06-04 00:57:33,512 - INFO - Echo bot message forwarding: 1 bots from 9 channels to 1 channels
+2025-06-04 00:57:33,512 - INFO - Dani message forwarding: 1 users from 2 channels to 1 channels
+2025-06-04 00:57:53,251 - INFO - Starting bot...
+2025-06-04 00:57:54,218 - INFO - API client initialized
+2025-06-04 00:57:54,219 - INFO - WebsiteAnalyzer initialized with concurrency limit of 15
+2025-06-04 00:57:54,221 - INFO - Loaded 4 Truth Social tokens from file
+2025-06-04 00:57:54,221 - INFO - Successfully authenticated 4/4 Truth Social accounts
+2025-06-04 00:57:54,222 - INFO - Saved 4 Truth Social tokens to file
+2025-06-04 00:57:54,222 - INFO - All API services initialized
+2025-06-04 00:57:54,222 - INFO - Services provider initialized
+2025-06-04 00:57:54,373 - INFO - Created token_first_calls table with optimized indexes
+2025-06-04 00:57:54,374 - INFO - Database connection pool established: size=1-10
+2025-06-04 00:57:54,374 - INFO - Database connection successful
+2025-06-04 00:57:54,576 - INFO - WebsiteChecker cog initialized
+2025-06-04 00:57:54,576 - INFO - Proxy rotator initialized with http protocol
+2025-06-04 00:57:54,577 - INFO - Proxy rotator initialized for Truth commands
+2025-06-04 00:57:54,597 - INFO - Discord Events Registered | Username Ban Server ID: 1313758082974879774
+2025-06-04 00:57:54,599 - INFO - Memory monitor started (threshold: 300MB, interval: 3600s)
+2025-06-04 00:57:54,600 - INFO - Initializing Truth Social tracking...
+2025-06-04 00:57:54,600 - INFO - Initializing DexScreener live tracker...
+2025-06-04 00:57:54,631 - INFO - Proxy rotator initialized with http protocol
+2025-06-04 00:57:54,632 - INFO - Proxy rotator initialized for Truth Social tracking
+2025-06-04 00:57:54,635 - INFO - Ultra-optimized cache built: 0 accounts, 0 accounts with channels, 0 total channel mappings
+2025-06-04 00:57:54,637 - INFO - No guilds with Truth Social tracking enabled
+2025-06-04 00:57:54,637 - INFO - Truth Social tracking initialization complete
+2025-06-04 00:57:54,693 - INFO - Built DexScreener tracking cache: 0 guilds with channels
+2025-06-04 00:57:54,694 - INFO - No guilds with DexScreener tracking enabled
+2025-06-04 00:57:54,694 - INFO - DexScreener tracking initialization complete
+2025-06-04 00:57:55,187 - INFO - Successfully synced 8 command(s)
+2025-06-04 00:57:59,202 - INFO - Logged in as TOPG#4967 (ID: 1340722186100408340)
+2025-06-04 00:57:59,202 - INFO - Bot connected to 6 server(s)
+2025-06-04 00:57:59,202 - INFO - Echo bot message forwarding: 1 bots from 9 channels to 1 channels
+2025-06-04 00:57:59,202 - INFO - Dani message forwarding: 1 users from 2 channels to 1 channels
+2025-06-04 01:00:46,194 - INFO - Health command used by alphabtw_
+2025-06-04 01:02:14,284 - INFO - Bot is shutting down...
+2025-06-04 01:02:14,284 - INFO - API client closed
+2025-06-04 01:02:14,284 - INFO - Truth Social tracking stopped
+2025-06-04 01:02:14,284 - INFO - Truth Social tracking stopped
+2025-06-04 01:02:14,285 - INFO - Services closed successfully
+2025-06-04 01:02:14,285 - INFO - Background task 'metrics_cleanup' canceled
+2025-06-04 01:02:14,285 - INFO - Background task 'memory_monitor' canceled
+2025-06-04 01:02:14,285 - INFO - Background task 'heartbeat_monitor' canceled
+2025-06-04 01:02:14,285 - INFO - Background task 'metrics_report' canceled
+2025-06-04 01:02:14,285 - INFO - DexScreener tracking stopped
+2025-06-04 01:02:14,286 - INFO - DexScreener tracking stopped
+2025-06-04 01:02:14,286 - INFO - Database connection pool closed successfully
+2025-06-04 01:02:14,288 - INFO - Bot stopped by user
+2025-06-04 01:02:19,742 - INFO - Starting bot...
+2025-06-04 01:02:20,674 - INFO - API client initialized
+2025-06-04 01:02:20,675 - INFO - WebsiteAnalyzer initialized with concurrency limit of 15
+2025-06-04 01:02:20,676 - INFO - Loaded 4 Truth Social tokens from file
+2025-06-04 01:02:20,676 - INFO - Successfully authenticated 4/4 Truth Social accounts
+2025-06-04 01:02:20,676 - INFO - Saved 4 Truth Social tokens to file
+2025-06-04 01:02:20,677 - INFO - All API services initialized
+2025-06-04 01:02:20,677 - INFO - Services provider initialized
+2025-06-04 01:02:20,740 - INFO - Database connection pool established: size=1-10
+2025-06-04 01:02:20,740 - INFO - Database connection successful
+2025-06-04 01:02:20,754 - INFO - WebsiteChecker cog initialized
+2025-06-04 01:02:20,755 - INFO - Proxy rotator initialized with http protocol
+2025-06-04 01:02:20,756 - INFO - Proxy rotator initialized for Truth commands
+2025-06-04 01:02:20,790 - INFO - Discord Events Registered | Username Ban Server ID: 1313758082974879774
+2025-06-04 01:02:20,793 - INFO - Memory monitor started (threshold: 300MB, interval: 3600s)
+2025-06-04 01:02:20,794 - INFO - Initializing Truth Social tracking...
+2025-06-04 01:02:20,794 - INFO - Initializing DexScreener live tracker...
+2025-06-04 01:02:20,801 - INFO - Built DexScreener tracking cache: 0 guilds with channels
+2025-06-04 01:02:20,802 - INFO - No guilds with DexScreener tracking enabled
+2025-06-04 01:02:20,803 - INFO - DexScreener tracking initialization complete
+2025-06-04 01:02:20,803 - INFO - Proxy rotator initialized with http protocol
+2025-06-04 01:02:20,803 - INFO - Proxy rotator initialized for Truth Social tracking
+2025-06-04 01:02:20,805 - INFO - Ultra-optimized cache built: 0 accounts, 0 accounts with channels, 0 total channel mappings
+2025-06-04 01:02:20,806 - INFO - No guilds with Truth Social tracking enabled
+2025-06-04 01:02:20,807 - INFO - Truth Social tracking initialization complete
+2025-06-04 01:02:21,311 - INFO - Successfully synced 8 command(s)
+2025-06-04 01:02:24,889 - INFO - Logged in as TOPG#4967 (ID: 1340722186100408340)
+2025-06-04 01:02:24,889 - INFO - Bot connected to 6 server(s)
+2025-06-04 01:02:24,889 - INFO - Echo bot message forwarding: 1 bots from 9 channels to 1 channels
+2025-06-04 01:02:24,890 - INFO - Dani message forwarding: 1 users from 2 channels to 1 channels
+2025-06-04 01:28:06,476 - INFO - Bot is shutting down...
+2025-06-04 01:28:06,494 - INFO - API client closed
+2025-06-04 01:28:06,495 - INFO - Truth Social tracking stopped
+2025-06-04 01:28:06,496 - INFO - Truth Social tracking stopped
+2025-06-04 01:28:06,496 - INFO - Services closed successfully
+2025-06-04 01:28:06,496 - INFO - Background task 'metrics_cleanup' canceled
+2025-06-04 01:28:06,496 - INFO - Background task 'memory_monitor' canceled
+2025-06-04 01:28:06,497 - INFO - Background task 'heartbeat_monitor' canceled
+2025-06-04 01:28:06,497 - INFO - Background task 'metrics_report' canceled
+2025-06-04 01:28:06,498 - INFO - DexScreener tracking stopped
+2025-06-04 01:28:06,498 - INFO - DexScreener tracking stopped
+2025-06-04 01:28:06,501 - INFO - Database connection pool closed successfully
+2025-06-04 01:28:06,536 - INFO - Bot stopped by user

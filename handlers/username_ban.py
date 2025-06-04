@@ -107,9 +107,25 @@ async def ban_user(bot, member, reason, delete_days=1):
         logger.error(f"Bot not found in guild {guild.id}")
         return False
         
+    # Check if bot has permission to ban
     permissions = bot_member.guild_permissions
     if not permissions.ban_members:
         logger.error(f"Bot lacks 'ban_members' permission in guild {guild.id}")
+        return False
+    
+    # Check role hierarchy
+    if not guild.me.top_role > member.top_role:
+        logger.error(f"Cannot ban user {member.id} ({str(member)}) - their role is higher than the bot's highest role")
+        return False
+    
+    # Check if trying to ban guild owner
+    if member.id == guild.owner_id:
+        logger.error(f"Cannot ban user {member.id} ({str(member)}) - they are the server owner")
+        return False
+    
+    # Check if trying to ban itself
+    if member.id == bot.user.id:
+        logger.error(f"Cannot ban self")
         return False
     
     try:
@@ -130,7 +146,7 @@ async def ban_user(bot, member, reason, delete_days=1):
         # Only log once with all necessary info
         logger.warning(f"Banning user {member.id} | Username: {safe_text(str(member))} | Display Name: {safe_text(member.display_name)} | Reason: {reason} | Delete Messages: {delete_days} days")
         
-        # Try to send DM to the user before banning
+        # First try to send DM to the user before banning
         try:
             # Select a random funny reason
             funny_reason = random.choice(BAN_FUNNY_REASONS) if BAN_FUNNY_REASONS else "Bye bye!"
