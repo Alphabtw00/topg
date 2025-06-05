@@ -11,9 +11,9 @@ from handlers.message_processor import process_message_with_timeout
 from handlers.forwarding_handler import forward_message, should_process_forwarding
 from service.auto_message_settings import should_process_channel
 from handlers.username_ban import check_username, ban_user  # Correct import path
+from utils.validators import extract_tickers_and_addresses_single_regex
 from utils.logger import get_logger
 from config import (
-    FORWARD_GUILD_IDS,
     USERNAME_BAN_SERVER_ID
 )
 from datetime import datetime
@@ -63,15 +63,15 @@ async def on_message(message: discord.Message):
     if message.author.bot:
         return
    
-    if not await should_process_channel(message.guild.id, message.channel.id):
-        return
+    # if not await should_process_channel(message.guild.id, message.channel.id):
+    #     return
        
-    content = message.content
-    # Quick check if the message might contain anything we need to process
-    if '$' not in content and not re.search(r'[a-zA-Z0-9]{26,}', content):
+    addresses, tickers = extract_tickers_and_addresses_single_regex(message.content)
+    
+    if not addresses and not tickers:
         return
-   
-    asyncio.create_task(process_message_with_timeout(message))
+    
+    asyncio.create_task(process_message_with_timeout(message, _bot, addresses, tickers))
 
 
 async def should_send_fudded_reply(message: discord.Message) -> bool:

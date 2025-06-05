@@ -271,58 +271,99 @@ async def process_new_token(bot, token_data):
         if not embed:
             return False
         
-        # Send to all guilds concurrently
+        # Create non-blocking tasks for both operations
         tasks = []
-        for guild_id, channel_ids in _guild_channels.items():
-            tasks.append(send_guild_updates(bot, guild_id, channel_ids, embed, token_address, symbol, name))
         
-        # Execute all guild tasks together
-        await asyncio.gather(*tasks, return_exceptions=True)
+        # Send to all enabled guilds (original tracking)
+        if _guild_channels:
+            tasks.append(asyncio.create_task(send_all_guild_updates(bot, embed)))
+        
+        # Send cross-server DEX alerts (decoupled)
+        tasks.append(asyncio.create_task(send_cross_server_dex_alerts(bot, token_address, embed, name, symbol)))
+        
+        # Fire and forget - don't wait for completion
+        if tasks:
+            asyncio.gather(*tasks, return_exceptions=True)
+        
         return True
         
     except Exception as e:
         logger.error(f"Error processing token {token_address}: {e}")
         return False
 
-async def send_guild_updates(bot, guild_id, channel_ids, embed, token_address, symbol, name):
-    """Efficiently send updates to a guild with first call checking"""
-    # Start first call query immediately (non-blocking)
-    from handlers.mysql_handler import fetch_one
-    first_call_task = asyncio.create_task(fetch_one(
-        "SELECT user_id, channel_id, message_id FROM token_first_calls WHERE token_address = %s AND guild_id = %s",
-        (token_address, guild_id)
-    ))
+async def send_all_guild_updates(bot, embed):
+    """Send tracking updates to all enabled guilds"""
+    guild_tasks = []
+    for guild_id, channel_ids in _guild_channels.items():
+        guild_tasks.append(send_guild_updates(bot, guild_id, channel_ids, embed))
     
-    # More concise channel send creation with reusable objects and list comprehension
-    channels = {cid: bot.get_channel(cid) for cid in channel_ids if bot.get_channel(cid)}
-    channel_tasks = [asyncio.create_task(ch.send(embed=embed)) for ch in channels.values()]
+    if guild_tasks:
+        await asyncio.gather(*guild_tasks, return_exceptions=True)
+
+async def send_guild_updates(bot, guild_id, channel_ids, embed):
+    """Send updates to a specific guild (clean, no first call logic)"""
+    channels = [bot.get_channel(cid) for cid in channel_ids]
+    valid_channels = [ch for ch in channels if ch is not None]
     
-    # Check for first call while channels are sending
+    if not valid_channels:
+        return
+    
+    # Send to all channels concurrently
+    tasks = [ch.send(embed=embed) for ch in valid_channels]
+    await asyncio.gather(*tasks, return_exceptions=True)
+
+async def send_cross_server_dex_alerts(bot, token_address, embed, name, symbol):
+    """Send DEX alerts to all first callers across all servers"""
     try:
-        first_call = await first_call_task
-        if first_call:
-            user_id, call_channel_id, message_id = first_call
-            if user_id and call_channel_id and message_id:
-                notification = f"<@{user_id}> DEX paid for {name} (${symbol})!"
-                # Only modify the embed for the reply
-                reply_embed = discord.Embed.from_dict(embed.to_dict())
-                reply_embed.set_footer(text="DEX Alerts", icon_url=embed.footer.icon_url if embed.footer else None)
-                
-                # Get channel object (reuse if already fetched)
-                call_channel = channels.get(call_channel_id) or bot.get_channel(call_channel_id)
-                if call_channel:
-                    try:
-                        # Fetch and reply to original message
-                        orig_msg = await call_channel.fetch_message(int(message_id))
-                        await orig_msg.reply(content=f"<@{user_id}> DEX paid for {name} (${symbol})!", embed=reply_embed)
-                    except:
-                        if call_channel_id not in channel_ids: #dont send if already sent via normal flow
-                            await call_channel.send(content=notification, embed=reply_embed)
-    except:
-        pass  # Silently ignore first call errors to maintain performance
-    
-    # Wait for all regular channel sends to complete (already running)
-    await asyncio.gather(*channel_tasks, return_exceptions=True)
+        from handlers.mysql_handler import fetch_all
+        
+        # Get ALL first calls across ALL servers
+        first_calls = await fetch_all(
+            "SELECT user_id, channel_id, message_id FROM token_first_calls WHERE token_address = %s",
+            (token_address,)
+        )
+        
+        if not first_calls:
+            return
+        
+        # Send alerts to all first callers concurrently
+        alert_tasks = []
+        for call_data in first_calls:
+            user_id, call_channel_id, message_id = call_data
+            if user_id and call_channel_id:
+                alert_tasks.append(send_individual_dex_alert(
+                    bot, user_id, call_channel_id, message_id, embed, name, symbol
+                ))
+        
+        if alert_tasks:
+            await asyncio.gather(*alert_tasks, return_exceptions=True)
+            
+    except Exception as e:
+        logger.error(f"Error sending cross-server DEX alerts for {token_address}: {e}")
+
+async def send_individual_dex_alert(bot, user_id, call_channel_id, message_id, embed, name, symbol):
+    """Send DEX alert to individual caller"""
+    try:
+        call_channel = bot.get_channel(int(call_channel_id))
+        if not call_channel:
+            return
+        
+        notification = f"<@{user_id}> DEX paid for {name} (${symbol})!"
+        reply_embed = discord.Embed.from_dict(embed.to_dict())
+        reply_embed.set_footer(text="DEX Alerts", icon_url=embed.footer.icon_url if embed.footer else None)
+        
+        if message_id:
+            try:
+                orig_msg = await call_channel.fetch_message(int(message_id))
+                await orig_msg.reply(content=notification, embed=reply_embed)
+                return
+            except:
+                pass
+        
+        await call_channel.send(content=notification, embed=reply_embed)
+        
+    except Exception as e:
+        logger.error(f"Error sending DEX alert to user {user_id}: {e}")
         
 
 def get_tracking_status() -> Dict:

@@ -1,0 +1,405 @@
+2025-06-05 11:09:13,983 - INFO - Starting bot...
+2025-06-05 11:09:14,962 - INFO - API client initialized
+2025-06-05 11:09:14,964 - INFO - WebsiteAnalyzer initialized with concurrency limit of 15
+2025-06-05 11:09:14,972 - INFO - Loaded 4 Truth Social tokens from file
+2025-06-05 11:09:14,973 - INFO - Authenticating 4 Truth Social accounts with missing or expired tokens...
+2025-06-05 11:09:15,034 - ERROR - Auth error: Status 403
+2025-06-05 11:09:15,034 - ERROR - Failed to authenticate Truth Social account: alphabtw
+2025-06-05 11:09:15,126 - ERROR - Failed to authenticate Truth Social account: visheshbtw
+2025-06-05 11:09:15,166 - ERROR - Failed to authenticate Truth Social account: sakshambtw
+2025-06-05 11:09:15,328 - ERROR - Failed to authenticate Truth Social account: mayankbtw
+2025-06-05 11:09:15,328 - INFO - Successfully authenticated 0/4 Truth Social accounts
+2025-06-05 11:09:15,329 - INFO - Saved 4 Truth Social tokens to file
+2025-06-05 11:09:15,329 - INFO - All API services initialized
+2025-06-05 11:09:15,329 - INFO - Services provider initialized
+2025-06-05 11:09:15,572 - INFO - Database connection pool established: size=1-10
+2025-06-05 11:09:15,572 - INFO - Database connection successful
+2025-06-05 11:09:15,595 - INFO - WebsiteChecker cog initialized
+2025-06-05 11:09:15,597 - INFO - Proxy rotator initialized with http protocol
+2025-06-05 11:09:15,597 - INFO - Proxy rotator initialized for Truth commands
+2025-06-05 11:09:15,606 - INFO - Discord Events Registered | Username Ban Server ID: 1313758082974879774
+2025-06-05 11:09:15,607 - INFO - Memory monitor started (threshold: 300MB, interval: 3600s)
+2025-06-05 11:09:15,609 - INFO - Initializing Truth Social tracking...
+2025-06-05 11:09:15,613 - INFO - Initializing DexScreener live tracker...
+2025-06-05 11:09:15,633 - INFO - Built DexScreener tracking cache: 0 guilds with channels
+2025-06-05 11:09:15,638 - INFO - No guilds with DexScreener tracking enabled
+2025-06-05 11:09:15,639 - INFO - DexScreener tracking initialization complete
+2025-06-05 11:09:15,640 - INFO - Proxy rotator initialized with http protocol
+2025-06-05 11:09:15,641 - INFO - Proxy rotator initialized for Truth Social tracking
+2025-06-05 11:09:15,647 - INFO - Ultra-optimized cache built: 0 accounts, 0 accounts with channels, 0 total channel mappings
+2025-06-05 11:09:15,652 - INFO - No guilds with Truth Social tracking enabled
+2025-06-05 11:09:15,652 - INFO - Truth Social tracking initialization complete
+2025-06-05 11:09:16,148 - INFO - Successfully synced 8 command(s)
+2025-06-05 11:09:20,174 - INFO - Logged in as TOPG#4967 (ID: 1340722186100408340)
+2025-06-05 11:09:20,175 - INFO - Bot connected to 7 server(s)
+2025-06-05 11:09:20,180 - INFO - Echo bot message forwarding: 1 bots from 9 channels to 1 channels
+2025-06-05 11:09:20,181 - INFO - Dani message forwarding: 1 users from 2 channels to 1 channels
+2025-06-05 11:26:41,993 - INFO - Bot is shutting down...
+2025-06-05 11:26:42,027 - INFO - API client closed
+2025-06-05 11:26:42,028 - INFO - Truth Social tracking stopped
+2025-06-05 11:26:42,028 - INFO - Truth Social tracking stopped
+2025-06-05 11:26:42,029 - INFO - Services closed successfully
+2025-06-05 11:26:42,029 - INFO - Background task 'metrics_cleanup' canceled
+2025-06-05 11:26:42,029 - INFO - Background task 'memory_monitor' canceled
+2025-06-05 11:26:42,029 - INFO - Background task 'heartbeat_monitor' canceled
+2025-06-05 11:26:42,029 - INFO - Background task 'metrics_report' canceled
+2025-06-05 11:26:42,030 - INFO - DexScreener tracking stopped
+2025-06-05 11:26:42,030 - INFO - DexScreener tracking stopped
+2025-06-05 11:26:42,032 - INFO - Database connection pool closed successfully
+2025-06-05 11:26:42,052 - INFO - Bot stopped by user
+2025-06-05 11:26:45,837 - INFO - Starting bot...
+2025-06-05 11:26:46,728 - INFO - API client initialized
+2025-06-05 11:26:46,728 - INFO - WebsiteAnalyzer initialized with concurrency limit of 15
+2025-06-05 11:26:46,738 - INFO - Loaded 4 Truth Social tokens from file
+2025-06-05 11:26:46,738 - INFO - Authenticating 4 Truth Social accounts with missing or expired tokens...
+2025-06-05 11:26:46,789 - ERROR - Auth error: Status 403
+2025-06-05 11:26:46,789 - ERROR - Failed to authenticate Truth Social account: alphabtw
+2025-06-05 11:26:46,817 - ERROR - Failed to authenticate Truth Social account: visheshbtw
+2025-06-05 11:26:46,854 - ERROR - Failed to authenticate Truth Social account: sakshambtw
+2025-06-05 11:26:46,889 - ERROR - Failed to authenticate Truth Social account: mayankbtw
+2025-06-05 11:26:46,889 - INFO - Successfully authenticated 0/4 Truth Social accounts
+2025-06-05 11:26:46,890 - INFO - Saved 4 Truth Social tokens to file
+2025-06-05 11:26:46,890 - INFO - All API services initialized
+2025-06-05 11:26:46,890 - INFO - Services provider initialized
+2025-06-05 11:26:46,993 - INFO - Database connection pool established: size=1-10
+2025-06-05 11:26:46,993 - INFO - Database connection successful
+2025-06-05 11:26:47,012 - INFO - WebsiteChecker cog initialized
+2025-06-05 11:26:47,012 - INFO - Proxy rotator initialized with http protocol
+2025-06-05 11:26:47,013 - INFO - Proxy rotator initialized for Truth commands
+2025-06-05 11:26:47,018 - INFO - Discord Events Registered | Username Ban Server ID: 1313758082974879774
+2025-06-05 11:26:47,019 - INFO - Memory monitor started (threshold: 300MB, interval: 3600s)
+2025-06-05 11:26:47,019 - INFO - Initializing Truth Social tracking...
+2025-06-05 11:26:47,019 - INFO - Initializing DexScreener live tracker...
+2025-06-05 11:26:47,026 - INFO - Built DexScreener tracking cache: 0 guilds with channels
+2025-06-05 11:26:47,027 - INFO - Proxy rotator initialized with http protocol
+2025-06-05 11:26:47,027 - INFO - Proxy rotator initialized for Truth Social tracking
+2025-06-05 11:26:47,027 - INFO - No guilds with DexScreener tracking enabled
+2025-06-05 11:26:47,028 - INFO - DexScreener tracking initialization complete
+2025-06-05 11:26:47,030 - INFO - Ultra-optimized cache built: 0 accounts, 0 accounts with channels, 0 total channel mappings
+2025-06-05 11:26:47,031 - INFO - No guilds with Truth Social tracking enabled
+2025-06-05 11:26:47,031 - INFO - Truth Social tracking initialization complete
+2025-06-05 11:26:47,492 - INFO - Successfully synced 8 command(s)
+2025-06-05 11:26:51,602 - INFO - Logged in as TOPG#4967 (ID: 1340722186100408340)
+2025-06-05 11:26:51,603 - INFO - Bot connected to 7 server(s)
+2025-06-05 11:26:51,603 - INFO - Echo bot message forwarding: 1 bots from 9 channels to 1 channels
+2025-06-05 11:26:51,603 - INFO - Dani message forwarding: 1 users from 2 channels to 1 channels
+2025-06-05 11:36:31,469 - WARNING - API mobula returned status 500 for URL: https://api.mobula.io/api/1/market/history/pair?asset=5zcHcvMhSzo4YjssiZoAmTzVx9JSCCuzwPUdewb1pump&blockchain=solana&period=1min&amount=100000
+2025-06-05 11:36:32,129 - WARNING - API mobula returned status 500 for URL: https://api.mobula.io/api/1/market/history/pair?asset=5zcHcvMhSzo4YjssiZoAmTzVx9JSCCuzwPUdewb1pump&blockchain=solana&period=1min&amount=100000
+2025-06-05 11:36:32,877 - WARNING - API mobula returned status 500 for URL: https://api.mobula.io/api/1/market/history/pair?asset=5zcHcvMhSzo4YjssiZoAmTzVx9JSCCuzwPUdewb1pump&blockchain=solana&period=1min&amount=100000
+2025-06-05 11:42:47,902 - WARNING - API mobula returned status 404 for URL: https://api.mobula.io/api/1/market/history/pair?asset=4hhJsVha44JLdYU9wsBezWDAjmSWja1bET2GfpbXaQJt&blockchain=solana&period=1min&amount=100000
+2025-06-05 12:00:45,713 - INFO - Starting bot...
+2025-06-05 12:00:46,684 - INFO - API client initialized
+2025-06-05 12:00:46,684 - INFO - WebsiteAnalyzer initialized with concurrency limit of 15
+2025-06-05 12:00:46,685 - INFO - Loaded 4 Truth Social tokens from file
+2025-06-05 12:00:46,686 - INFO - Authenticating 4 Truth Social accounts with missing or expired tokens...
+2025-06-05 12:00:46,737 - ERROR - Auth error: Status 403
+2025-06-05 12:00:46,737 - ERROR - Failed to authenticate Truth Social account: alphabtw
+2025-06-05 12:00:46,767 - ERROR - Failed to authenticate Truth Social account: visheshbtw
+2025-06-05 12:00:46,801 - ERROR - Failed to authenticate Truth Social account: sakshambtw
+2025-06-05 12:00:46,831 - ERROR - Failed to authenticate Truth Social account: mayankbtw
+2025-06-05 12:00:46,831 - INFO - Successfully authenticated 0/4 Truth Social accounts
+2025-06-05 12:00:46,832 - INFO - Saved 4 Truth Social tokens to file
+2025-06-05 12:00:46,832 - INFO - All API services initialized
+2025-06-05 12:00:46,832 - INFO - Services provider initialized
+2025-06-05 12:00:47,102 - INFO - Database connection pool established: size=1-10
+2025-06-05 12:00:47,102 - INFO - Database connection successful
+2025-06-05 12:00:47,124 - INFO - WebsiteChecker cog initialized
+2025-06-05 12:00:47,124 - INFO - Proxy rotator initialized with http protocol
+2025-06-05 12:00:47,124 - INFO - Proxy rotator initialized for Truth commands
+2025-06-05 12:00:47,130 - INFO - Discord Events Registered | Username Ban Server ID: 1313758082974879774
+2025-06-05 12:00:47,131 - INFO - Memory monitor started (threshold: 300MB, interval: 3600s)
+2025-06-05 12:00:47,132 - INFO - Initializing Truth Social tracking...
+2025-06-05 12:00:47,132 - INFO - Initializing DexScreener live tracker...
+2025-06-05 12:00:47,138 - INFO - Proxy rotator initialized with http protocol
+2025-06-05 12:00:47,139 - INFO - Proxy rotator initialized for Truth Social tracking
+2025-06-05 12:00:47,141 - INFO - Ultra-optimized cache built: 0 accounts, 0 accounts with channels, 0 total channel mappings
+2025-06-05 12:00:47,142 - INFO - No guilds with Truth Social tracking enabled
+2025-06-05 12:00:47,142 - INFO - Truth Social tracking initialization complete
+2025-06-05 12:00:47,146 - INFO - Built DexScreener tracking cache: 0 guilds with channels
+2025-06-05 12:00:47,148 - INFO - No guilds with DexScreener tracking enabled
+2025-06-05 12:00:47,148 - INFO - DexScreener tracking initialization complete
+2025-06-05 12:00:47,667 - INFO - Successfully synced 8 command(s)
+2025-06-05 12:00:51,859 - INFO - Logged in as TOPG#4967 (ID: 1340722186100408340)
+2025-06-05 12:00:51,860 - INFO - Bot connected to 7 server(s)
+2025-06-05 12:00:51,860 - INFO - Echo bot message forwarding: 1 bots from 9 channels to 1 channels
+2025-06-05 12:00:51,860 - INFO - Dani message forwarding: 1 users from 2 channels to 1 channels
+2025-06-05 12:13:38,023 - WARNING - API mobula returned status 404 for URL: https://api.mobula.io/api/1/market/history/pair?asset=6WBtEtF3QhGukQZHD79K91ViXdoxdqf1SCHQCptwFW9q&blockchain=solana&period=1min&amount=100000
+2025-06-05 12:19:37,040 - WARNING - API mobula returned status 500 for URL: https://api.mobula.io/api/1/market/history/pair?asset=EDK5DsvHAK6qLC5uZNfRWqhySdGBaipHeYSRqazSpump&blockchain=solana&period=4h&amount=100000
+2025-06-05 12:19:37,705 - WARNING - API mobula returned status 500 for URL: https://api.mobula.io/api/1/market/history/pair?asset=EDK5DsvHAK6qLC5uZNfRWqhySdGBaipHeYSRqazSpump&blockchain=solana&period=4h&amount=100000
+2025-06-05 12:19:38,481 - WARNING - API mobula returned status 500 for URL: https://api.mobula.io/api/1/market/history/pair?asset=EDK5DsvHAK6qLC5uZNfRWqhySdGBaipHeYSRqazSpump&blockchain=solana&period=4h&amount=100000
+2025-06-05 12:19:38,851 - WARNING - API mobula returned status 500 for URL: https://api.mobula.io/api/1/market/history/pair?asset=EKQLZNP5QQ293hqPQGW1REJMM1Mq2hPMdnba4DNypump&blockchain=solana&period=1min&amount=100000
+2025-06-05 12:19:39,386 - WARNING - API mobula returned status 500 for URL: https://api.mobula.io/api/1/market/history/pair?asset=EKQLZNP5QQ293hqPQGW1REJMM1Mq2hPMdnba4DNypump&blockchain=solana&period=1min&amount=100000
+2025-06-05 12:19:39,648 - WARNING - API mobula returned status 500 for URL: https://api.mobula.io/api/1/market/history/pair?asset=EDK5DsvHAK6qLC5uZNfRWqhySdGBaipHeYSRqazSpump&blockchain=solana&period=4h&amount=100000
+2025-06-05 12:39:42,402 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-06-05 12:39:43,052 - INFO - Reconnected to Discord after disconnection
+2025-06-05 12:39:43,065 - INFO - Post-reconnection health check: Database=True, API Client=True
+2025-06-05 12:39:47,418 - INFO - Bot automatically reconnected
+2025-06-05 12:40:04,856 - WARNING - API mobula returned status 500 for URL: https://api.mobula.io/api/1/market/history/pair?asset=7iFpiWGdzpkxFjs84g84kPtHpQWKBgRapgk8Tdtg2duP&blockchain=solana&period=5min&amount=100000
+2025-06-05 12:40:06,641 - WARNING - API mobula returned status 500 for URL: https://api.mobula.io/api/1/market/history/pair?asset=7iFpiWGdzpkxFjs84g84kPtHpQWKBgRapgk8Tdtg2duP&blockchain=solana&period=5min&amount=100000
+2025-06-05 12:40:07,701 - WARNING - API mobula returned status 404 for URL: https://api.mobula.io/api/1/market/history/pair?asset=7iFpiWGdzpkxFjs84g84kPtHpQWKBgRapgk8Tdtg2duP&blockchain=solana&period=5min&amount=100000
+2025-06-05 12:42:40,704 - WARNING - API mobula returned status 404 for URL: https://api.mobula.io/api/1/market/history/pair?asset=8BjQHNfcMzNM36rdk6avoJj3c3CTcDGMU5S26Hhgpump&blockchain=solana&period=1d&amount=100000
+2025-06-05 12:42:41,797 - WARNING - API mobula returned status 500 for URL: https://api.mobula.io/api/1/market/history/pair?asset=8BjQHNfcMzNM36rdk6avoJj3c3CTcDGMU5S26Hhgpump&blockchain=solana&period=1d&amount=100000
+2025-06-05 12:56:16,016 - INFO - Bot is shutting down...
+2025-06-05 12:56:16,033 - INFO - API client closed
+2025-06-05 12:56:16,037 - INFO - Truth Social tracking stopped
+2025-06-05 12:56:16,037 - INFO - Truth Social tracking stopped
+2025-06-05 12:56:16,038 - INFO - Services closed successfully
+2025-06-05 12:56:16,038 - INFO - Background task 'metrics_cleanup' canceled
+2025-06-05 12:56:16,038 - INFO - Background task 'memory_monitor' canceled
+2025-06-05 12:56:16,039 - INFO - Background task 'heartbeat_monitor' canceled
+2025-06-05 12:56:16,039 - INFO - Background task 'metrics_report' canceled
+2025-06-05 12:56:16,039 - INFO - DexScreener tracking stopped
+2025-06-05 12:56:16,040 - INFO - DexScreener tracking stopped
+2025-06-05 12:56:16,046 - INFO - Database connection pool closed successfully
+2025-06-05 12:56:16,092 - INFO - Bot stopped by user
+2025-06-05 12:56:20,477 - INFO - Starting bot...
+2025-06-05 12:56:21,362 - INFO - API client initialized
+2025-06-05 12:56:21,363 - INFO - WebsiteAnalyzer initialized with concurrency limit of 15
+2025-06-05 12:56:21,367 - INFO - Loaded 4 Truth Social tokens from file
+2025-06-05 12:56:21,368 - INFO - Authenticating 4 Truth Social accounts with missing or expired tokens...
+2025-06-05 12:56:21,522 - ERROR - Auth error: Status 403
+2025-06-05 12:56:21,522 - ERROR - Failed to authenticate Truth Social account: alphabtw
+2025-06-05 12:56:21,548 - ERROR - Failed to authenticate Truth Social account: visheshbtw
+2025-06-05 12:56:21,584 - ERROR - Failed to authenticate Truth Social account: sakshambtw
+2025-06-05 12:56:21,617 - ERROR - Failed to authenticate Truth Social account: mayankbtw
+2025-06-05 12:56:21,618 - INFO - Successfully authenticated 0/4 Truth Social accounts
+2025-06-05 12:56:21,619 - INFO - Saved 4 Truth Social tokens to file
+2025-06-05 12:56:21,619 - INFO - All API services initialized
+2025-06-05 12:56:21,619 - INFO - Services provider initialized
+2025-06-05 12:56:21,750 - INFO - Database connection pool established: size=1-10
+2025-06-05 12:56:21,750 - INFO - Database connection successful
+2025-06-05 12:56:21,770 - INFO - WebsiteChecker cog initialized
+2025-06-05 12:56:21,770 - INFO - Proxy rotator initialized with http protocol
+2025-06-05 12:56:21,771 - INFO - Proxy rotator initialized for Truth commands
+2025-06-05 12:56:21,797 - INFO - Discord Events Registered | Username Ban Server ID: 1313758082974879774
+2025-06-05 12:56:21,799 - INFO - Memory monitor started (threshold: 300MB, interval: 3600s)
+2025-06-05 12:56:21,800 - INFO - Initializing Truth Social tracking...
+2025-06-05 12:56:21,801 - INFO - Initializing DexScreener live tracker...
+2025-06-05 12:56:21,818 - INFO - Built DexScreener tracking cache: 0 guilds with channels
+2025-06-05 12:56:21,819 - INFO - No guilds with DexScreener tracking enabled
+2025-06-05 12:56:21,820 - INFO - DexScreener tracking initialization complete
+2025-06-05 12:56:21,823 - INFO - Proxy rotator initialized with http protocol
+2025-06-05 12:56:21,824 - INFO - Proxy rotator initialized for Truth Social tracking
+2025-06-05 12:56:21,831 - INFO - Ultra-optimized cache built: 0 accounts, 0 accounts with channels, 0 total channel mappings
+2025-06-05 12:56:21,832 - INFO - No guilds with Truth Social tracking enabled
+2025-06-05 12:56:21,833 - INFO - Truth Social tracking initialization complete
+2025-06-05 12:56:22,376 - INFO - Successfully synced 8 command(s)
+2025-06-05 12:56:26,377 - INFO - Logged in as TOPG#4967 (ID: 1340722186100408340)
+2025-06-05 12:56:26,377 - INFO - Bot connected to 7 server(s)
+2025-06-05 12:56:26,377 - INFO - Echo bot message forwarding: 1 bots from 9 channels to 1 channels
+2025-06-05 12:56:26,377 - INFO - Dani message forwarding: 1 users from 2 channels to 1 channels
+2025-06-05 13:03:49,338 - WARNING - API mobula returned status 500 for URL: https://api.mobula.io/api/1/market/history/pair?asset=GL1BDyBNGPX9C54HZYXhk7KeqvaHyGViBqRrsUP9pump&blockchain=solana&period=1min&amount=100000
+2025-06-05 13:03:49,949 - WARNING - API mobula returned status 500 for URL: https://api.mobula.io/api/1/market/history/pair?asset=GL1BDyBNGPX9C54HZYXhk7KeqvaHyGViBqRrsUP9pump&blockchain=solana&period=1min&amount=100000
+2025-06-05 13:03:50,700 - WARNING - API mobula returned status 500 for URL: https://api.mobula.io/api/1/market/history/pair?asset=GL1BDyBNGPX9C54HZYXhk7KeqvaHyGViBqRrsUP9pump&blockchain=solana&period=1min&amount=100000
+2025-06-05 13:03:51,636 - WARNING - API mobula returned status 500 for URL: https://api.mobula.io/api/1/market/history/pair?asset=GL1BDyBNGPX9C54HZYXhk7KeqvaHyGViBqRrsUP9pump&blockchain=solana&period=1min&amount=100000
+2025-06-05 13:04:54,069 - INFO - Ultra-optimized cache built: 0 accounts, 0 accounts with channels, 0 total channel mappings
+2025-06-05 13:04:54,071 - INFO - Ultra-optimized cache built: 0 accounts, 0 accounts with channels, 0 total channel mappings
+2025-06-05 13:04:54,873 - INFO - alphabtw_ added @realDonaldTrump in server 'yo' for tracking
+2025-06-05 13:05:07,350 - INFO - Ultra-optimized cache built: 0 accounts, 0 accounts with channels, 0 total channel mappings
+2025-06-05 13:05:07,352 - INFO - Ultra-optimized cache built: 0 accounts, 0 accounts with channels, 0 total channel mappings
+2025-06-05 13:05:07,988 - INFO - alphabtw_ added channel #general in server 'yo' for Truth Social tracking
+2025-06-05 13:05:13,410 - INFO - Ultra-optimized cache built: 1 accounts, 1 accounts with channels, 1 total channel mappings
+2025-06-05 13:05:13,419 - INFO - Ultra-optimized cache built: 1 accounts, 1 accounts with channels, 1 total channel mappings
+2025-06-05 13:05:13,420 - INFO - Truth Social tracking started
+2025-06-05 13:05:13,963 - INFO - alphabtw_ enabled Truth Social tracking in server 'yo'
+2025-06-05 13:05:14,736 - INFO - First-time poll for 107780257626128497: found 1 posts
+2025-06-05 13:05:14,756 - INFO - Post ID 114632206992330264 image URL: None
+2025-06-05 13:05:15,195 - INFO - Broadcast 1 posts from @realDonaldTrump to 1 guilds (1 channels)
+2025-06-05 13:06:34,801 - INFO - Post ID 114632555927229642 image URL: None
+2025-06-05 13:06:35,361 - INFO - Broadcast 1 posts from @realDonaldTrump to 1 guilds (1 channels)
+2025-06-05 13:15:49,499 - WARNING - API mobula returned status 500 for URL: https://api.mobula.io/api/1/market/history/pair?asset=6WBtEtF3QhGukQZHD79K91ViXdoxdqf1SCHQCptwFW9q&blockchain=solana&period=1min&amount=100000
+2025-06-05 13:15:50,068 - WARNING - API mobula returned status 500 for URL: https://api.mobula.io/api/1/market/history/pair?asset=6WBtEtF3QhGukQZHD79K91ViXdoxdqf1SCHQCptwFW9q&blockchain=solana&period=1min&amount=100000
+2025-06-05 13:16:29,358 - WARNING - API mobula returned status 500 for URL: https://api.mobula.io/api/1/market/history/pair?asset=6WBtEtF3QhGukQZHD79K91ViXdoxdqf1SCHQCptwFW9q&blockchain=solana&period=1min&amount=100000
+2025-06-05 13:16:30,054 - WARNING - API mobula returned status 500 for URL: https://api.mobula.io/api/1/market/history/pair?asset=6WBtEtF3QhGukQZHD79K91ViXdoxdqf1SCHQCptwFW9q&blockchain=solana&period=1min&amount=100000
+2025-06-05 13:16:30,780 - WARNING - API mobula returned status 500 for URL: https://api.mobula.io/api/1/market/history/pair?asset=6WBtEtF3QhGukQZHD79K91ViXdoxdqf1SCHQCptwFW9q&blockchain=solana&period=1min&amount=100000
+2025-06-05 13:16:32,177 - WARNING - API mobula returned status 404 for URL: https://api.mobula.io/api/1/market/history/pair?asset=6WBtEtF3QhGukQZHD79K91ViXdoxdqf1SCHQCptwFW9q&blockchain=solana&period=1min&amount=100000
+2025-06-05 13:18:20,616 - WARNING - API mobula returned status 500 for URL: https://api.mobula.io/api/1/market/history/pair?asset=2YvMCDFnui2cebR9iBRW2APTbxtNGneajeUhgQKApump&blockchain=solana&period=1min&amount=100000
+2025-06-05 13:20:54,631 - WARNING - API mobula returned status 500 for URL: https://api.mobula.io/api/1/market/history/pair?asset=6HShU1e4qKgVzpErAqJfR19hLzvcvT6iSmwSYUtYpump&blockchain=solana&period=1min&amount=100000
+2025-06-05 13:20:57,037 - WARNING - API mobula returned status 500 for URL: https://api.mobula.io/api/1/market/history/pair?asset=6HShU1e4qKgVzpErAqJfR19hLzvcvT6iSmwSYUtYpump&blockchain=solana&period=1min&amount=100000
+2025-06-05 13:20:57,802 - WARNING - API mobula returned status 500 for URL: https://api.mobula.io/api/1/market/history/pair?asset=6HShU1e4qKgVzpErAqJfR19hLzvcvT6iSmwSYUtYpump&blockchain=solana&period=1min&amount=100000
+2025-06-05 13:20:58,746 - WARNING - API mobula returned status 500 for URL: https://api.mobula.io/api/1/market/history/pair?asset=6HShU1e4qKgVzpErAqJfR19hLzvcvT6iSmwSYUtYpump&blockchain=solana&period=1min&amount=100000
+2025-06-05 13:26:20,635 - WARNING - API mobula returned status 500 for URL: https://api.mobula.io/api/1/market/history/pair?asset=9VcZSLsFVEUizA1rXUR7jXDSu2c2piPB8aLRmX4Rpump&blockchain=solana&period=1min&amount=100000
+2025-06-05 13:26:21,185 - WARNING - API mobula returned status 500 for URL: https://api.mobula.io/api/1/market/history/pair?asset=9VcZSLsFVEUizA1rXUR7jXDSu2c2piPB8aLRmX4Rpump&blockchain=solana&period=1min&amount=100000
+2025-06-05 13:26:22,052 - WARNING - API mobula returned status 404 for URL: https://api.mobula.io/api/1/market/history/pair?asset=9VcZSLsFVEUizA1rXUR7jXDSu2c2piPB8aLRmX4Rpump&blockchain=solana&period=1min&amount=100000
+2025-06-05 13:30:32,529 - WARNING - API mobula returned status 500 for URL: https://api.mobula.io/api/1/market/history/pair?asset=6kk11o3wjqAxdgJ57oc4HyucY5dmDrtnaWzpTyAPpump&blockchain=solana&period=1min&amount=100000
+2025-06-05 13:30:33,132 - WARNING - API mobula returned status 500 for URL: https://api.mobula.io/api/1/market/history/pair?asset=6kk11o3wjqAxdgJ57oc4HyucY5dmDrtnaWzpTyAPpump&blockchain=solana&period=1min&amount=100000
+2025-06-05 13:30:33,858 - WARNING - API mobula returned status 500 for URL: https://api.mobula.io/api/1/market/history/pair?asset=6kk11o3wjqAxdgJ57oc4HyucY5dmDrtnaWzpTyAPpump&blockchain=solana&period=1min&amount=100000
+2025-06-05 13:30:36,699 - WARNING - API mobula returned status 500 for URL: https://api.mobula.io/api/1/market/history/pair?asset=6kk11o3wjqAxdgJ57oc4HyucY5dmDrtnaWzpTyAPpump&blockchain=solana&period=1min&amount=100000
+2025-06-05 13:30:59,938 - WARNING - API mobula returned status 500 for URL: https://api.mobula.io/api/1/market/history/pair?asset=8Ux6PWQiXAYvgYkhb5gLUwrZztMCmCmQ4AdAuc6tVWzj&blockchain=solana&period=1min&amount=100000
+2025-06-05 13:31:00,561 - WARNING - API mobula returned status 500 for URL: https://api.mobula.io/api/1/market/history/pair?asset=8Ux6PWQiXAYvgYkhb5gLUwrZztMCmCmQ4AdAuc6tVWzj&blockchain=solana&period=1min&amount=100000
+2025-06-05 13:31:01,308 - WARNING - API mobula returned status 500 for URL: https://api.mobula.io/api/1/market/history/pair?asset=8Ux6PWQiXAYvgYkhb5gLUwrZztMCmCmQ4AdAuc6tVWzj&blockchain=solana&period=1min&amount=100000
+2025-06-05 13:36:35,216 - WARNING - API mobula returned status 500 for URL: https://api.mobula.io/api/1/market/history/pair?asset=Ave8jrZJKBdxVfgWUcu68foJ4CPHkKPK34eVTCdHDh8g&blockchain=solana&period=1min&amount=100000
+2025-06-05 13:36:35,821 - WARNING - API mobula returned status 500 for URL: https://api.mobula.io/api/1/market/history/pair?asset=Ave8jrZJKBdxVfgWUcu68foJ4CPHkKPK34eVTCdHDh8g&blockchain=solana&period=1min&amount=100000
+2025-06-05 13:40:38,776 - WARNING - API mobula returned status 404 for URL: https://api.mobula.io/api/1/market/history/pair?asset=7iFpiWGdzpkxFjs84g84kPtHpQWKBgRapgk8Tdtg2duP&blockchain=solana&period=5min&amount=100000
+2025-06-05 13:48:15,014 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-06-05 13:48:15,645 - INFO - Reconnected to Discord after disconnection
+2025-06-05 13:48:15,647 - INFO - Post-reconnection health check: Database=True, API Client=True
+2025-06-05 13:48:20,031 - INFO - Bot automatically reconnected
+2025-06-05 13:56:22,274 - INFO - Metrics Report | Uptime: 1h 0m | Memory: 35.7MB | Processed: 31 | Avg Processing: 3.7049s | Errors: 28 (1 types, Top: api_mobula=28) | Last Cleanup: 2025-06-05 12:56:20 (1h ago)
+2025-06-05 14:13:41,442 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-06-05 14:13:42,079 - INFO - Reconnected to Discord after disconnection
+2025-06-05 14:13:42,095 - INFO - Post-reconnection health check: Database=True, API Client=True
+2025-06-05 14:13:46,453 - INFO - Bot automatically reconnected
+2025-06-05 14:49:39,886 - INFO - Bot is shutting down...
+2025-06-05 14:49:39,931 - INFO - API client closed
+2025-06-05 14:49:39,935 - INFO - Truth Social tracking task cancelled
+2025-06-05 14:49:39,936 - INFO - Truth Social tracking loop cancelled
+2025-06-05 14:49:39,940 - INFO - Truth Social tracking stopped
+2025-06-05 14:49:39,940 - INFO - Truth Social tracking stopped
+2025-06-05 14:49:39,940 - INFO - Services closed successfully
+2025-06-05 14:49:39,940 - INFO - Background task 'metrics_cleanup' canceled
+2025-06-05 14:49:39,941 - INFO - Background task 'memory_monitor' canceled
+2025-06-05 14:49:39,941 - INFO - Background task 'heartbeat_monitor' canceled
+2025-06-05 14:49:39,941 - INFO - Background task 'metrics_report' canceled
+2025-06-05 14:49:39,942 - INFO - DexScreener tracking stopped
+2025-06-05 14:49:39,942 - INFO - DexScreener tracking stopped
+2025-06-05 14:49:39,944 - INFO - Database connection pool closed successfully
+2025-06-05 14:49:39,994 - INFO - Bot stopped by user
+2025-06-05 14:59:53,962 - INFO - Starting bot...
+2025-06-05 14:59:54,883 - INFO - API client initialized
+2025-06-05 14:59:54,884 - INFO - WebsiteAnalyzer initialized with concurrency limit of 15
+2025-06-05 14:59:54,884 - INFO - Loaded 4 Truth Social tokens from file
+2025-06-05 14:59:54,885 - INFO - Authenticating 4 Truth Social accounts with missing or expired tokens...
+2025-06-05 14:59:54,939 - ERROR - Auth error: Status 403
+2025-06-05 14:59:54,939 - ERROR - Failed to authenticate Truth Social account: alphabtw
+2025-06-05 14:59:54,969 - ERROR - Failed to authenticate Truth Social account: visheshbtw
+2025-06-05 14:59:55,006 - ERROR - Failed to authenticate Truth Social account: sakshambtw
+2025-06-05 14:59:55,039 - ERROR - Failed to authenticate Truth Social account: mayankbtw
+2025-06-05 14:59:55,040 - INFO - Successfully authenticated 0/4 Truth Social accounts
+2025-06-05 14:59:55,041 - INFO - Saved 4 Truth Social tokens to file
+2025-06-05 14:59:55,042 - INFO - All API services initialized
+2025-06-05 14:59:55,042 - INFO - Services provider initialized
+2025-06-05 14:59:55,299 - INFO - Database connection pool established: size=1-10
+2025-06-05 14:59:55,300 - INFO - Database connection successful
+2025-06-05 14:59:55,318 - INFO - WebsiteChecker cog initialized
+2025-06-05 14:59:55,318 - INFO - Proxy rotator initialized with http protocol
+2025-06-05 14:59:55,318 - INFO - Proxy rotator initialized for Truth commands
+2025-06-05 14:59:55,394 - CRITICAL - Failed to start bot: cannot import name 'get_addresses_from_content' from 'utils.validators' (C:\Users\ansha\OneDrive\Desktop\TOPG\utils\validators.py)
+2025-06-05 14:59:55,395 - INFO - Bot is shutting down...
+2025-06-05 14:59:55,395 - INFO - Memory monitor started (threshold: 300MB, interval: 3600s)
+2025-06-05 14:59:55,396 - INFO - Initializing Truth Social tracking...
+2025-06-05 14:59:55,396 - INFO - Initializing DexScreener live tracker...
+2025-06-05 14:59:55,396 - INFO - API client closed
+2025-06-05 14:59:55,397 - INFO - Truth Social tracking stopped
+2025-06-05 14:59:55,397 - INFO - Truth Social tracking stopped
+2025-06-05 14:59:55,397 - INFO - Services closed successfully
+2025-06-05 14:59:55,398 - INFO - Background task 'metrics_cleanup' canceled
+2025-06-05 14:59:55,398 - INFO - Background task 'memory_monitor' canceled
+2025-06-05 14:59:55,398 - INFO - Background task 'heartbeat_monitor' canceled
+2025-06-05 14:59:55,398 - INFO - Background task 'metrics_report' canceled
+2025-06-05 14:59:55,398 - INFO - Background task 'truth_tracker_init' canceled
+2025-06-05 14:59:55,398 - INFO - Background task 'dex_tracker_init' canceled
+2025-06-05 14:59:55,398 - INFO - DexScreener tracking stopped
+2025-06-05 14:59:55,399 - INFO - DexScreener tracking stopped
+2025-06-05 14:59:55,399 - INFO - Database connection pool closed successfully
+2025-06-05 15:00:44,319 - INFO - Starting bot...
+2025-06-05 15:00:45,336 - INFO - API client initialized
+2025-06-05 15:00:45,339 - INFO - WebsiteAnalyzer initialized with concurrency limit of 15
+2025-06-05 15:00:45,342 - INFO - Loaded 4 Truth Social tokens from file
+2025-06-05 15:00:45,342 - INFO - Authenticating 4 Truth Social accounts with missing or expired tokens...
+2025-06-05 15:00:45,614 - ERROR - Auth error: Status 403
+2025-06-05 15:00:45,615 - ERROR - Failed to authenticate Truth Social account: alphabtw
+2025-06-05 15:00:45,672 - ERROR - Failed to authenticate Truth Social account: visheshbtw
+2025-06-05 15:00:45,728 - ERROR - Failed to authenticate Truth Social account: sakshambtw
+2025-06-05 15:00:45,783 - ERROR - Failed to authenticate Truth Social account: mayankbtw
+2025-06-05 15:00:45,784 - INFO - Successfully authenticated 0/4 Truth Social accounts
+2025-06-05 15:00:45,785 - INFO - Saved 4 Truth Social tokens to file
+2025-06-05 15:00:45,786 - INFO - All API services initialized
+2025-06-05 15:00:45,787 - INFO - Services provider initialized
+2025-06-05 15:00:45,890 - INFO - Database connection pool established: size=1-10
+2025-06-05 15:00:45,890 - INFO - Database connection successful
+2025-06-05 15:00:45,911 - INFO - WebsiteChecker cog initialized
+2025-06-05 15:00:45,912 - INFO - Proxy rotator initialized with http protocol
+2025-06-05 15:00:45,912 - INFO - Proxy rotator initialized for Truth commands
+2025-06-05 15:00:46,007 - CRITICAL - Failed to start bot: cannot import name 'get_addresses_from_content' from 'utils.validators' (C:\Users\ansha\OneDrive\Desktop\TOPG\utils\validators.py)
+2025-06-05 15:00:46,008 - INFO - Bot is shutting down...
+2025-06-05 15:00:46,008 - INFO - Memory monitor started (threshold: 300MB, interval: 3600s)
+2025-06-05 15:00:46,008 - INFO - Initializing Truth Social tracking...
+2025-06-05 15:00:46,008 - INFO - Initializing DexScreener live tracker...
+2025-06-05 15:00:46,009 - INFO - API client closed
+2025-06-05 15:00:46,009 - INFO - Truth Social tracking stopped
+2025-06-05 15:00:46,009 - INFO - Truth Social tracking stopped
+2025-06-05 15:00:46,009 - INFO - Services closed successfully
+2025-06-05 15:00:46,010 - INFO - Background task 'metrics_cleanup' canceled
+2025-06-05 15:00:46,010 - INFO - Background task 'memory_monitor' canceled
+2025-06-05 15:00:46,010 - INFO - Background task 'heartbeat_monitor' canceled
+2025-06-05 15:00:46,010 - INFO - Background task 'metrics_report' canceled
+2025-06-05 15:00:46,010 - INFO - Background task 'truth_tracker_init' canceled
+2025-06-05 15:00:46,010 - INFO - Background task 'dex_tracker_init' canceled
+2025-06-05 15:00:46,010 - INFO - DexScreener tracking stopped
+2025-06-05 15:00:46,010 - INFO - DexScreener tracking stopped
+2025-06-05 15:00:46,011 - INFO - Database connection pool closed successfully
+2025-06-05 15:30:49,511 - INFO - Starting bot...
+2025-06-05 15:30:50,383 - INFO - API client initialized
+2025-06-05 15:30:50,384 - INFO - WebsiteAnalyzer initialized with concurrency limit of 15
+2025-06-05 15:30:50,385 - INFO - Loaded 4 Truth Social tokens from file
+2025-06-05 15:30:50,385 - INFO - Authenticating 4 Truth Social accounts with missing or expired tokens...
+2025-06-05 15:30:50,439 - ERROR - Auth error: Status 403
+2025-06-05 15:30:50,440 - ERROR - Failed to authenticate Truth Social account: alphabtw
+2025-06-05 15:30:50,468 - ERROR - Failed to authenticate Truth Social account: visheshbtw
+2025-06-05 15:30:50,499 - ERROR - Failed to authenticate Truth Social account: sakshambtw
+2025-06-05 15:30:50,527 - ERROR - Failed to authenticate Truth Social account: mayankbtw
+2025-06-05 15:30:50,527 - INFO - Successfully authenticated 0/4 Truth Social accounts
+2025-06-05 15:30:50,528 - INFO - Saved 4 Truth Social tokens to file
+2025-06-05 15:30:50,529 - INFO - All API services initialized
+2025-06-05 15:30:50,529 - INFO - Services provider initialized
+2025-06-05 15:30:50,659 - INFO - Database connection pool established: size=1-10
+2025-06-05 15:30:50,659 - INFO - Database connection successful
+2025-06-05 15:30:50,673 - INFO - WebsiteChecker cog initialized
+2025-06-05 15:30:50,673 - INFO - Proxy rotator initialized with http protocol
+2025-06-05 15:30:50,673 - INFO - Proxy rotator initialized for Truth commands
+2025-06-05 15:30:50,683 - CRITICAL - Failed to start bot: cannot import name 'extract_addresses' from 'utils.validators' (C:\Users\ansha\OneDrive\Desktop\TOPG\utils\validators.py)
+2025-06-05 15:30:50,683 - INFO - Bot is shutting down...
+2025-06-05 15:30:50,684 - INFO - Memory monitor started (threshold: 300MB, interval: 3600s)
+2025-06-05 15:30:50,684 - INFO - Initializing Truth Social tracking...
+2025-06-05 15:30:50,684 - INFO - Initializing DexScreener live tracker...
+2025-06-05 15:30:50,685 - INFO - API client closed
+2025-06-05 15:30:50,685 - INFO - Truth Social tracking stopped
+2025-06-05 15:30:50,686 - INFO - Truth Social tracking stopped
+2025-06-05 15:30:50,686 - INFO - Services closed successfully
+2025-06-05 15:30:50,686 - INFO - Background task 'metrics_cleanup' canceled
+2025-06-05 15:30:50,686 - INFO - Background task 'memory_monitor' canceled
+2025-06-05 15:30:50,686 - INFO - Background task 'heartbeat_monitor' canceled
+2025-06-05 15:30:50,687 - INFO - Background task 'metrics_report' canceled
+2025-06-05 15:30:50,687 - INFO - Background task 'truth_tracker_init' canceled
+2025-06-05 15:30:50,687 - INFO - Background task 'dex_tracker_init' canceled
+2025-06-05 15:30:50,687 - INFO - DexScreener tracking stopped
+2025-06-05 15:30:50,687 - INFO - DexScreener tracking stopped
+2025-06-05 15:30:50,689 - INFO - Database connection pool closed successfully
+2025-06-05 15:31:12,515 - INFO - Starting bot...
+2025-06-05 15:31:13,419 - INFO - API client initialized
+2025-06-05 15:31:13,419 - INFO - WebsiteAnalyzer initialized with concurrency limit of 15
+2025-06-05 15:31:13,420 - INFO - Loaded 4 Truth Social tokens from file
+2025-06-05 15:31:13,420 - INFO - Authenticating 4 Truth Social accounts with missing or expired tokens...
+2025-06-05 15:31:13,461 - ERROR - Auth error: Status 403
+2025-06-05 15:31:13,462 - ERROR - Failed to authenticate Truth Social account: alphabtw
+2025-06-05 15:31:13,490 - ERROR - Failed to authenticate Truth Social account: visheshbtw
+2025-06-05 15:31:13,524 - ERROR - Failed to authenticate Truth Social account: sakshambtw
+2025-06-05 15:31:13,571 - ERROR - Failed to authenticate Truth Social account: mayankbtw
+2025-06-05 15:31:13,571 - INFO - Successfully authenticated 0/4 Truth Social accounts
+2025-06-05 15:31:13,572 - INFO - Saved 4 Truth Social tokens to file
+2025-06-05 15:31:13,572 - INFO - All API services initialized
+2025-06-05 15:31:13,572 - INFO - Services provider initialized
+2025-06-05 15:31:13,622 - INFO - Database connection pool established: size=1-10
+2025-06-05 15:31:13,622 - INFO - Database connection successful
+2025-06-05 15:31:13,638 - INFO - WebsiteChecker cog initialized
+2025-06-05 15:31:13,638 - INFO - Proxy rotator initialized with http protocol
+2025-06-05 15:31:13,638 - INFO - Proxy rotator initialized for Truth commands
+2025-06-05 15:31:13,641 - INFO - Discord Events Registered | Username Ban Server ID: 1313758082974879774
+2025-06-05 15:31:13,642 - INFO - Memory monitor started (threshold: 300MB, interval: 3600s)
+2025-06-05 15:31:13,643 - INFO - Initializing Truth Social tracking...
+2025-06-05 15:31:13,644 - INFO - Initializing DexScreener live tracker...
+2025-06-05 15:31:13,651 - INFO - Proxy rotator initialized with http protocol
+2025-06-05 15:31:13,652 - INFO - Proxy rotator initialized for Truth Social tracking
+2025-06-05 15:31:13,661 - INFO - Built DexScreener tracking cache: 0 guilds with channels
+2025-06-05 15:31:13,662 - INFO - Ultra-optimized cache built: 1 accounts, 1 accounts with channels, 1 total channel mappings
+2025-06-05 15:31:13,662 - INFO - No guilds with DexScreener tracking enabled
+2025-06-05 15:31:13,663 - INFO - DexScreener tracking initialization complete
+2025-06-05 15:31:13,663 - INFO - Found 1 guilds with Truth Social tracking enabled
+2025-06-05 15:31:13,663 - INFO - Truth Social tracking started
+2025-06-05 15:31:13,664 - INFO - Truth Social tracking initialization complete
+2025-06-05 15:31:14,257 - INFO - Successfully synced 8 command(s)
+2025-06-05 15:31:18,681 - INFO - Logged in as TOPG#4967 (ID: 1340722186100408340)
+2025-06-05 15:31:18,681 - INFO - Bot connected to 7 server(s)
+2025-06-05 15:31:18,681 - INFO - Echo bot message forwarding: 1 bots from 9 channels to 1 channels
+2025-06-05 15:31:18,681 - INFO - Dani message forwarding: 1 users from 2 channels to 1 channels

@@ -130,3 +130,384 @@
 2025-06-04 01:28:06,498 - INFO - DexScreener tracking stopped
 2025-06-04 01:28:06,501 - INFO - Database connection pool closed successfully
 2025-06-04 01:28:06,536 - INFO - Bot stopped by user
+2025-06-04 01:34:13,207 - INFO - Starting bot...
+2025-06-04 01:34:14,312 - INFO - API client initialized
+2025-06-04 01:34:14,314 - INFO - WebsiteAnalyzer initialized with concurrency limit of 15
+2025-06-04 01:34:14,318 - INFO - Loaded 4 Truth Social tokens from file
+2025-06-04 01:34:14,318 - INFO - Successfully authenticated 4/4 Truth Social accounts
+2025-06-04 01:34:14,320 - INFO - Saved 4 Truth Social tokens to file
+2025-06-04 01:34:14,320 - INFO - All API services initialized
+2025-06-04 01:34:14,322 - INFO - Services provider initialized
+2025-06-04 01:34:14,547 - INFO - Database connection pool established: size=1-10
+2025-06-04 01:34:14,547 - INFO - Database connection successful
+2025-06-04 01:34:14,564 - INFO - WebsiteChecker cog initialized
+2025-06-04 01:34:14,564 - INFO - Proxy rotator initialized with http protocol
+2025-06-04 01:34:14,565 - INFO - Proxy rotator initialized for Truth commands
+2025-06-04 01:34:14,572 - INFO - Discord Events Registered | Username Ban Server ID: 1313758082974879774
+2025-06-04 01:34:14,574 - INFO - Memory monitor started (threshold: 300MB, interval: 3600s)
+2025-06-04 01:34:14,575 - INFO - Initializing Truth Social tracking...
+2025-06-04 01:34:14,576 - INFO - Initializing DexScreener live tracker...
+2025-06-04 01:34:14,588 - INFO - Proxy rotator initialized with http protocol
+2025-06-04 01:34:14,589 - INFO - Proxy rotator initialized for Truth Social tracking
+2025-06-04 01:34:14,593 - INFO - Built DexScreener tracking cache: 0 guilds with channels
+2025-06-04 01:34:14,593 - INFO - Ultra-optimized cache built: 0 accounts, 0 accounts with channels, 0 total channel mappings
+2025-06-04 01:34:14,594 - INFO - No guilds with Truth Social tracking enabled
+2025-06-04 01:34:14,594 - INFO - Truth Social tracking initialization complete
+2025-06-04 01:34:14,594 - INFO - No guilds with DexScreener tracking enabled
+2025-06-04 01:34:14,594 - INFO - DexScreener tracking initialization complete
+2025-06-04 01:34:15,228 - INFO - Successfully synced 8 command(s)
+2025-06-04 01:34:18,906 - INFO - Logged in as TOPG#4967 (ID: 1340722186100408340)
+2025-06-04 01:34:18,906 - INFO - Bot connected to 6 server(s)
+2025-06-04 01:34:18,907 - INFO - Echo bot message forwarding: 1 bots from 9 channels to 1 channels
+2025-06-04 01:34:18,907 - INFO - Dani message forwarding: 1 users from 2 channels to 1 channels
+2025-06-04 02:34:14,587 - INFO - Metrics Report | Uptime: 1h 0m | Memory: 27.4MB | Processed: 1 | Avg Processing: 0.0223s | Errors: 0 (0 types, Top: none) | Last Cleanup: 2025-06-04 01:34:13 (1h ago)
+2025-06-04 03:34:14,610 - INFO - Metrics Report | Uptime: 2h 0m | Memory: 14.9MB | Processed: 3 | Avg Processing: 1.1609s | Errors: 0 (0 types, Top: none) | Last Cleanup: 2025-06-04 01:34:13 (2h ago)
+2025-06-04 03:45:23,799 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-06-04 03:45:24,494 - INFO - Reconnected to Discord after disconnection
+2025-06-04 03:45:24,505 - INFO - Post-reconnection health check: Database=True, API Client=True
+2025-06-04 03:45:28,818 - INFO - Bot automatically reconnected
+2025-06-04 04:20:29,206 - INFO - Bot is shutting down...
+2025-06-04 04:20:29,213 - INFO - API client closed
+2025-06-04 04:20:29,214 - INFO - Truth Social tracking stopped
+2025-06-04 04:20:29,214 - INFO - Truth Social tracking stopped
+2025-06-04 04:20:29,215 - INFO - Services closed successfully
+2025-06-04 04:20:29,215 - INFO - Background task 'metrics_cleanup' canceled
+2025-06-04 04:20:29,216 - INFO - Background task 'memory_monitor' canceled
+2025-06-04 04:20:29,216 - INFO - Background task 'heartbeat_monitor' canceled
+2025-06-04 04:20:29,216 - INFO - Background task 'metrics_report' canceled
+2025-06-04 04:20:29,216 - INFO - DexScreener tracking stopped
+2025-06-04 04:20:29,217 - INFO - DexScreener tracking stopped
+2025-06-04 04:20:29,219 - INFO - Database connection pool closed successfully
+2025-06-04 04:20:29,254 - INFO - Bot stopped by user
+2025-06-04 04:20:33,268 - INFO - Starting bot...
+2025-06-04 04:20:34,275 - INFO - API client initialized
+2025-06-04 04:20:34,275 - INFO - WebsiteAnalyzer initialized with concurrency limit of 15
+2025-06-04 04:20:34,277 - INFO - Loaded 4 Truth Social tokens from file
+2025-06-04 04:20:34,277 - INFO - Successfully authenticated 4/4 Truth Social accounts
+2025-06-04 04:20:34,278 - INFO - Saved 4 Truth Social tokens to file
+2025-06-04 04:20:34,278 - INFO - All API services initialized
+2025-06-04 04:20:34,278 - INFO - Services provider initialized
+2025-06-04 04:20:34,445 - INFO - Database connection pool established: size=1-10
+2025-06-04 04:20:34,445 - INFO - Database connection successful
+2025-06-04 04:20:34,465 - INFO - WebsiteChecker cog initialized
+2025-06-04 04:20:34,466 - INFO - Proxy rotator initialized with http protocol
+2025-06-04 04:20:34,466 - INFO - Proxy rotator initialized for Truth commands
+2025-06-04 04:20:34,471 - INFO - Discord Events Registered | Username Ban Server ID: 1313758082974879774
+2025-06-04 04:20:34,472 - INFO - Memory monitor started (threshold: 300MB, interval: 3600s)
+2025-06-04 04:20:34,472 - INFO - Initializing Truth Social tracking...
+2025-06-04 04:20:34,473 - INFO - Initializing DexScreener live tracker...
+2025-06-04 04:20:34,482 - INFO - Built DexScreener tracking cache: 0 guilds with channels
+2025-06-04 04:20:34,483 - INFO - No guilds with DexScreener tracking enabled
+2025-06-04 04:20:34,484 - INFO - DexScreener tracking initialization complete
+2025-06-04 04:20:34,484 - INFO - Proxy rotator initialized with http protocol
+2025-06-04 04:20:34,484 - INFO - Proxy rotator initialized for Truth Social tracking
+2025-06-04 04:20:34,487 - INFO - Ultra-optimized cache built: 0 accounts, 0 accounts with channels, 0 total channel mappings
+2025-06-04 04:20:34,488 - INFO - No guilds with Truth Social tracking enabled
+2025-06-04 04:20:34,488 - INFO - Truth Social tracking initialization complete
+2025-06-04 04:20:34,955 - INFO - Successfully synced 8 command(s)
+2025-06-04 04:20:38,472 - INFO - Logged in as TOPG#4967 (ID: 1340722186100408340)
+2025-06-04 04:20:38,473 - INFO - Bot connected to 6 server(s)
+2025-06-04 04:20:38,473 - INFO - Echo bot message forwarding: 1 bots from 9 channels to 1 channels
+2025-06-04 04:20:38,473 - INFO - Dani message forwarding: 1 users from 2 channels to 1 channels
+2025-06-04 05:08:24,703 - WARNING - API mobula returned status 500 for URL: https://api.mobula.io/api/1/market/history/pair?asset=6GvAiTFsc4V4RViFXdXpTqCusG5YACnwZjB81T6Hpump&blockchain=solana&period=1min&amount=100000
+2025-06-04 05:08:25,269 - WARNING - API mobula returned status 500 for URL: https://api.mobula.io/api/1/market/history/pair?asset=6GvAiTFsc4V4RViFXdXpTqCusG5YACnwZjB81T6Hpump&blockchain=solana&period=1min&amount=100000
+2025-06-04 05:20:34,490 - INFO - Metrics Report | Uptime: 1h 0m | Memory: 11.2MB | Processed: 3 | Avg Processing: 1.9609s | Errors: 2 (1 types, Top: api_mobula=2) | Last Cleanup: 2025-06-04 04:20:33 (1h ago)
+2025-06-04 05:22:34,152 - WARNING - API mobula returned status 500 for URL: https://api.mobula.io/api/1/market/history/pair?asset=6GvAiTFsc4V4RViFXdXpTqCusG5YACnwZjB81T6Hpump&blockchain=solana&period=1min&amount=100000
+2025-06-04 05:53:51,061 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-06-04 05:53:51,712 - INFO - Reconnected to Discord after disconnection
+2025-06-04 05:53:51,715 - INFO - Post-reconnection health check: Database=True, API Client=True
+2025-06-04 05:53:56,076 - INFO - Bot automatically reconnected
+2025-06-04 06:16:03,130 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-06-04 06:16:03,760 - INFO - Reconnected to Discord after disconnection
+2025-06-04 06:16:03,761 - INFO - Post-reconnection health check: Database=True, API Client=True
+2025-06-04 06:16:08,147 - INFO - Bot automatically reconnected
+2025-06-04 06:20:34,498 - INFO - Metrics Report | Uptime: 2h 0m | Memory: 27.1MB | Processed: 10 | Avg Processing: 2.0146s | Errors: 3 (1 types, Top: api_mobula=3) | Last Cleanup: 2025-06-04 04:20:33 (2h ago)
+2025-06-04 06:22:36,143 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-06-04 06:22:36,784 - INFO - Reconnected to Discord after disconnection
+2025-06-04 06:22:36,786 - INFO - Post-reconnection health check: Database=True, API Client=True
+2025-06-04 06:22:41,145 - INFO - Bot automatically reconnected
+2025-06-04 06:23:35,525 - INFO - Built DexScreener tracking cache: 1 guilds with channels
+2025-06-04 06:23:35,527 - INFO - Built DexScreener tracking cache: 1 guilds with channels
+2025-06-04 06:23:35,527 - INFO - DexScreener tracking started
+2025-06-04 06:23:35,529 - INFO - Fetching initial tokens to establish tracking baseline
+2025-06-04 06:23:35,651 - INFO - Initialized DexScreener tracker with latest token: rpe3JvvWtTyFahiXBuenhz7wosciXr8GM2FSgjzpump on solana
+2025-06-04 06:23:39,914 - INFO - Built DexScreener tracking cache: 1 guilds with channels
+2025-06-04 06:23:39,915 - INFO - Built DexScreener tracking cache: 1 guilds with channels
+2025-06-04 06:23:39,915 - INFO - DexScreener tracking already running
+2025-06-04 06:23:40,442 - INFO - alphabtw_ enabled DexScreener tracking in server 'LOYAL'
+2025-06-04 07:15:22,460 - INFO - Bot is shutting down...
+2025-06-04 07:15:22,476 - ERROR - dexscreener request error: Session is closed for URL: https://api.dexscreener.com/token-profiles/latest/v1
+2025-06-04 07:15:22,477 - WARNING - No token profiles returned from DexScreener API
+2025-06-04 07:15:22,477 - WARNING - No tokens returned from API
+2025-06-04 07:15:22,478 - INFO - API client closed
+2025-06-04 07:15:22,480 - INFO - Truth Social tracking stopped
+2025-06-04 07:15:22,480 - INFO - Truth Social tracking stopped
+2025-06-04 07:15:22,480 - INFO - Services closed successfully
+2025-06-04 07:15:22,480 - INFO - Background task 'metrics_cleanup' canceled
+2025-06-04 07:15:22,480 - INFO - Background task 'memory_monitor' canceled
+2025-06-04 07:15:22,480 - INFO - Background task 'heartbeat_monitor' canceled
+2025-06-04 07:15:22,481 - INFO - Background task 'metrics_report' canceled
+2025-06-04 07:15:22,482 - INFO - DexScreener tracking task cancelled
+2025-06-04 07:15:22,483 - INFO - DexScreener tracking loop cancelled
+2025-06-04 07:15:22,484 - INFO - DexScreener tracking stopped
+2025-06-04 07:15:22,484 - INFO - DexScreener tracking stopped
+2025-06-04 07:15:22,486 - INFO - Database connection pool closed successfully
+2025-06-04 07:15:22,520 - INFO - Bot stopped by user
+2025-06-04 07:15:31,326 - INFO - Starting bot...
+2025-06-04 07:15:32,207 - INFO - API client initialized
+2025-06-04 07:15:32,207 - INFO - WebsiteAnalyzer initialized with concurrency limit of 15
+2025-06-04 07:15:32,209 - INFO - Loaded 4 Truth Social tokens from file
+2025-06-04 07:15:32,209 - INFO - Successfully authenticated 4/4 Truth Social accounts
+2025-06-04 07:15:32,209 - INFO - Saved 4 Truth Social tokens to file
+2025-06-04 07:15:32,209 - INFO - All API services initialized
+2025-06-04 07:15:32,210 - INFO - Services provider initialized
+2025-06-04 07:15:32,363 - INFO - Database connection pool established: size=1-10
+2025-06-04 07:15:32,363 - INFO - Database connection successful
+2025-06-04 07:15:32,386 - INFO - WebsiteChecker cog initialized
+2025-06-04 07:15:32,387 - INFO - Proxy rotator initialized with http protocol
+2025-06-04 07:15:32,389 - INFO - Proxy rotator initialized for Truth commands
+2025-06-04 07:15:32,401 - INFO - Discord Events Registered | Username Ban Server ID: 1313758082974879774
+2025-06-04 07:15:32,402 - INFO - Memory monitor started (threshold: 300MB, interval: 3600s)
+2025-06-04 07:15:32,402 - INFO - Initializing Truth Social tracking...
+2025-06-04 07:15:32,402 - INFO - Initializing DexScreener live tracker...
+2025-06-04 07:15:32,414 - INFO - Built DexScreener tracking cache: 1 guilds with channels
+2025-06-04 07:15:32,416 - INFO - Found 1 guilds with DexScreener tracking enabled
+2025-06-04 07:15:32,416 - INFO - DexScreener tracking started
+2025-06-04 07:15:32,416 - INFO - DexScreener tracking initialization complete
+2025-06-04 07:15:32,417 - INFO - Fetching initial tokens to establish tracking baseline
+2025-06-04 07:15:32,421 - INFO - Proxy rotator initialized with http protocol
+2025-06-04 07:15:32,422 - INFO - Proxy rotator initialized for Truth Social tracking
+2025-06-04 07:15:32,429 - INFO - Ultra-optimized cache built: 0 accounts, 0 accounts with channels, 0 total channel mappings
+2025-06-04 07:15:32,431 - INFO - No guilds with Truth Social tracking enabled
+2025-06-04 07:15:32,431 - INFO - Truth Social tracking initialization complete
+2025-06-04 07:15:32,551 - INFO - Initialized DexScreener tracker with latest token: iSMJp3E8qV82uw7vQ4yBHkkr1gGTS2cN6bzx8bbAiki on solana
+2025-06-04 07:15:32,909 - INFO - Successfully synced 8 command(s)
+2025-06-04 07:15:36,992 - INFO - Logged in as TOPG#4967 (ID: 1340722186100408340)
+2025-06-04 07:15:36,992 - INFO - Bot connected to 7 server(s)
+2025-06-04 07:15:36,993 - INFO - Echo bot message forwarding: 1 bots from 9 channels to 1 channels
+2025-06-04 07:15:36,993 - INFO - Dani message forwarding: 1 users from 2 channels to 1 channels
+2025-06-04 08:15:32,424 - INFO - Metrics Report | Uptime: 1h 0m | Memory: 34.1MB | Processed: 2 | Avg Processing: 2.9050s | Errors: 0 (0 types, Top: none) | Last Cleanup: 2025-06-04 07:15:31 (1h ago)
+2025-06-04 09:15:32,437 - INFO - Metrics Report | Uptime: 2h 0m | Memory: 31.2MB | Processed: 16 | Avg Processing: 1.8160s | Errors: 0 (0 types, Top: none) | Last Cleanup: 2025-06-04 07:15:31 (2h ago)
+2025-06-04 09:26:40,389 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-06-04 09:26:41,051 - INFO - Reconnected to Discord after disconnection
+2025-06-04 09:26:41,053 - INFO - Post-reconnection health check: Database=True, API Client=True
+2025-06-04 09:26:45,410 - INFO - Bot automatically reconnected
+2025-06-04 09:45:28,770 - WARNING - API mobula returned status 404 for URL: https://api.mobula.io/api/1/market/history/pair?asset=D3feuDGFacZRLJeuXh3tDMgcSxMngQzpwF3QGWJcfBaS&blockchain=solana&period=1min&amount=100000
+2025-06-04 09:45:29,299 - WARNING - API mobula returned status 404 for URL: https://api.mobula.io/api/1/market/history/pair?asset=D3feuDGFacZRLJeuXh3tDMgcSxMngQzpwF3QGWJcfBaS&blockchain=solana&period=1min&amount=100000
+2025-06-04 09:45:30,009 - WARNING - API mobula returned status 404 for URL: https://api.mobula.io/api/1/market/history/pair?asset=D3feuDGFacZRLJeuXh3tDMgcSxMngQzpwF3QGWJcfBaS&blockchain=solana&period=1min&amount=100000
+2025-06-04 09:45:31,968 - WARNING - API mobula returned status 404 for URL: https://api.mobula.io/api/1/market/history/pair?asset=D3feuDGFacZRLJeuXh3tDMgcSxMngQzpwF3QGWJcfBaS&blockchain=solana&period=1min&amount=100000
+2025-06-04 10:15:32,458 - INFO - Metrics Report | Uptime: 3h 0m | Memory: 24.9MB | Processed: 23 | Avg Processing: 1.8306s | Errors: 4 (1 types, Top: api_mobula=4) | Last Cleanup: 2025-06-04 07:15:31 (3h ago)
+2025-06-04 10:35:32,419 - INFO - Starting periodic metrics cleanup task...
+2025-06-04 10:35:32,774 - INFO - Garbage collection completed successfully.
+2025-06-04 10:35:32,774 - INFO - Metrics cleanup completed in 0.34 seconds. Next cleanup at 2025-06-04 20:35:32
+2025-06-04 10:46:57,021 - WARNING - API trenchbot returned status 500 for URL: https://trench.bot/api/bundle/bundle_full/D3feuDGFacZRLJeuXh3tDMgcSxMngQzpwF3QGWJcfBaS
+2025-06-04 10:46:57,027 - WARNING - No bundle data returned for D3feuDGFacZRLJeuXh3tDMgcSxMngQzpwF3QGWJcfBaS
+2025-06-04 11:00:11,358 - WARNING - API mobula returned status 500 for URL: https://api.mobula.io/api/1/market/history/pair?asset=factory/osmo1n3n75av8awcnw4jl62n3l48e6e4sxqmaf97w5ua6ddu4s475q5qq9udvx4/alloyed/allSOL&blockchain=osmosis&period=1d&amount=100000
+2025-06-04 11:00:11,407 - WARNING - API dexscreener returned status 404 for URL: https://api.dexscreener.com/orders/v1/solana/factory/osmo1n3n75av8awcnw4jl62n3l48e6e4sxqmaf97w5ua6ddu4s475q5qq9udvx4/alloyed/allSOL
+2025-06-04 11:00:12,781 - WARNING - API mobula returned status 500 for URL: https://api.mobula.io/api/1/market/history/pair?asset=factory/osmo1n3n75av8awcnw4jl62n3l48e6e4sxqmaf97w5ua6ddu4s475q5qq9udvx4/alloyed/allSOL&blockchain=osmosis&period=1d&amount=100000
+2025-06-04 11:00:13,495 - WARNING - API mobula returned status 500 for URL: https://api.mobula.io/api/1/market/history/pair?asset=factory/osmo1n3n75av8awcnw4jl62n3l48e6e4sxqmaf97w5ua6ddu4s475q5qq9udvx4/alloyed/allSOL&blockchain=osmosis&period=1d&amount=100000
+2025-06-04 11:00:14,407 - WARNING - API mobula returned status 500 for URL: https://api.mobula.io/api/1/market/history/pair?asset=factory/osmo1n3n75av8awcnw4jl62n3l48e6e4sxqmaf97w5ua6ddu4s475q5qq9udvx4/alloyed/allSOL&blockchain=osmosis&period=1d&amount=100000
+2025-06-04 11:05:11,569 - INFO - Bundle check called by alphabtw_ for CJ1azXTKcixgXVKGGocVkcJAQKytRHjcbMVWoRQcpump
+2025-06-04 11:15:32,473 - INFO - Metrics Report | Uptime: 4h 0m | Memory: 23.1MB | Processed: 36 | Avg Processing: 1.8698s | Errors: 10 (3 types, Top: api_mobula=8, api_trenchbot=1, api_dexscreener=1) | Last Cleanup: 2025-06-04 10:35:32 (40m ago)
+2025-06-04 11:37:28,737 - WARNING - API mobula returned status 404 for URL: https://api.mobula.io/api/1/market/history/pair?asset=FkqvTmDNgxgcdS7fPbZoQhPVuaYJPwSsP8mm4p7oNgf6&blockchain=solana&period=1min&amount=100000
+2025-06-04 11:37:29,259 - WARNING - API mobula returned status 404 for URL: https://api.mobula.io/api/1/market/history/pair?asset=FkqvTmDNgxgcdS7fPbZoQhPVuaYJPwSsP8mm4p7oNgf6&blockchain=solana&period=1min&amount=100000
+2025-06-04 11:37:30,068 - WARNING - API mobula returned status 404 for URL: https://api.mobula.io/api/1/market/history/pair?asset=FkqvTmDNgxgcdS7fPbZoQhPVuaYJPwSsP8mm4p7oNgf6&blockchain=solana&period=1min&amount=100000
+2025-06-04 11:37:30,980 - WARNING - API mobula returned status 404 for URL: https://api.mobula.io/api/1/market/history/pair?asset=FkqvTmDNgxgcdS7fPbZoQhPVuaYJPwSsP8mm4p7oNgf6&blockchain=solana&period=1min&amount=100000
+2025-06-04 12:15:32,483 - INFO - Metrics Report | Uptime: 5h 0m | Memory: 25.0MB | Processed: 55 | Avg Processing: 1.7314s | Errors: 14 (3 types, Top: api_mobula=12, api_trenchbot=1, api_dexscreener=1) | Last Cleanup: 2025-06-04 10:35:32 (1h ago)
+2025-06-04 12:41:15,585 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-06-04 12:41:16,348 - INFO - Reconnected to Discord after disconnection
+2025-06-04 12:41:16,367 - INFO - Post-reconnection health check: Database=True, API Client=True
+2025-06-04 12:41:20,629 - INFO - Bot automatically reconnected
+2025-06-04 13:00:34,942 - WARNING - API mobula returned status 404 for URL: https://api.mobula.io/api/1/market/history/pair?asset=3gNm6piJ61ALdLTpuTyggowRa2WjSr5NxihbKHuv2cqm&blockchain=solana&period=1min&amount=100000
+2025-06-04 13:00:35,512 - WARNING - API mobula returned status 404 for URL: https://api.mobula.io/api/1/market/history/pair?asset=3gNm6piJ61ALdLTpuTyggowRa2WjSr5NxihbKHuv2cqm&blockchain=solana&period=1min&amount=100000
+2025-06-04 13:00:36,267 - WARNING - API mobula returned status 404 for URL: https://api.mobula.io/api/1/market/history/pair?asset=3gNm6piJ61ALdLTpuTyggowRa2WjSr5NxihbKHuv2cqm&blockchain=solana&period=1min&amount=100000
+2025-06-04 13:00:37,178 - WARNING - API mobula returned status 404 for URL: https://api.mobula.io/api/1/market/history/pair?asset=3gNm6piJ61ALdLTpuTyggowRa2WjSr5NxihbKHuv2cqm&blockchain=solana&period=1min&amount=100000
+2025-06-04 13:15:32,507 - INFO - Metrics Report | Uptime: 6h 0m | Memory: 23.2MB | Processed: 64 | Avg Processing: 1.6513s | Errors: 18 (3 types, Top: api_mobula=16, api_trenchbot=1, api_dexscreener=1) | Last Cleanup: 2025-06-04 10:35:32 (2h ago)
+2025-06-04 13:55:32,789 - INFO - Starting periodic metrics cleanup task...
+2025-06-04 13:55:32,956 - INFO - Garbage collection completed successfully.
+2025-06-04 13:55:32,956 - INFO - Metrics cleanup completed in 0.17 seconds. Next cleanup at 2025-06-04 23:55:32
+2025-06-04 14:15:32,516 - INFO - Metrics Report | Uptime: 7h 0m | Memory: 54.9MB | Processed: 74 | Avg Processing: 1.5558s | Errors: 18 (3 types, Top: api_mobula=16, api_trenchbot=1, api_dexscreener=1) | Last Cleanup: 2025-06-04 13:55:32 (19m ago)
+2025-06-04 14:47:53,058 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-06-04 14:47:53,700 - INFO - Reconnected to Discord after disconnection
+2025-06-04 14:47:53,703 - INFO - Post-reconnection health check: Database=True, API Client=True
+2025-06-04 14:47:58,071 - INFO - Bot automatically reconnected
+2025-06-04 15:04:38,217 - WARNING - API mobula returned status 404 for URL: https://api.mobula.io/api/1/market/history/pair?asset=3ywqi49rbrsgyNoyBDngQKKjqFTMxCrZXF2NgnYDqGo4&blockchain=solana&period=1min&amount=100000
+2025-06-04 15:04:38,728 - WARNING - API mobula returned status 404 for URL: https://api.mobula.io/api/1/market/history/pair?asset=3ywqi49rbrsgyNoyBDngQKKjqFTMxCrZXF2NgnYDqGo4&blockchain=solana&period=1min&amount=100000
+2025-06-04 15:04:40,195 - WARNING - API mobula returned status 404 for URL: https://api.mobula.io/api/1/market/history/pair?asset=3ywqi49rbrsgyNoyBDngQKKjqFTMxCrZXF2NgnYDqGo4&blockchain=solana&period=1min&amount=100000
+2025-06-04 15:04:41,112 - WARNING - API mobula returned status 404 for URL: https://api.mobula.io/api/1/market/history/pair?asset=3ywqi49rbrsgyNoyBDngQKKjqFTMxCrZXF2NgnYDqGo4&blockchain=solana&period=1min&amount=100000
+2025-06-04 15:08:06,134 - WARNING - API mobula returned status 404 for URL: https://api.mobula.io/api/1/market/history/pair?asset=3ywqi49rbrsgyNoyBDngQKKjqFTMxCrZXF2NgnYDqGo4&blockchain=solana&period=1min&amount=100000
+2025-06-04 15:08:06,639 - WARNING - API mobula returned status 404 for URL: https://api.mobula.io/api/1/market/history/pair?asset=3ywqi49rbrsgyNoyBDngQKKjqFTMxCrZXF2NgnYDqGo4&blockchain=solana&period=1min&amount=100000
+2025-06-04 15:08:08,631 - WARNING - API mobula returned status 404 for URL: https://api.mobula.io/api/1/market/history/pair?asset=3ywqi49rbrsgyNoyBDngQKKjqFTMxCrZXF2NgnYDqGo4&blockchain=solana&period=1min&amount=100000
+2025-06-04 15:08:09,543 - WARNING - API mobula returned status 404 for URL: https://api.mobula.io/api/1/market/history/pair?asset=3ywqi49rbrsgyNoyBDngQKKjqFTMxCrZXF2NgnYDqGo4&blockchain=solana&period=1min&amount=100000
+2025-06-04 15:15:32,526 - INFO - Metrics Report | Uptime: 8h 0m | Memory: 29.4MB | Processed: 86 | Avg Processing: 1.5504s | Errors: 26 (3 types, Top: api_mobula=24, api_trenchbot=1, api_dexscreener=1) | Last Cleanup: 2025-06-04 13:55:32 (1h ago)
+2025-06-04 15:15:41,037 - WARNING - API mobula returned status 404 for URL: https://api.mobula.io/api/1/market/history/pair?asset=E4yyfrgi5GjBQ5qQsQFHWrZynekewD1f8Adti9644dA3&blockchain=solana&period=1min&amount=100000
+2025-06-04 15:15:41,561 - WARNING - API mobula returned status 404 for URL: https://api.mobula.io/api/1/market/history/pair?asset=E4yyfrgi5GjBQ5qQsQFHWrZynekewD1f8Adti9644dA3&blockchain=solana&period=1min&amount=100000
+2025-06-04 15:15:42,264 - WARNING - API mobula returned status 404 for URL: https://api.mobula.io/api/1/market/history/pair?asset=E4yyfrgi5GjBQ5qQsQFHWrZynekewD1f8Adti9644dA3&blockchain=solana&period=1min&amount=100000
+2025-06-04 15:15:43,173 - WARNING - API mobula returned status 404 for URL: https://api.mobula.io/api/1/market/history/pair?asset=E4yyfrgi5GjBQ5qQsQFHWrZynekewD1f8Adti9644dA3&blockchain=solana&period=1min&amount=100000
+2025-06-04 15:22:11,932 - WARNING - API mobula returned status 404 for URL: https://api.mobula.io/api/1/market/history/pair?asset=6xRhb65zR5GQ2VdEeKCk5WeYprymcxgvcfxK1TkVUmmx&blockchain=solana&period=1min&amount=100000
+2025-06-04 15:22:12,443 - WARNING - API mobula returned status 404 for URL: https://api.mobula.io/api/1/market/history/pair?asset=6xRhb65zR5GQ2VdEeKCk5WeYprymcxgvcfxK1TkVUmmx&blockchain=solana&period=1min&amount=100000
+2025-06-04 15:22:13,177 - WARNING - API mobula returned status 404 for URL: https://api.mobula.io/api/1/market/history/pair?asset=6xRhb65zR5GQ2VdEeKCk5WeYprymcxgvcfxK1TkVUmmx&blockchain=solana&period=1min&amount=100000
+2025-06-04 15:22:14,102 - WARNING - API mobula returned status 404 for URL: https://api.mobula.io/api/1/market/history/pair?asset=6xRhb65zR5GQ2VdEeKCk5WeYprymcxgvcfxK1TkVUmmx&blockchain=solana&period=1min&amount=100000
+2025-06-04 15:59:04,488 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-06-04 15:59:05,146 - INFO - Reconnected to Discord after disconnection
+2025-06-04 15:59:05,148 - INFO - Post-reconnection health check: Database=True, API Client=True
+2025-06-04 15:59:09,497 - INFO - Bot automatically reconnected
+2025-06-04 16:15:32,534 - INFO - Metrics Report | Uptime: 9h 0m | Memory: 29.7MB | Processed: 101 | Avg Processing: 1.5622s | Errors: 34 (3 types, Top: api_mobula=32, api_trenchbot=1, api_dexscreener=1) | Last Cleanup: 2025-06-04 13:55:32 (2h ago)
+2025-06-04 16:25:51,802 - WARNING - API mobula returned status 404 for URL: https://api.mobula.io/api/1/market/history/pair?asset=yH5Ye3FeKhiWDeP6BXGrEhsQh5V2vLh7vwY5P2fxKv6&blockchain=solana&period=1min&amount=100000
+2025-06-04 16:25:52,322 - WARNING - API mobula returned status 404 for URL: https://api.mobula.io/api/1/market/history/pair?asset=yH5Ye3FeKhiWDeP6BXGrEhsQh5V2vLh7vwY5P2fxKv6&blockchain=solana&period=1min&amount=100000
+2025-06-04 16:25:53,370 - WARNING - API mobula returned status 404 for URL: https://api.mobula.io/api/1/market/history/pair?asset=yH5Ye3FeKhiWDeP6BXGrEhsQh5V2vLh7vwY5P2fxKv6&blockchain=solana&period=1min&amount=100000
+2025-06-04 16:25:54,287 - WARNING - API mobula returned status 404 for URL: https://api.mobula.io/api/1/market/history/pair?asset=yH5Ye3FeKhiWDeP6BXGrEhsQh5V2vLh7vwY5P2fxKv6&blockchain=solana&period=1min&amount=100000
+2025-06-04 17:15:32,540 - INFO - Metrics Report | Uptime: 10h 0m | Memory: 30.8MB | Processed: 117 | Avg Processing: 1.5305s | Errors: 38 (3 types, Top: api_mobula=36, api_trenchbot=1, api_dexscreener=1) | Last Cleanup: 2025-06-04 13:55:32 (3h ago)
+2025-06-04 17:15:32,960 - INFO - Starting periodic metrics cleanup task...
+2025-06-04 17:15:33,200 - INFO - Garbage collection completed successfully.
+2025-06-04 17:15:33,201 - INFO - Metrics cleanup completed in 0.24 seconds. Next cleanup at 2025-06-05 03:15:32
+2025-06-04 18:15:32,553 - INFO - Metrics Report | Uptime: 11h 0m | Memory: 56.7MB | Processed: 125 | Avg Processing: 1.6526s | Errors: 38 (3 types, Top: api_mobula=36, api_trenchbot=1, api_dexscreener=1) | Last Cleanup: 2025-06-04 17:15:32 (59m ago)
+2025-06-04 19:15:32,569 - INFO - Metrics Report | Uptime: 12h 0m | Memory: 57.1MB | Processed: 136 | Avg Processing: 1.6942s | Errors: 38 (3 types, Top: api_mobula=36, api_trenchbot=1, api_dexscreener=1) | Last Cleanup: 2025-06-04 17:15:32 (1h ago)
+2025-06-04 19:58:52,468 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-06-04 19:58:53,113 - INFO - Reconnected to Discord after disconnection
+2025-06-04 19:58:53,115 - INFO - Post-reconnection health check: Database=True, API Client=True
+2025-06-04 19:58:57,485 - INFO - Bot automatically reconnected
+2025-06-04 20:15:32,581 - INFO - Metrics Report | Uptime: 13h 0m | Memory: 57.2MB | Processed: 142 | Avg Processing: 1.7254s | Errors: 38 (3 types, Top: api_mobula=36, api_trenchbot=1, api_dexscreener=1) | Last Cleanup: 2025-06-04 17:15:32 (2h ago)
+2025-06-04 20:35:33,205 - INFO - Starting periodic metrics cleanup task...
+2025-06-04 20:35:33,271 - INFO - Garbage collection completed successfully.
+2025-06-04 20:35:33,272 - INFO - Metrics cleanup completed in 0.07 seconds. Next cleanup at 2025-06-05 06:35:33
+2025-06-04 21:10:48,213 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-06-04 21:10:48,974 - INFO - Reconnected to Discord after disconnection
+2025-06-04 21:10:48,989 - INFO - Post-reconnection health check: Database=True, API Client=True
+2025-06-04 21:10:53,222 - INFO - Bot automatically reconnected
+2025-06-04 21:15:32,598 - INFO - Metrics Report | Uptime: 14h 0m | Memory: 57.6MB | Processed: 147 | Avg Processing: 1.7063s | Errors: 38 (3 types, Top: api_mobula=36, api_trenchbot=1, api_dexscreener=1) | Last Cleanup: 2025-06-04 20:35:33 (39m ago)
+2025-06-04 22:15:32,611 - INFO - Metrics Report | Uptime: 15h 0m | Memory: 57.4MB | Processed: 152 | Avg Processing: 1.7507s | Errors: 38 (3 types, Top: api_mobula=36, api_trenchbot=1, api_dexscreener=1) | Last Cleanup: 2025-06-04 20:35:33 (1h ago)
+2025-06-04 23:15:32,624 - INFO - Metrics Report | Uptime: 16h 0m | Memory: 57.4MB | Processed: 165 | Avg Processing: 1.6107s | Errors: 38 (3 types, Top: api_mobula=36, api_trenchbot=1, api_dexscreener=1) | Last Cleanup: 2025-06-04 20:35:33 (2h ago)
+2025-06-04 23:20:35,140 - WARNING - API mobula returned status 503 for URL: https://api.mobula.io/api/1/market/history/pair?asset=6ud9mCx295KieygFG79iFeFYRa7vJT2u6n3z4GPGpump&blockchain=solana&period=5min&amount=100000
+2025-06-04 23:20:35,646 - WARNING - API mobula returned status 503 for URL: https://api.mobula.io/api/1/market/history/pair?asset=6ud9mCx295KieygFG79iFeFYRa7vJT2u6n3z4GPGpump&blockchain=solana&period=5min&amount=100000
+2025-06-04 23:20:36,348 - WARNING - API mobula returned status 503 for URL: https://api.mobula.io/api/1/market/history/pair?asset=6ud9mCx295KieygFG79iFeFYRa7vJT2u6n3z4GPGpump&blockchain=solana&period=5min&amount=100000
+2025-06-04 23:20:37,254 - WARNING - API mobula returned status 503 for URL: https://api.mobula.io/api/1/market/history/pair?asset=6ud9mCx295KieygFG79iFeFYRa7vJT2u6n3z4GPGpump&blockchain=solana&period=5min&amount=100000
+2025-06-04 23:22:10,314 - WARNING - API mobula returned status 503 for URL: https://api.mobula.io/api/1/market/history/pair?asset=DhCSgxEdGEcMu4kWwmpTW2U3njWyGfMb4rzX9GbSpump&blockchain=solana&period=1h&amount=100000
+2025-06-04 23:22:11,170 - WARNING - API mobula returned status 503 for URL: https://api.mobula.io/api/1/market/history/pair?asset=DhCSgxEdGEcMu4kWwmpTW2U3njWyGfMb4rzX9GbSpump&blockchain=solana&period=1h&amount=100000
+2025-06-04 23:22:11,880 - WARNING - API mobula returned status 503 for URL: https://api.mobula.io/api/1/market/history/pair?asset=DhCSgxEdGEcMu4kWwmpTW2U3njWyGfMb4rzX9GbSpump&blockchain=solana&period=1h&amount=100000
+2025-06-04 23:22:12,792 - WARNING - API mobula returned status 503 for URL: https://api.mobula.io/api/1/market/history/pair?asset=DhCSgxEdGEcMu4kWwmpTW2U3njWyGfMb4rzX9GbSpump&blockchain=solana&period=1h&amount=100000
+2025-06-04 23:35:42,480 - WARNING - API mobula returned status 500 for URL: https://api.mobula.io/api/1/market/history/pair?asset=AzsiFNsZniJXuB1v6mxYCY9dDVUXm5EC57iDCbV6pump&blockchain=solana&period=1min&amount=100000
+2025-06-04 23:35:42,997 - WARNING - API mobula returned status 503 for URL: https://api.mobula.io/api/1/market/history/pair?asset=AzsiFNsZniJXuB1v6mxYCY9dDVUXm5EC57iDCbV6pump&blockchain=solana&period=1min&amount=100000
+2025-06-04 23:35:43,711 - WARNING - API mobula returned status 503 for URL: https://api.mobula.io/api/1/market/history/pair?asset=AzsiFNsZniJXuB1v6mxYCY9dDVUXm5EC57iDCbV6pump&blockchain=solana&period=1min&amount=100000
+2025-06-04 23:35:44,624 - WARNING - API mobula returned status 503 for URL: https://api.mobula.io/api/1/market/history/pair?asset=AzsiFNsZniJXuB1v6mxYCY9dDVUXm5EC57iDCbV6pump&blockchain=solana&period=1min&amount=100000
+2025-06-04 23:39:15,640 - WARNING - API mobula returned status 503 for URL: https://api.mobula.io/api/1/market/history/pair?asset=CPq3JjLjhFNxtT3n5CRwuWg73efYc9YbQZxRQXxEpump&blockchain=solana&period=1min&amount=100000
+2025-06-04 23:39:16,160 - WARNING - API mobula returned status 503 for URL: https://api.mobula.io/api/1/market/history/pair?asset=CPq3JjLjhFNxtT3n5CRwuWg73efYc9YbQZxRQXxEpump&blockchain=solana&period=1min&amount=100000
+2025-06-04 23:39:16,872 - CRITICAL - Endpoint mobula experiencing high error rate
+2025-06-04 23:39:16,873 - WARNING - API mobula returned status 503 for URL: https://api.mobula.io/api/1/market/history/pair?asset=CPq3JjLjhFNxtT3n5CRwuWg73efYc9YbQZxRQXxEpump&blockchain=solana&period=1min&amount=100000
+2025-06-04 23:39:17,789 - CRITICAL - Endpoint mobula experiencing high error rate
+2025-06-04 23:39:17,790 - WARNING - API mobula returned status 503 for URL: https://api.mobula.io/api/1/market/history/pair?asset=CPq3JjLjhFNxtT3n5CRwuWg73efYc9YbQZxRQXxEpump&blockchain=solana&period=1min&amount=100000
+2025-06-04 23:40:45,658 - CRITICAL - Endpoint mobula experiencing high error rate
+2025-06-04 23:40:45,659 - WARNING - API mobula returned status 503 for URL: https://api.mobula.io/api/1/market/history/pair?asset=PsXd91iMUPS5Mr54ZDAQvEGDoywD4LVShDEiVfBpump&blockchain=solana&period=15min&amount=100000
+2025-06-04 23:40:46,115 - CRITICAL - Endpoint mobula experiencing high error rate
+2025-06-04 23:40:46,116 - WARNING - API mobula returned status 503 for URL: https://api.mobula.io/api/1/market/history/pair?asset=PsXd91iMUPS5Mr54ZDAQvEGDoywD4LVShDEiVfBpump&blockchain=solana&period=15min&amount=100000
+2025-06-04 23:40:46,780 - CRITICAL - Endpoint mobula experiencing high error rate
+2025-06-04 23:40:46,781 - WARNING - API mobula returned status 503 for URL: https://api.mobula.io/api/1/market/history/pair?asset=PsXd91iMUPS5Mr54ZDAQvEGDoywD4LVShDEiVfBpump&blockchain=solana&period=15min&amount=100000
+2025-06-04 23:40:47,646 - CRITICAL - Endpoint mobula experiencing high error rate
+2025-06-04 23:40:47,647 - WARNING - API mobula returned status 503 for URL: https://api.mobula.io/api/1/market/history/pair?asset=PsXd91iMUPS5Mr54ZDAQvEGDoywD4LVShDEiVfBpump&blockchain=solana&period=15min&amount=100000
+2025-06-04 23:53:53,531 - CRITICAL - Endpoint mobula experiencing high error rate
+2025-06-04 23:53:53,533 - WARNING - API mobula returned status 503 for URL: https://api.mobula.io/api/1/market/history/pair?asset=5e5i9AiiXR95d2YURRtvRCrqqgVtkcY5UZDvsQvUpump&blockchain=solana&period=1min&amount=100000
+2025-06-04 23:55:33,278 - INFO - Starting periodic metrics cleanup task...
+2025-06-04 23:55:33,518 - INFO - Garbage collection completed successfully.
+2025-06-04 23:55:33,519 - INFO - Metrics cleanup completed in 0.24 seconds. Next cleanup at 2025-06-05 09:55:33
+2025-06-05 00:09:24,570 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-06-05 00:09:25,291 - INFO - Reconnected to Discord after disconnection
+2025-06-05 00:09:25,293 - INFO - Post-reconnection health check: Database=True, API Client=True
+2025-06-05 00:09:29,574 - INFO - Bot automatically reconnected
+2025-06-05 00:15:32,641 - INFO - Metrics Report | Uptime: 17h 0m | Memory: 57.0MB | Processed: 178 | Avg Processing: 1.8550s | Errors: 59 (3 types, Top: api_mobula=57, api_trenchbot=1, api_dexscreener=1) | Last Cleanup: 2025-06-04 23:55:33 (19m ago)
+2025-06-05 01:15:32,645 - INFO - Metrics Report | Uptime: 18h 0m | Memory: 56.5MB | Processed: 180 | Avg Processing: 1.8723s | Errors: 59 (3 types, Top: api_mobula=57, api_trenchbot=1, api_dexscreener=1) | Last Cleanup: 2025-06-04 23:55:33 (1h ago)
+2025-06-05 01:28:35,468 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-06-05 01:28:36,226 - INFO - Reconnected to Discord after disconnection
+2025-06-05 01:28:36,241 - INFO - Post-reconnection health check: Database=True, API Client=True
+2025-06-05 01:28:40,482 - INFO - Bot automatically reconnected
+2025-06-05 02:15:32,654 - INFO - Metrics Report | Uptime: 19h 0m | Memory: 57.1MB | Processed: 191 | Avg Processing: 1.5986s | Errors: 59 (3 types, Top: api_mobula=57, api_trenchbot=1, api_dexscreener=1) | Last Cleanup: 2025-06-04 23:55:33 (2h ago)
+2025-06-05 03:15:32,684 - INFO - Metrics Report | Uptime: 20h 0m | Memory: 22.1MB | Processed: 217 | Avg Processing: 1.2304s | Errors: 59 (3 types, Top: api_mobula=57, api_trenchbot=1, api_dexscreener=1) | Last Cleanup: 2025-06-04 23:55:33 (3h ago)
+2025-06-05 03:15:33,531 - INFO - Starting periodic metrics cleanup task...
+2025-06-05 03:15:33,840 - INFO - Garbage collection completed successfully.
+2025-06-05 03:15:33,841 - INFO - Metrics cleanup completed in 0.31 seconds. Next cleanup at 2025-06-05 13:15:33
+2025-06-05 04:15:32,723 - INFO - Metrics Report | Uptime: 21h 0m | Memory: 22.2MB | Processed: 220 | Avg Processing: 1.2062s | Errors: 59 (3 types, Top: api_mobula=57, api_trenchbot=1, api_dexscreener=1) | Last Cleanup: 2025-06-05 03:15:33 (59m ago)
+2025-06-05 04:53:07,018 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-06-05 04:53:07,673 - INFO - Reconnected to Discord after disconnection
+2025-06-05 04:53:07,674 - INFO - Post-reconnection health check: Database=True, API Client=True
+2025-06-05 04:53:12,036 - INFO - Bot automatically reconnected
+2025-06-05 05:15:32,756 - INFO - Metrics Report | Uptime: 22h 0m | Memory: 23.7MB | Processed: 232 | Avg Processing: 0.8514s | Errors: 59 (3 types, Top: api_mobula=57, api_trenchbot=1, api_dexscreener=1) | Last Cleanup: 2025-06-05 03:15:33 (1h ago)
+2025-06-05 06:15:32,774 - INFO - Metrics Report | Uptime: 23h 0m | Memory: 22.6MB | Processed: 232 | Avg Processing: 0.8514s | Errors: 59 (3 types, Top: api_mobula=57, api_trenchbot=1, api_dexscreener=1) | Last Cleanup: 2025-06-05 03:15:33 (2h ago)
+2025-06-05 06:35:33,861 - INFO - Starting periodic metrics cleanup task...
+2025-06-05 06:35:34,405 - INFO - Garbage collection completed successfully.
+2025-06-05 06:35:34,406 - INFO - Metrics cleanup completed in 0.52 seconds. Next cleanup at 2025-06-05 16:35:33
+2025-06-05 06:38:05,237 - INFO - Built DexScreener tracking cache: 0 guilds with channels
+2025-06-05 06:38:05,239 - INFO - Built DexScreener tracking cache: 0 guilds with channels
+2025-06-05 06:38:05,710 - INFO - alphabtw_ disabled DexScreener tracking in server 'LOYAL'
+2025-06-05 06:55:43,884 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-06-05 06:55:44,558 - INFO - Reconnected to Discord after disconnection
+2025-06-05 06:55:44,577 - INFO - Post-reconnection health check: Database=True, API Client=True
+2025-06-05 06:55:48,894 - INFO - Bot automatically reconnected
+2025-06-05 07:15:32,825 - INFO - Metrics Report | Uptime: 24h 0m | Memory: 9.6MB | Processed: 236 | Avg Processing: 0.8326s | Errors: 59 (3 types, Top: api_mobula=57, api_trenchbot=1, api_dexscreener=1) | Last Cleanup: 2025-06-05 06:35:33 (39m ago)
+2025-06-05 07:17:16,194 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-06-05 07:17:16,881 - INFO - Reconnected to Discord after disconnection
+2025-06-05 07:17:16,899 - INFO - Post-reconnection health check: Database=True, API Client=True
+2025-06-05 07:17:21,211 - INFO - Bot automatically reconnected
+2025-06-05 08:15:32,859 - INFO - Metrics Report | Uptime: 25h 0m | Memory: 28.2MB | Processed: 242 | Avg Processing: 0.9496s | Errors: 59 (3 types, Top: api_mobula=57, api_trenchbot=1, api_dexscreener=1) | Last Cleanup: 2025-06-05 06:35:33 (1h ago)
+2025-06-05 09:15:32,903 - INFO - Metrics Report | Uptime: 26h 0m | Memory: 30.6MB | Processed: 253 | Avg Processing: 1.1672s | Errors: 59 (3 types, Top: api_mobula=57, api_trenchbot=1, api_dexscreener=1) | Last Cleanup: 2025-06-05 06:35:33 (2h ago)
+2025-06-05 09:18:16,561 - CRITICAL - Endpoint mobula experiencing high error rate
+2025-06-05 09:18:16,568 - WARNING - API mobula returned status 500 for URL: https://api.mobula.io/api/1/market/history/pair?asset=3hQhNQoFyxcXNuUCFPVBiqmEWXX7ffXbjsjKPr6mpump&blockchain=solana&period=1min&amount=100000
+2025-06-05 09:55:34,419 - INFO - Starting periodic metrics cleanup task...
+2025-06-05 09:55:34,716 - INFO - Garbage collection completed successfully.
+2025-06-05 09:55:34,716 - INFO - Metrics cleanup completed in 0.30 seconds. Next cleanup at 2025-06-05 19:55:34
+2025-06-05 09:56:20,572 - CRITICAL - Endpoint mobula experiencing high error rate
+2025-06-05 09:56:20,573 - WARNING - API mobula returned status 500 for URL: https://api.mobula.io/api/1/market/history/pair?asset=4hhJsVha44JLdYU9wsBezWDAjmSWja1bET2GfpbXaQJt&blockchain=solana&period=1min&amount=100000
+2025-06-05 09:56:21,122 - CRITICAL - Endpoint mobula experiencing high error rate
+2025-06-05 09:56:21,122 - WARNING - API mobula returned status 500 for URL: https://api.mobula.io/api/1/market/history/pair?asset=4hhJsVha44JLdYU9wsBezWDAjmSWja1bET2GfpbXaQJt&blockchain=solana&period=1min&amount=100000
+2025-06-05 09:56:21,809 - CRITICAL - Endpoint mobula experiencing high error rate
+2025-06-05 09:56:21,810 - WARNING - API mobula returned status 500 for URL: https://api.mobula.io/api/1/market/history/pair?asset=4hhJsVha44JLdYU9wsBezWDAjmSWja1bET2GfpbXaQJt&blockchain=solana&period=1min&amount=100000
+2025-06-05 09:56:22,739 - CRITICAL - Endpoint mobula experiencing high error rate
+2025-06-05 09:56:22,739 - WARNING - API mobula returned status 500 for URL: https://api.mobula.io/api/1/market/history/pair?asset=4hhJsVha44JLdYU9wsBezWDAjmSWja1bET2GfpbXaQJt&blockchain=solana&period=1min&amount=100000
+2025-06-05 10:06:20,653 - CRITICAL - Endpoint mobula experiencing high error rate
+2025-06-05 10:06:20,686 - WARNING - API mobula returned status 500 for URL: https://api.mobula.io/api/1/market/history/pair?asset=zEJupifq7XHjuvQ8q327pvHZBzUmV5dqGdioiK59Wva&blockchain=solana&period=1min&amount=100000
+2025-06-05 10:06:21,248 - CRITICAL - Endpoint mobula experiencing high error rate
+2025-06-05 10:06:21,249 - WARNING - API mobula returned status 500 for URL: https://api.mobula.io/api/1/market/history/pair?asset=zEJupifq7XHjuvQ8q327pvHZBzUmV5dqGdioiK59Wva&blockchain=solana&period=1min&amount=100000
+2025-06-05 10:06:22,009 - CRITICAL - Endpoint mobula experiencing high error rate
+2025-06-05 10:06:22,011 - WARNING - API mobula returned status 500 for URL: https://api.mobula.io/api/1/market/history/pair?asset=zEJupifq7XHjuvQ8q327pvHZBzUmV5dqGdioiK59Wva&blockchain=solana&period=1min&amount=100000
+2025-06-05 10:06:23,021 - CRITICAL - Endpoint mobula experiencing high error rate
+2025-06-05 10:06:23,022 - WARNING - API mobula returned status 500 for URL: https://api.mobula.io/api/1/market/history/pair?asset=zEJupifq7XHjuvQ8q327pvHZBzUmV5dqGdioiK59Wva&blockchain=solana&period=1min&amount=100000
+2025-06-05 10:06:30,785 - CRITICAL - Endpoint mobula experiencing high error rate
+2025-06-05 10:06:30,785 - WARNING - API mobula returned status 404 for URL: https://api.mobula.io/api/1/market/history/pair?asset=7iFpiWGdzpkxFjs84g84kPtHpQWKBgRapgk8Tdtg2duP&blockchain=solana&period=1min&amount=100000
+2025-06-05 10:06:31,318 - CRITICAL - Endpoint mobula experiencing high error rate
+2025-06-05 10:06:31,319 - WARNING - API mobula returned status 500 for URL: https://api.mobula.io/api/1/market/history/pair?asset=7iFpiWGdzpkxFjs84g84kPtHpQWKBgRapgk8Tdtg2duP&blockchain=solana&period=1min&amount=100000
+2025-06-05 10:06:33,641 - CRITICAL - Endpoint mobula experiencing high error rate
+2025-06-05 10:06:33,641 - WARNING - API mobula returned status 404 for URL: https://api.mobula.io/api/1/market/history/pair?asset=7iFpiWGdzpkxFjs84g84kPtHpQWKBgRapgk8Tdtg2duP&blockchain=solana&period=1min&amount=100000
+2025-06-05 10:06:34,594 - CRITICAL - Endpoint mobula experiencing high error rate
+2025-06-05 10:06:34,594 - WARNING - API mobula returned status 404 for URL: https://api.mobula.io/api/1/market/history/pair?asset=7iFpiWGdzpkxFjs84g84kPtHpQWKBgRapgk8Tdtg2duP&blockchain=solana&period=1min&amount=100000
+2025-06-05 10:07:09,234 - CRITICAL - Endpoint mobula experiencing high error rate
+2025-06-05 10:07:09,235 - WARNING - API mobula returned status 500 for URL: https://api.mobula.io/api/1/market/history/pair?asset=9sTT1ukFZq9BQN1EkSEhc2ZvBUyKfDQjT1wEVyqvpump&blockchain=solana&period=1min&amount=100000
+2025-06-05 10:15:32,926 - INFO - Metrics Report | Uptime: 27h 0m | Memory: 27.5MB | Processed: 279 | Avg Processing: 1.3467s | Errors: 73 (3 types, Top: api_mobula=71, api_trenchbot=1, api_dexscreener=1) | Last Cleanup: 2025-06-05 09:55:34 (19m ago)
+2025-06-05 10:17:51,237 - CRITICAL - Endpoint mobula experiencing high error rate
+2025-06-05 10:17:51,238 - WARNING - API mobula returned status 404 for URL: https://api.mobula.io/api/1/market/history/pair?asset=D4JFHFqzysbbb86CYaeFkA5xKVmjgeSpquWUP5NxDjkM&blockchain=solana&period=15min&amount=100000
+2025-06-05 10:31:18,942 - CRITICAL - Endpoint mobula experiencing high error rate
+2025-06-05 10:31:18,971 - WARNING - API mobula returned status 500 for URL: https://api.mobula.io/api/1/market/history/pair?asset=7iFpiWGdzpkxFjs84g84kPtHpQWKBgRapgk8Tdtg2duP&blockchain=solana&period=1min&amount=100000
+2025-06-05 10:35:08,949 - CRITICAL - Endpoint mobula experiencing high error rate
+2025-06-05 10:35:08,957 - WARNING - API mobula returned status 404 for URL: https://api.mobula.io/api/1/market/history/pair?asset=9squVTBPFuczbe3tCn18WLgsAN9pn8y3oux3uA5Dpump&blockchain=solana&period=1min&amount=100000
+2025-06-05 10:36:33,579 - CRITICAL - Endpoint mobula experiencing high error rate
+2025-06-05 10:36:33,579 - WARNING - API mobula returned status 404 for URL: https://api.mobula.io/api/1/market/history/pair?asset=E3Es3HCZZtiMow2WoZVB4ue8BjmiF3gL4Fv8ro2ppump&blockchain=solana&period=1min&amount=100000
+2025-06-05 10:45:25,653 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-06-05 10:45:26,299 - INFO - Reconnected to Discord after disconnection
+2025-06-05 10:45:26,302 - INFO - Post-reconnection health check: Database=True, API Client=True
+2025-06-05 10:45:30,682 - INFO - Bot automatically reconnected
+2025-06-05 10:45:54,304 - CRITICAL - Endpoint mobula experiencing high error rate
+2025-06-05 10:45:54,305 - WARNING - API mobula returned status 500 for URL: https://api.mobula.io/api/1/market/history/pair?asset=Bz2EMvRXfaS2uY3LyEkSGG6L7QBBnPMg5b5C7tqWpump&blockchain=solana&period=1min&amount=100000
+2025-06-05 10:46:18,411 - CRITICAL - Endpoint mobula experiencing high error rate
+2025-06-05 10:46:18,412 - WARNING - API mobula returned status 500 for URL: https://api.mobula.io/api/1/market/history/pair?asset=Bz2EMvRXfaS2uY3LyEkSGG6L7QBBnPMg5b5C7tqWpump&blockchain=solana&period=1min&amount=100000
+2025-06-05 11:09:07,893 - INFO - Bot is shutting down...
+2025-06-05 11:09:07,905 - INFO - API client closed
+2025-06-05 11:09:07,906 - INFO - Truth Social tracking stopped
+2025-06-05 11:09:07,906 - INFO - Truth Social tracking stopped
+2025-06-05 11:09:07,906 - INFO - Services closed successfully
+2025-06-05 11:09:07,907 - INFO - Background task 'metrics_cleanup' canceled
+2025-06-05 11:09:07,907 - INFO - Background task 'memory_monitor' canceled
+2025-06-05 11:09:07,908 - INFO - Background task 'heartbeat_monitor' canceled
+2025-06-05 11:09:07,908 - INFO - Background task 'metrics_report' canceled
+2025-06-05 11:09:07,912 - INFO - DexScreener tracking task cancelled
+2025-06-05 11:09:07,912 - INFO - DexScreener tracking loop cancelled
+2025-06-05 11:09:07,920 - INFO - DexScreener tracking stopped
+2025-06-05 11:09:07,920 - INFO - DexScreener tracking stopped
+2025-06-05 11:09:07,924 - INFO - Database connection pool closed successfully
+2025-06-05 11:09:07,969 - INFO - Bot stopped by user

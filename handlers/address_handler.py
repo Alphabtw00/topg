@@ -32,7 +32,7 @@ async def process_addresses(message: discord.Message, addresses, bot):
     if not addresses:
         return
     
-    batch = list(addresses)[:MAX_ITEMS_PER_MESSAGE]
+    batch = addresses[:MAX_ITEMS_PER_MESSAGE]
     
     # Use the service provider
     addr_map = await bot.services.dexscreener.get_token_info(batch)

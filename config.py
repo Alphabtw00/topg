@@ -47,14 +47,9 @@ USER_INPUT_CHANNEL_IDS = {int(id.strip()) for id in os.getenv("USER_INPUT_CHANNE
 USER_OUTPUT_CHANNEL_IDS = {int(id.strip()) for id in os.getenv("USER_OUTPUT_CHANNEL_IDS", "").split(",") if id.strip().isdigit()}
 FORWARD_USER_IDS = {int(id.strip()) for id in os.getenv("FORWARD_USER_IDS", "").split(",") if id.strip().isdigit()}
 
-# Token Lock monitoring
-TOKEN_LOCK_INPUT_CHANNEL_IDS = {int(id.strip()) for id in os.getenv("TOKEN_LOCK_INPUT_CHANNEL_IDS", "").split(",") if id.strip().isdigit()}
-TOKEN_LOCK_BOT_IDS = {int(id.strip()) for id in os.getenv("TOKEN_LOCK_BOT_IDS", "").split(",") if id.strip().isdigit()}
-
-
 ENABLE_BOT_FORWARDING = False
 ENABLE_USER_FORWARDING = False  
-ENABLE_TOKEN_LOCK_ALERTS = True
+ENABLE_ALERTS = True
 
 
 
@@ -82,7 +77,7 @@ if not VIRUS_TOTAL_API_KEY:
 DEXSCREENER_BASE_URL = "https://api.dexscreener.com"
 TWITTER_SEARCH_URL = "https://x.com/search?q={query}&f=live"
 MOBULA_ATH_URL = "https://api.mobula.io/api/1/market/history/pair?asset={contact_address}&blockchain={blockchain}&period={period}&amount=100000"
-
+MORALIS_BASE_URL = "https://solana-gateway.moralis.io"
 # ========================================================================================================================================================================================
 # Trading Platforms
 # ========================================================================================================================================================================================
@@ -133,8 +128,6 @@ WEBSITE_ANALYSIS_CACHE_TTL = 3600 * 12  # 12 hours
 WHOIS_CACHE_TTL = 3600 * 24 * 7  # 7 days
 
 # Other caches
-ADDRESS_CACHE_SIZE = 10_000
-ADDRESS_CACHE_TTL = 3600  # seconds
 SERVER_SETTINGS_CACHE_SIZE = 100
 SERVER_SETTINGS_CACHE_TTL = 86400  # seconds
 CHANNEL_SETTINGS_CACHE_SIZE = 1000
@@ -143,7 +136,8 @@ CHANNEL_SETTINGS_CACHE_TTL = 86400  # seconds
 # ==============================================
 # Regular Expressions
 # ==============================================
-ADDRESS_REGEX_PATTERN = r"\b[1-9A-HJ-NP-Za-km-z]{32,44}\b"
+COMBINED_EXTRACTION_REGEX = re.compile(r'(\$[^\s]{1,10})|(\b[1-9A-HJ-NP-Za-km-z]{32,44}\b)')
+ADDRESS_REGEX_PATTERN = re.compile(r"\b[1-9A-HJ-NP-Za-km-z]{32,44}\b")
 TICKER_REGEX_PATTERN = r"\$([^\s]{1,10})"
 WEBSITE_REGEX_PATTERN = r'^(?:http|https)://'  # http:// or https://
 r'(?:(?:[A-Z0-9](?:[A-Z0-9-]{0,61}[A-Z0-9])?\.)+(?:[A-Z]{2,6}\.?|[A-Z0-9-]{2,}\.?)|'  # domain

@@ -33,101 +33,103 @@ def create_token_embed(entry: dict, address: str, order_status: str) -> discord.
         discord.Embed: Formatted embed
     """
     try:
-        # Extract core data once to avoid repeated dictionary lookups
-        # Use .get() with defaults to prevent errors if keys are missing
-        change = float(entry.get("priceChange", {}).get("m5", 0))
+        # EXTRACT ALL NESTED DATA ONCE - FASTEST APPROACH
+        price_data = entry.get("priceChange", {})
+        volume_data = entry.get("volume", {})
+        txns_data = entry.get("txns", {}).get("m5", {})
+        base_token = entry.get("baseToken", {})
+        info_data = entry.get("info", {})
+        liquidity_data = entry.get("liquidity", {})
+        
+        # Now use direct variables - no more nested .get() calls
+        change = float(price_data.get("m5", 0))
         current_price = float(entry.get("priceUsd", 0))
         current_fdv = float(entry.get("fdv", 0))
-        liquidity = float(entry.get("liquidity", {}).get("usd", 0))
-        volume_5m = entry.get("volume", {}).get("m5", 0)
-        txns = entry.get("txns", {}).get("m5", {})
-        buys = txns.get("buys", 0)
-        sells = txns.get("sells", 0)
+        liquidity = float(liquidity_data.get("usd", 0))
+        volume_5m = volume_data.get("m5", 0)
+        buys = txns_data.get("buys", 0)
+        sells = txns_data.get("sells", 0)
         pair_created_at = entry.get("pairCreatedAt")
+        symbol = base_token.get("symbol", "")
         
-        # Set color based on price change
+        # Pre-format expensive operations once
+        fdv_str = format_value(current_fdv)
+        price_str = format_value(current_price)
+        liquidity_str = format_value(liquidity)
+        volume_str = format_value(volume_5m)
+        change_str = format_value(change)
+        buys_str = format_value(buys)
+        sells_str = format_value(sells)
+        
+        # Create embed
         embed = discord.Embed(color=get_color_from_change(change))
         
-        # Section 1: Core Metrics (FDV, Price, Liquidity)
-        embed.add_field(name="💰 FDV", value=f"**`${format_value(current_fdv)}`**", inline=True)
-        embed.add_field(name="💵 USD Price", value=f"**`${format_value(current_price)}`**", inline=True)
-        embed.add_field(name="💧 Liquidity", value=f"**`${format_value(liquidity)}`**", inline=True)
-        
-        # Section 2: Performance Metrics (ATH, Volume, Change) - Reverted to old layout
+        # Add fields with pre-formatted strings
+        embed.add_field(name="💰 FDV", value=f"**`${fdv_str}`**", inline=True)
+        embed.add_field(name="💵 USD Price", value=f"**`${price_str}`**", inline=True)
+        embed.add_field(name="💧 Liquidity", value=f"**`${liquidity_str}`**", inline=True)
         embed.add_field(name="🏆 ATH", value="**`N/A`**", inline=True)
         
-        # Price change indicators
-        emoji = "📉" if change < 0 else "📈"
-        embed.add_field(name="📊 5m Volume", value=f"**`${format_value(volume_5m)}`**", inline=True)
-        embed.add_field(name=f"{emoji} 5m Change", value=f"**`{format_value(change)}%`**", inline=True)
+        # Direct emoji assignment
+        emoji = "📈" if change >= 0 else "📉"
+        embed.add_field(name="📊 5m Volume", value=f"**`${volume_str}`**", inline=True)
+        embed.add_field(name=f"{emoji} 5m Change", value=f"**`{change_str}%`**", inline=True)
         
-        # Section 3: Transactions
         embed.add_field(
             name="🔄 5m Transactions",
-            value=f"🟢 **`{format_value(buys)}`** | 🔴 **`{format_value(sells)}`**",
+            value=f"🟢 **`{buys_str}`** | 🔴 **`{sells_str}`**",
             inline=False,
         )
         
-        # Section 4: Links - build efficiently in a single pass
-        info = entry.get("info", {})
+        # Build links section efficiently
         links_parts = []
-        
-        # Websites
-        websites = info.get("websites", [])
+        websites = info_data.get("websites", [])
         if websites:
             sites_links = " | ".join(f"[{site.get('label') or 'Website'}]({site['url']})" for site in websites)
             links_parts.append(f"**Websites:** {sites_links}")
         
-        # Socials
-        socials = info.get("socials", [])
+        socials = info_data.get("socials", [])
         if socials:
             social_links = " | ".join(f"[{soc.get('type', 'Social').title()}]({soc['url']})" for soc in socials)
             links_parts.append(f"**Socials:** {social_links}")
         
-        # Chart
         links_parts.append(f"**Chart:** [DEX]({entry.get('url', '#')})")
         
         if links_parts:
             embed.add_field(name="🔗 Links", value="\n".join(links_parts), inline=False)
         
-        # Section 5: Twitter Search
-        base_token = entry.get('baseToken', {})
-        symbol = base_token.get('symbol', '')
-        
-        
+        # Twitter search with pre-encoded symbol
         embed.add_field(
             name="👀 Twitter Search",
             value=f"[CA]({TWITTER_SEARCH_URL.format(query=address)})    |    [TICKER]({TWITTER_SEARCH_URL.format(query=quote(f'${symbol}'))})",
             inline=False
         )
         
-        # Section 6: Contract Address
         embed.add_field(name="🔑 Contact Address", value=f"`{address}`", inline=False)
         
-        # Section 7: Trading Platforms
+        # Pre-build trading platforms
         platforms = [f"[{name}]({url.format(pair=entry.get('pairAddress', address), address=address)})" 
                      for name, url in TRADING_PLATFORMS.items()]
         embed.add_field(name="💱 Trade On", value=" | ".join(platforms), inline=False)
         
-        # Set banner image if available
-        banner = info.get("header")
+        # Set optional fields
+        banner = info_data.get("header")
         if banner:
             embed.set_image(url=banner)
         
-        #created ago
         if pair_created_at:
             embed.set_footer(text=f"🕒 {relative_time(pair_created_at, include_ago=True)}")
         
-        # Set token logo as thumbnail
-        img = info.get("imageUrl")
+        img = info_data.get("imageUrl")
         if img:
             embed.set_thumbnail(url=img)
             
         return embed
+        
     except Exception as e:
         logger.error(f"Embed creation error: {e}")
         return None
-    
+
 def create_header_message(entry: dict) -> str:
     """
     Create a header message for token information
@@ -195,40 +197,46 @@ def update_first_call_in_embed(embed_dict, first_call_data, current_price, curre
     try:
         if not first_call_data:
             return embed_dict
-            
+           
         # Extract first call data
         initial_price = float(first_call_data.get('initial_price', 0))
         initial_fdv = float(first_call_data.get('initial_fdv', 0))
         user_name = first_call_data.get('user_name', 'Unknown')
         user_id = first_call_data.get('user_id', 0)
         is_first_call = first_call_data.get('is_first_call', False)
-        
+       
         # Calculate price multiple (x)
         price_multiple = 0
         if initial_price > 0:
             price_multiple = current_price / initial_price
-            
+           
         # Create first call text
         if is_first_call:
             # This is the first call - current user is the first caller
-            first_call_text = f"⚡ You're First! @ ${format_value(initial_fdv)}"
+            first_call_text = f"You're First! @ ${format_value(initial_fdv)}"
+            footer_icon_url = "https://s14.gifyu.com/images/bx87h.gif"
+
         else:
             if price_multiple >= 2:
-                first_call_text = f"🏆 {user_name} @ ${format_value(initial_fdv)} 🚀{int(price_multiple)}x"
+                first_call_text = f"{user_name} @ ${format_value(initial_fdv)} 🚀{int(price_multiple)}x"
             else:
-                first_call_text = f"🏆 {user_name} @ ${format_value(initial_fdv)}"
-        
+                first_call_text = f"{user_name} @ ${format_value(initial_fdv)}"
+            footer_icon_url = "https://s14.gifyu.com/images/bx87l.gif"
+       
         # Get existing footer text if it exists
         existing_footer_text = ""
         if "footer" in embed_dict and "text" in embed_dict["footer"]:
             existing_footer_text = embed_dict["footer"]["text"]
-        
+       
         # Combine footer texts
         combined_footer = f"{first_call_text} • {existing_footer_text}" if existing_footer_text else first_call_text
-        
+       
         # Update embed footer
-        embed_dict["footer"] = {"text": combined_footer}
-            
+        embed_dict["footer"] = {
+            "text": combined_footer,
+            "icon_url": footer_icon_url
+        }
+           
         return embed_dict
         
     except Exception as e:

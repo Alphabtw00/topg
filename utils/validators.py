@@ -5,22 +5,19 @@ import re
 import base58
 from typing import Dict, Optional, Any
 from cachetools import TTLCache, cached, LRUCache
-from config import ADDRESS_REGEX_PATTERN, TICKER_REGEX_PATTERN, GITHUB_REPO_REGEX_PATTERN, WEBSITE_REGEX_PATTERN,  ADDRESS_CACHE_SIZE, ADDRESS_CACHE_TTL
+from config import GITHUB_REPO_REGEX_PATTERN, WEBSITE_REGEX_PATTERN, COMBINED_EXTRACTION_REGEX, ADDRESS_REGEX_PATTERN 
 from urllib.parse import urlparse
 from utils.logger import get_logger
+from functools import lru_cache
 
 logger = get_logger()
 
 # Compile regex patterns for efficiency
-ADDRESS_REGEX = re.compile(ADDRESS_REGEX_PATTERN)
-TICKER_REGEX = re.compile(TICKER_REGEX_PATTERN)
 GITHUB_REPO_REGEX = re.compile(GITHUB_REPO_REGEX_PATTERN, re.IGNORECASE)
 WEBSITE_REGEX = re.compile(WEBSITE_REGEX_PATTERN, re.IGNORECASE)
 
-# Cache for address validation
-ADDRESS_CACHE = LRUCache(maxsize=ADDRESS_CACHE_SIZE)
 
-@cached(ADDRESS_CACHE)
+@lru_cache(maxsize=1000)
 def validate_solana_address(candidate: str) -> bool:
     """
     Validate if a string is a valid Solana address
@@ -35,30 +32,40 @@ def validate_solana_address(candidate: str) -> bool:
         return len(base58.b58decode(candidate)) == 32
     except Exception:
         return False
-
-def get_addresses_from_content(content: str) -> set:
-    """
-    Extract and validate Solana addresses from a string
     
-    Args:
-        content: String to analyze
-        
-    Returns:
-        set: Set of valid Solana addresses
+@lru_cache(maxsize=1000)
+def extract_tickers_and_addresses_single_regex(content: str) -> tuple:
     """
-    return {addr for addr in ADDRESS_REGEX.findall(content) if validate_solana_address(addr)}
-
-def get_tickers_from_content(content: str) -> list:
+    Ultra-fast single regex extraction
     """
-    Extract ticker symbols from a string
+    matches = COMBINED_EXTRACTION_REGEX.findall(content)
     
-    Args:
-        content: String to analyze
-        
-    Returns:
-        list: List of ticker symbols without the $ prefix
-    """
-    return list(set(TICKER_REGEX.findall(content.lower())))
+    tickers = set()
+    addresses = []
+    
+    for ticker_match, addr_match in matches:
+        if ticker_match:
+            tickers.add(ticker_match[1:].lower())  # Remove $ and lowercase
+        if addr_match:
+            addresses.append(addr_match)
+    
+    # Validate addresses
+    valid_addresses = []
+    for addr in addresses:
+        if validate_solana_address(addr):
+            valid_addresses.append(addr)
+    
+    # Remove ticker duplicates
+    unique_tickers = list(tickers)
+    
+    return valid_addresses, unique_tickers
+
+@lru_cache(maxsize=1000)
+def extract_addresses(content: str) -> list:
+    """Extract only addresses - even faster for alerts"""
+    matches = ADDRESS_REGEX_PATTERN.findall(content)
+    return [addr for addr in matches if validate_solana_address(addr)]
+
 
 def validate_github_url(url: str) -> bool:
     """

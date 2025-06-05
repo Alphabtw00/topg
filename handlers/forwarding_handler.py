@@ -5,7 +5,7 @@ from datetime import datetime
 from utils.logger import get_logger
 from discord import AllowedMentions
 from handlers.message_processor import process_message_with_timeout
-from utils.validators import get_addresses_from_content
+from utils.validators import extract_addresses
 from utils.formatters import safe_text
 
 logger = get_logger()
@@ -15,21 +15,45 @@ webhook_cache = {}
 
 # Pre-computed channel sets for ultra-fast O(1) lookups
 _forwarding_channels = None
+_alert_channels = None
+
+# Alert configuration - easily extensible
+ALERT_CONFIGS = {
+    1380171118874333288: {  # Token Lock channel
+        'type': 'token_lock',
+        'notification': 'Your called token\'s supply has been locked! 🔒',
+        'footer_text': 'Token Lock Alert'
+    },
+    1380170835343704085: {  # Dev Burn channel
+        'type': 'dev_burn', 
+        'notification': 'Your called token dev has burned supply! 🔥',
+        'footer_text': 'Dev Burn Alert'
+    },
+    1379812775869550673: {  # Dex Paid channel
+        'type': 'dex_paid',
+        'notification': 'DEX PAID for your call! 💰', 
+        'footer_text': 'DEX Paid Alert'
+    }
+}
 
 def init_forwarding_cache():
     """Initialize forwarding channel sets for fast lookup - call once at bot startup"""
-    global _forwarding_channels
-    from config import (ENABLE_BOT_FORWARDING, ENABLE_USER_FORWARDING, ENABLE_TOKEN_LOCK_ALERTS,
-                       BOT_INPUT_CHANNEL_IDS, USER_INPUT_CHANNEL_IDS, TOKEN_LOCK_INPUT_CHANNEL_IDS)
+    global _forwarding_channels, _alert_channels
+    from config import (ENABLE_BOT_FORWARDING, ENABLE_USER_FORWARDING, ENABLE_ALERTS,
+                       BOT_INPUT_CHANNEL_IDS, USER_INPUT_CHANNEL_IDS)
     
     _forwarding_channels = set()
+    _alert_channels = set()
     
     if ENABLE_BOT_FORWARDING:
         _forwarding_channels.update(BOT_INPUT_CHANNEL_IDS)
     if ENABLE_USER_FORWARDING:
         _forwarding_channels.update(USER_INPUT_CHANNEL_IDS)
-    if ENABLE_TOKEN_LOCK_ALERTS:
-        _forwarding_channels.update(TOKEN_LOCK_INPUT_CHANNEL_IDS)
+    
+    # Add alert channels only if alerts are enabled
+    if ENABLE_ALERTS:
+        _alert_channels = set(ALERT_CONFIGS.keys())
+        _forwarding_channels.update(_alert_channels)
 
 def should_process_forwarding(channel_id):
     """Ultra-fast check if ANY forwarding is needed for this channel"""
@@ -254,44 +278,48 @@ async def forward_user_to_channel(channel_id, bot, webhook_params, process_crypt
         logger.error(f"Failed to forward user message to channel {channel_id}: {e}")
         return None
 
-async def process_token_lock_message(message, bot):
-    """Process token lock messages and notify users across ALL servers who first called those tokens"""
-    from config import ENABLE_TOKEN_LOCK_ALERTS, TOKEN_LOCK_INPUT_CHANNEL_IDS, TOKEN_LOCK_BOT_IDS
-    
-    if not ENABLE_TOKEN_LOCK_ALERTS or message.channel.id not in TOKEN_LOCK_INPUT_CHANNEL_IDS:
+async def process_alert_message(message, bot):
+    """Optimized alert processing - addresses only"""
+    if message.channel.id not in _alert_channels:
         return
     
-    if TOKEN_LOCK_BOT_IDS and message.author.id not in TOKEN_LOCK_BOT_IDS:
-        return
-    
-    # Extract token addresses from message content and embeds
+    alert_config = ALERT_CONFIGS[message.channel.id]
     addresses = set()
     
-    if message.content:
-        addresses.update(get_addresses_from_content(message.content))
+    # Process all text content
+    text_sources = [message.content] if message.content else []
     
     for embed in message.embeds:
         if embed.description:
-            addresses.update(get_addresses_from_content(embed.description))
-        
+            text_sources.append(embed.description)
         for field in embed.fields:
             if field.value:
-                addresses.update(get_addresses_from_content(field.value))
+                text_sources.append(field.value)
             if field.name:
-                addresses.update(get_addresses_from_content(field.name))
-        
+                text_sources.append(field.name)
         if embed.footer and embed.footer.text:
-            addresses.update(get_addresses_from_content(embed.footer.text))
+            text_sources.append(embed.footer.text)
+    
+    # Extract addresses from all sources
+    for text in text_sources:
+        addresses.update(extract_addresses(text))
     
     if not addresses:
         return
     
+    # Create copied embeds once with updated footer
+    copied_embeds = []
+    for embed in message.embeds:
+        new_embed = discord.Embed.from_dict(embed.to_dict())
+        new_embed.set_footer(text=alert_config['footer_text'])
+        copied_embeds.append(new_embed)
+    
     # Process each address concurrently for cross-server notifications
-    tasks = [notify_token_caller_all_servers(address, message, bot) for address in addresses]
+    tasks = [notify_token_caller_all_servers(address, copied_embeds, alert_config, bot) for address in addresses]
     if tasks:
         await asyncio.gather(*tasks, return_exceptions=True)
 
-async def notify_token_caller_all_servers(address, lock_message, bot):
+async def notify_token_caller_all_servers(address, copied_embeds, alert_config, bot):
     """Notify users who first called a token across ALL servers"""
     try:
         from handlers.mysql_handler import fetch_all
@@ -308,53 +336,47 @@ async def notify_token_caller_all_servers(address, lock_message, bot):
             logger.debug(f"No first calls found for token {address} across all servers")
             return
         
-        # Create copied embeds once (without views/buttons)
-        copied_embeds = []
-        for embed in lock_message.embeds:
-            new_embed = discord.Embed.from_dict(embed.to_dict())
-            copied_embeds.append(new_embed)
-        
         # Notify each caller concurrently
         notification_tasks = []
         for result in results:
             user_id, channel_id, message_id, guild_id = result
             if user_id and channel_id:
                 notification_tasks.append(
-                    send_lock_notification(bot, user_id, channel_id, message_id, copied_embeds, address)
+                    send_alert_notification(bot, user_id, channel_id, message_id, copied_embeds, address, alert_config)
                 )
         
         if notification_tasks:
             await asyncio.gather(*notification_tasks, return_exceptions=True)
         
     except Exception as e:
-        logger.error(f"Error processing token lock notifications for {address}: {e}")
+        logger.error(f"Error processing {alert_config['type']} notifications for {address}: {e}")
 
-async def send_lock_notification(bot, user_id, channel_id, message_id, copied_embeds, address):
-    """Send individual lock notification"""
+async def send_alert_notification(bot, user_id, channel_id, message_id, copied_embeds, address, alert_config):
+    """Send individual alert notification"""
     try:
         channel = bot.get_channel(int(channel_id))
         if not channel:
-            logger.warning(f"Channel {channel_id} not found for token lock notification")
+            logger.warning(f"Channel {channel_id} not found for {alert_config['type']} notification")
             return
         
-        notification = f"<@{user_id}> Your called token has been locked! 🔒"
+        notification = f"<@{user_id}> {alert_config['notification']}"
         
         # Try to reply to original message if available
         if message_id:
             try:
                 original_msg = await channel.fetch_message(int(message_id))
                 await original_msg.reply(content=notification, embeds=copied_embeds)
-                logger.debug(f"Sent cross-server token lock notification as reply for {address}")
+                logger.debug(f"Sent cross-server {alert_config['type']} notification as reply for {address}")
                 return
             except Exception as e:
                 logger.warning(f"Could not reply to original message: {e}")
         
         # Fallback: Send as new message
         await channel.send(content=notification, embeds=copied_embeds)
-        logger.info(f"Sent cross-server token lock notification as new message for {address}")
+        logger.info(f"Sent cross-server {alert_config['type']} notification as new message for {address}")
         
     except Exception as e:
-        logger.error(f"Error sending individual lock notification for {address}: {e}")
+        logger.error(f"Error sending individual {alert_config['type']} notification for {address}: {e}")
 
 async def forward_message(message, bot):
     """Ultra-fast forwarding entry point - only creates task if channel needs processing"""
@@ -366,7 +388,7 @@ async def forward_message(message, bot):
     # Check each forwarding type and add task if applicable
     forwarding_tasks.append(forward_user_messages(message, bot))
     forwarding_tasks.append(forward_bot_messages(message, bot))
-    forwarding_tasks.append(process_token_lock_message(message, bot))
+    forwarding_tasks.append(process_alert_message(message, bot))
     
     # Execute all applicable tasks
     if forwarding_tasks:

@@ -10,6 +10,7 @@ import repository.dex_tracker_repo as dex_db
 from utils.logger import get_logger
 from bot.error_handler import create_error_handler
 from datetime import datetime
+from utils.formatters import safe_text
 from config import DEX_TRACKER_CHAINS, DEX_TRACKER_POLL_INTERVAL
 
 logger = get_logger()
@@ -90,7 +91,7 @@ class DexTrackerCommands(commands.Cog):
                 
                 # Track command usage
                 self.bot.record_command_usage("dextracker_add_channel")
-                logger.info(f"{interaction.user.name} added channel #{channel.name} in server '{interaction.guild.name}' for DexScreener tracking")
+                logger.info(f"{safe_text(interaction.user.name)} added channel #{safe_text(channel.name)} in server '{safe_text(interaction.guild.name)}' for DexScreener tracking")
             else:
                 await interaction.followup.send(f"ℹ️ Channel {channel.mention} is already configured for DexScreener updates.", ephemeral=True)
                 
@@ -126,7 +127,7 @@ class DexTrackerCommands(commands.Cog):
                 
                 # Track command usage
                 self.bot.record_command_usage("dextracker_remove_channel")
-                logger.info(f"{interaction.user.name} removed channel #{channel.name} in server '{interaction.guild.name}' from DexScreener tracking")
+                logger.info(f"{safe_text(interaction.user.name)} removed channel #{safe_text(channel.name)} in server '{safe_text(interaction.guild.name)}' for DexScreener tracking")
             else:
                 await interaction.followup.send(f"❌ {channel.mention} was not configured for DexScreener updates.", ephemeral=True)
         except Exception as e:
@@ -194,7 +195,8 @@ class DexTrackerCommands(commands.Cog):
                 
                 # Track command usage
                 self.bot.record_command_usage("dextracker_enable")
-                logger.info(f"{interaction.user.name} enabled DexScreener tracking in server '{interaction.guild.name}'")
+
+                logger.info(f"{safe_text(interaction.user.name)} enabled DexScreener tracking in server '{safe_text(interaction.guild.name)}'")
             else:
                 await interaction.followup.send("❌ Failed to enable tracking.", ephemeral=True)
         except Exception as e:
@@ -224,7 +226,7 @@ class DexTrackerCommands(commands.Cog):
                 
                 # Track command usage
                 self.bot.record_command_usage("dextracker_disable")
-                logger.info(f"{interaction.user.name} disabled DexScreener tracking in server '{interaction.guild.name}'")
+                logger.info(f"{safe_text(interaction.user.name)} disabled DexScreener tracking in server '{safe_text(interaction.guild.name)}'")
             else:
                 await interaction.followup.send("❌ Failed to disable tracking.", ephemeral=True)
         except Exception as e:

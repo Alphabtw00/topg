@@ -1,0 +1,37 @@
+2025-06-06 04:19:23,928 - INFO - Starting bot...
+2025-06-06 04:19:24,797 - INFO - API client initialized
+2025-06-06 04:19:24,797 - INFO - WebsiteAnalyzer initialized with concurrency limit of 15
+2025-06-06 04:19:24,799 - INFO - Loaded 4 Truth Social tokens from file
+2025-06-06 04:19:24,799 - INFO - Authenticating 4 Truth Social accounts with missing or expired tokens...
+2025-06-06 04:19:24,847 - ERROR - Auth error: Status 403
+2025-06-06 04:19:24,847 - ERROR - Failed to authenticate Truth Social account: alphabtw
+2025-06-06 04:19:24,890 - ERROR - Failed to authenticate Truth Social account: visheshbtw
+2025-06-06 04:19:24,924 - ERROR - Failed to authenticate Truth Social account: sakshambtw
+2025-06-06 04:19:24,958 - ERROR - Failed to authenticate Truth Social account: mayankbtw
+2025-06-06 04:19:24,958 - INFO - Successfully authenticated 0/4 Truth Social accounts
+2025-06-06 04:19:24,959 - INFO - Saved 4 Truth Social tokens to file
+2025-06-06 04:19:24,959 - INFO - All API services initialized
+2025-06-06 04:19:24,959 - INFO - Services provider initialized
+2025-06-06 04:19:25,140 - INFO - Database connection pool established: size=1-10
+2025-06-06 04:19:25,140 - INFO - Database connection successful
+2025-06-06 04:19:25,167 - INFO - WebsiteChecker cog initialized
+2025-06-06 04:19:25,170 - INFO - Proxy rotator initialized with http protocol
+2025-06-06 04:19:25,170 - INFO - Proxy rotator initialized for Truth commands
+2025-06-06 04:19:25,178 - INFO - Discord Events Registered | Username Ban Server ID: 1313758082974879774
+2025-06-06 04:19:25,180 - INFO - Memory monitor started (threshold: 300MB, interval: 3600s)
+2025-06-06 04:19:25,181 - INFO - Initializing Truth Social tracking...
+2025-06-06 04:19:25,182 - INFO - Initializing DexScreener live tracker...
+2025-06-06 04:19:25,211 - INFO - Built DexScreener tracking cache: 0 guilds with channels
+2025-06-06 04:19:25,213 - INFO - No guilds with DexScreener tracking enabled
+2025-06-06 04:19:25,213 - INFO - DexScreener tracking initialization complete
+2025-06-06 04:19:25,216 - INFO - Proxy rotator initialized with http protocol
+2025-06-06 04:19:25,216 - INFO - Proxy rotator initialized for Truth Social tracking
+2025-06-06 04:19:25,229 - INFO - Ultra-optimized cache built: 1 accounts, 1 accounts with channels, 1 total channel mappings
+2025-06-06 04:19:25,232 - INFO - Found 1 guilds with Truth Social tracking enabled
+2025-06-06 04:19:25,232 - INFO - Truth Social tracking started
+2025-06-06 04:19:25,232 - INFO - Truth Social tracking initialization complete
+2025-06-06 04:19:25,715 - INFO - Successfully synced 8 command(s)
+2025-06-06 04:19:30,492 - INFO - Logged in as TOPG#4967 (ID: 1340722186100408340)
+2025-06-06 04:19:30,493 - INFO - Bot connected to 7 server(s)
+2025-06-06 04:19:30,493 - INFO - Echo bot message forwarding: 1 bots from 9 channels to 1 channels
+2025-06-06 04:19:30,494 - INFO - Dani message forwarding: 1 users from 2 channels to 1 channels
