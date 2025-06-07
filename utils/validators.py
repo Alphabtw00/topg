@@ -5,7 +5,7 @@ import re
 import base58
 from typing import Dict, Optional, Any
 from cachetools import TTLCache, cached, LRUCache
-from config import GITHUB_REPO_REGEX_PATTERN, WEBSITE_REGEX_PATTERN, COMBINED_EXTRACTION_REGEX, ADDRESS_REGEX_PATTERN 
+from config import GITHUB_REPO_REGEX_PATTERN, WEBSITE_REGEX_PATTERN, COMBINED_EXTRACTION_REGEX, ADDRESS_REGEX_PATTERN
 from urllib.parse import urlparse
 from utils.logger import get_logger
 from functools import lru_cache
@@ -65,6 +65,31 @@ def extract_addresses(content: str) -> list:
     """Extract only addresses - even faster for alerts"""
     matches = ADDRESS_REGEX_PATTERN.findall(content)
     return [addr for addr in matches if validate_solana_address(addr)]
+
+
+@lru_cache(maxsize=1000)
+def crypto_quick_check(content: str) -> bool:
+    """Lightning fast - ~0.002-0.008ms"""
+    # Check for $ first (most common)
+    if '$' in content:
+        return True
+    
+    # Quick length check - if message is too short, no CA possible
+    if len(content) < 26:
+        return False
+    
+    # Look for any 26+ char alphanumeric sequence
+    current_alnum_count = 0
+    for char in content:
+        if char.isalnum():
+            current_alnum_count += 1
+            if current_alnum_count >= 26:
+                return True
+        else:
+            current_alnum_count = 0
+    
+    return False
+
 
 
 def validate_github_url(url: str) -> bool:

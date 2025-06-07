@@ -14,7 +14,7 @@ from utils.formatters import (
     relative_time, get_color_from_change, score_bar, clean_html,
     format_metrics, proxy_url, format_category
 )
-from utils.helper import safe_add_field
+from utils.helper import safe_add_field, fetch_token_image_from_uri
 from utils.logger import get_logger
 
 
@@ -276,7 +276,7 @@ def update_dex_in_embed(embed_dict: dict, order_status: str) -> dict:
         logger.error(f"Error updating DEX status in embed: {e}")
         return embed_dict
 
-def create_dex_tracker_embed(token_data, token_info):
+def create_dex_tracker_embed(token_data, token_info, token_address, symbol, name ):
     """
     Create a simplified embed for a newly paid DexScreener token
     
@@ -288,8 +288,10 @@ def create_dex_tracker_embed(token_data, token_info):
         discord.Embed: Formatted embed
     """
     try:
+        if not token_info:
+            return
+        
         # Extract token data
-        token_address = token_data.get("tokenAddress", "")
         chain_id = token_data.get("chainId", "UNKNOWN").upper()
         description = token_data.get("description", "No description")
         
@@ -297,16 +299,7 @@ def create_dex_tracker_embed(token_data, token_info):
         icon_url = token_data.get("icon", "")
         header_url = token_data.get("header", "")
         
-        # Extract more detailed info from token_info if available
-        name = "Unknown"
-        symbol = "UNKNOWN"
-        fdv = 0
-        
-        if token_info:
-            base_token = token_info.get("baseToken", {})
-            name = base_token.get("name", "Unknown")
-            symbol = base_token.get("symbol", "UNKNOWN")
-            fdv = float(token_info.get("fdv", 0))
+        fdv = float(token_info.get("fdv", 0))
         
         # Create embed with brand color
         embed = discord.Embed(
@@ -376,6 +369,209 @@ def create_dex_tracker_embed(token_data, token_info):
         from utils.logger import get_logger
         logger = get_logger()
         logger.error(f"Error creating DexScreener tracker embed: {e}")
+        return None
+
+def create_migration_tracker_embed(dex_data, mobula_data, token_address):
+    """Create migration tracker embed with DexScreener primary data and Mobula fallback image"""
+    try:
+        if not dex_data and not mobula_data:
+            return None
+        
+        # Use DexScreener data as primary source
+        if dex_data:
+            # Extract basic info
+            name = dex_data.get('baseToken', {}).get('name', 'Unknown')
+            symbol = dex_data.get('baseToken', {}).get('symbol', 'Unknown')
+            market_cap = dex_data.get('fdv', 0)
+            
+            # Extract stats
+            volume_5m = dex_data.get('volume', {}).get('m5', 0)
+            price_change_5m = dex_data.get('priceChange', {}).get('m5', 0)
+            
+            # Check for image/header from DexScreener
+            info = dex_data.get('info', {})
+            image_url = info.get('imageUrl') or info.get('header')
+            
+            # Use Mobula image if DexScreener doesn't have one
+            if not image_url and mobula_data:
+                image_url = mobula_data.get('logo')
+            
+            # Build embed
+            embed = discord.Embed(
+                title=f"🎓 {name} ({symbol}) Graduated!",
+                color=0x00ff00,
+                url=dex_data.get('url', f"https://dexscreener.com/solana/{token_address}")
+            )
+            
+            # Add market cap
+            if market_cap:
+                embed.add_field(
+                    name="💰 Market Cap", 
+                    value=f"${market_cap:,.2f}", 
+                    inline=True
+                )
+            
+            # Add 5m stats
+            volume_emoji = "📈" if volume_5m > 0 else "📊"
+            change_emoji = "🟢" if price_change_5m >= 0 else "🔴"
+            
+            embed.add_field(
+                name=f"{volume_emoji} 5m Volume", 
+                value=f"${volume_5m:,.2f}", 
+                inline=True
+            )
+            embed.add_field(
+                name=f"{change_emoji} 5m Change", 
+                value=f"{price_change_5m:+.2f}%", 
+                inline=True
+            )
+            
+            # Add image
+            if image_url:
+                embed.set_thumbnail(url=image_url)
+            
+            # Add links if available
+            links = info.get('websites', []) + info.get('socials', [])
+            if links:
+                links_text = []
+                for link in links[:3]:  # Max 3 links
+                    label = link.get('label') or link.get('type', 'Link')
+                    url = link.get('url')
+                    if url:
+                        links_text.append(f"[{label}]({url})")
+                
+                if links_text:
+                    embed.add_field(
+                        name="🔗 Links", 
+                        value=" • ".join(links_text), 
+                        inline=False
+                    )
+            
+            embed.set_footer(text="Migration Tracker", icon_url="https://s14.gifyu.com/images/bxicv.gif")
+            return embed
+        
+        return None
+        
+    except Exception as e:
+        logger.error(f"Error creating migration embed: {e}")
+        return None
+
+async def create_about_to_graduate_embed(token_info: Dict, pool_data: Dict, token_address: str):
+    """Create embed for graduation alert"""
+    try:
+        # Extract pool data structure
+        pool = pool_data.get("Pool", {})
+        market_data = pool.get("Market", {})
+        base_currency = market_data.get("BaseCurrency", {})
+        transaction = pool_data.get("Transaction", {})
+        block_data = pool_data.get("Block", {})
+        
+        # Extract token data from pool_data (primary source)
+        name = base_currency.get('Name', 'Unknown Token')
+        symbol = base_currency.get('Symbol', 'Unknown')
+        uri = base_currency.get('Uri', '')
+        
+        # Get transaction signer
+        signer = transaction.get('Signer', '')
+        block_time = block_data.get('Time', '')
+        
+        # Get market data from token_info
+        fdv = token_info.get('fdv', 0)
+        
+        # Create embed with custom emoji
+        embed = discord.Embed(
+            title=f"<a:right_arrow:1380903999598887023> {name} (${symbol}) - About to Graduate",
+            color=0xFF6B35,  # Orange color for alert
+            timestamp=datetime.now()
+        )
+        
+        # Fetch and add thumbnail from URI if available
+        if uri:
+            image_url = await fetch_token_image_from_uri(uri)
+            if image_url:
+                embed.set_thumbnail(url=image_url)
+
+        
+        # Add market data
+        embed.add_field(
+            name="💰 Market Cap (could be wrong)",
+            value=f"${format_value(fdv)}",
+            inline=True
+        )
+        
+        # Add contract address field
+        embed.add_field(
+            name="💸 Contract Address",
+            value=f"```{token_address}```",
+            inline=False
+        )
+        
+        # Build links section
+        link_text = []
+        
+        # Add dev link (transaction signer) by default
+        if signer:
+            link_text.append(f"[Dev](https://solscan.io/account/{signer})")
+        
+        # Add links from token info if available
+        if 'info' in token_info:
+            info = token_info['info']
+            links = []
+            
+            # Collect websites
+            if 'websites' in info:
+                links.extend(info['websites'])
+            
+            # Collect socials
+            if 'socials' in info:
+                links.extend(info['socials'])
+            
+            # Process collected links
+            for link in links:
+                link_type = link.get("type", "")
+                link_label = link.get("label", "")
+                link_url = link.get("url", "")
+                if not link_url:
+                    continue
+                if link_type == "twitter" or "twitter" in link_url or "x.com" in link_url:
+                    link_text.append(f"[Twitter]({link_url})")
+                elif link_label == "Website" or not link_type:
+                    link_text.append(f"[Website]({link_url})")
+                else:
+                    link_text.append(f"[{link_label or link_type.capitalize()}]({link_url})")
+        
+        # Add links field if we have any
+        if link_text:
+            embed.add_field(
+                name="🔗 Links",
+                value=" | ".join(link_text),
+                inline=False
+            )
+        
+        # Add header image if available
+        if 'info' in token_info and 'header' in token_info['info']:
+            embed.set_image(url=token_info['info']['header'])
+        
+        # Format footer with pair created time if available
+        footer_text = "Migration Tracker"
+        if 'pairCreatedAt' in token_info:
+            try:
+                pair_created_timestamp = token_info['pairCreatedAt']  # Already in milliseconds
+                time_ago = relative_time(pair_created_timestamp, include_ago=True)
+                footer_text += f" • 🕒 {time_ago}"
+            except Exception as e:
+                logger.debug(f"Error formatting pair created time: {e}")
+        
+        # Set footer with gif icon
+        embed.set_footer(
+            text=footer_text,
+            icon_url="https://s14.gifyu.com/images/bxicv.gif"
+        )
+        
+        return embed
+        
+    except Exception as e:
+        logger.error(f"Error creating graduation alert embed: {e}")
         return None
 
 def create_github_analysis_embed(repo_info, analysis, start_time, interaction):
@@ -977,7 +1173,7 @@ async def create_health_embed(bot, user):
         )[:3]
 
     # Database metrics
-    from handlers.mysql_handler import get_db_pool_stats
+    from service.mysql_service import get_db_pool_stats
     db_stats = await get_db_pool_stats()
     
     # Create embed
@@ -1065,15 +1261,20 @@ def create_bundle_embed(data, contract_address):
     total_percentage_bundled = data.get("total_percentage_bundled", 0)
     total_holding_percentage = data.get("total_holding_percentage", 0)
    
-    # Determine embed color based on total holding percentage
+
     if total_holding_percentage < 15:
         embed_color = 0x4CAF50  # Green
+        status_emoji = "<a:GreenCheck:1380464968335626302>"
     elif total_holding_percentage < 30:
         embed_color = 0xFFC107  # Amber/Yellow
+        status_emoji = "<a:Warning:1380467064761749584>"
     elif total_holding_percentage < 50:
         embed_color = 0xFF9800  # Orange
+        status_emoji = "<a:red_alert:1380467108541894678>"
     else:
         embed_color = 0xF44336  # Red
+        status_emoji = "<a:ao_Cross:1380466271736434811>"
+
    
     # Create main embed
     embed = discord.Embed(color=embed_color)
@@ -1095,8 +1296,9 @@ def create_bundle_embed(data, contract_address):
     )[:5]  # Get top 5 bundles
    
     # Add header info with title and main stats in description field
+    
     embed.description = (
-        f"# Bundle analysis for ${ticker}:\n\n"
+        f"# {status_emoji} Bundle analysis for ${ticker}: \n\n"
         f"Total bundles found: **{total_bundles}**\n"
         f"Bundled Total: **{total_percentage_bundled:.2f}%**\n"
         f"Bundle Held %: **{total_holding_percentage:.2f}%**\n\n"
@@ -1106,21 +1308,24 @@ def create_bundle_embed(data, contract_address):
     for i, (bundle_id, bundle_data) in enumerate(sorted_bundles):
         # Get bundle metrics
         token_percentage = bundle_data.get("token_percentage", 0)
+        holding_percentage = bundle_data.get("holding_percentage", 0)
         primary_category = bundle_data.get("bundle_analysis", {}).get("primary_category", "unknown")
         unique_wallets = bundle_data.get("unique_wallets", 0)
        
         # Format primary category
         formatted_category = format_category(primary_category)
-       
+
+        remaining_percentage = (holding_percentage / token_percentage) * 100 if token_percentage > 0 else 0
+
         # Add bundle info to description
         embed.description += (
             f"## Bundle #{i+1} ({formatted_category})\n"
-            f"Total Bundled %: **{token_percentage:.2f}%**\n"
-            f"Unique Wallets: **{unique_wallets}**\n"
+            f"Total Bundled %: **{token_percentage:.2f}%** (**{unique_wallets}** wallets)\n"
+            f"Total Held %: **{holding_percentage:.2f}%**\n"
             f"Remaining bundle:\n"
-            f"{score_bar(token_percentage, 10)} **{token_percentage:.2f}%**\n\n"
+            f"{score_bar(remaining_percentage, 10)} **{remaining_percentage:.2f}%**\n\n"
         )
-    
+
     # Add note to description
     embed.description += (
         f"**Note:**\n"
@@ -1128,7 +1333,6 @@ def create_bundle_embed(data, contract_address):
     )
        
     return embed
-
 
 def create_truth_embed(post: Dict[str, Any]) -> discord.Embed:
     """

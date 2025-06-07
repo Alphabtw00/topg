@@ -3,7 +3,7 @@ Database operations for DexScreener token tracking
 """
 from typing import Dict, List, Optional, Any, Set
 from datetime import datetime
-from handlers.mysql_handler import execute_query, fetch_one, fetch_all
+from service.mysql_service import execute_query, fetch_one, fetch_all
 from utils.logger import get_logger
 
 logger = get_logger()
@@ -31,6 +31,35 @@ TABLES = [
     )
     """
 ]
+
+
+async def get_enabled_guild_channels() -> Dict[int, List[int]]:
+    """Get channels for enabled guilds only - hybrid approach"""
+    query = """
+    SELECT tc.guild_id, tc.channel_id
+    FROM dex_tracker_channels tc
+    JOIN dex_tracker_settings ts ON tc.guild_id = ts.guild_id
+    WHERE ts.enabled = TRUE
+    """
+    
+    results = await fetch_all(query)
+    if not results:
+        return {}
+    
+    channels = {}
+    for row in results:
+        guild_id = int(row[0])
+        channel_id = int(row[1])
+        
+        if guild_id not in channels:
+            channels[guild_id] = []
+            
+        channels[guild_id].append(channel_id)
+    
+    return channels
+
+
+
 
 async def setup_dex_tables() -> bool:
     """Create DexScreener tracking tables if they don't exist"""

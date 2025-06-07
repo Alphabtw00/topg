@@ -30,6 +30,8 @@ class ApiClient:
         self.session = None
         self.bot = bot
     
+    
+    
     async def setup(self):
         """Set up HTTP session with optimized settings"""
         connector = aiohttp.TCPConnector(

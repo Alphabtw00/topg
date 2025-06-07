@@ -7,11 +7,11 @@ import re
 import asyncio
 import discord
 from bot.crypto_bot import CryptoBot
-from handlers.message_processor import process_message_with_timeout
-from handlers.forwarding_handler import forward_message, should_process_forwarding
-from service.auto_message_settings import should_process_channel
-from handlers.username_ban import check_username, ban_user  # Correct import path
-from utils.validators import extract_tickers_and_addresses_single_regex
+from service.message_service import process_message_with_timeout
+from service.forwarding_service import forward_message, should_process_forwarding
+from service.auto_message_settings_service import should_process_channel
+from service.username_ban_service import check_username, ban_user  # Correct import path
+from utils.validators import crypto_quick_check
 from utils.logger import get_logger
 from config import (
     USERNAME_BAN_SERVER_ID
@@ -65,13 +65,11 @@ async def on_message(message: discord.Message):
    
     # if not await should_process_channel(message.guild.id, message.channel.id):
     #     return
-       
-    addresses, tickers = extract_tickers_and_addresses_single_regex(message.content)
     
-    if not addresses and not tickers:
-        return
+    if not crypto_quick_check(message.content):
+        return    
     
-    asyncio.create_task(process_message_with_timeout(message, _bot, addresses, tickers))
+    asyncio.create_task(process_message_with_timeout(message, _bot))
 
 
 async def should_send_fudded_reply(message: discord.Message) -> bool:
@@ -246,7 +244,7 @@ async def on_resumed():
         bot = _bot
         if bot:
             # Check database connection
-            from handlers.mysql_handler import fetch_one
+            from service.mysql_service import fetch_one
             db_result = await fetch_one("SELECT 1")
             
             # Check Api client

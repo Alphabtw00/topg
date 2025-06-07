@@ -71,11 +71,23 @@ VIRUS_TOTAL_API_KEY = os.getenv("VIRUS_TOTAL_API_KEY")
 if not VIRUS_TOTAL_API_KEY:
     raise ValueError("VIRUS_TOTAL_API_KEY not found in environment")
 
+BITQUERY_API_KEY_1 = os.getenv("BITQUERY_API_KEY_1")
+if not BITQUERY_API_KEY_1:
+    raise ValueError("BITQUERY_API_KEY_1 not found in environment")
+
+BITQUERY_API_KEY_2 = os.getenv("BITQUERY_API_KEY_2")
+if not BITQUERY_API_KEY_2:
+    raise ValueError("BITQUERY_API_KEY_2 not found in environment")
+
+MOBULA_API_KEY = os.getenv("MOBULA_API_KEY")
+if not MOBULA_API_KEY:
+    raise ValueError("MOBULA_API_KEY not found in environment")
 # ========================================================================================================================================================================================
 # API Endpoints
 # ========================================================================================================================================================================================
 DEXSCREENER_BASE_URL = "https://api.dexscreener.com"
 TWITTER_SEARCH_URL = "https://x.com/search?q={query}&f=live"
+MOBULA_BASE_URL =  "https://api.mobula.io/api/1/market"
 MOBULA_ATH_URL = "https://api.mobula.io/api/1/market/history/pair?asset={contact_address}&blockchain={blockchain}&period={period}&amount=100000"
 MORALIS_BASE_URL = "https://solana-gateway.moralis.io"
 # ========================================================================================================================================================================================

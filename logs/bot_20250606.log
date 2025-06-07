@@ -35,3 +35,1024 @@
 2025-06-06 04:19:30,493 - INFO - Bot connected to 7 server(s)
 2025-06-06 04:19:30,493 - INFO - Echo bot message forwarding: 1 bots from 9 channels to 1 channels
 2025-06-06 04:19:30,494 - INFO - Dani message forwarding: 1 users from 2 channels to 1 channels
+2025-06-06 05:15:52,749 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-06-06 05:15:53,404 - INFO - Reconnected to Discord after disconnection
+2025-06-06 05:15:53,406 - INFO - Post-reconnection health check: Database=True, API Client=True
+2025-06-06 05:15:57,767 - INFO - Bot automatically reconnected
+2025-06-06 05:19:25,636 - INFO - Metrics Report | Uptime: 1h 0m | Memory: 27.3MB | Processed: 23 | Avg Processing: 1.3881s | Errors: 0 (0 types, Top: none) | Last Cleanup: 2025-06-06 04:19:23 (1h ago)
+2025-06-06 05:46:55,299 - WARNING - API mobula returned status 503 for URL: https://api.mobula.io/api/1/market/history/pair?asset=CB9dDufT3ZuQXqqSfa1c5kY935TEreyBw9XJXxHKpump&blockchain=solana&period=4h&amount=100000
+2025-06-06 05:46:55,832 - WARNING - API mobula returned status 503 for URL: https://api.mobula.io/api/1/market/history/pair?asset=CB9dDufT3ZuQXqqSfa1c5kY935TEreyBw9XJXxHKpump&blockchain=solana&period=4h&amount=100000
+2025-06-06 05:46:56,552 - WARNING - API mobula returned status 503 for URL: https://api.mobula.io/api/1/market/history/pair?asset=CB9dDufT3ZuQXqqSfa1c5kY935TEreyBw9XJXxHKpump&blockchain=solana&period=4h&amount=100000
+2025-06-06 05:46:57,488 - WARNING - API mobula returned status 503 for URL: https://api.mobula.io/api/1/market/history/pair?asset=CB9dDufT3ZuQXqqSfa1c5kY935TEreyBw9XJXxHKpump&blockchain=solana&period=4h&amount=100000
+2025-06-06 06:19:25,833 - INFO - Metrics Report | Uptime: 2h 0m | Memory: 31.7MB | Processed: 44 | Avg Processing: 1.0226s | Errors: 4 (1 types, Top: api_mobula=4) | Last Cleanup: 2025-06-06 04:19:23 (2h ago)
+2025-06-06 06:54:16,148 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-06-06 06:54:16,963 - INFO - Reconnected to Discord after disconnection
+2025-06-06 06:54:16,979 - INFO - Post-reconnection health check: Database=True, API Client=True
+2025-06-06 06:54:21,174 - INFO - Bot automatically reconnected
+2025-06-06 07:19:25,914 - INFO - Metrics Report | Uptime: 3h 0m | Memory: 33.2MB | Processed: 62 | Avg Processing: 0.7813s | Errors: 4 (1 types, Top: api_mobula=4) | Last Cleanup: 2025-06-06 04:19:23 (3h ago)
+2025-06-06 07:39:25,822 - INFO - Starting periodic metrics cleanup task...
+2025-06-06 07:39:29,794 - INFO - Garbage collection completed successfully.
+2025-06-06 07:39:29,805 - INFO - Metrics cleanup completed in 3.97 seconds. Next cleanup at 2025-06-06 17:39:25
+2025-06-06 07:46:04,022 - ERROR - Truthsocial request error: Failed to perform, curl: (28) Connection timed out after 15797 milliseconds. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2025-06-06 07:46:24,633 - ERROR - Truthsocial request error: Failed to perform, curl: (28) Connection timed out after 19105 milliseconds. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2025-06-06 08:18:19,069 - INFO - Post ID 114634135422714697 image URL: None
+2025-06-06 08:18:20,116 - INFO - Broadcast 1 posts from @realDonaldTrump to 1 guilds (1 channels)
+2025-06-06 08:18:58,458 - INFO - Post ID 114634138406622995 image URL: None
+2025-06-06 08:18:59,178 - INFO - Broadcast 1 posts from @realDonaldTrump to 1 guilds (1 channels)
+2025-06-06 08:19:25,960 - INFO - Metrics Report | Uptime: 4h 0m | Memory: 40.8MB | Processed: 77 | Avg Processing: 0.7203s | Errors: 4 (1 types, Top: api_mobula=4) | Last Cleanup: 2025-06-06 07:39:25 (40m ago)
+2025-06-06 08:40:44,153 - INFO - Post ID 114634223801183343 image URL: https://i0.wp.com/truthsocial.com/icons/missing.png
+2025-06-06 08:40:44,824 - INFO - Broadcast 1 posts from @realDonaldTrump to 1 guilds (1 channels)
+2025-06-06 09:19:26,580 - INFO - Metrics Report | Uptime: 5h 0m | Memory: 41.4MB | Processed: 90 | Avg Processing: 0.6708s | Errors: 4 (1 types, Top: api_mobula=4) | Last Cleanup: 2025-06-06 07:39:25 (1h ago)
+2025-06-06 09:38:48,728 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-06-06 09:38:49,568 - INFO - Reconnected to Discord after disconnection
+2025-06-06 09:38:49,587 - INFO - Post-reconnection health check: Database=True, API Client=True
+2025-06-06 09:38:53,739 - INFO - Bot automatically reconnected
+2025-06-06 09:49:18,002 - WARNING - API dexscreener returned status 400 for URL: https://api.dexscreener.com/latest/dex/search?q=%3F
+2025-06-06 10:19:26,610 - INFO - Metrics Report | Uptime: 6h 0m | Memory: 39.2MB | Processed: 106 | Avg Processing: 0.5599s | Errors: 5 (2 types, Top: api_mobula=4, api_dexscreener=1) | Last Cleanup: 2025-06-06 07:39:25 (2h ago)
+2025-06-06 10:53:07,596 - ERROR - Truthsocial request error: Failed to perform, curl: (28) Operation timed out after 15009 milliseconds with 0 bytes received. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2025-06-06 10:59:29,852 - INFO - Starting periodic metrics cleanup task...
+2025-06-06 10:59:33,615 - INFO - Garbage collection completed successfully.
+2025-06-06 10:59:33,625 - INFO - Metrics cleanup completed in 3.76 seconds. Next cleanup at 2025-06-06 20:59:29
+2025-06-06 11:19:26,638 - INFO - Metrics Report | Uptime: 7h 0m | Memory: 39.2MB | Processed: 116 | Avg Processing: 0.4125s | Errors: 5 (2 types, Top: api_mobula=4, api_dexscreener=1) | Last Cleanup: 2025-06-06 10:59:29 (19m ago)
+2025-06-06 12:05:24,657 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-06-06 12:05:26,424 - INFO - Reconnected to Discord after disconnection
+2025-06-06 12:05:26,446 - INFO - Post-reconnection health check: Database=True, API Client=True
+2025-06-06 12:05:29,686 - INFO - Bot automatically reconnected
+2025-06-06 12:19:26,667 - INFO - Metrics Report | Uptime: 8h 0m | Memory: 36.7MB | Processed: 125 | Avg Processing: 0.3309s | Errors: 5 (2 types, Top: api_mobula=4, api_dexscreener=1) | Last Cleanup: 2025-06-06 10:59:29 (1h ago)
+2025-06-06 13:19:26,701 - INFO - Metrics Report | Uptime: 9h 0m | Memory: 32.9MB | Processed: 134 | Avg Processing: 0.3666s | Errors: 5 (2 types, Top: api_mobula=4, api_dexscreener=1) | Last Cleanup: 2025-06-06 10:59:29 (2h ago)
+2025-06-06 13:38:38,452 - INFO - Bundle check called by sombody. for 2cxAncwRRHYmZR79YQ3jH4cRwXAcmgdSXERdioQ2pump
+2025-06-06 13:52:06,774 - INFO - Bundle check called by alphabtw_ for 2cxAncwRRHYmZR79YQ3jH4cRwXAcmgdSXERdioQ2pump
+2025-06-06 14:19:26,953 - INFO - Metrics Report | Uptime: 10h 0m | Memory: 27.2MB | Processed: 144 | Avg Processing: 0.4039s | Errors: 5 (2 types, Top: api_mobula=4, api_dexscreener=1) | Last Cleanup: 2025-06-06 10:59:29 (3h ago)
+2025-06-06 14:19:33,864 - INFO - Starting periodic metrics cleanup task...
+2025-06-06 14:19:34,103 - INFO - Garbage collection completed successfully.
+2025-06-06 14:19:34,103 - INFO - Metrics cleanup completed in 0.24 seconds. Next cleanup at 2025-06-07 00:19:33
+2025-06-06 14:20:11,280 - INFO - Bot is shutting down...
+2025-06-06 14:20:11,281 - INFO - API client closed
+2025-06-06 14:20:11,281 - INFO - Truth Social tracking task cancelled
+2025-06-06 14:20:11,282 - INFO - Truth Social tracking loop cancelled
+2025-06-06 14:20:11,282 - INFO - Truth Social tracking stopped
+2025-06-06 14:20:11,282 - INFO - Truth Social tracking stopped
+2025-06-06 14:20:11,283 - INFO - Services closed successfully
+2025-06-06 14:20:11,283 - INFO - Background task 'metrics_cleanup' canceled
+2025-06-06 14:20:11,283 - INFO - Background task 'memory_monitor' canceled
+2025-06-06 14:20:11,283 - INFO - Background task 'heartbeat_monitor' canceled
+2025-06-06 14:20:11,283 - INFO - Background task 'metrics_report' canceled
+2025-06-06 14:20:11,283 - INFO - DexScreener tracking stopped
+2025-06-06 14:20:11,284 - INFO - DexScreener tracking stopped
+2025-06-06 14:20:11,284 - INFO - Database connection pool closed successfully
+2025-06-06 14:20:11,289 - INFO - Bot stopped by user
+2025-06-06 14:20:17,585 - INFO - Starting bot...
+2025-06-06 14:20:18,470 - INFO - API client initialized
+2025-06-06 14:20:18,471 - INFO - WebsiteAnalyzer initialized with concurrency limit of 15
+2025-06-06 14:20:18,490 - INFO - Loaded 4 Truth Social tokens from file
+2025-06-06 14:20:18,490 - INFO - Authenticating 4 Truth Social accounts with missing or expired tokens...
+2025-06-06 14:20:18,534 - ERROR - Auth error: Status 403
+2025-06-06 14:20:18,535 - ERROR - Failed to authenticate Truth Social account: alphabtw
+2025-06-06 14:20:18,589 - ERROR - Failed to authenticate Truth Social account: visheshbtw
+2025-06-06 14:20:18,637 - ERROR - Failed to authenticate Truth Social account: sakshambtw
+2025-06-06 14:20:18,682 - ERROR - Failed to authenticate Truth Social account: mayankbtw
+2025-06-06 14:20:18,684 - INFO - Successfully authenticated 0/4 Truth Social accounts
+2025-06-06 14:20:18,687 - INFO - Saved 4 Truth Social tokens to file
+2025-06-06 14:20:18,687 - INFO - All API services initialized
+2025-06-06 14:20:18,687 - INFO - Services provider initialized
+2025-06-06 14:20:18,938 - INFO - Database connection pool established: size=1-10
+2025-06-06 14:20:18,938 - INFO - Database connection successful
+2025-06-06 14:20:18,956 - INFO - WebsiteChecker cog initialized
+2025-06-06 14:20:18,957 - INFO - Proxy rotator initialized with http protocol
+2025-06-06 14:20:18,957 - INFO - Proxy rotator initialized for Truth commands
+2025-06-06 14:20:18,968 - INFO - Discord Events Registered | Username Ban Server ID: 1313758082974879774
+2025-06-06 14:20:18,969 - INFO - Memory monitor started (threshold: 300MB, interval: 3600s)
+2025-06-06 14:20:18,970 - INFO - Initializing Truth Social tracking...
+2025-06-06 14:20:18,970 - INFO - Initializing DexScreener live tracker...
+2025-06-06 14:20:18,990 - INFO - Built DexScreener tracking cache: 0 guilds with channels
+2025-06-06 14:20:18,992 - INFO - No guilds with DexScreener tracking enabled
+2025-06-06 14:20:18,993 - INFO - DexScreener tracking initialization complete
+2025-06-06 14:20:18,994 - INFO - Proxy rotator initialized with http protocol
+2025-06-06 14:20:18,995 - INFO - Proxy rotator initialized for Truth Social tracking
+2025-06-06 14:20:19,001 - INFO - Ultra-optimized cache built: 1 accounts, 1 accounts with channels, 1 total channel mappings
+2025-06-06 14:20:19,003 - INFO - Found 1 guilds with Truth Social tracking enabled
+2025-06-06 14:20:19,004 - INFO - Truth Social tracking started
+2025-06-06 14:20:19,005 - INFO - Truth Social tracking initialization complete
+2025-06-06 14:20:19,427 - INFO - Successfully synced 8 command(s)
+2025-06-06 14:20:24,066 - INFO - Logged in as TOPG#4967 (ID: 1340722186100408340)
+2025-06-06 14:20:24,067 - INFO - Bot connected to 7 server(s)
+2025-06-06 14:20:24,067 - INFO - Echo bot message forwarding: 1 bots from 9 channels to 1 channels
+2025-06-06 14:20:24,067 - INFO - Dani message forwarding: 1 users from 2 channels to 1 channels
+2025-06-06 14:20:41,153 - WARNING - Timeout for trenchbot - https://trench.bot/api/bundle/bundle_full/2cxAncwRRHYmZR79YQ3jH4cRwXAcmgdSXERdioQ2pump (attempt 1/3)
+2025-06-06 14:20:45,275 - INFO - Bundle check called by alphabtw_ for 2cxAncwRRHYmZR79YQ3jH4cRwXAcmgdSXERdioQ2pump
+2025-06-06 14:20:47,023 - INFO - Bundle check called by alphabtw_ for 2cxAncwRRHYmZR79YQ3jH4cRwXAcmgdSXERdioQ2pump
+2025-06-06 14:21:19,443 - INFO - Bundle check called by alphabtw_ for 6EmPXkjPvkmCWVSJt6z9DxJNtE6Y8ehHBdi2dywopump
+2025-06-06 14:29:40,344 - INFO - Bot is shutting down...
+2025-06-06 14:29:40,359 - INFO - API client closed
+2025-06-06 14:29:40,361 - INFO - Truth Social tracking task cancelled
+2025-06-06 14:29:40,361 - INFO - Truth Social tracking loop cancelled
+2025-06-06 14:29:40,362 - INFO - Truth Social tracking stopped
+2025-06-06 14:29:40,362 - INFO - Truth Social tracking stopped
+2025-06-06 14:29:40,362 - INFO - Services closed successfully
+2025-06-06 14:29:40,363 - INFO - Background task 'metrics_cleanup' canceled
+2025-06-06 14:29:40,363 - INFO - Background task 'memory_monitor' canceled
+2025-06-06 14:29:40,363 - INFO - Background task 'heartbeat_monitor' canceled
+2025-06-06 14:29:40,363 - INFO - Background task 'metrics_report' canceled
+2025-06-06 14:29:40,364 - INFO - DexScreener tracking stopped
+2025-06-06 14:29:40,364 - INFO - DexScreener tracking stopped
+2025-06-06 14:29:40,370 - INFO - Database connection pool closed successfully
+2025-06-06 14:29:40,405 - INFO - Bot stopped by user
+2025-06-06 14:29:43,882 - INFO - Starting bot...
+2025-06-06 14:29:44,742 - INFO - API client initialized
+2025-06-06 14:29:44,742 - INFO - WebsiteAnalyzer initialized with concurrency limit of 15
+2025-06-06 14:29:44,744 - INFO - Loaded 4 Truth Social tokens from file
+2025-06-06 14:29:44,744 - INFO - Authenticating 4 Truth Social accounts with missing or expired tokens...
+2025-06-06 14:29:44,789 - ERROR - Auth error: Status 403
+2025-06-06 14:29:44,790 - ERROR - Failed to authenticate Truth Social account: alphabtw
+2025-06-06 14:29:44,842 - ERROR - Failed to authenticate Truth Social account: visheshbtw
+2025-06-06 14:29:44,875 - ERROR - Failed to authenticate Truth Social account: sakshambtw
+2025-06-06 14:29:44,916 - ERROR - Failed to authenticate Truth Social account: mayankbtw
+2025-06-06 14:29:44,917 - INFO - Successfully authenticated 0/4 Truth Social accounts
+2025-06-06 14:29:44,918 - INFO - Saved 4 Truth Social tokens to file
+2025-06-06 14:29:44,918 - INFO - All API services initialized
+2025-06-06 14:29:44,918 - INFO - Services provider initialized
+2025-06-06 14:29:45,043 - INFO - Database connection pool established: size=1-10
+2025-06-06 14:29:45,043 - INFO - Database connection successful
+2025-06-06 14:29:45,066 - INFO - WebsiteChecker cog initialized
+2025-06-06 14:29:45,066 - INFO - Proxy rotator initialized with http protocol
+2025-06-06 14:29:45,067 - INFO - Proxy rotator initialized for Truth commands
+2025-06-06 14:29:45,073 - INFO - Discord Events Registered | Username Ban Server ID: 1313758082974879774
+2025-06-06 14:29:45,074 - INFO - Memory monitor started (threshold: 300MB, interval: 3600s)
+2025-06-06 14:29:45,075 - INFO - Initializing Truth Social tracking...
+2025-06-06 14:29:45,075 - INFO - Initializing DexScreener live tracker...
+2025-06-06 14:29:45,094 - INFO - Built DexScreener tracking cache: 0 guilds with channels
+2025-06-06 14:29:45,095 - INFO - No guilds with DexScreener tracking enabled
+2025-06-06 14:29:45,095 - INFO - DexScreener tracking initialization complete
+2025-06-06 14:29:45,096 - INFO - Proxy rotator initialized with http protocol
+2025-06-06 14:29:45,096 - INFO - Proxy rotator initialized for Truth Social tracking
+2025-06-06 14:29:45,105 - INFO - Ultra-optimized cache built: 1 accounts, 1 accounts with channels, 1 total channel mappings
+2025-06-06 14:29:45,107 - INFO - Found 1 guilds with Truth Social tracking enabled
+2025-06-06 14:29:45,108 - INFO - Truth Social tracking started
+2025-06-06 14:29:45,108 - INFO - Truth Social tracking initialization complete
+2025-06-06 14:29:45,644 - INFO - Successfully synced 8 command(s)
+2025-06-06 14:29:50,649 - INFO - Logged in as TOPG#4967 (ID: 1340722186100408340)
+2025-06-06 14:29:50,650 - INFO - Bot connected to 7 server(s)
+2025-06-06 14:29:50,650 - INFO - Echo bot message forwarding: 1 bots from 9 channels to 1 channels
+2025-06-06 14:29:50,650 - INFO - Dani message forwarding: 1 users from 2 channels to 1 channels
+2025-06-06 14:29:59,432 - INFO - Bundle check called by alphabtw_ for 6EmPXkjPvkmCWVSJt6z9DxJNtE6Y8ehHBdi2dywopump
+2025-06-06 14:30:53,185 - INFO - Bundle check called by alphabtw_ for 6EmPXkjPvkmCWVSJt6z9DxJNtE6Y8ehHBdi2dywopump
+2025-06-06 14:33:25,672 - INFO - Bot is shutting down...
+2025-06-06 14:33:25,672 - INFO - API client closed
+2025-06-06 14:33:25,672 - INFO - Truth Social tracking task cancelled
+2025-06-06 14:33:25,673 - INFO - Truth Social tracking loop cancelled
+2025-06-06 14:33:25,673 - INFO - Truth Social tracking stopped
+2025-06-06 14:33:25,673 - INFO - Truth Social tracking stopped
+2025-06-06 14:33:25,673 - INFO - Services closed successfully
+2025-06-06 14:33:25,673 - INFO - Background task 'metrics_cleanup' canceled
+2025-06-06 14:33:25,673 - INFO - Background task 'memory_monitor' canceled
+2025-06-06 14:33:25,673 - INFO - Background task 'heartbeat_monitor' canceled
+2025-06-06 14:33:25,674 - INFO - Background task 'metrics_report' canceled
+2025-06-06 14:33:25,674 - INFO - DexScreener tracking stopped
+2025-06-06 14:33:25,674 - INFO - DexScreener tracking stopped
+2025-06-06 14:33:25,674 - INFO - Database connection pool closed successfully
+2025-06-06 14:33:25,678 - INFO - Bot stopped by user
+2025-06-06 14:33:29,645 - INFO - Starting bot...
+2025-06-06 14:33:30,532 - INFO - API client initialized
+2025-06-06 14:33:30,533 - INFO - WebsiteAnalyzer initialized with concurrency limit of 15
+2025-06-06 14:33:30,536 - INFO - Loaded 4 Truth Social tokens from file
+2025-06-06 14:33:30,536 - INFO - Authenticating 4 Truth Social accounts with missing or expired tokens...
+2025-06-06 14:33:30,598 - ERROR - Auth error: Status 403
+2025-06-06 14:33:30,599 - ERROR - Failed to authenticate Truth Social account: alphabtw
+2025-06-06 14:33:30,652 - ERROR - Failed to authenticate Truth Social account: visheshbtw
+2025-06-06 14:33:30,689 - ERROR - Failed to authenticate Truth Social account: sakshambtw
+2025-06-06 14:33:30,722 - ERROR - Failed to authenticate Truth Social account: mayankbtw
+2025-06-06 14:33:30,723 - INFO - Successfully authenticated 0/4 Truth Social accounts
+2025-06-06 14:33:30,724 - INFO - Saved 4 Truth Social tokens to file
+2025-06-06 14:33:30,724 - INFO - All API services initialized
+2025-06-06 14:33:30,724 - INFO - Services provider initialized
+2025-06-06 14:33:30,780 - INFO - Database connection pool established: size=1-10
+2025-06-06 14:33:30,780 - INFO - Database connection successful
+2025-06-06 14:33:30,795 - INFO - WebsiteChecker cog initialized
+2025-06-06 14:33:30,795 - INFO - Proxy rotator initialized with http protocol
+2025-06-06 14:33:30,795 - INFO - Proxy rotator initialized for Truth commands
+2025-06-06 14:33:30,803 - INFO - Discord Events Registered | Username Ban Server ID: 1313758082974879774
+2025-06-06 14:33:30,805 - INFO - Memory monitor started (threshold: 300MB, interval: 3600s)
+2025-06-06 14:33:30,805 - INFO - Initializing Truth Social tracking...
+2025-06-06 14:33:30,805 - INFO - Initializing DexScreener live tracker...
+2025-06-06 14:33:30,813 - INFO - Built DexScreener tracking cache: 0 guilds with channels
+2025-06-06 14:33:30,814 - INFO - No guilds with DexScreener tracking enabled
+2025-06-06 14:33:30,814 - INFO - DexScreener tracking initialization complete
+2025-06-06 14:33:30,817 - INFO - Proxy rotator initialized with http protocol
+2025-06-06 14:33:30,817 - INFO - Proxy rotator initialized for Truth Social tracking
+2025-06-06 14:33:30,819 - INFO - Ultra-optimized cache built: 1 accounts, 1 accounts with channels, 1 total channel mappings
+2025-06-06 14:33:30,820 - INFO - Found 1 guilds with Truth Social tracking enabled
+2025-06-06 14:33:30,820 - INFO - Truth Social tracking started
+2025-06-06 14:33:30,820 - INFO - Truth Social tracking initialization complete
+2025-06-06 14:33:31,347 - INFO - Successfully synced 8 command(s)
+2025-06-06 14:33:35,459 - INFO - Logged in as TOPG#4967 (ID: 1340722186100408340)
+2025-06-06 14:33:35,459 - INFO - Bot connected to 7 server(s)
+2025-06-06 14:33:35,459 - INFO - Echo bot message forwarding: 1 bots from 9 channels to 1 channels
+2025-06-06 14:33:35,459 - INFO - Dani message forwarding: 1 users from 2 channels to 1 channels
+2025-06-06 14:39:53,814 - INFO - Bundle check called by sombody. for HgJjZKkJv9KAWBzR6uX49WhU7VcNWN3hwLAwDAikpump
+2025-06-06 14:50:33,500 - INFO - Bundle check called by sombody. for HrUQvbjGyAXczDEqwuKm14HRYna4kp7K7GyYPN5Qpump
+2025-06-06 15:02:55,222 - WARNING - Timeout for trenchbot - https://trench.bot/api/bundle/bundle_full/HrUQvbjGyAXczDEqwuKm14HRYna4kp7K7GyYPN5Qpump (attempt 1/3)
+2025-06-06 15:03:06,223 - WARNING - Timeout for trenchbot - https://trench.bot/api/bundle/bundle_full/HrUQvbjGyAXczDEqwuKm14HRYna4kp7K7GyYPN5Qpump (attempt 2/3)
+2025-06-06 15:03:18,413 - WARNING - Timeout for trenchbot - https://trench.bot/api/bundle/bundle_full/HrUQvbjGyAXczDEqwuKm14HRYna4kp7K7GyYPN5Qpump (attempt 3/3)
+2025-06-06 15:03:18,415 - WARNING - No bundle data returned for HrUQvbjGyAXczDEqwuKm14HRYna4kp7K7GyYPN5Qpump
+2025-06-06 15:33:12,246 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-06-06 15:33:12,911 - INFO - Reconnected to Discord after disconnection
+2025-06-06 15:33:12,929 - INFO - Post-reconnection health check: Database=True, API Client=True
+2025-06-06 15:33:17,256 - INFO - Bot automatically reconnected
+2025-06-06 15:33:30,979 - INFO - Metrics Report | Uptime: 1h 0m | Memory: 26.8MB | Processed: 12 | Avg Processing: 0.4159s | Errors: 0 (0 types, Top: none) | Last Cleanup: 2025-06-06 14:33:29 (1h ago)
+2025-06-06 15:53:22,376 - INFO - Bot is shutting down...
+2025-06-06 15:53:22,388 - INFO - API client closed
+2025-06-06 15:53:22,390 - INFO - Truth Social tracking task cancelled
+2025-06-06 15:53:22,390 - INFO - Truth Social tracking loop cancelled
+2025-06-06 15:53:22,391 - INFO - Truth Social tracking stopped
+2025-06-06 15:53:22,391 - INFO - Truth Social tracking stopped
+2025-06-06 15:53:22,392 - INFO - Services closed successfully
+2025-06-06 15:53:22,392 - INFO - Background task 'metrics_cleanup' canceled
+2025-06-06 15:53:22,392 - INFO - Background task 'memory_monitor' canceled
+2025-06-06 15:53:22,392 - INFO - Background task 'heartbeat_monitor' canceled
+2025-06-06 15:53:22,393 - INFO - Background task 'metrics_report' canceled
+2025-06-06 15:53:22,394 - INFO - DexScreener tracking stopped
+2025-06-06 15:53:22,394 - INFO - DexScreener tracking stopped
+2025-06-06 15:53:22,398 - INFO - Database connection pool closed successfully
+2025-06-06 15:53:22,443 - INFO - Bot stopped by user
+2025-06-06 15:53:49,599 - INFO - Starting bot...
+2025-06-06 15:53:50,430 - INFO - API client initialized
+2025-06-06 15:53:50,430 - INFO - WebsiteAnalyzer initialized with concurrency limit of 15
+2025-06-06 15:53:50,432 - INFO - Loaded 4 Truth Social tokens from file
+2025-06-06 15:53:50,432 - INFO - Authenticating 4 Truth Social accounts with missing or expired tokens...
+2025-06-06 15:53:50,464 - ERROR - Auth error: Status 403
+2025-06-06 15:53:50,466 - ERROR - Failed to authenticate Truth Social account: alphabtw
+2025-06-06 15:53:50,502 - ERROR - Failed to authenticate Truth Social account: visheshbtw
+2025-06-06 15:53:50,536 - ERROR - Failed to authenticate Truth Social account: sakshambtw
+2025-06-06 15:53:50,573 - ERROR - Failed to authenticate Truth Social account: mayankbtw
+2025-06-06 15:53:50,573 - INFO - Successfully authenticated 0/4 Truth Social accounts
+2025-06-06 15:53:50,574 - INFO - Saved 4 Truth Social tokens to file
+2025-06-06 15:53:50,574 - INFO - All API services initialized
+2025-06-06 15:53:50,574 - INFO - Services provider initialized
+2025-06-06 15:53:50,725 - INFO - Database connection pool established: size=1-10
+2025-06-06 15:53:50,725 - INFO - Database connection successful
+2025-06-06 15:53:50,742 - INFO - WebsiteChecker cog initialized
+2025-06-06 15:53:50,742 - INFO - Proxy rotator initialized with http protocol
+2025-06-06 15:53:50,743 - INFO - Proxy rotator initialized for Truth commands
+2025-06-06 15:53:50,805 - INFO - Discord Events Registered | Username Ban Server ID: 1313758082974879774
+2025-06-06 15:53:50,806 - INFO - Memory monitor started (threshold: 300MB, interval: 3600s)
+2025-06-06 15:53:50,807 - INFO - Initializing Truth Social tracking...
+2025-06-06 15:53:50,807 - INFO - Initializing DexScreener live tracker...
+2025-06-06 15:53:50,816 - INFO - Built DexScreener tracking cache: 0 guilds with channels
+2025-06-06 15:53:50,817 - INFO - No guilds with DexScreener tracking enabled
+2025-06-06 15:53:50,817 - INFO - DexScreener tracking initialization complete
+2025-06-06 15:53:50,819 - INFO - Proxy rotator initialized with http protocol
+2025-06-06 15:53:50,819 - INFO - Proxy rotator initialized for Truth Social tracking
+2025-06-06 15:53:50,826 - INFO - Ultra-optimized cache built: 1 accounts, 1 accounts with channels, 1 total channel mappings
+2025-06-06 15:53:50,828 - INFO - Found 1 guilds with Truth Social tracking enabled
+2025-06-06 15:53:50,830 - INFO - Truth Social tracking started
+2025-06-06 15:53:50,830 - INFO - Truth Social tracking initialization complete
+2025-06-06 15:53:51,301 - INFO - Successfully synced 8 command(s)
+2025-06-06 15:53:55,893 - INFO - Logged in as TOPG#4967 (ID: 1340722186100408340)
+2025-06-06 15:53:55,893 - INFO - Bot connected to 7 server(s)
+2025-06-06 15:53:55,894 - INFO - Echo bot message forwarding: 1 bots from 9 channels to 1 channels
+2025-06-06 15:53:55,894 - INFO - Dani message forwarding: 1 users from 2 channels to 1 channels
+2025-06-06 15:55:04,646 - INFO - Ultra-optimized cache built: 1 accounts, 1 accounts with channels, 1 total channel mappings
+2025-06-06 15:55:04,648 - INFO - Ultra-optimized cache built: 1 accounts, 1 accounts with channels, 1 total channel mappings
+2025-06-06 15:55:05,224 - INFO - alphabtw_ added channel #test-ignore in server 'LOYAL' for Truth Social tracking
+2025-06-06 15:55:15,809 - INFO - Ultra-optimized cache built: 1 accounts, 1 accounts with channels, 1 total channel mappings
+2025-06-06 15:55:15,811 - INFO - Ultra-optimized cache built: 1 accounts, 1 accounts with channels, 1 total channel mappings
+2025-06-06 15:55:16,433 - INFO - alphabtw_ added @realDonaldTrump in server 'LOYAL' for tracking
+2025-06-06 15:55:18,029 - INFO - Ultra-optimized cache built: 1 accounts, 1 accounts with channels, 2 total channel mappings
+2025-06-06 15:55:18,031 - INFO - Ultra-optimized cache built: 1 accounts, 1 accounts with channels, 2 total channel mappings
+2025-06-06 15:55:18,031 - INFO - Truth Social tracking already running
+2025-06-06 15:55:18,600 - INFO - alphabtw_ enabled Truth Social tracking in server 'LOYAL'
+2025-06-06 16:50:11,575 - INFO - Post ID 114636148473122568 image URL: None
+2025-06-06 16:50:12,254 - INFO - Broadcast 1 posts from @realDonaldTrump to 2 guilds (2 channels)
+2025-06-06 16:53:50,841 - INFO - Metrics Report | Uptime: 1h 0m | Memory: 35.4MB | Processed: 8 | Avg Processing: 0.5161s | Errors: 0 (0 types, Top: none) | Last Cleanup: 2025-06-06 15:53:49 (1h ago)
+2025-06-06 17:01:48,939 - INFO - Post ID 114636194279936863 image URL: None
+2025-06-06 17:01:49,540 - INFO - Broadcast 1 posts from @realDonaldTrump to 2 guilds (2 channels)
+2025-06-06 17:15:49,178 - INFO - Post ID 114636249329541108 image URL: None
+2025-06-06 17:15:51,231 - INFO - Broadcast 1 posts from @realDonaldTrump to 2 guilds (2 channels)
+2025-06-06 17:16:58,258 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-06-06 17:16:58,889 - INFO - Reconnected to Discord after disconnection
+2025-06-06 17:16:58,891 - INFO - Post-reconnection health check: Database=True, API Client=True
+2025-06-06 17:17:03,265 - INFO - Bot automatically reconnected
+2025-06-06 17:53:50,883 - INFO - Metrics Report | Uptime: 2h 0m | Memory: 21.0MB | Processed: 23 | Avg Processing: 0.1857s | Errors: 0 (0 types, Top: none) | Last Cleanup: 2025-06-06 15:53:49 (2h ago)
+2025-06-06 18:28:34,171 - INFO - Post ID 114636535351943737 image URL: None
+2025-06-06 18:28:34,983 - INFO - Broadcast 1 posts from @realDonaldTrump to 2 guilds (2 channels)
+2025-06-06 18:30:53,185 - WARNING - API mobula returned status 500 for URL: https://api.mobula.io/api/1/market/history/pair?asset=ibc/E6931F78057F7CC5DA0FD6CEF82FF39373A6E0452BF1FD76910B93292CF356C1&blockchain=osmosis&period=1d&amount=100000
+2025-06-06 18:30:53,327 - WARNING - API dexscreener returned status 404 for URL: https://api.dexscreener.com/orders/v1/solana/ibc/E6931F78057F7CC5DA0FD6CEF82FF39373A6E0452BF1FD76910B93292CF356C1
+2025-06-06 18:30:53,506 - WARNING - API mobula returned status 500 for URL: https://api.mobula.io/api/1/market/history/pair?asset=ibc/E6931F78057F7CC5DA0FD6CEF82FF39373A6E0452BF1FD76910B93292CF356C1&blockchain=osmosis&period=1d&amount=100000
+2025-06-06 18:30:54,012 - WARNING - API mobula returned status 500 for URL: https://api.mobula.io/api/1/market/history/pair?asset=ibc/E6931F78057F7CC5DA0FD6CEF82FF39373A6E0452BF1FD76910B93292CF356C1&blockchain=osmosis&period=1d&amount=100000
+2025-06-06 18:30:54,727 - WARNING - API mobula returned status 500 for URL: https://api.mobula.io/api/1/market/history/pair?asset=ibc/E6931F78057F7CC5DA0FD6CEF82FF39373A6E0452BF1FD76910B93292CF356C1&blockchain=osmosis&period=1d&amount=100000
+2025-06-06 18:42:46,331 - WARNING - Timeout for trenchbot - https://trench.bot/api/bundle/bundle_full/GuFK1iRQPCSRxPxWhw94SrDtLYaf7oDT68uuDDpjpump (attempt 1/3)
+2025-06-06 18:42:57,315 - WARNING - Timeout for trenchbot - https://trench.bot/api/bundle/bundle_full/GuFK1iRQPCSRxPxWhw94SrDtLYaf7oDT68uuDDpjpump (attempt 2/3)
+2025-06-06 18:43:00,215 - WARNING - API trenchbot returned status 502 for URL: https://trench.bot/api/bundle/bundle_full/GuFK1iRQPCSRxPxWhw94SrDtLYaf7oDT68uuDDpjpump
+2025-06-06 18:43:00,216 - WARNING - No bundle data returned for GuFK1iRQPCSRxPxWhw94SrDtLYaf7oDT68uuDDpjpump
+2025-06-06 18:51:04,442 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-06-06 18:51:05,407 - INFO - Reconnected to Discord after disconnection
+2025-06-06 18:51:05,427 - INFO - Post-reconnection health check: Database=True, API Client=True
+2025-06-06 18:51:09,461 - INFO - Bot automatically reconnected
+2025-06-06 18:53:50,938 - INFO - Metrics Report | Uptime: 3h 0m | Memory: 31.1MB | Processed: 40 | Avg Processing: 0.3599s | Errors: 6 (3 types, Top: api_mobula=4, api_dexscreener=1, api_trenchbot=1) | Last Cleanup: 2025-06-06 15:53:49 (3h ago)
+2025-06-06 19:06:45,596 - INFO - Bundle check called by sombody. for 476j5mf9h9dT2ypwthmhw3WBQwoW7vHNPFUuHakSpump
+2025-06-06 19:11:17,699 - INFO - Post ID 114636703372425608 image URL: None
+2025-06-06 19:11:18,636 - INFO - Broadcast 1 posts from @realDonaldTrump to 2 guilds (2 channels)
+2025-06-06 19:13:50,882 - INFO - Starting periodic metrics cleanup task...
+2025-06-06 19:13:51,089 - INFO - Garbage collection completed successfully.
+2025-06-06 19:13:51,090 - INFO - Metrics cleanup completed in 0.21 seconds. Next cleanup at 2025-06-07 05:13:50
+2025-06-06 19:19:17,633 - INFO - Post ID 114636734825372318 image URL: None
+2025-06-06 19:19:18,332 - INFO - Broadcast 1 posts from @realDonaldTrump to 2 guilds (2 channels)
+2025-06-06 19:33:01,358 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-06-06 19:33:02,045 - INFO - Reconnected to Discord after disconnection
+2025-06-06 19:33:02,047 - INFO - Post-reconnection health check: Database=True, API Client=True
+2025-06-06 19:33:06,377 - INFO - Bot automatically reconnected
+2025-06-06 19:42:30,960 - INFO - Post ID 114636826069773755 image URL: None
+2025-06-06 19:42:31,505 - INFO - Broadcast 1 posts from @realDonaldTrump to 2 guilds (2 channels)
+2025-06-06 19:53:51,264 - INFO - Metrics Report | Uptime: 4h 0m | Memory: 23.9MB | Processed: 62 | Avg Processing: 0.4403s | Errors: 6 (3 types, Top: api_mobula=4, api_dexscreener=1, api_trenchbot=1) | Last Cleanup: 2025-06-06 19:13:50 (40m ago)
+2025-06-06 20:53:51,310 - INFO - Metrics Report | Uptime: 5h 0m | Memory: 29.1MB | Processed: 80 | Avg Processing: 0.3688s | Errors: 6 (3 types, Top: api_mobula=4, api_dexscreener=1, api_trenchbot=1) | Last Cleanup: 2025-06-06 19:13:50 (1h ago)
+2025-06-06 21:43:19,441 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-06-06 21:43:20,121 - INFO - Reconnected to Discord after disconnection
+2025-06-06 21:43:20,125 - INFO - Post-reconnection health check: Database=True, API Client=True
+2025-06-06 21:43:24,456 - INFO - Bot automatically reconnected
+2025-06-06 21:53:51,345 - INFO - Metrics Report | Uptime: 6h 0m | Memory: 23.6MB | Processed: 103 | Avg Processing: 0.2970s | Errors: 6 (3 types, Top: api_mobula=4, api_dexscreener=1, api_trenchbot=1) | Last Cleanup: 2025-06-06 19:13:50 (2h ago)
+2025-06-06 22:01:43,676 - INFO - Post ID 114637373477221541 image URL: None
+2025-06-06 22:01:44,230 - INFO - Broadcast 1 posts from @realDonaldTrump to 2 guilds (2 channels)
+2025-06-06 22:04:23,374 - INFO - Post ID 114637383964539912 image URL: https://i0.wp.com/static-assets-1.truthsocial.com/tmtg:prime-ts-assets/media_attachments/files/114/637/383/725/673/126/original/ac373f97c0be98e4.jpg
+2025-06-06 22:04:25,244 - INFO - Broadcast 1 posts from @realDonaldTrump to 2 guilds (2 channels)
+2025-06-06 22:31:50,616 - INFO - Starting bot...
+2025-06-06 22:31:51,636 - INFO - API client initialized
+2025-06-06 22:31:51,636 - INFO - WebsiteAnalyzer initialized with concurrency limit of 15
+2025-06-06 22:31:51,637 - INFO - Loaded 4 Truth Social tokens from file
+2025-06-06 22:31:51,637 - INFO - Authenticating 4 Truth Social accounts with missing or expired tokens...
+2025-06-06 22:31:51,670 - ERROR - Auth error: Status 403
+2025-06-06 22:31:51,670 - ERROR - Failed to authenticate Truth Social account: alphabtw
+2025-06-06 22:31:51,703 - ERROR - Failed to authenticate Truth Social account: visheshbtw
+2025-06-06 22:31:51,735 - ERROR - Failed to authenticate Truth Social account: sakshambtw
+2025-06-06 22:31:51,771 - ERROR - Failed to authenticate Truth Social account: mayankbtw
+2025-06-06 22:31:51,771 - INFO - Successfully authenticated 0/4 Truth Social accounts
+2025-06-06 22:31:51,772 - INFO - Saved 4 Truth Social tokens to file
+2025-06-06 22:31:51,772 - INFO - All API services initialized
+2025-06-06 22:31:51,772 - INFO - Services provider initialized
+2025-06-06 22:31:51,954 - INFO - Database connection pool established: size=1-10
+2025-06-06 22:31:51,955 - INFO - Database connection successful
+2025-06-06 22:31:51,971 - INFO - WebsiteChecker cog initialized
+2025-06-06 22:31:51,971 - INFO - Proxy rotator initialized with http protocol
+2025-06-06 22:31:51,971 - INFO - Proxy rotator initialized for Truth commands
+2025-06-06 22:31:51,975 - INFO - Discord Events Registered | Username Ban Server ID: 1313758082974879774
+2025-06-06 22:31:51,976 - INFO - Memory monitor started (threshold: 300MB, interval: 3600s)
+2025-06-06 22:31:51,976 - INFO - Initializing Truth Social tracking...
+2025-06-06 22:31:51,977 - INFO - Initializing DexScreener live tracker...
+2025-06-06 22:31:51,988 - INFO - Built DexScreener tracking cache: 0 guilds with channels
+2025-06-06 22:31:51,989 - INFO - No guilds with DexScreener tracking enabled
+2025-06-06 22:31:51,989 - INFO - DexScreener tracking initialization complete
+2025-06-06 22:31:51,991 - INFO - Proxy rotator initialized with http protocol
+2025-06-06 22:31:51,991 - INFO - Proxy rotator initialized for Truth Social tracking
+2025-06-06 22:31:51,999 - INFO - Ultra-optimized cache built: 1 accounts, 1 accounts with channels, 2 total channel mappings
+2025-06-06 22:31:52,000 - INFO - Found 2 guilds with Truth Social tracking enabled
+2025-06-06 22:31:52,000 - INFO - Truth Social tracking started
+2025-06-06 22:31:52,000 - INFO - Truth Social tracking initialization complete
+2025-06-06 22:31:52,594 - INFO - Successfully synced 8 command(s)
+2025-06-06 22:31:57,055 - INFO - Logged in as TOPG#4967 (ID: 1340722186100408340)
+2025-06-06 22:31:57,056 - INFO - Bot connected to 7 server(s)
+2025-06-06 22:31:57,056 - INFO - Echo bot message forwarding: 1 bots from 9 channels to 1 channels
+2025-06-06 22:31:57,056 - INFO - Dani message forwarding: 1 users from 2 channels to 1 channels
+2025-06-06 22:33:04,613 - INFO - Bot is shutting down...
+2025-06-06 22:33:04,613 - INFO - API client closed
+2025-06-06 22:33:04,614 - INFO - Truth Social tracking task cancelled
+2025-06-06 22:33:04,614 - INFO - Truth Social tracking loop cancelled
+2025-06-06 22:33:04,614 - INFO - Truth Social tracking stopped
+2025-06-06 22:33:04,614 - INFO - Truth Social tracking stopped
+2025-06-06 22:33:04,614 - INFO - Services closed successfully
+2025-06-06 22:33:04,614 - INFO - Background task 'metrics_cleanup' canceled
+2025-06-06 22:33:04,614 - INFO - Background task 'memory_monitor' canceled
+2025-06-06 22:33:04,614 - INFO - Background task 'heartbeat_monitor' canceled
+2025-06-06 22:33:04,615 - INFO - Background task 'metrics_report' canceled
+2025-06-06 22:33:04,615 - INFO - DexScreener tracking stopped
+2025-06-06 22:33:04,615 - INFO - DexScreener tracking stopped
+2025-06-06 22:33:04,615 - INFO - Database connection pool closed successfully
+2025-06-06 22:33:04,616 - INFO - Bot stopped by user
+2025-06-06 22:33:34,739 - INFO - Starting bot...
+2025-06-06 22:33:35,732 - INFO - API client initialized
+2025-06-06 22:33:35,733 - INFO - WebsiteAnalyzer initialized with concurrency limit of 15
+2025-06-06 22:33:35,734 - ERROR - Error loading Truth Social tokens: Expecting value: line 1 column 1 (char 0)
+2025-06-06 22:33:35,734 - INFO - Authenticating 4 Truth Social accounts with missing or expired tokens...
+2025-06-06 22:33:35,834 - ERROR - Auth error: Status 403
+2025-06-06 22:33:35,834 - ERROR - Failed to authenticate Truth Social account: alphabtw
+2025-06-06 22:33:35,889 - ERROR - Failed to authenticate Truth Social account: visheshbtw
+2025-06-06 22:33:35,949 - ERROR - Failed to authenticate Truth Social account: sakshambtw
+2025-06-06 22:33:36,018 - ERROR - Failed to authenticate Truth Social account: mayankbtw
+2025-06-06 22:33:36,018 - INFO - Successfully authenticated 0/4 Truth Social accounts
+2025-06-06 22:33:36,019 - INFO - Saved 0 Truth Social tokens to file
+2025-06-06 22:33:36,019 - INFO - All API services initialized
+2025-06-06 22:33:36,019 - INFO - Services provider initialized
+2025-06-06 22:33:36,067 - INFO - Database connection pool established: size=1-10
+2025-06-06 22:33:36,067 - INFO - Database connection successful
+2025-06-06 22:33:36,077 - INFO - WebsiteChecker cog initialized
+2025-06-06 22:33:36,077 - INFO - Proxy rotator initialized with http protocol
+2025-06-06 22:33:36,077 - INFO - Proxy rotator initialized for Truth commands
+2025-06-06 22:33:36,081 - INFO - Discord Events Registered | Username Ban Server ID: 1313758082974879774
+2025-06-06 22:33:36,082 - INFO - Memory monitor started (threshold: 300MB, interval: 3600s)
+2025-06-06 22:33:36,082 - INFO - Initializing Truth Social tracking...
+2025-06-06 22:33:36,083 - INFO - Initializing DexScreener live tracker...
+2025-06-06 22:33:36,084 - INFO - Initializing migration tracker...
+2025-06-06 22:33:36,126 - INFO - Proxy rotator initialized with http protocol
+2025-06-06 22:33:36,126 - INFO - Proxy rotator initialized for Truth Social tracking
+2025-06-06 22:33:36,128 - INFO - Built DexScreener tracking cache: 0 guilds with channels
+2025-06-06 22:33:36,129 - INFO - No guilds with DexScreener tracking enabled
+2025-06-06 22:33:36,129 - INFO - DexScreener tracking initialization complete
+2025-06-06 22:33:36,135 - INFO - Ultra-optimized cache built: 1 accounts, 1 accounts with channels, 2 total channel mappings
+2025-06-06 22:33:36,135 - INFO - Found 2 guilds with Truth Social tracking enabled
+2025-06-06 22:33:36,135 - INFO - Truth Social tracking started
+2025-06-06 22:33:36,136 - INFO - Truth Social tracking initialization complete
+2025-06-06 22:33:36,206 - INFO - Built migration tracking cache: 0 guilds
+2025-06-06 22:33:36,207 - INFO - No guilds with migration tracking enabled
+2025-06-06 22:33:36,207 - INFO - Migration tracking initialization complete
+2025-06-06 22:33:36,577 - INFO - Successfully synced 8 command(s)
+2025-06-06 22:33:37,137 - ERROR - No valid Truth Social account available
+2025-06-06 22:33:40,850 - INFO - Logged in as TOPG#4967 (ID: 1340722186100408340)
+2025-06-06 22:33:40,850 - INFO - Bot connected to 7 server(s)
+2025-06-06 22:33:40,850 - INFO - Echo bot message forwarding: 1 bots from 9 channels to 1 channels
+2025-06-06 22:33:40,851 - INFO - Dani message forwarding: 1 users from 2 channels to 1 channels
+2025-06-06 22:34:01,168 - ERROR - No valid Truth Social account available (occurred 10 times)
+2025-06-06 22:34:07,466 - INFO - Bot is shutting down...
+2025-06-06 22:34:07,466 - INFO - API client closed
+2025-06-06 22:34:07,467 - INFO - Truth Social tracking task cancelled
+2025-06-06 22:34:07,467 - INFO - Truth Social tracking loop cancelled
+2025-06-06 22:34:07,467 - INFO - Truth Social tracking stopped
+2025-06-06 22:34:07,467 - INFO - Truth Social tracking stopped
+2025-06-06 22:34:07,468 - INFO - Services closed successfully
+2025-06-06 22:34:07,468 - INFO - Background task 'metrics_cleanup' canceled
+2025-06-06 22:34:07,468 - INFO - Background task 'memory_monitor' canceled
+2025-06-06 22:34:07,468 - INFO - Background task 'heartbeat_monitor' canceled
+2025-06-06 22:34:07,468 - INFO - Background task 'metrics_report' canceled
+2025-06-06 22:34:07,469 - INFO - DexScreener tracking stopped
+2025-06-06 22:34:07,469 - INFO - DexScreener tracking stopped
+2025-06-06 22:34:07,469 - INFO - Database connection pool closed successfully
+2025-06-06 22:34:07,470 - INFO - Bot stopped by user
+2025-06-06 22:34:13,382 - INFO - Starting bot...
+2025-06-06 22:34:14,221 - INFO - API client initialized
+2025-06-06 22:34:14,222 - INFO - WebsiteAnalyzer initialized with concurrency limit of 15
+2025-06-06 22:34:14,223 - INFO - Loaded 0 Truth Social tokens from file
+2025-06-06 22:34:14,223 - INFO - Authenticating 4 Truth Social accounts with missing or expired tokens...
+2025-06-06 22:34:14,263 - ERROR - Auth error: Status 403
+2025-06-06 22:34:14,263 - ERROR - Failed to authenticate Truth Social account: alphabtw
+2025-06-06 22:34:14,293 - ERROR - Failed to authenticate Truth Social account: visheshbtw
+2025-06-06 22:34:14,323 - ERROR - Failed to authenticate Truth Social account: sakshambtw
+2025-06-06 22:34:14,353 - ERROR - Failed to authenticate Truth Social account: mayankbtw
+2025-06-06 22:34:14,354 - INFO - Successfully authenticated 0/4 Truth Social accounts
+2025-06-06 22:34:14,355 - INFO - Saved 0 Truth Social tokens to file
+2025-06-06 22:34:14,355 - INFO - All API services initialized
+2025-06-06 22:34:14,355 - INFO - Services provider initialized
+2025-06-06 22:34:14,397 - INFO - Database connection pool established: size=1-10
+2025-06-06 22:34:14,398 - INFO - Database connection successful
+2025-06-06 22:34:14,410 - INFO - WebsiteChecker cog initialized
+2025-06-06 22:34:14,410 - INFO - Proxy rotator initialized with http protocol
+2025-06-06 22:34:14,410 - INFO - Proxy rotator initialized for Truth commands
+2025-06-06 22:34:14,415 - INFO - Discord Events Registered | Username Ban Server ID: 1313758082974879774
+2025-06-06 22:34:14,416 - INFO - Memory monitor started (threshold: 300MB, interval: 3600s)
+2025-06-06 22:34:14,416 - INFO - Initializing Truth Social tracking...
+2025-06-06 22:34:14,416 - INFO - Initializing DexScreener live tracker...
+2025-06-06 22:34:14,416 - INFO - Initializing migration tracker...
+2025-06-06 22:34:14,427 - INFO - Proxy rotator initialized with http protocol
+2025-06-06 22:34:14,427 - INFO - Proxy rotator initialized for Truth Social tracking
+2025-06-06 22:34:14,428 - INFO - Built migration tracking cache: 0 guilds
+2025-06-06 22:34:14,429 - INFO - No guilds with migration tracking enabled
+2025-06-06 22:34:14,429 - INFO - Migration tracking initialization complete
+2025-06-06 22:34:14,430 - INFO - Built DexScreener tracking cache: 0 guilds with channels
+2025-06-06 22:34:14,431 - INFO - No guilds with DexScreener tracking enabled
+2025-06-06 22:34:14,431 - INFO - DexScreener tracking initialization complete
+2025-06-06 22:34:14,437 - INFO - Ultra-optimized cache built: 1 accounts, 1 accounts with channels, 2 total channel mappings
+2025-06-06 22:34:14,437 - INFO - Found 2 guilds with Truth Social tracking enabled
+2025-06-06 22:34:14,438 - INFO - Truth Social tracking started
+2025-06-06 22:34:14,438 - INFO - Truth Social tracking initialization complete
+2025-06-06 22:34:14,980 - INFO - Successfully synced 8 command(s)
+2025-06-06 22:34:15,441 - ERROR - No valid Truth Social account available
+2025-06-06 22:34:19,002 - INFO - Logged in as TOPG#4967 (ID: 1340722186100408340)
+2025-06-06 22:34:19,002 - INFO - Bot connected to 7 server(s)
+2025-06-06 22:34:19,002 - INFO - Echo bot message forwarding: 1 bots from 9 channels to 1 channels
+2025-06-06 22:34:19,002 - INFO - Dani message forwarding: 1 users from 2 channels to 1 channels
+2025-06-06 22:34:39,496 - ERROR - No valid Truth Social account available (occurred 10 times)
+2025-06-06 22:34:45,758 - INFO - Bot is shutting down...
+2025-06-06 22:34:45,759 - INFO - API client closed
+2025-06-06 22:34:45,759 - INFO - Truth Social tracking task cancelled
+2025-06-06 22:34:45,759 - INFO - Truth Social tracking loop cancelled
+2025-06-06 22:34:45,759 - INFO - Truth Social tracking stopped
+2025-06-06 22:34:45,759 - INFO - Truth Social tracking stopped
+2025-06-06 22:34:45,759 - INFO - Services closed successfully
+2025-06-06 22:34:45,759 - INFO - Background task 'metrics_cleanup' canceled
+2025-06-06 22:34:45,760 - INFO - Background task 'memory_monitor' canceled
+2025-06-06 22:34:45,760 - INFO - Background task 'heartbeat_monitor' canceled
+2025-06-06 22:34:45,760 - INFO - Background task 'metrics_report' canceled
+2025-06-06 22:34:45,760 - INFO - DexScreener tracking stopped
+2025-06-06 22:34:45,760 - INFO - DexScreener tracking stopped
+2025-06-06 22:34:45,760 - INFO - Database connection pool closed successfully
+2025-06-06 22:34:45,762 - INFO - Bot stopped by user
+2025-06-06 23:02:45,217 - INFO - Starting bot...
+2025-06-06 23:02:46,105 - INFO - API client initialized
+2025-06-06 23:02:46,105 - INFO - WebsiteAnalyzer initialized with concurrency limit of 15
+2025-06-06 23:02:46,106 - INFO - Loaded 4 Truth Social tokens from file
+2025-06-06 23:02:46,106 - INFO - Authenticating 4 Truth Social accounts with missing or expired tokens...
+2025-06-06 23:02:46,167 - ERROR - Auth error: Status 403
+2025-06-06 23:02:46,167 - ERROR - Failed to authenticate Truth Social account: alphabtw
+2025-06-06 23:02:46,198 - ERROR - Failed to authenticate Truth Social account: visheshbtw
+2025-06-06 23:02:46,230 - ERROR - Failed to authenticate Truth Social account: sakshambtw
+2025-06-06 23:02:46,257 - ERROR - Failed to authenticate Truth Social account: mayankbtw
+2025-06-06 23:02:46,258 - INFO - Successfully authenticated 0/4 Truth Social accounts
+2025-06-06 23:02:46,258 - INFO - Saved 4 Truth Social tokens to file
+2025-06-06 23:02:46,258 - INFO - All API services initialized
+2025-06-06 23:02:46,258 - INFO - Services provider initialized
+2025-06-06 23:02:46,422 - INFO - Database connection pool established: size=1-10
+2025-06-06 23:02:46,423 - INFO - Database connection successful
+2025-06-06 23:02:46,436 - INFO - Proxy rotator initialized with http protocol
+2025-06-06 23:02:46,436 - INFO - Proxy rotator initialized for Truth commands
+2025-06-06 23:02:46,439 - INFO - Discord Events Registered | Username Ban Server ID: 1313758082974879774
+2025-06-06 23:02:46,440 - INFO - Memory monitor started (threshold: 300MB, interval: 3600s)
+2025-06-06 23:02:47,025 - INFO - Successfully synced 8 command(s)
+2025-06-06 23:02:51,553 - INFO - Logged in as TOPG#4967 (ID: 1340722186100408340)
+2025-06-06 23:02:51,553 - INFO - Bot connected to 7 server(s)
+2025-06-06 23:02:51,658 - INFO - Starting tracking services...
+2025-06-06 23:02:51,658 - INFO - All tracking services started
+2025-06-06 23:02:51,658 - INFO - Initializing Truth Social tracking...
+2025-06-06 23:02:51,658 - INFO - Initializing DexScreener live tracker...
+2025-06-06 23:02:51,658 - INFO - Initializing migration tracker...
+2025-06-06 23:02:51,667 - INFO - Proxy rotator initialized with http protocol
+2025-06-06 23:02:51,667 - INFO - Proxy rotator initialized for Truth Social tracking
+2025-06-06 23:02:51,672 - INFO - Built migration tracking cache: 0 guilds
+2025-06-06 23:02:51,673 - INFO - No guilds with migration tracking enabled
+2025-06-06 23:02:51,675 - INFO - Migration tracking initialization complete
+2025-06-06 23:02:51,676 - INFO - Built DexScreener tracking cache: 0 guilds with channels
+2025-06-06 23:02:51,679 - INFO - No guilds with DexScreener tracking enabled
+2025-06-06 23:02:51,679 - INFO - DexScreener tracking initialization complete
+2025-06-06 23:02:51,680 - INFO - Found 2 guilds with Truth Social tracking enabled
+2025-06-06 23:02:51,680 - INFO - Truth Social tracking started
+2025-06-06 23:02:51,681 - INFO - Truth Social tracking initialization complete
+2025-06-06 23:08:12,757 - INFO - Starting bot...
+2025-06-06 23:08:13,660 - INFO - API client initialized
+2025-06-06 23:08:13,661 - INFO - WebsiteAnalyzer initialized with concurrency limit of 15
+2025-06-06 23:08:13,661 - INFO - Loaded 4 Truth Social tokens from file
+2025-06-06 23:08:13,661 - INFO - Authenticating 4 Truth Social accounts with missing or expired tokens...
+2025-06-06 23:08:13,701 - ERROR - Auth error: Status 403
+2025-06-06 23:08:13,701 - ERROR - Failed to authenticate Truth Social account: alphabtw
+2025-06-06 23:08:13,738 - ERROR - Failed to authenticate Truth Social account: visheshbtw
+2025-06-06 23:08:13,778 - ERROR - Failed to authenticate Truth Social account: sakshambtw
+2025-06-06 23:08:13,820 - ERROR - Failed to authenticate Truth Social account: mayankbtw
+2025-06-06 23:08:13,820 - INFO - Successfully authenticated 0/4 Truth Social accounts
+2025-06-06 23:08:13,821 - INFO - Saved 4 Truth Social tokens to file
+2025-06-06 23:08:13,821 - INFO - All API services initialized
+2025-06-06 23:08:13,821 - INFO - Services provider initialized
+2025-06-06 23:08:13,930 - INFO - Database connection pool established: size=1-10
+2025-06-06 23:08:13,930 - INFO - Database connection successful
+2025-06-06 23:08:13,944 - INFO - Proxy rotator initialized with http protocol
+2025-06-06 23:08:13,944 - INFO - Proxy rotator initialized for Truth commands
+2025-06-06 23:08:13,944 - CRITICAL - Failed to start bot: 'CryptoBot' object has no attribute 'add'
+2025-06-06 23:08:13,944 - INFO - Bot is shutting down...
+2025-06-06 23:08:13,944 - INFO - Memory monitor started (threshold: 300MB, interval: 3600s)
+2025-06-06 23:08:13,945 - INFO - API client closed
+2025-06-06 23:08:13,945 - INFO - Truth Social tracking stopped
+2025-06-06 23:08:13,945 - INFO - Truth Social tracking stopped
+2025-06-06 23:08:13,945 - INFO - Services closed successfully
+2025-06-06 23:08:13,945 - INFO - Background task 'metrics_cleanup' canceled
+2025-06-06 23:08:13,945 - INFO - Background task 'memory_monitor' canceled
+2025-06-06 23:08:13,946 - INFO - Background task 'heartbeat_monitor' canceled
+2025-06-06 23:08:13,946 - INFO - Background task 'metrics_report' canceled
+2025-06-06 23:08:13,946 - INFO - DexScreener tracking stopped
+2025-06-06 23:08:13,946 - INFO - DexScreener tracking stopped
+2025-06-06 23:08:13,946 - INFO - Database connection pool closed successfully
+2025-06-06 23:08:37,853 - INFO - Starting bot...
+2025-06-06 23:08:38,740 - INFO - API client initialized
+2025-06-06 23:08:38,741 - INFO - WebsiteAnalyzer initialized with concurrency limit of 15
+2025-06-06 23:08:38,742 - INFO - Loaded 4 Truth Social tokens from file
+2025-06-06 23:08:38,742 - INFO - Authenticating 4 Truth Social accounts with missing or expired tokens...
+2025-06-06 23:08:38,779 - ERROR - Auth error: Status 403
+2025-06-06 23:08:38,780 - ERROR - Failed to authenticate Truth Social account: alphabtw
+2025-06-06 23:08:38,812 - ERROR - Failed to authenticate Truth Social account: visheshbtw
+2025-06-06 23:08:38,847 - ERROR - Failed to authenticate Truth Social account: sakshambtw
+2025-06-06 23:08:38,881 - ERROR - Failed to authenticate Truth Social account: mayankbtw
+2025-06-06 23:08:38,881 - INFO - Successfully authenticated 0/4 Truth Social accounts
+2025-06-06 23:08:38,882 - INFO - Saved 4 Truth Social tokens to file
+2025-06-06 23:08:38,882 - INFO - All API services initialized
+2025-06-06 23:08:38,882 - INFO - Services provider initialized
+2025-06-06 23:08:38,912 - INFO - Database connection pool established: size=1-10
+2025-06-06 23:08:38,912 - INFO - Database connection successful
+2025-06-06 23:08:38,925 - INFO - Proxy rotator initialized with http protocol
+2025-06-06 23:08:38,925 - INFO - Proxy rotator initialized for Truth commands
+2025-06-06 23:08:38,928 - INFO - Discord Events Registered | Username Ban Server ID: 1313758082974879774
+2025-06-06 23:08:38,929 - INFO - Memory monitor started (threshold: 300MB, interval: 3600s)
+2025-06-06 23:08:39,550 - INFO - Successfully synced 9 command(s)
+2025-06-06 23:08:43,572 - INFO - Logged in as TOPG#4967 (ID: 1340722186100408340)
+2025-06-06 23:08:43,573 - INFO - Bot connected to 7 server(s)
+2025-06-06 23:08:43,573 - INFO - Alerts are enabled.
+2025-06-06 23:08:43,574 - INFO - Starting tracking services...
+2025-06-06 23:08:43,575 - INFO - All tracking services started
+2025-06-06 23:08:43,576 - INFO - Initializing Truth Social tracking...
+2025-06-06 23:08:43,577 - INFO - Initializing DexScreener live tracker...
+2025-06-06 23:08:43,578 - INFO - Initializing migration tracker...
+2025-06-06 23:08:43,594 - INFO - Built DexScreener tracking cache: 0 guilds with channels
+2025-06-06 23:08:43,594 - INFO - Built migration tracking cache: 0 guilds
+2025-06-06 23:08:43,595 - INFO - No guilds with DexScreener tracking enabled
+2025-06-06 23:08:43,596 - INFO - DexScreener tracking initialization complete
+2025-06-06 23:08:43,597 - INFO - No guilds with migration tracking enabled
+2025-06-06 23:08:43,597 - INFO - Migration tracking initialization complete
+2025-06-06 23:08:43,601 - INFO - Proxy rotator initialized with http protocol
+2025-06-06 23:08:43,601 - INFO - Proxy rotator initialized for Truth Social tracking
+2025-06-06 23:08:43,614 - INFO - Found 2 guilds with Truth Social tracking enabled
+2025-06-06 23:08:43,615 - INFO - Truth Social tracking started
+2025-06-06 23:08:43,615 - INFO - Truth Social tracking initialization complete
+2025-06-06 23:10:15,600 - INFO - Built migration tracking cache: 1 guilds
+2025-06-06 23:10:15,601 - INFO - Built migration tracking cache: 1 guilds
+2025-06-06 23:10:15,601 - INFO - Migration tracking started
+2025-06-06 23:10:16,150 - INFO - alphabtw_ added channel #??token-migration in server 'LOYAL' for migration tracking
+2025-06-06 23:10:16,564 - ERROR - Fatal error in migration tracking: server rejected WebSocket connection: HTTP 401
+2025-06-06 23:10:16,564 - INFO - Attempting to restart migration tracking after failure
+2025-06-06 23:10:24,142 - INFO - Built migration tracking cache: 1 guilds
+2025-06-06 23:10:24,144 - INFO - Built migration tracking cache: 1 guilds
+2025-06-06 23:10:24,144 - INFO - Migration tracking started
+2025-06-06 23:10:24,579 - INFO - alphabtw_ enabled migration tracking in server 'LOYAL'
+2025-06-06 23:10:25,003 - INFO - Attempting to restart migration tracking after failure
+2025-06-06 23:10:26,565 - INFO - Migration tracking started
+2025-06-06 23:10:27,474 - INFO - Attempting to restart migration tracking after failure
+2025-06-06 23:10:35,015 - INFO - Migration tracking started
+2025-06-06 23:10:35,976 - INFO - Attempting to restart migration tracking after failure
+2025-06-06 23:10:37,646 - INFO - Migration tracking started
+2025-06-06 23:10:38,610 - INFO - Attempting to restart migration tracking after failure
+2025-06-06 23:10:45,986 - INFO - Migration tracking started
+2025-06-06 23:10:46,925 - INFO - Attempting to restart migration tracking after failure
+2025-06-06 23:10:47,250 - INFO - Built migration tracking cache: 0 guilds
+2025-06-06 23:10:47,251 - INFO - Built migration tracking cache: 0 guilds
+2025-06-06 23:10:47,789 - INFO - alphabtw_ disabled migration tracking in server 'LOYAL'
+2025-06-06 23:10:48,622 - INFO - Migration tracking started
+2025-06-06 23:10:48,623 - INFO - Built migration tracking cache: 0 guilds
+2025-06-06 23:10:49,504 - INFO - Attempting to restart migration tracking after failure
+2025-06-06 23:10:56,930 - INFO - Migration tracking started
+2025-06-06 23:10:56,931 - INFO - Built migration tracking cache: 0 guilds
+2025-06-06 23:10:57,886 - INFO - Attempting to restart migration tracking after failure
+2025-06-06 23:10:59,514 - INFO - Migration tracking started
+2025-06-06 23:10:59,517 - INFO - Built migration tracking cache: 0 guilds
+2025-06-06 23:11:00,414 - INFO - Attempting to restart migration tracking after failure
+2025-06-06 23:11:07,901 - INFO - Migration tracking started
+2025-06-06 23:11:07,902 - INFO - Built migration tracking cache: 0 guilds
+2025-06-06 23:11:09,071 - ERROR - Fatal error in migration tracking: server rejected WebSocket connection: HTTP 401 (occurred 10 times)
+2025-06-06 23:11:09,071 - INFO - Attempting to restart migration tracking after failure
+2025-06-06 23:11:10,427 - INFO - Migration tracking started
+2025-06-06 23:11:10,429 - INFO - Built migration tracking cache: 0 guilds
+2025-06-06 23:11:11,297 - INFO - Attempting to restart migration tracking after failure
+2025-06-06 23:11:19,077 - INFO - Migration tracking started
+2025-06-06 23:11:19,078 - INFO - Built migration tracking cache: 0 guilds
+2025-06-06 23:11:19,949 - INFO - Attempting to restart migration tracking after failure
+2025-06-06 23:11:21,299 - INFO - Migration tracking started
+2025-06-06 23:11:21,304 - INFO - Built migration tracking cache: 0 guilds
+2025-06-06 23:11:22,262 - INFO - Attempting to restart migration tracking after failure
+2025-06-06 23:11:29,963 - INFO - Migration tracking started
+2025-06-06 23:11:29,966 - INFO - Built migration tracking cache: 0 guilds
+2025-06-06 23:11:30,839 - INFO - Attempting to restart migration tracking after failure
+2025-06-06 23:11:32,266 - INFO - Migration tracking started
+2025-06-06 23:11:32,268 - INFO - Built migration tracking cache: 0 guilds
+2025-06-06 23:11:33,311 - INFO - Attempting to restart migration tracking after failure
+2025-06-06 23:11:36,431 - INFO - Bot is shutting down...
+2025-06-06 23:11:36,432 - INFO - API client closed
+2025-06-06 23:11:36,432 - INFO - Truth Social tracking task cancelled
+2025-06-06 23:11:36,432 - INFO - Truth Social tracking loop cancelled
+2025-06-06 23:11:36,433 - INFO - Truth Social tracking stopped
+2025-06-06 23:11:36,433 - INFO - Truth Social tracking stopped
+2025-06-06 23:11:36,433 - INFO - Services closed successfully
+2025-06-06 23:11:36,433 - INFO - Background task 'metrics_cleanup' canceled
+2025-06-06 23:11:36,433 - INFO - Background task 'memory_monitor' canceled
+2025-06-06 23:11:36,433 - INFO - Background task 'heartbeat_monitor' canceled
+2025-06-06 23:11:36,433 - INFO - Background task 'metrics_report' canceled
+2025-06-06 23:11:36,433 - INFO - DexScreener tracking stopped
+2025-06-06 23:11:36,433 - INFO - DexScreener tracking stopped
+2025-06-06 23:11:36,434 - INFO - Database connection pool closed successfully
+2025-06-06 23:11:36,441 - INFO - Bot stopped by user
+2025-06-06 23:44:08,667 - INFO - Starting bot...
+2025-06-06 23:44:10,983 - INFO - API client initialized
+2025-06-06 23:44:10,984 - INFO - WebsiteAnalyzer initialized with concurrency limit of 15
+2025-06-06 23:44:10,984 - INFO - Loaded 4 Truth Social tokens from file
+2025-06-06 23:44:10,984 - INFO - Authenticating 4 Truth Social accounts with missing or expired tokens...
+2025-06-06 23:44:11,035 - ERROR - Auth error: Status 403
+2025-06-06 23:44:11,035 - ERROR - Failed to authenticate Truth Social account: alphabtw
+2025-06-06 23:44:11,074 - ERROR - Failed to authenticate Truth Social account: visheshbtw
+2025-06-06 23:44:11,108 - ERROR - Failed to authenticate Truth Social account: sakshambtw
+2025-06-06 23:44:11,144 - ERROR - Failed to authenticate Truth Social account: mayankbtw
+2025-06-06 23:44:11,144 - INFO - Successfully authenticated 0/4 Truth Social accounts
+2025-06-06 23:44:11,145 - INFO - Saved 4 Truth Social tokens to file
+2025-06-06 23:44:11,145 - INFO - All API services initialized
+2025-06-06 23:44:11,145 - INFO - Services provider initialized
+2025-06-06 23:44:11,309 - INFO - Database connection pool established: size=1-10
+2025-06-06 23:44:11,309 - INFO - Database connection successful
+2025-06-06 23:44:11,324 - INFO - Proxy rotator initialized with http protocol
+2025-06-06 23:44:11,325 - INFO - Proxy rotator initialized for Truth commands
+2025-06-06 23:44:11,329 - INFO - Discord Events Registered | Username Ban Server ID: 1313758082974879774
+2025-06-06 23:44:11,330 - INFO - Memory monitor started (threshold: 300MB, interval: 3600s)
+2025-06-06 23:44:11,839 - INFO - Successfully synced 9 command(s)
+2025-06-06 23:44:16,419 - INFO - Logged in as TOPG#4967 (ID: 1340722186100408340)
+2025-06-06 23:44:16,420 - INFO - Bot connected to 7 server(s)
+2025-06-06 23:44:16,420 - INFO - Alerts are enabled.
+2025-06-06 23:44:16,420 - INFO - Starting tracking services...
+2025-06-06 23:44:16,420 - INFO - All tracking services started
+2025-06-06 23:44:16,421 - INFO - Initializing Truth Social tracking...
+2025-06-06 23:44:16,421 - INFO - Initializing DexScreener live tracker...
+2025-06-06 23:44:16,421 - INFO - Initializing migration tracker...
+2025-06-06 23:44:16,438 - INFO - Built migration tracking cache: 0 guilds
+2025-06-06 23:44:16,438 - INFO - Proxy rotator initialized with http protocol
+2025-06-06 23:44:16,438 - INFO - Proxy rotator initialized for Truth Social tracking
+2025-06-06 23:44:16,439 - INFO - No guilds with migration tracking enabled
+2025-06-06 23:44:16,439 - INFO - Migration tracking initialization complete
+2025-06-06 23:44:16,444 - INFO - Built DexScreener tracking cache: 0 guilds with channels
+2025-06-06 23:44:16,446 - INFO - No guilds with DexScreener tracking enabled
+2025-06-06 23:44:16,447 - INFO - DexScreener tracking initialization complete
+2025-06-06 23:44:16,452 - INFO - Found 2 guilds with Truth Social tracking enabled
+2025-06-06 23:44:16,452 - INFO - Truth Social tracking started
+2025-06-06 23:44:16,452 - INFO - Truth Social tracking initialization complete
+2025-06-06 23:44:49,820 - INFO - Truth Social tracking already running
+2025-06-06 23:44:50,341 - INFO - alphabtw_ enabled Truth Social tracking in server 'LOYAL'
+2025-06-06 23:45:16,420 - INFO - Built migration tracking cache: 1 guilds
+2025-06-06 23:45:16,421 - INFO - Built migration tracking cache: 1 guilds
+2025-06-06 23:45:16,421 - INFO - Migration tracking started
+2025-06-06 23:45:16,885 - INFO - alphabtw_ added channel #??token-migration in server 'LOYAL' for migration tracking
+2025-06-06 23:45:17,287 - ERROR - Fatal error in migration tracking: server rejected WebSocket connection: HTTP 401
+2025-06-06 23:45:17,287 - INFO - Attempting to restart migration tracking after failure
+2025-06-06 23:45:27,290 - INFO - Migration tracking started
+2025-06-06 23:45:28,236 - INFO - Attempting to restart migration tracking after failure
+2025-06-06 23:45:38,315 - INFO - Migration tracking started
+2025-06-06 23:45:39,169 - INFO - Attempting to restart migration tracking after failure
+2025-06-06 23:45:49,181 - INFO - Migration tracking started
+2025-06-06 23:45:50,168 - INFO - Attempting to restart migration tracking after failure
+2025-06-06 23:46:00,179 - INFO - Migration tracking started
+2025-06-06 23:46:01,082 - INFO - Attempting to restart migration tracking after failure
+2025-06-06 23:46:06,658 - INFO - alphabtw_ disabled Truth Social tracking in server 'LOYAL'
+2025-06-06 23:46:11,095 - INFO - Migration tracking started
+2025-06-06 23:46:11,971 - INFO - Attempting to restart migration tracking after failure
+2025-06-06 23:46:21,981 - INFO - Migration tracking started
+2025-06-06 23:46:22,846 - INFO - Attempting to restart migration tracking after failure
+2025-06-06 23:46:32,847 - INFO - Migration tracking started
+2025-06-06 23:46:34,674 - INFO - Attempting to restart migration tracking after failure
+2025-06-06 23:46:44,678 - INFO - Migration tracking started
+2025-06-06 23:46:45,634 - INFO - Attempting to restart migration tracking after failure
+2025-06-06 23:46:55,637 - INFO - Migration tracking started
+2025-06-06 23:46:56,614 - ERROR - Fatal error in migration tracking: server rejected WebSocket connection: HTTP 401 (occurred 10 times)
+2025-06-06 23:46:56,614 - INFO - Attempting to restart migration tracking after failure
+2025-06-06 23:47:06,628 - INFO - Migration tracking started
+2025-06-06 23:47:07,631 - INFO - Attempting to restart migration tracking after failure
+2025-06-06 23:47:17,637 - INFO - Migration tracking started
+2025-06-06 23:47:18,619 - INFO - Attempting to restart migration tracking after failure
+2025-06-06 23:47:28,631 - INFO - Migration tracking started
+2025-06-06 23:47:29,496 - INFO - Attempting to restart migration tracking after failure
+2025-06-06 23:47:32,249 - INFO - Bot is shutting down...
+2025-06-06 23:47:32,250 - INFO - API client closed
+2025-06-06 23:47:32,250 - INFO - Truth Social tracking task cancelled
+2025-06-06 23:47:32,250 - INFO - Truth Social tracking loop cancelled
+2025-06-06 23:47:32,251 - INFO - Truth Social tracking stopped
+2025-06-06 23:47:32,251 - INFO - Truth Social tracking stopped
+2025-06-06 23:47:32,251 - INFO - Services closed successfully
+2025-06-06 23:47:32,251 - INFO - Background task 'metrics_cleanup' canceled
+2025-06-06 23:47:32,251 - INFO - Background task 'memory_monitor' canceled
+2025-06-06 23:47:32,251 - INFO - Background task 'heartbeat_monitor' canceled
+2025-06-06 23:47:32,252 - INFO - Background task 'metrics_report' canceled
+2025-06-06 23:47:32,252 - INFO - DexScreener tracking stopped
+2025-06-06 23:47:32,252 - INFO - DexScreener tracking stopped
+2025-06-06 23:47:32,252 - INFO - Database connection pool closed successfully
+2025-06-06 23:47:32,254 - INFO - Bot stopped by user
+2025-06-06 23:47:36,666 - INFO - Starting bot...
+2025-06-06 23:47:37,532 - INFO - API client initialized
+2025-06-06 23:47:37,532 - INFO - WebsiteAnalyzer initialized with concurrency limit of 15
+2025-06-06 23:47:37,535 - INFO - Loaded 4 Truth Social tokens from file
+2025-06-06 23:47:37,535 - INFO - Authenticating 4 Truth Social accounts with missing or expired tokens...
+2025-06-06 23:47:37,585 - ERROR - Auth error: Status 403
+2025-06-06 23:47:37,585 - ERROR - Failed to authenticate Truth Social account: alphabtw
+2025-06-06 23:47:37,616 - ERROR - Failed to authenticate Truth Social account: visheshbtw
+2025-06-06 23:47:37,649 - ERROR - Failed to authenticate Truth Social account: sakshambtw
+2025-06-06 23:47:37,679 - ERROR - Failed to authenticate Truth Social account: mayankbtw
+2025-06-06 23:47:37,679 - INFO - Successfully authenticated 0/4 Truth Social accounts
+2025-06-06 23:47:37,680 - INFO - Saved 4 Truth Social tokens to file
+2025-06-06 23:47:37,680 - INFO - All API services initialized
+2025-06-06 23:47:37,680 - INFO - Services provider initialized
+2025-06-06 23:47:37,710 - INFO - Database connection pool established: size=1-10
+2025-06-06 23:47:37,710 - INFO - Database connection successful
+2025-06-06 23:47:37,723 - INFO - Proxy rotator initialized with http protocol
+2025-06-06 23:47:37,723 - INFO - Proxy rotator initialized for Truth commands
+2025-06-06 23:47:37,726 - INFO - Discord Events Registered | Username Ban Server ID: 1313758082974879774
+2025-06-06 23:47:37,727 - INFO - Memory monitor started (threshold: 300MB, interval: 3600s)
+2025-06-06 23:47:38,244 - INFO - Successfully synced 9 command(s)
+2025-06-06 23:47:42,459 - INFO - Logged in as TOPG#4967 (ID: 1340722186100408340)
+2025-06-06 23:47:42,459 - INFO - Bot connected to 7 server(s)
+2025-06-06 23:47:42,459 - INFO - Alerts are enabled.
+2025-06-06 23:47:42,459 - INFO - Starting tracking services...
+2025-06-06 23:47:42,459 - INFO - All tracking services started
+2025-06-06 23:47:42,460 - INFO - Initializing Truth Social tracking...
+2025-06-06 23:47:42,460 - INFO - Initializing DexScreener live tracker...
+2025-06-06 23:47:42,460 - INFO - Initializing migration tracker...
+2025-06-06 23:47:42,468 - INFO - Proxy rotator initialized with http protocol
+2025-06-06 23:47:42,468 - INFO - Proxy rotator initialized for Truth Social tracking
+2025-06-06 23:47:42,468 - INFO - Built DexScreener tracking cache: 0 guilds with channels
+2025-06-06 23:47:42,469 - INFO - Built migration tracking cache: 1 guilds
+2025-06-06 23:47:42,469 - INFO - No guilds with DexScreener tracking enabled
+2025-06-06 23:47:42,469 - INFO - DexScreener tracking initialization complete
+2025-06-06 23:47:42,469 - INFO - Found 1 guilds with migration tracking enabled
+2025-06-06 23:47:42,470 - INFO - Migration tracking started
+2025-06-06 23:47:42,470 - INFO - Migration tracking initialization complete
+2025-06-06 23:47:42,477 - INFO - Found 1 guilds with Truth Social tracking enabled
+2025-06-06 23:47:42,477 - INFO - Truth Social tracking started
+2025-06-06 23:47:42,477 - INFO - Truth Social tracking initialization complete
+2025-06-06 23:47:43,351 - ERROR - Fatal error in migration tracking: server rejected WebSocket connection: HTTP 401
+2025-06-06 23:47:43,351 - INFO - Attempting to restart migration tracking after failure
+2025-06-06 23:47:53,354 - INFO - Migration tracking started
+2025-06-06 23:47:54,207 - INFO - Attempting to restart migration tracking after failure
+2025-06-06 23:48:04,210 - INFO - Migration tracking started
+2025-06-06 23:48:05,170 - INFO - Attempting to restart migration tracking after failure
+2025-06-06 23:48:15,182 - INFO - Migration tracking started
+2025-06-06 23:48:16,774 - INFO - Attempting to restart migration tracking after failure
+2025-06-06 23:48:26,786 - INFO - Migration tracking started
+2025-06-06 23:48:27,788 - INFO - Attempting to restart migration tracking after failure
+2025-06-06 23:48:37,790 - INFO - Migration tracking started
+2025-06-06 23:48:38,679 - INFO - Attempting to restart migration tracking after failure
+2025-06-06 23:48:48,685 - INFO - Migration tracking started
+2025-06-06 23:48:49,617 - INFO - Attempting to restart migration tracking after failure
+2025-06-06 23:48:59,628 - INFO - Migration tracking started
+2025-06-06 23:49:00,590 - INFO - Attempting to restart migration tracking after failure
+2025-06-06 23:49:10,602 - INFO - Migration tracking started
+2025-06-06 23:49:11,478 - INFO - Attempting to restart migration tracking after failure
+2025-06-06 23:49:21,492 - INFO - Migration tracking started
+2025-06-06 23:49:22,442 - ERROR - Fatal error in migration tracking: server rejected WebSocket connection: HTTP 401 (occurred 10 times)
+2025-06-06 23:49:22,442 - INFO - Attempting to restart migration tracking after failure
+2025-06-06 23:49:32,444 - INFO - Migration tracking started
+2025-06-06 23:49:33,320 - INFO - Attempting to restart migration tracking after failure
+2025-06-06 23:49:43,335 - INFO - Migration tracking started
+2025-06-06 23:49:45,063 - INFO - Attempting to restart migration tracking after failure
+2025-06-06 23:49:55,074 - INFO - Migration tracking started
+2025-06-06 23:49:55,938 - INFO - Attempting to restart migration tracking after failure
+2025-06-06 23:50:05,952 - INFO - Migration tracking started
+2025-06-06 23:50:06,931 - INFO - Attempting to restart migration tracking after failure
+2025-06-06 23:50:16,947 - INFO - Migration tracking started
+2025-06-06 23:50:17,916 - INFO - Attempting to restart migration tracking after failure
+2025-06-06 23:50:27,930 - INFO - Migration tracking started
+2025-06-06 23:50:28,884 - INFO - Attempting to restart migration tracking after failure
+2025-06-06 23:50:38,889 - INFO - Migration tracking started
+2025-06-06 23:50:40,412 - INFO - Attempting to restart migration tracking after failure
+2025-06-06 23:50:50,425 - INFO - Migration tracking started
+2025-06-06 23:50:51,311 - INFO - Attempting to restart migration tracking after failure
+2025-06-06 23:51:01,320 - INFO - Migration tracking started
+2025-06-06 23:51:02,257 - INFO - Attempting to restart migration tracking after failure
+2025-06-06 23:51:12,489 - INFO - Migration tracking started
+2025-06-06 23:51:13,352 - ERROR - Fatal error in migration tracking: server rejected WebSocket connection: HTTP 401 (occurred 20 times)
+2025-06-06 23:51:13,353 - INFO - Attempting to restart migration tracking after failure
+2025-06-06 23:51:23,367 - INFO - Migration tracking started
+2025-06-06 23:51:24,219 - INFO - Attempting to restart migration tracking after failure
+2025-06-06 23:51:34,232 - INFO - Migration tracking started
+2025-06-06 23:51:35,115 - INFO - Attempting to restart migration tracking after failure
+2025-06-06 23:51:45,127 - INFO - Migration tracking started
+2025-06-06 23:51:46,021 - INFO - Attempting to restart migration tracking after failure
+2025-06-06 23:51:56,030 - INFO - Migration tracking started
+2025-06-06 23:51:56,899 - INFO - Attempting to restart migration tracking after failure
+2025-06-06 23:52:06,910 - INFO - Migration tracking started
+2025-06-06 23:52:08,522 - INFO - Attempting to restart migration tracking after failure
+2025-06-06 23:52:18,528 - INFO - Migration tracking started
+2025-06-06 23:52:19,402 - INFO - Attempting to restart migration tracking after failure
+2025-06-06 23:52:29,404 - INFO - Migration tracking started
+2025-06-06 23:52:30,272 - INFO - Attempting to restart migration tracking after failure
+2025-06-06 23:52:40,282 - INFO - Migration tracking started
+2025-06-06 23:52:41,170 - INFO - Attempting to restart migration tracking after failure
+2025-06-06 23:52:51,172 - INFO - Migration tracking started
+2025-06-06 23:52:52,034 - INFO - Attempting to restart migration tracking after failure
+2025-06-06 23:53:02,041 - INFO - Migration tracking started
+2025-06-06 23:53:02,895 - ERROR - Fatal error in migration tracking: server rejected WebSocket connection: HTTP 401 (occurred 30 times)
+2025-06-06 23:53:02,895 - INFO - Attempting to restart migration tracking after failure
+2025-06-06 23:53:12,900 - INFO - Migration tracking started
+2025-06-06 23:53:13,772 - INFO - Attempting to restart migration tracking after failure
+2025-06-06 23:53:23,787 - INFO - Migration tracking started
+2025-06-06 23:53:24,773 - INFO - Attempting to restart migration tracking after failure
+2025-06-06 23:53:34,781 - INFO - Migration tracking started
+2025-06-06 23:53:35,742 - INFO - Attempting to restart migration tracking after failure
+2025-06-06 23:53:45,745 - INFO - Migration tracking started
+2025-06-06 23:53:46,713 - INFO - Attempting to restart migration tracking after failure
+2025-06-06 23:53:56,727 - INFO - Migration tracking started
+2025-06-06 23:53:57,685 - INFO - Attempting to restart migration tracking after failure
+2025-06-06 23:54:07,689 - INFO - Migration tracking started
+2025-06-06 23:54:09,212 - INFO - Attempting to restart migration tracking after failure
+2025-06-06 23:54:19,227 - INFO - Migration tracking started
+2025-06-06 23:54:20,189 - INFO - Attempting to restart migration tracking after failure
+2025-06-06 23:54:30,201 - INFO - Migration tracking started
+2025-06-06 23:54:31,413 - INFO - Attempting to restart migration tracking after failure
+2025-06-06 23:54:41,417 - INFO - Migration tracking started
+2025-06-06 23:54:42,396 - INFO - Attempting to restart migration tracking after failure
+2025-06-06 23:54:52,397 - INFO - Migration tracking started
+2025-06-06 23:54:53,298 - ERROR - Fatal error in migration tracking: server rejected WebSocket connection: HTTP 401 (occurred 40 times)
+2025-06-06 23:54:53,298 - INFO - Attempting to restart migration tracking after failure
+2025-06-06 23:55:03,300 - INFO - Migration tracking started
+2025-06-06 23:55:04,892 - INFO - Attempting to restart migration tracking after failure
+2025-06-06 23:55:14,906 - INFO - Migration tracking started
+2025-06-06 23:55:15,868 - INFO - Attempting to restart migration tracking after failure
+2025-06-06 23:55:25,869 - INFO - Migration tracking started
+2025-06-06 23:55:26,764 - INFO - Attempting to restart migration tracking after failure
+2025-06-06 23:55:36,775 - INFO - Migration tracking started
+2025-06-06 23:55:37,631 - INFO - Attempting to restart migration tracking after failure
+2025-06-06 23:55:47,645 - INFO - Migration tracking started
+2025-06-06 23:55:48,512 - INFO - Attempting to restart migration tracking after failure
+2025-06-06 23:55:58,525 - INFO - Migration tracking started
+2025-06-06 23:55:59,478 - INFO - Attempting to restart migration tracking after failure
+2025-06-06 23:56:09,481 - INFO - Migration tracking started
+2025-06-06 23:56:10,429 - INFO - Attempting to restart migration tracking after failure
+2025-06-06 23:56:20,443 - INFO - Migration tracking started
+2025-06-06 23:56:21,395 - INFO - Attempting to restart migration tracking after failure
+2025-06-06 23:56:31,400 - INFO - Migration tracking started
+2025-06-06 23:56:32,961 - INFO - Attempting to restart migration tracking after failure
+2025-06-06 23:56:42,962 - INFO - Migration tracking started
+2025-06-06 23:56:43,852 - ERROR - Fatal error in migration tracking: server rejected WebSocket connection: HTTP 401 (occurred 50 times)
+2025-06-06 23:56:43,852 - INFO - Attempting to restart migration tracking after failure
+2025-06-06 23:56:53,858 - INFO - Migration tracking started
+2025-06-06 23:56:54,815 - INFO - Attempting to restart migration tracking after failure
+2025-06-06 23:57:05,002 - INFO - Migration tracking started
+2025-06-06 23:57:05,995 - INFO - Attempting to restart migration tracking after failure
+2025-06-06 23:57:16,010 - INFO - Migration tracking started
+2025-06-06 23:57:16,958 - INFO - Attempting to restart migration tracking after failure
+2025-06-06 23:57:26,959 - INFO - Migration tracking started
+2025-06-06 23:57:27,836 - INFO - Attempting to restart migration tracking after failure
+2025-06-06 23:57:37,842 - INFO - Migration tracking started
+2025-06-06 23:57:38,768 - INFO - Attempting to restart migration tracking after failure
+2025-06-06 23:57:48,780 - INFO - Migration tracking started
+2025-06-06 23:57:49,750 - INFO - Attempting to restart migration tracking after failure
+2025-06-06 23:57:59,765 - INFO - Migration tracking started
+2025-06-06 23:58:01,174 - INFO - Attempting to restart migration tracking after failure
+2025-06-06 23:58:11,176 - INFO - Migration tracking started
+2025-06-06 23:58:12,118 - INFO - Attempting to restart migration tracking after failure
+2025-06-06 23:58:22,132 - INFO - Migration tracking started
+2025-06-06 23:58:23,024 - INFO - Attempting to restart migration tracking after failure
+2025-06-06 23:58:33,030 - INFO - Migration tracking started
+2025-06-06 23:58:34,007 - ERROR - Fatal error in migration tracking: server rejected WebSocket connection: HTTP 401 (occurred 60 times)
+2025-06-06 23:58:34,007 - INFO - Attempting to restart migration tracking after failure
+2025-06-06 23:58:44,014 - INFO - Migration tracking started
+2025-06-06 23:58:44,991 - INFO - Attempting to restart migration tracking after failure
+2025-06-06 23:58:54,998 - INFO - Migration tracking started
+2025-06-06 23:58:55,944 - INFO - Attempting to restart migration tracking after failure
+2025-06-06 23:59:05,950 - INFO - Migration tracking started
+2025-06-06 23:59:06,936 - INFO - Attempting to restart migration tracking after failure
+2025-06-06 23:59:16,950 - INFO - Migration tracking started
+2025-06-06 23:59:17,912 - INFO - Attempting to restart migration tracking after failure
+2025-06-06 23:59:27,922 - INFO - Migration tracking started
+2025-06-06 23:59:29,804 - INFO - Attempting to restart migration tracking after failure
+2025-06-06 23:59:39,811 - INFO - Migration tracking started
+2025-06-06 23:59:40,670 - INFO - Attempting to restart migration tracking after failure
+2025-06-06 23:59:45,036 - INFO - Post ID 114637837347707659 image URL: None
+2025-06-06 23:59:45,677 - INFO - Broadcast 1 posts from @realDonaldTrump to 1 guilds (1 channels)
+2025-06-06 23:59:50,678 - INFO - Migration tracking started
+2025-06-06 23:59:51,549 - INFO - Attempting to restart migration tracking after failure
+2025-06-07 00:00:00,605 - INFO - Post ID 114637838750311907 image URL: None
+2025-06-07 00:00:01,101 - INFO - Broadcast 1 posts from @realDonaldTrump to 1 guilds (1 channels)
+2025-06-07 00:00:01,565 - INFO - Migration tracking started
+2025-06-07 00:00:02,572 - INFO - Attempting to restart migration tracking after failure
+2025-06-07 00:00:12,582 - INFO - Migration tracking started
+2025-06-07 00:00:13,461 - INFO - Attempting to restart migration tracking after failure
+2025-06-07 00:00:23,476 - INFO - Migration tracking started
+2025-06-07 00:00:25,840 - ERROR - Fatal error in migration tracking: server rejected WebSocket connection: HTTP 401 (occurred 70 times)
+2025-06-07 00:00:25,841 - INFO - Attempting to restart migration tracking after failure
+2025-06-07 00:00:35,850 - INFO - Migration tracking started
+2025-06-07 00:00:36,798 - INFO - Attempting to restart migration tracking after failure
+2025-06-07 00:00:46,809 - INFO - Migration tracking started
+2025-06-07 00:00:47,689 - INFO - Attempting to restart migration tracking after failure
+2025-06-07 00:00:57,704 - INFO - Migration tracking started
+2025-06-07 00:00:58,698 - INFO - Attempting to restart migration tracking after failure
+2025-06-07 00:01:08,714 - INFO - Migration tracking started
+2025-06-07 00:01:09,602 - INFO - Attempting to restart migration tracking after failure
+2025-06-07 00:01:19,616 - INFO - Migration tracking started
+2025-06-07 00:01:21,138 - INFO - Attempting to restart migration tracking after failure
+2025-06-07 00:01:31,149 - INFO - Migration tracking started
+2025-06-07 00:01:32,104 - INFO - Attempting to restart migration tracking after failure
+2025-06-07 00:01:42,121 - INFO - Migration tracking started
+2025-06-07 00:01:43,062 - INFO - Attempting to restart migration tracking after failure
+2025-06-07 00:01:53,181 - INFO - Migration tracking started
+2025-06-07 00:01:54,151 - INFO - Attempting to restart migration tracking after failure
+2025-06-07 00:02:04,166 - INFO - Migration tracking started
+2025-06-07 00:02:05,188 - INFO - Attempting to restart migration tracking after failure
+2025-06-07 00:02:15,208 - INFO - Migration tracking started
+2025-06-07 00:02:17,604 - ERROR - Fatal error in migration tracking: server rejected WebSocket connection: HTTP 401 (occurred 80 times)
+2025-06-07 00:02:17,604 - INFO - Attempting to restart migration tracking after failure
+2025-06-07 00:02:27,618 - INFO - Migration tracking started
+2025-06-07 00:02:28,819 - INFO - Attempting to restart migration tracking after failure
+2025-06-07 00:02:38,827 - INFO - Migration tracking started
+2025-06-07 00:02:39,869 - INFO - Attempting to restart migration tracking after failure
+2025-06-07 00:02:49,879 - INFO - Migration tracking started
+2025-06-07 00:02:50,759 - INFO - Attempting to restart migration tracking after failure
+2025-06-07 00:03:00,760 - INFO - Migration tracking started
+2025-06-07 00:03:01,708 - INFO - Attempting to restart migration tracking after failure
+2025-06-07 00:03:11,718 - INFO - Migration tracking started
+2025-06-07 00:03:15,693 - INFO - Attempting to restart migration tracking after failure
+2025-06-07 00:03:25,695 - INFO - Migration tracking started
+2025-06-07 00:03:26,651 - INFO - Attempting to restart migration tracking after failure
+2025-06-07 00:03:36,837 - INFO - Migration tracking started
+2025-06-07 00:03:37,806 - INFO - Attempting to restart migration tracking after failure
+2025-06-07 00:03:47,818 - INFO - Migration tracking started
+2025-06-07 00:03:48,741 - INFO - Attempting to restart migration tracking after failure
+2025-06-07 00:03:58,746 - INFO - Migration tracking started
+2025-06-07 00:03:59,703 - INFO - Attempting to restart migration tracking after failure
+2025-06-07 00:04:09,704 - INFO - Migration tracking started
+2025-06-07 00:04:10,643 - ERROR - Fatal error in migration tracking: server rejected WebSocket connection: HTTP 401 (occurred 90 times)
+2025-06-07 00:04:10,643 - INFO - Attempting to restart migration tracking after failure
+2025-06-07 00:04:17,472 - INFO - Bot is shutting down...
+2025-06-07 00:04:17,474 - INFO - API client closed
+2025-06-07 00:04:17,474 - INFO - Truth Social tracking task cancelled
+2025-06-07 00:04:17,475 - INFO - Truth Social tracking loop cancelled
+2025-06-07 00:04:17,475 - INFO - Truth Social tracking stopped
+2025-06-07 00:04:17,475 - INFO - Truth Social tracking stopped
+2025-06-07 00:04:17,475 - INFO - Services closed successfully
+2025-06-07 00:04:17,475 - INFO - Background task 'metrics_cleanup' canceled
+2025-06-07 00:04:17,476 - INFO - Background task 'memory_monitor' canceled
+2025-06-07 00:04:17,476 - INFO - Background task 'heartbeat_monitor' canceled
+2025-06-07 00:04:17,476 - INFO - Background task 'metrics_report' canceled
+2025-06-07 00:04:17,476 - INFO - DexScreener tracking stopped
+2025-06-07 00:04:17,476 - INFO - DexScreener tracking stopped
+2025-06-07 00:04:17,477 - INFO - Database connection pool closed successfully
+2025-06-07 00:04:17,502 - INFO - Bot stopped by user

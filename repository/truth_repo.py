@@ -3,7 +3,7 @@ Optimized database operations for Truth Social tracking
 """
 from typing import Dict, List, Optional, Any, Set
 from datetime import datetime
-from handlers.mysql_handler import execute_query, fetch_one, fetch_all
+from service.mysql_service import execute_query, fetch_one, fetch_all
 from utils.logger import get_logger
 from config import TRUTH_DEFAULT_INTERVAL
 

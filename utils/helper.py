@@ -1,5 +1,10 @@
 import re
+from utils.logger import get_logger
+from typing import Optional
+import aiohttp
 
+
+logger = get_logger()
 
 
 def sanitize_code_content(content: str) -> str:
@@ -73,3 +78,20 @@ def safe_add_field(embed, name, content, inline=False):
     if len(content) > 1024:
         content = content[:1020] + "..."
     embed.add_field(name=name, value=content, inline=False)
+
+
+async def fetch_token_image_from_uri(uri: str) -> Optional[str]:
+    """Fetch token metadata from URI and extract image URL"""
+    if not uri:
+        return None
+    
+    try:
+        async with aiohttp.ClientSession() as session:
+            async with session.get(uri, timeout=aiohttp.ClientTimeout(total=10)) as response:
+                if response.status == 200:
+                    metadata = await response.json()
+                    return metadata.get('image')
+    except Exception as e:
+        logger.debug(f"Error fetching token metadata from {uri}: {e}")
+    
+    return None

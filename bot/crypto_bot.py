@@ -9,19 +9,24 @@ import psutil
 from datetime import datetime, timedelta
 from discord.ext import commands, tasks
 from utils.logger import get_logger
-from commands.health import Health
-from commands.github_checker import GithubChecker
-from commands.settings import SettingsCommands
-from commands.truth_commands import TruthCommands
-from commands.website_info import WebsiteChecker
-from commands.dex_tracker import DexTrackerCommands
-from commands.ban import BanCommand
-from handlers.truth_tracker import initialize_and_start_truth_tracking
-from service.dex_tracker import initialize_and_start_dex_tracking
-from handlers.mysql_handler import setup_db_pool, close_db_pool
+from commands.health_commands import Health
+from commands.github_checker_commands import GithubChecker
+from commands.settings_commands import SettingsCommands
+from commands.truth_commands_commands import TruthCommands
+from commands.website_analysis_commands import WebsiteChecker
+from commands.about_to_graduate_tracker_commandsr import About_to_GraduateCommands
+from commands.dex_tracker_commands import DexTrackerCommands
+from commands.migration_tracker_commands import MigrationTrackerCommands
+from commands.ban_commands import BanCommand
+from service.truth_tracker_service import initialize_and_start_truth_tracking
+from service.dex_tracker_service import initialize_and_start_dex_tracking
+from service.mysql_service import setup_db_pool, close_db_pool
+from service.migration_tracke_servicer import initialize_and_start_migration_tracking
+from service.about_to_graduate_tracker_service import initialize_and_start_about_to_graduate_tracking
 from utils.formatters import relative_time
 from api.provider import ApiServiceProvider
-from commands.bundle_checker import BundleChecker
+from commands.bundle_checker_commands import BundleChecker
+from config import ENABLE_ALERTS, ENABLE_BOT_FORWARDING, ENABLE_USER_FORWARDING
 
 logger = get_logger()
 
@@ -76,7 +81,7 @@ class CryptoBot(commands.Bot):
             logger.info("Database connection successful")
             
             # Set up settings tables
-            from service.auto_message_settings import setup_settings_tables
+            from service.auto_message_settings_service import setup_settings_tables
             settings_setup = await setup_settings_tables()
             if settings_setup:
                 logger.debug("Settings tables initialized successfully")
@@ -101,8 +106,7 @@ class CryptoBot(commands.Bot):
         self.start_background_task(self.monitor_memory_usage(), "memory_monitor")
         self.start_background_task(self.heartbeat_monitor(), "heartbeat_monitor")
         self.start_background_task(self.periodic_metrics_report(), "metrics_report")
-        self.start_background_task(initialize_and_start_truth_tracking(self), "truth_tracker_init")
-        self.start_background_task(initialize_and_start_dex_tracking(self), "dex_tracker_init")
+
         
         # Register commands
         await self.add_cog(Health(self))
@@ -113,12 +117,14 @@ class CryptoBot(commands.Bot):
         await self.add_cog(TruthCommands(self))
         await self.add_cog(DexTrackerCommands(self))
         await self.add_cog(BundleChecker(self))
+        await self.add_cog(MigrationTrackerCommands(self))
+        await self.add_cog(About_to_GraduateCommands(self))
 
         from bot.events import setup_events  # Adjust import based on your project structure
         await setup_events(self)
 
 
-        from handlers.forwarding_handler import init_forwarding_cache
+        from service.forwarding_service import init_forwarding_cache
         init_forwarding_cache()
         
         
@@ -138,15 +144,28 @@ class CryptoBot(commands.Bot):
         logger.info(f"Logged in as {self.user} (ID: {self.user.id})")
         logger.info(f"Bot connected to {len(self.guilds)} server(s)")
                 
-        # Log bot forwarding configuration if enabled
-        if BOT_OUTPUT_CHANNEL_IDS and FORWARD_BOT_IDS:
+        if ENABLE_BOT_FORWARDING and BOT_OUTPUT_CHANNEL_IDS and FORWARD_BOT_IDS:
             input_info = "all channels" if not BOT_INPUT_CHANNEL_IDS else f"{len(BOT_INPUT_CHANNEL_IDS)} channels"
             logger.info(f"Echo bot message forwarding: {len(FORWARD_BOT_IDS)} bots from {input_info} to {len(BOT_OUTPUT_CHANNEL_IDS)} channels")
-        
+
         # Log user forwarding configuration if enabled
-        if USER_OUTPUT_CHANNEL_IDS and FORWARD_USER_IDS:
+        if ENABLE_USER_FORWARDING and USER_OUTPUT_CHANNEL_IDS and FORWARD_USER_IDS:
             input_info = "all channels" if not USER_INPUT_CHANNEL_IDS else f"{len(USER_INPUT_CHANNEL_IDS)} channels"
             logger.info(f"Dani message forwarding: {len(FORWARD_USER_IDS)} users from {input_info} to {len(USER_OUTPUT_CHANNEL_IDS)} channels")
+
+        # Log alerts configuration if enabled
+        if ENABLE_ALERTS:
+            logger.info("Alerts are enabled.")
+        
+
+        if self.is_first_connect:
+            logger.info("Starting tracking services...")
+            self.start_background_task(initialize_and_start_truth_tracking(self), "truth_tracker_init")
+            self.start_background_task(initialize_and_start_dex_tracking(self), "dex_tracker_init")
+            self.start_background_task(initialize_and_start_migration_tracking(self), "migration_tracker_init")
+            self.start_background_task(initialize_and_start_about_to_graduate_tracking(self), "about_to_graduate_tracker_init")
+            logger.info("All tracking services started")
+
         
         # Set the first connect flag to false
         if self.is_first_connect:
@@ -179,7 +198,7 @@ class CryptoBot(commands.Bot):
                 logger.error(f"Error canceling background task '{task_name}': {e}")
                 
         try:
-            from service.dex_tracker import stop_tracking
+            from service.dex_tracker_service import stop_tracking
             await stop_tracking()
             logger.info("DexScreener tracking stopped")
         except Exception as e:
