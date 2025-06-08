@@ -341,40 +341,45 @@ async def process_graduation_async(bot, token_address):
     try:
         if not token_address:
             return
-        
-        # Get token info from DexScreener first
-        dex_data = await bot.services.dexscreener.get_token_info(token_address)
+       
+        # Initialize variables
+        final_token_info = None
         mobula_data = None
+       
+        # Get token info from DexScreener first
+        dex_data = await bot.services.dexscreener.get_token_info([token_address], chain_id="solana")
         
-        # Check if DexScreener has image/header/links
-        needs_mobula = True
+        # Extract token info if available
         if dex_data:
             final_token_info = dex_data[token_address]
+       
+        # Check if DexScreener has image/header/links
+        needs_mobula = True
+        if final_token_info:
             token_info = final_token_info.get('info', {})
             if token_info.get('imageUrl') or token_info.get('header'):
                 needs_mobula = False
-        
+       
         # Get Mobula data if needed for image
         if needs_mobula:
             mobula_data = await bot.services.mobula.get_token_data(token_address, blockchain="solana")
-        
+       
         # Skip if no data at all
         if not final_token_info and not mobula_data:
             return
-        
+       
         # Create embed with both data sources
         from ui.embeds import create_migration_tracker_embed
         embed = create_migration_tracker_embed(final_token_info, mobula_data, token_address)
         if not embed:
             return
-        
+       
         # Send to channels and alerts
         asyncio.create_task(send_to_all_channels(bot, embed))
         asyncio.create_task(send_graduation_alerts(bot, token_address, embed))
-        
+       
     except Exception as e:
         logger.error(f"Error processing graduation {token_address}: {e}")
-
 
 async def send_to_all_channels(bot, embed):
     """Send embed to all active channels"""
@@ -397,7 +402,6 @@ async def send_to_all_channels(bot, embed):
             
     except Exception as e:
         logger.error(f"Error sending to channels: {e}")
-
 
 async def send_graduation_alerts(bot, token_address, embed):
     """Send graduation alerts to first callers"""

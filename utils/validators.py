@@ -17,7 +17,7 @@ GITHUB_REPO_REGEX = re.compile(GITHUB_REPO_REGEX_PATTERN, re.IGNORECASE)
 WEBSITE_REGEX = re.compile(WEBSITE_REGEX_PATTERN, re.IGNORECASE)
 
 
-@lru_cache(maxsize=1000)
+@lru_cache(maxsize=100)
 def validate_solana_address(candidate: str) -> bool:
     """
     Validate if a string is a valid Solana address
@@ -33,7 +33,7 @@ def validate_solana_address(candidate: str) -> bool:
     except Exception:
         return False
     
-@lru_cache(maxsize=1000)
+@lru_cache(maxsize=100)
 def extract_tickers_and_addresses_single_regex(content: str) -> tuple:
     """
     Ultra-fast single regex extraction
@@ -60,14 +60,11 @@ def extract_tickers_and_addresses_single_regex(content: str) -> tuple:
     
     return valid_addresses, unique_tickers
 
-@lru_cache(maxsize=1000)
 def extract_addresses(content: str) -> list:
     """Extract only addresses - even faster for alerts"""
     matches = ADDRESS_REGEX_PATTERN.findall(content)
     return [addr for addr in matches if validate_solana_address(addr)]
 
-
-@lru_cache(maxsize=1000)
 def crypto_quick_check(content: str) -> bool:
     """Lightning fast - ~0.002-0.008ms"""
     # Check for $ first (most common)
@@ -89,8 +86,6 @@ def crypto_quick_check(content: str) -> bool:
             current_alnum_count = 0
     
     return False
-
-
 
 def validate_github_url(url: str) -> bool:
     """
@@ -307,7 +302,6 @@ def extract_code_review(analysis: str) -> Dict[str, Any]:
         logger.error(f"Error processing AI section: {str(e)}")
     
     return code_review
-
 
 def validate_url(url: str) -> bool:
     """

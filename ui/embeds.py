@@ -376,60 +376,62 @@ def create_migration_tracker_embed(dex_data, mobula_data, token_address):
     try:
         if not dex_data and not mobula_data:
             return None
-        
-        # Use DexScreener data as primary source
+       
+        # Use DexScreener data as primary source (99.9999% of cases)
         if dex_data:
             # Extract basic info
             name = dex_data.get('baseToken', {}).get('name', 'Unknown')
             symbol = dex_data.get('baseToken', {}).get('symbol', 'Unknown')
             market_cap = dex_data.get('fdv', 0)
-            
+           
             # Extract stats
             volume_5m = dex_data.get('volume', {}).get('m5', 0)
             price_change_5m = dex_data.get('priceChange', {}).get('m5', 0)
-            
+           
             # Check for image/header from DexScreener
             info = dex_data.get('info', {})
-            image_url = info.get('imageUrl') or info.get('header')
-            
-            # Use Mobula image if DexScreener doesn't have one
+            image_url = info.get('imageUrl')
+            header_url = info.get('header')
+           
+            # Use Mobula image only if DexScreener doesn't have one
             if not image_url and mobula_data:
-                image_url = mobula_data.get('logo')
+                image_url = mobula_data.get('data', {}).get('logo')
             
             # Build embed
             embed = discord.Embed(
-                title=f"🎓 {name} ({symbol}) Graduated!",
+                title=f"<a:upvote:1380578405757489294> {name} ({symbol}) Graduated!",
                 color=0x00ff00,
-                url=dex_data.get('url', f"https://dexscreener.com/solana/{token_address}")
+                url=dex_data.get('url', f"https://dexscreener.com/solana/{token_address}"),
+                timestamp=datetime.now()
             )
+
+            if header_url:
+                embed.set_image(url=header_url)
             
+            if image_url:
+                embed.set_thumbnail(url=image_url)
+
             # Add market cap
             if market_cap:
                 embed.add_field(
-                    name="💰 Market Cap", 
-                    value=f"${market_cap:,.2f}", 
+                    name="💰 Market Cap",
+                    value=f"**`${format_value(market_cap)}`**",
                     inline=True
                 )
-            
-            # Add 5m stats
-            volume_emoji = "📈" if volume_5m > 0 else "📊"
-            change_emoji = "🟢" if price_change_5m >= 0 else "🔴"
-            
+           
+
+            change_emoji = "🚀" if price_change_5m > 0 else "🔻"
+            stats_value = (
+                f"🔥 **`{format_value(volume_5m)}`**(V)\n"
+                f"{change_emoji}**`{format_value(price_change_5m)}%`**(5m)"
+            )
+                
             embed.add_field(
-                name=f"{volume_emoji} 5m Volume", 
-                value=f"${volume_5m:,.2f}", 
+                name="📊 Stats",
+                value=stats_value,
                 inline=True
             )
-            embed.add_field(
-                name=f"{change_emoji} 5m Change", 
-                value=f"{price_change_5m:+.2f}%", 
-                inline=True
-            )
-            
-            # Add image
-            if image_url:
-                embed.set_thumbnail(url=image_url)
-            
+           
             # Add links if available
             links = info.get('websites', []) + info.get('socials', [])
             if links:
@@ -439,23 +441,73 @@ def create_migration_tracker_embed(dex_data, mobula_data, token_address):
                     url = link.get('url')
                     if url:
                         links_text.append(f"[{label}]({url})")
-                
+               
                 if links_text:
                     embed.add_field(
-                        name="🔗 Links", 
-                        value=" • ".join(links_text), 
+                        name="🔗 Links",
+                        value=" • ".join(links_text),
                         inline=False
                     )
-            
+
+            embed.add_field(
+                name="💸 Contract",
+                value=f"```{token_address}```",
+                inline=False
+            )
+           
             embed.set_footer(text="Migration Tracker", icon_url="https://s14.gifyu.com/images/bxicv.gif")
             return embed
         
+        # Rare fallback - DexScreener failed, use whatever Mobula has
+        elif not dex_data and mobula_data:
+            logger.info(f"using mobula only to build embed for: {token_address}")
+            data = mobula_data.get('data', {})
+            embed = discord.Embed(
+                title=f"<a:upvote:1380578405757489294> {data.get('name', 'Unknown')} ({data.get('symbol', 'Unknown')}) Graduated!",
+                color=0x00ff00,
+                url=f"https://dexscreener.com/solana/{token_address}"
+            )
+            
+            # Add whatever data Mobula has
+            if data.get('market_cap'):
+                embed.add_field(name="💰 Market Cap", value=f"**`${format_value(data['market_cap'])}`**", inline=True)
+            if data.get('logo'):
+                embed.set_thumbnail(url=data['logo'])
+            
+            stats_value = []
+
+            volume = data.get('volume')
+            if volume:
+                stats_value.append(f"🔥 **`{format_value(volume)}`**")
+
+            price_change_1h = data.get("price_change_1h")
+            if price_change_1h:
+                emoji = "🚀" if price_change_1h > 0 else "🔻"
+                stats_value.append(f"{emoji} **`{format_value(price_change_1h)}%`** (1h)")
+
+            if stats_value:
+                embed.add_field(
+                    name="📊 Stats",
+                    value=" ".join(stats_value),
+                    inline=True
+                )
+
+                
+            embed.add_field(
+                name="💸 Contract",
+                value=f"```{token_address}```",
+                inline=False
+            )
+
+            embed.set_footer(text="Migration Tracker", icon_url="https://s14.gifyu.com/images/bxicv.gif")
+            return embed
+       
         return None
-        
+       
     except Exception as e:
         logger.error(f"Error creating migration embed: {e}")
         return None
-
+   
 async def create_about_to_graduate_embed(token_info: Dict, pool_data: Dict, token_address: str):
     """Create embed for graduation alert"""
     try:
@@ -482,6 +534,7 @@ async def create_about_to_graduate_embed(token_info: Dict, pool_data: Dict, toke
         embed = discord.Embed(
             title=f"<a:right_arrow:1380903999598887023> {name} (${symbol}) - About to Graduate",
             color=0xFF6B35,  # Orange color for alert
+            url=token_info.get('url', f"https://dexscreener.com/solana/{token_address}"),
             timestamp=datetime.now()
         )
         
@@ -495,7 +548,7 @@ async def create_about_to_graduate_embed(token_info: Dict, pool_data: Dict, toke
         # Add market data
         embed.add_field(
             name="💰 Market Cap (could be wrong)",
-            value=f"${format_value(fdv)}",
+            value=f"**`${format_value(fdv)}`**",
             inline=True
         )
         

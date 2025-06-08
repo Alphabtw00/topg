@@ -4,6 +4,7 @@ DexScreener API service using unified API client
 from api.client import ApiClient, ApiEndpoint
 from config import DEXSCREENER_BASE_URL
 from utils.logger import get_logger
+from aiocache import cached
 
 logger = get_logger()
 
@@ -14,6 +15,7 @@ class DexScreenerService:
         """Initialize with API client"""
         self.client = api_client
     
+    @cached(ttl=3)
     async def get_token_info(self, addresses: list, chain_id="solana"):
         """
         Get token information for a list of addresses

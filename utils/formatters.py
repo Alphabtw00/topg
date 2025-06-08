@@ -13,6 +13,15 @@ from utils.logger import get_logger
 logger = get_logger()
 
 
+def build_stats_field(volume, change, timeframe='1h'):
+    stats = []
+    if volume:
+        stats.append(f"🔥 **`{format_value(volume)}`**")
+    if change:
+        emoji = "🚀" if change > 0 else "🔻"
+        stats.append(f"{emoji} **`{format_value(change)}%`** ({timeframe})")
+    return " ".join(stats) if stats else None
+
 def format_value(value) -> str:
     """
     Format a numerical value for display, with appropriate suffix
