@@ -243,17 +243,17 @@ async def process_about_to_graduate_alert(bot, pool_data, token_address):
     """Process about to graduate alert completely asynchronously"""
     try:        
         logger.debug(f"New about to graduate alert: {token_address}")
-        
+
+        final_token_info = None
         # Get token info from DexScreener
         token_info = await bot.services.dexscreener.get_token_info([token_address], chain_id="solana")
-        if not token_info or token_address not in token_info:
-            return
-        
-        full_token_info = token_info[token_address]
-        
+
+        if token_info:
+            final_token_info = token_info[token_address]
+                     
         # Create embed
         from ui.embeds import create_about_to_graduate_embed
-        embed = await create_about_to_graduate_embed(full_token_info, pool_data, token_address)
+        embed = await create_about_to_graduate_embed(final_token_info, pool_data, token_address)
         if not embed:
             return
         

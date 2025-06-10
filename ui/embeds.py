@@ -399,9 +399,9 @@ def create_migration_tracker_embed(dex_data, mobula_data, token_address):
             
             # Build embed
             embed = discord.Embed(
-                title=f"<a:upvote:1380578405757489294> {name} ({symbol}) Graduated!",
+                title=f"<a:upvote:1380578405757489294> {name} (${symbol}) Graduated!",
                 color=0x00ff00,
-                url=dex_data.get('url', f"https://dexscreener.com/solana/{token_address}"),
+                url=f"https://pump.fun/coin/{token_address}",
                 timestamp=datetime.now()
             )
 
@@ -414,7 +414,7 @@ def create_migration_tracker_embed(dex_data, mobula_data, token_address):
             # Add market cap
             if market_cap:
                 embed.add_field(
-                    name="💰 Market Cap",
+                    name="💰 Market Cap (3s ago)",
                     value=f"**`${format_value(market_cap)}`**",
                     inline=True
                 )
@@ -422,8 +422,8 @@ def create_migration_tracker_embed(dex_data, mobula_data, token_address):
 
             change_emoji = "🚀" if price_change_5m > 0 else "🔻"
             stats_value = (
-                f"🔥 **`{format_value(volume_5m)}`**(V)\n"
-                f"{change_emoji}**`{format_value(price_change_5m)}%`**(5m)"
+                f"🔥 VOL: **`{format_value(volume_5m)}`**\n"
+                f"{change_emoji} PC: **`{format_value(price_change_5m)}%`** (5m)"
             )
                 
             embed.add_field(
@@ -461,16 +461,17 @@ def create_migration_tracker_embed(dex_data, mobula_data, token_address):
         # Rare fallback - DexScreener failed, use whatever Mobula has
         elif not dex_data and mobula_data:
             logger.info(f"using mobula only to build embed for: {token_address}")
+            logger.info(f"mobula data: {mobula_data}")
             data = mobula_data.get('data', {})
             embed = discord.Embed(
-                title=f"<a:upvote:1380578405757489294> {data.get('name', 'Unknown')} ({data.get('symbol', 'Unknown')}) Graduated!",
+                title=f"<a:upvote:1380578405757489294> {data.get('name', 'Unknown')} (${data.get('symbol', 'Unknown')}) Graduated!",
                 color=0x00ff00,
-                url=f"https://dexscreener.com/solana/{token_address}"
+                url=f"https://pump.fun/coin/{token_address}"
             )
             
             # Add whatever data Mobula has
             if data.get('market_cap'):
-                embed.add_field(name="💰 Market Cap", value=f"**`${format_value(data['market_cap'])}`**", inline=True)
+                embed.add_field(name="💰 Market Cap (3s ago)", value=f"**`${format_value(data['market_cap'])}`**", inline=True)
             if data.get('logo'):
                 embed.set_thumbnail(url=data['logo'])
             
@@ -478,12 +479,12 @@ def create_migration_tracker_embed(dex_data, mobula_data, token_address):
 
             volume = data.get('volume')
             if volume:
-                stats_value.append(f"🔥 **`{format_value(volume)}`**")
+                stats_value.append(f"🔥 VOL: **`{format_value(volume)}`**\n")
 
             price_change_1h = data.get("price_change_1h")
             if price_change_1h:
                 emoji = "🚀" if price_change_1h > 0 else "🔻"
-                stats_value.append(f"{emoji} **`{format_value(price_change_1h)}%`** (1h)")
+                stats_value.append(f"{emoji} PC: **`{format_value(price_change_1h)}%`** (1h)")
 
             if stats_value:
                 embed.add_field(
@@ -516,7 +517,6 @@ async def create_about_to_graduate_embed(token_info: Dict, pool_data: Dict, toke
         market_data = pool.get("Market", {})
         base_currency = market_data.get("BaseCurrency", {})
         transaction = pool_data.get("Transaction", {})
-        block_data = pool_data.get("Block", {})
         
         # Extract token data from pool_data (primary source)
         name = base_currency.get('Name', 'Unknown Token')
@@ -525,16 +525,17 @@ async def create_about_to_graduate_embed(token_info: Dict, pool_data: Dict, toke
         
         # Get transaction signer
         signer = transaction.get('Signer', '')
-        block_time = block_data.get('Time', '')
         
         # Get market data from token_info
-        fdv = token_info.get('fdv', 0)
+        fdv = 0
+        if token_info:
+            fdv = token_info.get('fdv', 0)
         
         # Create embed with custom emoji
         embed = discord.Embed(
             title=f"<a:right_arrow:1380903999598887023> {name} (${symbol}) - About to Graduate",
-            color=0xFF6B35,  # Orange color for alert
-            url=token_info.get('url', f"https://dexscreener.com/solana/{token_address}"),
+            color=0xFFFFFF,  # Orange color for alert
+            url=f"https://pump.fun/coin/{token_address}",
             timestamp=datetime.now()
         )
         
@@ -546,11 +547,12 @@ async def create_about_to_graduate_embed(token_info: Dict, pool_data: Dict, toke
 
         
         # Add market data
-        embed.add_field(
-            name="💰 Market Cap (could be wrong)",
-            value=f"**`${format_value(fdv)}`**",
-            inline=True
-        )
+        if fdv > 0:
+            embed.add_field(
+                name="💰 Market Cap (3s ago)",
+                value=f"**`${format_value(fdv)}`**",
+                inline=True
+            )
         
         # Add contract address field
         embed.add_field(
@@ -567,7 +569,7 @@ async def create_about_to_graduate_embed(token_info: Dict, pool_data: Dict, toke
             link_text.append(f"[Dev](https://solscan.io/account/{signer})")
         
         # Add links from token info if available
-        if 'info' in token_info:
+        if token_info and 'info' in token_info:
             info = token_info['info']
             links = []
             
@@ -592,22 +594,20 @@ async def create_about_to_graduate_embed(token_info: Dict, pool_data: Dict, toke
                     link_text.append(f"[Website]({link_url})")
                 else:
                     link_text.append(f"[{link_label or link_type.capitalize()}]({link_url})")
-        
+
+            if 'header' in info:      
+                embed.set_image(url=info['header'])
+
         # Add links field if we have any
         if link_text:
             embed.add_field(
                 name="🔗 Links",
                 value=" | ".join(link_text),
                 inline=False
-            )
-        
-        # Add header image if available
-        if 'info' in token_info and 'header' in token_info['info']:
-            embed.set_image(url=token_info['info']['header'])
-        
+            )        
         # Format footer with pair created time if available
         footer_text = "Migration Tracker"
-        if 'pairCreatedAt' in token_info:
+        if token_info and 'pairCreatedAt' in token_info:
             try:
                 pair_created_timestamp = token_info['pairCreatedAt']  # Already in milliseconds
                 time_ago = relative_time(pair_created_timestamp, include_ago=True)
