@@ -32,7 +32,7 @@ CLIENT_SECRET = "ozF8jzI4968oTKFkEnsBC-UbLPCdrSv0MkXGQu2o_-M"
 
 # Token storage location
 TOKEN_FILE = "data/truth_tokens.json"
-TOKEN_EXPIRY = 86400 * 7  # 7 days in seconds
+TOKEN_EXPIRY = 86400 * 100  # 7 days in seconds
 
 class TruthSocialService:
     """Service for Truth Social API interactions"""

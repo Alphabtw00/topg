@@ -461,7 +461,7 @@ def create_migration_tracker_embed(dex_data, mobula_data, token_address):
         # Rare fallback - DexScreener failed, use whatever Mobula has
         elif not dex_data and mobula_data:
             logger.info(f"using mobula only to build embed for: {token_address}")
-            logger.info(f"mobula data: {mobula_data}")
+            print(f"mobula data: {mobula_data}")
             data = mobula_data.get('data', {})
             embed = discord.Embed(
                 title=f"<a:upvote:1380578405757489294> {data.get('name', 'Unknown')} (${data.get('symbol', 'Unknown')}) Graduated!",

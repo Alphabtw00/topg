@@ -160,7 +160,7 @@ class CryptoBot(commands.Bot):
 
         if self.is_first_connect:
             logger.info("Starting tracking services...")
-            self.start_background_task(initialize_and_start_truth_tracking(self), "truth_tracker_init")
+            # self.start_background_task(initialize_and_start_truth_tracking(self), "truth_tracker_init")
             self.start_background_task(initialize_and_start_dex_tracking(self), "dex_tracker_init")
             self.start_background_task(initialize_and_start_migration_tracking(self), "migration_tracker_init")
             self.start_background_task(initialize_and_start_about_to_graduate_tracking(self), "about_to_graduate_tracker_init")

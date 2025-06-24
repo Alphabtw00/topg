@@ -1,0 +1,73 @@
+2025-06-13 19:15:40,789 - INFO - Starting bot...
+2025-06-13 19:15:41,862 - INFO - API client initialized
+2025-06-13 19:15:41,863 - INFO - WebsiteAnalyzer initialized with concurrency limit of 15
+2025-06-13 19:15:41,868 - INFO - Loaded 4 Truth Social tokens from file
+2025-06-13 19:15:41,868 - INFO - Authenticating 4 Truth Social accounts with missing or expired tokens...
+2025-06-13 19:15:41,907 - ERROR - Auth error: Status 403
+2025-06-13 19:15:41,907 - ERROR - Failed to authenticate Truth Social account: alphabtw
+2025-06-13 19:15:41,933 - ERROR - Failed to authenticate Truth Social account: visheshbtw
+2025-06-13 19:15:41,959 - ERROR - Failed to authenticate Truth Social account: sakshambtw
+2025-06-13 19:15:41,986 - ERROR - Failed to authenticate Truth Social account: mayankbtw
+2025-06-13 19:15:41,987 - INFO - Successfully authenticated 0/4 Truth Social accounts
+2025-06-13 19:15:41,987 - INFO - Saved 4 Truth Social tokens to file
+2025-06-13 19:15:41,987 - INFO - All API services initialized
+2025-06-13 19:15:41,987 - INFO - Services provider initialized
+2025-06-13 19:15:42,004 - ERROR - Database connection error: 'cryptography' package is required for sha256_password or caching_sha2_password auth methods
+2025-06-13 19:15:42,004 - CRITICAL - Failed to establish database connection
+2025-06-13 19:15:46,050 - INFO - Logged in as TOPG#4967 (ID: 1340722186100408340)
+2025-06-13 19:15:46,050 - INFO - Bot connected to 7 server(s)
+2025-06-13 19:15:46,050 - INFO - Alerts are enabled.
+2025-06-13 19:15:46,050 - INFO - Starting tracking services...
+2025-06-13 19:15:46,050 - INFO - All tracking services started
+2025-06-13 19:15:46,050 - INFO - Initializing DexScreener live tracker...
+2025-06-13 19:15:46,050 - ERROR - Database pool not initialized
+2025-06-13 19:15:46,050 - INFO - No enabled guilds with channels, stopping tracking
+2025-06-13 19:15:46,050 - INFO - DexScreener tracking stopped
+2025-06-13 19:15:46,050 - INFO - DexScreener tracking initialization complete
+2025-06-13 19:15:46,051 - INFO - Initializing migration tracker...
+2025-06-13 19:15:46,051 - INFO - No enabled guilds with channels, stopping tracking
+2025-06-13 19:15:46,051 - INFO - Migration tracking stopped
+2025-06-13 19:15:46,051 - INFO - Migration tracking initialization complete
+2025-06-13 19:15:46,051 - INFO - Initializing about to graduate alert tracker...
+2025-06-13 19:15:46,051 - INFO - No enabled guilds with channels, stopping about to graduate alert tracking
+2025-06-13 19:15:46,051 - INFO - About to graduate alert tracking stopped
+2025-06-13 19:15:46,051 - INFO - About to graduate alert tracking initialization complete
+2025-06-13 19:15:56,573 - INFO - Bot stopped by user
+2025-06-13 19:16:23,309 - INFO - Starting bot...
+2025-06-13 19:16:24,235 - INFO - API client initialized
+2025-06-13 19:16:24,235 - INFO - WebsiteAnalyzer initialized with concurrency limit of 15
+2025-06-13 19:16:24,237 - INFO - Loaded 4 Truth Social tokens from file
+2025-06-13 19:16:24,237 - INFO - Authenticating 4 Truth Social accounts with missing or expired tokens...
+2025-06-13 19:16:24,262 - ERROR - Auth error: Status 403
+2025-06-13 19:16:24,262 - ERROR - Failed to authenticate Truth Social account: alphabtw
+2025-06-13 19:16:24,292 - ERROR - Failed to authenticate Truth Social account: visheshbtw
+2025-06-13 19:16:24,318 - ERROR - Failed to authenticate Truth Social account: sakshambtw
+2025-06-13 19:16:24,358 - ERROR - Failed to authenticate Truth Social account: mayankbtw
+2025-06-13 19:16:24,358 - INFO - Successfully authenticated 0/4 Truth Social accounts
+2025-06-13 19:16:24,359 - INFO - Saved 4 Truth Social tokens to file
+2025-06-13 19:16:24,359 - INFO - All API services initialized
+2025-06-13 19:16:24,359 - INFO - Services provider initialized
+2025-06-13 19:16:24,459 - INFO - Database connection pool established: size=1-10
+2025-06-13 19:16:24,460 - INFO - Database connection successful
+2025-06-13 19:16:24,469 - INFO - Proxy rotator initialized with http protocol
+2025-06-13 19:16:24,469 - INFO - Proxy rotator initialized for Truth commands
+2025-06-13 19:16:24,482 - INFO - Discord Events Registered | Username Ban Server ID: 1313758082974879774
+2025-06-13 19:16:24,482 - INFO - Memory monitor started (threshold: 300MB, interval: 3600s)
+2025-06-13 19:16:25,038 - INFO - Successfully synced 10 command(s)
+2025-06-13 19:16:29,133 - INFO - Logged in as TOPG#4967 (ID: 1340722186100408340)
+2025-06-13 19:16:29,133 - INFO - Bot connected to 7 server(s)
+2025-06-13 19:16:29,133 - INFO - Alerts are enabled.
+2025-06-13 19:16:29,133 - INFO - Starting tracking services...
+2025-06-13 19:16:29,133 - INFO - All tracking services started
+2025-06-13 19:16:29,133 - INFO - Initializing DexScreener live tracker...
+2025-06-13 19:16:29,133 - INFO - Initializing migration tracker...
+2025-06-13 19:16:29,134 - INFO - Initializing about to graduate alert tracker...
+2025-06-13 19:16:29,144 - INFO - No enabled guilds with channels, stopping tracking
+2025-06-13 19:16:29,144 - INFO - Migration tracking stopped
+2025-06-13 19:16:29,144 - INFO - Migration tracking initialization complete
+2025-06-13 19:16:29,144 - INFO - No enabled guilds with channels, stopping tracking
+2025-06-13 19:16:29,144 - INFO - DexScreener tracking stopped
+2025-06-13 19:16:29,144 - INFO - DexScreener tracking initialization complete
+2025-06-13 19:16:29,144 - INFO - No enabled guilds with channels, stopping about to graduate alert tracking
+2025-06-13 19:16:29,144 - INFO - About to graduate alert tracking stopped
+2025-06-13 19:16:29,145 - INFO - About to graduate alert tracking initialization complete

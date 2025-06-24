@@ -1,0 +1,55 @@
+2025-06-11 20:12:20,059 - INFO - Starting bot...
+2025-06-11 20:12:21,134 - INFO - API client initialized
+2025-06-11 20:12:21,134 - INFO - WebsiteAnalyzer initialized with concurrency limit of 15
+2025-06-11 20:12:21,140 - INFO - Loaded 4 Truth Social tokens from file
+2025-06-11 20:12:21,140 - INFO - Authenticating 4 Truth Social accounts with missing or expired tokens...
+2025-06-11 20:12:21,277 - ERROR - Auth error: Status 403
+2025-06-11 20:12:21,278 - ERROR - Failed to authenticate Truth Social account: alphabtw
+2025-06-11 20:12:21,354 - ERROR - Failed to authenticate Truth Social account: visheshbtw
+2025-06-11 20:12:21,452 - ERROR - Failed to authenticate Truth Social account: sakshambtw
+2025-06-11 20:12:21,564 - ERROR - Failed to authenticate Truth Social account: mayankbtw
+2025-06-11 20:12:21,564 - INFO - Successfully authenticated 0/4 Truth Social accounts
+2025-06-11 20:12:21,565 - INFO - Saved 4 Truth Social tokens to file
+2025-06-11 20:12:21,565 - INFO - All API services initialized
+2025-06-11 20:12:21,565 - INFO - Services provider initialized
+2025-06-11 20:12:21,586 - INFO - Created token_first_calls table with optimized indexes
+2025-06-11 20:12:21,586 - INFO - Database connection pool established: size=1-10
+2025-06-11 20:12:21,586 - INFO - Database connection successful
+2025-06-11 20:12:21,659 - INFO - Proxy rotator initialized with http protocol
+2025-06-11 20:12:21,659 - INFO - Proxy rotator initialized for Truth commands
+2025-06-11 20:12:21,677 - INFO - Discord Events Registered | Username Ban Server ID: 1313758082974879774
+2025-06-11 20:12:21,678 - INFO - Memory monitor started (threshold: 300MB, interval: 3600s)
+2025-06-11 20:12:22,284 - INFO - Successfully synced 10 command(s)
+2025-06-11 20:12:26,414 - INFO - Logged in as TOPG#4967 (ID: 1340722186100408340)
+2025-06-11 20:12:26,414 - INFO - Bot connected to 7 server(s)
+2025-06-11 20:12:26,414 - INFO - Alerts are enabled.
+2025-06-11 20:12:26,414 - INFO - Starting tracking services...
+2025-06-11 20:12:26,414 - INFO - All tracking services started
+2025-06-11 20:12:26,415 - INFO - Initializing Truth Social tracking...
+2025-06-11 20:12:26,415 - INFO - Initializing DexScreener live tracker...
+2025-06-11 20:12:26,415 - INFO - Initializing migration tracker...
+2025-06-11 20:12:26,415 - INFO - Initializing about to graduate alert tracker...
+2025-06-11 20:12:26,423 - INFO - Proxy rotator initialized with http protocol
+2025-06-11 20:12:26,424 - INFO - Proxy rotator initialized for Truth Social tracking
+2025-06-11 20:12:26,424 - INFO - No guilds with Truth Social tracking enabled
+2025-06-11 20:12:26,425 - INFO - Truth Social tracking initialization complete
+2025-06-11 20:12:26,452 - INFO - No enabled guilds with channels, stopping tracking
+2025-06-11 20:12:26,452 - INFO - Migration tracking stopped
+2025-06-11 20:12:26,452 - INFO - Migration tracking initialization complete
+2025-06-11 20:12:26,452 - INFO - No enabled guilds with channels, stopping tracking
+2025-06-11 20:12:26,452 - INFO - DexScreener tracking stopped
+2025-06-11 20:12:26,452 - INFO - DexScreener tracking initialization complete
+2025-06-11 20:12:26,458 - INFO - No enabled guilds with channels, stopping about to graduate alert tracking
+2025-06-11 20:12:26,458 - INFO - About to graduate alert tracking stopped
+2025-06-11 20:12:26,459 - INFO - About to graduate alert tracking initialization complete
+2025-06-11 21:06:33,990 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-06-11 21:06:34,628 - INFO - Reconnected to Discord after disconnection
+2025-06-11 21:06:34,629 - INFO - Post-reconnection health check: Database=True, API Client=True
+2025-06-11 21:06:38,994 - INFO - Bot automatically reconnected
+2025-06-11 21:12:21,684 - INFO - Metrics Report | Uptime: 1h 0m | Memory: 85.4MB | Processed: 29 | Avg Processing: 0.9823s | Errors: 0 (0 types, Top: none) | Last Cleanup: 2025-06-11 20:12:20 (1h ago)
+2025-06-11 21:29:01,809 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-06-11 21:29:02,453 - INFO - Reconnected to Discord after disconnection
+2025-06-11 21:29:02,453 - INFO - Post-reconnection health check: Database=True, API Client=True
+2025-06-11 21:29:06,814 - INFO - Bot automatically reconnected
+2025-06-11 22:12:21,699 - INFO - Metrics Report | Uptime: 2h 0m | Memory: 87.4MB | Processed: 61 | Avg Processing: 0.6209s | Errors: 0 (0 types, Top: none) | Last Cleanup: 2025-06-11 20:12:20 (2h ago)
+2025-06-11 23:12:21,703 - INFO - Metrics Report | Uptime: 3h 0m | Memory: 45.2MB | Processed: 83 | Avg Processing: 0.5701s | Errors: 0 (0 types, Top: none) | Last Cleanup: 2025-06-11 20:12:20 (3h ago)

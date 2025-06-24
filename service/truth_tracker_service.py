@@ -18,16 +18,17 @@ last_check_time = None
 next_check_time = None
 proxy_rotator = None
 
-# Ultra-optimized caching
+# Ultra-optimized caching - Updated for hybrid approach
 _account_cache = {}  # account_id -> {handle, display_name}
-_account_channels = {}  # account_id -> [(channel_id, guild_id), ...] - direct channel mapping
+_active_channels = {}  # guild_id -> [channel_ids] - matches about_to_graduate pattern
+_account_guild_mappings = {}  # account_id -> [(guild_id, last_post_id), ...] 
 _last_post_ids = {}  # account_id -> last_post_id (global)
 
 # Background Task Lock
 _task_lock = asyncio.Lock()
 
 async def initialize_and_start_truth_tracking(bot):
-    """Initialize and start Truth Social tracking"""
+    """Initialize and start Truth Social tracking if enabled guilds exist"""
     try:
         logger.info("Initializing Truth Social tracking...")
         
@@ -37,20 +38,39 @@ async def initialize_and_start_truth_tracking(bot):
         # Initialize proxy rotator
         await init_proxy_rotator()
         
-        # Ultra-optimized cache loading
-        await build_tracking_cache()
+        # Build cache and start if needed
+        await rebuild_cache_and_restart_if_needed(bot)
         
-        # Get enabled guilds
-        enabled_guilds = await truth_db.get_all_enabled_guilds()
-        if enabled_guilds:
-            logger.info(f"Found {len(enabled_guilds)} guilds with Truth Social tracking enabled")
-            await start_tracking(bot)
-        else:
-            logger.info("No guilds with Truth Social tracking enabled")
-            
         logger.info("Truth Social tracking initialization complete")
     except Exception as e:
         logger.error(f"Error initializing Truth Social tracking: {e}")
+
+
+async def rebuild_cache_and_restart_if_needed(bot):
+    """Rebuild cache and start/stop tracking based on enabled guilds with channels"""
+    global _active_channels
+    
+    try:
+        # Get enabled guilds with channels
+        new_channels = await truth_db.get_enabled_guild_channels()
+        
+        # Update cache
+        _active_channels = new_channels
+        
+        # Build full tracking cache
+        await build_tracking_cache()
+        
+        # Start or stop based on whether we have enabled guilds with channels
+        if _active_channels:
+            total_channels = sum(len(channels) for channels in _active_channels.values())
+            logger.info(f"Found {len(_active_channels)} enabled guilds with {total_channels} channels for Truth Social tracking")
+            await start_tracking(bot)
+        else:
+            logger.info("No enabled guilds with channels, stopping Truth Social tracking")
+            await stop_tracking()
+            
+    except Exception as e:
+        logger.error(f"Error rebuilding Truth Social tracking cache: {e}")
 
 
 async def init_proxy_rotator(countries=None, protocol="http"):
@@ -73,24 +93,21 @@ async def init_proxy_rotator(countries=None, protocol="http"):
         return False
 
 async def start_tracking(bot):
-    """Start the Truth Social tracking loop with auto-restart capability"""
+    """Start tracking only if not already running"""
     global tracking_task, is_tracking
     
     async with _task_lock:
-        # Check if task is already running
         if tracking_task and not tracking_task.done():
-            logger.info("Truth Social tracking already running")
-            return True
+            logger.debug("Truth Social tracking already running")
+            return
         
-        # Create and start the task
         tracking_task = bot.loop.create_task(tracking_loop(bot))
         is_tracking = True
         logger.info("Truth Social tracking started")
-        return True
 
 
 async def stop_tracking():
-    """Stop the Truth Social tracking loop"""
+    """Stop tracking"""
     global tracking_task, is_tracking
     
     async with _task_lock:
@@ -103,92 +120,79 @@ async def stop_tracking():
             
         is_tracking = False
         logger.info("Truth Social tracking stopped")
-        return True
 
 
 async def build_tracking_cache():
-    """Build optimized tracking cache in a single operation"""
-    global _account_cache, _account_channels, _last_post_ids
+    """Build optimized tracking cache - only for enabled guilds with channels"""
+    global _account_cache, _account_guild_mappings, _last_post_ids
     
     try:
-        # 1. Get all tracked accounts
+        # Skip if no active channels
+        if not _active_channels:
+            _account_cache = {}
+            _account_guild_mappings = {}
+            _last_post_ids = {}
+            return
+        
+        # Get enabled guild IDs
+        enabled_guild_ids = set(_active_channels.keys())
+        
+        # Get all tracked accounts
         accounts = await truth_db.get_all_tracked_accounts()
         
-        # 2. Get enabled guilds
-        enabled_guilds = await truth_db.get_all_enabled_guilds()
-        enabled_guild_ids = {g.get('guild_id') for g in enabled_guilds if g.get('guild_id')}
-        
-        # 3. Initialize new caches
+        # Initialize new caches
         new_account_cache = {}
-        new_account_channels = {}
+        new_account_guild_mappings = {}
         new_last_post_ids = {}
         
-        # 4. Process each account
+        # Process each account, but only include if tracked by enabled guilds
         for account in accounts:
             account_id = account.get('account_id')
             if not account_id:
                 continue
                 
-            # Add account to cache
-            new_account_cache[account_id] = {
-                'handle': account.get('handle', ''),
-                'display_name': account.get('display_name', '')
-            }
-            
-            # Get channels for this account (direct mapping)
-            channel_mappings = []
-            
             # Get guilds tracking this account
             guilds = await truth_db.get_guilds_for_account(account_id)
-            enabled_guilds_for_account = [g for g in guilds if g.get('guild_id') in enabled_guild_ids 
-                                         and g.get('last_post_id') != "DISABLED"]
+            enabled_guilds_for_account = [
+                g for g in guilds 
+                if g.get('guild_id') in enabled_guild_ids 
+                and g.get('last_post_id') != "DISABLED"
+            ]
             
-            # Find max last_post_id
-            max_id = "0"
-            
-            # Process each guild
-            for guild in enabled_guilds_for_account:
-                guild_id = guild.get('guild_id')
-                last_post_id = guild.get('last_post_id')
+            # Only add account if it has enabled guilds tracking it
+            if enabled_guilds_for_account:
+                # Add account to cache
+                new_account_cache[account_id] = {
+                    'handle': account.get('handle', ''),
+                    'display_name': account.get('display_name', '')
+                }
                 
-                # Update max last_post_id
-                if last_post_id and last_post_id != "DISABLED" and last_post_id > max_id:
-                    max_id = last_post_id
+                # Build guild mappings with last_post_id
+                guild_mappings = []
+                max_id = "0"
                 
-                # Get channels for this guild
-                channel_ids = await truth_db.get_truth_channels(guild_id)
+                for guild in enabled_guilds_for_account:
+                    guild_id = guild.get('guild_id')
+                    last_post_id = guild.get('last_post_id')
+                    
+                    guild_mappings.append((guild_id, last_post_id))
+                    
+                    # Update max last_post_id
+                    if last_post_id and last_post_id != "DISABLED" and last_post_id > max_id:
+                        max_id = last_post_id
                 
-                # Add direct channel mappings with guild info
-                for channel_id in channel_ids:
-                    channel_mappings.append((channel_id, guild_id))
-            
-            # Only add account if it has channel mappings
-            if channel_mappings:
-                new_account_channels[account_id] = channel_mappings
+                new_account_guild_mappings[account_id] = guild_mappings
                 new_last_post_ids[account_id] = max_id
         
-        # 5. Update global caches
+        # Update global caches
         _account_cache = new_account_cache
-        _account_channels = new_account_channels
+        _account_guild_mappings = new_account_guild_mappings
         _last_post_ids = new_last_post_ids
         
-        logger.debug(f"Ultra-optimized cache built: {len(_account_cache)} accounts, "
-                  f"{len(_account_channels)} accounts with channels, "
-                  f"{sum(len(channels) for channels in _account_channels.values())} total channel mappings")
+        logger.debug(f"Truth Social cache built: {len(_account_cache)} accounts for {len(_active_channels)} enabled guilds")
         
     except Exception as e:
-        logger.error(f"Error building tracking cache: {e}")
-
-
-async def clear_cache_for_guild(guild_id: int):
-    """Clear cache for guild changes"""
-    await build_tracking_cache()
-    logger.debug(f"Tracking cache rebuilt for guild {guild_id}")
-
-
-async def refresh_all_caches():
-    """Compatibility method - use build_tracking_cache for full rebuild"""
-    await build_tracking_cache()
+        logger.error(f"Error building Truth Social tracking cache: {e}")
 
 
 async def tracking_loop(bot):
@@ -196,10 +200,6 @@ async def tracking_loop(bot):
     global last_check_time, next_check_time
     
     try:
-        # Ensure cache is loaded
-        if not _account_cache or not _account_channels:
-            await build_tracking_cache()
-        
         while True:
             try:
                 start_time = time.time()
@@ -207,17 +207,22 @@ async def tracking_loop(bot):
                 # Update timing info
                 last_check_time = datetime.now()
                 
-                # Skip if no accounts to track
-                if not _account_channels:
-                    logger.info("No enabled guilds found - stopping Truth Social tracking")
-                    is_tracking = False
-                    return
+                # Skip if no active channels
+                if not _active_channels:
+                    logger.debug("No active enabled channels, exiting Truth Social tracking loop")
+                    break
                 
-                logger.debug(f"Polling Truth Social for {len(_account_channels)} accounts at {last_check_time.strftime('%Y-%m-%d %H:%M:%S')}")
+                # Skip if no accounts to track
+                if not _account_guild_mappings:
+                    logger.debug("No tracked accounts for enabled guilds, continuing Truth Social tracking loop")
+                    await asyncio.sleep(TRUTH_DEFAULT_INTERVAL)
+                    continue
+                
+                logger.debug(f"Polling Truth Social for {len(_account_guild_mappings)} accounts at {last_check_time.strftime('%Y-%m-%d %H:%M:%S')}")
                 
                 # STAGE 1: Ultra-fast concurrent polling
                 poll_tasks = []
-                for account_id in _account_channels:
+                for account_id in _account_guild_mappings:
                     last_id = _last_post_ids.get(account_id, "0")
                     task = poll_account(bot, account_id, last_id)
                     poll_tasks.append(task)
@@ -270,14 +275,8 @@ async def tracking_loop(bot):
         logger.info("Truth Social tracking loop cancelled")
     except Exception as e:
         logger.error(f"Fatal error in Truth Social tracking: {e}")
-        # Try to restart the tracking task if it fails
-        bot.loop.create_task(restart_tracking(bot))
-
-
-async def restart_tracking(bot):
-    """Try to restart the tracking task after a delay"""
-    await asyncio.sleep(60)  # Wait a minute before trying to restart
-    await start_tracking(bot)
+    finally:
+        is_tracking = False
 
 
 async def poll_account(bot, account_id, last_post_id):
@@ -326,21 +325,26 @@ async def broadcast_posts(bot, account_id, posts, new_last_id):
     try:
         handle = _account_cache.get(account_id, {}).get('handle', '')
         
-        # Get all channels for this account
-        channel_mappings = _account_channels.get(account_id, [])
+        # Get guild mappings for this account
+        guild_mappings = _account_guild_mappings.get(account_id, [])
         
-        # Group by guild for tracking and efficient updates
+        # Group channels by guild for efficient updates
         guild_channels = {}
-        for channel_id, guild_id in channel_mappings:
-            if guild_id not in guild_channels:
-                guild_channels[guild_id] = []
-            
-            # Get channel object
-            channel = bot.get_channel(channel_id)
-            if channel:
-                guild_channels[guild_id].append(channel)
-            else:
-                logger.warning(f"Channel {channel_id} not found in guild {guild_id}")
+        for guild_id, _ in guild_mappings:
+            # Only include if guild is still active
+            if guild_id in _active_channels:
+                channel_ids = _active_channels[guild_id]
+                channels = []
+                
+                for channel_id in channel_ids:
+                    channel = bot.get_channel(channel_id)
+                    if channel:
+                        channels.append(channel)
+                    else:
+                        logger.warning(f"Channel {channel_id} not found in guild {guild_id}")
+                
+                if channels:
+                    guild_channels[guild_id] = channels
         
         # Track how many posts we've sent
         total_sent = 0
@@ -404,8 +408,9 @@ def get_tracking_status() -> Dict:
         'is_tracking': is_tracking,
         'last_check': last_check_time,
         'next_check': next_check_time,
+        'guild_count': len(_active_channels),
+        'channel_count': sum(len(channels) for channels in _active_channels.values()),
         'account_count': len(_account_cache),
-        'active_accounts': len(_account_channels),
-        'channel_mappings': sum(len(channels) for channels in _account_channels.values()),
+        'active_accounts': len(_account_guild_mappings),
         'proxy_enabled': proxy_rotator is not None and proxy_rotator.enabled
     }
