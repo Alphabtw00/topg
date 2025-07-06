@@ -1850,3 +1850,220 @@
 2025-07-06 07:22:43,780 - INFO - DexScreener tracking stopped
 2025-07-06 07:22:43,780 - INFO - Database connection pool closed successfully
 2025-07-06 07:22:43,783 - INFO - Bot stopped by user
+2025-07-06 10:05:17,498 - INFO - Starting bot...
+2025-07-06 10:05:18,426 - INFO - API client initialized
+2025-07-06 10:05:18,426 - INFO - WebsiteAnalyzer initialized with concurrency limit of 15
+2025-07-06 10:05:18,426 - INFO - Loaded 4 Truth Social tokens from file
+2025-07-06 10:05:18,427 - INFO - Authenticating 4 Truth Social accounts with missing or expired tokens...
+2025-07-06 10:05:18,461 - ERROR - Auth error: Status 403
+2025-07-06 10:05:18,461 - ERROR - Failed to authenticate Truth Social account: alphabtw
+2025-07-06 10:05:18,495 - ERROR - Failed to authenticate Truth Social account: visheshbtw
+2025-07-06 10:05:18,526 - ERROR - Failed to authenticate Truth Social account: sakshambtw
+2025-07-06 10:05:18,552 - ERROR - Failed to authenticate Truth Social account: mayankbtw
+2025-07-06 10:05:18,552 - INFO - Successfully authenticated 0/4 Truth Social accounts
+2025-07-06 10:05:18,553 - INFO - Saved 4 Truth Social tokens to file
+2025-07-06 10:05:18,553 - INFO - All API services initialized
+2025-07-06 10:05:18,553 - INFO - Services provider initialized
+2025-07-06 10:05:18,571 - INFO - Database connection pool established: size=1-10
+2025-07-06 10:05:18,571 - INFO - Database connection successful
+2025-07-06 10:05:18,578 - INFO - Proxy rotator initialized with http protocol
+2025-07-06 10:05:18,578 - INFO - Proxy rotator initialized for Truth commands
+2025-07-06 10:05:18,579 - INFO - Discord Events Registered | Username Ban Server ID: 1313758082974879774
+2025-07-06 10:05:18,580 - INFO - Memory monitor started (threshold: 300MB, interval: 3600s)
+2025-07-06 10:05:19,233 - INFO - Successfully synced 11 command(s)
+2025-07-06 10:05:23,408 - INFO - Logged in as TOPG#4967 (ID: 1340722186100408340)
+2025-07-06 10:05:23,408 - INFO - Bot connected to 7 server(s)
+2025-07-06 10:05:23,408 - INFO - Alerts are enabled.
+2025-07-06 10:05:23,408 - INFO - Starting tracking services...
+2025-07-06 10:05:23,408 - INFO - All tracking services started
+2025-07-06 10:05:23,409 - INFO - Initializing DexScreener live tracker...
+2025-07-06 10:05:23,409 - INFO - Initializing migration tracker...
+2025-07-06 10:05:23,409 - INFO - Initializing about to graduate alert tracker...
+2025-07-06 10:05:23,414 - INFO - No enabled guilds with channels, stopping tracking
+2025-07-06 10:05:23,414 - INFO - DexScreener tracking stopped
+2025-07-06 10:05:23,414 - INFO - DexScreener tracking initialization complete
+2025-07-06 10:05:23,415 - INFO - No enabled guilds with channels, stopping tracking
+2025-07-06 10:05:23,415 - INFO - Migration tracking stopped
+2025-07-06 10:05:23,415 - INFO - Migration tracking initialization complete
+2025-07-06 10:05:23,416 - INFO - No enabled guilds with channels, stopping about to graduate alert tracking
+2025-07-06 10:05:23,416 - INFO - About to graduate alert tracking stopped
+2025-07-06 10:05:23,416 - INFO - About to graduate alert tracking initialization complete
+2025-07-06 10:05:26,846 - INFO - Found 1 enabled guilds with 1 channels for about to graduate alerts
+2025-07-06 10:05:26,846 - INFO - About to graduate alert tracking started
+2025-07-06 10:05:27,301 - INFO - About to graduate alert tracking enabled by alphabtw_ in habibifnf
+2025-07-06 10:05:27,829 - ERROR - Bitquery connection error for about to graduate: server rejected WebSocket connection: HTTP 402
+2025-07-06 10:05:48,179 - INFO - No enabled guilds with channels, stopping about to graduate alert tracking
+2025-07-06 10:05:48,179 - INFO - About to graduate alert tracking loop cancelled
+2025-07-06 10:05:48,180 - INFO - About to graduate alert tracking stopped
+2025-07-06 10:05:48,650 - INFO - About to graduate alert tracking disabled by alphabtw_ in habibifnf
+2025-07-06 10:06:21,699 - INFO - Bot is shutting down...
+2025-07-06 10:06:21,699 - INFO - API client closed
+2025-07-06 10:06:21,699 - INFO - Truth Social tracking stopped
+2025-07-06 10:06:21,699 - INFO - Truth Social tracking stopped
+2025-07-06 10:06:21,699 - INFO - Services closed successfully
+2025-07-06 10:06:21,699 - INFO - Background task 'metrics_cleanup' canceled
+2025-07-06 10:06:21,700 - INFO - Background task 'memory_monitor' canceled
+2025-07-06 10:06:21,700 - INFO - Background task 'heartbeat_monitor' canceled
+2025-07-06 10:06:21,700 - INFO - Background task 'metrics_report' canceled
+2025-07-06 10:06:21,700 - INFO - DexScreener tracking stopped
+2025-07-06 10:06:21,700 - INFO - DexScreener tracking stopped
+2025-07-06 10:06:21,700 - INFO - Database connection pool closed successfully
+2025-07-06 10:06:21,701 - INFO - Bot stopped by user
+2025-07-06 10:06:25,211 - INFO - Starting bot...
+2025-07-06 10:06:26,066 - INFO - API client initialized
+2025-07-06 10:06:26,066 - INFO - WebsiteAnalyzer initialized with concurrency limit of 15
+2025-07-06 10:06:26,067 - INFO - Loaded 4 Truth Social tokens from file
+2025-07-06 10:06:26,067 - INFO - Authenticating 4 Truth Social accounts with missing or expired tokens...
+2025-07-06 10:06:26,102 - ERROR - Auth error: Status 403
+2025-07-06 10:06:26,102 - ERROR - Failed to authenticate Truth Social account: alphabtw
+2025-07-06 10:06:26,131 - ERROR - Failed to authenticate Truth Social account: visheshbtw
+2025-07-06 10:06:26,164 - ERROR - Failed to authenticate Truth Social account: sakshambtw
+2025-07-06 10:06:26,201 - ERROR - Failed to authenticate Truth Social account: mayankbtw
+2025-07-06 10:06:26,201 - INFO - Successfully authenticated 0/4 Truth Social accounts
+2025-07-06 10:06:26,202 - INFO - Saved 4 Truth Social tokens to file
+2025-07-06 10:06:26,202 - INFO - All API services initialized
+2025-07-06 10:06:26,202 - INFO - Services provider initialized
+2025-07-06 10:06:26,214 - INFO - Database connection pool established: size=1-10
+2025-07-06 10:06:26,214 - INFO - Database connection successful
+2025-07-06 10:06:26,220 - INFO - Proxy rotator initialized with http protocol
+2025-07-06 10:06:26,220 - INFO - Proxy rotator initialized for Truth commands
+2025-07-06 10:06:26,221 - INFO - Discord Events Registered | Username Ban Server ID: 1313758082974879774
+2025-07-06 10:06:26,222 - INFO - Memory monitor started (threshold: 300MB, interval: 3600s)
+2025-07-06 10:06:26,933 - INFO - Successfully synced 11 command(s)
+2025-07-06 10:06:30,940 - INFO - Logged in as TOPG#4967 (ID: 1340722186100408340)
+2025-07-06 10:06:30,940 - INFO - Bot connected to 7 server(s)
+2025-07-06 10:06:30,940 - INFO - Alerts are enabled.
+2025-07-06 10:06:30,941 - INFO - Starting tracking services...
+2025-07-06 10:06:30,941 - INFO - All tracking services started
+2025-07-06 10:06:30,941 - INFO - Initializing DexScreener live tracker...
+2025-07-06 10:06:30,941 - INFO - Initializing migration tracker...
+2025-07-06 10:06:30,941 - INFO - Initializing about to graduate alert tracker...
+2025-07-06 10:06:30,945 - INFO - No enabled guilds with channels, stopping tracking
+2025-07-06 10:06:30,945 - INFO - Migration tracking stopped
+2025-07-06 10:06:30,945 - INFO - Migration tracking initialization complete
+2025-07-06 10:06:30,946 - INFO - No enabled guilds with channels, stopping tracking
+2025-07-06 10:06:30,946 - INFO - DexScreener tracking stopped
+2025-07-06 10:06:30,946 - INFO - DexScreener tracking initialization complete
+2025-07-06 10:06:30,946 - INFO - No enabled guilds with channels, stopping about to graduate alert tracking
+2025-07-06 10:06:30,946 - INFO - About to graduate alert tracking stopped
+2025-07-06 10:06:30,947 - INFO - About to graduate alert tracking initialization complete
+2025-07-06 10:06:34,987 - INFO - Found 1 enabled guilds with 1 channels for about to graduate alerts
+2025-07-06 10:06:34,987 - INFO - About to graduate alert tracking started
+2025-07-06 10:06:35,445 - INFO - About to graduate alert tracking enabled by alphabtw_ in habibifnf
+2025-07-06 10:06:35,925 - ERROR - Bitquery connection error for about to graduate: server rejected WebSocket connection: HTTP 402
+2025-07-06 10:06:56,013 - INFO - Bot is shutting down...
+2025-07-06 10:06:56,013 - INFO - API client closed
+2025-07-06 10:06:56,013 - INFO - Truth Social tracking stopped
+2025-07-06 10:06:56,013 - INFO - Truth Social tracking stopped
+2025-07-06 10:06:56,014 - INFO - Services closed successfully
+2025-07-06 10:06:56,014 - INFO - Background task 'metrics_cleanup' canceled
+2025-07-06 10:06:56,014 - INFO - Background task 'memory_monitor' canceled
+2025-07-06 10:06:56,014 - INFO - Background task 'heartbeat_monitor' canceled
+2025-07-06 10:06:56,014 - INFO - Background task 'metrics_report' canceled
+2025-07-06 10:06:56,014 - INFO - DexScreener tracking stopped
+2025-07-06 10:06:56,014 - INFO - DexScreener tracking stopped
+2025-07-06 10:06:56,014 - INFO - Database connection pool closed successfully
+2025-07-06 10:06:56,019 - INFO - About to graduate alert tracking loop cancelled
+2025-07-06 10:06:56,020 - INFO - Bot stopped by user
+2025-07-06 10:07:45,185 - INFO - Starting bot...
+2025-07-06 10:07:46,119 - INFO - API client initialized
+2025-07-06 10:07:46,119 - INFO - WebsiteAnalyzer initialized with concurrency limit of 15
+2025-07-06 10:07:46,121 - INFO - Loaded 4 Truth Social tokens from file
+2025-07-06 10:07:46,121 - INFO - Authenticating 4 Truth Social accounts with missing or expired tokens...
+2025-07-06 10:07:46,152 - ERROR - Auth error: Status 403
+2025-07-06 10:07:46,152 - ERROR - Failed to authenticate Truth Social account: alphabtw
+2025-07-06 10:07:46,186 - ERROR - Failed to authenticate Truth Social account: visheshbtw
+2025-07-06 10:07:46,216 - ERROR - Failed to authenticate Truth Social account: sakshambtw
+2025-07-06 10:07:46,260 - ERROR - Failed to authenticate Truth Social account: mayankbtw
+2025-07-06 10:07:46,261 - INFO - Successfully authenticated 0/4 Truth Social accounts
+2025-07-06 10:07:46,261 - INFO - Saved 4 Truth Social tokens to file
+2025-07-06 10:07:46,261 - INFO - All API services initialized
+2025-07-06 10:07:46,261 - INFO - Services provider initialized
+2025-07-06 10:07:46,272 - INFO - Database connection pool established: size=1-10
+2025-07-06 10:07:46,272 - INFO - Database connection successful
+2025-07-06 10:07:46,278 - INFO - Proxy rotator initialized with http protocol
+2025-07-06 10:07:46,278 - INFO - Proxy rotator initialized for Truth commands
+2025-07-06 10:07:46,279 - INFO - Discord Events Registered | Username Ban Server ID: 1313758082974879774
+2025-07-06 10:07:46,280 - INFO - Memory monitor started (threshold: 300MB, interval: 3600s)
+2025-07-06 10:07:46,848 - INFO - Successfully synced 11 command(s)
+2025-07-06 10:07:50,838 - INFO - Logged in as TOPG#4967 (ID: 1340722186100408340)
+2025-07-06 10:07:50,838 - INFO - Bot connected to 7 server(s)
+2025-07-06 10:07:50,838 - INFO - Alerts are enabled.
+2025-07-06 10:07:50,838 - INFO - Starting tracking services...
+2025-07-06 10:07:50,838 - INFO - All tracking services started
+2025-07-06 10:07:50,838 - INFO - Initializing DexScreener live tracker...
+2025-07-06 10:07:50,839 - INFO - Initializing migration tracker...
+2025-07-06 10:07:50,839 - INFO - Initializing about to graduate alert tracker...
+2025-07-06 10:07:50,843 - INFO - No enabled guilds with channels, stopping tracking
+2025-07-06 10:07:50,843 - INFO - DexScreener tracking stopped
+2025-07-06 10:07:50,843 - INFO - DexScreener tracking initialization complete
+2025-07-06 10:07:50,844 - INFO - No enabled guilds with channels, stopping tracking
+2025-07-06 10:07:50,844 - INFO - Migration tracking stopped
+2025-07-06 10:07:50,844 - INFO - Migration tracking initialization complete
+2025-07-06 10:07:50,844 - INFO - Found 1 enabled guilds with 1 channels for about to graduate alerts
+2025-07-06 10:07:50,844 - INFO - About to graduate alert tracking started
+2025-07-06 10:07:50,844 - INFO - About to graduate alert tracking initialization complete
+2025-07-06 10:07:51,874 - ERROR - Bitquery connection error for about to graduate: server rejected WebSocket connection: HTTP 402
+2025-07-06 10:07:53,451 - INFO - Found 1 enabled guilds with 1 channels
+2025-07-06 10:07:53,452 - INFO - Migration tracking started
+2025-07-06 10:07:53,901 - INFO - Migration tracking enabled by alphabtw_ in habibifnf
+2025-07-06 10:07:54,404 - ERROR - Bitquery connection error for migration tracker: server rejected WebSocket connection: HTTP 402
+2025-07-06 10:08:45,465 - ERROR - Bitquery connection error for about to graduate: server rejected WebSocket connection: HTTP 402 (occurred 10 times)
+2025-07-06 10:08:47,946 - ERROR - Bitquery connection error for migration tracker: server rejected WebSocket connection: HTTP 402 (occurred 10 times)
+2025-07-06 10:09:34,342 - INFO - Starting bot...
+2025-07-06 10:09:35,276 - INFO - API client initialized
+2025-07-06 10:09:35,276 - INFO - WebsiteAnalyzer initialized with concurrency limit of 15
+2025-07-06 10:09:35,277 - INFO - Loaded 4 Truth Social tokens from file
+2025-07-06 10:09:35,278 - INFO - Authenticating 4 Truth Social accounts with missing or expired tokens...
+2025-07-06 10:09:35,308 - ERROR - Auth error: Status 403
+2025-07-06 10:09:35,308 - ERROR - Failed to authenticate Truth Social account: alphabtw
+2025-07-06 10:09:35,332 - ERROR - Failed to authenticate Truth Social account: visheshbtw
+2025-07-06 10:09:35,363 - ERROR - Failed to authenticate Truth Social account: sakshambtw
+2025-07-06 10:09:35,402 - ERROR - Failed to authenticate Truth Social account: mayankbtw
+2025-07-06 10:09:35,402 - INFO - Successfully authenticated 0/4 Truth Social accounts
+2025-07-06 10:09:35,403 - INFO - Saved 4 Truth Social tokens to file
+2025-07-06 10:09:35,403 - INFO - All API services initialized
+2025-07-06 10:09:35,403 - INFO - Services provider initialized
+2025-07-06 10:09:35,416 - INFO - Database connection pool established: size=1-10
+2025-07-06 10:09:35,416 - INFO - Database connection successful
+2025-07-06 10:09:35,423 - INFO - Proxy rotator initialized with http protocol
+2025-07-06 10:09:35,423 - INFO - Proxy rotator initialized for Truth commands
+2025-07-06 10:09:35,424 - INFO - Discord Events Registered | Username Ban Server ID: 1313758082974879774
+2025-07-06 10:09:35,424 - INFO - Memory monitor started (threshold: 300MB, interval: 3600s)
+2025-07-06 10:09:36,007 - INFO - Successfully synced 11 command(s)
+2025-07-06 10:09:40,014 - INFO - Logged in as TOPG#4967 (ID: 1340722186100408340)
+2025-07-06 10:09:40,015 - INFO - Bot connected to 7 server(s)
+2025-07-06 10:09:40,015 - INFO - Alerts are enabled.
+2025-07-06 10:09:40,015 - INFO - Starting tracking services...
+2025-07-06 10:09:40,015 - INFO - All tracking services started
+2025-07-06 10:09:40,015 - INFO - Initializing DexScreener live tracker...
+2025-07-06 10:09:40,015 - INFO - Initializing migration tracker...
+2025-07-06 10:09:40,016 - INFO - Initializing about to graduate alert tracker...
+2025-07-06 10:09:40,019 - INFO - No enabled guilds with channels, stopping tracking
+2025-07-06 10:09:40,020 - INFO - DexScreener tracking stopped
+2025-07-06 10:09:40,020 - INFO - DexScreener tracking initialization complete
+2025-07-06 10:09:40,020 - INFO - Found 1 enabled guilds with 1 channels
+2025-07-06 10:09:40,020 - INFO - Migration tracking started
+2025-07-06 10:09:40,021 - INFO - Migration tracking initialization complete
+2025-07-06 10:09:40,022 - INFO - Found 1 enabled guilds with 1 channels for about to graduate alerts
+2025-07-06 10:09:40,022 - INFO - About to graduate alert tracking started
+2025-07-06 10:09:40,022 - INFO - About to graduate alert tracking initialization complete
+2025-07-06 10:09:44,082 - INFO - No enabled guilds with channels, stopping tracking
+2025-07-06 10:09:44,448 - INFO - Migration tracking stopped
+2025-07-06 10:09:44,865 - INFO - Migration tracking disabled by alphabtw_ in habibifnf
+2025-07-06 10:14:29,602 - INFO - No enabled guilds with channels, stopping about to graduate alert tracking
+2025-07-06 10:14:29,971 - INFO - About to graduate alert tracking stopped
+2025-07-06 10:14:30,492 - INFO - About to graduate alert tracking disabled by alphabtw_ in habibifnf
+2025-07-06 10:19:29,436 - INFO - Bot is shutting down...
+2025-07-06 10:19:29,436 - INFO - API client closed
+2025-07-06 10:19:29,436 - INFO - Truth Social tracking stopped
+2025-07-06 10:19:29,436 - INFO - Truth Social tracking stopped
+2025-07-06 10:19:29,436 - INFO - Services closed successfully
+2025-07-06 10:19:29,436 - INFO - Background task 'metrics_cleanup' canceled
+2025-07-06 10:19:29,437 - INFO - Background task 'memory_monitor' canceled
+2025-07-06 10:19:29,437 - INFO - Background task 'heartbeat_monitor' canceled
+2025-07-06 10:19:29,437 - INFO - Background task 'metrics_report' canceled
+2025-07-06 10:19:29,437 - INFO - DexScreener tracking stopped
+2025-07-06 10:19:29,437 - INFO - DexScreener tracking stopped
+2025-07-06 10:19:29,437 - INFO - Database connection pool closed successfully
+2025-07-06 10:19:29,438 - INFO - Bot stopped by user

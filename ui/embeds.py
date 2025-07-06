@@ -14,7 +14,7 @@ from utils.formatters import (
     relative_time, get_color_from_change, score_bar, clean_html,
     format_metrics, proxy_url, format_category
 )
-from utils.helper import safe_add_field, fetch_token_image_from_uri, fetch_token_image_from_uri, calculate_mc_range
+from utils.helper import safe_add_field, fetch_token_metadata_from_uri, calculate_mc_range
 from utils.logger import get_logger
 
 
@@ -507,16 +507,18 @@ def create_migration_tracker_embed(dex_data, mobula_data, token_address):
         logger.error(f"Error creating migration embed: {e}")
         return None
    
-async def create_about_to_graduate_embed(token_info: Dict, pool_data: Dict, token_address: str):
+async def create_about_to_graduate_embed(pool_data: dict, token_address: str):
     """Create embed for graduation alert"""
     try:
         # Extract pool data structure
         pool = pool_data.get("Pool", {})
         market_data = pool.get("Market", {})
         base_currency = market_data.get("BaseCurrency", {})
+        base_data = pool.get("Base", {})
+        quote_data = pool.get("Quote", {})
         transaction = pool_data.get("Transaction", {})
         
-        # Extract token data from pool_data (primary source)
+        # Extract token data from pool_data
         name = base_currency.get('Name', 'Unknown Token')
         symbol = base_currency.get('Symbol', 'Unknown')
         uri = base_currency.get('Uri', '')
@@ -524,10 +526,16 @@ async def create_about_to_graduate_embed(token_info: Dict, pool_data: Dict, toke
         # Get transaction signer
         signer = transaction.get('Signer', '')
         
-        # Get market data from token_info
-        fdv = 0
-        if token_info:
-            fdv = token_info.get('fdv', 0)
+        # Calculate market cap from pool data
+        market_cap = 0
+        try:
+            base_amount = float(base_data.get('PostAmount', 0))
+            quote_amount_usd = float(quote_data.get('PostAmountInUSD', 0))
+            
+            if base_amount > 0 and quote_amount_usd > 0:
+                market_cap = 1_000_000_000 * (quote_amount_usd / base_amount)
+        except (ValueError, ZeroDivisionError, TypeError):
+            pass
         
         # Create embed with custom emoji
         embed = discord.Embed(
@@ -537,18 +545,18 @@ async def create_about_to_graduate_embed(token_info: Dict, pool_data: Dict, toke
             timestamp=datetime.now()
         )
         
-        # Fetch and add thumbnail from URI if available
-        if uri:
-            image_url = await fetch_token_image_from_uri(uri)
-            if image_url:
-                embed.set_thumbnail(url=image_url)
-
+        # Fetch metadata from URI
+        metadata = await fetch_token_metadata_from_uri(uri)
         
-        # Add market data
-        if fdv > 0:
+        # Add thumbnail from metadata
+        if metadata and metadata.get('image'):
+            embed.set_thumbnail(url=metadata['image'])
+        
+        # Add market cap
+        if market_cap > 0:
             embed.add_field(
                 name="💰 Market Cap (3s ago)",
-                value=f"**`${format_value(fdv)}`**",
+                value=f"**`${format_value(market_cap)}`**",
                 inline=True
             )
         
@@ -566,56 +574,61 @@ async def create_about_to_graduate_embed(token_info: Dict, pool_data: Dict, toke
         if signer:
             link_text.append(f"[Dev](https://solscan.io/account/{signer})")
         
-        # Add links from token info if available
-        if token_info and 'info' in token_info:
-            info = token_info['info']
-            links = []
+        # Process metadata for links
+        if metadata:
+            # Social media mapping
+            social_fields = {
+                'twitter': 'Twitter',
+                'telegram': 'Telegram', 
+                'discord': 'Discord',
+                'youtube': 'YouTube',
+                'reddit': 'Reddit',
+                'github': 'GitHub',
+                'medium': 'Medium',
+                'instgram' : 'Instagram'
+            }
             
-            # Collect websites
-            if 'websites' in info:
-                links.extend(info['websites'])
+            # Add direct social fields
+            for field, label in social_fields.items():
+                if field in metadata and metadata[field]:
+                    link_text.append(f"[{label}]({metadata[field]})")
             
-            # Collect socials
-            if 'socials' in info:
-                links.extend(info['socials'])
-            
-            # Process collected links
-            for link in links:
-                link_type = link.get("type", "")
-                link_label = link.get("label", "")
-                link_url = link.get("url", "")
-                if not link_url:
-                    continue
-                if link_type == "twitter" or "twitter" in link_url or "x.com" in link_url:
-                    link_text.append(f"[Twitter]({link_url})")
-                elif link_label == "Website" or not link_type:
-                    link_text.append(f"[Website]({link_url})")
-                else:
-                    link_text.append(f"[{link_label or link_type.capitalize()}]({link_url})")
-
-            if 'header' in info:      
-                embed.set_image(url=info['header'])
-
+            # Check website field for socials or general website
+            website = metadata.get('website') or metadata.get('external_url')
+            if website:
+                social_patterns = {
+                    ('twitter.com', 'x.com'): 'Twitter',
+                    ('t.me',): 'Telegram',
+                    ('discord.gg', 'discord.com', 'discord.app'): 'Discord',
+                    ('youtube.com', 'youtu.be'): 'YouTube',
+                    ('instagram.com',): 'Instagram',
+                    ('tiktok.com',): 'TikTok',
+                    ('reddit.com',): 'Reddit',
+                    ('github.com',): 'GitHub',
+                    ('medium.com',): 'Medium'
+                }
+                
+                social_found = False
+                for patterns, label in social_patterns.items():
+                    if any(pattern in website for pattern in patterns):
+                        link_text.append(f"[{label}]({website})")
+                        social_found = True
+                        break
+                
+                if not social_found:
+                    link_text.append(f"[Web]({website})")
+        
         # Add links field if we have any
         if link_text:
             embed.add_field(
                 name="🔗 Links",
                 value=" | ".join(link_text),
                 inline=False
-            )        
-        # Format footer with pair created time if available
-        footer_text = "Migration Tracker"
-        if token_info and 'pairCreatedAt' in token_info:
-            try:
-                pair_created_timestamp = token_info['pairCreatedAt']  # Already in milliseconds
-                time_ago = relative_time(pair_created_timestamp, include_ago=True)
-                footer_text += f" • 🕒 {time_ago}"
-            except Exception as e:
-                logger.debug(f"Error formatting pair created time: {e}")
+            )
         
-        # Set footer with gif icon
+        # Set footer
         embed.set_footer(
-            text=footer_text,
+            text="Migration Tracker",
             icon_url="https://s14.gifyu.com/images/bxicv.gif"
         )
         
@@ -624,7 +637,7 @@ async def create_about_to_graduate_embed(token_info: Dict, pool_data: Dict, toke
     except Exception as e:
         logger.error(f"Error creating graduation alert embed: {e}")
         return None
-
+    
 async def create_wallet_finder_embed(
     token_info: Dict,
     matching_holders: List[Dict],
@@ -670,23 +683,18 @@ async def create_wallet_finder_embed(
             timestamp=datetime.now()
         )
         
-        image_url = None
-        if token_uri:
-            try:
-                image_url = await fetch_token_image_from_uri(token_uri)
-            except:
-                pass
-
-        if image_url:
+        metadata = await fetch_token_metadata_from_uri(token_uri)
+        # Add thumbnail from metadata
+        if metadata and metadata.get('image'):
             embed.set_author(
                 name=f"{token_name} (${token_symbol}) • Page {page}/{total_pages}",
-                icon_url=image_url
+                icon_url=metadata['image']
             )
-            embed.set_thumbnail(url=image_url)
+            embed.set_thumbnail(url=metadata['image'])
         else:
             embed.title = f"{token_name} (${token_symbol}) • Page {page}/{total_pages}"
+            
 
-        
         # Build description
         description_parts = []
         

@@ -30,7 +30,7 @@ CACHE_DURATION = 24 * 60 * 60  # 24 hours in seconds
 _task_lock = asyncio.Lock()
 
 about_to_graduate_query = gql("""
-subscription TokensReaching90PercentBondingCurve {
+subscription {
   Solana {
     DEXPools(
       where: {
@@ -52,6 +52,14 @@ subscription TokensReaching90PercentBondingCurve {
             Symbol
             Uri
           }
+        }
+        Base {
+          PostAmount
+          PostAmountInUSD
+        }
+        Quote {
+          PostAmount
+          PostAmountInUSD
         }
       }
       Transaction {
@@ -243,17 +251,10 @@ async def process_about_to_graduate_alert(bot, pool_data, token_address):
     """Process about to graduate alert completely asynchronously"""
     try:        
         logger.debug(f"New about to graduate alert: {token_address}")
-
-        final_token_info = None
-        # Get token info from DexScreener
-        token_info = await bot.services.dexscreener.get_token_info([token_address], chain_id="solana")
-
-        if token_info:
-            final_token_info = token_info[token_address]
-                     
-        # Create embed
+        
+        # Create embed directly from pool data
         from ui.embeds import create_about_to_graduate_embed
-        embed = await create_about_to_graduate_embed(final_token_info, pool_data, token_address)
+        embed = await create_about_to_graduate_embed(pool_data, token_address)
         if not embed:
             return
         

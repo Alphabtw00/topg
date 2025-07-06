@@ -95,6 +95,23 @@ async def fetch_token_image_from_uri(uri: str) -> Optional[str]:
     
     return None
 
+async def fetch_token_metadata_from_uri(uri: str) -> Optional[dict]:
+    """Fetch token metadata from URI and return full metadata"""
+    if not uri:
+        return None
+    
+    try:
+        async with aiohttp.ClientSession() as session:
+            async with session.get(uri, timeout=aiohttp.ClientTimeout(total=10)) as response:
+                if response.status == 200:
+                    metadata = await response.json()
+                    return metadata
+    except Exception as e:
+        logger.debug(f"Error fetching token metadata from {uri}: {e}")
+    
+    return None
+
+
 def parse_market_cap_value(value: str) -> Optional[float]:
     """
     Parse market cap value from string format
