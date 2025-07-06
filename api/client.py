@@ -1,18 +1,19 @@
-"""
-Unified HTTP client for all API requests with consistent error handling and metrics
-"""
+from enum import Enum
 import aiohttp
 import asyncio
 import time
-from enum import Enum
-from typing import Dict, Any, Optional, Union, List
+from typing import Dict, Optional, Any
 from utils.logger import get_logger
-from config import (
-    HTTP_TIMEOUT, CONNECT_TIMEOUT, SOCK_READ_TIMEOUT,
-    MAX_CONNECTIONS, DNS_CACHE_TTL, MAX_ERROR_THRESHOLD
-)
 
 logger = get_logger()
+
+# Configuration constants
+MAX_CONNECTIONS = 100
+DNS_CACHE_TTL = 300
+HTTP_TIMEOUT = 30
+CONNECT_TIMEOUT = 10
+SOCK_READ_TIMEOUT = 30
+MAX_ERROR_THRESHOLD = 10
 
 class ApiEndpoint(Enum):
     """Enum for API endpoints - easily extensible for new services"""
@@ -21,6 +22,7 @@ class ApiEndpoint(Enum):
     MOBULA = "mobula"
     WEBSITE = "website"
     TRENCHBOT = "trenchbot"
+    BITQUERY = "bitquery"
 
 class ApiClient:
     """Unified API client for all external service requests"""
@@ -29,8 +31,6 @@ class ApiClient:
         """Initialize API client with optional bot reference for metrics"""
         self.session = None
         self.bot = bot
-    
-    
     
     async def setup(self):
         """Set up HTTP session with optimized settings"""

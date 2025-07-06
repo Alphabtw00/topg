@@ -1,0 +1,1852 @@
+2025-07-06 01:28:13,589 - INFO - Starting bot...
+2025-07-06 01:28:14,648 - INFO - API client initialized
+2025-07-06 01:28:14,648 - INFO - WebsiteAnalyzer initialized with concurrency limit of 15
+2025-07-06 01:28:14,652 - INFO - Loaded 4 Truth Social tokens from file
+2025-07-06 01:28:14,652 - INFO - Authenticating 4 Truth Social accounts with missing or expired tokens...
+2025-07-06 01:28:14,694 - ERROR - Auth error: Status 403
+2025-07-06 01:28:14,694 - ERROR - Failed to authenticate Truth Social account: alphabtw
+2025-07-06 01:28:14,737 - ERROR - Failed to authenticate Truth Social account: visheshbtw
+2025-07-06 01:28:14,761 - ERROR - Failed to authenticate Truth Social account: sakshambtw
+2025-07-06 01:28:14,791 - ERROR - Failed to authenticate Truth Social account: mayankbtw
+2025-07-06 01:28:14,791 - INFO - Successfully authenticated 0/4 Truth Social accounts
+2025-07-06 01:28:14,792 - INFO - Saved 4 Truth Social tokens to file
+2025-07-06 01:28:14,792 - INFO - All API services initialized
+2025-07-06 01:28:14,792 - INFO - Services provider initialized
+2025-07-06 01:28:14,959 - INFO - Database connection pool established: size=1-10
+2025-07-06 01:28:14,959 - INFO - Database connection successful
+2025-07-06 01:28:14,969 - INFO - Proxy rotator initialized with http protocol
+2025-07-06 01:28:14,969 - INFO - Proxy rotator initialized for Truth commands
+2025-07-06 01:28:14,981 - INFO - Discord Events Registered | Username Ban Server ID: 1313758082974879774
+2025-07-06 01:28:14,982 - INFO - Memory monitor started (threshold: 300MB, interval: 3600s)
+2025-07-06 01:28:15,504 - INFO - Successfully synced 10 command(s)
+2025-07-06 01:28:19,478 - INFO - Logged in as TOPG#4967 (ID: 1340722186100408340)
+2025-07-06 01:28:19,478 - INFO - Bot connected to 7 server(s)
+2025-07-06 01:28:19,478 - INFO - Alerts are enabled.
+2025-07-06 01:28:19,478 - INFO - Starting tracking services...
+2025-07-06 01:28:19,478 - INFO - All tracking services started
+2025-07-06 01:28:19,478 - INFO - Initializing DexScreener live tracker...
+2025-07-06 01:28:19,479 - INFO - Initializing migration tracker...
+2025-07-06 01:28:19,479 - INFO - Initializing about to graduate alert tracker...
+2025-07-06 01:28:19,490 - INFO - No enabled guilds with channels, stopping tracking
+2025-07-06 01:28:19,490 - INFO - DexScreener tracking stopped
+2025-07-06 01:28:19,490 - INFO - DexScreener tracking initialization complete
+2025-07-06 01:28:19,491 - INFO - No enabled guilds with channels, stopping about to graduate alert tracking
+2025-07-06 01:28:19,491 - INFO - About to graduate alert tracking stopped
+2025-07-06 01:28:19,491 - INFO - About to graduate alert tracking initialization complete
+2025-07-06 01:28:19,491 - INFO - No enabled guilds with channels, stopping tracking
+2025-07-06 01:28:19,491 - INFO - Migration tracking stopped
+2025-07-06 01:28:19,492 - INFO - Migration tracking initialization complete
+2025-07-06 01:29:37,471 - INFO - Bot is shutting down...
+2025-07-06 01:29:37,471 - INFO - API client closed
+2025-07-06 01:29:37,471 - INFO - Truth Social tracking stopped
+2025-07-06 01:29:37,471 - INFO - Truth Social tracking stopped
+2025-07-06 01:29:37,472 - INFO - Services closed successfully
+2025-07-06 01:29:37,472 - INFO - Background task 'metrics_cleanup' canceled
+2025-07-06 01:29:37,472 - INFO - Background task 'memory_monitor' canceled
+2025-07-06 01:29:37,472 - INFO - Background task 'heartbeat_monitor' canceled
+2025-07-06 01:29:37,472 - INFO - Background task 'metrics_report' canceled
+2025-07-06 01:29:37,472 - INFO - DexScreener tracking stopped
+2025-07-06 01:29:37,472 - INFO - DexScreener tracking stopped
+2025-07-06 01:29:37,472 - INFO - Database connection pool closed successfully
+2025-07-06 01:29:37,474 - INFO - Bot stopped by user
+2025-07-06 01:29:40,709 - INFO - Starting bot...
+2025-07-06 01:29:41,631 - INFO - API client initialized
+2025-07-06 01:29:41,631 - INFO - WebsiteAnalyzer initialized with concurrency limit of 15
+2025-07-06 01:29:41,632 - INFO - Loaded 4 Truth Social tokens from file
+2025-07-06 01:29:41,632 - INFO - Authenticating 4 Truth Social accounts with missing or expired tokens...
+2025-07-06 01:29:41,671 - ERROR - Auth error: Status 403
+2025-07-06 01:29:41,671 - ERROR - Failed to authenticate Truth Social account: alphabtw
+2025-07-06 01:29:41,699 - ERROR - Failed to authenticate Truth Social account: visheshbtw
+2025-07-06 01:29:41,726 - ERROR - Failed to authenticate Truth Social account: sakshambtw
+2025-07-06 01:29:41,752 - ERROR - Failed to authenticate Truth Social account: mayankbtw
+2025-07-06 01:29:41,752 - INFO - Successfully authenticated 0/4 Truth Social accounts
+2025-07-06 01:29:41,753 - INFO - Saved 4 Truth Social tokens to file
+2025-07-06 01:29:41,753 - INFO - All API services initialized
+2025-07-06 01:29:41,753 - INFO - Services provider initialized
+2025-07-06 01:29:41,764 - INFO - Database connection pool established: size=1-10
+2025-07-06 01:29:41,764 - INFO - Database connection successful
+2025-07-06 01:29:41,771 - INFO - Proxy rotator initialized with http protocol
+2025-07-06 01:29:41,771 - INFO - Proxy rotator initialized for Truth commands
+2025-07-06 01:29:41,772 - INFO - Discord Events Registered | Username Ban Server ID: 1313758082974879774
+2025-07-06 01:29:41,773 - INFO - Memory monitor started (threshold: 300MB, interval: 3600s)
+2025-07-06 01:29:42,434 - INFO - Successfully synced 11 command(s)
+2025-07-06 01:29:46,607 - INFO - Logged in as TOPG#4967 (ID: 1340722186100408340)
+2025-07-06 01:29:46,608 - INFO - Bot connected to 7 server(s)
+2025-07-06 01:29:46,608 - INFO - Alerts are enabled.
+2025-07-06 01:29:46,608 - INFO - Starting tracking services...
+2025-07-06 01:29:46,608 - INFO - All tracking services started
+2025-07-06 01:29:46,608 - INFO - Initializing DexScreener live tracker...
+2025-07-06 01:29:46,608 - INFO - Initializing migration tracker...
+2025-07-06 01:29:46,609 - INFO - Initializing about to graduate alert tracker...
+2025-07-06 01:29:46,613 - INFO - No enabled guilds with channels, stopping tracking
+2025-07-06 01:29:46,613 - INFO - Migration tracking stopped
+2025-07-06 01:29:46,613 - INFO - Migration tracking initialization complete
+2025-07-06 01:29:46,613 - INFO - No enabled guilds with channels, stopping tracking
+2025-07-06 01:29:46,614 - INFO - DexScreener tracking stopped
+2025-07-06 01:29:46,614 - INFO - DexScreener tracking initialization complete
+2025-07-06 01:29:46,614 - INFO - No enabled guilds with channels, stopping about to graduate alert tracking
+2025-07-06 01:29:46,614 - INFO - About to graduate alert tracking stopped
+2025-07-06 01:29:46,614 - INFO - About to graduate alert tracking initialization complete
+2025-07-06 01:32:26,207 - ERROR - Error in wallet finder command: 'coroutine' object has no attribute 'to_dict'
+2025-07-06 01:34:21,642 - INFO - Bot is shutting down...
+2025-07-06 01:34:21,642 - INFO - API client closed
+2025-07-06 01:34:21,642 - INFO - Truth Social tracking stopped
+2025-07-06 01:34:21,642 - INFO - Truth Social tracking stopped
+2025-07-06 01:34:21,642 - INFO - Services closed successfully
+2025-07-06 01:34:21,642 - INFO - Background task 'metrics_cleanup' canceled
+2025-07-06 01:34:21,642 - INFO - Background task 'memory_monitor' canceled
+2025-07-06 01:34:21,642 - INFO - Background task 'heartbeat_monitor' canceled
+2025-07-06 01:34:21,643 - INFO - Background task 'metrics_report' canceled
+2025-07-06 01:34:21,643 - INFO - DexScreener tracking stopped
+2025-07-06 01:34:21,643 - INFO - DexScreener tracking stopped
+2025-07-06 01:34:21,643 - INFO - Database connection pool closed successfully
+2025-07-06 01:34:21,644 - INFO - Bot stopped by user
+2025-07-06 01:34:25,921 - INFO - Starting bot...
+2025-07-06 01:34:26,915 - INFO - API client initialized
+2025-07-06 01:34:26,916 - INFO - WebsiteAnalyzer initialized with concurrency limit of 15
+2025-07-06 01:34:26,917 - INFO - Loaded 4 Truth Social tokens from file
+2025-07-06 01:34:26,917 - INFO - Authenticating 4 Truth Social accounts with missing or expired tokens...
+2025-07-06 01:34:26,979 - ERROR - Auth error: Status 403
+2025-07-06 01:34:26,979 - ERROR - Failed to authenticate Truth Social account: alphabtw
+2025-07-06 01:34:27,025 - ERROR - Failed to authenticate Truth Social account: visheshbtw
+2025-07-06 01:34:27,081 - ERROR - Failed to authenticate Truth Social account: sakshambtw
+2025-07-06 01:34:27,143 - ERROR - Failed to authenticate Truth Social account: mayankbtw
+2025-07-06 01:34:27,144 - INFO - Successfully authenticated 0/4 Truth Social accounts
+2025-07-06 01:34:27,144 - INFO - Saved 4 Truth Social tokens to file
+2025-07-06 01:34:27,144 - INFO - All API services initialized
+2025-07-06 01:34:27,144 - INFO - Services provider initialized
+2025-07-06 01:34:27,155 - INFO - Database connection pool established: size=1-10
+2025-07-06 01:34:27,155 - INFO - Database connection successful
+2025-07-06 01:34:27,162 - INFO - Proxy rotator initialized with http protocol
+2025-07-06 01:34:27,162 - INFO - Proxy rotator initialized for Truth commands
+2025-07-06 01:34:27,163 - INFO - Discord Events Registered | Username Ban Server ID: 1313758082974879774
+2025-07-06 01:34:27,164 - INFO - Memory monitor started (threshold: 300MB, interval: 3600s)
+2025-07-06 01:34:28,655 - INFO - Successfully synced 11 command(s)
+2025-07-06 01:34:33,198 - INFO - Logged in as TOPG#4967 (ID: 1340722186100408340)
+2025-07-06 01:34:33,198 - INFO - Bot connected to 7 server(s)
+2025-07-06 01:34:33,198 - INFO - Alerts are enabled.
+2025-07-06 01:34:33,198 - INFO - Starting tracking services...
+2025-07-06 01:34:33,198 - INFO - All tracking services started
+2025-07-06 01:34:33,199 - INFO - Initializing DexScreener live tracker...
+2025-07-06 01:34:33,199 - INFO - Initializing migration tracker...
+2025-07-06 01:34:33,199 - INFO - Initializing about to graduate alert tracker...
+2025-07-06 01:34:33,204 - INFO - No enabled guilds with channels, stopping tracking
+2025-07-06 01:34:33,204 - INFO - Migration tracking stopped
+2025-07-06 01:34:33,204 - INFO - Migration tracking initialization complete
+2025-07-06 01:34:33,204 - INFO - No enabled guilds with channels, stopping tracking
+2025-07-06 01:34:33,205 - INFO - DexScreener tracking stopped
+2025-07-06 01:34:33,205 - INFO - DexScreener tracking initialization complete
+2025-07-06 01:34:33,205 - INFO - No enabled guilds with channels, stopping about to graduate alert tracking
+2025-07-06 01:34:33,205 - INFO - About to graduate alert tracking stopped
+2025-07-06 01:34:33,205 - INFO - About to graduate alert tracking initialization complete
+2025-07-06 01:34:51,785 - INFO - Wallet finder executed by alphabtw_ for 7TY2W2YtwipzF1zPNaBzSAJAzhM9MtZ2VmH9QG4pbonk at 7.93k MC
+2025-07-06 02:02:17,811 - INFO - Bot is shutting down...
+2025-07-06 02:02:17,812 - INFO - API client closed
+2025-07-06 02:02:17,812 - INFO - Truth Social tracking stopped
+2025-07-06 02:02:17,812 - INFO - Truth Social tracking stopped
+2025-07-06 02:02:17,812 - INFO - Services closed successfully
+2025-07-06 02:02:17,812 - INFO - Background task 'metrics_cleanup' canceled
+2025-07-06 02:02:17,812 - INFO - Background task 'memory_monitor' canceled
+2025-07-06 02:02:17,813 - INFO - Background task 'heartbeat_monitor' canceled
+2025-07-06 02:02:17,813 - INFO - Background task 'metrics_report' canceled
+2025-07-06 02:02:17,813 - INFO - DexScreener tracking stopped
+2025-07-06 02:02:17,813 - INFO - DexScreener tracking stopped
+2025-07-06 02:02:17,813 - INFO - Database connection pool closed successfully
+2025-07-06 02:02:17,814 - INFO - Bot stopped by user
+2025-07-06 02:03:05,037 - INFO - Starting bot...
+2025-07-06 02:03:06,139 - INFO - API client initialized
+2025-07-06 02:03:06,139 - INFO - WebsiteAnalyzer initialized with concurrency limit of 15
+2025-07-06 02:03:06,140 - INFO - Loaded 4 Truth Social tokens from file
+2025-07-06 02:03:06,140 - INFO - Authenticating 4 Truth Social accounts with missing or expired tokens...
+2025-07-06 02:03:07,188 - ERROR - Auth error: Status 403
+2025-07-06 02:03:07,188 - ERROR - Failed to authenticate Truth Social account: alphabtw
+2025-07-06 02:03:07,215 - ERROR - Failed to authenticate Truth Social account: visheshbtw
+2025-07-06 02:03:07,261 - ERROR - Failed to authenticate Truth Social account: sakshambtw
+2025-07-06 02:03:07,308 - ERROR - Failed to authenticate Truth Social account: mayankbtw
+2025-07-06 02:03:07,308 - INFO - Successfully authenticated 0/4 Truth Social accounts
+2025-07-06 02:03:07,308 - INFO - Saved 4 Truth Social tokens to file
+2025-07-06 02:03:07,309 - INFO - All API services initialized
+2025-07-06 02:03:07,309 - INFO - Services provider initialized
+2025-07-06 02:03:07,320 - INFO - Database connection pool established: size=1-10
+2025-07-06 02:03:07,320 - INFO - Database connection successful
+2025-07-06 02:03:07,325 - INFO - Proxy rotator initialized with http protocol
+2025-07-06 02:03:07,325 - INFO - Proxy rotator initialized for Truth commands
+2025-07-06 02:03:07,327 - INFO - Discord Events Registered | Username Ban Server ID: 1313758082974879774
+2025-07-06 02:03:07,327 - INFO - Memory monitor started (threshold: 300MB, interval: 3600s)
+2025-07-06 02:03:08,750 - INFO - Successfully synced 11 command(s)
+2025-07-06 02:03:12,757 - INFO - Logged in as TOPG#4967 (ID: 1340722186100408340)
+2025-07-06 02:03:12,758 - INFO - Bot connected to 7 server(s)
+2025-07-06 02:03:12,758 - INFO - Alerts are enabled.
+2025-07-06 02:03:12,758 - INFO - Starting tracking services...
+2025-07-06 02:03:12,758 - INFO - All tracking services started
+2025-07-06 02:03:12,758 - INFO - Initializing DexScreener live tracker...
+2025-07-06 02:03:12,758 - INFO - Initializing migration tracker...
+2025-07-06 02:03:12,758 - INFO - Initializing about to graduate alert tracker...
+2025-07-06 02:03:12,762 - INFO - No enabled guilds with channels, stopping tracking
+2025-07-06 02:03:12,762 - INFO - DexScreener tracking stopped
+2025-07-06 02:03:12,762 - INFO - DexScreener tracking initialization complete
+2025-07-06 02:03:12,763 - INFO - No enabled guilds with channels, stopping tracking
+2025-07-06 02:03:12,763 - INFO - Migration tracking stopped
+2025-07-06 02:03:12,763 - INFO - Migration tracking initialization complete
+2025-07-06 02:03:12,763 - INFO - No enabled guilds with channels, stopping about to graduate alert tracking
+2025-07-06 02:03:12,764 - INFO - About to graduate alert tracking stopped
+2025-07-06 02:03:12,764 - INFO - About to graduate alert tracking initialization complete
+2025-07-06 02:03:31,418 - ERROR - Error in wallet finder service: object Embed can't be used in 'await' expression
+2025-07-06 02:06:16,282 - INFO - Bot is shutting down...
+2025-07-06 02:06:16,282 - INFO - API client closed
+2025-07-06 02:06:16,282 - INFO - Truth Social tracking stopped
+2025-07-06 02:06:16,282 - INFO - Truth Social tracking stopped
+2025-07-06 02:06:16,282 - INFO - Services closed successfully
+2025-07-06 02:06:16,282 - INFO - Background task 'metrics_cleanup' canceled
+2025-07-06 02:06:16,282 - INFO - Background task 'memory_monitor' canceled
+2025-07-06 02:06:16,283 - INFO - Background task 'heartbeat_monitor' canceled
+2025-07-06 02:06:16,283 - INFO - Background task 'metrics_report' canceled
+2025-07-06 02:06:16,283 - INFO - DexScreener tracking stopped
+2025-07-06 02:06:16,283 - INFO - DexScreener tracking stopped
+2025-07-06 02:06:16,283 - INFO - Database connection pool closed successfully
+2025-07-06 02:06:16,284 - INFO - Bot stopped by user
+2025-07-06 02:06:21,255 - INFO - Starting bot...
+2025-07-06 02:06:22,124 - INFO - API client initialized
+2025-07-06 02:06:22,124 - INFO - WebsiteAnalyzer initialized with concurrency limit of 15
+2025-07-06 02:06:22,125 - INFO - Loaded 4 Truth Social tokens from file
+2025-07-06 02:06:22,125 - INFO - Authenticating 4 Truth Social accounts with missing or expired tokens...
+2025-07-06 02:06:22,156 - ERROR - Auth error: Status 403
+2025-07-06 02:06:22,156 - ERROR - Failed to authenticate Truth Social account: alphabtw
+2025-07-06 02:06:22,186 - ERROR - Failed to authenticate Truth Social account: visheshbtw
+2025-07-06 02:06:22,213 - ERROR - Failed to authenticate Truth Social account: sakshambtw
+2025-07-06 02:06:22,259 - ERROR - Failed to authenticate Truth Social account: mayankbtw
+2025-07-06 02:06:22,259 - INFO - Successfully authenticated 0/4 Truth Social accounts
+2025-07-06 02:06:22,259 - INFO - Saved 4 Truth Social tokens to file
+2025-07-06 02:06:22,259 - INFO - All API services initialized
+2025-07-06 02:06:22,260 - INFO - Services provider initialized
+2025-07-06 02:06:22,272 - INFO - Database connection pool established: size=1-10
+2025-07-06 02:06:22,272 - INFO - Database connection successful
+2025-07-06 02:06:22,278 - INFO - Proxy rotator initialized with http protocol
+2025-07-06 02:06:22,278 - INFO - Proxy rotator initialized for Truth commands
+2025-07-06 02:06:22,279 - INFO - Discord Events Registered | Username Ban Server ID: 1313758082974879774
+2025-07-06 02:06:22,280 - INFO - Memory monitor started (threshold: 300MB, interval: 3600s)
+2025-07-06 02:06:22,797 - INFO - Successfully synced 11 command(s)
+2025-07-06 02:06:26,942 - INFO - Logged in as TOPG#4967 (ID: 1340722186100408340)
+2025-07-06 02:06:26,942 - INFO - Bot connected to 7 server(s)
+2025-07-06 02:06:26,942 - INFO - Alerts are enabled.
+2025-07-06 02:06:26,942 - INFO - Starting tracking services...
+2025-07-06 02:06:26,942 - INFO - All tracking services started
+2025-07-06 02:06:26,943 - INFO - Initializing DexScreener live tracker...
+2025-07-06 02:06:26,943 - INFO - Initializing migration tracker...
+2025-07-06 02:06:26,943 - INFO - Initializing about to graduate alert tracker...
+2025-07-06 02:06:26,947 - INFO - No enabled guilds with channels, stopping tracking
+2025-07-06 02:06:26,947 - INFO - Migration tracking stopped
+2025-07-06 02:06:26,947 - INFO - Migration tracking initialization complete
+2025-07-06 02:06:26,947 - INFO - No enabled guilds with channels, stopping tracking
+2025-07-06 02:06:26,948 - INFO - DexScreener tracking stopped
+2025-07-06 02:06:26,948 - INFO - DexScreener tracking initialization complete
+2025-07-06 02:06:26,948 - INFO - No enabled guilds with channels, stopping about to graduate alert tracking
+2025-07-06 02:06:26,948 - INFO - About to graduate alert tracking stopped
+2025-07-06 02:06:26,948 - INFO - About to graduate alert tracking initialization complete
+2025-07-06 02:06:49,524 - INFO - Wallet finder executed by alphabtw_ for 7TY2W2YtwipzF1zPNaBzSAJAzhM9MtZ2VmH9QG4pbonk at 7.93k MC
+2025-07-06 02:12:10,343 - INFO - Bot is shutting down...
+2025-07-06 02:12:10,344 - INFO - API client closed
+2025-07-06 02:12:10,344 - INFO - Truth Social tracking stopped
+2025-07-06 02:12:10,344 - INFO - Truth Social tracking stopped
+2025-07-06 02:12:10,344 - INFO - Services closed successfully
+2025-07-06 02:12:10,344 - INFO - Background task 'metrics_cleanup' canceled
+2025-07-06 02:12:10,344 - INFO - Background task 'memory_monitor' canceled
+2025-07-06 02:12:10,344 - INFO - Background task 'heartbeat_monitor' canceled
+2025-07-06 02:12:10,344 - INFO - Background task 'metrics_report' canceled
+2025-07-06 02:12:10,344 - INFO - DexScreener tracking stopped
+2025-07-06 02:12:10,344 - INFO - DexScreener tracking stopped
+2025-07-06 02:12:10,345 - INFO - Database connection pool closed successfully
+2025-07-06 02:12:10,346 - INFO - Bot stopped by user
+2025-07-06 02:12:13,895 - INFO - Starting bot...
+2025-07-06 02:12:14,785 - INFO - API client initialized
+2025-07-06 02:12:14,786 - INFO - WebsiteAnalyzer initialized with concurrency limit of 15
+2025-07-06 02:12:14,787 - INFO - Loaded 4 Truth Social tokens from file
+2025-07-06 02:12:14,787 - INFO - Authenticating 4 Truth Social accounts with missing or expired tokens...
+2025-07-06 02:12:14,819 - ERROR - Auth error: Status 403
+2025-07-06 02:12:14,819 - ERROR - Failed to authenticate Truth Social account: alphabtw
+2025-07-06 02:12:14,867 - ERROR - Failed to authenticate Truth Social account: visheshbtw
+2025-07-06 02:12:14,894 - ERROR - Failed to authenticate Truth Social account: sakshambtw
+2025-07-06 02:12:14,923 - ERROR - Failed to authenticate Truth Social account: mayankbtw
+2025-07-06 02:12:14,923 - INFO - Successfully authenticated 0/4 Truth Social accounts
+2025-07-06 02:12:14,923 - INFO - Saved 4 Truth Social tokens to file
+2025-07-06 02:12:14,923 - INFO - All API services initialized
+2025-07-06 02:12:14,924 - INFO - Services provider initialized
+2025-07-06 02:12:14,935 - INFO - Database connection pool established: size=1-10
+2025-07-06 02:12:14,935 - INFO - Database connection successful
+2025-07-06 02:12:14,941 - INFO - Proxy rotator initialized with http protocol
+2025-07-06 02:12:14,941 - INFO - Proxy rotator initialized for Truth commands
+2025-07-06 02:12:14,943 - INFO - Discord Events Registered | Username Ban Server ID: 1313758082974879774
+2025-07-06 02:12:14,943 - INFO - Memory monitor started (threshold: 300MB, interval: 3600s)
+2025-07-06 02:12:15,597 - INFO - Successfully synced 11 command(s)
+2025-07-06 02:12:19,649 - INFO - Logged in as TOPG#4967 (ID: 1340722186100408340)
+2025-07-06 02:12:19,649 - INFO - Bot connected to 7 server(s)
+2025-07-06 02:12:19,649 - INFO - Alerts are enabled.
+2025-07-06 02:12:19,649 - INFO - Starting tracking services...
+2025-07-06 02:12:19,649 - INFO - All tracking services started
+2025-07-06 02:12:19,649 - INFO - Initializing DexScreener live tracker...
+2025-07-06 02:12:19,650 - INFO - Initializing migration tracker...
+2025-07-06 02:12:19,650 - INFO - Initializing about to graduate alert tracker...
+2025-07-06 02:12:19,654 - INFO - No enabled guilds with channels, stopping tracking
+2025-07-06 02:12:19,654 - INFO - DexScreener tracking stopped
+2025-07-06 02:12:19,654 - INFO - DexScreener tracking initialization complete
+2025-07-06 02:12:19,655 - INFO - No enabled guilds with channels, stopping tracking
+2025-07-06 02:12:19,655 - INFO - Migration tracking stopped
+2025-07-06 02:12:19,655 - INFO - Migration tracking initialization complete
+2025-07-06 02:12:19,656 - INFO - No enabled guilds with channels, stopping about to graduate alert tracking
+2025-07-06 02:12:19,656 - INFO - About to graduate alert tracking stopped
+2025-07-06 02:12:19,656 - INFO - About to graduate alert tracking initialization complete
+2025-07-06 02:12:45,433 - INFO - Wallet finder executed by alphabtw_ for 7TY2W2YtwipzF1zPNaBzSAJAzhM9MtZ2VmH9QG4pbonk at 7.93k MC
+2025-07-06 02:24:46,654 - INFO - Bot is shutting down...
+2025-07-06 02:24:46,655 - INFO - API client closed
+2025-07-06 02:24:46,655 - INFO - Truth Social tracking stopped
+2025-07-06 02:24:46,655 - INFO - Truth Social tracking stopped
+2025-07-06 02:24:46,655 - INFO - Services closed successfully
+2025-07-06 02:24:46,655 - INFO - Background task 'metrics_cleanup' canceled
+2025-07-06 02:24:46,655 - INFO - Background task 'memory_monitor' canceled
+2025-07-06 02:24:46,655 - INFO - Background task 'heartbeat_monitor' canceled
+2025-07-06 02:24:46,655 - INFO - Background task 'metrics_report' canceled
+2025-07-06 02:24:46,655 - INFO - DexScreener tracking stopped
+2025-07-06 02:24:46,656 - INFO - DexScreener tracking stopped
+2025-07-06 02:24:46,656 - INFO - Database connection pool closed successfully
+2025-07-06 02:24:46,657 - INFO - Bot stopped by user
+2025-07-06 02:25:02,319 - INFO - Starting bot...
+2025-07-06 02:25:03,161 - INFO - API client initialized
+2025-07-06 02:25:03,161 - INFO - WebsiteAnalyzer initialized with concurrency limit of 15
+2025-07-06 02:25:03,162 - INFO - Loaded 4 Truth Social tokens from file
+2025-07-06 02:25:03,162 - INFO - Authenticating 4 Truth Social accounts with missing or expired tokens...
+2025-07-06 02:25:03,196 - ERROR - Auth error: Status 403
+2025-07-06 02:25:03,197 - ERROR - Failed to authenticate Truth Social account: alphabtw
+2025-07-06 02:25:03,222 - ERROR - Failed to authenticate Truth Social account: visheshbtw
+2025-07-06 02:25:03,249 - ERROR - Failed to authenticate Truth Social account: sakshambtw
+2025-07-06 02:25:03,278 - ERROR - Failed to authenticate Truth Social account: mayankbtw
+2025-07-06 02:25:03,278 - INFO - Successfully authenticated 0/4 Truth Social accounts
+2025-07-06 02:25:03,278 - INFO - Saved 4 Truth Social tokens to file
+2025-07-06 02:25:03,278 - INFO - All API services initialized
+2025-07-06 02:25:03,278 - INFO - Services provider initialized
+2025-07-06 02:25:03,290 - INFO - Database connection pool established: size=1-10
+2025-07-06 02:25:03,290 - INFO - Database connection successful
+2025-07-06 02:25:03,296 - INFO - Proxy rotator initialized with http protocol
+2025-07-06 02:25:03,296 - INFO - Proxy rotator initialized for Truth commands
+2025-07-06 02:25:03,297 - INFO - Discord Events Registered | Username Ban Server ID: 1313758082974879774
+2025-07-06 02:25:03,298 - INFO - Memory monitor started (threshold: 300MB, interval: 3600s)
+2025-07-06 02:25:03,804 - INFO - Successfully synced 11 command(s)
+2025-07-06 02:25:07,986 - INFO - Logged in as TOPG#4967 (ID: 1340722186100408340)
+2025-07-06 02:25:07,986 - INFO - Bot connected to 7 server(s)
+2025-07-06 02:25:07,986 - INFO - Alerts are enabled.
+2025-07-06 02:25:07,986 - INFO - Starting tracking services...
+2025-07-06 02:25:07,986 - INFO - All tracking services started
+2025-07-06 02:25:07,986 - INFO - Initializing DexScreener live tracker...
+2025-07-06 02:25:07,986 - INFO - Initializing migration tracker...
+2025-07-06 02:25:07,987 - INFO - Initializing about to graduate alert tracker...
+2025-07-06 02:25:07,991 - INFO - No enabled guilds with channels, stopping tracking
+2025-07-06 02:25:07,991 - INFO - DexScreener tracking stopped
+2025-07-06 02:25:07,991 - INFO - DexScreener tracking initialization complete
+2025-07-06 02:25:07,991 - INFO - No enabled guilds with channels, stopping tracking
+2025-07-06 02:25:07,991 - INFO - Migration tracking stopped
+2025-07-06 02:25:07,991 - INFO - Migration tracking initialization complete
+2025-07-06 02:25:07,992 - INFO - No enabled guilds with channels, stopping about to graduate alert tracking
+2025-07-06 02:25:07,992 - INFO - About to graduate alert tracking stopped
+2025-07-06 02:25:07,992 - INFO - About to graduate alert tracking initialization complete
+2025-07-06 02:25:23,882 - ERROR - Error in wallet finder command: 'coroutine' object has no attribute 'to_dict'
+2025-07-06 02:25:47,973 - INFO - Bot is shutting down...
+2025-07-06 02:25:47,973 - INFO - API client closed
+2025-07-06 02:25:47,973 - INFO - Truth Social tracking stopped
+2025-07-06 02:25:47,973 - INFO - Truth Social tracking stopped
+2025-07-06 02:25:47,973 - INFO - Services closed successfully
+2025-07-06 02:25:47,973 - INFO - Background task 'metrics_cleanup' canceled
+2025-07-06 02:25:47,973 - INFO - Background task 'memory_monitor' canceled
+2025-07-06 02:25:47,973 - INFO - Background task 'heartbeat_monitor' canceled
+2025-07-06 02:25:47,974 - INFO - Background task 'metrics_report' canceled
+2025-07-06 02:25:47,974 - INFO - DexScreener tracking stopped
+2025-07-06 02:25:47,974 - INFO - DexScreener tracking stopped
+2025-07-06 02:25:47,974 - INFO - Database connection pool closed successfully
+2025-07-06 02:25:47,980 - INFO - Bot stopped by user
+2025-07-06 02:25:51,996 - INFO - Starting bot...
+2025-07-06 02:25:52,836 - INFO - API client initialized
+2025-07-06 02:25:52,836 - INFO - WebsiteAnalyzer initialized with concurrency limit of 15
+2025-07-06 02:25:52,838 - INFO - Loaded 4 Truth Social tokens from file
+2025-07-06 02:25:52,838 - INFO - Authenticating 4 Truth Social accounts with missing or expired tokens...
+2025-07-06 02:25:52,916 - ERROR - Auth error: Status 403
+2025-07-06 02:25:52,916 - ERROR - Failed to authenticate Truth Social account: alphabtw
+2025-07-06 02:25:52,951 - ERROR - Failed to authenticate Truth Social account: visheshbtw
+2025-07-06 02:25:53,016 - ERROR - Failed to authenticate Truth Social account: sakshambtw
+2025-07-06 02:25:53,100 - ERROR - Failed to authenticate Truth Social account: mayankbtw
+2025-07-06 02:25:53,100 - INFO - Successfully authenticated 0/4 Truth Social accounts
+2025-07-06 02:25:53,101 - INFO - Saved 4 Truth Social tokens to file
+2025-07-06 02:25:53,101 - INFO - All API services initialized
+2025-07-06 02:25:53,101 - INFO - Services provider initialized
+2025-07-06 02:25:53,112 - INFO - Database connection pool established: size=1-10
+2025-07-06 02:25:53,112 - INFO - Database connection successful
+2025-07-06 02:25:53,119 - INFO - Proxy rotator initialized with http protocol
+2025-07-06 02:25:53,119 - INFO - Proxy rotator initialized for Truth commands
+2025-07-06 02:25:53,120 - INFO - Discord Events Registered | Username Ban Server ID: 1313758082974879774
+2025-07-06 02:25:53,121 - INFO - Memory monitor started (threshold: 300MB, interval: 3600s)
+2025-07-06 02:25:53,658 - INFO - Successfully synced 11 command(s)
+2025-07-06 02:25:57,655 - INFO - Logged in as TOPG#4967 (ID: 1340722186100408340)
+2025-07-06 02:25:57,655 - INFO - Bot connected to 7 server(s)
+2025-07-06 02:25:57,655 - INFO - Alerts are enabled.
+2025-07-06 02:25:57,655 - INFO - Starting tracking services...
+2025-07-06 02:25:57,655 - INFO - All tracking services started
+2025-07-06 02:25:57,655 - INFO - Initializing DexScreener live tracker...
+2025-07-06 02:25:57,656 - INFO - Initializing migration tracker...
+2025-07-06 02:25:57,656 - INFO - Initializing about to graduate alert tracker...
+2025-07-06 02:25:57,659 - INFO - No enabled guilds with channels, stopping tracking
+2025-07-06 02:25:57,659 - INFO - DexScreener tracking stopped
+2025-07-06 02:25:57,659 - INFO - DexScreener tracking initialization complete
+2025-07-06 02:25:57,660 - INFO - No enabled guilds with channels, stopping about to graduate alert tracking
+2025-07-06 02:25:57,660 - INFO - About to graduate alert tracking stopped
+2025-07-06 02:25:57,660 - INFO - About to graduate alert tracking initialization complete
+2025-07-06 02:25:57,661 - INFO - No enabled guilds with channels, stopping tracking
+2025-07-06 02:25:57,661 - INFO - Migration tracking stopped
+2025-07-06 02:25:57,661 - INFO - Migration tracking initialization complete
+2025-07-06 02:26:06,761 - ERROR - Error creating wallet finder embed: name 'format_market_cap_display' is not defined
+2025-07-06 02:27:30,750 - INFO - Bot is shutting down...
+2025-07-06 02:27:30,750 - INFO - API client closed
+2025-07-06 02:27:30,751 - INFO - Truth Social tracking stopped
+2025-07-06 02:27:30,751 - INFO - Truth Social tracking stopped
+2025-07-06 02:27:30,751 - INFO - Services closed successfully
+2025-07-06 02:27:30,751 - INFO - Background task 'metrics_cleanup' canceled
+2025-07-06 02:27:30,751 - INFO - Background task 'memory_monitor' canceled
+2025-07-06 02:27:30,751 - INFO - Background task 'heartbeat_monitor' canceled
+2025-07-06 02:27:30,751 - INFO - Background task 'metrics_report' canceled
+2025-07-06 02:27:30,751 - INFO - DexScreener tracking stopped
+2025-07-06 02:27:30,751 - INFO - DexScreener tracking stopped
+2025-07-06 02:27:30,751 - INFO - Database connection pool closed successfully
+2025-07-06 02:27:30,753 - INFO - Bot stopped by user
+2025-07-06 02:27:38,495 - INFO - Starting bot...
+2025-07-06 02:27:39,631 - INFO - API client initialized
+2025-07-06 02:27:39,631 - INFO - WebsiteAnalyzer initialized with concurrency limit of 15
+2025-07-06 02:27:39,632 - INFO - Loaded 4 Truth Social tokens from file
+2025-07-06 02:27:39,632 - INFO - Authenticating 4 Truth Social accounts with missing or expired tokens...
+2025-07-06 02:27:39,677 - ERROR - Auth error: Status 403
+2025-07-06 02:27:39,677 - ERROR - Failed to authenticate Truth Social account: alphabtw
+2025-07-06 02:27:39,705 - ERROR - Failed to authenticate Truth Social account: visheshbtw
+2025-07-06 02:27:39,731 - ERROR - Failed to authenticate Truth Social account: sakshambtw
+2025-07-06 02:27:39,756 - ERROR - Failed to authenticate Truth Social account: mayankbtw
+2025-07-06 02:27:39,756 - INFO - Successfully authenticated 0/4 Truth Social accounts
+2025-07-06 02:27:39,756 - INFO - Saved 4 Truth Social tokens to file
+2025-07-06 02:27:39,757 - INFO - All API services initialized
+2025-07-06 02:27:39,757 - INFO - Services provider initialized
+2025-07-06 02:27:39,769 - INFO - Database connection pool established: size=1-10
+2025-07-06 02:27:39,769 - INFO - Database connection successful
+2025-07-06 02:27:39,776 - INFO - Proxy rotator initialized with http protocol
+2025-07-06 02:27:39,776 - INFO - Proxy rotator initialized for Truth commands
+2025-07-06 02:27:39,777 - INFO - Discord Events Registered | Username Ban Server ID: 1313758082974879774
+2025-07-06 02:27:39,778 - INFO - Memory monitor started (threshold: 300MB, interval: 3600s)
+2025-07-06 02:27:40,313 - INFO - Successfully synced 11 command(s)
+2025-07-06 02:27:44,477 - INFO - Logged in as TOPG#4967 (ID: 1340722186100408340)
+2025-07-06 02:27:44,477 - INFO - Bot connected to 7 server(s)
+2025-07-06 02:27:44,477 - INFO - Alerts are enabled.
+2025-07-06 02:27:44,477 - INFO - Starting tracking services...
+2025-07-06 02:27:44,478 - INFO - All tracking services started
+2025-07-06 02:27:44,478 - INFO - Initializing DexScreener live tracker...
+2025-07-06 02:27:44,478 - INFO - Initializing migration tracker...
+2025-07-06 02:27:44,478 - INFO - Initializing about to graduate alert tracker...
+2025-07-06 02:27:44,482 - INFO - No enabled guilds with channels, stopping tracking
+2025-07-06 02:27:44,482 - INFO - DexScreener tracking stopped
+2025-07-06 02:27:44,482 - INFO - DexScreener tracking initialization complete
+2025-07-06 02:27:44,483 - INFO - No enabled guilds with channels, stopping tracking
+2025-07-06 02:27:44,483 - INFO - Migration tracking stopped
+2025-07-06 02:27:44,483 - INFO - Migration tracking initialization complete
+2025-07-06 02:27:44,484 - INFO - No enabled guilds with channels, stopping about to graduate alert tracking
+2025-07-06 02:27:44,484 - INFO - About to graduate alert tracking stopped
+2025-07-06 02:27:44,484 - INFO - About to graduate alert tracking initialization complete
+2025-07-06 02:27:51,910 - INFO - Wallet finder executed by alphabtw_ for 7TY2W2YtwipzF1zPNaBzSAJAzhM9MtZ2VmH9QG4pbonk at 7.93k MC
+2025-07-06 02:33:01,731 - INFO - Bot is shutting down...
+2025-07-06 02:33:01,731 - INFO - API client closed
+2025-07-06 02:33:01,731 - INFO - Truth Social tracking stopped
+2025-07-06 02:33:01,731 - INFO - Truth Social tracking stopped
+2025-07-06 02:33:01,731 - INFO - Services closed successfully
+2025-07-06 02:33:01,732 - INFO - Background task 'metrics_cleanup' canceled
+2025-07-06 02:33:01,732 - INFO - Background task 'memory_monitor' canceled
+2025-07-06 02:33:01,732 - INFO - Background task 'heartbeat_monitor' canceled
+2025-07-06 02:33:01,732 - INFO - Background task 'metrics_report' canceled
+2025-07-06 02:33:01,732 - INFO - DexScreener tracking stopped
+2025-07-06 02:33:01,732 - INFO - DexScreener tracking stopped
+2025-07-06 02:33:01,732 - INFO - Database connection pool closed successfully
+2025-07-06 02:33:01,733 - INFO - Bot stopped by user
+2025-07-06 02:33:41,039 - INFO - Starting bot...
+2025-07-06 02:33:42,209 - INFO - API client initialized
+2025-07-06 02:33:42,209 - INFO - WebsiteAnalyzer initialized with concurrency limit of 15
+2025-07-06 02:33:42,215 - INFO - Loaded 4 Truth Social tokens from file
+2025-07-06 02:33:42,215 - INFO - Authenticating 4 Truth Social accounts with missing or expired tokens...
+2025-07-06 02:33:42,244 - ERROR - Auth error: Status 403
+2025-07-06 02:33:42,244 - ERROR - Failed to authenticate Truth Social account: alphabtw
+2025-07-06 02:33:42,272 - ERROR - Failed to authenticate Truth Social account: visheshbtw
+2025-07-06 02:33:42,299 - ERROR - Failed to authenticate Truth Social account: sakshambtw
+2025-07-06 02:33:42,326 - ERROR - Failed to authenticate Truth Social account: mayankbtw
+2025-07-06 02:33:42,327 - INFO - Successfully authenticated 0/4 Truth Social accounts
+2025-07-06 02:33:42,327 - INFO - Saved 4 Truth Social tokens to file
+2025-07-06 02:33:42,328 - INFO - All API services initialized
+2025-07-06 02:33:42,328 - INFO - Services provider initialized
+2025-07-06 02:33:42,340 - INFO - Database connection pool established: size=1-10
+2025-07-06 02:33:42,340 - INFO - Database connection successful
+2025-07-06 02:33:42,348 - INFO - Proxy rotator initialized with http protocol
+2025-07-06 02:33:42,348 - INFO - Proxy rotator initialized for Truth commands
+2025-07-06 02:33:42,349 - INFO - Discord Events Registered | Username Ban Server ID: 1313758082974879774
+2025-07-06 02:33:42,350 - INFO - Memory monitor started (threshold: 300MB, interval: 3600s)
+2025-07-06 02:33:42,958 - INFO - Successfully synced 11 command(s)
+2025-07-06 02:33:47,148 - INFO - Logged in as TOPG#4967 (ID: 1340722186100408340)
+2025-07-06 02:33:47,149 - INFO - Bot connected to 7 server(s)
+2025-07-06 02:33:47,149 - INFO - Alerts are enabled.
+2025-07-06 02:33:47,149 - INFO - Starting tracking services...
+2025-07-06 02:33:47,149 - INFO - All tracking services started
+2025-07-06 02:33:47,149 - INFO - Initializing DexScreener live tracker...
+2025-07-06 02:33:47,149 - INFO - Initializing migration tracker...
+2025-07-06 02:33:47,149 - INFO - Initializing about to graduate alert tracker...
+2025-07-06 02:33:47,154 - INFO - No enabled guilds with channels, stopping tracking
+2025-07-06 02:33:47,154 - INFO - DexScreener tracking stopped
+2025-07-06 02:33:47,154 - INFO - DexScreener tracking initialization complete
+2025-07-06 02:33:47,154 - INFO - No enabled guilds with channels, stopping tracking
+2025-07-06 02:33:47,155 - INFO - Migration tracking stopped
+2025-07-06 02:33:47,155 - INFO - Migration tracking initialization complete
+2025-07-06 02:33:47,155 - INFO - No enabled guilds with channels, stopping about to graduate alert tracking
+2025-07-06 02:33:47,155 - INFO - About to graduate alert tracking stopped
+2025-07-06 02:33:47,155 - INFO - About to graduate alert tracking initialization complete
+2025-07-06 02:34:20,847 - INFO - wallet: FLYcieUWrVtrs1iCqLjGKzJ3krFWtSRQFBLj5iaAG2Me
+2025-07-06 02:34:20,847 - INFO - total usd: 1004.7252069168089
+2025-07-06 02:34:20,847 - INFO - total_tokens: 85488445.444917
+2025-07-06 02:34:20,847 - INFO - avg_entry_price: 1.1752760290444002e-05
+2025-07-06 02:34:20,847 - INFO - avg_entry_mc: 11752.760290444003
+2025-07-06 02:34:20,847 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,848 - INFO - wallet: 9UA7YoNkEFtG1EMk4RN697Fa5fYhFyxsGsccCZrDrs1v
+2025-07-06 02:34:20,848 - INFO - total usd: 797.3595291137696
+2025-07-06 02:34:20,848 - INFO - total_tokens: 63835338.050665
+2025-07-06 02:34:20,848 - INFO - avg_entry_price: 1.249087971431935e-05
+2025-07-06 02:34:20,848 - INFO - avg_entry_mc: 12490.87971431935
+2025-07-06 02:34:20,848 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,848 - INFO - wallet: E4mNEbBGTfjeN238fQ9FrMfBShRi3o4BjyDhrmNAHqHZ
+2025-07-06 02:34:20,848 - INFO - total usd: 732.1485900878906
+2025-07-06 02:34:20,848 - INFO - total_tokens: 127224406.080079
+2025-07-06 02:34:20,848 - INFO - avg_entry_price: 5.75478096260126e-06
+2025-07-06 02:34:20,849 - INFO - avg_entry_mc: 5754.78096260126
+2025-07-06 02:34:20,849 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,849 - INFO - wallet: HBE6KTxSFJrnXRnSK3Ti4CaWA1qaHbXkV7CPVAyZtqSe
+2025-07-06 02:34:20,849 - INFO - total usd: 652.3526795196533
+2025-07-06 02:34:20,849 - INFO - total_tokens: 74711082.832664
+2025-07-06 02:34:20,849 - INFO - avg_entry_price: 8.731672126621112e-06
+2025-07-06 02:34:20,849 - INFO - avg_entry_mc: 8731.672126621112
+2025-07-06 02:34:20,849 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,849 - INFO - wallet: 5NhSkx2YTMUBTY1dukLwxJ24Y3J5yLAT9Wvk8vFMhhmJ
+2025-07-06 02:34:20,849 - INFO - total usd: 608.9219009857178
+2025-07-06 02:34:20,849 - INFO - total_tokens: 72961067.226859
+2025-07-06 02:34:20,849 - INFO - avg_entry_price: 8.34584695824675e-06
+2025-07-06 02:34:20,849 - INFO - avg_entry_mc: 8345.84695824675
+2025-07-06 02:34:20,850 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,850 - INFO - wallet: 47QSnmF9BGGYdHNcsW9wg64NJbA4WeYtBMHSfm4NcqKV
+2025-07-06 02:34:20,850 - INFO - total usd: 579.8616833496094
+2025-07-06 02:34:20,850 - INFO - total_tokens: 66154613.993583
+2025-07-06 02:34:20,850 - INFO - avg_entry_price: 8.765249290183387e-06
+2025-07-06 02:34:20,850 - INFO - avg_entry_mc: 8765.249290183387
+2025-07-06 02:34:20,850 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,850 - INFO - wallet: EHg5YkU2SZBTvuT87rUsvxArGp3HLeye1fXaSDfuMyaf
+2025-07-06 02:34:20,850 - INFO - total usd: 507.3789729309082
+2025-07-06 02:34:20,850 - INFO - total_tokens: 50340151.875631
+2025-07-06 02:34:20,850 - INFO - avg_entry_price: 1.0079011564852343e-05
+2025-07-06 02:34:20,850 - INFO - avg_entry_mc: 10079.011564852344
+2025-07-06 02:34:20,850 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,850 - INFO - wallet: HKU7TfwNfrTAHm3R2Hj8HiqyhYfcLg1b41MJ5b3VKf3C
+2025-07-06 02:34:20,851 - INFO - total usd: 507.37897293090816
+2025-07-06 02:34:20,851 - INFO - total_tokens: 48366633.588402
+2025-07-06 02:34:20,851 - INFO - avg_entry_price: 1.0490268503048645e-05
+2025-07-06 02:34:20,851 - INFO - avg_entry_mc: 10490.268503048645
+2025-07-06 02:34:20,851 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,851 - INFO - wallet: CfniRdcYdAC2yeq7nW38q1yg87Zv6BGvKxxpPimicDa7
+2025-07-06 02:34:20,851 - INFO - total usd: 447.4430245170043
+2025-07-06 02:34:20,851 - INFO - total_tokens: 63119605.002795
+2025-07-06 02:34:20,851 - INFO - avg_entry_price: 7.088812176457553e-06
+2025-07-06 02:34:20,851 - INFO - avg_entry_mc: 7088.812176457553
+2025-07-06 02:34:20,851 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,851 - INFO - wallet: Dwf1RDeYwLh948Efa4DFhomnzXD7UmSUhAKB9bnRuvB8
+2025-07-06 02:34:20,851 - INFO - total usd: 439.2891540527344
+2025-07-06 02:34:20,852 - INFO - total_tokens: 96435528.306377
+2025-07-06 02:34:20,852 - INFO - avg_entry_price: 4.555262585974608e-06
+2025-07-06 02:34:20,852 - INFO - avg_entry_mc: 4555.262585974609
+2025-07-06 02:34:20,852 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,852 - INFO - wallet: As7HjL7dzzvbRbaD3WCun47robib2kmAKRXMvjHkSMB5
+2025-07-06 02:34:20,852 - INFO - total usd: 439.2891540527344
+2025-07-06 02:34:20,852 - INFO - total_tokens: 33319455.282852
+2025-07-06 02:34:20,852 - INFO - avg_entry_price: 1.3184163736278618e-05
+2025-07-06 02:34:20,852 - INFO - avg_entry_mc: 13184.163736278617
+2025-07-06 02:34:20,852 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,852 - INFO - wallet: 4eNuKJf5xhm2zVGkrTTzB3bMBY7tyZUdTcpBtUDqRj7q
+2025-07-06 02:34:20,853 - INFO - total usd: 435.9270565446235
+2025-07-06 02:34:20,853 - INFO - total_tokens: 44886471.735187
+2025-07-06 02:34:20,853 - INFO - avg_entry_price: 9.711769263497168e-06
+2025-07-06 02:34:20,853 - INFO - avg_entry_mc: 9711.769263497168
+2025-07-06 02:34:20,853 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,853 - INFO - wallet: CyaE1VxvBrahnPWkqm5VsdCvyS2QmNht2UFrKJHga54o
+2025-07-06 02:34:20,853 - INFO - total usd: 434.9459770202637
+2025-07-06 02:34:20,853 - INFO - total_tokens: 44953136.057857
+2025-07-06 02:34:20,853 - INFO - avg_entry_price: 9.675542468504662e-06
+2025-07-06 02:34:20,853 - INFO - avg_entry_mc: 9675.542468504662
+2025-07-06 02:34:20,853 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,853 - INFO - wallet: BBPKQwYLyiPjAX2KTFxanR7vxwa7majAF7c7yoaRX8oR
+2025-07-06 02:34:20,854 - INFO - total usd: 434.9294055175782
+2025-07-06 02:34:20,854 - INFO - total_tokens: 34430811.081128
+2025-07-06 02:34:20,854 - INFO - avg_entry_price: 1.263198257202744e-05
+2025-07-06 02:34:20,854 - INFO - avg_entry_mc: 12631.98257202744
+2025-07-06 02:34:20,854 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,854 - INFO - wallet: 777NtBUTG9tVu8Zp1YuuF3T2Hxi9cJzbbG67cHWi1aZ5
+2025-07-06 02:34:20,854 - INFO - total usd: 434.89626251220704
+2025-07-06 02:34:20,854 - INFO - total_tokens: 35517704.878816
+2025-07-06 02:34:20,854 - INFO - avg_entry_price: 1.2244492260860987e-05
+2025-07-06 02:34:20,854 - INFO - avg_entry_mc: 12244.492260860987
+2025-07-06 02:34:20,855 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,855 - INFO - wallet: 9hTfnPgW2fc5dfBjK6cxkXmuQma6XYoutnydBzJtDf8v
+2025-07-06 02:34:20,855 - INFO - total usd: 434.89626251220704
+2025-07-06 02:34:20,855 - INFO - total_tokens: 31795933.43116
+2025-07-06 02:34:20,855 - INFO - avg_entry_price: 1.367773219974127e-05
+2025-07-06 02:34:20,855 - INFO - avg_entry_mc: 13677.732199741271
+2025-07-06 02:34:20,855 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,855 - INFO - wallet: 241cfYsviuWYLBB71RxXdrnLLYHKKaSGEp3xJ4zkrFUx
+2025-07-06 02:34:20,855 - INFO - total usd: 433.93175492985534
+2025-07-06 02:34:20,855 - INFO - total_tokens: 44316420.467926
+2025-07-06 02:34:20,855 - INFO - avg_entry_price: 9.791669777208503e-06
+2025-07-06 02:34:20,855 - INFO - avg_entry_mc: 9791.669777208503
+2025-07-06 02:34:20,856 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,856 - INFO - wallet: 7yd579zXmWPoxEE22BUYTzAo8nyMmQtPyEWS3g1BFhH4
+2025-07-06 02:34:20,856 - INFO - total usd: 422.3333070990345
+2025-07-06 02:34:20,856 - INFO - total_tokens: 57059322.667952
+2025-07-06 02:34:20,856 - INFO - avg_entry_price: 7.401653005184421e-06
+2025-07-06 02:34:20,856 - INFO - avg_entry_mc: 7401.653005184421
+2025-07-06 02:34:20,856 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,856 - INFO - wallet: 5xpb4js5WjjT3NQaj3MFDZVy2k7VS5RHW1C1DA4PXJcQ
+2025-07-06 02:34:20,857 - INFO - total usd: 384.1583652191162
+2025-07-06 02:34:20,857 - INFO - total_tokens: 28276719.186891
+2025-07-06 02:34:20,857 - INFO - avg_entry_price: 1.3585676707402846e-05
+2025-07-06 02:34:20,857 - INFO - avg_entry_mc: 13585.676707402847
+2025-07-06 02:34:20,857 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,857 - INFO - wallet: 6fE4ZG1qcwyC5g3QzYEth2vLzf3RBLSCH7c42mcQZb26
+2025-07-06 02:34:20,857 - INFO - total usd: 384.1583652191162
+2025-07-06 02:34:20,857 - INFO - total_tokens: 31181556.395521
+2025-07-06 02:34:20,857 - INFO - avg_entry_price: 1.2320051005353206e-05
+2025-07-06 02:34:20,858 - INFO - avg_entry_mc: 12320.051005353205
+2025-07-06 02:34:20,858 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,858 - INFO - wallet: BjyLMQW4AC2wyAHeaTcppVYCoqs5pWFMTfTiNgeM4vch
+2025-07-06 02:34:20,858 - INFO - total usd: 384.1583652191162
+2025-07-06 02:34:20,858 - INFO - total_tokens: 25818994.789695
+2025-07-06 02:34:20,858 - INFO - avg_entry_price: 1.4878904788827926e-05
+2025-07-06 02:34:20,858 - INFO - avg_entry_mc: 14878.904788827926
+2025-07-06 02:34:20,858 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,858 - INFO - wallet: 2KZYTJrAfHVn8kn6WR5sHrXVzuMMFtpnazqxoHE2qDSg
+2025-07-06 02:34:20,858 - INFO - total usd: 376.92666567993166
+2025-07-06 02:34:20,859 - INFO - total_tokens: 48967803.549435
+2025-07-06 02:34:20,859 - INFO - avg_entry_price: 7.697438691515105e-06
+2025-07-06 02:34:20,859 - INFO - avg_entry_mc: 7697.438691515105
+2025-07-06 02:34:20,859 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,859 - INFO - wallet: 4nvNc7dDEqKKLM4Sr9Kgk3t1of6f8G66kT64VoC95LYh
+2025-07-06 02:34:20,859 - INFO - total usd: 366.6810788114087
+2025-07-06 02:34:20,859 - INFO - total_tokens: 23246871.594857
+2025-07-06 02:34:20,859 - INFO - avg_entry_price: 1.5773351580456574e-05
+2025-07-06 02:34:20,859 - INFO - avg_entry_mc: 15773.351580456574
+2025-07-06 02:34:20,859 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,860 - INFO - wallet: DkjBTpVRLfWeCnH6WDhEw3Bz4kUoNL7Rgq9WH8SQ5M8a
+2025-07-06 02:34:20,860 - INFO - total usd: 366.0742950439453
+2025-07-06 02:34:20,860 - INFO - total_tokens: 43245572.524002
+2025-07-06 02:34:20,860 - INFO - avg_entry_price: 8.465012108251499e-06
+2025-07-06 02:34:20,860 - INFO - avg_entry_mc: 8465.0121082515
+2025-07-06 02:34:20,860 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,860 - INFO - wallet: ApxaSC9STiQvubYgtHTrvtBXQCxU2v2qwJtjnnr3nHRQ
+2025-07-06 02:34:20,860 - INFO - total usd: 358.22888318192366
+2025-07-06 02:34:20,860 - INFO - total_tokens: 23818220.519812
+2025-07-06 02:34:20,860 - INFO - avg_entry_price: 1.5040119512032766e-05
+2025-07-06 02:34:20,860 - INFO - avg_entry_mc: 15040.119512032765
+2025-07-06 02:34:20,861 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,861 - INFO - wallet: DdEoJ39H5u7tqemDRQc9G5scufBSjFAjuetVaphZM1vt
+2025-07-06 02:34:20,861 - INFO - total usd: 289.96398468017577
+2025-07-06 02:34:20,861 - INFO - total_tokens: 23722461.160614
+2025-07-06 02:34:20,861 - INFO - avg_entry_price: 1.222318302965959e-05
+2025-07-06 02:34:20,861 - INFO - avg_entry_mc: 12223.18302965959
+2025-07-06 02:34:20,861 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,861 - INFO - wallet: AYoaTnJ5eAnizHtAvw95a1GQC6svENxYpWVJg5pmRjgh
+2025-07-06 02:34:20,861 - INFO - total usd: 289.9516504669189
+2025-07-06 02:34:20,861 - INFO - total_tokens: 30322616.937634
+2025-07-06 02:34:20,861 - INFO - avg_entry_price: 9.562223836526926e-06
+2025-07-06 02:34:20,861 - INFO - avg_entry_mc: 9562.223836526926
+2025-07-06 02:34:20,861 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,861 - INFO - wallet: GKfqes6K9AaZLG9onzKkMDTnsDL5JVWxSSdftuRXBBDq
+2025-07-06 02:34:20,861 - INFO - total usd: 289.9308416748047
+2025-07-06 02:34:20,862 - INFO - total_tokens: 32747494.217286
+2025-07-06 02:34:20,862 - INFO - avg_entry_price: 8.853527532551259e-06
+2025-07-06 02:34:20,862 - INFO - avg_entry_mc: 8853.52753255126
+2025-07-06 02:34:20,862 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,862 - INFO - wallet: BunJme7F9VEDszKqT7JVGXHStmSB6ytqRdXEvpRqJasq
+2025-07-06 02:34:20,862 - INFO - total usd: 289.9308416748047
+2025-07-06 02:34:20,862 - INFO - total_tokens: 26132203.068927
+2025-07-06 02:34:20,862 - INFO - avg_entry_price: 1.1094772258966277e-05
+2025-07-06 02:34:20,862 - INFO - avg_entry_mc: 11094.772258966277
+2025-07-06 02:34:20,862 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,862 - INFO - wallet: E6pP9QF5nJXUrZXbq6egk5j8i5FPNNttvQKbowvcWK6s
+2025-07-06 02:34:20,862 - INFO - total usd: 289.9308416748047
+2025-07-06 02:34:20,863 - INFO - total_tokens: 33639059.221572
+2025-07-06 02:34:20,863 - INFO - avg_entry_price: 8.618874855123129e-06
+2025-07-06 02:34:20,863 - INFO - avg_entry_mc: 8618.87485512313
+2025-07-06 02:34:20,863 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,863 - INFO - wallet: 5hPbaXZoRjm3SRe3p9y7sB6vK3aWxMbQUEA61g1T2YtW
+2025-07-06 02:34:20,863 - INFO - total usd: 289.9308416748047
+2025-07-06 02:34:20,863 - INFO - total_tokens: 36900413.21288
+2025-07-06 02:34:20,863 - INFO - avg_entry_price: 7.857116396019247e-06
+2025-07-06 02:34:20,863 - INFO - avg_entry_mc: 7857.116396019246
+2025-07-06 02:34:20,863 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,863 - INFO - wallet: Hwny4D8C3QubBnyPJkEwbgzwKtpGR6ZM3qHox2mB1ZCx
+2025-07-06 02:34:20,864 - INFO - total usd: 289.9308416748047
+2025-07-06 02:34:20,864 - INFO - total_tokens: 24664293.646538
+2025-07-06 02:34:20,864 - INFO - avg_entry_price: 1.1755083921306653e-05
+2025-07-06 02:34:20,864 - INFO - avg_entry_mc: 11755.083921306654
+2025-07-06 02:34:20,864 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,864 - INFO - wallet: pSzTEi8BmBWF9kKDzb2gutJzDozYf9djvnrcEXduCke
+2025-07-06 02:34:20,864 - INFO - total usd: 275.465785446167
+2025-07-06 02:34:20,864 - INFO - total_tokens: 19479410.757676
+2025-07-06 02:34:20,864 - INFO - avg_entry_price: 1.4141381835054622e-05
+2025-07-06 02:34:20,864 - INFO - avg_entry_mc: 14141.381835054623
+2025-07-06 02:34:20,864 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,864 - INFO - wallet: B3PUHnt5NALh2Nye9EmJzSjL22fvELBudA84e1xdLJK2
+2025-07-06 02:34:20,865 - INFO - total usd: 268.2166858291626
+2025-07-06 02:34:20,865 - INFO - total_tokens: 16414879.992966
+2025-07-06 02:34:20,865 - INFO - avg_entry_price: 1.6339850546826848e-05
+2025-07-06 02:34:20,865 - INFO - avg_entry_mc: 16339.850546826849
+2025-07-06 02:34:20,865 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,865 - INFO - wallet: 5XVKfruE4Zzeoz3aqBQfFMb5aSscY5nSyc6VwtQwNiid
+2025-07-06 02:34:20,865 - INFO - total usd: 250.14910624234489
+2025-07-06 02:34:20,865 - INFO - total_tokens: 18245629.251276
+2025-07-06 02:34:20,866 - INFO - avg_entry_price: 1.3710083812256066e-05
+2025-07-06 02:34:20,866 - INFO - avg_entry_mc: 13710.083812256065
+2025-07-06 02:34:20,866 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,866 - INFO - wallet: CcgcFLV29qmgCxH8R2edjew8VGeRSQAgr2iDAKoUsjfP
+2025-07-06 02:34:20,866 - INFO - total usd: 248.82379480371526
+2025-07-06 02:34:20,866 - INFO - total_tokens: 17079180.831123
+2025-07-06 02:34:20,866 - INFO - avg_entry_price: 1.456883660077475e-05
+2025-07-06 02:34:20,866 - INFO - avg_entry_mc: 14568.83660077475
+2025-07-06 02:34:20,866 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,866 - INFO - wallet: m89joPo8qqRkijvQtGF3sHjtYt2e4E9wxz7xek5WiNS
+2025-07-06 02:34:20,866 - INFO - total usd: 225.93706080082572
+2025-07-06 02:34:20,866 - INFO - total_tokens: 14661085.270291
+2025-07-06 02:34:20,867 - INFO - avg_entry_price: 1.5410664124480683e-05
+2025-07-06 02:34:20,867 - INFO - avg_entry_mc: 15410.664124480683
+2025-07-06 02:34:20,867 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,867 - INFO - wallet: FsG3BaPmRTdSrPaivbgJsFNCCa8cPfkUtk8VLWXkHpHP
+2025-07-06 02:34:20,867 - INFO - total usd: 217.44813125610352
+2025-07-06 02:34:20,867 - INFO - total_tokens: 21255707.936405
+2025-07-06 02:34:20,867 - INFO - avg_entry_price: 1.0230105339548655e-05
+2025-07-06 02:34:20,867 - INFO - avg_entry_mc: 10230.105339548654
+2025-07-06 02:34:20,867 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,868 - INFO - wallet: 3XeBnX6RsyDPx35c8N1upQ1oExv2weyEdNSaD1YjzyNQ
+2025-07-06 02:34:20,868 - INFO - total usd: 217.44813125610352
+2025-07-06 02:34:20,868 - INFO - total_tokens: 22643126.198203
+2025-07-06 02:34:20,868 - INFO - avg_entry_price: 9.60327338869668e-06
+2025-07-06 02:34:20,868 - INFO - avg_entry_mc: 9603.27338869668
+2025-07-06 02:34:20,868 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,868 - INFO - wallet: Dt6fJeaToMrAkvzbZFrRccGTJY7cwtdoR8kCrYgZzGYC
+2025-07-06 02:34:20,868 - INFO - total usd: 217.44408279418946
+2025-07-06 02:34:20,868 - INFO - total_tokens: 29039322.75701
+2025-07-06 02:34:20,868 - INFO - avg_entry_price: 7.487918523915959e-06
+2025-07-06 02:34:20,868 - INFO - avg_entry_mc: 7487.918523915959
+2025-07-06 02:34:20,869 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,869 - INFO - wallet: C443y77jN8w4tghR7EUGDnqK4LSmxnHia1i9GJXJd6qc
+2025-07-06 02:34:20,869 - INFO - total usd: 217.43503417968748
+2025-07-06 02:34:20,869 - INFO - total_tokens: 36365104.313618
+2025-07-06 02:34:20,869 - INFO - avg_entry_price: 5.979222066971012e-06
+2025-07-06 02:34:20,869 - INFO - avg_entry_mc: 5979.222066971012
+2025-07-06 02:34:20,869 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,869 - INFO - wallet: Be33VZmMEbiHt8jCUPm2qqnHcC558NMq41AW6o7yubnA
+2025-07-06 02:34:20,869 - INFO - total usd: 173.97839080810547
+2025-07-06 02:34:20,869 - INFO - total_tokens: 17805044.883562
+2025-07-06 02:34:20,869 - INFO - avg_entry_price: 9.771297514039185e-06
+2025-07-06 02:34:20,869 - INFO - avg_entry_mc: 9771.297514039186
+2025-07-06 02:34:20,870 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,870 - INFO - wallet: EqLQfegrW7ApNSyZNPSBzG4x9qRug38EX9dmscFTZtpU
+2025-07-06 02:34:20,870 - INFO - total usd: 158.8827954610861
+2025-07-06 02:34:20,870 - INFO - total_tokens: 12737983.657294
+2025-07-06 02:34:20,870 - INFO - avg_entry_price: 1.2473151146657889e-05
+2025-07-06 02:34:20,870 - INFO - avg_entry_mc: 12473.151146657889
+2025-07-06 02:34:20,870 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,870 - INFO - wallet: AaCjZdrGg61z47E6kQpTz565WGpv5HutNBGZgLuJKA7i
+2025-07-06 02:34:20,870 - INFO - total usd: 158.8040400815454
+2025-07-06 02:34:20,870 - INFO - total_tokens: 8492943.168933
+2025-07-06 02:34:20,870 - INFO - avg_entry_price: 1.8698351904961178e-05
+2025-07-06 02:34:20,870 - INFO - avg_entry_mc: 18698.35190496118
+2025-07-06 02:34:20,870 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,870 - INFO - wallet: 86LSHFaVcCh9KrjFuyUJRcezRD7HKiLocRhNbo3MD3wG
+2025-07-06 02:34:20,870 - INFO - total usd: 146.4464569091797
+2025-07-06 02:34:20,871 - INFO - total_tokens: 9108633.77637
+2025-07-06 02:34:20,871 - INFO - avg_entry_price: 1.60777631974948e-05
+2025-07-06 02:34:20,871 - INFO - avg_entry_mc: 16077.763197494802
+2025-07-06 02:34:20,871 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,871 - INFO - wallet: 7vdMsSukpWzUQZcVcbe6msvpZK56JtCknSwVawuYjf3s
+2025-07-06 02:34:20,871 - INFO - total usd: 146.4464569091797
+2025-07-06 02:34:20,871 - INFO - total_tokens: 11190189.58786
+2025-07-06 02:34:20,871 - INFO - avg_entry_price: 1.3087039836041416e-05
+2025-07-06 02:34:20,871 - INFO - avg_entry_mc: 13087.039836041416
+2025-07-06 02:34:20,872 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,872 - INFO - wallet: 9eRBkSjzPdT88JG8Be49FPgknPvEQgyVrUrPuxo2P39a
+2025-07-06 02:34:20,872 - INFO - total usd: 146.4464569091797
+2025-07-06 02:34:20,872 - INFO - total_tokens: 8369331.521694
+2025-07-06 02:34:20,872 - INFO - avg_entry_price: 1.74979873278503e-05
+2025-07-06 02:34:20,872 - INFO - avg_entry_mc: 17497.9873278503
+2025-07-06 02:34:20,872 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,872 - INFO - wallet: HufqVoEtA6gJrkTnDi9ZwdYozX4V5fXurZbb3tt3jLz4
+2025-07-06 02:34:20,872 - INFO - total usd: 146.4464569091797
+2025-07-06 02:34:20,872 - INFO - total_tokens: 21079273.424629
+2025-07-06 02:34:20,872 - INFO - avg_entry_price: 6.947414835374345e-06
+2025-07-06 02:34:20,873 - INFO - avg_entry_mc: 6947.414835374345
+2025-07-06 02:34:20,873 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,873 - INFO - wallet: Aw1ici3XZ2AfBUfy6apUHRQiTEJGm2Hybhqj2Jfxf2mS
+2025-07-06 02:34:20,873 - INFO - total usd: 146.42971801757812
+2025-07-06 02:34:20,873 - INFO - total_tokens: 18770733.073971
+2025-07-06 02:34:20,873 - INFO - avg_entry_price: 7.800958941802294e-06
+2025-07-06 02:34:20,873 - INFO - avg_entry_mc: 7800.958941802294
+2025-07-06 02:34:20,873 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,873 - INFO - wallet: HLaRgbo8YrVfTh4Nn9MUU2o786RsJ86b4YSAbgjEfV9q
+2025-07-06 02:34:20,873 - INFO - total usd: 146.42971801757812
+2025-07-06 02:34:20,873 - INFO - total_tokens: 17090812.410977
+2025-07-06 02:34:20,874 - INFO - avg_entry_price: 8.567744733043234e-06
+2025-07-06 02:34:20,874 - INFO - avg_entry_mc: 8567.744733043233
+2025-07-06 02:34:20,874 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,874 - INFO - wallet: BKWFf5zmw7PLmBZPUaHk8YXgZbZX5HHf7DT3LV6ViAJy
+2025-07-06 02:34:20,874 - INFO - total usd: 146.42971801757812
+2025-07-06 02:34:20,874 - INFO - total_tokens: 17901249.869898
+2025-07-06 02:34:20,874 - INFO - avg_entry_price: 8.179860014345047e-06
+2025-07-06 02:34:20,874 - INFO - avg_entry_mc: 8179.860014345047
+2025-07-06 02:34:20,874 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,874 - INFO - wallet: 3v8mNVUrKsyRs2PUcoFfEY5of4zzRscahpkstGLgmGLS
+2025-07-06 02:34:20,874 - INFO - total usd: 146.42971801757812
+2025-07-06 02:34:20,875 - INFO - total_tokens: 19705140.620439
+2025-07-06 02:34:20,875 - INFO - avg_entry_price: 7.431041515415275e-06
+2025-07-06 02:34:20,875 - INFO - avg_entry_mc: 7431.041515415275
+2025-07-06 02:34:20,875 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,875 - INFO - wallet: 8EEUuy6S1RZR4YtfRqKmn5Yz2A7EMZ9FDkUqGuCCB96T
+2025-07-06 02:34:20,875 - INFO - total usd: 146.42971801757812
+2025-07-06 02:34:20,875 - INFO - total_tokens: 16334192.721818
+2025-07-06 02:34:20,875 - INFO - avg_entry_price: 8.964613097896671e-06
+2025-07-06 02:34:20,875 - INFO - avg_entry_mc: 8964.61309789667
+2025-07-06 02:34:20,875 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,875 - INFO - wallet: CpeG95EiWQhBQ3xgqiJFL6vTC9oF6NxjxbGfkukac6Ln
+2025-07-06 02:34:20,875 - INFO - total usd: 146.42971801757812
+2025-07-06 02:34:20,875 - INFO - total_tokens: 10921506.871966
+2025-07-06 02:34:20,876 - INFO - avg_entry_price: 1.3407464714731168e-05
+2025-07-06 02:34:20,876 - INFO - avg_entry_mc: 13407.464714731168
+2025-07-06 02:34:20,876 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,876 - INFO - wallet: 7gmjcpamkRrWmsUhQqc9H4EKN4cADnQb8SwJdgRFEkui
+2025-07-06 02:34:20,876 - INFO - total usd: 146.42153930664062
+2025-07-06 02:34:20,876 - INFO - total_tokens: 23075775.561515
+2025-07-06 02:34:20,876 - INFO - avg_entry_price: 6.345248891692184e-06
+2025-07-06 02:34:20,876 - INFO - avg_entry_mc: 6345.248891692184
+2025-07-06 02:34:20,877 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,877 - INFO - wallet: 55Vsncsr7WjAQMNwmKbbdWTDdQrawGCHt87sgN848hZQ
+2025-07-06 02:34:20,877 - INFO - total usd: 145.21622800129836
+2025-07-06 02:34:20,877 - INFO - total_tokens: 14648928.163578
+2025-07-06 02:34:20,877 - INFO - avg_entry_price: 9.913095782826838e-06
+2025-07-06 02:34:20,877 - INFO - avg_entry_mc: 9913.095782826838
+2025-07-06 02:34:20,877 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,877 - INFO - wallet: VJSDW6S74YXR4rRR9P4xwhMvLZJQMhrUb8XMFirUsy1
+2025-07-06 02:34:20,877 - INFO - total usd: 144.98199234008788
+2025-07-06 02:34:20,877 - INFO - total_tokens: 24771053.286623
+2025-07-06 02:34:20,877 - INFO - avg_entry_price: 5.852879595490671e-06
+2025-07-06 02:34:20,878 - INFO - avg_entry_mc: 5852.879595490671
+2025-07-06 02:34:20,878 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,878 - INFO - wallet: 3vwrJQ4j1xQeL7s37cvea1Z4TH6HWVADoLU19Ut8fCrT
+2025-07-06 02:34:20,878 - INFO - total usd: 144.98199234008788
+2025-07-06 02:34:20,878 - INFO - total_tokens: 9474159.334735
+2025-07-06 02:34:20,878 - INFO - avg_entry_price: 1.5302887276609556e-05
+2025-07-06 02:34:20,878 - INFO - avg_entry_mc: 15302.887276609556
+2025-07-06 02:34:20,878 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,878 - INFO - wallet: 74DVBE6KtL54jprcM8U78ZjEC6aWKnxMrHkXYrE5Uejx
+2025-07-06 02:34:20,878 - INFO - total usd: 144.98199234008788
+2025-07-06 02:34:20,878 - INFO - total_tokens: 10270173.057649
+2025-07-06 02:34:20,878 - INFO - avg_entry_price: 1.4116801296946839e-05
+2025-07-06 02:34:20,878 - INFO - avg_entry_mc: 14116.801296946838
+2025-07-06 02:34:20,879 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,879 - INFO - wallet: 79ZSxKF539Ks2T5PDUveZHePmnpEnTxZfm9pD8sVa2oS
+2025-07-06 02:34:20,879 - INFO - total usd: 144.96542083740235
+2025-07-06 02:34:20,879 - INFO - total_tokens: 17787702.408723
+2025-07-06 02:34:20,879 - INFO - avg_entry_price: 8.149755235747143e-06
+2025-07-06 02:34:20,879 - INFO - avg_entry_mc: 8149.755235747143
+2025-07-06 02:34:20,879 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,879 - INFO - wallet: 23caxVjcD8tvz7YafE3R92LasQA2jCVdztkF8A7B4zWc
+2025-07-06 02:34:20,879 - INFO - total usd: 144.96542083740235
+2025-07-06 02:34:20,879 - INFO - total_tokens: 13076796.809858
+2025-07-06 02:34:20,879 - INFO - avg_entry_price: 1.1085698045573328e-05
+2025-07-06 02:34:20,879 - INFO - avg_entry_mc: 11085.698045573328
+2025-07-06 02:34:20,880 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,880 - INFO - wallet: 6tykjoUZbgrN7Lnqwca1H6e99mNBE7ChKKf63PmUkPQC
+2025-07-06 02:34:20,880 - INFO - total usd: 144.96542083740235
+2025-07-06 02:34:20,880 - INFO - total_tokens: 15473812.616777
+2025-07-06 02:34:20,880 - INFO - avg_entry_price: 9.368435848850083e-06
+2025-07-06 02:34:20,880 - INFO - avg_entry_mc: 9368.435848850082
+2025-07-06 02:34:20,880 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,880 - INFO - wallet: 4c6P3sm8uS3tifw3D9Hn3KmCUBazi7CP6wwn5XFevTt5
+2025-07-06 02:34:20,880 - INFO - total usd: 144.96542083740235
+2025-07-06 02:34:20,880 - INFO - total_tokens: 10031768.53943
+2025-07-06 02:34:20,880 - INFO - avg_entry_price: 1.4450634528459646e-05
+2025-07-06 02:34:20,880 - INFO - avg_entry_mc: 14450.634528459646
+2025-07-06 02:34:20,880 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,880 - INFO - wallet: BhbC2u5tpEzWEUjmYBdSMZJLdv3Mi2u7cA6wCEySs5Ka
+2025-07-06 02:34:20,880 - INFO - total usd: 144.96542083740235
+2025-07-06 02:34:20,880 - INFO - total_tokens: 15728716.670436
+2025-07-06 02:34:20,881 - INFO - avg_entry_price: 9.216608314261401e-06
+2025-07-06 02:34:20,881 - INFO - avg_entry_mc: 9216.6083142614
+2025-07-06 02:34:20,881 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,881 - INFO - wallet: 3jZMtBe6udvL1jZEmDewhfJD34esS9YWzPjDNi2458h8
+2025-07-06 02:34:20,881 - INFO - total usd: 144.96542083740235
+2025-07-06 02:34:20,881 - INFO - total_tokens: 13614019.189183
+2025-07-06 02:34:20,881 - INFO - avg_entry_price: 1.0648245666686325e-05
+2025-07-06 02:34:20,881 - INFO - avg_entry_mc: 10648.245666686325
+2025-07-06 02:34:20,881 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,881 - INFO - wallet: 7KcrA49WeiXgoGmUbr1eHgSmKf8RUdz7qFXvG2VyqC26
+2025-07-06 02:34:20,881 - INFO - total usd: 144.96542083740235
+2025-07-06 02:34:20,881 - INFO - total_tokens: 10822792.896667
+2025-07-06 02:34:20,882 - INFO - avg_entry_price: 1.3394455776941464e-05
+2025-07-06 02:34:20,882 - INFO - avg_entry_mc: 13394.455776941464
+2025-07-06 02:34:20,882 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,882 - INFO - wallet: GXTDxnVCtkdXo3WZbve8C1w5DdL4XPVDW4tNL72esczh
+2025-07-06 02:34:20,882 - INFO - total usd: 144.9573239135742
+2025-07-06 02:34:20,882 - INFO - total_tokens: 24964651.988044
+2025-07-06 02:34:20,882 - INFO - avg_entry_price: 5.806502889885938e-06
+2025-07-06 02:34:20,882 - INFO - avg_entry_mc: 5806.502889885938
+2025-07-06 02:34:20,882 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,882 - INFO - wallet: 3KYgz2vPe87ds9X896vhzSa2f6GfViW8jr1iXt94ecqf
+2025-07-06 02:34:20,882 - INFO - total usd: 144.71461381993606
+2025-07-06 02:34:20,882 - INFO - total_tokens: 15233645.912912
+2025-07-06 02:34:20,882 - INFO - avg_entry_price: 9.499670311837583e-06
+2025-07-06 02:34:20,883 - INFO - avg_entry_mc: 9499.670311837583
+2025-07-06 02:34:20,883 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,883 - INFO - wallet: 3dSSoYBKNzoFkf3vt6UqSC42pwFm1bW6AcsW3bA379Xo
+2025-07-06 02:34:20,883 - INFO - total usd: 131.15994474507684
+2025-07-06 02:34:20,883 - INFO - total_tokens: 7234695.070452
+2025-07-06 02:34:20,883 - INFO - avg_entry_price: 1.8129298258991088e-05
+2025-07-06 02:34:20,883 - INFO - avg_entry_mc: 18129.29825899109
+2025-07-06 02:34:20,883 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,883 - INFO - wallet: 8xARjHfiA3aCtVihYZqKK7SZrxyiGMZ9ArSPckmXerKy
+2025-07-06 02:34:20,883 - INFO - total usd: 131.04804636014833
+2025-07-06 02:34:20,883 - INFO - total_tokens: 10122144.4122
+2025-07-06 02:34:20,883 - INFO - avg_entry_price: 1.2946668316863665e-05
+2025-07-06 02:34:20,884 - INFO - avg_entry_mc: 12946.668316863665
+2025-07-06 02:34:20,884 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,884 - INFO - wallet: Ak3s5SvpwdAUPT9647tR25Bwn1vLKPmoYRxfJmcRPKwS
+2025-07-06 02:34:20,884 - INFO - total usd: 115.98559387207031
+2025-07-06 02:34:20,884 - INFO - total_tokens: 15745836.029292
+2025-07-06 02:34:20,884 - INFO - avg_entry_price: 7.366112136332561e-06
+2025-07-06 02:34:20,884 - INFO - avg_entry_mc: 7366.112136332561
+2025-07-06 02:34:20,884 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,884 - INFO - wallet: 3rskDTk19bbv4u6SfS24tFcMBf5cgAbxPn2QXcBUxr9S
+2025-07-06 02:34:20,884 - INFO - total usd: 109.5595935200313
+2025-07-06 02:34:20,885 - INFO - total_tokens: 18743306.424515
+2025-07-06 02:34:20,885 - INFO - avg_entry_price: 5.845265026278108e-06
+2025-07-06 02:34:20,885 - INFO - avg_entry_mc: 5845.265026278108
+2025-07-06 02:34:20,885 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,885 - INFO - wallet: A691nyYSdZH7cW9nAVQGZ9XJ1jMPiKuHiiahdbZJ52Q4
+2025-07-06 02:34:20,885 - INFO - total usd: 109.38136463797494
+2025-07-06 02:34:20,885 - INFO - total_tokens: 9434932.770826
+2025-07-06 02:34:20,885 - INFO - avg_entry_price: 1.1593232012865623e-05
+2025-07-06 02:34:20,885 - INFO - avg_entry_mc: 11593.232012865623
+2025-07-06 02:34:20,885 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,885 - INFO - wallet: DURhP5r8QrBQiYJjocUCwhfGxnPYFWbDrDmyQT4pkhdZ
+2025-07-06 02:34:20,885 - INFO - total usd: 107.90675277034066
+2025-07-06 02:34:20,885 - INFO - total_tokens: 18354024.732846
+2025-07-06 02:34:20,886 - INFO - avg_entry_price: 5.8791874992536585e-06
+2025-07-06 02:34:20,886 - INFO - avg_entry_mc: 5879.187499253659
+2025-07-06 02:34:20,886 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,886 - INFO - wallet: CA2qcYjYoS42LHCN3JdeZnk6p21NyMJUd4im2LTMzMC
+2025-07-06 02:34:20,886 - INFO - total usd: 95.95828156486088
+2025-07-06 02:34:20,886 - INFO - total_tokens: 13242181.876179
+2025-07-06 02:34:20,886 - INFO - avg_entry_price: 7.246410180899087e-06
+2025-07-06 02:34:20,886 - INFO - avg_entry_mc: 7246.410180899087
+2025-07-06 02:34:20,886 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,886 - INFO - wallet: 8rv7QHScy1cX4F9HHsUjn5fdY5x79vPyEkhbxJzit6R
+2025-07-06 02:34:20,886 - INFO - total usd: 87.86787414550781
+2025-07-06 02:34:20,886 - INFO - total_tokens: 10563920.361159
+2025-07-06 02:34:20,886 - INFO - avg_entry_price: 8.317733487330793e-06
+2025-07-06 02:34:20,886 - INFO - avg_entry_mc: 8317.733487330792
+2025-07-06 02:34:20,886 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,886 - INFO - wallet: 3suh3jx9y7N2Nwd1GrUsoVEtCMf96WUoqEidhGjqLBgy
+2025-07-06 02:34:20,887 - INFO - total usd: 73.22322845458984
+2025-07-06 02:34:20,887 - INFO - total_tokens: 7373969.733803
+2025-07-06 02:34:20,887 - INFO - avg_entry_price: 9.929960536578742e-06
+2025-07-06 02:34:20,887 - INFO - avg_entry_mc: 9929.960536578741
+2025-07-06 02:34:20,887 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,887 - INFO - wallet: DREssi8nrBR5knQFe73zv5oHx7qEAL8hryaKJA64vdrT
+2025-07-06 02:34:20,887 - INFO - total usd: 73.22322845458984
+2025-07-06 02:34:20,887 - INFO - total_tokens: 5781494.362039
+2025-07-06 02:34:20,887 - INFO - avg_entry_price: 1.266510418748652e-05
+2025-07-06 02:34:20,888 - INFO - avg_entry_mc: 12665.10418748652
+2025-07-06 02:34:20,888 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,888 - INFO - wallet: 9vaLk9h2FUnTkwRnJ4FoGFQ3MKH1E8Hg6BuqiwvGERCh
+2025-07-06 02:34:20,888 - INFO - total usd: 73.22322845458984
+2025-07-06 02:34:20,888 - INFO - total_tokens: 10992549.668077
+2025-07-06 02:34:20,888 - INFO - avg_entry_price: 6.661168761168697e-06
+2025-07-06 02:34:20,888 - INFO - avg_entry_mc: 6661.1687611686975
+2025-07-06 02:34:20,888 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,888 - INFO - wallet: Gj9eMYNgDgp5U4ujqNn5yJdZMtofa423p2dZDuzgsckC
+2025-07-06 02:34:20,888 - INFO - total usd: 72.49099617004394
+2025-07-06 02:34:20,888 - INFO - total_tokens: 5695444.620933
+2025-07-06 02:34:20,888 - INFO - avg_entry_price: 1.272789062044621e-05
+2025-07-06 02:34:20,888 - INFO - avg_entry_mc: 12727.89062044621
+2025-07-06 02:34:20,888 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,889 - INFO - wallet: 7SShPcutXJkhtyepyp63LajzjKLcRLnj3J5WUTRgHkEA
+2025-07-06 02:34:20,889 - INFO - total usd: 72.49099617004394
+2025-07-06 02:34:20,889 - INFO - total_tokens: 4335294.649134
+2025-07-06 02:34:20,889 - INFO - avg_entry_price: 1.6721123253877205e-05
+2025-07-06 02:34:20,889 - INFO - avg_entry_mc: 16721.123253877206
+2025-07-06 02:34:20,889 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,889 - INFO - wallet: DMKRVwH1E3ZzuzoWxForn5JDmDUHuPF87GCg14bmMUMC
+2025-07-06 02:34:20,889 - INFO - total usd: 72.49099617004394
+2025-07-06 02:34:20,889 - INFO - total_tokens: 10846736.965144
+2025-07-06 02:34:20,889 - INFO - avg_entry_price: 6.6832077151860355e-06
+2025-07-06 02:34:20,889 - INFO - avg_entry_mc: 6683.207715186036
+2025-07-06 02:34:20,889 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,889 - INFO - wallet: AR4TAdoozjxp41we7xyb7ybr8wtDbwcoh5PnnSqvME8b
+2025-07-06 02:34:20,889 - INFO - total usd: 72.49099617004394
+2025-07-06 02:34:20,889 - INFO - total_tokens: 8637704.63982
+2025-07-06 02:34:20,889 - INFO - avg_entry_price: 8.392391172518094e-06
+2025-07-06 02:34:20,890 - INFO - avg_entry_mc: 8392.391172518093
+2025-07-06 02:34:20,890 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,890 - INFO - wallet: FayER2mopU1EFrHDcAoEHYb2wpsuTQmi8UFDhuMK3sq5
+2025-07-06 02:34:20,890 - INFO - total usd: 72.49099617004394
+2025-07-06 02:34:20,890 - INFO - total_tokens: 4598519.502566
+2025-07-06 02:34:20,890 - INFO - avg_entry_price: 1.576398580664789e-05
+2025-07-06 02:34:20,890 - INFO - avg_entry_mc: 15763.98580664789
+2025-07-06 02:34:20,890 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,890 - INFO - wallet: 64KhqqrzgrQ7DM6qgvtgWGiShVxTPkMebLpojwH8N2Lt
+2025-07-06 02:34:20,890 - INFO - total usd: 72.49099617004394
+2025-07-06 02:34:20,890 - INFO - total_tokens: 4237843.725448
+2025-07-06 02:34:20,891 - INFO - avg_entry_price: 1.710563221922031e-05
+2025-07-06 02:34:20,891 - INFO - avg_entry_mc: 17105.63221922031
+2025-07-06 02:34:20,891 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,891 - INFO - wallet: 3uRDSAPth9H2iCVzVYHziLxDDYGemzbQr8iETFfnnAmB
+2025-07-06 02:34:20,891 - INFO - total usd: 72.48602471923829
+2025-07-06 02:34:20,891 - INFO - total_tokens: 8816506.671846
+2025-07-06 02:34:20,891 - INFO - avg_entry_price: 8.221626480554929e-06
+2025-07-06 02:34:20,891 - INFO - avg_entry_mc: 8221.626480554929
+2025-07-06 02:34:20,891 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,891 - INFO - wallet: 91fwYWGj4DUyyvJAZo2g9crdeMh6GXFCXmEf9F5wyTKr
+2025-07-06 02:34:20,891 - INFO - total usd: 72.48271041870117
+2025-07-06 02:34:20,891 - INFO - total_tokens: 6772589.019179
+2025-07-06 02:34:20,891 - INFO - avg_entry_price: 1.0702363632791027e-05
+2025-07-06 02:34:20,891 - INFO - avg_entry_mc: 10702.363632791026
+2025-07-06 02:34:20,891 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,892 - INFO - wallet: vMABm9mLT9TLzKBy9gp6oWubMZCLWukSTBLc6PFWiCB
+2025-07-06 02:34:20,892 - INFO - total usd: 72.48271041870117
+2025-07-06 02:34:20,892 - INFO - total_tokens: 10814904.279075
+2025-07-06 02:34:20,892 - INFO - avg_entry_price: 6.702112986699557e-06
+2025-07-06 02:34:20,892 - INFO - avg_entry_mc: 6702.112986699557
+2025-07-06 02:34:20,892 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,892 - INFO - wallet: 4XuXnqCnrEiwVfjCRiBUnELfhRYnzLNnSSNM6BVc9VuA
+2025-07-06 02:34:20,892 - INFO - total usd: 72.48271041870117
+2025-07-06 02:34:20,892 - INFO - total_tokens: 7033967.703875
+2025-07-06 02:34:20,892 - INFO - avg_entry_price: 1.0304669209494748e-05
+2025-07-06 02:34:20,892 - INFO - avg_entry_mc: 10304.669209494748
+2025-07-06 02:34:20,892 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,892 - INFO - wallet: J25N5emzTbPe27mVALAoo2Ld2n2VBv9chSwPXVuZ51Lw
+2025-07-06 02:34:20,893 - INFO - total usd: 71.14266364128112
+2025-07-06 02:34:20,893 - INFO - total_tokens: 8753715.717529
+2025-07-06 02:34:20,893 - INFO - avg_entry_price: 8.12713891300131e-06
+2025-07-06 02:34:20,893 - INFO - avg_entry_mc: 8127.138913001309
+2025-07-06 02:34:20,893 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,893 - INFO - wallet: JBMdfnWtosK1oMntRV51c62Zr989gbcm29SYbV5WTtdR
+2025-07-06 02:34:20,893 - INFO - total usd: 58.5200041809082
+2025-07-06 02:34:20,893 - INFO - total_tokens: 3891493.572476
+2025-07-06 02:34:20,893 - INFO - avg_entry_price: 1.5037929034448923e-05
+2025-07-06 02:34:20,893 - INFO - avg_entry_mc: 15037.929034448924
+2025-07-06 02:34:20,893 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,893 - INFO - wallet: AXxfoTZD9u4q4ApntJJRCyWwPD7XczrZmS7E59Dm9RA6
+2025-07-06 02:34:20,893 - INFO - total usd: 58.5200041809082
+2025-07-06 02:34:20,894 - INFO - total_tokens: 9104634.849286
+2025-07-06 02:34:20,894 - INFO - avg_entry_price: 6.42749601160528e-06
+2025-07-06 02:34:20,894 - INFO - avg_entry_mc: 6427.496011605281
+2025-07-06 02:34:20,894 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,894 - INFO - wallet: 7A4qiny2RkixPU9TpE3CWPSahTBdLGe1Tjhe7UeKXLKZ
+2025-07-06 02:34:20,894 - INFO - total usd: 57.98948263549805
+2025-07-06 02:34:20,894 - INFO - total_tokens: 4022336.018364
+2025-07-06 02:34:20,894 - INFO - avg_entry_price: 1.4416866808428412e-05
+2025-07-06 02:34:20,894 - INFO - avg_entry_mc: 14416.866808428413
+2025-07-06 02:34:20,894 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,894 - INFO - wallet: DgtAjhUjkVbyq3jgrWcmxyZDwsWgieryS3YND8gnKtJd
+2025-07-06 02:34:20,894 - INFO - total usd: 49.293877395629885
+2025-07-06 02:34:20,894 - INFO - total_tokens: 6224462.51548
+2025-07-06 02:34:20,894 - INFO - avg_entry_price: 7.919378946059665e-06
+2025-07-06 02:34:20,894 - INFO - avg_entry_mc: 7919.3789460596645
+2025-07-06 02:34:20,895 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,895 - INFO - wallet: D1C9zueE18eJv66z8ggJ8ZSRwuHwkzg3ruuwhuNbgxYe
+2025-07-06 02:34:20,895 - INFO - total usd: 43.933937072753906
+2025-07-06 02:34:20,895 - INFO - total_tokens: 4013433.328765
+2025-07-06 02:34:20,895 - INFO - avg_entry_price: 1.0946721540849192e-05
+2025-07-06 02:34:20,895 - INFO - avg_entry_mc: 10946.721540849192
+2025-07-06 02:34:20,895 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,895 - INFO - wallet: BNqgPdxRFeC3SmiaqbDzMipPufDLCBf8e9jtmELtipAX
+2025-07-06 02:34:20,895 - INFO - total usd: 43.933937072753906
+2025-07-06 02:34:20,895 - INFO - total_tokens: 3223682.122844
+2025-07-06 02:34:20,895 - INFO - avg_entry_price: 1.3628495428077278e-05
+2025-07-06 02:34:20,895 - INFO - avg_entry_mc: 13628.495428077278
+2025-07-06 02:34:20,896 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,896 - INFO - wallet: 8ohMrdtu1SPgjq7gJ9NWrW4qKJiz6Teq28XHysmjyx5V
+2025-07-06 02:34:20,896 - INFO - total usd: 43.49459770202637
+2025-07-06 02:34:20,896 - INFO - total_tokens: 4281301.950216
+2025-07-06 02:34:20,896 - INFO - avg_entry_price: 1.0159198815638776e-05
+2025-07-06 02:34:20,896 - INFO - avg_entry_mc: 10159.198815638776
+2025-07-06 02:34:20,896 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,896 - INFO - wallet: 3TGeZqesur4EPsWNArThiR1o7Ep8eGeLTss3Xt3zKEQX
+2025-07-06 02:34:20,896 - INFO - total usd: 36.24549808502197
+2025-07-06 02:34:20,896 - INFO - total_tokens: 5529125.651409
+2025-07-06 02:34:20,896 - INFO - avg_entry_price: 6.555376088402955e-06
+2025-07-06 02:34:20,896 - INFO - avg_entry_mc: 6555.376088402955
+2025-07-06 02:34:20,897 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,897 - INFO - wallet: DPJKTQsUhJtHDsrzuWkwNNxJUJPsL1k8zqTnFm9AUavR
+2025-07-06 02:34:20,897 - INFO - total usd: 36.24549808502197
+2025-07-06 02:34:20,897 - INFO - total_tokens: 2749365.946147
+2025-07-06 02:34:20,897 - INFO - avg_entry_price: 1.3183220711603313e-05
+2025-07-06 02:34:20,897 - INFO - avg_entry_mc: 13183.220711603313
+2025-07-06 02:34:20,897 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,897 - INFO - wallet: 4Wo7nQWhu1jUHAXpHSGuDdYwsVwmbPCUg5e5j6v9fmSc
+2025-07-06 02:34:20,898 - INFO - total usd: 36.24135520935059
+2025-07-06 02:34:20,898 - INFO - total_tokens: 2778035.34608
+2025-07-06 02:34:20,898 - INFO - avg_entry_price: 1.3045678220217624e-05
+2025-07-06 02:34:20,898 - INFO - avg_entry_mc: 13045.678220217624
+2025-07-06 02:34:20,899 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,899 - INFO - wallet: 34KnP14rnKPr6RCYapGeEwPTzVdsGhKzKZ4bCxFLV97o
+2025-07-06 02:34:20,899 - INFO - total usd: 29.738006108288346
+2025-07-06 02:34:20,899 - INFO - total_tokens: 3127233.913967
+2025-07-06 02:34:20,899 - INFO - avg_entry_price: 9.50936416219812e-06
+2025-07-06 02:34:20,899 - INFO - avg_entry_mc: 9509.364162198119
+2025-07-06 02:34:20,899 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,899 - INFO - wallet: EewfY8njtFDbPw6rdLRLAuN4YRu7NxVCJJTEKefrrycE
+2025-07-06 02:34:20,899 - INFO - total usd: 29.289291381835938
+2025-07-06 02:34:20,899 - INFO - total_tokens: 2677553.443561
+2025-07-06 02:34:20,900 - INFO - avg_entry_price: 1.0938826058643588e-05
+2025-07-06 02:34:20,900 - INFO - avg_entry_mc: 10938.826058643588
+2025-07-06 02:34:20,900 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,900 - INFO - wallet: F18kMeavq74DBb4MGsLfKGkHTLxd8irkA1jBo8wDqqQq
+2025-07-06 02:34:20,900 - INFO - total usd: 29.289291381835938
+2025-07-06 02:34:20,900 - INFO - total_tokens: 1794110.731078
+2025-07-06 02:34:20,900 - INFO - avg_entry_price: 1.6325241733679017e-05
+2025-07-06 02:34:20,900 - INFO - avg_entry_mc: 16325.241733679017
+2025-07-06 02:34:20,900 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,900 - INFO - wallet: Emy1fGFrLxzNhFRZUZGHFLN52GXStSe17rpyjqmFmHi
+2025-07-06 02:34:20,901 - INFO - total usd: 29.289291381835938
+2025-07-06 02:34:20,901 - INFO - total_tokens: 3920310.578294
+2025-07-06 02:34:20,901 - INFO - avg_entry_price: 7.471166071383494e-06
+2025-07-06 02:34:20,901 - INFO - avg_entry_mc: 7471.166071383494
+2025-07-06 02:34:20,901 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,901 - INFO - wallet: DqtQCk9FRjhmB5nhcEhBfbi57LrhE6x5ju2NHe9wXi9x
+2025-07-06 02:34:20,901 - INFO - total usd: 29.14284492492676
+2025-07-06 02:34:20,901 - INFO - total_tokens: 3638248.589492
+2025-07-06 02:34:20,901 - INFO - avg_entry_price: 8.010130206357313e-06
+2025-07-06 02:34:20,902 - INFO - avg_entry_mc: 8010.130206357313
+2025-07-06 02:34:20,902 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,902 - INFO - wallet: CQSeGGQDxVHWMR589uPiMBDwuxaNHdKRzemNkX6fbrgu
+2025-07-06 02:34:20,902 - INFO - total usd: 28.99639846801758
+2025-07-06 02:34:20,902 - INFO - total_tokens: 1989283.294504
+2025-07-06 02:34:20,902 - INFO - avg_entry_price: 1.4576304213748211e-05
+2025-07-06 02:34:20,902 - INFO - avg_entry_mc: 14576.304213748212
+2025-07-06 02:34:20,902 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,902 - INFO - wallet: 3hkfxNAL314MJUQZhtiWpWSNaEpzVgYp55a6iyKiQwNm
+2025-07-06 02:34:20,902 - INFO - total usd: 28.99639846801758
+2025-07-06 02:34:20,902 - INFO - total_tokens: 3511054.684773
+2025-07-06 02:34:20,902 - INFO - avg_entry_price: 8.258600640363506e-06
+2025-07-06 02:34:20,903 - INFO - avg_entry_mc: 8258.600640363506
+2025-07-06 02:34:20,903 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,903 - INFO - wallet: HfMw25KzCTRhHKzdT3SofTB4GKSG3WpVHaArbnKXv1fj
+2025-07-06 02:34:20,903 - INFO - total usd: 28.99639846801758
+2025-07-06 02:34:20,903 - INFO - total_tokens: 3387285.209849
+2025-07-06 02:34:20,903 - INFO - avg_entry_price: 8.560365210377486e-06
+2025-07-06 02:34:20,903 - INFO - avg_entry_mc: 8560.365210377486
+2025-07-06 02:34:20,903 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,904 - INFO - wallet: 2LrThAa3PrTsNZiTuUHGdbbeev1mvFsS3pSCVLwXTqmi
+2025-07-06 02:34:20,904 - INFO - total usd: 28.993084167480472
+2025-07-06 02:34:20,904 - INFO - total_tokens: 2682183.026334
+2025-07-06 02:34:20,904 - INFO - avg_entry_price: 1.0809509971102955e-05
+2025-07-06 02:34:20,904 - INFO - avg_entry_mc: 10809.509971102956
+2025-07-06 02:34:20,904 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,904 - INFO - wallet: L8qonYBqgeMJ7ywhvq2qeSqDZUCRvfLQTndW8QFm598
+2025-07-06 02:34:20,904 - INFO - total usd: 28.993084167480472
+2025-07-06 02:34:20,904 - INFO - total_tokens: 2352482.249471
+2025-07-06 02:34:20,905 - INFO - avg_entry_price: 1.2324464583739203e-05
+2025-07-06 02:34:20,905 - INFO - avg_entry_mc: 12324.464583739204
+2025-07-06 02:34:20,905 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,905 - INFO - wallet: EFee7u5ZDvgT4SpbPhbeMqzabogwVwMdToGrMg3QNbvj
+2025-07-06 02:34:20,905 - INFO - total usd: 28.993084167480472
+2025-07-06 02:34:20,905 - INFO - total_tokens: 2252275.028149
+2025-07-06 02:34:20,905 - INFO - avg_entry_price: 1.2872799194203217e-05
+2025-07-06 02:34:20,905 - INFO - avg_entry_mc: 12872.799194203217
+2025-07-06 02:34:20,905 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,905 - INFO - wallet: EFaRSkQbnZ8KicoS8P7H8S8pfHxdRfWJKFvmj7vtp7jr
+2025-07-06 02:34:20,905 - INFO - total usd: 28.993084167480472
+2025-07-06 02:34:20,905 - INFO - total_tokens: 2504085.205344
+2025-07-06 02:34:20,905 - INFO - avg_entry_price: 1.157831375130765e-05
+2025-07-06 02:34:20,906 - INFO - avg_entry_mc: 11578.313751307649
+2025-07-06 02:34:20,906 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,906 - INFO - wallet: 3bHhxvtLn7vRmMPLENF7yAsi12oDF5S9ePbzb9wWkPi3
+2025-07-06 02:34:20,906 - INFO - total usd: 21.966968536376953
+2025-07-06 02:34:20,906 - INFO - total_tokens: 1287003.525796
+2025-07-06 02:34:20,906 - INFO - avg_entry_price: 1.7068304861706253e-05
+2025-07-06 02:34:20,906 - INFO - avg_entry_mc: 17068.304861706252
+2025-07-06 02:34:20,906 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,907 - INFO - wallet: 79xoKQivLjag45aUmA4nPFVSTbxJ38A7SpL6ypANatbD
+2025-07-06 02:34:20,907 - INFO - total usd: 20.296816067504885
+2025-07-06 02:34:20,907 - INFO - total_tokens: 2167678.535925
+2025-07-06 02:34:20,907 - INFO - avg_entry_price: 9.363388404288346e-06
+2025-07-06 02:34:20,907 - INFO - avg_entry_mc: 9363.388404288346
+2025-07-06 02:34:20,907 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,907 - INFO - wallet: DfPkXHU6RJe9e3mPriduSDcPvoZRtwaUu7NSG4bdexTH
+2025-07-06 02:34:20,907 - INFO - total usd: 19.819038352890015
+2025-07-06 02:34:20,907 - INFO - total_tokens: 1146864.216816
+2025-07-06 02:34:20,908 - INFO - avg_entry_price: 1.728106785641367e-05
+2025-07-06 02:34:20,908 - INFO - avg_entry_mc: 17281.06785641367
+2025-07-06 02:34:20,908 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,908 - INFO - wallet: 6Jyo7XCAptEdLjr8JjEnRfUthojL1DobV1t3q6gocddV
+2025-07-06 02:34:20,908 - INFO - total usd: 19.034800109863284
+2025-07-06 02:34:20,908 - INFO - total_tokens: 3080438.971138
+2025-07-06 02:34:20,908 - INFO - avg_entry_price: 6.179249220065313e-06
+2025-07-06 02:34:20,908 - INFO - avg_entry_mc: 6179.249220065313
+2025-07-06 02:34:20,908 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,909 - INFO - wallet: FeLhAqSEKRmZyWNAZYc1A3Wwnats9geWXNgtM9R7iGye
+2025-07-06 02:34:20,909 - INFO - total usd: 17.573574829101563
+2025-07-06 02:34:20,909 - INFO - total_tokens: 1313693.382141
+2025-07-06 02:34:20,909 - INFO - avg_entry_price: 1.3377227188631278e-05
+2025-07-06 02:34:20,909 - INFO - avg_entry_mc: 13377.227188631277
+2025-07-06 02:34:20,909 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,909 - INFO - wallet: 3wJYSMJTHE7WSpAhXqKTXQttEmD461L5U9fSFpby6vHR
+2025-07-06 02:34:20,909 - INFO - total usd: 15.624645534263946
+2025-07-06 02:34:20,909 - INFO - total_tokens: 2464790.144391
+2025-07-06 02:34:20,910 - INFO - avg_entry_price: 6.339138270988373e-06
+2025-07-06 02:34:20,910 - INFO - avg_entry_mc: 6339.138270988373
+2025-07-06 02:34:20,910 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,910 - INFO - wallet: 5DK5cwWHgQQ7p12mfzLc4YTDHh2E2ddf9fzcjqbJSp4P
+2025-07-06 02:34:20,910 - INFO - total usd: 14.644645690917969
+2025-07-06 02:34:20,910 - INFO - total_tokens: 768969.24542
+2025-07-06 02:34:20,910 - INFO - avg_entry_price: 1.904451417028944e-05
+2025-07-06 02:34:20,910 - INFO - avg_entry_mc: 19044.51417028944
+2025-07-06 02:34:20,910 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,910 - INFO - wallet: CKSJ52VFhu9GMQSEujWkCR6RbDdobLexbNXtj1c5mQNq
+2025-07-06 02:34:20,911 - INFO - total usd: 14.644645690917969
+2025-07-06 02:34:20,911 - INFO - total_tokens: 1017432.394727
+2025-07-06 02:34:20,911 - INFO - avg_entry_price: 1.439372853352822e-05
+2025-07-06 02:34:20,911 - INFO - avg_entry_mc: 14393.728533528221
+2025-07-06 02:34:20,911 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,911 - INFO - wallet: 7EoLw9RfbiFPEU8EJZ8HSUH2iC3UTDPqcM3vwYB8Vk7R
+2025-07-06 02:34:20,911 - INFO - total usd: 14.644645690917969
+2025-07-06 02:34:20,911 - INFO - total_tokens: 766612.619443
+2025-07-06 02:34:20,911 - INFO - avg_entry_price: 1.910305846720652e-05
+2025-07-06 02:34:20,911 - INFO - avg_entry_mc: 19103.05846720652
+2025-07-06 02:34:20,911 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,911 - INFO - wallet: 2SG4pHba4WqfFtmGzRk1Unt4rNXrVUCH6cZobmqtvBnc
+2025-07-06 02:34:20,912 - INFO - total usd: 14.64443609893799
+2025-07-06 02:34:20,912 - INFO - total_tokens: 2151690.234708
+2025-07-06 02:34:20,912 - INFO - avg_entry_price: 6.806015040043785e-06
+2025-07-06 02:34:20,912 - INFO - avg_entry_mc: 6806.015040043785
+2025-07-06 02:34:20,912 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,912 - INFO - wallet: Eqediq8GdUUxViA5VWwULB14usbqJrA5zhySgVgFCX7W
+2025-07-06 02:34:20,913 - INFO - total usd: 14.642153930664064
+2025-07-06 02:34:20,913 - INFO - total_tokens: 2363513.080376
+2025-07-06 02:34:20,913 - INFO - avg_entry_price: 6.1950805570894965e-06
+2025-07-06 02:34:20,913 - INFO - avg_entry_mc: 6195.080557089496
+2025-07-06 02:34:20,913 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,913 - INFO - wallet: 6rUVQZgGwfun2aZ9qKnUggxPpbs6gdGxDfohWKaRYSmo
+2025-07-06 02:34:20,913 - INFO - total usd: 14.49819923400879
+2025-07-06 02:34:20,913 - INFO - total_tokens: 955881.241987
+2025-07-06 02:34:20,913 - INFO - avg_entry_price: 1.5167364518913706e-05
+2025-07-06 02:34:20,914 - INFO - avg_entry_mc: 15167.364518913706
+2025-07-06 02:34:20,914 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,914 - INFO - wallet: A8PKyqDugGvu1deA6Nm9usS7t3REAu9WqwxsAkZj5tfk
+2025-07-06 02:34:20,914 - INFO - total usd: 14.49819923400879
+2025-07-06 02:34:20,914 - INFO - total_tokens: 1954851.296011
+2025-07-06 02:34:20,914 - INFO - avg_entry_price: 7.416522813573238e-06
+2025-07-06 02:34:20,914 - INFO - avg_entry_mc: 7416.522813573238
+2025-07-06 02:34:20,914 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,914 - INFO - wallet: EfTz3X6mC89q4r62BQx8EwH8w2qWV9WGUULfFDRYKvqe
+2025-07-06 02:34:20,915 - INFO - total usd: 14.49819923400879
+2025-07-06 02:34:20,915 - INFO - total_tokens: 1157735.275386
+2025-07-06 02:34:20,915 - INFO - avg_entry_price: 1.2522896677891197e-05
+2025-07-06 02:34:20,915 - INFO - avg_entry_mc: 12522.896677891196
+2025-07-06 02:34:20,915 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,915 - INFO - wallet: FeBeK4VZaCmECfWTeCgr9tkbd1WsfTrUeym2Px4G3Lua
+2025-07-06 02:34:20,915 - INFO - total usd: 14.49819923400879
+2025-07-06 02:34:20,915 - INFO - total_tokens: 1534804.219077
+2025-07-06 02:34:20,915 - INFO - avg_entry_price: 9.446285756712157e-06
+2025-07-06 02:34:20,915 - INFO - avg_entry_mc: 9446.285756712157
+2025-07-06 02:34:20,915 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,916 - INFO - wallet: FGNUEE39cFNAk8g96Z4WAcAuBb8aQz5nHcv464N3yB34
+2025-07-06 02:34:20,916 - INFO - total usd: 14.49819923400879
+2025-07-06 02:34:20,916 - INFO - total_tokens: 855773.582727
+2025-07-06 02:34:20,916 - INFO - avg_entry_price: 1.6941629803304942e-05
+2025-07-06 02:34:20,916 - INFO - avg_entry_mc: 16941.629803304942
+2025-07-06 02:34:20,916 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,916 - INFO - wallet: 3CZBBQsvCxxYnycUMm5L9mxP8NQxanzn4YkeBvrCPAK1
+2025-07-06 02:34:20,916 - INFO - total usd: 14.49819923400879
+2025-07-06 02:34:20,916 - INFO - total_tokens: 1003726.303268
+2025-07-06 02:34:20,916 - INFO - avg_entry_price: 1.4444375111825378e-05
+2025-07-06 02:34:20,916 - INFO - avg_entry_mc: 14444.375111825379
+2025-07-06 02:34:20,916 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,916 - INFO - wallet: 678iDi7THTCJACUdqszPAwp1jhJHnUMdxkX17fm4orLE
+2025-07-06 02:34:20,917 - INFO - total usd: 14.49819923400879
+2025-07-06 02:34:20,917 - INFO - total_tokens: 959146.757638
+2025-07-06 02:34:20,917 - INFO - avg_entry_price: 1.5115725636931866e-05
+2025-07-06 02:34:20,917 - INFO - avg_entry_mc: 15115.725636931866
+2025-07-06 02:34:20,917 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,917 - INFO - wallet: Ge9jTdM6JyHfswZq6tuhViessGsjDt7cvZqcTYv1CsEr
+2025-07-06 02:34:20,917 - INFO - total usd: 14.49819923400879
+2025-07-06 02:34:20,917 - INFO - total_tokens: 952632.327006
+2025-07-06 02:34:20,917 - INFO - avg_entry_price: 1.5219092217429523e-05
+2025-07-06 02:34:20,917 - INFO - avg_entry_mc: 15219.092217429523
+2025-07-06 02:34:20,917 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,917 - INFO - wallet: 8rcn4bCcBLTJeXUN4dhmk9yWqJ4jmfqHNRDBAPuBFfxc
+2025-07-06 02:34:20,917 - INFO - total usd: 14.49819923400879
+2025-07-06 02:34:20,918 - INFO - total_tokens: 852863.379791
+2025-07-06 02:34:20,918 - INFO - avg_entry_price: 1.6999439274273533e-05
+2025-07-06 02:34:20,918 - INFO - avg_entry_mc: 16999.439274273533
+2025-07-06 02:34:20,918 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,918 - INFO - wallet: DrUhzRFDmcBBQ79HZmQtuk2zRqduPiLFbV5kYMgfUEF2
+2025-07-06 02:34:20,918 - INFO - total usd: 14.496542083740236
+2025-07-06 02:34:20,919 - INFO - total_tokens: 1104098.948747
+2025-07-06 02:34:20,919 - INFO - avg_entry_price: 1.3129749014064194e-05
+2025-07-06 02:34:20,919 - INFO - avg_entry_mc: 13129.749014064195
+2025-07-06 02:34:20,919 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,919 - INFO - wallet: hh69bKmd8EgFe1ozYwepuj4xA6prWsc7YKXQnjqMBT2
+2025-07-06 02:34:20,919 - INFO - total usd: 14.496542083740236
+2025-07-06 02:34:20,919 - INFO - total_tokens: 1428836.615407
+2025-07-06 02:34:20,919 - INFO - avg_entry_price: 1.014569610508682e-05
+2025-07-06 02:34:20,919 - INFO - avg_entry_mc: 10145.69610508682
+2025-07-06 02:34:20,919 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,920 - INFO - wallet: 7DJ86P4fFzVp7VxWb1GNSnEbfjk4VqgdP4369p5Ckugh
+2025-07-06 02:34:20,920 - INFO - total usd: 14.496542083740236
+2025-07-06 02:34:20,920 - INFO - total_tokens: 1365256.876798
+2025-07-06 02:34:20,920 - INFO - avg_entry_price: 1.0618179135445664e-05
+2025-07-06 02:34:20,920 - INFO - avg_entry_mc: 10618.179135445664
+2025-07-06 02:34:20,920 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,920 - INFO - wallet: rPiEqncCH3xpxER2TP8PFsRCL3m5K2wdgZpzi2ZDWaE
+2025-07-06 02:34:20,920 - INFO - total usd: 14.496542083740236
+2025-07-06 02:34:20,920 - INFO - total_tokens: 1559357.702795
+2025-07-06 02:34:20,920 - INFO - avg_entry_price: 9.296482813248407e-06
+2025-07-06 02:34:20,920 - INFO - avg_entry_mc: 9296.482813248407
+2025-07-06 02:34:20,920 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,920 - INFO - wallet: 7E4XccBuNXrQe4q55obU6pM4LoY7gfv5JK5JA4spZqP3
+2025-07-06 02:34:20,920 - INFO - total usd: 14.496542083740236
+2025-07-06 02:34:20,920 - INFO - total_tokens: 1824333.322338
+2025-07-06 02:34:20,920 - INFO - avg_entry_price: 7.946213505085786e-06
+2025-07-06 02:34:20,921 - INFO - avg_entry_mc: 7946.213505085786
+2025-07-06 02:34:20,921 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,921 - INFO - wallet: HwVMeKFzvALCpHkLTk1vDDCgx1W8uBLi3vH7u2Fa5p8H
+2025-07-06 02:34:20,921 - INFO - total usd: 14.496542083740236
+2025-07-06 02:34:20,921 - INFO - total_tokens: 1229771.659508
+2025-07-06 02:34:20,921 - INFO - avg_entry_price: 1.1787994927074454e-05
+2025-07-06 02:34:20,921 - INFO - avg_entry_mc: 11787.994927074455
+2025-07-06 02:34:20,921 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,921 - INFO - wallet: 7sGtmz9nLKAVfLAztMA6fxiT29fLqXgA1q8vpriKWmsA
+2025-07-06 02:34:20,921 - INFO - total usd: 14.496542083740236
+2025-07-06 02:34:20,921 - INFO - total_tokens: 1956400.130871
+2025-07-06 02:34:20,921 - INFO - avg_entry_price: 7.4098042905396335e-06
+2025-07-06 02:34:20,921 - INFO - avg_entry_mc: 7409.804290539633
+2025-07-06 02:34:20,921 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,922 - INFO - wallet: GpMWKHaUEd342WLviizgwA6h2WYoCJGtLK6k16K6EeA8
+2025-07-06 02:34:20,922 - INFO - total usd: 14.496542083740236
+2025-07-06 02:34:20,922 - INFO - total_tokens: 1283772.005555
+2025-07-06 02:34:20,922 - INFO - avg_entry_price: 1.1292146908494936e-05
+2025-07-06 02:34:20,922 - INFO - avg_entry_mc: 11292.146908494937
+2025-07-06 02:34:20,922 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,922 - INFO - wallet: Eh1WGa4EXbCHRsjQ7E6mcL1J25kXm11enUYBsbBEcPrC
+2025-07-06 02:34:20,922 - INFO - total usd: 14.496542083740236
+2025-07-06 02:34:20,922 - INFO - total_tokens: 1370833.793184
+2025-07-06 02:34:20,922 - INFO - avg_entry_price: 1.0574981559266564e-05
+2025-07-06 02:34:20,922 - INFO - avg_entry_mc: 10574.981559266564
+2025-07-06 02:34:20,922 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,922 - INFO - wallet: AAK7tgv7Q39dnA7JEGk4qU4oD7pzjjGQgR3r7j2SiC8A
+2025-07-06 02:34:20,922 - INFO - total usd: 14.496542083740236
+2025-07-06 02:34:20,923 - INFO - total_tokens: 1225032.255744
+2025-07-06 02:34:20,923 - INFO - avg_entry_price: 1.1833600311965693e-05
+2025-07-06 02:34:20,923 - INFO - avg_entry_mc: 11833.600311965693
+2025-07-06 02:34:20,923 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,923 - INFO - wallet: 532JqS8C6ZPD3KLsER8QeahXEmjyW1erTUiKcRYC1RhD
+2025-07-06 02:34:20,923 - INFO - total usd: 9.423829502105713
+2025-07-06 02:34:20,923 - INFO - total_tokens: 1442346.671127
+2025-07-06 02:34:20,923 - INFO - avg_entry_price: 6.533678546740956e-06
+2025-07-06 02:34:20,923 - INFO - avg_entry_mc: 6533.678546740956
+2025-07-06 02:34:20,923 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,923 - INFO - wallet: 6eBtdQ9LYSWXJBbDazTFzTe5gowPZo1s9y29XYQHgEam
+2025-07-06 02:34:20,923 - INFO - total usd: 8.786787414550782
+2025-07-06 02:34:20,924 - INFO - total_tokens: 672398.610886
+2025-07-06 02:34:20,924 - INFO - avg_entry_price: 1.3067825055397853e-05
+2025-07-06 02:34:20,924 - INFO - avg_entry_mc: 13067.825055397852
+2025-07-06 02:34:20,924 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,924 - INFO - wallet: MbniqoHFk9Qs1Wu7ZR8CkmaGmzgbXjLCWqHU9Q4hHKA
+2025-07-06 02:34:20,924 - INFO - total usd: 8.698422395324709
+2025-07-06 02:34:20,924 - INFO - total_tokens: 1161462.844702
+2025-07-06 02:34:20,924 - INFO - avg_entry_price: 7.489195573498082e-06
+2025-07-06 02:34:20,924 - INFO - avg_entry_mc: 7489.195573498082
+2025-07-06 02:34:20,924 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,925 - INFO - wallet: 3MGpd84DdgLyPiLBN2MQZysUEnt6KK8d59uDi7wJ2xLB
+2025-07-06 02:34:20,925 - INFO - total usd: 7.249099617004395
+2025-07-06 02:34:20,925 - INFO - total_tokens: 406097.754687
+2025-07-06 02:34:20,925 - INFO - avg_entry_price: 1.7850627178649737e-05
+2025-07-06 02:34:20,925 - INFO - avg_entry_mc: 17850.62717864974
+2025-07-06 02:34:20,925 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,925 - INFO - wallet: 73XWvKSAryYoMGLoscUDgScCSGkYwJMKHiLTUh9y1UoK
+2025-07-06 02:34:20,925 - INFO - total usd: 7.248271041870118
+2025-07-06 02:34:20,925 - INFO - total_tokens: 680547.719126
+2025-07-06 02:34:20,925 - INFO - avg_entry_price: 1.0650643354118915e-05
+2025-07-06 02:34:20,925 - INFO - avg_entry_mc: 10650.643354118916
+2025-07-06 02:34:20,925 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,925 - INFO - wallet: FxrVTwLYr2fTPM4vqd5Ez3bdZD3ukp4iWXkkneT2zMav
+2025-07-06 02:34:20,925 - INFO - total usd: 7.248271041870118
+2025-07-06 02:34:20,926 - INFO - total_tokens: 674498.199512
+2025-07-06 02:34:20,926 - INFO - avg_entry_price: 1.0746168110032388e-05
+2025-07-06 02:34:20,926 - INFO - avg_entry_mc: 10746.168110032388
+2025-07-06 02:34:20,926 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,926 - INFO - wallet: EYGkPK3RsL3gCc8yw3yMijXifuAVgct7eKjaWBaunJ34
+2025-07-06 02:34:20,926 - INFO - total usd: 7.248271041870118
+2025-07-06 02:34:20,926 - INFO - total_tokens: 695397.484502
+2025-07-06 02:34:20,926 - INFO - avg_entry_price: 1.0423205725371402e-05
+2025-07-06 02:34:20,926 - INFO - avg_entry_mc: 10423.205725371401
+2025-07-06 02:34:20,926 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,926 - INFO - wallet: 6i7mc18ncYJkDJBMghCgpaC7bFxjsYpdnWtQhybcNNSw
+2025-07-06 02:34:20,926 - INFO - total usd: 7.248271041870118
+2025-07-06 02:34:20,926 - INFO - total_tokens: 622978.429017
+2025-07-06 02:34:20,927 - INFO - avg_entry_price: 1.1634866801579617e-05
+2025-07-06 02:34:20,927 - INFO - avg_entry_mc: 11634.866801579617
+2025-07-06 02:34:20,927 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,927 - INFO - wallet: B7t2rHNiSSS7WVqg8uLRPF4PnoXo84oCm1b8LFvdr5DY
+2025-07-06 02:34:20,927 - INFO - total usd: 7.010398454255768
+2025-07-06 02:34:20,927 - INFO - total_tokens: 606615.254415
+2025-07-06 02:34:20,927 - INFO - avg_entry_price: 1.155658121557851e-05
+2025-07-06 02:34:20,927 - INFO - avg_entry_mc: 11556.58121557851
+2025-07-06 02:34:20,927 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,927 - INFO - wallet: J4aWEcrmYqmk7mferW178euLe8tQcV231cE8WYbzgAG2
+2025-07-06 02:34:20,927 - INFO - total usd: 6.379207662963867
+2025-07-06 02:34:20,927 - INFO - total_tokens: 439502.887811
+2025-07-06 02:34:20,927 - INFO - avg_entry_price: 1.451459783287505e-05
+2025-07-06 02:34:20,927 - INFO - avg_entry_mc: 14514.597832875052
+2025-07-06 02:34:20,927 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,927 - INFO - wallet: D85nE2E7kJ9QyZpe5Ywp8Zuf91HCLeuZD1CbanfvvosL
+2025-07-06 02:34:20,928 - INFO - total usd: 5.711411819458008
+2025-07-06 02:34:20,928 - INFO - total_tokens: 672193.935771
+2025-07-06 02:34:20,928 - INFO - avg_entry_price: 8.49667263496966e-06
+2025-07-06 02:34:20,928 - INFO - avg_entry_mc: 8496.67263496966
+2025-07-06 02:34:20,928 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,928 - INFO - wallet: 3dJes99BuZjnyS2gfvYA4pZUXW8fMxnueX39UsJwtEob
+2025-07-06 02:34:20,928 - INFO - total usd: 4.831910797119141
+2025-07-06 02:34:20,928 - INFO - total_tokens: 782728.599368
+2025-07-06 02:34:20,928 - INFO - avg_entry_price: 6.173162448670688e-06
+2025-07-06 02:34:20,928 - INFO - avg_entry_mc: 6173.162448670688
+2025-07-06 02:34:20,928 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,928 - INFO - wallet: 7Fsd2jSK19pfEz2YscbncNGwK11eWw3xYnv3oGxS7KaU
+2025-07-06 02:34:20,928 - INFO - total usd: 4.349459770202637
+2025-07-06 02:34:20,928 - INFO - total_tokens: 324248.619012
+2025-07-06 02:34:20,928 - INFO - avg_entry_price: 1.3413965442491738e-05
+2025-07-06 02:34:20,928 - INFO - avg_entry_mc: 13413.965442491737
+2025-07-06 02:34:20,928 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,929 - INFO - wallet: 4sbvKcMvJfu9FysjuUm9vyjDMRAMXXBdEsN68F4RSUZN
+2025-07-06 02:34:20,929 - INFO - total usd: 4.349459770202637
+2025-07-06 02:34:20,929 - INFO - total_tokens: 646298.731577
+2025-07-06 02:34:20,929 - INFO - avg_entry_price: 6.7297977818860115e-06
+2025-07-06 02:34:20,929 - INFO - avg_entry_mc: 6729.797781886012
+2025-07-06 02:34:20,929 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,929 - INFO - wallet: B88qGKabYta3PTrJoPKmnPFh2bvkJcdFkZQHEgKtdwTu
+2025-07-06 02:34:20,929 - INFO - total usd: 4.349459770202637
+2025-07-06 02:34:20,930 - INFO - total_tokens: 279303.461662
+2025-07-06 02:34:20,930 - INFO - avg_entry_price: 1.5572523678443165e-05
+2025-07-06 02:34:20,930 - INFO - avg_entry_mc: 15572.523678443165
+2025-07-06 02:34:20,930 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,930 - INFO - wallet: 9n8rq1N9iaqKj1FZzWigibJrSDe5BgetuEPwJptwikKT
+2025-07-06 02:34:20,930 - INFO - total usd: 4.349128340148926
+2025-07-06 02:34:20,930 - INFO - total_tokens: 571020.667783
+2025-07-06 02:34:20,930 - INFO - avg_entry_price: 7.616411428739541e-06
+2025-07-06 02:34:20,930 - INFO - avg_entry_mc: 7616.411428739541
+2025-07-06 02:34:20,931 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,931 - INFO - wallet: 7vF8y5s2br4MCuEdSGNhYs2MKDpwrqqPnwLErK3ZUjK
+2025-07-06 02:34:20,931 - INFO - total usd: 4.348962625122071
+2025-07-06 02:34:20,931 - INFO - total_tokens: 569169.544773
+2025-07-06 02:34:20,931 - INFO - avg_entry_price: 7.640891303937482e-06
+2025-07-06 02:34:20,931 - INFO - avg_entry_mc: 7640.891303937482
+2025-07-06 02:34:20,931 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,931 - INFO - wallet: 5DGWYDBLiczVWRrrToHZ8Dqv1Lsiz8ufF2gaCRafsqWm
+2025-07-06 02:34:20,931 - INFO - total usd: 4.096400292663574
+2025-07-06 02:34:20,931 - INFO - total_tokens: 283033.850152
+2025-07-06 02:34:20,931 - INFO - avg_entry_price: 1.4473181530985253e-05
+2025-07-06 02:34:20,931 - INFO - avg_entry_mc: 14473.181530985254
+2025-07-06 02:34:20,931 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,932 - INFO - wallet: 23BhbN5BcR9eRZE8oereF46qAQw1vHVyaDD2hVdLKK2R
+2025-07-06 02:34:20,932 - INFO - total usd: 3.0525832543252562
+2025-07-06 02:34:20,932 - INFO - total_tokens: 455081.729594
+2025-07-06 02:34:20,932 - INFO - avg_entry_price: 6.707769299041319e-06
+2025-07-06 02:34:20,932 - INFO - avg_entry_mc: 6707.769299041319
+2025-07-06 02:34:20,932 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,932 - INFO - wallet: 23BhbN5BcR9eRZE8oereF46qAQw1vHVyaDD2hVdLKK2R
+2025-07-06 02:34:20,932 - INFO - total usd: 3.050958074710846
+2025-07-06 02:34:20,932 - INFO - total_tokens: 455081.729594
+2025-07-06 02:34:20,932 - INFO - avg_entry_price: 6.704198117188204e-06
+2025-07-06 02:34:20,932 - INFO - avg_entry_mc: 6704.1981171882035
+2025-07-06 02:34:20,932 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,933 - INFO - wallet: GTz4dK2oVK6fvHr4yY4845VTEvis1dLBUgrP3agVtDdB
+2025-07-06 02:34:20,933 - INFO - total usd: 2.8994741317749027
+2025-07-06 02:34:20,933 - INFO - total_tokens: 378291.373593
+2025-07-06 02:34:20,933 - INFO - avg_entry_price: 7.66465834056903e-06
+2025-07-06 02:34:20,933 - INFO - avg_entry_mc: 7664.658340569031
+2025-07-06 02:34:20,933 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,933 - INFO - wallet: F1FvNQrkEENdkV8TcPWggxqd7u8CKFFstgQbZ6ArfqWd
+2025-07-06 02:34:20,933 - INFO - total usd: 2.899308416748047
+2025-07-06 02:34:20,933 - INFO - total_tokens: 234272.276491
+2025-07-06 02:34:20,933 - INFO - avg_entry_price: 1.2375806732980756e-05
+2025-07-06 02:34:20,933 - INFO - avg_entry_mc: 12375.806732980756
+2025-07-06 02:34:20,933 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,933 - INFO - wallet: 5WFGx2eVmb5vLXxqC8kBL758f5ZVjDZJv8W9bSMfGeTd
+2025-07-06 02:34:20,933 - INFO - total usd: 2.899308416748047
+2025-07-06 02:34:20,933 - INFO - total_tokens: 295130.282557
+2025-07-06 02:34:20,933 - INFO - avg_entry_price: 9.823825571637465e-06
+2025-07-06 02:34:20,933 - INFO - avg_entry_mc: 9823.825571637464
+2025-07-06 02:34:20,933 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,933 - INFO - wallet: DLaayF6KzmznBa1eFcLFHLQy8m2U6RnermsofpunCmbF
+2025-07-06 02:34:20,934 - INFO - total usd: 2.899308416748047
+2025-07-06 02:34:20,934 - INFO - total_tokens: 205882.922097
+2025-07-06 02:34:20,934 - INFO - avg_entry_price: 1.4082316236905083e-05
+2025-07-06 02:34:20,934 - INFO - avg_entry_mc: 14082.316236905082
+2025-07-06 02:34:20,934 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,934 - INFO - wallet: 444RC26dVitA7Ls2RPh87CxD6B5CCowghs7rsQu6yMEA
+2025-07-06 02:34:20,934 - INFO - total usd: 2.899308416748047
+2025-07-06 02:34:20,934 - INFO - total_tokens: 224422.084085
+2025-07-06 02:34:20,934 - INFO - avg_entry_price: 1.2918997827548612e-05
+2025-07-06 02:34:20,934 - INFO - avg_entry_mc: 12918.997827548612
+2025-07-06 02:34:20,934 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,934 - INFO - wallet: 7FeqVRquQraUbDjfPbtUi2bvHWkeYNqeAjgqdyHJGkm2
+2025-07-06 02:34:20,934 - INFO - total usd: 1.464464569091797
+2025-07-06 02:34:20,934 - INFO - total_tokens: 182396.551728
+2025-07-06 02:34:20,934 - INFO - avg_entry_price: 8.029014557663837e-06
+2025-07-06 02:34:20,935 - INFO - avg_entry_mc: 8029.014557663837
+2025-07-06 02:34:20,935 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,935 - INFO - wallet: D2B1MApAfMydDXymhgYvrM78HUwBWcon7TWVKWus7oc
+2025-07-06 02:34:20,935 - INFO - total usd: 1.449819923400879
+2025-07-06 02:34:20,935 - INFO - total_tokens: 207226.081904
+2025-07-06 02:34:20,935 - INFO - avg_entry_price: 6.996319720374416e-06
+2025-07-06 02:34:20,935 - INFO - avg_entry_mc: 6996.319720374417
+2025-07-06 02:34:20,935 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,935 - INFO - wallet: HU15Ysm6jgsRs8ZmSsuDvubyWLVLk5JfTuoxcQUtBqtK
+2025-07-06 02:34:20,935 - INFO - total usd: 1.449819923400879
+2025-07-06 02:34:20,935 - INFO - total_tokens: 174605.112963
+2025-07-06 02:34:20,936 - INFO - avg_entry_price: 8.303421926184405e-06
+2025-07-06 02:34:20,936 - INFO - avg_entry_mc: 8303.421926184405
+2025-07-06 02:34:20,936 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,936 - INFO - wallet: FSSYVMMonYxXiEhHGzqLHVSjGGSVFcufqxsUqfxhuntJ
+2025-07-06 02:34:20,936 - INFO - total usd: 1.449819923400879
+2025-07-06 02:34:20,936 - INFO - total_tokens: 105327.066035
+2025-07-06 02:34:20,936 - INFO - avg_entry_price: 1.376493220573624e-05
+2025-07-06 02:34:20,936 - INFO - avg_entry_mc: 13764.932205736239
+2025-07-06 02:34:20,936 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,936 - INFO - wallet: B1Vcfof2nFhmK4CG97145xTjCnQg7FgrqYcwKANjupxu
+2025-07-06 02:34:20,936 - INFO - total usd: 1.4496542083740236
+2025-07-06 02:34:20,936 - INFO - total_tokens: 196165.338984
+2025-07-06 02:34:20,937 - INFO - avg_entry_price: 7.3899610190170395e-06
+2025-07-06 02:34:20,937 - INFO - avg_entry_mc: 7389.96101901704
+2025-07-06 02:34:20,937 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,937 - INFO - wallet: 8FgU5Dc34nez4GW9WRV14B93t5RtqYvWsmFv3ZALKQZS
+2025-07-06 02:34:20,937 - INFO - total usd: 1.4496542083740236
+2025-07-06 02:34:20,937 - INFO - total_tokens: 111865.756025
+2025-07-06 02:34:20,937 - INFO - avg_entry_price: 1.29588737419345e-05
+2025-07-06 02:34:20,937 - INFO - avg_entry_mc: 12958.8737419345
+2025-07-06 02:34:20,937 - INFO - supply: 1000000000.0
+2025-07-06 02:34:20,937 - INFO - wallet: 6SRn3DDC38imVvBCqcnRCnYX9XvGVXY5DSaLQgRtVYMr
+2025-07-06 02:34:20,937 - INFO - total usd: 0.29289291381835936
+2025-07-06 02:34:20,937 - INFO - total_tokens: 37958.804416
+2025-07-06 02:34:20,937 - INFO - avg_entry_price: 7.716073209484495e-06
+2025-07-06 02:34:20,938 - INFO - avg_entry_mc: 7716.073209484495
+2025-07-06 02:34:20,938 - INFO - supply: 1000000000.0
+2025-07-06 02:34:21,730 - INFO - Wallet finder executed by alphabtw_ for 7TY2W2YtwipzF1zPNaBzSAJAzhM9MtZ2VmH9QG4pbonk at 7.93k MC
+2025-07-06 02:35:05,456 - WARNING - API mobula returned status 503 for URL: https://api.mobula.io/api/1/market/history/pair?asset=5aYpWBtJpdiNFMcitxsysdFuxfMK8nRMePvVfkZYbonk&blockchain=solana&period=4h&amount=100000
+2025-07-06 02:46:04,238 - INFO - Bot is shutting down...
+2025-07-06 02:46:04,238 - INFO - API client closed
+2025-07-06 02:46:04,238 - INFO - Truth Social tracking stopped
+2025-07-06 02:46:04,239 - INFO - Truth Social tracking stopped
+2025-07-06 02:46:04,239 - INFO - Services closed successfully
+2025-07-06 02:46:04,239 - INFO - Background task 'metrics_cleanup' canceled
+2025-07-06 02:46:04,239 - INFO - Background task 'memory_monitor' canceled
+2025-07-06 02:46:04,239 - INFO - Background task 'heartbeat_monitor' canceled
+2025-07-06 02:46:04,239 - INFO - Background task 'metrics_report' canceled
+2025-07-06 02:46:04,239 - INFO - DexScreener tracking stopped
+2025-07-06 02:46:04,239 - INFO - DexScreener tracking stopped
+2025-07-06 02:46:04,239 - INFO - Database connection pool closed successfully
+2025-07-06 02:46:04,241 - INFO - Bot stopped by user
+2025-07-06 02:46:48,421 - INFO - Starting bot...
+2025-07-06 02:46:49,345 - INFO - API client initialized
+2025-07-06 02:46:49,345 - INFO - WebsiteAnalyzer initialized with concurrency limit of 15
+2025-07-06 02:46:49,346 - INFO - Loaded 4 Truth Social tokens from file
+2025-07-06 02:46:49,346 - INFO - Authenticating 4 Truth Social accounts with missing or expired tokens...
+2025-07-06 02:46:49,383 - ERROR - Auth error: Status 403
+2025-07-06 02:46:49,383 - ERROR - Failed to authenticate Truth Social account: alphabtw
+2025-07-06 02:46:49,410 - ERROR - Failed to authenticate Truth Social account: visheshbtw
+2025-07-06 02:46:49,434 - ERROR - Failed to authenticate Truth Social account: sakshambtw
+2025-07-06 02:46:49,460 - ERROR - Failed to authenticate Truth Social account: mayankbtw
+2025-07-06 02:46:49,460 - INFO - Successfully authenticated 0/4 Truth Social accounts
+2025-07-06 02:46:49,461 - INFO - Saved 4 Truth Social tokens to file
+2025-07-06 02:46:49,461 - INFO - All API services initialized
+2025-07-06 02:46:49,461 - INFO - Services provider initialized
+2025-07-06 02:46:49,472 - INFO - Database connection pool established: size=1-10
+2025-07-06 02:46:49,472 - INFO - Database connection successful
+2025-07-06 02:46:49,479 - INFO - Proxy rotator initialized with http protocol
+2025-07-06 02:46:49,479 - INFO - Proxy rotator initialized for Truth commands
+2025-07-06 02:46:49,480 - INFO - Discord Events Registered | Username Ban Server ID: 1313758082974879774
+2025-07-06 02:46:49,480 - INFO - Memory monitor started (threshold: 300MB, interval: 3600s)
+2025-07-06 02:46:50,027 - INFO - Successfully synced 11 command(s)
+2025-07-06 02:46:54,372 - INFO - Logged in as TOPG#4967 (ID: 1340722186100408340)
+2025-07-06 02:46:54,372 - INFO - Bot connected to 7 server(s)
+2025-07-06 02:46:54,373 - INFO - Alerts are enabled.
+2025-07-06 02:46:54,373 - INFO - Starting tracking services...
+2025-07-06 02:46:54,373 - INFO - All tracking services started
+2025-07-06 02:46:54,373 - INFO - Initializing DexScreener live tracker...
+2025-07-06 02:46:54,373 - INFO - Initializing migration tracker...
+2025-07-06 02:46:54,374 - INFO - Initializing about to graduate alert tracker...
+2025-07-06 02:46:54,377 - INFO - No enabled guilds with channels, stopping tracking
+2025-07-06 02:46:54,377 - INFO - DexScreener tracking stopped
+2025-07-06 02:46:54,377 - INFO - DexScreener tracking initialization complete
+2025-07-06 02:46:54,378 - INFO - No enabled guilds with channels, stopping tracking
+2025-07-06 02:46:54,378 - INFO - Migration tracking stopped
+2025-07-06 02:46:54,378 - INFO - Migration tracking initialization complete
+2025-07-06 02:46:54,378 - INFO - No enabled guilds with channels, stopping about to graduate alert tracking
+2025-07-06 02:46:54,378 - INFO - About to graduate alert tracking stopped
+2025-07-06 02:46:54,379 - INFO - About to graduate alert tracking initialization complete
+2025-07-06 02:47:21,409 - INFO - Wallet finder executed by alphabtw_ for 7TY2W2YtwipzF1zPNaBzSAJAzhM9MtZ2VmH9QG4pbonk at 7.8k MC
+2025-07-06 02:52:13,714 - ERROR - Missing buyers or supply data for AVTSCRkiofabSixVWioqmFY3WFC1s5FomwzhJHJsbon
+2025-07-06 02:52:41,276 - INFO - Wallet finder executed by alphabtw_ for AVTSCRkiofabSixVWioqmFY3WFC1s5FomwzhJHJsbonk at 46.8k MC
+2025-07-06 02:56:02,916 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-07-06 02:56:03,545 - INFO - Reconnected to Discord after disconnection
+2025-07-06 02:56:03,545 - INFO - Post-reconnection health check: Database=True, API Client=True
+2025-07-06 02:56:07,929 - INFO - Bot automatically reconnected
+2025-07-06 03:40:32,173 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-07-06 03:40:32,788 - INFO - Reconnected to Discord after disconnection
+2025-07-06 03:40:32,789 - INFO - Post-reconnection health check: Database=True, API Client=True
+2025-07-06 03:40:37,186 - INFO - Bot automatically reconnected
+2025-07-06 03:46:49,495 - INFO - Metrics Report | Uptime: 1h 0m | Memory: 54.4MB | Processed: 12 | Avg Processing: 0.0342s | Errors: 0 (0 types, Top: none) | Last Cleanup: 2025-07-06 02:46:48 (1h ago)
+2025-07-06 04:08:37,239 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-07-06 04:08:37,912 - INFO - Reconnected to Discord after disconnection
+2025-07-06 04:08:37,913 - INFO - Post-reconnection health check: Database=True, API Client=True
+2025-07-06 04:08:42,247 - INFO - Bot automatically reconnected
+2025-07-06 04:29:42,146 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-07-06 04:29:42,770 - INFO - Reconnected to Discord after disconnection
+2025-07-06 04:29:42,771 - INFO - Post-reconnection health check: Database=True, API Client=True
+2025-07-06 04:29:47,157 - INFO - Bot automatically reconnected
+2025-07-06 04:46:49,504 - INFO - Metrics Report | Uptime: 2h 0m | Memory: 45.1MB | Processed: 22 | Avg Processing: 0.1625s | Errors: 0 (0 types, Top: none) | Last Cleanup: 2025-07-06 02:46:48 (2h ago)
+2025-07-06 04:51:18,201 - INFO - Bot is shutting down...
+2025-07-06 04:51:18,202 - INFO - API client closed
+2025-07-06 04:51:18,202 - INFO - Truth Social tracking stopped
+2025-07-06 04:51:18,202 - INFO - Truth Social tracking stopped
+2025-07-06 04:51:18,202 - INFO - Services closed successfully
+2025-07-06 04:51:18,202 - INFO - Background task 'metrics_cleanup' canceled
+2025-07-06 04:51:18,202 - INFO - Background task 'memory_monitor' canceled
+2025-07-06 04:51:18,203 - INFO - Background task 'heartbeat_monitor' canceled
+2025-07-06 04:51:18,203 - INFO - Background task 'metrics_report' canceled
+2025-07-06 04:51:18,203 - INFO - DexScreener tracking stopped
+2025-07-06 04:51:18,203 - INFO - DexScreener tracking stopped
+2025-07-06 04:51:18,203 - INFO - Database connection pool closed successfully
+2025-07-06 04:51:18,206 - INFO - Bot stopped by user
+2025-07-06 04:51:22,079 - INFO - Starting bot...
+2025-07-06 04:51:22,998 - INFO - API client initialized
+2025-07-06 04:51:22,998 - INFO - WebsiteAnalyzer initialized with concurrency limit of 15
+2025-07-06 04:51:23,003 - INFO - Loaded 4 Truth Social tokens from file
+2025-07-06 04:51:23,003 - INFO - Authenticating 4 Truth Social accounts with missing or expired tokens...
+2025-07-06 04:51:23,034 - ERROR - Auth error: Status 403
+2025-07-06 04:51:23,034 - ERROR - Failed to authenticate Truth Social account: alphabtw
+2025-07-06 04:51:23,059 - ERROR - Failed to authenticate Truth Social account: visheshbtw
+2025-07-06 04:51:23,083 - ERROR - Failed to authenticate Truth Social account: sakshambtw
+2025-07-06 04:51:23,107 - ERROR - Failed to authenticate Truth Social account: mayankbtw
+2025-07-06 04:51:23,107 - INFO - Successfully authenticated 0/4 Truth Social accounts
+2025-07-06 04:51:23,108 - INFO - Saved 4 Truth Social tokens to file
+2025-07-06 04:51:23,108 - INFO - All API services initialized
+2025-07-06 04:51:23,108 - INFO - Services provider initialized
+2025-07-06 04:51:23,124 - INFO - Database connection pool established: size=1-10
+2025-07-06 04:51:23,124 - INFO - Database connection successful
+2025-07-06 04:51:23,131 - INFO - Proxy rotator initialized with http protocol
+2025-07-06 04:51:23,131 - INFO - Proxy rotator initialized for Truth commands
+2025-07-06 04:51:23,132 - INFO - Discord Events Registered | Username Ban Server ID: 1313758082974879774
+2025-07-06 04:51:23,133 - INFO - Memory monitor started (threshold: 300MB, interval: 3600s)
+2025-07-06 04:51:24,144 - INFO - Successfully synced 11 command(s)
+2025-07-06 04:51:28,559 - INFO - Logged in as TOPG#4967 (ID: 1340722186100408340)
+2025-07-06 04:51:28,559 - INFO - Bot connected to 7 server(s)
+2025-07-06 04:51:28,560 - INFO - Alerts are enabled.
+2025-07-06 04:51:28,560 - INFO - Starting tracking services...
+2025-07-06 04:51:28,560 - INFO - All tracking services started
+2025-07-06 04:51:28,560 - INFO - Initializing DexScreener live tracker...
+2025-07-06 04:51:28,560 - INFO - Initializing migration tracker...
+2025-07-06 04:51:28,561 - INFO - Initializing about to graduate alert tracker...
+2025-07-06 04:51:28,565 - INFO - No enabled guilds with channels, stopping tracking
+2025-07-06 04:51:28,565 - INFO - Migration tracking stopped
+2025-07-06 04:51:28,565 - INFO - Migration tracking initialization complete
+2025-07-06 04:51:28,565 - INFO - No enabled guilds with channels, stopping tracking
+2025-07-06 04:51:28,565 - INFO - DexScreener tracking stopped
+2025-07-06 04:51:28,566 - INFO - DexScreener tracking initialization complete
+2025-07-06 04:51:28,566 - INFO - No enabled guilds with channels, stopping about to graduate alert tracking
+2025-07-06 04:51:28,567 - INFO - About to graduate alert tracking stopped
+2025-07-06 04:51:28,567 - INFO - About to graduate alert tracking initialization complete
+2025-07-06 04:56:39,219 - ERROR - Missing buyers or supply data for 7TY2W2YtwipzF1zPNaBzSAJAzhM9MtZ2VmH9QG4pbon
+2025-07-06 04:56:55,576 - INFO - Wallet finder executed by alphabtw_ for 7TY2W2YtwipzF1zPNaBzSAJAzhM9MtZ2VmH9QG4pbonk at 7.8k MC
+2025-07-06 05:03:59,183 - INFO - Bot is shutting down...
+2025-07-06 05:03:59,183 - INFO - API client closed
+2025-07-06 05:03:59,184 - INFO - Truth Social tracking stopped
+2025-07-06 05:03:59,184 - INFO - Truth Social tracking stopped
+2025-07-06 05:03:59,184 - INFO - Services closed successfully
+2025-07-06 05:03:59,184 - INFO - Background task 'metrics_cleanup' canceled
+2025-07-06 05:03:59,184 - INFO - Background task 'memory_monitor' canceled
+2025-07-06 05:03:59,184 - INFO - Background task 'heartbeat_monitor' canceled
+2025-07-06 05:03:59,184 - INFO - Background task 'metrics_report' canceled
+2025-07-06 05:03:59,184 - INFO - DexScreener tracking stopped
+2025-07-06 05:03:59,185 - INFO - DexScreener tracking stopped
+2025-07-06 05:03:59,185 - INFO - Database connection pool closed successfully
+2025-07-06 05:03:59,186 - INFO - Bot stopped by user
+2025-07-06 05:04:02,555 - INFO - Starting bot...
+2025-07-06 05:04:03,490 - INFO - API client initialized
+2025-07-06 05:04:03,491 - INFO - WebsiteAnalyzer initialized with concurrency limit of 15
+2025-07-06 05:04:03,492 - INFO - Loaded 4 Truth Social tokens from file
+2025-07-06 05:04:03,492 - INFO - Authenticating 4 Truth Social accounts with missing or expired tokens...
+2025-07-06 05:04:03,524 - ERROR - Auth error: Status 403
+2025-07-06 05:04:03,524 - ERROR - Failed to authenticate Truth Social account: alphabtw
+2025-07-06 05:04:03,549 - ERROR - Failed to authenticate Truth Social account: visheshbtw
+2025-07-06 05:04:03,576 - ERROR - Failed to authenticate Truth Social account: sakshambtw
+2025-07-06 05:04:03,600 - ERROR - Failed to authenticate Truth Social account: mayankbtw
+2025-07-06 05:04:03,600 - INFO - Successfully authenticated 0/4 Truth Social accounts
+2025-07-06 05:04:03,601 - INFO - Saved 4 Truth Social tokens to file
+2025-07-06 05:04:03,601 - INFO - All API services initialized
+2025-07-06 05:04:03,602 - INFO - Services provider initialized
+2025-07-06 05:04:03,627 - INFO - Database connection pool established: size=1-10
+2025-07-06 05:04:03,627 - INFO - Database connection successful
+2025-07-06 05:04:03,635 - INFO - Proxy rotator initialized with http protocol
+2025-07-06 05:04:03,635 - INFO - Proxy rotator initialized for Truth commands
+2025-07-06 05:04:03,636 - INFO - Discord Events Registered | Username Ban Server ID: 1313758082974879774
+2025-07-06 05:04:03,637 - INFO - Memory monitor started (threshold: 300MB, interval: 3600s)
+2025-07-06 05:04:04,138 - INFO - Successfully synced 11 command(s)
+2025-07-06 05:04:08,318 - INFO - Logged in as TOPG#4967 (ID: 1340722186100408340)
+2025-07-06 05:04:08,319 - INFO - Bot connected to 7 server(s)
+2025-07-06 05:04:08,319 - INFO - Alerts are enabled.
+2025-07-06 05:04:08,319 - INFO - Starting tracking services...
+2025-07-06 05:04:08,319 - INFO - All tracking services started
+2025-07-06 05:04:08,319 - INFO - Initializing DexScreener live tracker...
+2025-07-06 05:04:08,319 - INFO - Initializing migration tracker...
+2025-07-06 05:04:08,319 - INFO - Initializing about to graduate alert tracker...
+2025-07-06 05:04:08,323 - INFO - No enabled guilds with channels, stopping tracking
+2025-07-06 05:04:08,323 - INFO - Migration tracking stopped
+2025-07-06 05:04:08,324 - INFO - Migration tracking initialization complete
+2025-07-06 05:04:08,324 - INFO - No enabled guilds with channels, stopping tracking
+2025-07-06 05:04:08,324 - INFO - DexScreener tracking stopped
+2025-07-06 05:04:08,324 - INFO - DexScreener tracking initialization complete
+2025-07-06 05:04:08,325 - INFO - No enabled guilds with channels, stopping about to graduate alert tracking
+2025-07-06 05:04:08,325 - INFO - About to graduate alert tracking stopped
+2025-07-06 05:04:08,325 - INFO - About to graduate alert tracking initialization complete
+2025-07-06 05:05:47,139 - INFO - Bundle check called by alphabtw_ for CCBrhTAVHvx7DAKjrVSkTbULMTsXXr3KRP7Tigrpump
+2025-07-06 05:09:46,039 - INFO - Bot is shutting down...
+2025-07-06 05:09:46,039 - INFO - API client closed
+2025-07-06 05:09:46,039 - INFO - Truth Social tracking stopped
+2025-07-06 05:09:46,039 - INFO - Truth Social tracking stopped
+2025-07-06 05:09:46,039 - INFO - Services closed successfully
+2025-07-06 05:09:46,039 - INFO - Background task 'metrics_cleanup' canceled
+2025-07-06 05:09:46,039 - INFO - Background task 'memory_monitor' canceled
+2025-07-06 05:09:46,039 - INFO - Background task 'heartbeat_monitor' canceled
+2025-07-06 05:09:46,040 - INFO - Background task 'metrics_report' canceled
+2025-07-06 05:09:46,040 - INFO - DexScreener tracking stopped
+2025-07-06 05:09:46,040 - INFO - DexScreener tracking stopped
+2025-07-06 05:09:46,040 - INFO - Database connection pool closed successfully
+2025-07-06 05:09:46,041 - INFO - Bot stopped by user
+2025-07-06 05:09:50,124 - INFO - Starting bot...
+2025-07-06 05:09:50,984 - INFO - API client initialized
+2025-07-06 05:09:50,985 - INFO - WebsiteAnalyzer initialized with concurrency limit of 15
+2025-07-06 05:09:50,985 - INFO - Loaded 4 Truth Social tokens from file
+2025-07-06 05:09:50,985 - INFO - Authenticating 4 Truth Social accounts with missing or expired tokens...
+2025-07-06 05:09:51,017 - ERROR - Auth error: Status 403
+2025-07-06 05:09:51,017 - ERROR - Failed to authenticate Truth Social account: alphabtw
+2025-07-06 05:09:51,042 - ERROR - Failed to authenticate Truth Social account: visheshbtw
+2025-07-06 05:09:51,067 - ERROR - Failed to authenticate Truth Social account: sakshambtw
+2025-07-06 05:09:51,094 - ERROR - Failed to authenticate Truth Social account: mayankbtw
+2025-07-06 05:09:51,094 - INFO - Successfully authenticated 0/4 Truth Social accounts
+2025-07-06 05:09:51,095 - INFO - Saved 4 Truth Social tokens to file
+2025-07-06 05:09:51,095 - INFO - All API services initialized
+2025-07-06 05:09:51,095 - INFO - Services provider initialized
+2025-07-06 05:09:51,109 - INFO - Database connection pool established: size=1-10
+2025-07-06 05:09:51,109 - INFO - Database connection successful
+2025-07-06 05:09:51,114 - INFO - Proxy rotator initialized with http protocol
+2025-07-06 05:09:51,114 - INFO - Proxy rotator initialized for Truth commands
+2025-07-06 05:09:51,115 - INFO - Discord Events Registered | Username Ban Server ID: 1313758082974879774
+2025-07-06 05:09:51,116 - INFO - Memory monitor started (threshold: 300MB, interval: 3600s)
+2025-07-06 05:09:51,649 - INFO - Successfully synced 11 command(s)
+2025-07-06 05:09:56,058 - INFO - Logged in as TOPG#4967 (ID: 1340722186100408340)
+2025-07-06 05:09:56,058 - INFO - Bot connected to 7 server(s)
+2025-07-06 05:09:56,058 - INFO - Alerts are enabled.
+2025-07-06 05:09:56,059 - INFO - Starting tracking services...
+2025-07-06 05:09:56,059 - INFO - All tracking services started
+2025-07-06 05:09:56,059 - INFO - Initializing DexScreener live tracker...
+2025-07-06 05:09:56,059 - INFO - Initializing migration tracker...
+2025-07-06 05:09:56,059 - INFO - Initializing about to graduate alert tracker...
+2025-07-06 05:09:56,063 - INFO - No enabled guilds with channels, stopping tracking
+2025-07-06 05:09:56,063 - INFO - DexScreener tracking stopped
+2025-07-06 05:09:56,063 - INFO - DexScreener tracking initialization complete
+2025-07-06 05:09:56,063 - INFO - No enabled guilds with channels, stopping tracking
+2025-07-06 05:09:56,063 - INFO - Migration tracking stopped
+2025-07-06 05:09:56,063 - INFO - Migration tracking initialization complete
+2025-07-06 05:09:56,064 - INFO - No enabled guilds with channels, stopping about to graduate alert tracking
+2025-07-06 05:09:56,064 - INFO - About to graduate alert tracking stopped
+2025-07-06 05:09:56,064 - INFO - About to graduate alert tracking initialization complete
+2025-07-06 05:10:40,463 - INFO - No wallets found matching criteria for Cqoj7FuruxD9GZ6M2UAZxpyM3jzSoF2tB8699DLpyBLV
+2025-07-06 05:11:11,901 - INFO - Wallet finder executed by alphabtw_ for 5P2Au6KUiDKx9xZQ3VwTNGL63ACdHYsmVzHtYmwfpump at 5k MC
+2025-07-06 05:18:01,812 - INFO - Bot is shutting down...
+2025-07-06 05:18:01,812 - INFO - API client closed
+2025-07-06 05:18:01,813 - INFO - Truth Social tracking stopped
+2025-07-06 05:18:01,813 - INFO - Truth Social tracking stopped
+2025-07-06 05:18:01,813 - INFO - Services closed successfully
+2025-07-06 05:18:01,813 - INFO - Background task 'metrics_cleanup' canceled
+2025-07-06 05:18:01,813 - INFO - Background task 'memory_monitor' canceled
+2025-07-06 05:18:01,813 - INFO - Background task 'heartbeat_monitor' canceled
+2025-07-06 05:18:01,813 - INFO - Background task 'metrics_report' canceled
+2025-07-06 05:18:01,813 - INFO - DexScreener tracking stopped
+2025-07-06 05:18:01,813 - INFO - DexScreener tracking stopped
+2025-07-06 05:18:01,813 - INFO - Database connection pool closed successfully
+2025-07-06 05:18:01,815 - INFO - Bot stopped by user
+2025-07-06 05:18:07,604 - INFO - Starting bot...
+2025-07-06 05:18:08,644 - INFO - API client initialized
+2025-07-06 05:18:08,645 - INFO - WebsiteAnalyzer initialized with concurrency limit of 15
+2025-07-06 05:18:08,646 - INFO - Loaded 4 Truth Social tokens from file
+2025-07-06 05:18:08,646 - INFO - Authenticating 4 Truth Social accounts with missing or expired tokens...
+2025-07-06 05:18:08,674 - ERROR - Auth error: Status 403
+2025-07-06 05:18:08,674 - ERROR - Failed to authenticate Truth Social account: alphabtw
+2025-07-06 05:18:08,698 - ERROR - Failed to authenticate Truth Social account: visheshbtw
+2025-07-06 05:18:08,725 - ERROR - Failed to authenticate Truth Social account: sakshambtw
+2025-07-06 05:18:08,754 - ERROR - Failed to authenticate Truth Social account: mayankbtw
+2025-07-06 05:18:08,754 - INFO - Successfully authenticated 0/4 Truth Social accounts
+2025-07-06 05:18:08,755 - INFO - Saved 4 Truth Social tokens to file
+2025-07-06 05:18:08,755 - INFO - All API services initialized
+2025-07-06 05:18:08,755 - INFO - Services provider initialized
+2025-07-06 05:18:08,768 - INFO - Database connection pool established: size=1-10
+2025-07-06 05:18:08,768 - INFO - Database connection successful
+2025-07-06 05:18:08,777 - INFO - Proxy rotator initialized with http protocol
+2025-07-06 05:18:08,777 - INFO - Proxy rotator initialized for Truth commands
+2025-07-06 05:18:08,778 - INFO - Discord Events Registered | Username Ban Server ID: 1313758082974879774
+2025-07-06 05:18:08,779 - INFO - Memory monitor started (threshold: 300MB, interval: 3600s)
+2025-07-06 05:18:09,539 - INFO - Successfully synced 11 command(s)
+2025-07-06 05:18:13,543 - INFO - Logged in as TOPG#4967 (ID: 1340722186100408340)
+2025-07-06 05:18:13,543 - INFO - Bot connected to 7 server(s)
+2025-07-06 05:18:13,543 - INFO - Alerts are enabled.
+2025-07-06 05:18:13,543 - INFO - Starting tracking services...
+2025-07-06 05:18:13,544 - INFO - All tracking services started
+2025-07-06 05:18:13,544 - INFO - Initializing DexScreener live tracker...
+2025-07-06 05:18:13,544 - INFO - Initializing migration tracker...
+2025-07-06 05:18:13,544 - INFO - Initializing about to graduate alert tracker...
+2025-07-06 05:18:13,548 - INFO - No enabled guilds with channels, stopping tracking
+2025-07-06 05:18:13,549 - INFO - DexScreener tracking stopped
+2025-07-06 05:18:13,549 - INFO - DexScreener tracking initialization complete
+2025-07-06 05:18:13,549 - INFO - No enabled guilds with channels, stopping tracking
+2025-07-06 05:18:13,549 - INFO - Migration tracking stopped
+2025-07-06 05:18:13,549 - INFO - Migration tracking initialization complete
+2025-07-06 05:18:13,550 - INFO - No enabled guilds with channels, stopping about to graduate alert tracking
+2025-07-06 05:18:13,550 - INFO - About to graduate alert tracking stopped
+2025-07-06 05:18:13,550 - INFO - About to graduate alert tracking initialization complete
+2025-07-06 05:19:38,139 - INFO - Wallet finder executed by alphabtw_ for GCQ8hvUDUPadA18cPGE4GeuxEUoGrojzzzuXKW2cpump at 10k MC
+2025-07-06 06:18:08,792 - INFO - Metrics Report | Uptime: 1h 0m | Memory: 50.5MB | Processed: 7 | Avg Processing: 0.4111s | Errors: 0 (0 types, Top: none) | Last Cleanup: 2025-07-06 05:18:07 (1h ago)
+2025-07-06 06:28:37,205 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-07-06 06:28:38,473 - INFO - Reconnected to Discord after disconnection
+2025-07-06 06:28:38,473 - INFO - Post-reconnection health check: Database=True, API Client=True
+2025-07-06 06:28:42,218 - INFO - Bot automatically reconnected
+2025-07-06 07:18:08,803 - INFO - Metrics Report | Uptime: 2h 0m | Memory: 48.1MB | Processed: 16 | Avg Processing: 0.9388s | Errors: 0 (0 types, Top: none) | Last Cleanup: 2025-07-06 05:18:07 (2h ago)
+2025-07-06 07:22:43,778 - INFO - Bot is shutting down...
+2025-07-06 07:22:43,779 - INFO - API client closed
+2025-07-06 07:22:43,779 - INFO - Truth Social tracking stopped
+2025-07-06 07:22:43,779 - INFO - Truth Social tracking stopped
+2025-07-06 07:22:43,779 - INFO - Services closed successfully
+2025-07-06 07:22:43,779 - INFO - Background task 'metrics_cleanup' canceled
+2025-07-06 07:22:43,779 - INFO - Background task 'memory_monitor' canceled
+2025-07-06 07:22:43,780 - INFO - Background task 'heartbeat_monitor' canceled
+2025-07-06 07:22:43,780 - INFO - Background task 'metrics_report' canceled
+2025-07-06 07:22:43,780 - INFO - DexScreener tracking stopped
+2025-07-06 07:22:43,780 - INFO - DexScreener tracking stopped
+2025-07-06 07:22:43,780 - INFO - Database connection pool closed successfully
+2025-07-06 07:22:43,783 - INFO - Bot stopped by user

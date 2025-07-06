@@ -6,7 +6,7 @@ import asyncio
 import dateutil.parser as date_parse
 import re
 from datetime import datetime
-from typing import Dict, Any
+from typing import List, Dict, Optional, Any
 from urllib.parse import quote
 from config import TWITTER_SEARCH_URL, TRADING_PLATFORMS, VERIFIED_EMOJI
 from utils.formatters import (
@@ -14,7 +14,7 @@ from utils.formatters import (
     relative_time, get_color_from_change, score_bar, clean_html,
     format_metrics, proxy_url, format_category
 )
-from utils.helper import safe_add_field, fetch_token_image_from_uri
+from utils.helper import safe_add_field, fetch_token_image_from_uri, fetch_token_image_from_uri, calculate_mc_range
 from utils.logger import get_logger
 
 
@@ -460,8 +460,6 @@ def create_migration_tracker_embed(dex_data, mobula_data, token_address):
         
         # Rare fallback - DexScreener failed, use whatever Mobula has
         elif not dex_data and mobula_data:
-            logger.info(f"using mobula only to build embed for: {token_address}")
-            print(f"mobula data: {mobula_data}")
             data = mobula_data.get('data', {})
             embed = discord.Embed(
                 title=f"<a:upvote:1380578405757489294> {data.get('name', 'Unknown')} (${data.get('symbol', 'Unknown')}) Graduated!",
@@ -627,6 +625,131 @@ async def create_about_to_graduate_embed(token_info: Dict, pool_data: Dict, toke
         logger.error(f"Error creating graduation alert embed: {e}")
         return None
 
+async def create_wallet_finder_embed(
+    token_info: Dict,
+    matching_holders: List[Dict],
+    target_mc: float,
+    cutoff_value: Optional[float],
+    buy_amount_filter: Optional[Dict[str, Any]],
+    market_cap_input: str,
+    cutoff_input: Optional[str],
+    buy_amount_input: Optional[str],
+    page: int = 1,
+    total_pages: int = 1
+) -> Optional[discord.Embed]:
+    """
+    Create embed for wallet finder results
+    
+    Args:
+        token_info: Token information from BitQuery
+        matching_holders: List of holders for current page
+        target_mc: Target market cap value
+        cutoff_value: Optional cutoff value
+        buy_amount_filter: Optional buy amount filter dict
+        market_cap_input: Original market cap input
+        cutoff_input: Original cutoff input
+        buy_amount_input: Original buy amount input
+        page: Current page number
+        total_pages: Total number of pages
+        
+    Returns:
+        Discord embed or None
+    """
+    try:
+        if not matching_holders:
+            return None
+        
+        # Extract token details
+        token_name = token_info.get("Name", "Unknown")
+        token_symbol = token_info.get("Symbol", "Unknown")
+        token_uri = token_info.get("Uri", "")
+        
+        # Create embed
+        embed = discord.Embed(
+            color=0x2ECC71,
+            timestamp=datetime.now()
+        )
+        
+        image_url = None
+        if token_uri:
+            try:
+                image_url = await fetch_token_image_from_uri(token_uri)
+            except:
+                pass
+
+        if image_url:
+            embed.set_author(
+                name=f"{token_name} (${token_symbol}) • Page {page}/{total_pages}",
+                icon_url=image_url
+            )
+            embed.set_thumbnail(url=image_url)
+        else:
+            embed.title = f"{token_name} (${token_symbol}) • Page {page}/{total_pages}"
+
+        
+        # Build description
+        description_parts = []
+        
+        # Market cap criteria
+        if cutoff_value:
+            min_mc, max_mc = calculate_mc_range(target_mc, cutoff_value)
+            description_parts.append(f"# <a:cash:1391203587102867507> Market Cap Range: {format_value(min_mc)} - {format_value(max_mc)}")
+        else:
+            description_parts.append(f"# <a:cash:1391203587102867507> Target Market Cap: {format_value(target_mc)}")
+        
+        # Buy amount criteria if provided
+        if buy_amount_filter:
+            currency_symbol = "SOL" if buy_amount_filter["currency"] == "SOL" else "$"
+            amount_str = f"{buy_amount_filter['amount']:.2f}" if buy_amount_filter['amount'] % 1 != 0 else f"{int(buy_amount_filter['amount'])}"
+            if buy_amount_filter["currency"] == "SOL":
+                description_parts.append(f"# 🪙 Buy Amount Filter: {amount_str} {currency_symbol}")
+            else:
+                description_parts.append(f"# 🪙 Buy Amount Filter: {currency_symbol}{amount_str}")
+        
+        description_parts.append("")  # Empty line
+        
+        # Add holder information
+        for i, holder in enumerate(matching_holders):
+            wallet_address = holder["wallet"]
+            total_sol = holder["total_sol"]
+            total_usd = holder["total_usd"]
+            buy_count = holder["buy_count"]
+            avg_mc = holder["avg_mc"]
+            
+            # Calculate wallet number (accounting for pagination)
+            wallet_number = (page - 1) * 10 + i + 1
+            
+            # Format wallet info
+            wallet_text = f"## Wallet #{wallet_number}\n"
+            wallet_text += f"**Wallet:** **`{wallet_address}`**\n"
+            wallet_text += f"**Average MC:** **`${format_value(avg_mc)}`**\n"
+            wallet_text += f"**Buy Volume:** **`{total_sol:.2f} SOL (${total_usd:,.2f})`**\n"
+            wallet_text += f"**Total Buys:** **`{buy_count}`**\n"
+            
+            description_parts.append(wallet_text)
+        
+        # Add note about accuracy
+        description_parts.append("")
+        description_parts.append(
+            "**Note:** Average market cap shown in trading charts and other platforms may differ slightly from our calculations. "
+            "For more precise wallet matching, consider using the buy amount filter to narrow down results."
+        )
+        
+        # Join all parts
+        embed.description = "\n".join(description_parts)
+        
+        # Add footer
+        embed.set_footer(
+            text="Wallet Finder",
+            icon_url="https://media1.tenor.com/m/Zu-MORJkq7IAAAAC/dollar-sign-money.gif"
+        )
+        
+        return embed
+        
+    except Exception as e:
+        logger.error(f"Error creating wallet finder embed: {e}")
+        return None
+    
 def create_github_analysis_embed(repo_info, analysis, start_time, interaction):
     """
     Create an enhanced embed for GitHub repository analysis.

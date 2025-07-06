@@ -11,7 +11,7 @@ from utils.logger import get_logger
 import repository.migration_tracker_repo as migration_db
 from gql import Client, gql
 from gql.transport.websockets import WebsocketsTransport
-from config import BITQUERY_API_KEY_1
+from config import BITQUERY_SUBSCRIPTION_API_KEY_1
 
 logger = get_logger()
 
@@ -231,7 +231,7 @@ async def tracking_loop(bot):
                 
                 # Create transport with proper headers
                 transport = WebsocketsTransport(
-                    url=f"wss://streaming.bitquery.io/eap?token={BITQUERY_API_KEY_1}",
+                    url=f"wss://streaming.bitquery.io/eap?token={BITQUERY_SUBSCRIPTION_API_KEY_1}",
                      headers={
                         "Sec-WebSocket-Protocol": "graphql-ws"
                     }

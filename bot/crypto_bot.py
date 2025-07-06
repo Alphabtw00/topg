@@ -17,6 +17,8 @@ from commands.website_analysis_commands import WebsiteChecker
 from commands.about_to_graduate_tracker_commandsr import About_to_GraduateCommands
 from commands.dex_tracker_commands import DexTrackerCommands
 from commands.migration_tracker_commands import MigrationTrackerCommands
+from commands.bundle_checker_commands import BundleChecker
+from commands.wallet_finder_commands import WalletFinderCommands
 from commands.ban_commands import BanCommand
 from service.truth_tracker_service import initialize_and_start_truth_tracking
 from service.dex_tracker_service import initialize_and_start_dex_tracking
@@ -25,7 +27,7 @@ from service.migration_tracke_servicer import initialize_and_start_migration_tra
 from service.about_to_graduate_tracker_service import initialize_and_start_about_to_graduate_tracking
 from utils.formatters import relative_time
 from api.provider import ApiServiceProvider
-from commands.bundle_checker_commands import BundleChecker
+
 from config import ENABLE_ALERTS, ENABLE_BOT_FORWARDING, ENABLE_USER_FORWARDING
 
 logger = get_logger()
@@ -119,6 +121,7 @@ class CryptoBot(commands.Bot):
         await self.add_cog(BundleChecker(self))
         await self.add_cog(MigrationTrackerCommands(self))
         await self.add_cog(About_to_GraduateCommands(self))
+        await self.add_cog(WalletFinderCommands(self))
 
         from bot.events import setup_events  # Adjust import based on your project structure
         await setup_events(self)

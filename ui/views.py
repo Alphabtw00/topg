@@ -6,6 +6,9 @@ import discord
 from datetime import datetime, timedelta
 from urllib.parse import urlparse
 from utils.logger import get_logger
+from ui.embeds import create_wallet_finder_embed
+from typing import List, Dict, Any, Optional
+
 
 logger = get_logger()
 
@@ -23,7 +26,6 @@ class CopyAddressView(discord.ui.View):
         await interaction.response.send_message(f"{self.address}", ephemeral=True)
         await asyncio.sleep(30)
         await interaction.delete_original_response()
-
 
 class GitHubAnalysisView(discord.ui.View):
     """Interactive view for GitHub repository analysis"""
@@ -301,3 +303,90 @@ class WebsiteAnalysisView(discord.ui.View):
         if self.timeout_task:
             self.timeout_task.cancel()
         super().stop()
+
+class WalletFinderView(discord.ui.View):
+    """Pagination view for wallet finder results"""
+    
+    def __init__(
+        self,
+        token_info: Dict,
+        all_holders: List[Dict],
+        target_mc: float,
+        cutoff_value: Optional[float],
+        buy_amount_filter: Optional[Dict[str, Any]],
+        market_cap_input: str,
+        cutoff_input: Optional[str],
+        buy_amount_input: Optional[str]
+    ):
+        super().__init__(timeout=300)  # 5 minutes timeout
+        self.token_info = token_info
+        self.all_holders = all_holders
+        self.target_mc = target_mc
+        self.cutoff_value = cutoff_value
+        self.buy_amount_filter = buy_amount_filter
+        self.market_cap_input = market_cap_input
+        self.cutoff_input = cutoff_input
+        self.buy_amount_input = buy_amount_input
+        
+        self.current_page = 1
+        self.total_pages = max(1, (len(all_holders) + 9) // 10)
+        
+        # Update button states
+        self.update_buttons()
+    
+    def update_buttons(self):
+        """Update button states based on current page"""
+        # Previous page button
+        self.previous_page.disabled = self.current_page <= 1
+        
+        # Next page button
+        self.next_page.disabled = self.current_page >= self.total_pages
+        
+        # Update page info button
+        self.page_info.label = f"Page {self.current_page}/{self.total_pages}"
+    
+    async def update_embed(self, interaction: discord.Interaction):
+        """Update the embed with current page data"""
+        start_idx = (self.current_page - 1) * 10
+        end_idx = start_idx + 10
+        page_holders = self.all_holders[start_idx:end_idx]
+        
+        embed = await create_wallet_finder_embed(
+            self.token_info,
+            page_holders,
+            self.target_mc,
+            self.cutoff_value,
+            self.buy_amount_filter,
+            self.market_cap_input,
+            self.cutoff_input,
+            self.buy_amount_input,
+            page=self.current_page,
+            total_pages=self.total_pages
+        )
+        
+        self.update_buttons()
+        await interaction.response.edit_message(embed=embed, view=self)
+    
+    @discord.ui.button(label="◀", style=discord.ButtonStyle.primary, custom_id="previous_page")
+    async def previous_page(self, interaction: discord.Interaction, button: discord.ui.Button):
+        """Go to previous page"""
+        if self.current_page > 1:
+            self.current_page -= 1
+            await self.update_embed(interaction)
+    
+    @discord.ui.button(label="Page 1/1", style=discord.ButtonStyle.secondary, custom_id="page_info", disabled=True)
+    async def page_info(self, interaction: discord.Interaction, button: discord.ui.Button):
+        """Display current page info (disabled button)"""
+        pass
+    
+    @discord.ui.button(label="▶", style=discord.ButtonStyle.primary, custom_id="next_page")
+    async def next_page(self, interaction: discord.Interaction, button: discord.ui.Button):
+        """Go to next page"""
+        if self.current_page < self.total_pages:
+            self.current_page += 1
+            await self.update_embed(interaction)
+    
+    async def on_timeout(self):
+        """Disable all buttons when view times out"""
+        for item in self.children:
+            item.disabled = True

@@ -8,6 +8,7 @@ from api.github_analyzer import GitHubAnalyzer
 from api.website_analyzer import WebsiteAnalyzer
 from api.truthsocial import TruthSocialService
 from api.trenchbot import TrenchBotService
+from api.bitquery import BitQueryService
 from utils.logger import get_logger
 
 logger = get_logger()
@@ -25,6 +26,7 @@ class ApiServiceProvider:
         self.trenchbot = None
         self.website_analyzer = None
         self.truthsocial = None
+        self.bitquery = None
     
     async def setup(self):
         """Set up all services"""
@@ -40,6 +42,7 @@ class ApiServiceProvider:
         self.website_analyzer = WebsiteAnalyzer(self.api_client)
         self.truthsocial = TruthSocialService(self.api_client)
         self.trenchbot = TrenchBotService(self.api_client)
+        self.bitquery = BitQueryService(self.api_client)
         await self.truthsocial.setup()
         logger.info("All API services initialized")
         
