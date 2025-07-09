@@ -327,32 +327,23 @@ async def process_raw_instruction(bot, instruction_data):
 
 
 def extract_token_mint(instruction_data):
-    """Extract token mint address from instruction data with enhanced parsing"""
+    """Extract token mint address from instruction data based on method name"""
     try:
-        program_address = instruction_data["Instruction"]["Program"]["Address"]
         program_method = instruction_data["Instruction"]["Program"].get("Method", "")
         accounts = instruction_data["Instruction"]["Accounts"]
         
-        # Define account index mapping based on program and method
-        account_index_map = {
-            # Pump.fun
-            "6EF8rrecthR5Dkzon8Nwu78hRvfCKubJ14M5uBEwF6P": 2,  # 3rd (index 2)
-            
-            # Boop
-            "boop8hVGQGqehUK2iVEMEnMrL5RbjywRzHKBmBE7ry4": 1,  # 2nd (index 1)
-            
-            # Meteora DBC
-            "dbcij3LWUppWqq96dh6gJWwBifmcGfLSB5D4DuSMaqN": 7,  # 8th (index 7)
-            
-            # Bonk (Raydium LaunchPad)
-            "LanMV9sAd7wArD4vJFi2qDdfnVhFxYSUg6eADduJ3uj": 1,  # 2nd (index 1)
-            
-            # Moonshot
-            "MoonCVVNZFSYkqNXP6bxHLPL6QQJiMagDL3qcqUQTrG": 3,  # 4th (index 3)
+        # Define account index mapping based on method name
+        method_index_map = {
+            "migrate_meteora_damm": 7,    # 8th (index 7)
+            "migration_damm_v2": 13,      # 14th (index 13)
+            "migrate_to_cpswap": 1,       # 2nd (index 1)
+            "migrate": 2,                 # 3rd (index 2)
+            "graduate": 0,                # 1st (index 0)
+            "migrateFunds" : 3            # 4th (index 3)
         }
         
-        # Get the expected account index
-        expected_index = account_index_map.get(program_address)
+        # Get the expected account index based on method
+        expected_index = method_index_map.get(program_method)
         
         if expected_index is not None:
             # Try to get mint from expected index
@@ -367,7 +358,7 @@ def extract_token_mint(instruction_data):
                 account["Token"]["Mint"] != "So11111111111111111111111111111111111111112"):
                 return account["Token"]["Mint"]
         
-        logger.warning(f"No token mint found for program {program_address} method {program_method}")
+        logger.warning(f"No token mint found for method {program_method}")
         return "Unknown Token"
         
     except Exception as e:
@@ -375,29 +366,29 @@ def extract_token_mint(instruction_data):
         return "Unknown Token"
 
 
-def get_mint_from_account_index(accounts, start_index):
-    """Get mint from specific account index, with fallback to next available mint"""
+def get_mint_from_account_index(accounts, target_index):
+    """Get mint from specific account index, fallback to address if mint not available"""
     try:
-        # Try the specific index first
-        if start_index < len(accounts):
-            account = accounts[start_index]
-            if (account.get("Token") and 
-                account.get("Token").get("Mint") and
-                account["Token"]["Mint"] != "So11111111111111111111111111111111111111112"):
-                return account["Token"]["Mint"]
+        # Check if target index exists
+        if target_index >= len(accounts):
+            return None
         
-        # Fallback: search from start_index onwards for first available mint
-        for i in range(start_index + 1, len(accounts)):
-            account = accounts[i]
-            if (account.get("Token") and 
-                account.get("Token").get("Mint") and
-                account["Token"]["Mint"] != "So11111111111111111111111111111111111111112"):
-                return account["Token"]["Mint"]
+        account = accounts[target_index]
+        
+        # Try to get mint from token info
+        if (account.get("Token") and 
+            account.get("Token").get("Mint") and
+            account["Token"]["Mint"] != "So11111111111111111111111111111111111111112"):
+            return account["Token"]["Mint"]
+        
+        # Fallback to account address if mint not available
+        if account.get("Address"):
+            return account["Address"]
         
         return None
         
     except Exception as e:
-        logger.error(f"Error getting mint from account index {start_index}: {e}")
+        logger.error(f"Error getting mint from account index {target_index}: {e}")
         return None
 
 
