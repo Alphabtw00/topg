@@ -43,6 +43,7 @@ query GetAllBuyers($contractAddress: String!) {
         if: {Trade: {Side: {Type: {is: buy}}}}
       )
       buy_count: count(if: {Trade: {Side: {Type: {is: buy}}}})
+      total_fees_usd: sum(of: Transaction_FeeInUSD)
     }
     TokenSupplyUpdates(
       where: {
@@ -132,13 +133,14 @@ async def find_wallets_by_average_mc(
         
         for buyer in buyers_data:
             try:
-                total_usd = float(buyer["total_buy_usd"])
+                total_usd = float(buyer["total_buy_usd"]) 
                 total_sol = float(buyer["total_buy_sol"])
+                total_usd_with_fee = total_usd + float(buyer["total_fees_usd"])
                 total_tokens = float(buyer["total_tokens_bought"])
                 
                 if total_tokens > 0:
                     # Calculate average entry price and market cap
-                    avg_entry_price = total_usd / total_tokens
+                    avg_entry_price = total_usd_with_fee / total_tokens
                     avg_entry_mc = avg_entry_price * token_supply
                     
                     holders_with_mc.append({

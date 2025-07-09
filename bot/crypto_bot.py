@@ -23,7 +23,7 @@ from commands.ban_commands import BanCommand
 from service.truth_tracker_service import initialize_and_start_truth_tracking
 from service.dex_tracker_service import initialize_and_start_dex_tracking
 from service.mysql_service import setup_db_pool, close_db_pool
-from service.migration_tracker_servicer import initialize_and_start_migration_tracking
+from service.migration_tracker_service import initialize_and_start_migration_tracking
 from service.about_to_graduate_tracker_service import initialize_and_start_about_to_graduate_tracking
 from utils.formatters import relative_time
 from api.provider import ApiServiceProvider

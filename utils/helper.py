@@ -79,21 +79,77 @@ def safe_add_field(embed, name, content, inline=False):
         content = content[:1020] + "..."
     embed.add_field(name=name, value=content, inline=False)
 
-async def fetch_token_image_from_uri(uri: str) -> Optional[str]:
-    """Fetch token metadata from URI and extract image URL"""
-    if not uri:
-        return None
-    
+async def get_token_metadata_and_links(uri, dev_address=None):
+    """
+    Reusable method to fetch token metadata from URI and extract links
+    Returns: (image_url, links_list)
+    """
     try:
-        async with aiohttp.ClientSession() as session:
-            async with session.get(uri, timeout=aiohttp.ClientTimeout(total=10)) as response:
-                if response.status == 200:
-                    metadata = await response.json()
-                    return metadata.get('image')
+        if not uri:
+            return None, []
+        
+        # Fetch metadata from URI
+        metadata = await fetch_token_metadata_from_uri(uri)
+        if not metadata:
+            return None, []
+        
+        # Extract image
+        image_url = metadata.get('image')
+        
+        # Build links
+        links = []
+        
+        # Add dev link if provided
+        if dev_address:
+            links.append({"label": "Dev", "url": f"https://solscan.io/account/{dev_address}"})
+        
+        # Social media mapping
+        social_fields = {
+            'twitter': 'Twitter',
+            'telegram': 'Telegram', 
+            'discord': 'Discord',
+            'youtube': 'YouTube',
+            'reddit': 'Reddit',
+            'github': 'GitHub',
+            'medium': 'Medium',
+            'instagram': 'Instagram'
+        }
+        
+        # Add direct social fields
+        for field, label in social_fields.items():
+            if field in metadata and metadata[field]:
+                links.append({"label": label, "url": metadata[field]})
+        
+        # Check website field for socials or general website
+        website = metadata.get('website') or metadata.get('external_url')
+        if website:
+            social_patterns = {
+                ('twitter.com', 'x.com'): 'Twitter',
+                ('t.me',): 'Telegram',
+                ('discord.gg', 'discord.com', 'discord.app'): 'Discord',
+                ('youtube.com', 'youtu.be'): 'YouTube',
+                ('instagram.com',): 'Instagram',
+                ('tiktok.com',): 'TikTok',
+                ('reddit.com',): 'Reddit',
+                ('github.com',): 'GitHub',
+                ('medium.com',): 'Medium'
+            }
+            
+            social_found = False
+            for patterns, label in social_patterns.items():
+                if any(pattern in website for pattern in patterns):
+                    links.append({"label": label, "url": website})
+                    social_found = True
+                    break
+            
+            if not social_found:
+                links.append({"label": "Web", "url": website})
+        
+        return image_url, links
+        
     except Exception as e:
-        logger.debug(f"Error fetching token metadata from {uri}: {e}")
-    
-    return None
+        logger.error(f"Error fetching metadata from URI {uri}: {e}")
+        return None, []
 
 async def fetch_token_metadata_from_uri(uri: str) -> Optional[dict]:
     """Fetch token metadata from URI and return full metadata"""
@@ -110,7 +166,6 @@ async def fetch_token_metadata_from_uri(uri: str) -> Optional[dict]:
         logger.debug(f"Error fetching token metadata from {uri}: {e}")
     
     return None
-
 
 def parse_market_cap_value(value: str) -> Optional[float]:
     """

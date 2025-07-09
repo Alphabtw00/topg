@@ -5,7 +5,7 @@ import discord
 from discord import app_commands
 from discord.ext import commands
 from typing import Optional
-import service.migration_tracker_servicer as migration_tracker_servicer
+import service.migration_tracker_service as migration_tracker_service
 import repository.migration_tracker_repo as migration_db
 from utils.logger import get_logger
 from utils.formatters import safe_text
@@ -52,7 +52,7 @@ class MigrationTrackerCommands(commands.Cog):
             
             if success:
                 # Rebuild cache
-                await migration_tracker_servicer.rebuild_cache_and_restart_if_needed(self.bot)
+                await migration_tracker_service.rebuild_cache_and_restart_if_needed(self.bot)
                 
                 # Check if tracking is enabled
                 settings = await migration_db.get_guild_settings(interaction.guild.id)
@@ -97,7 +97,7 @@ class MigrationTrackerCommands(commands.Cog):
             
             if success:
                 # Rebuild cache
-                await migration_tracker_servicer.rebuild_cache_and_restart_if_needed(self.bot)
+                await migration_tracker_service.rebuild_cache_and_restart_if_needed(self.bot)
                 
                 embed = discord.Embed(
                     title="Channel Removed",
@@ -136,7 +136,7 @@ class MigrationTrackerCommands(commands.Cog):
             
             if success:
                 # Rebuild cache and start tracking
-                await migration_tracker_servicer.rebuild_cache_and_restart_if_needed(self.bot)
+                await migration_tracker_service.rebuild_cache_and_restart_if_needed(self.bot)
                 
                 embed = discord.Embed(
                     title="Tracking Enabled",
@@ -166,7 +166,7 @@ class MigrationTrackerCommands(commands.Cog):
             
             if success:
                 # Rebuild cache
-                await migration_tracker_servicer.rebuild_cache_and_restart_if_needed(self.bot)
+                await migration_tracker_service.rebuild_cache_and_restart_if_needed(self.bot)
                 
                 embed = discord.Embed(
                     title="Tracking Disabled",
@@ -200,7 +200,7 @@ class MigrationTrackerCommands(commands.Cog):
             has_channels = len(guild_channels) > 0
             
             # Global tracking status
-            tracking_status = migration_tracker_servicer.get_tracking_status()
+            tracking_status = migration_tracker_service.get_tracking_status()
             is_tracking = tracking_status.get('is_tracking', False)
             
             # This guild's effective status (enabled AND has channels)

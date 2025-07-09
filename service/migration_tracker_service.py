@@ -12,6 +12,7 @@ import repository.migration_tracker_repo as migration_db
 from gql import Client, gql
 from gql.transport.websockets import WebsocketsTransport
 from config import BITQUERY_SUBSCRIPTION_API_KEY_1
+from ui.embeds import create_migration_tracker_embed
 
 logger = get_logger()
 
@@ -27,6 +28,41 @@ _active_channels = {}  # guild_id -> [channel_ids]
 # Task lock
 _task_lock = asyncio.Lock()
 
+info_query = """
+query GetTokenInfo($contractAddress: String!) {
+    Solana {
+    DEXTradeByTokens(
+        where: {Trade: {Currency: {MintAddress: {is: $contractAddress}}}, Transaction: {Result: {Success: true}}}
+        orderBy: {descending: Block_Time}
+        limit: {count: 1}
+    ) {
+        Trade {
+        Currency {
+            Name
+            Symbol
+            MintAddress
+            Uri
+        }
+        PriceInUSD
+        Account {
+            Owner
+        }
+        }
+    }
+    TokenSupplyUpdates(
+        where: {TokenSupplyUpdate: {Currency: {MintAddress: {is: $contractAddress}}}}
+        orderBy: {descending: Block_Time}
+        limit: {count: 1}
+    ) {
+        TokenSupplyUpdate {
+        PostBalance
+        PreBalance
+        }
+    }
+    }
+}
+"""
+        
 # Query 1: Log-based migrations (Pump.fun)
 log_based_query = gql("""
 subscription LogBasedMigrations {
@@ -413,8 +449,9 @@ async def process_graduation_async(bot, token_address):
         # Initialize variables
         final_token_info = None
         mobula_data = None
-       
-        # Get token info from DexScreener first
+        bitquery_data = None
+        
+        # Step 1: Get token info from DexScreener first
         dex_data = await bot.services.dexscreener.get_token_info([token_address], chain_id="solana")
         
         # Extract token info if available
@@ -432,23 +469,27 @@ async def process_graduation_async(bot, token_address):
         if needs_mobula:
             mobula_data = await bot.services.mobula.get_token_data(token_address, blockchain="solana")
        
-        # Skip if no data at all
+        # If no data from DexScreener or Mobula, try BitQuery
         if not final_token_info and not mobula_data:
+            variables = {"contractAddress": token_address}
+            bitquery_data = await bot.services.bitquery.execute_query(info_query, variables)
+       
+        # Skip if no data at all
+        if not final_token_info and not mobula_data and not bitquery_data:
             return
        
-        # Create embed with both data sources
-        from ui.embeds import create_migration_tracker_embed
-        embed = create_migration_tracker_embed(final_token_info, mobula_data, token_address)
+        # Create embed with available data sources
+        embed = create_migration_tracker_embed(final_token_info, mobula_data, bitquery_data, token_address)
         if not embed:
             return
        
-        # Send to channels and alerts
+        # Send to channels and alerts using tasks
         asyncio.create_task(send_to_all_channels(bot, embed))
         asyncio.create_task(send_graduation_alerts(bot, token_address, embed))
        
     except Exception as e:
         logger.error(f"Error processing graduation {token_address}: {e}")
-
+        
 
 async def send_to_all_channels(bot, embed):
     """Send embed to all active channels"""
