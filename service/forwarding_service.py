@@ -30,12 +30,13 @@ ALERT_CONFIGS = {
         'type': 'dev_burn', 
         'notification': 'Your called token dev has burned supply! 🔥',
         'footer_text': 'Dev Burn Alert'
-    },
-    1379812775869550673: {  # Dex Paid channel
-        'type': 'dex_paid',
-        'notification': 'DEX PAID for your call! 💰', 
-        'footer_text': 'DEX Paid Alert'
     }
+    # ,
+    # 1379812775869550673: {  # Dex Paid channel
+    #     'type': 'dex_paid',
+    #     'notification': 'DEX PAID for your call! 💰', 
+    #     'footer_text': 'DEX Paid Alert'
+    # }
 }
 
 def init_forwarding_cache():

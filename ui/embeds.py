@@ -108,7 +108,7 @@ def create_token_embed(entry: dict, address: str, order_status: str) -> discord.
         embed.add_field(name="🔑 Contact Address", value=f"`{address}`", inline=False)
         
         # Pre-build trading platforms
-        platforms = [f"[{name}]({url.format(pair=entry.get('pairAddress', address), address=address)})" 
+        platforms = [f"[{name}]({url.format(address=address)})" 
                      for name, url in TRADING_PLATFORMS.items()]
         embed.add_field(name="💱 Trade On", value=" | ".join(platforms), inline=False)
         
@@ -357,6 +357,10 @@ def create_dex_tracker_embed(token_data, token_info, token_address, symbol, name
         if header_url:
             embed.set_image(url=header_url)
         
+        platforms = [f"[{name}]({url.format(address=token_address)})" 
+                     for name, url in TRADING_PLATFORMS.items()]
+        embed.add_field(name="💱 Trade On", value=" | ".join(platforms), inline=False)
+        
         # Set footer with logo and timestamp
         embed.set_footer(
             text="Dex Tracker",
@@ -376,7 +380,17 @@ def create_migration_tracker_embed(dex_data, mobula_data, token_address):
     try:
         if not dex_data and not mobula_data:
             return None
-       
+        
+        # Initialize default values
+        name = "Unknown"
+        symbol = "Unknown"
+        market_cap = 0
+        volume_5m = 0
+        price_change_5m = 0
+        image_url = None
+        header_url = None
+        links = []
+        
         # Use DexScreener data as primary source (99.9999% of cases)
         if dex_data:
             # Extract basic info
@@ -392,121 +406,99 @@ def create_migration_tracker_embed(dex_data, mobula_data, token_address):
             info = dex_data.get('info', {})
             image_url = info.get('imageUrl')
             header_url = info.get('header')
+            
+            # Get links
+            links = info.get('websites', []) + info.get('socials', [])
            
             # Use Mobula image only if DexScreener doesn't have one
             if not image_url and mobula_data:
                 image_url = mobula_data.get('data', {}).get('logo')
-            
-            # Build embed
-            embed = discord.Embed(
-                title=f"<a:upvote:1380578405757489294> {name} (${symbol}) Graduated!",
-                color=0x00ff00,
-                url=f"https://pump.fun/coin/{token_address}",
-                timestamp=datetime.now()
-            )
-
-            if header_url:
-                embed.set_image(url=header_url)
-            
-            if image_url:
-                embed.set_thumbnail(url=image_url)
-
-            # Add market cap
-            if market_cap:
-                embed.add_field(
-                    name="💰 Market Cap (3s ago)",
-                    value=f"**`${format_value(market_cap)}`**",
-                    inline=True
-                )
-           
-
-            change_emoji = "🚀" if price_change_5m > 0 else "🔻"
-            stats_value = (
-                f"🔥 VOL: **`{format_value(volume_5m)}`**\n"
-                f"{change_emoji} PC: **`{format_value(price_change_5m)}%`** (5m)"
-            )
-                
-            embed.add_field(
-                name="📊 Stats",
-                value=stats_value,
-                inline=True
-            )
-           
-            # Add links if available
-            links = info.get('websites', []) + info.get('socials', [])
-            if links:
-                links_text = []
-                for link in links[:3]:  # Max 3 links
-                    label = link.get('label') or link.get('type', 'Link')
-                    url = link.get('url')
-                    if url:
-                        links_text.append(f"[{label}]({url})")
-               
-                if links_text:
-                    embed.add_field(
-                        name="🔗 Links",
-                        value=" • ".join(links_text),
-                        inline=False
-                    )
-
-            embed.add_field(
-                name="💸 Contract",
-                value=f"```{token_address}```",
-                inline=False
-            )
-           
-            embed.set_footer(text="Migration Tracker", icon_url="https://s14.gifyu.com/images/bxicv.gif")
-            return embed
         
         # Rare fallback - DexScreener failed, use whatever Mobula has
-        elif not dex_data and mobula_data:
+        elif mobula_data:
             data = mobula_data.get('data', {})
-            embed = discord.Embed(
-                title=f"<a:upvote:1380578405757489294> {data.get('name', 'Unknown')} (${data.get('symbol', 'Unknown')}) Graduated!",
-                color=0x00ff00,
-                url=f"https://pump.fun/coin/{token_address}"
+            name = data.get('name', 'Unknown')
+            symbol = data.get('symbol', 'Unknown')
+            market_cap = data.get('market_cap', 0)
+            volume_5m = data.get('volume', 0)
+            price_change_5m = data.get('price_change_1h', 0)  # Use 1h as fallback
+            image_url = data.get('logo')
+        
+        # Build embed with extracted data
+        embed = discord.Embed(
+            title=f"<a:upvote:1380578405757489294> {name} (${symbol}) Graduated!",
+            color=0x00ff00,
+            url=f"https://pump.fun/coin/{token_address}",
+            timestamp=datetime.now()
+        )
+
+        if header_url:
+            embed.set_image(url=header_url)
+        
+        if image_url:
+            embed.set_thumbnail(url=image_url)
+
+        # Add market cap
+        if market_cap:
+            embed.add_field(
+                name="💰 Market Cap (3s ago)",
+                value=f"**`${format_value(market_cap)}`**",
+                inline=True
             )
+
+        # Add stats
+        change_emoji = "🚀" if price_change_5m > 0 else "🔻"
+        time_suffix = "(5m)" if dex_data else "(1h)"
+        
+        stats_value = (
+            f"🔥 VOL: **`{format_value(volume_5m)}`**\n"
+            f"{change_emoji} PC: **`{format_value(price_change_5m)}%`** {time_suffix}"
+        )
             
-            # Add whatever data Mobula has
-            if data.get('market_cap'):
-                embed.add_field(name="💰 Market Cap (3s ago)", value=f"**`${format_value(data['market_cap'])}`**", inline=True)
-            if data.get('logo'):
-                embed.set_thumbnail(url=data['logo'])
-            
-            stats_value = []
-
-            volume = data.get('volume')
-            if volume:
-                stats_value.append(f"🔥 VOL: **`{format_value(volume)}`**\n")
-
-            price_change_1h = data.get("price_change_1h")
-            if price_change_1h:
-                emoji = "🚀" if price_change_1h > 0 else "🔻"
-                stats_value.append(f"{emoji} PC: **`{format_value(price_change_1h)}%`** (1h)")
-
-            if stats_value:
+        embed.add_field(
+            name="📊 Stats",
+            value=stats_value,
+            inline=True
+        )
+       
+        # Add links if available
+        if links:
+            links_text = []
+            for link in links[:3]:  # Max 3 links
+                label = link.get('label') or link.get('type', 'Link')
+                url = link.get('url')
+                if url:
+                    links_text.append(f"[{label}]({url})")
+           
+            if links_text:
                 embed.add_field(
-                    name="📊 Stats",
-                    value=" ".join(stats_value),
-                    inline=True
+                    name="🔗 Links",
+                    value=" • ".join(links_text),
+                    inline=False
                 )
 
-                
-            embed.add_field(
-                name="💸 Contract",
-                value=f"```{token_address}```",
-                inline=False
-            )
-
-            embed.set_footer(text="Migration Tracker", icon_url="https://s14.gifyu.com/images/bxicv.gif")
-            return embed
-       
-        return None
+        embed.add_field(
+            name="💸 Contract",
+            value=f"```{token_address}```",
+            inline=False
+        )
+        
+        # Add trading platforms (your new feature)
+        platforms = [f"[{name}]({url.format(address=token_address)})" 
+                    for name, url in TRADING_PLATFORMS.items()]
+        embed.add_field(
+            name="💱 Trade On", 
+            value=" | ".join(platforms), 
+            inline=False
+        )
+        
+        embed.set_footer(text="Migration Tracker", icon_url="https://s14.gifyu.com/images/bxicv.gif")
+        return embed
        
     except Exception as e:
         logger.error(f"Error creating migration embed: {e}")
         return None
-   
+  
 async def create_about_to_graduate_embed(pool_data: dict, token_address: str):
     """Create embed for graduation alert"""
     try:

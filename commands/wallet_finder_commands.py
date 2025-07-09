@@ -19,7 +19,8 @@ class WalletFinderCommands(commands.Cog):
     
     def __init__(self, bot):
         self.bot = bot
-
+        
+    
     @app_commands.command(
         name="wallet-finder", 
         description="Find wallets based on average market cap entry and optional buy amount filter"
@@ -30,6 +31,7 @@ class WalletFinderCommands(commands.Cog):
         cutoff="Optional cutoff range (e.g., 5k, 500k) - creates range around target MC",
         buy_amount="Optional buy amount filter (e.g., 2 sol, $150, 1.5 solana, 300 usd) - filters by buy size"
     )
+    @app_commands.checks.cooldown(1, 5) #5 second cooldown
     async def wallet_finder_command(
         self,
         interaction: discord.Interaction,

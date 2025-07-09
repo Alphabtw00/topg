@@ -1,0 +1,45 @@
+2025-07-09 09:56:23,366 - INFO - Starting bot...
+2025-07-09 09:56:24,225 - INFO - API client initialized
+2025-07-09 09:56:24,226 - INFO - WebsiteAnalyzer initialized with concurrency limit of 15
+2025-07-09 09:56:24,226 - INFO - All API services initialized
+2025-07-09 09:56:24,226 - INFO - Services provider initialized
+2025-07-09 09:56:24,315 - INFO - Database connection pool established: size=1-10
+2025-07-09 09:56:24,315 - INFO - Database connection successful
+2025-07-09 09:56:24,325 - INFO - Proxy rotator initialized with http protocol
+2025-07-09 09:56:24,326 - INFO - Proxy rotator initialized for Truth commands
+2025-07-09 09:56:24,329 - INFO - Discord Events Registered | Username Ban Server ID: 1313758082974879774
+2025-07-09 09:56:24,330 - INFO - Memory monitor started (threshold: 300MB, interval: 3600s)
+2025-07-09 09:56:24,871 - INFO - Successfully synced 11 command(s)
+2025-07-09 09:56:29,370 - INFO - Logged in as TOPG#4967 (ID: 1340722186100408340)
+2025-07-09 09:56:29,370 - INFO - Bot connected to 7 server(s)
+2025-07-09 09:56:29,370 - INFO - Alerts are enabled.
+2025-07-09 09:56:29,370 - INFO - Starting tracking services...
+2025-07-09 09:56:29,370 - INFO - All tracking services started
+2025-07-09 09:56:29,371 - INFO - Initializing DexScreener live tracker...
+2025-07-09 09:56:29,371 - INFO - Initializing migration tracker...
+2025-07-09 09:56:29,371 - INFO - Initializing about to graduate alert tracker...
+2025-07-09 09:56:29,383 - INFO - No enabled guilds with channels, stopping about to graduate alert tracking
+2025-07-09 09:56:29,383 - INFO - About to graduate alert tracking stopped
+2025-07-09 09:56:29,383 - INFO - About to graduate alert tracking initialization complete
+2025-07-09 09:56:29,383 - INFO - No enabled guilds with channels, stopping dex paid tracking
+2025-07-09 09:56:29,383 - INFO - DexScreener tracking stopped
+2025-07-09 09:56:29,383 - INFO - DexScreener tracking initialization complete
+2025-07-09 09:56:29,383 - INFO - No enabled guilds with channels, stopping migration tracking
+2025-07-09 09:56:29,383 - INFO - Migration tracking stopped
+2025-07-09 09:56:29,383 - INFO - Migration tracking initialization complete
+2025-07-09 09:57:14,388 - INFO - Found 1 enabled guilds with 1 channels
+2025-07-09 09:57:14,388 - INFO - Migration tracking started
+2025-07-09 09:57:14,997 - INFO - Migration tracking enabled by alphabtw_ in habibifnf
+2025-07-09 10:56:24,345 - INFO - Metrics Report | Uptime: 1h 0m | Memory: 40.3MB | Processed: 10 | Avg Processing: 1.8068s | Errors: 0 (0 types, Top: none) | Last Cleanup: 2025-07-09 09:56:23 (1h ago)
+2025-07-09 11:09:30,112 - INFO - Bot is shutting down...
+2025-07-09 11:09:30,118 - INFO - API client closed
+2025-07-09 11:09:30,118 - INFO - Truth Social tracking stopped
+2025-07-09 11:09:30,118 - INFO - Truth Social tracking stopped
+2025-07-09 11:09:30,118 - INFO - Services closed successfully
+2025-07-09 11:09:30,118 - INFO - Background task 'metrics_cleanup' canceled
+2025-07-09 11:09:30,119 - INFO - Background task 'memory_monitor' canceled
+2025-07-09 11:09:30,119 - INFO - Background task 'heartbeat_monitor' canceled
+2025-07-09 11:09:30,119 - INFO - Background task 'metrics_report' canceled
+2025-07-09 11:09:30,119 - INFO - DexScreener tracking stopped
+2025-07-09 11:09:30,119 - INFO - DexScreener tracking stopped
+2025-07-09 11:09:30,119 - INFO - Database connection pool closed successfully

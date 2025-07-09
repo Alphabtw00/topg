@@ -99,9 +99,10 @@ BITQUERY_BASE_URL = "https://streaming.bitquery.io/eap"
 # Trading Platforms
 # ========================================================================================================================================================================================
 TRADING_PLATFORMS = {
-    "Axiom": "https://axiom.trade/meme/{pair}",
-    "Photon": "https://photon-sol.tinyastro.io/en/lp/{pair}",
-    "Neo BullX": "https://neo.bullx.io/terminal?chainId=1399811149&address={address}",
+    "Axiom": "https://axiom.trade/t/{address}",
+    "GMGN": "https://gmgn.ai/sol/token/{address}",
+    "Photon": "https://photon-sol.tinyastro.io/en/lp/{address}",
+    "Neo BullX": "https://neo.bullx.io/terminal?chainId=1399811149&address={address}"
 }
 
 # ========================================================================================================================================================================================

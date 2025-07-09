@@ -63,8 +63,8 @@ async def on_message(message: discord.Message):
     if message.author.bot:
         return
    
-    # if not await should_process_channel(message.guild.id, message.channel.id):
-    #     return
+    if not await should_process_channel(message.guild.id, message.channel.id):
+        return
     
     if not crypto_quick_check(message.content):
         return    

@@ -43,7 +43,7 @@ class ApiServiceProvider:
         self.truthsocial = TruthSocialService(self.api_client)
         self.trenchbot = TrenchBotService(self.api_client)
         self.bitquery = BitQueryService(self.api_client)
-        await self.truthsocial.setup()
+        # await self.truthsocial.setup()
         logger.info("All API services initialized")
         
         return self

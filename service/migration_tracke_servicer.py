@@ -27,113 +27,96 @@ _active_channels = {}  # guild_id -> [channel_ids]
 # Task lock
 _task_lock = asyncio.Lock()
 
-# migration_query = gql("""
-# subscription DefinitiveMigrationTracker {
-#   Solana {
-#     Instructions(
-#       where: {
-#         Transaction: {
-#           Result: {Success: true}
-#         },
-#         Instruction: {
-#           Program: {
-#             Address: {
-#               in: [
-#                 "6EF8rrecthR5Dkzon8Nwu78hRvfCKubJ14M5uBEwF6P",
-#                 "boop8hVGQGqehUK2iVEMEnMrL5RbjywRzHKBmBE7ry4",
-#                 "LanMV9sAd7wArD4vJFi2qDdfnVhFxYSUg6eADduJ3uj"
-#               ]
-#             },
-#             Method: {
-#               in: [
-#                 "graduate",
-#                 "migrate_to_amm",
-#                 "migrate_to_cpswap"
-#               ]
-#             }
-#           },
-#           Logs: {includes: {includes: "Migrate"}}
-#         }
-#       }
-#       orderBy: {descending: Block_Time}
-#     ) {
-#       Instruction {
-#         Program {
-#           Name
-#           Address
-#           Method
-#         }
-#         Accounts {
-#           Address
-#           IsWritable
-#           Token {
-#             Mint
-#             Owner
-#           }
-#         }
-#         Logs
-#       }
-#       Transaction {
-#         Signature
-#         Signer
-#       }
-#       Block {
-#         Time
-#         Slot
-#       }
-#     }
-#   }
-# }
-# """)
-
-
-migration_query = gql("""
-subscription DefinitiveMigrationTracker {
+# Query 1: Log-based migrations (Pump.fun)
+log_based_query = gql("""
+subscription LogBasedMigrations {
   Solana {
     Instructions(
       where: {
-        Transaction: {
-          Result: {Success: true}
-        },
+        Transaction: {Result: {Success: true}},
         Instruction: {
           Program: {
             Address: {
               in: [
                 "6EF8rrecthR5Dkzon8Nwu78hRvfCKubJ14M5uBEwF6P"
               ]
-            },
+            }
           },
           Logs: {
-            includes: {includes: "Migrate"}
+            includes: {includes: "Migrate"},
             excludes: {includes: "already migrated"}
           }
         }
       }
       orderBy: {descending: Block_Time}
     ) {
+      Block {Time}
+      Transaction {Signature, Signer}
       Instruction {
         Program {
-          Name
           Address
           Method
+          Name
         }
         Accounts {
           Address
           IsWritable
-          Token {
-            Mint
-            Owner
-          }
+          Token {Mint, Owner, ProgramId}
         }
         Logs
       }
-      Transaction {
-        Signature
-        Signer
+    }
+  }
+}
+""")
+
+# Query 2: Method-based migrations (Boop, Meteora, Bonk, Moonshot)
+method_based_query = gql("""
+subscription MethodBasedMigrations {
+  Solana {
+    Instructions(
+      where: {
+        Transaction: {Result: {Success: true}}, 
+        Instruction: {
+          Program: {
+            Address: {
+              in: [
+                "boop8hVGQGqehUK2iVEMEnMrL5RbjywRzHKBmBE7ry4",
+                "dbcij3LWUppWqq96dh6gJWwBifmcGfLSB5D4DuSMaqN",
+                "LanMV9sAd7wArD4vJFi2qDdfnVhFxYSUg6eADduJ3uj",
+                "MoonCVVNZFSYkqNXP6bxHLPL6QQJiMagDL3qcqUQTrG"
+              ]
+            }, 
+            Method: {
+              in: [
+                "graduate",
+                "migrate_meteora_damm",
+                "migration_damm_v2", 
+                "migrate_to_amm",
+                "migrate_to_cpswap",
+                "migrateFunds"
+              ]
+            }
+          }, 
+          Logs: {excludes: {includes: "already migrated"}}
+        }
       }
-      Block {
-        Time
-        Slot
+      orderBy: {descending: Block_Time}
+    ) {
+      Block {Time}
+      Transaction {Signature, Signer}
+      Instruction {
+        Program {
+          Address
+          Method
+          Name
+        }
+        Accounts {
+          Address
+          IsWritable
+          Token {Mint, Owner, ProgramId}
+        }
+        Logs
       }
     }
   }
@@ -218,7 +201,7 @@ async def stop_tracking():
 
 
 async def tracking_loop(bot):
-    """Main tracking loop - only tracks and delegates processing"""
+    """Main tracking loop - manages both subscription streams"""
     global last_check_time, websocket
     
     try:
@@ -232,7 +215,7 @@ async def tracking_loop(bot):
                 # Create transport with proper headers
                 transport = WebsocketsTransport(
                     url=f"wss://streaming.bitquery.io/eap?token={BITQUERY_SUBSCRIPTION_API_KEY_1}",
-                     headers={
+                    headers={
                         "Sec-WebSocket-Protocol": "graphql-ws"
                     }
                 )
@@ -243,24 +226,32 @@ async def tracking_loop(bot):
                     fetch_schema_from_transport=False,
                 ) as session:
                     
-                    async for result in session.subscribe(migration_query):
+                    # Create tasks for both subscriptions
+                    log_task = asyncio.create_task(
+                        handle_log_based_stream(session, bot)
+                    )
+                    method_task = asyncio.create_task(
+                        handle_method_based_stream(session, bot)
+                    )
+                    
+                    # Wait for either task to complete or fail
+                    done, pending = await asyncio.wait(
+                        [log_task, method_task],
+                        return_when=asyncio.FIRST_COMPLETED
+                    )
+                    
+                    # Cancel remaining tasks
+                    for task in pending:
+                        task.cancel()
                         try:
-                            last_check_time = datetime.now()
-                            
-                            # Check if we still have active channels
-                            if not _active_channels:
-                                logger.debug("No active channels, stopping subscription")
-                                break
-                            
-                            instructions = result.get("Solana", {}).get("Instructions", [])
-                            if not instructions:
-                                continue
-                            
-                            # Just delegate to processor - fire and forget
-                            asyncio.create_task(process_raw_instruction(bot, instructions[0]))
-                            
-                        except Exception as e:
-                            logger.error(f"Error in tracking loop: {e}")
+                            await task
+                        except asyncio.CancelledError:
+                            pass
+                    
+                    # Check if any task failed
+                    for task in done:
+                        if task.exception():
+                            raise task.exception()
                             
             except Exception as e:
                 logger.error(f"Bitquery connection error for migration tracker: {e}")
@@ -275,10 +266,52 @@ async def tracking_loop(bot):
         websocket = None
 
 
+async def handle_log_based_stream(session, bot):
+    """Handle log-based migrations stream (Pump.fun)"""
+    try:
+        async for result in session.subscribe(log_based_query):
+            await process_stream_result(bot, result, "log_based")
+    except Exception as e:
+        logger.error(f"Error in log-based stream: {e}")
+        raise
+
+
+async def handle_method_based_stream(session, bot):
+    """Handle method-based migrations stream (Boop, Meteora, Bonk, Moonshot)"""
+    try:
+        async for result in session.subscribe(method_based_query):
+            await process_stream_result(bot, result, "method_based")
+    except Exception as e:
+        logger.error(f"Error in method-based stream: {e}")
+        raise
+
+
+async def process_stream_result(bot, result, stream_type):
+    """Process result from either stream"""
+    try:
+        last_check_time = datetime.now()
+        
+        # Check if we still have active channels
+        if not _active_channels:
+            logger.debug("No active channels, stopping subscription")
+            return
+        
+        instructions = result.get("Solana", {}).get("Instructions", [])
+        if not instructions:
+            return
+        
+        # Process the first instruction
+        asyncio.create_task(process_raw_instruction(bot, instructions[0]))
+        
+    except Exception as e:
+        logger.error(f"Error processing {stream_type} stream result: {e}")
+
+
 async def process_raw_instruction(bot, instruction_data):
     """Process raw instruction data - extract and delegate further"""
     try:
         logger.debug(f"New raw migration detected: {instruction_data}")
+        
         # Extract token mint
         token_address = extract_token_mint(instruction_data)
         if not token_address or token_address == "Unknown Token":
@@ -293,45 +326,89 @@ async def process_raw_instruction(bot, instruction_data):
         logger.error(f"Error processing raw instruction: {e}")
 
 
-
 def extract_token_mint(instruction_data):
-    """Extract token mint address from instruction data"""
-    program_address = instruction_data["Instruction"]["Program"]["Address"]
-    accounts = instruction_data["Instruction"]["Accounts"]
-    
-    # Protocol-specific extraction logic
-    if program_address == "6EF8rrecthR5Dkzon8Nwu78hRvfCKubJ14M5uBEwF6P":  # PumpFun
-        for i, account in enumerate(accounts):
-            if (i == 2 and account.get("IsWritable") and 
-                account.get("Token") and account.get("Token").get("Mint")):
+    """Extract token mint address from instruction data with enhanced parsing"""
+    try:
+        program_address = instruction_data["Instruction"]["Program"]["Address"]
+        program_method = instruction_data["Instruction"]["Program"].get("Method", "")
+        accounts = instruction_data["Instruction"]["Accounts"]
+        
+        # Define account index mapping based on program and method
+        account_index_map = {
+            # Pump.fun
+            "6EF8rrecthR5Dkzon8Nwu78hRvfCKubJ14M5uBEwF6P": 2,  # 3rd (index 2)
+            
+            # Boop
+            "boop8hVGQGqehUK2iVEMEnMrL5RbjywRzHKBmBE7ry4": 1,  # 2nd (index 1)
+            
+            # Meteora DBC
+            "dbcij3LWUppWqq96dh6gJWwBifmcGfLSB5D4DuSMaqN": 7,  # 8th (index 7)
+            
+            # Bonk (Raydium LaunchPad)
+            "LanMV9sAd7wArD4vJFi2qDdfnVhFxYSUg6eADduJ3uj": 1,  # 2nd (index 1)
+            
+            # Moonshot
+            "MoonCVVNZFSYkqNXP6bxHLPL6QQJiMagDL3qcqUQTrG": 3,  # 4th (index 3)
+        }
+        
+        # Get the expected account index
+        expected_index = account_index_map.get(program_address)
+        
+        if expected_index is not None:
+            # Try to get mint from expected index
+            token_mint = get_mint_from_account_index(accounts, expected_index)
+            if token_mint:
+                return token_mint
+        
+        # Fallback: find first non-SOL mint in accounts
+        for account in accounts:
+            if (account.get("Token") and 
+                account.get("Token").get("Mint") and
+                account["Token"]["Mint"] != "So11111111111111111111111111111111111111112"):
                 return account["Token"]["Mint"]
-    
-    elif program_address == "boop8hVGQGqehUK2iVEMEnMrL5RbjywRzHKBmBE7ry4":  # Boop
-        for i, account in enumerate(accounts):
-            if (i == 1 and account.get("IsWritable") and 
-                account.get("Token") and account.get("Token").get("Mint")):
+        
+        logger.warning(f"No token mint found for program {program_address} method {program_method}")
+        return "Unknown Token"
+        
+    except Exception as e:
+        logger.error(f"Error extracting token mint: {e}")
+        return "Unknown Token"
+
+
+def get_mint_from_account_index(accounts, start_index):
+    """Get mint from specific account index, with fallback to next available mint"""
+    try:
+        # Try the specific index first
+        if start_index < len(accounts):
+            account = accounts[start_index]
+            if (account.get("Token") and 
+                account.get("Token").get("Mint") and
+                account["Token"]["Mint"] != "So11111111111111111111111111111111111111112"):
                 return account["Token"]["Mint"]
-    
-    elif program_address == "LanMV9sAd7wArD4vJFi2qDdfnVhFxYSUg6eADduJ3uj":  # Raydium LaunchPad
-        for i, account in enumerate(accounts):
-            if (i == 3 and account.get("IsWritable") and 
-                account.get("Token") and account.get("Token").get("Mint")):
+        
+        # Fallback: search from start_index onwards for first available mint
+        for i in range(start_index + 1, len(accounts)):
+            account = accounts[i]
+            if (account.get("Token") and 
+                account.get("Token").get("Mint") and
+                account["Token"]["Mint"] != "So11111111111111111111111111111111111111112"):
                 return account["Token"]["Mint"]
-    
-    # Fallback: find any non-SOL mint
-    for account in accounts:
-        if (account.get("Token") and account.get("Token").get("Mint") and
-            account["Token"]["Mint"] != "So11111111111111111111111111111111111111112"):
-            return account["Token"]["Mint"]
-    
-    return "Unknown Token"
+        
+        return None
+        
+    except Exception as e:
+        logger.error(f"Error getting mint from account index {start_index}: {e}")
+        return None
+
 
 def get_protocol_name(address):
     """Get protocol name from program address"""
     protocols = {
-        "6EF8rrecthR5Dkzon8Nwu78hRvfCKubJ14M5uBEwF6P": "PumpFun",
+        "6EF8rrecthR5Dkzon8Nwu78hRvfCKubJ14M5uBEwF6P": "Pump.fun",
         "boop8hVGQGqehUK2iVEMEnMrL5RbjywRzHKBmBE7ry4": "Boop",
-        "LanMV9sAd7wArD4vJFi2qDdfnVhFxYSUg6eADduJ3uj": "Raydium LaunchPad"
+        "dbcij3LWUppWqq96dh6gJWwBifmcGfLSB5D4DuSMaqN": "Meteora DBC",
+        "LanMV9sAd7wArD4vJFi2qDdfnVhFxYSUg6eADduJ3uj": "Bonk",
+        "MoonCVVNZFSYkqNXP6bxHLPL6QQJiMagDL3qcqUQTrG": "Moonshot"
     }
     return protocols.get(address, "Unknown Protocol")
 
@@ -381,6 +458,7 @@ async def process_graduation_async(bot, token_address):
     except Exception as e:
         logger.error(f"Error processing graduation {token_address}: {e}")
 
+
 async def send_to_all_channels(bot, embed):
     """Send embed to all active channels"""
     try:
@@ -402,6 +480,7 @@ async def send_to_all_channels(bot, embed):
             
     except Exception as e:
         logger.error(f"Error sending to channels: {e}")
+
 
 async def send_graduation_alerts(bot, token_address, embed):
     """Send graduation alerts to first callers"""
