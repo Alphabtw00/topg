@@ -479,7 +479,7 @@ async def process_graduation_async(bot, token_address):
             return
        
         # Create embed with available data sources
-        embed = create_migration_tracker_embed(final_token_info, mobula_data, bitquery_data, token_address)
+        embed = await create_migration_tracker_embed(final_token_info, mobula_data, bitquery_data, token_address)
         if not embed:
             return
        

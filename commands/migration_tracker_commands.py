@@ -75,7 +75,7 @@ class MigrationTrackerCommands(commands.Cog):
                 logger.info(f"Migration channel {safe_text(channel.name)} (ID: {channel.id}) added by {safe_text(str(interaction.user))} in {safe_text(interaction.guild.name)}")
                 
             else:
-                await interaction.followup.send(f"ℹ️ Channel already configured.", ephemeral=True)
+                await interaction.followup.send(f"ℹ️ Channel {channel.mention} is already configured for migration tracking.", ephemeral=True)
                 logger.info(f"Migration channel {safe_text(channel.name)} (ID: {channel.id}) already configured by {safe_text(str(interaction.user))} in {safe_text(interaction.guild.name)}")
                 
         except Exception as e:
@@ -108,7 +108,7 @@ class MigrationTrackerCommands(commands.Cog):
                 logger.info(f"Migration channel {safe_text(channel.name)} (ID: {channel.id}) removed by {safe_text(str(interaction.user))} in {safe_text(interaction.guild.name)}")
                 
             else:
-                await interaction.followup.send(f"❌ {channel.mention} was not configured.", ephemeral=True)
+                await interaction.followup.send(f"ℹ️ {channel.mention} is already not configured for migration tracking.", ephemeral=True)
                 logger.info(f"Migration channel {safe_text(channel.name)} (ID: {channel.id}) not configured for removal by {safe_text(str(interaction.user))} in {safe_text(interaction.guild.name)}")
                 
         except Exception as e:
@@ -131,6 +131,12 @@ class MigrationTrackerCommands(commands.Cog):
                 )
                 return
             
+            # Check if already enabled
+            settings = await migration_db.get_guild_settings(interaction.guild.id)
+            if settings.get('enabled', False):
+                await interaction.followup.send("ℹ️ Migration tracking is already enabled for this server.", ephemeral=True)
+                return
+            
             # Enable tracking
             success = await migration_db.enable_tracking(interaction.guild.id)
             
@@ -148,7 +154,7 @@ class MigrationTrackerCommands(commands.Cog):
                 logger.info(f"Migration tracking enabled by {safe_text(str(interaction.user))} in {safe_text(interaction.guild.name)}")
                 
             else:
-                await interaction.followup.send("❌ Failed to enable tracking.", ephemeral=True)
+                await interaction.followup.send("❌ Migration tracking is already enabled for this server.", ephemeral=True)
                 logger.error(f"Failed to enable migration tracking by {safe_text(str(interaction.user))} in {safe_text(interaction.guild.name)}")
                 
         except Exception as e:
@@ -162,6 +168,12 @@ class MigrationTrackerCommands(commands.Cog):
         await interaction.response.defer(ephemeral=True, thinking=True)
         
         try:
+            # Check if already disabled
+            settings = await migration_db.get_guild_settings(interaction.guild.id)
+            if not settings.get('enabled', False):
+                await interaction.followup.send("ℹ️ Migration tracking is already disabled for this server.", ephemeral=True)
+                return
+            
             success = await migration_db.disable_tracking(interaction.guild.id)
             
             if success:
@@ -177,7 +189,7 @@ class MigrationTrackerCommands(commands.Cog):
                 logger.info(f"Migration tracking disabled by {safe_text(str(interaction.user))} in {safe_text(interaction.guild.name)}")
                 
             else:
-                await interaction.followup.send("❌ Failed to disable tracking.", ephemeral=True)
+                await interaction.followup.send("❌ Migration tracking is already disabled for this server.", ephemeral=True)
                 logger.error(f"Failed to disable migration tracking by {safe_text(str(interaction.user))} in {safe_text(interaction.guild.name)}")
                 
         except Exception as e:
@@ -195,6 +207,10 @@ class MigrationTrackerCommands(commands.Cog):
             # Get guild settings and channels
             settings = await migration_db.get_guild_settings(interaction.guild.id)
             guild_channels = await migration_db.get_channels(interaction.guild.id)
+            if guild_channels:
+                channel_mentions = " ".join(f"<#{channel_id}>" for channel_id in guild_channels)
+            else:
+                channel_mentions = "None"   
             
             is_enabled = settings.get('enabled', False)
             has_channels = len(guild_channels) > 0
@@ -228,7 +244,7 @@ class MigrationTrackerCommands(commands.Cog):
             
             embed.add_field(
                 name="Channels",
-                value=f"📢 {len(guild_channels)}",
+                value=channel_mentions,
                 inline=True
             )
             

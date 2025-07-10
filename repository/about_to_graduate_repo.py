@@ -149,13 +149,19 @@ async def update_guild_settings(guild_id: int, settings: Dict) -> bool:
 
 
 async def add_channel(guild_id: int, channel_id: int) -> bool:
-    """Add a channel to the about to graduate alert tracker"""
+    """Add a channel to the about to graduate alert tracker. Returns True if newly added, False if already exists."""
+    # Check if channel already exists
+    check_query = "SELECT 1 FROM about_to_graduate_channels WHERE guild_id = %s AND channel_id = %s"
+    existing = await fetch_one(check_query, (guild_id, channel_id))
+    
+    if existing:
+        return False  # Channel already exists
+    
+    # Insert new channel
     query = """
     INSERT INTO about_to_graduate_channels 
     (guild_id, channel_id) 
     VALUES (%s, %s)
-    ON DUPLICATE KEY UPDATE
-    created_at = CURRENT_TIMESTAMP
     """
     
     result = await execute_query(query, (guild_id, channel_id))
@@ -163,9 +169,16 @@ async def add_channel(guild_id: int, channel_id: int) -> bool:
 
 
 async def remove_channel(guild_id: int, channel_id: int) -> bool:
-    """Remove a channel from the about to graduate alert tracker"""
-    query = "DELETE FROM about_to_graduate_channels WHERE guild_id = %s AND channel_id = %s"
+    """Remove a channel from the about to graduate alert tracker. Returns True if removed, False if not found."""
+    # Check if channel exists before removing
+    check_query = "SELECT 1 FROM about_to_graduate_channels WHERE guild_id = %s AND channel_id = %s"
+    existing = await fetch_one(check_query, (guild_id, channel_id))
     
+    if not existing:
+        return False  # Channel doesn't exist
+    
+    # Remove the channel
+    query = "DELETE FROM about_to_graduate_channels WHERE guild_id = %s AND channel_id = %s"
     result = await execute_query(query, (guild_id, channel_id))
     return result is not None
 
@@ -179,10 +192,22 @@ async def get_channels(guild_id: int) -> List[int]:
 
 
 async def enable_tracking(guild_id: int) -> bool:
-    """Enable about to graduate alert tracking for a guild"""
+    """Enable about to graduate alert tracking for a guild. Returns True if newly enabled, False if already enabled."""
+    # Check current state
+    settings = await get_guild_settings(guild_id)
+    if settings.get('enabled', False):
+        return False  # Already enabled
+    
+    # Enable tracking
     return await update_guild_settings(guild_id, {'enabled': True})
 
 
 async def disable_tracking(guild_id: int) -> bool:
-    """Disable about to graduate alert tracking for a guild"""
+    """Disable about to graduate alert tracking for a guild. Returns True if newly disabled, False if already disabled."""
+    # Check current state
+    settings = await get_guild_settings(guild_id)
+    if not settings.get('enabled', False):
+        return False  # Already disabled
+    
+    # Disable tracking
     return await update_guild_settings(guild_id, {'enabled': False})

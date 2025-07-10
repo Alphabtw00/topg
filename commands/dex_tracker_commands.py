@@ -53,7 +53,7 @@ class DexTrackerCommands(commands.Cog):
             success = await dex_db.add_channel(interaction.guild.id, channel.id)
             
             if success:
-                # Rebuild cache (tracking will start only if also enabled)
+                # Newly added channel
                 await dex_tracker_service.rebuild_cache_and_restart_if_needed(self.bot)
                 
                 # Check if tracking is enabled for this guild
@@ -77,7 +77,8 @@ class DexTrackerCommands(commands.Cog):
                 logger.info(f"DexTracker channel {safe_text(channel.name)} (ID: {channel.id}) added by {safe_text(str(interaction.user))} in {safe_text(interaction.guild.name)}")
                 
             else:
-                await interaction.followup.send(f"ℹ️ Channel already configured.", ephemeral=True)
+                # Channel already exists
+                await interaction.followup.send(f"ℹ️ {channel.mention} is already configured for DexScreener updates.", ephemeral=True)
                 
         except Exception as e:
             logger.error(f"Error adding channel: {e}")
@@ -98,7 +99,7 @@ class DexTrackerCommands(commands.Cog):
             success = await dex_db.remove_channel(interaction.guild.id, channel.id)
             
             if success:
-                # Rebuild cache (tracking will stop if no channels left even if enabled)
+                # Channel was removed
                 await dex_tracker_service.rebuild_cache_and_restart_if_needed(self.bot)
                 
                 embed = discord.Embed(
@@ -110,7 +111,8 @@ class DexTrackerCommands(commands.Cog):
                 logger.info(f"DexTracker channel {safe_text(channel.name)} (ID: {channel.id}) removed by {safe_text(str(interaction.user))} in {safe_text(interaction.guild.name)}")
                 
             else:
-                await interaction.followup.send(f"❌ {channel.mention} was not configured.", ephemeral=True)
+                # Channel was not configured
+                await interaction.followup.send(f"❌ {channel.mention} was already not configured for DexScreener updates.", ephemeral=True)
                 
         except Exception as e:
             logger.error(f"Error removing channel: {e}")
@@ -137,7 +139,7 @@ class DexTrackerCommands(commands.Cog):
             success = await dex_db.enable_tracking(interaction.guild.id)
             
             if success:
-                # Rebuild cache and start tracking
+                # Newly enabled
                 await dex_tracker_service.rebuild_cache_and_restart_if_needed(self.bot)
                 
                 embed = discord.Embed(
@@ -162,7 +164,8 @@ class DexTrackerCommands(commands.Cog):
                 logger.info(f"DexTracker enabled by {safe_text(str(interaction.user))} in {safe_text(interaction.guild.name)}")
                 
             else:
-                await interaction.followup.send("❌ Failed to enable tracking.", ephemeral=True)
+                # Already enabled
+                await interaction.followup.send("ℹ️ DexScreener tracking is already enabled for this server.", ephemeral=True)
                 
         except Exception as e:
             logger.error(f"Error enabling tracking: {e}")
@@ -178,7 +181,7 @@ class DexTrackerCommands(commands.Cog):
             success = await dex_db.disable_tracking(interaction.guild.id)
             
             if success:
-                # Rebuild cache and stop tracking if no enabled guilds left
+                # Newly disabled
                 await dex_tracker_service.rebuild_cache_and_restart_if_needed(self.bot)
                 
                 embed = discord.Embed(
@@ -190,7 +193,8 @@ class DexTrackerCommands(commands.Cog):
                 logger.info(f"DexTracker disabled by {safe_text(str(interaction.user))} in {safe_text(interaction.guild.name)}")
                 
             else:
-                await interaction.followup.send("❌ Failed to disable tracking.", ephemeral=True)
+                # Already disabled
+                await interaction.followup.send("ℹ️ DexScreener tracking is already disabled for this server.", ephemeral=True)
                 
         except Exception as e:
             logger.error(f"Error disabling tracking: {e}")
@@ -205,7 +209,11 @@ class DexTrackerCommands(commands.Cog):
             # Get guild settings and channels
             settings = await dex_db.get_guild_settings(interaction.guild.id)
             guild_channels = await dex_db.get_channels(interaction.guild.id)
-            
+            if guild_channels:
+                channel_mentions = " ".join(f"<#{channel_id}>" for channel_id in guild_channels)
+            else:
+                channel_mentions = "None"            
+                
             is_enabled = settings.get('enabled', False)
             has_channels = len(guild_channels) > 0
             
@@ -238,7 +246,7 @@ class DexTrackerCommands(commands.Cog):
             
             embed.add_field(
                 name="Channels",
-                value=f"📢 {len(guild_channels)}",
+                value=channel_mentions,
                 inline=True
             )
             

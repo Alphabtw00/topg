@@ -51,7 +51,7 @@ class About_to_GraduateCommands(commands.Cog):
             success = await about_to_graduate_db.add_channel(interaction.guild.id, channel.id)
             
             if success:
-                # Rebuild cache
+                # Newly added channel
                 await about_to_graduate_alert.rebuild_cache_and_restart_if_needed(self.bot)
                 
                 # Check if tracking is enabled
@@ -75,7 +75,8 @@ class About_to_GraduateCommands(commands.Cog):
                 logger.info(f"About to graduate alert channel {safe_text(channel.name)} (ID: {channel.id}) added by {safe_text(str(interaction.user))} in {safe_text(interaction.guild.name)}")
                 
             else:
-                await interaction.followup.send(f"ℹ️ Channel already configured.", ephemeral=True)
+                # Channel already exists
+                await interaction.followup.send(f"ℹ️ {channel.mention} is already configured for about to graduate alerts.", ephemeral=True)
                 
         except Exception as e:
             logger.error(f"Error adding about to graduate alert channel: {e}")
@@ -95,7 +96,7 @@ class About_to_GraduateCommands(commands.Cog):
             success = await about_to_graduate_db.remove_channel(interaction.guild.id, channel.id)
             
             if success:
-                # Rebuild cache
+                # Channel was removed
                 await about_to_graduate_alert.rebuild_cache_and_restart_if_needed(self.bot)
                 
                 embed = discord.Embed(
@@ -107,7 +108,8 @@ class About_to_GraduateCommands(commands.Cog):
                 logger.info(f"About to graduate alert channel {safe_text(channel.name)} (ID: {channel.id}) removed by {safe_text(str(interaction.user))} in {safe_text(interaction.guild.name)}")
                 
             else:
-                await interaction.followup.send(f"❌ {channel.mention} was not configured.", ephemeral=True)
+                # Channel was not configured
+                await interaction.followup.send(f"❌ {channel.mention} was already not configured for about to graduate alerts.", ephemeral=True)
                 
         except Exception as e:
             logger.error(f"Error removing about to graduate alert channel: {e}")
@@ -133,7 +135,7 @@ class About_to_GraduateCommands(commands.Cog):
             success = await about_to_graduate_db.enable_tracking(interaction.guild.id)
             
             if success:
-                # Rebuild cache and start tracking
+                # Newly enabled
                 await about_to_graduate_alert.rebuild_cache_and_restart_if_needed(self.bot)
                 
                 embed = discord.Embed(
@@ -142,11 +144,24 @@ class About_to_GraduateCommands(commands.Cog):
                     color=0x2ECC71
                 )
                 
+                channel_mentions = []
+                for channel_id in channels[:5]:
+                    ch = interaction.guild.get_channel(channel_id)
+                    if ch:
+                        channel_mentions.append(ch.mention)
+                
+                embed.add_field(
+                    name="Active Channels",
+                    value=" | ".join(channel_mentions) or "None found",
+                    inline=False
+                )
+                
                 await interaction.followup.send(embed=embed, ephemeral=True)
                 logger.info(f"About to graduate alert tracking enabled by {safe_text(str(interaction.user))} in {safe_text(interaction.guild.name)}")
                 
             else:
-                await interaction.followup.send("❌ Failed to enable tracking.", ephemeral=True)
+                # Already enabled
+                await interaction.followup.send("ℹ️ About to graduate alert tracking is already enabled for this server.", ephemeral=True)
                 
         except Exception as e:
             logger.error(f"Error enabling about to graduate alert tracking: {e}")
@@ -162,7 +177,7 @@ class About_to_GraduateCommands(commands.Cog):
             success = await about_to_graduate_db.disable_tracking(interaction.guild.id)
             
             if success:
-                # Rebuild cache
+                # Newly disabled
                 await about_to_graduate_alert.rebuild_cache_and_restart_if_needed(self.bot)
                 
                 embed = discord.Embed(
@@ -174,7 +189,8 @@ class About_to_GraduateCommands(commands.Cog):
                 logger.info(f"About to graduate alert tracking disabled by {safe_text(str(interaction.user))} in {safe_text(interaction.guild.name)}")
                 
             else:
-                await interaction.followup.send("❌ Failed to disable tracking.", ephemeral=True)
+                # Already disabled
+                await interaction.followup.send("ℹ️ About to graduate alert tracking is already disabled for this server.", ephemeral=True)
                 
         except Exception as e:
             logger.error(f"Error disabling about to graduate alert tracking: {e}")
@@ -190,6 +206,10 @@ class About_to_GraduateCommands(commands.Cog):
             # Get guild settings and channels
             settings = await about_to_graduate_db.get_guild_settings(interaction.guild.id)
             guild_channels = await about_to_graduate_db.get_channels(interaction.guild.id)
+            if guild_channels:
+                channel_mentions = " ".join(f"<#{channel_id}>" for channel_id in guild_channels)
+            else:
+                channel_mentions = "None"
             
             is_enabled = settings.get('enabled', False)
             has_channels = len(guild_channels) > 0
@@ -223,7 +243,7 @@ class About_to_GraduateCommands(commands.Cog):
             
             embed.add_field(
                 name="Channels",
-                value=f"📢 {len(guild_channels)}",
+                value=channel_mentions,
                 inline=True
             )
                         

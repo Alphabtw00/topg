@@ -149,24 +149,37 @@ async def update_guild_settings(guild_id: int, settings: Dict) -> bool:
 
 
 async def add_channel(guild_id: int, channel_id: int) -> bool:
-    """Add a channel to the migration tracker"""
-    query = """
+    """Add a channel to the migration tracker. Returns True if new channel was added, False if already exists"""
+    # First check if channel already exists
+    check_query = "SELECT 1 FROM migration_tracker_channels WHERE guild_id = %s AND channel_id = %s"
+    existing = await fetch_one(check_query, (guild_id, channel_id))
+    
+    if existing:
+        return False  # Channel already exists
+    
+    # Insert new channel
+    insert_query = """
     INSERT INTO migration_tracker_channels 
     (guild_id, channel_id) 
     VALUES (%s, %s)
-    ON DUPLICATE KEY UPDATE
-    created_at = CURRENT_TIMESTAMP
     """
     
-    result = await execute_query(query, (guild_id, channel_id))
+    result = await execute_query(insert_query, (guild_id, channel_id))
     return result is not None
 
 
 async def remove_channel(guild_id: int, channel_id: int) -> bool:
-    """Remove a channel from the migration tracker"""
-    query = "DELETE FROM migration_tracker_channels WHERE guild_id = %s AND channel_id = %s"
+    """Remove a channel from the migration tracker. Returns True if channel was removed, False if it didn't exist"""
+    # First check if channel exists
+    check_query = "SELECT 1 FROM migration_tracker_channels WHERE guild_id = %s AND channel_id = %s"
+    existing = await fetch_one(check_query, (guild_id, channel_id))
     
-    result = await execute_query(query, (guild_id, channel_id))
+    if not existing:
+        return False  # Channel doesn't exist
+    
+    # Remove channel
+    delete_query = "DELETE FROM migration_tracker_channels WHERE guild_id = %s AND channel_id = %s"
+    result = await execute_query(delete_query, (guild_id, channel_id))
     return result is not None
 
 
