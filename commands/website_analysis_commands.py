@@ -16,7 +16,7 @@ import io
 
 logger = get_logger()
 
-class WebsiteChecker(commands.Cog):
+class WebsiteCheckerCommands(commands.Cog):
     """Website analysis command for crypto projects"""
     
     def __init__(self, bot):

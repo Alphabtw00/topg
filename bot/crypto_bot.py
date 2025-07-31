@@ -9,17 +9,18 @@ import psutil
 from datetime import datetime, timedelta
 from discord.ext import commands, tasks
 from utils.logger import get_logger
-from commands.health_commands import Health
-from commands.github_checker_commands import GithubChecker
+from commands.health_commands import HealthCommands
+from commands.github_checker_commands import GithubCheckerCommands
 from commands.settings_commands import SettingsCommands
 from commands.truth_commands_commands import TruthCommands
-from commands.website_analysis_commands import WebsiteChecker
+from commands.website_analysis_commands import WebsiteCheckerCommands
 from commands.about_to_graduate_tracker_commandsr import About_to_GraduateCommands
 from commands.dex_tracker_commands import DexTrackerCommands
 from commands.migration_tracker_commands import MigrationTrackerCommands
-from commands.bundle_checker_commands import BundleChecker
+from commands.bundle_checker_commands import BundleCheckerCommands
 from commands.wallet_finder_commands import WalletFinderCommands
-from commands.ban_commands import BanCommand
+from commands.ban_commands import BanCommands
+from commands.say_commands import SayCommands
 from service.truth_tracker_service import initialize_and_start_truth_tracking
 from service.dex_tracker_service import initialize_and_start_dex_tracking
 from service.mysql_service import setup_db_pool, close_db_pool
@@ -111,17 +112,18 @@ class CryptoBot(commands.Bot):
 
         
         # Register commands
-        await self.add_cog(Health(self))
-        await self.add_cog(GithubChecker(self))
+        await self.add_cog(HealthCommands(self))
+        await self.add_cog(GithubCheckerCommands(self))
         await self.add_cog(SettingsCommands(self))
-        await self.add_cog(WebsiteChecker(self))
-        await self.add_cog(BanCommand(self))
-        await self.add_cog(TruthCommands(self))
+        await self.add_cog(WebsiteCheckerCommands(self))
+        await self.add_cog(BanCommands(self))
+        # await self.add_cog(TruthCommands(self))
         await self.add_cog(DexTrackerCommands(self))
-        await self.add_cog(BundleChecker(self))
+        await self.add_cog(BundleCheckerCommands(self))
         await self.add_cog(MigrationTrackerCommands(self))
         await self.add_cog(About_to_GraduateCommands(self))
         await self.add_cog(WalletFinderCommands(self))
+        await self.add_cog(SayCommands(self))
 
         from bot.events import setup_events  # Adjust import based on your project structure
         await setup_events(self)

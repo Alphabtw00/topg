@@ -71,13 +71,20 @@ VIRUS_TOTAL_API_KEY = os.getenv("VIRUS_TOTAL_API_KEY")
 if not VIRUS_TOTAL_API_KEY:
     raise ValueError("VIRUS_TOTAL_API_KEY not found in environment")
 
+#final stretch
 BITQUERY_SUBSCRIPTION_API_KEY_1 = os.getenv("BITQUERY_SUBSCRIPTION_API_KEY_1")
 if not BITQUERY_SUBSCRIPTION_API_KEY_1:
     raise ValueError("BITQUERY_SUBSCRIPTION_API_KEY_1 not found in environment")
 
+#migration (pf)
 BITQUERY_SUBSCRIPTION_API_KEY_2 = os.getenv("BITQUERY_SUBSCRIPTION_API_KEY_2")
 if not BITQUERY_SUBSCRIPTION_API_KEY_2:
     raise ValueError("BITQUERY_SUBSCRIPTION_API_KEY_2 not found in environment")
+
+#migration (bonk,boop,beleive,moonshot,jup,virtual curve)
+BITQUERY_SUBSCRIPTION_API_KEY_3 = os.getenv("BITQUERY_SUBSCRIPTION_API_KEY_3")
+if not BITQUERY_SUBSCRIPTION_API_KEY_3:
+    raise ValueError("BITQUERY_SUBSCRIPTION_API_KEY_3 not found in environment")
 
 BITQUERY_QUERY_API_KEY_1 = os.getenv("BITQUERY_QUERY_API_KEY_1")
 if not BITQUERY_QUERY_API_KEY_1:

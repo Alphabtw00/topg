@@ -14,7 +14,7 @@ from utils.logger import get_logger
 
 logger = get_logger()
 
-class GithubChecker(commands.Cog):
+class GithubCheckerCommands(commands.Cog):
     """GitHub repository analysis command"""
    
     def __init__(self, bot):

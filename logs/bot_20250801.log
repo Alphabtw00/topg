@@ -1,0 +1,113 @@
+2025-08-01 00:33:12,542 - INFO - Starting bot...
+2025-08-01 00:33:13,410 - INFO - API client initialized
+2025-08-01 00:33:13,411 - INFO - WebsiteAnalyzer initialized with concurrency limit of 15
+2025-08-01 00:33:13,411 - INFO - All API services initialized
+2025-08-01 00:33:13,411 - INFO - Services provider initialized
+2025-08-01 00:33:13,428 - INFO - Database connection pool established: size=1-10
+2025-08-01 00:33:13,428 - INFO - Database connection successful
+2025-08-01 00:33:13,450 - INFO - Discord Events Registered | Username Ban Server ID: 1313758082974879774
+2025-08-01 00:33:13,450 - INFO - Memory monitor started (threshold: 300MB, interval: 3600s)
+2025-08-01 00:33:14,009 - INFO - Successfully synced 11 command(s)
+2025-08-01 00:33:19,166 - INFO - Logged in as TOPG#4967 (ID: 1340722186100408340)
+2025-08-01 00:33:19,166 - INFO - Bot connected to 9 server(s)
+2025-08-01 00:33:19,166 - INFO - Alerts are enabled.
+2025-08-01 00:33:19,166 - INFO - Starting tracking services...
+2025-08-01 00:33:19,166 - INFO - All tracking services started
+2025-08-01 00:33:19,166 - INFO - Initializing DexScreener live tracker...
+2025-08-01 00:33:19,167 - INFO - Initializing migration tracker...
+2025-08-01 00:33:19,167 - INFO - Initializing about to graduate alert tracker...
+2025-08-01 00:33:19,171 - INFO - Found 1 enabled guilds with 1 channels
+2025-08-01 00:33:19,171 - INFO - Migration tracking started
+2025-08-01 00:33:19,171 - INFO - Migration tracking initialization complete
+2025-08-01 00:33:19,172 - INFO - No enabled guilds with channels, stopping dex paid tracking
+2025-08-01 00:33:19,172 - INFO - DexScreener tracking stopped
+2025-08-01 00:33:19,172 - INFO - DexScreener tracking initialization complete
+2025-08-01 00:33:19,173 - INFO - No enabled guilds with channels, stopping about to graduate alert tracking
+2025-08-01 00:33:19,173 - INFO - About to graduate alert tracking stopped
+2025-08-01 00:33:19,173 - INFO - About to graduate alert tracking initialization complete
+2025-08-01 00:33:20,100 - ERROR - Error in method-based stream: server rejected WebSocket connection: HTTP 403
+2025-08-01 00:33:20,100 - ERROR - Bitquery connection error for migration tracker: server rejected WebSocket connection: HTTP 403
+2025-08-01 00:33:26,025 - ERROR - Error in log-based stream: server rejected WebSocket connection: HTTP 403
+2025-08-01 00:34:13,453 - ERROR - Bitquery connection error for migration tracker: server rejected WebSocket connection: HTTP 403 (occurred 10 times)
+2025-08-01 00:34:31,246 - ERROR - Unhandled exception in event loop: server rejected WebSocket connection: HTTP 403 | Task exception was never retrieved
+2025-08-01 00:34:58,574 - INFO - Say command used by alphabtw_ | Channel: 1375191155049889802 | Message ID: 1400554849418084415
+2025-08-01 00:35:00,934 - ERROR - Error in log-based stream: server rejected WebSocket connection: HTTP 403 (occurred 10 times)
+2025-08-01 00:35:12,779 - ERROR - Error in method-based stream: server rejected WebSocket connection: HTTP 403 (occurred 10 times)
+2025-08-01 00:35:12,780 - ERROR - Bitquery connection error for migration tracker: server rejected WebSocket connection: HTTP 403 (occurred 20 times)
+2025-08-01 00:36:12,054 - ERROR - Bitquery connection error for migration tracker: server rejected WebSocket connection: HTTP 403 (occurred 30 times)
+2025-08-01 00:36:59,499 - ERROR - Error in method-based stream: server rejected WebSocket connection: HTTP 403 (occurred 20 times)
+2025-08-01 00:37:11,378 - ERROR - Bitquery connection error for migration tracker: server rejected WebSocket connection: HTTP 403 (occurred 40 times)
+2025-08-01 00:37:17,301 - ERROR - Error in log-based stream: server rejected WebSocket connection: HTTP 403 (occurred 20 times)
+2025-08-01 00:38:10,689 - ERROR - Bitquery connection error for migration tracker: server rejected WebSocket connection: HTTP 403 (occurred 50 times)
+2025-08-01 00:38:22,543 - ERROR - Error in method-based stream: server rejected WebSocket connection: HTTP 403 (occurred 30 times)
+2025-08-01 00:39:09,954 - ERROR - Bitquery connection error for migration tracker: server rejected WebSocket connection: HTTP 403 (occurred 60 times)
+2025-08-01 00:39:51,454 - ERROR - Error in log-based stream: server rejected WebSocket connection: HTTP 403 (occurred 30 times)
+2025-08-01 00:40:09,227 - ERROR - Bitquery connection error for migration tracker: server rejected WebSocket connection: HTTP 403 (occurred 70 times)
+2025-08-01 00:40:21,098 - ERROR - Error in method-based stream: server rejected WebSocket connection: HTTP 403 (occurred 40 times)
+2025-08-01 00:40:44,796 - ERROR - Unhandled exception in event loop: server rejected WebSocket connection: HTTP 403 | Task exception was never retrieved
+2025-08-01 00:41:05,604 - INFO - Bot is shutting down...
+2025-08-01 00:41:05,605 - INFO - API client closed
+2025-08-01 00:41:05,605 - INFO - Truth Social tracking stopped
+2025-08-01 00:41:05,605 - INFO - Truth Social tracking stopped
+2025-08-01 00:41:05,605 - INFO - Services closed successfully
+2025-08-01 00:41:05,605 - INFO - Background task 'metrics_cleanup' canceled
+2025-08-01 00:41:05,605 - INFO - Background task 'memory_monitor' canceled
+2025-08-01 00:41:05,605 - INFO - Background task 'heartbeat_monitor' canceled
+2025-08-01 00:41:05,605 - INFO - Background task 'metrics_report' canceled
+2025-08-01 00:41:05,606 - INFO - DexScreener tracking stopped
+2025-08-01 00:41:05,606 - INFO - DexScreener tracking stopped
+2025-08-01 00:41:05,606 - INFO - Database connection pool closed successfully
+2025-08-01 00:41:05,607 - INFO - Tracking loop cancelled
+2025-08-01 00:41:05,608 - INFO - Bot stopped by user
+2025-08-01 00:41:10,003 - INFO - Starting bot...
+2025-08-01 00:41:11,013 - INFO - API client initialized
+2025-08-01 00:41:11,013 - INFO - WebsiteAnalyzer initialized with concurrency limit of 15
+2025-08-01 00:41:11,013 - INFO - All API services initialized
+2025-08-01 00:41:11,013 - INFO - Services provider initialized
+2025-08-01 00:41:11,024 - INFO - Database connection pool established: size=1-10
+2025-08-01 00:41:11,024 - INFO - Database connection successful
+2025-08-01 00:41:11,030 - INFO - Discord Events Registered | Username Ban Server ID: 1313758082974879774
+2025-08-01 00:41:11,031 - INFO - Memory monitor started (threshold: 300MB, interval: 3600s)
+2025-08-01 00:41:11,635 - INFO - Successfully synced 11 command(s)
+2025-08-01 00:41:55,026 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-08-01 00:41:55,932 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-08-01 00:42:00,031 - INFO - Bot automatically reconnected
+2025-08-01 00:42:00,946 - INFO - Bot automatically reconnected
+2025-08-01 00:42:06,006 - INFO - Logged in as TOPG#4967 (ID: 1340722186100408340)
+2025-08-01 00:42:06,007 - INFO - Bot connected to 9 server(s)
+2025-08-01 00:42:06,007 - INFO - Alerts are enabled.
+2025-08-01 00:42:06,007 - INFO - Starting tracking services...
+2025-08-01 00:42:06,007 - INFO - All tracking services started
+2025-08-01 00:42:06,007 - INFO - Initializing DexScreener live tracker...
+2025-08-01 00:42:06,008 - INFO - Initializing migration tracker...
+2025-08-01 00:42:06,008 - INFO - Initializing about to graduate alert tracker...
+2025-08-01 00:42:06,012 - INFO - No enabled guilds with channels, stopping dex paid tracking
+2025-08-01 00:42:06,012 - INFO - DexScreener tracking stopped
+2025-08-01 00:42:06,012 - INFO - DexScreener tracking initialization complete
+2025-08-01 00:42:06,013 - INFO - Found 1 enabled guilds with 1 channels
+2025-08-01 00:42:06,013 - INFO - Migration tracking started
+2025-08-01 00:42:06,013 - INFO - Migration tracking initialization complete
+2025-08-01 00:42:06,014 - INFO - No enabled guilds with channels, stopping about to graduate alert tracking
+2025-08-01 00:42:06,014 - INFO - About to graduate alert tracking stopped
+2025-08-01 00:42:06,014 - INFO - About to graduate alert tracking initialization complete
+2025-08-01 00:42:06,926 - ERROR - Error in log-based stream: server rejected WebSocket connection: HTTP 403
+2025-08-01 00:42:06,927 - ERROR - Bitquery connection error for migration tracker: server rejected WebSocket connection: HTTP 403
+2025-08-01 00:42:18,770 - ERROR - Error in method-based stream: server rejected WebSocket connection: HTTP 403
+2025-08-01 00:43:00,280 - ERROR - Bitquery connection error for migration tracker: server rejected WebSocket connection: HTTP 403 (occurred 10 times)
+2025-08-01 00:43:02,634 - INFO - Say command used by alphabtw_ | Channel: 1375191155049889802 | Message ID: 1400556879767142652
+2025-08-01 00:43:48,139 - INFO - Say command used by alphabtw_ | Channel: 1375191155049889802 | Message ID: 1400557068498239580 | Reply to: 1400487335350501448
+2025-08-01 00:43:53,649 - ERROR - Error in log-based stream: server rejected WebSocket connection: HTTP 403 (occurred 10 times)
+2025-08-01 00:43:56,585 - INFO - Bot is shutting down...
+2025-08-01 00:43:56,590 - INFO - API client closed
+2025-08-01 00:43:56,590 - INFO - Truth Social tracking stopped
+2025-08-01 00:43:56,590 - INFO - Truth Social tracking stopped
+2025-08-01 00:43:56,590 - INFO - Services closed successfully
+2025-08-01 00:43:56,591 - INFO - Background task 'metrics_cleanup' canceled
+2025-08-01 00:43:56,591 - INFO - Background task 'memory_monitor' canceled
+2025-08-01 00:43:56,591 - INFO - Background task 'heartbeat_monitor' canceled
+2025-08-01 00:43:56,591 - INFO - Background task 'metrics_report' canceled
+2025-08-01 00:43:56,591 - INFO - DexScreener tracking stopped
+2025-08-01 00:43:56,591 - INFO - DexScreener tracking stopped
+2025-08-01 00:43:56,591 - INFO - Database connection pool closed successfully
+2025-08-01 00:43:56,598 - INFO - Tracking loop cancelled
+2025-08-01 00:43:56,599 - INFO - Bot stopped by user

@@ -16,6 +16,10 @@ from utils.formatters import (
 )
 from utils.helper import safe_add_field, fetch_token_metadata_from_uri, get_token_metadata_and_links, calculate_mc_range
 from utils.logger import get_logger
+from repository.truth_repo import get_guild_settings as get_truth_settings
+from repository.migration_tracker_repo import get_guild_settings as get_migration_settings
+from repository.about_to_graduate_repo import get_guild_settings as get_graduate_settings
+from repository.dex_tracker_repo import get_guild_settings as get_dex_settings
 
 
 logger = get_logger()
@@ -1274,16 +1278,15 @@ def create_website_embed(result, interaction, start_time):
 
 async def create_health_embed(bot, user):
     """
-    Create an optimized health status embed without system metrics
+    Create a comprehensive health status embed with server and tracking information
     
     Args:
         bot: Bot instance
         user: User who requested health info
         
     Returns:
-        discord.Embed: Health information embed
+        discord.Embed: Enhanced health information embed
     """
-    from datetime import datetime, timedelta
     
     # Calculate uptime
     uptime = datetime.now() - bot.startup_time
@@ -1310,12 +1313,9 @@ async def create_health_embed(bot, user):
     else:
         color = 0xF44336  # Red
     
-    # Calculate average processing time from recent data only (last 5 minutes)
+    # Calculate average processing time from recent data only
     current_time = datetime.now().timestamp()
-    recent_processing = [
-        t[0] for t in bot.metrics['processing_times'] 
-        if current_time - t[1] < 300  # Only from last 5 minutes
-    ]
+    recent_processing = [t[0] for t in bot.metrics['processing_times']]
     
     avg_time = 0 if not recent_processing else sum(recent_processing) / len(recent_processing)
     
@@ -1328,23 +1328,75 @@ async def create_health_embed(bot, user):
     
     total_errors = bot.get_error_count()
     
-    # Get top 3 errors
+    # Get top errors
     top_errors = []
     if bot.metrics['errors']:
         top_errors = sorted(
             bot.metrics['errors'].items(),
             key=lambda x: x[1],
             reverse=True
-        )[:3]
+        )
 
     # Database metrics
     from service.mysql_service import get_db_pool_stats
     db_stats = await get_db_pool_stats()
     
+    # Server information
+    total_servers = len(bot.guilds)
+    total_members = sum(guild.member_count for guild in bot.guilds)
+    
+    # Get server tracking information
+    server_info = []
+    guilds_sorted = sorted(bot.guilds, key=lambda x: x.member_count or 0, reverse=True)
+    
+    for guild in guilds_sorted[:5]:  # Top 5 servers by member count
+        # Get tracking status for each service
+        try:
+            truth_enabled = (await get_truth_settings(guild.id)).get('enabled', False)
+            migration_enabled = (await get_migration_settings(guild.id)).get('enabled', False)
+            graduate_enabled = (await get_graduate_settings(guild.id)).get('enabled', False)
+            dex_enabled = (await get_dex_settings(guild.id)).get('enabled', False)
+            
+            # Create status indicators
+            status_indicators = []
+            if truth_enabled:
+                status_indicators.append("🟢TS")
+            else:
+                status_indicators.append("🔴TS")
+                
+            if migration_enabled:
+                status_indicators.append("🟢MG")
+            else:
+                status_indicators.append("🔴MG")
+                
+            if graduate_enabled:
+                status_indicators.append("🟢AG")
+            else:
+                status_indicators.append("🔴AG")
+                
+            if dex_enabled:
+                status_indicators.append("🟢DX")
+            else:
+                status_indicators.append("🔴DX")
+            
+            status_str = " ".join(status_indicators)
+            
+            # Truncate server name if too long
+            server_name = guild.name[:25] + "..." if len(guild.name) > 25 else guild.name
+            member_count = guild.member_count or 0
+            
+            server_info.append(f"**{server_name}** ({member_count:,}) {status_str}")
+            
+        except Exception as e:
+            # Fallback if tracking status check fails
+            server_name = guild.name[:25] + "..." if len(guild.name) > 25 else guild.name
+            member_count = guild.member_count or 0
+            server_info.append(f"**{server_name}** ({member_count:,}) ❓❓❓❓")
+    
     # Create embed
     embed = discord.Embed(
         title="🔍 Bot Health Monitor",
-        description=f"Status snapshot taken <t:{int(datetime.now().timestamp())}:R>",
+        description=f"Comprehensive status snapshot taken <t:{int(datetime.now().timestamp())}:R>",
         timestamp=datetime.now(),
         color=color
     )
@@ -1356,9 +1408,9 @@ async def create_health_embed(bot, user):
     bot_info = (
         f"**Uptime:** {uptime_str}\n"
         f"**Latency:** {latency}ms\n"
-        f"**Messages Processed:** {bot.metrics['processed_count']}\n"
+        f"**Messages Processed:** {bot.metrics['processed_count']:,}\n"
         f"**Avg. Processing:** {avg_time*1000:.1f}ms\n"
-        f"**Total Errors:** {total_errors}"
+        f"**Total Errors:** {total_errors:,}"
     )
     embed.add_field(name="🤖 Bot Status", value=bot_info, inline=True)
     
@@ -1371,22 +1423,39 @@ async def create_health_embed(bot, user):
         )
         embed.add_field(name="🗄️ Database", value=db_info, inline=True)
     
-    # API Performance section
+    # Server overview section
+    server_overview = (
+        f"**Total Servers:** {total_servers:,}\n"
+        f"**Total Members:** {total_members:,}\n"
+        f"**Avg Members/Server:** {total_members//total_servers if total_servers > 0 else 0:,}"
+    )
+    embed.add_field(name="🌐 Server Overview", value=server_overview, inline=True)
+    
     api_latency = ""
     if bot.metrics['api_latency']:
-        for endpoint, latencies in sorted(bot.metrics['api_latency'].items())[:3]:  # Limit to top 3
+        for endpoint, latencies in sorted(bot.metrics['api_latency'].items()):
             if latencies:
-                # Only use recent latencies (last 5 minutes)
-                avg_latency = sum(latencies[-20:]) / min(len(latencies), 20)
+                # Only use recent latencies
+                avg_latency = sum(latencies) / (len(latencies))
                 api_latency += f"**{endpoint}:** {avg_latency*1000:.0f}ms\n"
         
         if api_latency:
             embed.add_field(name="🌐 API Performance", value=api_latency, inline=False)
+            
     
-    #top errors
+    # Top servers with tracking status
+    if server_info:
+        servers_text = "\n".join(server_info)
+        embed.add_field(
+            name="🏆 Top Servers (TS|MG|GR|DX)", 
+            value=servers_text, 
+            inline=False
+        )
+    
+    # Top errors
     if top_errors:
         error_info = "\n".join([
-            f"**{err_key}:** {count} times" 
+            f"**{err_key}:** {count:,} times" 
             for err_key, count in top_errors
         ])
         embed.add_field(
@@ -1397,8 +1466,9 @@ async def create_health_embed(bot, user):
 
     # Command usage section if there are commands used
     if top_commands:
-        usage_info = "\n".join([f"**{cmd}:** {count} uses" for cmd, count in top_commands])
+        usage_info = "\n".join([f"**{cmd}:** {count:,} uses" for cmd, count in top_commands])
         embed.add_field(name="📊 Top Commands", value=usage_info, inline=True)
+    
     
     # Set footer with timestamp
     embed.set_footer(

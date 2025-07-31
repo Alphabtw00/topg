@@ -11,13 +11,13 @@ from utils.logger import get_logger
 
 logger = get_logger()
 
-class BundleChecker(commands.Cog):
+class BundleCheckerCommands(commands.Cog):
     """Bundle analysis command"""
    
     def __init__(self, bot):
         self.bot = bot
    
-    @app_commands.command(name="bundle-check", description="Analyze token bundle distribution")
+    @app_commands.command(name="bundle-check", description="Analyze token bundle distribution (pumpfun only)")
     @app_commands.guild_only()
     @app_commands.checks.cooldown(1, 5)  # 5 seconds cooldown
     async def check_bundle(self, interaction: discord.Interaction, contract_address: str):
@@ -37,7 +37,7 @@ class BundleChecker(commands.Cog):
             
             if not bundle_data:
                 return await interaction.followup.send(
-                    "❌ Failed to fetch bundle data. Please ensure the contract address is valid.",
+                    "❌ Failed to fetch bundle data. Please ensure that the contract address is valid and the token is a pumpfun.",
                     ephemeral=True
                 )
             

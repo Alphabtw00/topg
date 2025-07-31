@@ -11,7 +11,7 @@ from datetime import datetime
 
 logger = get_logger()
 
-class BanCommand(commands.Cog):
+class BanCommands(commands.Cog):
     """Ban command that uses the same system as auto-banning"""
    
     def __init__(self, bot):

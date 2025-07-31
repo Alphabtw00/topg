@@ -11,7 +11,7 @@ from utils.logger import get_logger
 import repository.migration_tracker_repo as migration_db
 from gql import Client, gql
 from gql.transport.websockets import WebsocketsTransport
-from config import BITQUERY_SUBSCRIPTION_API_KEY_1
+from config import BITQUERY_SUBSCRIPTION_API_KEY_2, BITQUERY_SUBSCRIPTION_API_KEY_3
 from ui.embeds import create_migration_tracker_embed
 
 logger = get_logger()
@@ -20,7 +20,8 @@ logger = get_logger()
 tracking_task = None
 is_tracking = False
 last_check_time = None
-websocket = None
+log_websocket = None
+method_websocket = None
 
 # Active channels cache - only enabled guilds with channels
 _active_channels = {}  # guild_id -> [channel_ids]
@@ -215,15 +216,22 @@ async def start_tracking(bot):
 
 async def stop_tracking():
     """Stop tracking"""
-    global tracking_task, is_tracking, websocket
+    global tracking_task, is_tracking, log_websocket, method_websocket
     
     async with _task_lock:
-        if websocket:
+        if log_websocket:
             try:
-                await websocket.close()
+                await log_websocket.close()
             except:
                 pass
-            websocket = None
+            log_websocket = None
+            
+        if method_websocket:
+            try:
+                await method_websocket.close()
+            except:
+                pass
+            method_websocket = None
             
         if tracking_task and not tracking_task.done():
             tracking_task.cancel()
@@ -238,7 +246,7 @@ async def stop_tracking():
 
 async def tracking_loop(bot):
     """Main tracking loop - manages both subscription streams"""
-    global last_check_time, websocket
+    global last_check_time
     
     try:
         while True:
@@ -248,47 +256,34 @@ async def tracking_loop(bot):
                     logger.debug("No active enabled channels, exiting tracking loop")
                     break
                 
-                # Create transport with proper headers
-                transport = WebsocketsTransport(
-                    url=f"wss://streaming.bitquery.io/eap?token={BITQUERY_SUBSCRIPTION_API_KEY_1}",
-                    headers={
-                        "Sec-WebSocket-Protocol": "graphql-ws"
-                    }
+                # Create tasks for both subscriptions with different tokens
+                log_task = asyncio.create_task(
+                    handle_log_based_stream(bot, BITQUERY_SUBSCRIPTION_API_KEY_2)
+                )
+                method_task = asyncio.create_task(
+                    handle_method_based_stream(bot, BITQUERY_SUBSCRIPTION_API_KEY_3)
                 )
                 
-                logger.debug("Connecting to Bitquery streaming API...")
-                async with Client(
-                    transport=transport,
-                    fetch_schema_from_transport=False,
-                ) as session:
-                    
-                    # Create tasks for both subscriptions
-                    log_task = asyncio.create_task(
-                        handle_log_based_stream(session, bot)
-                    )
-                    method_task = asyncio.create_task(
-                        handle_method_based_stream(session, bot)
-                    )
-                    
-                    # Wait for either task to complete or fail
-                    done, pending = await asyncio.wait(
-                        [log_task, method_task],
-                        return_when=asyncio.FIRST_COMPLETED
-                    )
-                    
-                    # Cancel remaining tasks
-                    for task in pending:
-                        task.cancel()
-                        try:
-                            await task
-                        except asyncio.CancelledError:
-                            pass
-                    
-                    # Check if any task failed
-                    for task in done:
-                        if task.exception():
-                            raise task.exception()
-                            
+                # Wait for either task to complete or fail
+                done, pending = await asyncio.wait(
+                    [log_task, method_task],
+                    return_when=asyncio.FIRST_COMPLETED
+                )
+                
+                # Cancel remaining tasks
+                for task in pending:
+                    task.cancel()
+                    try:
+                        await task
+                    except asyncio.CancelledError:
+                        pass
+                
+                # Check if any task failed
+                for task in done:
+                    exc = task.exception()
+                    if exc:
+                        raise exc
+                        
             except Exception as e:
                 logger.error(f"Bitquery connection error for migration tracker: {e}")
                 await asyncio.sleep(5)
@@ -299,27 +294,68 @@ async def tracking_loop(bot):
         logger.error(f"Fatal tracking error: {e}")
     finally:
         is_tracking = False
-        websocket = None
+        log_websocket = None
+        method_websocket = None
 
 
-async def handle_log_based_stream(session, bot):
+async def handle_log_based_stream(bot, api_key):
     """Handle log-based migrations stream (Pump.fun)"""
+    global log_websocket
+    
     try:
-        async for result in session.subscribe(log_based_query):
-            await process_stream_result(bot, result, "log_based")
+        # Create transport with log-based token
+        transport = WebsocketsTransport(
+            url=f"wss://streaming.bitquery.io/eap?token={api_key}",
+            headers={
+                "Sec-WebSocket-Protocol": "graphql-ws"
+            }
+        )
+        
+        logger.debug("Connecting to Bitquery streaming API for log-based migrations...")
+        async with Client(
+            transport=transport,
+            fetch_schema_from_transport=False,
+        ) as session:
+            log_websocket = transport.websocket if hasattr(transport, 'websocket') else None
+            
+            async for result in session.subscribe(log_based_query):
+                await process_stream_result(bot, result, "log_based")
+                
     except Exception as e:
         logger.error(f"Error in log-based stream: {e}")
         raise
+    finally:
+        log_websocket = None
 
 
-async def handle_method_based_stream(session, bot):
+async def handle_method_based_stream(bot, api_key):
     """Handle method-based migrations stream (Boop, Meteora, Bonk, Moonshot)"""
+    global method_websocket
+    
     try:
-        async for result in session.subscribe(method_based_query):
-            await process_stream_result(bot, result, "method_based")
+        # Create transport with method-based token
+        transport = WebsocketsTransport(
+            url=f"wss://streaming.bitquery.io/eap?token={api_key}",
+            headers={
+                "Sec-WebSocket-Protocol": "graphql-ws"
+            }
+        )
+        
+        logger.debug("Connecting to Bitquery streaming API for method-based migrations...")
+        async with Client(
+            transport=transport,
+            fetch_schema_from_transport=False,
+        ) as session:
+            method_websocket = transport.websocket if hasattr(transport, 'websocket') else None
+            
+            async for result in session.subscribe(method_based_query):
+                await process_stream_result(bot, result, "method_based")
+                
     except Exception as e:
         logger.error(f"Error in method-based stream: {e}")
         raise
+    finally:
+        method_websocket = None
 
 
 async def process_stream_result(bot, result, stream_type):
@@ -578,5 +614,6 @@ def get_tracking_status() -> Dict:
         'last_check': last_check_time,
         'guild_count': len(_active_channels),
         'channel_count': sum(len(channels) for channels in _active_channels.values()),
-        'websocket_connected': websocket is not None and not websocket.closed if websocket else False
+        'log_websocket_connected': log_websocket is not None and not log_websocket.closed if log_websocket else False,
+        'method_websocket_connected': method_websocket is not None and not method_websocket.closed if method_websocket else False
     }
