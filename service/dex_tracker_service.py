@@ -208,7 +208,7 @@ async def process_token_async(bot, token_data):
         
         # Send to channels and alerts (both async, no waiting)
         asyncio.create_task(send_to_all_channels(bot, embed))
-        asyncio.create_task(send_dex_alerts(bot, token_address, embed, name, symbol))
+        # asyncio.create_task(send_dex_alerts(bot, token_address, embed, name, symbol))
         
     except Exception as e:
         logger.error(f"Error processing token {token_address}: {e}")

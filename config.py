@@ -98,8 +98,8 @@ if not MOBULA_API_KEY:
 # ========================================================================================================================================================================================
 DEXSCREENER_BASE_URL = "https://api.dexscreener.com"
 TWITTER_SEARCH_URL = "https://x.com/search?q={query}&f=live"
-MOBULA_BASE_URL =  "https://api.mobula.io/api/1/market"
-MOBULA_ATH_URL = "https://api.mobula.io/api/1/market/history/pair?asset={contact_address}&blockchain={blockchain}&period={period}&amount=100000"
+MOBULA_BASE_URL =  "https://explorer-api.mobula.io/api/1/market"
+MOBULA_ATH_URL = "https://explorer-api.mobula.io/api/1/market/history/pair?asset={contact_address}&blockchain={blockchain}&period={period}&amount=100000"
 MORALIS_BASE_URL = "https://solana-gateway.moralis.io"
 BITQUERY_BASE_URL = "https://streaming.bitquery.io/eap"
 # ========================================================================================================================================================================================
@@ -122,6 +122,8 @@ DB_PASSWORD = os.getenv("DB_PASSWORD", "")
 DB_NAME = os.getenv("DB_NAME", "crypto_bot")
 DB_POOL_MIN_SIZE = int(os.getenv("DB_POOL_MIN_SIZE", "1"))
 DB_POOL_MAX_SIZE = int(os.getenv("DB_POOL_MAX_SIZE", "10"))
+DB_SSL_CA = os.getenv("DB_SSL_CA")
+
 
 # ========================================================================================================================================================================================
 # Performance & Limits

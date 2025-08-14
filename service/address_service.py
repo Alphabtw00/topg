@@ -166,17 +166,16 @@ async def process_token_entry(message: discord.Message, entry: dict, address: st
         # Launch all tasks concurrently
         tasks = {}
         
-        tasks["order_status"] = asyncio.create_task(bot.services.dexscreener.get_order_status(address))
         # Now get first call data for specific guild
         tasks["first_call"] = asyncio.create_task(get_first_call(address, guild_id))
-        
+        tasks["order_status"] = asyncio.create_task(bot.services.dexscreener.get_order_status(address))
         if address:
             tasks["ath"] = asyncio.create_task(
                 bot.services.mobula.get_all_time_high(address, creation_timestamp, chain_id)
             )
 
         # Use a short timeout for auxiliary data to keep responses fast
-        completed, pending = await asyncio.wait(tasks.values(), timeout=10)
+        completed, pending = await asyncio.wait(tasks.values(), timeout=15)
         
         # Cancel any pending tasks to avoid resource leaks
         for task in pending:

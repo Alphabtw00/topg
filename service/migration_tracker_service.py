@@ -323,7 +323,6 @@ async def handle_log_based_stream(bot, api_key):
                 
     except Exception as e:
         logger.error(f"Error in log-based stream: {e}")
-        raise
     finally:
         log_websocket = None
 
@@ -353,7 +352,6 @@ async def handle_method_based_stream(bot, api_key):
                 
     except Exception as e:
         logger.error(f"Error in method-based stream: {e}")
-        raise
     finally:
         method_websocket = None
 

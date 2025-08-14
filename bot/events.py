@@ -71,7 +71,6 @@ async def on_message(message: discord.Message):
     
     asyncio.create_task(process_message_with_timeout(message, _bot))
 
-
 async def should_send_fudded_reply(message: discord.Message) -> bool:
     """
     Check if we should reply with the fudded message

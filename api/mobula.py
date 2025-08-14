@@ -15,10 +15,10 @@ class MobulaService:
     def __init__(self, api_client: ApiClient):
         """Initialize with API client"""
         self.client = api_client
-        self.headers = {
-            "Content-Type": "application/json",
-            "Authorization": MOBULA_API_KEY
-        }
+        # self.headers = {
+        #     "Content-Type": "application/json",
+        #     "Authorization": MOBULA_API_KEY
+        # }
     
     async def get_all_time_high(self, address: str, creation_timestamp: int = None, 
                                chain_id: str = "solana", max_retries=3):
@@ -60,7 +60,8 @@ class MobulaService:
             url = MOBULA_ATH_URL.format(contact_address=address, period=period, blockchain=chain_id)
 
             for retry in range(max_retries + 1):
-                data = await self.client.get(url, ApiEndpoint.MOBULA, headers=self.headers)
+                # data = await self.client.get(url, ApiEndpoint.MOBULA, headers=self.headers)
+                data = await self.client.get(url, ApiEndpoint.MOBULA)
                 
                 # Check for valid data
                 if data and data.get("data"):
@@ -92,7 +93,9 @@ class MobulaService:
         try:
             url = f"{MOBULA_BASE_URL}/data?asset={address}&blockchain={blockchain}"
             
-            data = await self.client.get(url, ApiEndpoint.MOBULA, headers=self.headers)            
+            # data = await self.client.get(url, ApiEndpoint.MOBULA, headers=self.headers) 
+            data = await self.client.get(url, ApiEndpoint.MOBULA)
+           
             if not data:
                 logger.error(f"Empty response from Mobula API for {address}")
                 return None
