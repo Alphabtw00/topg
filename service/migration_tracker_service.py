@@ -190,7 +190,7 @@ async def rebuild_cache_and_restart_if_needed(bot):
         # Start or stop based on whether we have enabled guilds with channels
         if _active_channels:
             total_channels = sum(len(channels) for channels in _active_channels.values())
-            logger.info(f"Found {len(_active_channels)} enabled guilds with {total_channels} channels")
+            logger.info(f"Found {len(_active_channels)} enabled guilds with {total_channels} channels for migration tracking")
             await start_tracking(bot)
         else:
             logger.info("No enabled guilds with channels, stopping migration tracking")
@@ -499,9 +499,10 @@ async def process_graduation_async(bot, token_address):
             if token_info.get('imageUrl') or token_info.get('header'):
                 needs_mobula = False
        
-        # Get Mobula data if needed for image
+        # Get Mobula data if needed for image (using moralis now)
         if needs_mobula:
-            mobula_data = await bot.services.mobula.get_token_data(token_address, blockchain="solana")
+            mobula_data = await bot.services.moralis.get_token_metadata(token_address)
+            # mobula_data = await bot.services.mobula.get_token_data(token_address, blockchain="solana")
        
         # If no data from DexScreener or Mobula, try BitQuery
         if not final_token_info and not mobula_data:

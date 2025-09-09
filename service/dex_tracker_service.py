@@ -58,7 +58,7 @@ async def rebuild_cache_and_restart_if_needed(bot):
         # Start or stop based on whether we have enabled guilds with channels
         if _active_channels:
             total_channels = sum(len(channels) for channels in _active_channels.values())
-            logger.info(f"Found {len(_active_channels)} enabled guilds with {total_channels} channels")
+            logger.info(f"Found {len(_active_channels)} enabled guilds with {total_channels} channels for dex tracking")
             await start_tracking(bot)
         else:
             logger.info("No enabled guilds with channels, stopping dex paid tracking")

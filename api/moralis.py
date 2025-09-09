@@ -39,3 +39,29 @@ class MoralisService:
         except Exception as e:
             logger.error(f"Error fetching graduated tokens: {e}")
             return []
+        
+    
+    async def get_token_metadata(self, token_address: str):
+        """
+        Get token metadata from Moralis
+        
+        Args:
+            token_address: Token contract address
+            
+        Returns:
+            dict: Token metadata or None if not found
+        """
+        try:
+            url = f"{MORALIS_BASE_URL}/token/mainnet/{token_address}/metadata"
+            
+            response = await self.client.get(url, ApiEndpoint.MORALIS)
+            
+            if not response:
+                logger.warning(f"No metadata returned for token {token_address}")
+                return None
+                
+            return response
+            
+        except Exception as e:
+            logger.error(f"Error fetching token metadata for {token_address}: {e}")
+            return None
