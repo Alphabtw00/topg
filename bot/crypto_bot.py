@@ -149,18 +149,42 @@ class CryptoBot(commands.Bot):
         logger.info(f"Logged in as {self.user} (ID: {self.user.id})")
         logger.info(f"Bot connected to {len(self.guilds)} server(s)")
                 
-        if ENABLE_BOT_FORWARDING and BOT_OUTPUT_CHANNEL_IDS and FORWARD_BOT_IDS:
-            input_info = "all channels" if not BOT_INPUT_CHANNEL_IDS else f"{len(BOT_INPUT_CHANNEL_IDS)} channels"
-            logger.info(f"Echo bot message forwarding: {len(FORWARD_BOT_IDS)} bots from {input_info} to {len(BOT_OUTPUT_CHANNEL_IDS)} channels")
+        if ENABLE_BOT_FORWARDING and BOT_INPUT_CHANNEL_IDS and BOT_OUTPUT_CHANNEL_IDS:
+            bot_info = ""
+            if FORWARD_BOT_IDS:
+                # Get bot usernames if possible
+                bot_names = []
+                for bot_id in FORWARD_BOT_IDS:
+                    try:
+                        bot_user = self.get_user(bot_id)
+                        bot_names.append(bot_user.name if bot_user else str(bot_id))
+                    except:
+                        bot_names.append(str(bot_id))
+                bot_info = f" (Bots: {', '.join(bot_names)})"
+            
+            logger.info(f"Bot forwarding enabled: {len(BOT_INPUT_CHANNEL_IDS)} input -> {len(BOT_OUTPUT_CHANNEL_IDS)} output channels{bot_info}")
 
-        # Log user forwarding configuration if enabled
-        if ENABLE_USER_FORWARDING and USER_OUTPUT_CHANNEL_IDS and FORWARD_USER_IDS:
-            input_info = "all channels" if not USER_INPUT_CHANNEL_IDS else f"{len(USER_INPUT_CHANNEL_IDS)} channels"
-            logger.info(f"Dani message forwarding: {len(FORWARD_USER_IDS)} users from {input_info} to {len(USER_OUTPUT_CHANNEL_IDS)} channels")
+        # Log user forwarding configuration  
+        if ENABLE_USER_FORWARDING and USER_INPUT_CHANNEL_IDS and USER_OUTPUT_CHANNEL_IDS:
+            user_info = ""
+            if FORWARD_USER_IDS:
+                # Get usernames if possible
+                user_names = []
+                for user_id in FORWARD_USER_IDS:
+                    try:
+                        user = self.get_user(user_id)
+                        user_names.append(user.name if user else str(user_id))
+                    except:
+                        user_names.append(str(user_id))
+                user_info = f" (Users: {', '.join(user_names)})"
+            else:
+                user_info = " (All users)"
+            
+            logger.info(f"User forwarding enabled: {len(USER_INPUT_CHANNEL_IDS)} input -> {len(USER_OUTPUT_CHANNEL_IDS)} output channels{user_info}")
 
-        # Log alerts configuration if enabled
+        # Log alerts configuration
         if ENABLE_ALERTS:
-            logger.info("Alerts are enabled.")
+            logger.info("Alerts are enabled")
         
 
         if self.is_first_connect:

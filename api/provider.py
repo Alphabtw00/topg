@@ -9,6 +9,7 @@ from api.website_analyzer import WebsiteAnalyzer
 from api.truthsocial import TruthSocialService
 from api.trenchbot import TrenchBotService
 from api.bitquery import BitQueryService
+from api.moralis import MoralisService
 from utils.logger import get_logger
 
 logger = get_logger()
@@ -22,11 +23,13 @@ class ApiServiceProvider:
         self.api_client = None
         self.dexscreener = None
         self.mobula = None
+        self.moralis = None
         self.github_analyzer = None
         self.trenchbot = None
         self.website_analyzer = None
         self.truthsocial = None
         self.bitquery = None
+
     
     async def setup(self):
         """Set up all services"""
@@ -38,6 +41,7 @@ class ApiServiceProvider:
         # Initialize services
         self.dexscreener = DexScreenerService(self.api_client)
         self.mobula = MobulaService(self.api_client)
+        self.moralis = MoralisService(self.api_client)
         self.github_analyzer = GitHubAnalyzer(self.api_client)
         self.website_analyzer = WebsiteAnalyzer(self.api_client)
         self.truthsocial = TruthSocialService(self.api_client)

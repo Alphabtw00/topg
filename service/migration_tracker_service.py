@@ -499,10 +499,13 @@ async def process_graduation_async(bot, token_address):
             if token_info.get('imageUrl') or token_info.get('header'):
                 needs_mobula = False
        
-        # Get Mobula data if needed for image (using moralis now)
+        # Get Mobula data if needed for image 
         if needs_mobula:
-            mobula_data = await bot.services.moralis.get_token_metadata(token_address)
-            # mobula_data = await bot.services.mobula.get_token_data(token_address, blockchain="solana")
+            #moralis req
+            # mobula_data = await bot.services.moralis.get_token_metadata(token_address)
+            
+            #mobula req
+            mobula_data = await bot.services.mobula.get_token_data(token_address, blockchain="solana")
        
         # If no data from DexScreener or Mobula, try BitQuery
         if not final_token_info and not mobula_data:

@@ -411,32 +411,34 @@ async def create_migration_tracker_embed(dex_data, mobula_data, bitquery_data, t
             # Use Mobula image if DexScreener doesn't have one
             if not image_url and mobula_data:
                 #moralis nesting
-                image_url = mobula_data.get('logo')
+                # image_url = mobula_data.get('logo')
                 
                 #mobula nesting
-                # image_url = mobula_data.get('data', {}).get('logo')
-                # If missing volume/price change, use Mobula data
-                # if not volume_5m:
-                #     volume_5m = mobula_data.get('data', {}).get('volume', 0)
-                # if not price_change_5m:
-                #     price_change_5m = mobula_data.get('data', {}).get('price_change_1h', 0)
+                image_url = mobula_data.get('data', {}).get('logo')
+                # If missing volume/price change/market cap, use Mobula data
+                if not volume_5m:
+                    volume_5m = mobula_data.get('data', {}).get('volume', 0)
+                if not price_change_5m:
+                    price_change_5m = mobula_data.get('data', {}).get('price_change_1h', 0)
+                if not market_cap:
+                    market_cap = mobula_data.get('market_cap', 0)
             
         elif mobula_data:
             # Use Mobula data
             #moralis nesting
-            name = mobula_data.get('name', 'Unknown')
-            symbol = mobula_data.get('symbol', 'Unknown')
-            market_cap = float(mobula_data.get('fullyDilutedValue', 0))
-            image_url = mobula_data.get('logo')
+            # name = mobula_data.get('name', 'Unknown')
+            # symbol = mobula_data.get('symbol', 'Unknown')
+            # market_cap = float(mobula_data.get('fullyDilutedValue', 0))
+            # image_url = mobula_data.get('logo')
             
             #mobula nesting
-            # data = mobula_data.get('data', {})
-            # name = data.get('name', 'Unknown')
-            # symbol = data.get('symbol', 'Unknown')
-            # market_cap = data.get('market_cap', 0)
-            # volume_5m = data.get('volume', 0)
-            # price_change_5m = data.get('price_change_1h', 0)
-            # image_url = data.get('logo')
+            data = mobula_data.get('data', {})
+            name = data.get('name', 'Unknown')
+            symbol = data.get('symbol', 'Unknown')
+            market_cap = data.get('market_cap', 0)
+            volume_5m = data.get('volume', 0)
+            price_change_5m = data.get('price_change_1h', 0)
+            image_url = data.get('logo')
             
         elif bitquery_data:
             # Extract BitQuery data
@@ -495,10 +497,10 @@ async def create_migration_tracker_embed(dex_data, mobula_data, bitquery_data, t
         if volume_5m or price_change_5m:
             change_emoji = "🚀" if price_change_5m > 0 else "🔻"
             #moralis time suffix
-            time_suffix = "(5m)" if dex_data else ""
+            # time_suffix = "(5m)" if dex_data else ""
             
             #mobula time suffix
-            # time_suffix = "(5m)" if dex_data else "(1h)" if mobula_data else ""
+            time_suffix = "(5m)" if dex_data else "(1h)" if mobula_data else ""
             
             stats_parts = []
             if volume_5m:

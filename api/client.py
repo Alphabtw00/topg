@@ -23,6 +23,7 @@ class ApiEndpoint(Enum):
     WEBSITE = "website"
     TRENCHBOT = "trenchbot"
     BITQUERY = "bitquery"
+    MORALIS = "moralis"
 
 class ApiClient:
     """Unified API client for all external service requests"""

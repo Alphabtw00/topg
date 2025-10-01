@@ -47,9 +47,9 @@ USER_INPUT_CHANNEL_IDS = {int(id.strip()) for id in os.getenv("USER_INPUT_CHANNE
 USER_OUTPUT_CHANNEL_IDS = {int(id.strip()) for id in os.getenv("USER_OUTPUT_CHANNEL_IDS", "").split(",") if id.strip().isdigit()}
 FORWARD_USER_IDS = {int(id.strip()) for id in os.getenv("FORWARD_USER_IDS", "").split(",") if id.strip().isdigit()}
 
-ENABLE_BOT_FORWARDING = False
-ENABLE_USER_FORWARDING = False  
-ENABLE_ALERTS = True
+ENABLE_BOT_FORWARDING = os.getenv("ENABLE_BOT_FORWARDING", "True").lower() in ("true", "1", "yes")
+ENABLE_USER_FORWARDING = os.getenv("ENABLE_USER_FORWARDING", "True").lower() in ("true", "1", "yes")
+ENABLE_ALERTS = os.getenv("ENABLE_ALERTS", "True").lower() in ("true", "1", "yes")
 
 
 

@@ -42,7 +42,7 @@ def init_forwarding_cache():
     """Initialize forwarding channel sets for fast lookup - call once at bot startup"""
     global _forwarding_channels, _alert_channels, _bot_input_channels, _user_input_channels
     from config import (ENABLE_BOT_FORWARDING, ENABLE_USER_FORWARDING, ENABLE_ALERTS,
-                       BOT_INPUT_CHANNEL_IDS, USER_INPUT_CHANNEL_IDS)
+                       BOT_INPUT_CHANNEL_IDS, BOT_OUTPUT_CHANNEL_IDS, USER_INPUT_CHANNEL_IDS, USER_OUTPUT_CHANNEL_IDS)
     
     _forwarding_channels = set()
     _alert_channels = set()
@@ -50,16 +50,32 @@ def init_forwarding_cache():
     _user_input_channels = set()
     
     if ENABLE_BOT_FORWARDING:
-        _bot_input_channels = set(BOT_INPUT_CHANNEL_IDS)
-        _forwarding_channels.update(BOT_INPUT_CHANNEL_IDS)
-    if ENABLE_USER_FORWARDING:
-        _user_input_channels = set(USER_INPUT_CHANNEL_IDS)
-        _forwarding_channels.update(USER_INPUT_CHANNEL_IDS)
+        if not BOT_INPUT_CHANNEL_IDS or not BOT_OUTPUT_CHANNEL_IDS:
+            logger.warning("Bot forwarding enabled but missing input or output channel IDs - skipping")
+        else:
+            _bot_input_channels = set(BOT_INPUT_CHANNEL_IDS)
+            _forwarding_channels.update(BOT_INPUT_CHANNEL_IDS)
+            logger.info(f"Bot forwarding initialized: {len(BOT_INPUT_CHANNEL_IDS)} input channels")
     
-    # Add alert channels only if alerts are enabled
+    # User forwarding setup        
+    if ENABLE_USER_FORWARDING:
+        if not USER_INPUT_CHANNEL_IDS or not USER_OUTPUT_CHANNEL_IDS:
+            logger.warning("User forwarding enabled but missing input or output channel IDs - skipping")
+        else:
+            _user_input_channels = set(USER_INPUT_CHANNEL_IDS)
+            _forwarding_channels.update(USER_INPUT_CHANNEL_IDS)
+            logger.info(f"User forwarding initialized: {len(USER_INPUT_CHANNEL_IDS)} input channels")
+    
+    # Alert channels setup
     if ENABLE_ALERTS:
-        _alert_channels = set(ALERT_CONFIGS.keys())
-        _forwarding_channels.update(_alert_channels)
+        if not ALERT_CONFIGS:
+            logger.warning("Alerts enabled but no alert configurations found - skipping")
+        else:
+            _alert_channels = set(ALERT_CONFIGS.keys())
+            _forwarding_channels.update(_alert_channels)
+            logger.info(f"Alerts initialized: {len(ALERT_CONFIGS)} alert channels")
+    
+    logger.info(f"Total forwarding channels: {len(_forwarding_channels)}")
 
 def should_process_forwarding(channel_id):
     """Ultra-fast check if ANY forwarding is needed for this channel"""
@@ -104,10 +120,7 @@ async def get_webhook_for_channel(channel, bot):
 async def forward_bot_messages(message, bot):
     """Forward messages from bots to output channels"""
     from config import (BOT_OUTPUT_CHANNEL_IDS, BOT_CHANNEL_COLORS, FORWARD_BOT_IDS)
-    
-    if not BOT_OUTPUT_CHANNEL_IDS:
-        return
-    
+        
     if FORWARD_BOT_IDS and message.author.id not in FORWARD_BOT_IDS:
         return
     
@@ -172,9 +185,6 @@ async def forward_user_messages(message, bot):
     from config import (USER_OUTPUT_CHANNEL_IDS, PROCESS_CRYPTO_IN_FORWARDS, FORWARD_USER_IDS)
     from utils.validators import crypto_quick_check
     
-    if not USER_OUTPUT_CHANNEL_IDS:
-        return
-    
     if FORWARD_USER_IDS and message.author.id not in FORWARD_USER_IDS:
         return
     
@@ -205,6 +215,7 @@ async def forward_user_messages(message, bot):
                 original_msg = await reference_channel.fetch_message(message.reference.message_id)
                 is_reply = message.channel.id == message.reference.channel_id
                 
+                #is forwarded message
                 if not is_reply:
                     if original_msg.embeds:
                         reference_embeds = original_msg.embeds
