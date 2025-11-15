@@ -33,3 +33,6 @@ yarl
 aiocache
 gql[all]
 cryptography
+openpyxl
+pillow
+watchdog

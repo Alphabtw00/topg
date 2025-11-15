@@ -6,7 +6,7 @@ import discord
 from datetime import datetime
 
 from ui.embeds import create_token_embed, create_header_message, update_ath_in_embed, update_first_call_in_embed, update_dex_in_embed
-from ui.views import CopyAddressView
+from ui.views import TokenEmbedView
 from utils.logger import get_logger
 from service.mysql_service import get_first_call, store_first_call
 from urllib.parse import quote
@@ -159,7 +159,7 @@ async def process_token_entry(message: discord.Message, entry: dict, address: st
         response = await message.reply(
             content=create_header_message(entry),
             embed=initial_embed,
-            view=CopyAddressView(address),
+            view=TokenEmbedView(address, message.author.id),
             mention_author=True
         )
 

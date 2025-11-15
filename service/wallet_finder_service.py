@@ -75,12 +75,6 @@ class WalletFinderService:
     def __init__(self):
         pass
 
-class WalletFinderService:
-    """Service for finding wallets based on average market cap"""
-    
-    def __init__(self):
-        pass
-
 async def find_wallets_by_average_mc(
     bot, 
     contract_address: str, 

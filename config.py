@@ -102,6 +102,8 @@ MOBULA_BASE_URL =  "https://explorer-api.mobula.io/api/1/market"
 MOBULA_ATH_URL = "https://explorer-api.mobula.io/api/1/market/history/pair?asset={contact_address}&blockchain={blockchain}&period={period}&amount=100000"
 MORALIS_BASE_URL = "https://solana-gateway.moralis.io"
 BITQUERY_BASE_URL = "https://streaming.bitquery.io/eap"
+KALSHI_BASE_URL = "https://api.elections.kalshi.com/trade-api/v2"
+
 # ========================================================================================================================================================================================
 # Trading Platforms
 # ========================================================================================================================================================================================

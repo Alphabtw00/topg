@@ -22,7 +22,7 @@ class GithubCheckerCommands(commands.Cog):
    
     @app_commands.command(name="github-checker", description="Analyze a GitHub repository for legitimacy")
     @app_commands.guild_only()
-    @app_commands.checks.cooldown(1, 15)  # 15 seconds cooldown
+    @app_commands.checks.cooldown(1, 100)  # 100 seconds cooldown
     async def check_repo(self, interaction: discord.Interaction, repo_url: str):
         """
         Analyze a GitHub repository for potential scam indicators in crypto projects.

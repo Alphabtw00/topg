@@ -6,7 +6,7 @@ import asyncio
 import dateutil.parser as date_parse
 import re
 from datetime import datetime
-from typing import List, Dict, Optional, Any
+from typing import List, Dict, Optional, Any, Callable
 from urllib.parse import quote
 from config import TWITTER_SEARCH_URL, TRADING_PLATFORMS, VERIFIED_EMOJI
 from utils.formatters import (
@@ -14,7 +14,7 @@ from utils.formatters import (
     relative_time, get_color_from_change, score_bar, clean_html,
     format_metrics, proxy_url, format_category
 )
-from utils.helper import safe_add_field, fetch_token_metadata_from_uri, get_token_metadata_and_links, calculate_mc_range
+from utils.helper import safe_add_field, fetch_token_metadata_from_uri, get_token_metadata_and_links, calculate_mc_range, get_first_candle_info
 from utils.logger import get_logger
 from repository.truth_repo import get_guild_settings as get_truth_settings
 from repository.migration_tracker_repo import get_guild_settings as get_migration_settings
@@ -759,7 +759,7 @@ async def create_wallet_finder_embed(
     except Exception as e:
         logger.error(f"Error creating wallet finder embed: {e}")
         return None
-    
+
 def create_github_analysis_embed(repo_info, analysis, start_time, interaction):
     """
     Create an enhanced embed for GitHub repository analysis.
@@ -867,7 +867,7 @@ def create_github_analysis_embed(repo_info, analysis, start_time, interaction):
 
     embed.add_field(
         name="🛡️ Overall Assessment",
-        value=(
+        value=safe_add_field(
             f"**Legitimacy Score:** {score_bar(legitimacy_score)} `{legitimacy_score}%`\n"
             f"**Trust Score:** {score_bar(trust_score)} `{trust_score}%`\n"
             f"{ai_score_text}\n"
@@ -878,7 +878,7 @@ def create_github_analysis_embed(repo_info, analysis, start_time, interaction):
     # Detailed scores
     embed.add_field(
         name="📚 Technical Quality",
-        value=(
+        value=safe_add_field(
             f"**Code Quality:** {score_bar(code_quality*4)} `{code_quality}/25`\n"
             f"**Project Structure:** {score_bar(project_structure*4)} `{project_structure}/25`\n"
             f"**Implementation:** {score_bar(implementation*4)} `{implementation}/25`\n"
@@ -905,7 +905,7 @@ def create_github_analysis_embed(repo_info, analysis, start_time, interaction):
     
     embed.add_field(
         name="💰 Investment Rating",
-        value=(
+        value=safe_add_field(
             f"**Rating:** {rating_emoji} `{rating}`\n"
             f"**Confidence in rating:** {score_bar(confidence)} `{confidence}%`\n"
         ),
@@ -960,7 +960,7 @@ def create_github_analysis_embed(repo_info, analysis, start_time, interaction):
         flags_formatted = "\n".join(f"📉 {flag}" for flag in red_flags[:3])
         embed.add_field(
             name="🚩 Security Concerns",
-            value=flags_formatted if flags_formatted else "No significant issues detected",
+            value=safe_add_field(flags_formatted if flags_formatted else "No significant issues detected"),
             inline=False
         )
     else:
@@ -1021,7 +1021,7 @@ def create_github_analysis_embed(repo_info, analysis, start_time, interaction):
         
         embed.add_field(
             name="⚡ Key Insights",
-            value=insights_text if insights_text else "No insights available",
+            value=safe_add_field(insights_text if insights_text else "No insights available"),
             inline=False
         )
 
@@ -1046,7 +1046,7 @@ def create_github_analysis_embed(repo_info, analysis, start_time, interaction):
             
             embed.add_field(
                 name="🤖 AI Implementation",
-                value=ai_text if ai_text else "No AI implementation details available",
+                value=safe_add_field(ai_text if ai_text else "No AI implementation details available"),
                 inline=False
             )
     
@@ -1064,7 +1064,7 @@ def create_github_analysis_embed(repo_info, analysis, start_time, interaction):
     if overall_assessment:
         embed.add_field(
             name="🧠 Expert Opinion",
-            value=f"> {overall_assessment.replace('\\n', '\\n> ')}",
+            value=safe_add_field(f"> {overall_assessment.replace('\\n', '\\n> ')}"),
             inline=False
         )
     
@@ -1075,7 +1075,7 @@ def create_github_analysis_embed(repo_info, analysis, start_time, interaction):
     )
     
     return embed
-
+    
 def create_website_embed(result, interaction, start_time):
     """Create a comprehensive embed for the website analysis result
     
@@ -1191,7 +1191,7 @@ def create_website_embed(result, interaction, start_time):
     platforms = social_media.get("platforms", [])
     
     if platforms:
-        social_text = "\n".join([f"- **{p['name']}**" for p in platforms[:3]])
+        social_text = "\n".join([f"- [**{p['name']}**]({p['url']})" for p in platforms[:3]])
         if len(platforms) > 3:
             social_text += f"\n- *+{len(platforms) - 3} more*"
         social_text += f"\nScore: `{scores.get('social', 0)}/100`"
@@ -1293,9 +1293,376 @@ def create_website_embed(result, interaction, start_time):
     
     return embed
 
+def create_pos_calc_capital_embed(
+    entry: float,
+    stop_loss: float,
+    capital: float,
+    risk_percent: float,
+    user_name: str,
+    user_avatar_url: str
+) -> discord.Embed:
+    """Create position calculator (capital-based) embed"""
+    
+    is_long = stop_loss < entry
+    position_type = "LONG 🟢" if is_long else "SHORT 🔴"
+    
+    risk_per_unit = abs(entry - stop_loss)
+    risk_percent_price = (risk_per_unit / entry) * 100
+    
+    risk_amount = capital * (risk_percent / 100)
+    position_size_units = risk_amount / risk_per_unit
+    position_size_usd = position_size_units * entry
+    
+    leverage_needed = position_size_usd / capital
+    
+    if risk_percent <= 1:
+        risk_emoji = "🟢"
+        risk_level = "Conservative"
+    elif risk_percent <= 2:
+        risk_emoji = "🟡"
+        risk_level = "Moderate"
+    elif risk_percent <= 5:
+        risk_emoji = "🟠"
+        risk_level = "Aggressive"
+    else:
+        risk_emoji = "🔴"
+        risk_level = "Very High Risk"
+    
+    if leverage_needed > 50:
+        warning_text = "🔴 **DANGER:** Extremely high leverage required! Consider reducing position or widening stop loss."
+    elif leverage_needed > 20:
+        warning_text = "⚠️ **WARNING:** High leverage required. Ensure you understand the risks."
+    elif leverage_needed > 10:
+        warning_text = "🟡 **CAUTION:** Moderate leverage. Use proper risk management."
+    else:
+        warning_text = "✅ **SAFE:** Low to no leverage required. Good risk management!"
+    
+    leverage_text = f"{leverage_needed:.1f}x" if leverage_needed > 1 else "None (Spot)"
+    
+    description = (
+        f"## Position Type: {position_type}\n"
+        f"**Risk Level:** {risk_emoji} {risk_level}\n\n"
+        
+        f"## 📥 Your Inputs\n"
+        f"**Entry Price:** ${entry:,.2f}\n"
+        f"**Stop Loss:** ${stop_loss:,.2f}\n"
+        f"**Total Capital:** ${capital:,.2f}\n"
+        f"**Risk Tolerance:** {risk_percent}%\n\n"
+        
+        f"## ⚠️ Risk Analysis\n"
+        f"**Risk Distance:** {risk_percent_price:.2f}% (${risk_per_unit:,.2f})\n"
+        f"**Max Loss if Stopped:** ${risk_amount:,.2f}\n"
+        f"**Remaining Capital:** ${capital - risk_amount:,.2f}\n\n"
+        
+        f"## 💰 Recommended Position\n"
+        f"**Position Size:** {position_size_units:.4f} units\n"
+        f"**Position Value:** ${position_size_usd:,.2f}\n"
+        f"**Leverage Needed:** {leverage_text}\n\n"
+        
+        f"## 💡 Risk Assessment\n"
+        f"{warning_text}\n\n"
+        
+        f"*💡 Pro Tip: Risk only 1-2% of your capital per trade for sustainable growth!*"
+    )
+    
+    embed = discord.Embed(
+        title="📊 Position Size Calculator (% Risk Based)",
+        description=description,
+        color=0x00D9FF,
+        timestamp=discord.utils.utcnow()
+    )
+    
+    embed.set_image(url="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&h=400&fit=crop")
+    
+    embed.set_footer(
+        text=f"Requested by {user_name}",
+        icon_url=user_avatar_url
+    )
+    
+    return embed
+
+def create_pos_calc_loss_embed(
+    entry: float,
+    stop_loss: float,
+    max_loss: float,
+    user_name: str,
+    user_avatar_url: str
+) -> discord.Embed:
+    """Create position calculator (loss-based) embed"""
+    
+    is_long = stop_loss < entry
+    position_type = "LONG 🟢" if is_long else "SHORT 🔴"
+    
+    risk_per_unit = abs(entry - stop_loss)
+    risk_percent_price = (risk_per_unit / entry) * 100
+    
+    position_size_units = max_loss / risk_per_unit
+    position_size_usd = position_size_units * entry
+    
+    implied_capital_1pct = max_loss * 100
+    implied_capital_2pct = max_loss * 50
+    
+    description = (
+        f"## Position Type: {position_type}\n\n"
+        
+        f"## 📥 Your Inputs\n"
+        f"**Entry Price:** ${entry:,.2f}\n"
+        f"**Stop Loss:** ${stop_loss:,.2f}\n"
+        f"**Max Loss Allowed:** ${max_loss:,.2f}\n\n"
+        
+        f"## ⚠️ Risk Analysis\n"
+        f"**Risk Distance:** {risk_percent_price:.2f}% (${risk_per_unit:,.2f})\n"
+        f"**Loss if Stopped:** ${max_loss:,.2f}\n"
+        f"**Risk per Unit:** ${risk_per_unit:,.2f}\n\n"
+        
+        f"## 💰 Recommended Position\n"
+        f"**Position Size:** {position_size_units:.4f} units\n"
+        f"**Position Value:** ${position_size_usd:,.2f}\n"
+        f"**Entry:** ${entry:,.2f}\n"
+        f"**Stop Loss:** ${stop_loss:,.2f}\n\n"
+        
+        f"## 📊 Capital Context\n"
+        f"This ${max_loss:,.2f} risk equals:\n"
+        f"• **1%** of ${implied_capital_1pct:,.2f} capital\n"
+        f"• **2%** of ${implied_capital_2pct:,.2f} capital\n\n"
+        
+        f"*⚠️ Make sure this risk amount aligns with your total trading capital!*"
+    )
+    
+    embed = discord.Embed(
+        title="💵 Position Size Calculator ($ Loss Based)",
+        description=description,
+        color=0x9B59B6,
+        timestamp=discord.utils.utcnow()
+    )
+    
+    embed.set_image(url="https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=1200&h=400&fit=crop")
+    
+    embed.set_footer(
+        text=f"Requested by {user_name}",
+        icon_url=user_avatar_url
+    )
+    
+    return embed
+
+def create_liquidation_calc_embed(
+    entry: float,
+    leverage: float,
+    is_long: bool,
+    user_name: str,
+    user_avatar_url: str
+) -> discord.Embed:
+    """Create liquidation calculator embed"""
+    
+    pos_emoji = "🟢" if is_long else "🔴"
+    pos_text = "LONG" if is_long else "SHORT"
+    
+    if is_long:
+        liquidation_price = entry * (1 - (0.9 / leverage))
+    else:
+        liquidation_price = entry * (1 + (0.9 / leverage))
+    
+    price_distance = abs(liquidation_price - entry)
+    percent_distance = (price_distance / entry) * 100
+    
+    if percent_distance < 1:
+        safety_emoji = "💀"
+        safety_level = "EXTREMELY DANGEROUS"
+        safety_color = 0xFF0000
+    elif percent_distance < 2:
+        safety_emoji = "🔴"
+        safety_level = "Very High Risk"
+        safety_color = 0xFF4444
+    elif percent_distance < 5:
+        safety_emoji = "🟠"
+        safety_level = "High Risk"
+        safety_color = 0xFF8800
+    elif percent_distance < 10:
+        safety_emoji = "🟡"
+        safety_level = "Moderate Risk"
+        safety_color = 0xFFDD00
+    else:
+        safety_emoji = "🟢"
+        safety_level = "Relatively Safe"
+        safety_color = 0x00FF88
+    
+    if leverage > 50:
+        rec_text = "🔴 **EXTREME RISK!** Consider reducing leverage to 10-20x for better safety."
+    elif leverage > 20:
+        rec_text = "⚠️ **HIGH RISK!** Use tight stop losses and monitor position closely."
+    elif leverage > 10:
+        rec_text = "🟡 **MODERATE RISK.** Acceptable for experienced traders with good risk management."
+    else:
+        rec_text = "✅ **GOOD LEVERAGE.** More room for price fluctuation before liquidation."
+    
+    safe_zone = "🟢" * int(min(percent_distance, 10))
+    danger_zone = "🔴" * max(0, 10 - int(percent_distance))
+    progress_bar = safe_zone + danger_zone
+    
+    direction = "drops to" if is_long else "rises to"
+    
+    description = (
+        f"## Position: {pos_emoji} {pos_text}\n"
+        f"**Safety Level:** {safety_emoji} {safety_level}\n\n"
+        
+        f"## 📥 Position Details\n"
+        f"**Entry Price:** ${entry:,.2f}\n"
+        f"**Leverage:** {leverage:.1f}x\n"
+        f"**Position Type:** {pos_emoji} {pos_text}\n\n"
+        
+        f"## 💀 Liquidation Information\n"
+        f"**Liquidation Price:** ${liquidation_price:,.2f}\n"
+        f"**Distance:** ${price_distance:,.2f} ({percent_distance:.2f}%)\n"
+        f"**Liquidates if price {direction}:** ${liquidation_price:,.2f}\n\n"
+        
+        f"## 📊 Safety Margin\n"
+        f"{progress_bar}\n"
+        f"**{percent_distance:.2f}%** away from liquidation\n\n"
+        
+        f"## ⚖️ Leverage Comparison\n"
+        f"**Your leverage ({leverage:.0f}x):** {percent_distance:.2f}% to liquidation\n"
+        f"**5x leverage:** ~18% to liquidation\n"
+        f"**10x leverage:** ~9% to liquidation\n"
+        f"**25x leverage:** ~3.6% to liquidation\n"
+        f"**50x leverage:** ~1.8% to liquidation\n"
+        f"**100x leverage:** ~0.9% to liquidation\n\n"
+        
+        f"## 💡 Recommendation\n"
+        f"{rec_text}\n\n"
+        
+        f"*💡 Pro Tip: Lower leverage = More safety margin. Use stop losses to exit before liquidation!*"
+    )
+    
+    embed = discord.Embed(
+        title=f"💀 Liquidation Calculator",
+        description=description,
+        color=safety_color,
+        timestamp=discord.utils.utcnow()
+    )
+    
+    embed.set_image(url="https://images.unsplash.com/photo-1621416894569-0f39ed31d247?w=1200&h=400&fit=crop")
+    
+    embed.set_footer(
+        text=f"Requested by {user_name}",
+        icon_url=user_avatar_url
+    )
+    
+    return embed
+
+def create_funding_calc_embed(
+    position_size: float,
+    funding_rate: float,
+    hours: float,
+    user_name: str,
+    user_avatar_url: str
+) -> discord.Embed:
+    """Create funding calculator embed"""
+    
+    funding_periods = hours / 8
+    
+    fee_per_period = position_size * (funding_rate / 100)
+    total_fees = fee_per_period * funding_periods
+    
+    daily_fees = (total_fees / hours) * 24
+    monthly_fees = daily_fees * 30
+    
+    is_paying = funding_rate > 0
+    action = "PAY" if is_paying else "RECEIVE"
+    emoji = "🔴" if is_paying else "🟢"
+    
+    abs_rate = abs(funding_rate)
+    if abs_rate < 0.01:
+        sentiment = "Neutral"
+        sentiment_emoji = "⚪"
+    elif abs_rate < 0.05:
+        sentiment = "Normal" 
+        sentiment_emoji = "🟡"
+    elif abs_rate < 0.10:
+        sentiment = "High"
+        sentiment_emoji = "🟠"
+    else:
+        sentiment = "Extreme"
+        sentiment_emoji = "🔴"
+    
+    if is_paying:
+        explanation = (
+            "**Why am I paying?**\n"
+            f"Funding rate is **positive ({funding_rate:+.3f}%)**, meaning:\n"
+            "• More traders are LONG than SHORT\n"
+            "• Longs pay shorts to balance the market\n"
+            "• High positive funding may signal overleveraged longs"
+        )
+    else:
+        explanation = (
+            "**Why am I receiving?**\n"
+            f"Funding rate is **negative ({funding_rate:+.3f}%)**, meaning:\n"
+            "• More traders are SHORT than LONG\n"
+            "• Shorts pay longs to balance the market\n"
+            "• High negative funding may signal overleveraged shorts"
+        )
+    
+    impact_percent = (abs(total_fees) / position_size) * 100
+    if impact_percent < 0.1:
+        impact_text = "✅ **Minimal impact** on position"
+    elif impact_percent < 0.5:
+        impact_text = "🟡 **Low impact** - acceptable for most traders"
+    elif impact_percent < 1:
+        impact_text = "🟠 **Moderate impact** - consider shorter holding time"
+    else:
+        impact_text = "🔴 **High impact** - funding fees eating into profits!"
+    
+    sign = "-" if is_paying else "+"
+    
+    description = (
+        f"## Funding Status: {emoji} You will {action} fees\n"
+        f"**Market Sentiment:** {sentiment_emoji} {sentiment}\n\n"
+        
+        f"## 📥 Position Details\n"
+        f"**Position Size:** ${position_size:,.2f}\n"
+        f"**Funding Rate:** {funding_rate:+.3f}%\n"
+        f"**Holding Time:** {hours:.1f} hours ({funding_periods:.2f} periods)\n\n"
+        
+        f"## 💰 Funding Fees ({action})\n"
+        f"**Per Period (8h):** {sign}${abs(fee_per_period):,.2f}\n"
+        f"**Total for {hours:.1f}h:** {sign}${abs(total_fees):,.2f}\n"
+        f"**Daily Projection:** {sign}${abs(daily_fees):,.2f}\n"
+        f"**Monthly Projection:** {sign}${abs(monthly_fees):,.2f}\n\n"
+        
+        f"## 📖 Explanation\n"
+        f"{explanation}\n\n"
+        
+        f"## ⏰ Funding Schedule\n"
+        f"Funding is paid/received every **8 hours** at:\n"
+        f"• **00:00 UTC** (12:00 AM)\n"
+        f"• **08:00 UTC** (8:00 AM)\n"
+        f"• **16:00 UTC** (4:00 PM)\n\n"
+        
+        f"## 📊 Impact Analysis\n"
+        f"**Fee Impact:** {impact_percent:.2f}% of position\n"
+        f"{impact_text}\n\n"
+        
+        f"*💡 Pro Tip: Close position before funding time to avoid fees if you're in a short-term trade!*"
+    )
+    
+    embed = discord.Embed(
+        title="💸 Funding Rate Calculator",
+        description=description,
+        color=0x00FF88 if not is_paying else 0xFF4444,
+        timestamp=discord.utils.utcnow()
+    )
+    
+    embed.set_image(url="https://images.unsplash.com/photo-1642790551116-18e150f248e8?w=1200&h=400&fit=crop")
+    
+    embed.set_footer(
+        text=f"Requested by {user_name}",
+        icon_url=user_avatar_url
+    )
+    
+    return embed
+
 async def create_health_embed(bot, user):
     """
-    Create a comprehensive health status embed with server and tracking information
+    Create a comprehensive health status embed with server, tracking, and settings information
     
     Args:
         bot: Bot instance
@@ -1331,9 +1698,7 @@ async def create_health_embed(bot, user):
         color = 0xF44336  # Red
     
     # Calculate average processing time from recent data only
-    current_time = datetime.now().timestamp()
     recent_processing = [t[0] for t in bot.metrics['processing_times']]
-    
     avg_time = 0 if not recent_processing else sum(recent_processing) / len(recent_processing)
     
     # Get most used commands
@@ -1352,7 +1717,7 @@ async def create_health_embed(bot, user):
             bot.metrics['errors'].items(),
             key=lambda x: x[1],
             reverse=True
-        )
+        )[:3]  # Limit to top 3 errors
 
     # Database metrics
     from service.mysql_service import get_db_pool_stats
@@ -1362,136 +1727,293 @@ async def create_health_embed(bot, user):
     total_servers = len(bot.guilds)
     total_members = sum(guild.member_count for guild in bot.guilds)
     
-    # Get server tracking information
+    # Get server tracking and settings information
     server_info = []
     guilds_sorted = sorted(bot.guilds, key=lambda x: x.member_count or 0, reverse=True)
     
-    for guild in guilds_sorted:  # Top 5 servers by member count
-        # Get tracking status for each service
+    for guild in guilds_sorted:
         try:
+            # Get tracking status for each service
             truth_enabled = (await get_truth_settings(guild.id)).get('enabled', False)
             migration_enabled = (await get_migration_settings(guild.id)).get('enabled', False)
             graduate_enabled = (await get_graduate_settings(guild.id)).get('enabled', False)
             dex_enabled = (await get_dex_settings(guild.id)).get('enabled', False)
             
-            # Create status indicators
-            status_indicators = []
-            if truth_enabled:
-                status_indicators.append("🟢TS")
-            else:
-                status_indicators.append("🔴TS")
-                
-            if migration_enabled:
-                status_indicators.append("🟢MG")
-            else:
-                status_indicators.append("🔴MG")
-                
-            if graduate_enabled:
-                status_indicators.append("🟢AG")
-            else:
-                status_indicators.append("🔴AG")
-                
-            if dex_enabled:
-                status_indicators.append("🟢DX")
-            else:
-                status_indicators.append("🔴DX")
+            # Get settings information
+            from service.auto_message_settings_service import (
+                get_server_settings,
+                get_channels_list,
+                get_excluded_channels
+            )
             
-            status_str = " ".join(status_indicators)
+            settings = await get_server_settings(guild.id)
+            is_server_wide = settings.get("server_wide", True)
+            
+            # Create tracking status indicators
+            tracking_indicators = []
+            tracking_indicators.append("🟢" if truth_enabled else "⚫")
+            tracking_indicators.append("🟢" if migration_enabled else "⚫")
+            tracking_indicators.append("🟢" if graduate_enabled else "⚫")
+            tracking_indicators.append("🟢" if dex_enabled else "⚫")
+            
+            tracking_str = "".join(tracking_indicators)
+            
+            # Settings mode indicator and channel info
+            if is_server_wide:
+                excluded = await get_excluded_channels(guild.id)
+                settings_info = f"🌐" if not excluded else f"🌐(-{len(excluded)})"
+            else:
+                enabled_channels = await get_channels_list(guild.id)
+                settings_info = f"📍{len(enabled_channels)}" if enabled_channels else "📍0"
             
             # Truncate server name if too long
-            server_name = guild.name[:25] + "..." if len(guild.name) > 25 else guild.name
+            server_name = guild.name[:20] + "..." if len(guild.name) > 20 else guild.name
             member_count = guild.member_count or 0
             
-            server_info.append(f"**{server_name}** ({member_count:,}) {status_str}")
+            server_info.append(f"`{server_name:23}` {member_count:>5,} {tracking_str} {settings_info}")
             
         except Exception as e:
-            # Fallback if tracking status check fails
-            server_name = guild.name[:25] + "..." if len(guild.name) > 25 else guild.name
+            # Fallback if tracking/settings check fails
+            server_name = guild.name[:20] + "..." if len(guild.name) > 20 else guild.name
             member_count = guild.member_count or 0
-            server_info.append(f"**{server_name}** ({member_count:,}) ❓❓❓❓")
+            server_info.append(f"`{server_name:23}` {member_count:>5,} ⚠️ Error")
     
     # Create embed
     embed = discord.Embed(
         title="🔍 Bot Health Monitor",
-        description=f"Comprehensive status snapshot taken <t:{int(datetime.now().timestamp())}:R>",
+        description=f"Comprehensive status snapshot • <t:{int(datetime.now().timestamp())}:R>",
         timestamp=datetime.now(),
         color=color
     )
     
-    banner = "https://i.imgur.com/fQOYDpO.gif"  # Direct GIF link
+    banner = "https://media.tenor.com/OH_wWVYtFCwAAAAM/miku-hatsune-miku.gif"
     embed.set_image(url=banner)
 
-    # Bot metrics section
-    bot_info = (
-        f"**Uptime:** {uptime_str}\n"
-        f"**Latency:** {latency}ms\n"
-        f"**Messages Processed:** {bot.metrics['processed_count']:,}\n"
-        f"**Avg. Processing:** {avg_time*1000:.1f}ms\n"
-        f"**Total Errors:** {total_errors:,}"
+    # === SYSTEM STATUS ===
+    system_info = (
+        f"⏱️ **Uptime:** `{uptime_str}`\n"
+        f"📡 **Latency:** `{latency}ms`\n"
+        f"💬 **Messages:** `{bot.metrics['processed_count']:,}`\n"
+        f"⚡ **Avg Process:** `{avg_time*1000:.1f}ms`\n"
+        f"❌ **Errors:** `{total_errors:,}`"
     )
-    embed.add_field(name="🤖 Bot Status", value=bot_info, inline=True)
+    embed.add_field(name="⚙️ System Status", value=system_info, inline=True)
     
-    # Database section
+    # === DATABASE ===
     if db_stats:
         db_info = (
-            f"**Pool Size:** {db_stats.get('size', 'Unknown')}\n"
-            f"**Free:** {db_stats.get('free', 'Unknown')}\n"
-            f"**Used:** {db_stats.get('used', 'Unknown')}"
+            f"📊 **Pool Size:** `{db_stats.get('size', 'N/A')}`\n"
+            f"✅ **Free:** `{db_stats.get('free', 'N/A')}`\n"
+            f"🔧 **Used:** `{db_stats.get('used', 'N/A')}`"
         )
         embed.add_field(name="🗄️ Database", value=db_info, inline=True)
     
-    # Server overview section
+    # === SERVER STATS ===
     server_overview = (
-        f"**Total Servers:** {total_servers:,}\n"
-        f"**Total Members:** {total_members:,}\n"
-        f"**Avg Members/Server:** {total_members//total_servers if total_servers > 0 else 0:,}"
+        f"🏢 **Servers:** `{total_servers:,}`\n"
+        f"👥 **Members:** `{total_members:,}`\n"
+        f"📊 **Avg/Server:** `{total_members//total_servers if total_servers > 0 else 0:,}`"
     )
-    embed.add_field(name="🌐 Server Overview", value=server_overview, inline=True)
+    embed.add_field(name="🌐 Network", value=server_overview, inline=True)
     
+    # === API PERFORMANCE ===
     api_latency = ""
     if bot.metrics['api_latency']:
         for endpoint, latencies in sorted(bot.metrics['api_latency'].items()):
             if latencies:
-                # Only use recent latencies
-                avg_latency = sum(latencies) / (len(latencies))
-                api_latency += f"**{endpoint}:** {avg_latency*1000:.0f}ms\n"
+                avg_latency = sum(latencies) / len(latencies)
+                api_latency += f"• **{endpoint}:** `{avg_latency*1000:.0f}ms`\n"
         
         if api_latency:
             embed.add_field(name="🌐 API Performance", value=api_latency, inline=False)
-            
     
-    # Top servers with tracking status
+    # === TOP SERVERS WITH DETAILED INFO ===
     if server_info:
-        servers_text = "\n".join(server_info)
+        # Create legend
+        legend = (
+            "```\n"
+            "Legend: [TS][MG][AG][DX] | Settings\n"
+            "🟢=On ⚫=Off | 🌐=Server-wide 📍=Channel-specific\n"
+            "```"
+        )
+        
+        servers_text = "```\n" + "\n".join(server_info) + "\n```"
+        
         embed.add_field(
-            name="🏆 Top Servers (TS|MG|GR|DX)", 
-            value=servers_text, 
+            name="🏆 Top Servers", 
+            value=legend + servers_text, 
             inline=False
         )
     
-    # Top errors
+    # === COMMAND USAGE ===
+    if top_commands:
+        usage_info = "\n".join([f"• **{cmd}:** `{count:,}` uses" for cmd, count in top_commands])
+        embed.add_field(name="📊 Top Commands", value=usage_info, inline=True)
+    
+    # === TOP ERRORS ===
     if top_errors:
         error_info = "\n".join([
-            f"**{err_key}:** {count:,} times" 
+            f"• **{err_key[:30]}:** `{count:,}`" 
             for err_key, count in top_errors
         ])
         embed.add_field(
-            name="⚠️ Top Errors", 
+            name="⚠️ Recent Errors", 
             value=error_info,
             inline=True
         )
-
-    # Command usage section if there are commands used
-    if top_commands:
-        usage_info = "\n".join([f"**{cmd}:** {count:,} uses" for cmd, count in top_commands])
-        embed.add_field(name="📊 Top Commands", value=usage_info, inline=True)
     
+    # === TRACKING SUMMARY ===
+    # Calculate tracking statistics
+    tracking_stats = {
+        'truth': 0,
+        'migration': 0,
+        'graduate': 0,
+        'dex': 0,
+        'server_wide': 0,
+        'channel_specific': 0,
+        'total_channels': 0
+    }
+    
+    for guild in bot.guilds:
+        try:
+            # Count enabled trackers
+            if (await get_truth_settings(guild.id)).get('enabled', False):
+                tracking_stats['truth'] += 1
+            if (await get_migration_settings(guild.id)).get('enabled', False):
+                tracking_stats['migration'] += 1
+            if (await get_graduate_settings(guild.id)).get('enabled', False):
+                tracking_stats['graduate'] += 1
+            if (await get_dex_settings(guild.id)).get('enabled', False):
+                tracking_stats['dex'] += 1
+            
+            # Count settings modes
+            from service.auto_message_settings_service import (
+                get_server_settings,
+                get_channels_list
+            )
+            
+            settings = await get_server_settings(guild.id)
+            if settings.get("server_wide", True):
+                tracking_stats['server_wide'] += 1
+            else:
+                tracking_stats['channel_specific'] += 1
+                channels = await get_channels_list(guild.id)
+                tracking_stats['total_channels'] += len(channels)
+        except:
+            pass
+    
+    tracking_summary = (
+        f"**Trackers Active:**\n"
+        f"• Truth Social: `{tracking_stats['truth']}`\n"
+        f"• Migration: `{tracking_stats['migration']}`\n"
+        f"• Graduate: `{tracking_stats['graduate']}`\n"
+        f"• Dex: `{tracking_stats['dex']}`\n\n"
+        f"**Settings Modes:**\n"
+        f"• 🌐 Server-wide: `{tracking_stats['server_wide']}`\n"
+        f"• 📍 Channel-specific: `{tracking_stats['channel_specific']}`\n"
+        f"• Total channels: `{tracking_stats['total_channels']}`"
+    )
+    
+    embed.add_field(
+        name="📈 Tracking Summary",
+        value=tracking_summary,
+        inline=True
+    )
     
     # Set footer with timestamp
     embed.set_footer(
         text=f"Requested by {user}", 
         icon_url=user.display_avatar.url
     )
+    
+    return embed
+
+async def create_kalshi_market_embed(event: Dict, markets: List[Dict], 
+                                    series_ticker: str, get_candlesticks_func: Callable) -> discord.Embed:
+    """
+    Create embed with market information
+    
+    Args:
+        event: Event data dictionary
+        markets: List of market dictionaries
+        series_ticker: Series ticker for API calls
+        get_candlesticks_func: Async function to fetch candlesticks
+        
+    Returns:
+        Discord embed with market data
+    """
+    subtitle = event.get("sub_title", "")
+    category = event.get("category", "N/A")
+    event_ticker = event.get("event_ticker", "")
+    
+    current_ts = int(datetime.now().timestamp())
+    
+    # Build description with all markets
+    description_lines = [
+        f"**Category:** {category}",
+        f"**Ticker:** `{event_ticker}`"
+    ]
+    
+    description_lines.append("")  # Empty line for spacing
+    
+    # Process markets (limit to 10 for embed length)
+    for i, market in enumerate(markets[:10], 1):
+        ticker = market.get("ticker", "")
+        market_name = market.get("yes_sub_title", "Unknown")
+        last_price = market.get("last_price", None)
+        result = market.get("result", "")
+        
+        # Format current price
+        current_price = f"{last_price}¢" if last_price is not None else "N/A"
+        current_time_str = f"Now <t:{current_ts}:R>"
+        
+        # Get first trade info
+        first_price = "N/A"
+        first_time_str = "N/A"
+        
+        if ticker and series_ticker:
+            open_time = market.get("open_time")
+            if open_time:
+                try:
+                    start_ts = int(datetime.fromisoformat(open_time.replace('Z', '+00:00')).timestamp())
+                    candlesticks = await get_candlesticks_func(series_ticker, ticker, start_ts, current_ts)
+                    
+                    if candlesticks:
+                        price, timestamp = get_first_candle_info(candlesticks)
+                        if price is not None:
+                            first_price = f"{price}¢"
+                        if timestamp:
+                            first_time_str = f"{datetime.fromtimestamp(timestamp).strftime('%Y-%m-%d %H:%M UTC')} <t:{timestamp}:R>"
+                except Exception as e:
+                    logger.warning(f"Could not fetch candlesticks for {ticker}: {e}")
+        
+        # Format result
+        result_text = f"{result.upper()}" if result else "null"
+        
+        # Add market section to description
+        description_lines.extend([
+            f"## {i}. {market_name}",
+            f"**Current:** {current_price} • {current_time_str}",
+            f"**First Trade:** {first_price} • {first_time_str}",
+            f"**Result:** {result_text}",
+            ""  # Empty line for spacing between markets
+        ])
+    
+    embed = discord.Embed(
+        title="Market Overview",
+        description="\n".join(description_lines),
+        color=discord.Color.blue(),
+        timestamp=datetime.now()
+    )
+    
+    # Create footer text
+    footer_text = "Kalshi Analyzer"
+    if len(markets) > 10:
+        footer_text += f" • Showing 10 of {len(markets)} markets. See Excel for complete data."
+    else:
+        footer_text += " • See Excel for complete candlestick data."
+    
+    embed.set_footer(text=footer_text)
     
     return embed
 
@@ -1664,8 +2186,12 @@ def create_truth_embed(post: Dict[str, Any]) -> discord.Embed:
         if reblog_metrics:
             quoted_text += f"\n> {reblog_metrics}"
         
-        # Add quoted content
-        safe_add_field(embed, "", quoted_text, False)
+        # Add quoted content with truncation
+        embed.add_field(
+            name="",
+            value=safe_add_field(quoted_text),
+            inline=False
+        )
         
         # 4. Handle media attachments from reblog
         reblog_media = reblog.get('media_attachments', [])
@@ -1715,7 +2241,11 @@ def create_truth_embed(post: Dict[str, Any]) -> discord.Embed:
         
         # 2. Add main post content if any
         if content:
-            safe_add_field(embed, "", content, False)
+            embed.add_field(
+                name="",
+                value=safe_add_field(content),
+                inline=False
+            )
         
         # 3. Add post metrics
         metrics = format_metrics(post)
@@ -1774,7 +2304,11 @@ def create_truth_embed(post: Dict[str, Any]) -> discord.Embed:
         if quote_metrics:
             quoted_text += f"\n> {quote_metrics}" 
 
-        safe_add_field(embed, "", quoted_text, False)
+        embed.add_field(
+            name="",
+            value=safe_add_field(quoted_text),
+            inline=False
+        )
         
         # 6. Handle quoted post media
         quote_media = quote.get('media_attachments', [])
@@ -1818,7 +2352,11 @@ def create_truth_embed(post: Dict[str, Any]) -> discord.Embed:
         
         # 2. Add post content
         if content:
-            safe_add_field(embed, "", content, False)
+            embed.add_field(
+                name="",
+                value=safe_add_field(content),
+                inline=False
+            )
         
         # 3. Add metrics
         metrics = format_metrics(post)
@@ -1864,7 +2402,11 @@ def create_truth_embed(post: Dict[str, Any]) -> discord.Embed:
         
         # 2. Add post content
         if content:
-            safe_add_field(embed, "", content, False)
+            embed.add_field(
+                name="",
+                value=safe_add_field(content),
+                inline=False
+            )
         
         # 3. Add metrics
         metrics = format_metrics(post)

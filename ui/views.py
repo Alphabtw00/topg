@@ -12,13 +12,14 @@ from typing import List, Dict, Any, Optional
 
 logger = get_logger()
 
-class CopyAddressView(discord.ui.View):
-    """Button view for copying crypto addresses"""
-    __slots__ = ("address",)
+class TokenEmbedView(discord.ui.View):
+    """Button view for token embeds"""
+    __slots__ = ("address", "author_id")
     
-    def __init__(self, address: str):
+    def __init__(self, address: str, author_id: int = None):
         super().__init__(timeout=None)
         self.address = address
+        self.author_id = author_id
 
     @discord.ui.button(label="📋", style=discord.ButtonStyle.grey, custom_id="copy_address", row=0)
     async def copy_address(self, interaction: discord.Interaction, _: discord.ui.Button):
@@ -26,6 +27,51 @@ class CopyAddressView(discord.ui.View):
         await interaction.response.send_message(f"{self.address}", ephemeral=True)
         await asyncio.sleep(30)
         await interaction.delete_original_response()
+    
+    @discord.ui.button(label="❌", style=discord.ButtonStyle.red, custom_id="delete_embed", row=0)
+    async def delete_embed(self, interaction: discord.Interaction, _: discord.ui.Button):
+        """Delete the embed - only author or admins can use"""
+        # Check permissions
+        if not self._can_delete(interaction):
+            await interaction.response.send_message(
+                "❌ Only the message author or server admins can delete this embed.",
+                ephemeral=True
+            )
+            return
+        
+        try:
+            # Delete the message
+            await interaction.message.delete()
+        except discord.Forbidden:
+            await interaction.response.send_message(
+                "❌ I don't have permission to delete messages.",
+                ephemeral=True
+            )
+        except discord.NotFound:
+            # Message already deleted
+            pass
+        except Exception as e:
+            logger.error(f"Error deleting embed: {e}")
+            await interaction.response.send_message(
+                "❌ Failed to delete the embed.",
+                ephemeral=True
+            )
+    
+    def _can_delete(self, interaction: discord.Interaction) -> bool:
+        """Check if user can delete the embed"""
+        # Allow if user is the original message author
+        if self.author_id and interaction.user.id == self.author_id:
+            return True
+        
+        # Allow if user has administrator permission
+        if interaction.user.guild_permissions.administrator:
+            return True
+        
+        # Allow if user has manage messages permission
+        if interaction.user.guild_permissions.manage_messages:
+            return True
+        
+        return False
 
 class GitHubAnalysisView(discord.ui.View):
     """Interactive view for GitHub repository analysis"""
@@ -390,3 +436,108 @@ class WalletFinderView(discord.ui.View):
         """Disable all buttons when view times out"""
         for item in self.children:
             item.disabled = True
+
+class ExplainView(discord.ui.View):
+    """Interactive view for navigating between topics"""
+    
+    def __init__(self, topics: dict, current_topic: str):
+        super().__init__(timeout=300)  # 5 minute timeout
+        self.topics = topics
+        self.current_topic = current_topic
+        
+        # Add select menu for topics
+        self.add_item(TopicSelect(topics, current_topic))
+        
+        # Add quick navigation buttons
+        self.add_item(AllTopicsButton())
+
+class TopicSelect(discord.ui.Select):
+    """Dropdown menu for selecting topics"""
+    
+    def __init__(self, topics: dict, current_topic: str):
+        self.topics = topics
+        self.current_topic = current_topic
+        
+        options = []
+        for key, data in topics.items():
+            options.append(
+                discord.SelectOption(
+                    label=data["title"][:100],
+                    value=key,
+                    emoji=data["emoji"],
+                    description=f"Learn about {key}",
+                    default=(key == current_topic)
+                )
+            )
+        
+        super().__init__(
+            placeholder="📚 Choose another topic to learn...",
+            min_values=1,
+            max_values=1,
+            options=options
+        )
+    
+    async def callback(self, interaction: discord.Interaction):
+        """Handle topic selection"""
+        selected = self.values[0]
+        data = self.topics[selected]
+        
+        # Create new embed
+        embed = discord.Embed(
+            title=data["title"],
+            description=data["description"],
+            color=data["color"],
+            timestamp=discord.utils.utcnow()
+        )
+        
+        if data.get("image"):
+            embed.set_image(url=data["image"])
+        
+        embed.set_footer(
+            text=f"📚 Trading Education • Requested by {interaction.user.name}",
+            icon_url=interaction.user.display_avatar.url
+        )
+        
+        embed.set_author(
+            name="Trading Academy",
+            icon_url=interaction.guild.icon.url if interaction.guild and interaction.guild.icon else None
+        )
+        
+        # Update view with new current topic
+        view = ExplainView(self.topics, selected)
+        await interaction.response.edit_message(embed=embed, view=view)
+
+class AllTopicsButton(discord.ui.Button):
+    """Button to show all available topics"""
+    
+    def __init__(self):
+        super().__init__(
+            style=discord.ButtonStyle.secondary,
+            label="📋 All Topics",
+            emoji="📋"
+        )
+    
+    async def callback(self, interaction: discord.Interaction):
+        """Show all available topics"""
+        view = self.view
+        if not isinstance(view, ExplainView):
+            return
+        
+        topics_list = []
+        for key, data in view.topics.items():
+            topics_list.append(f"{data['emoji']} **{data['title']}**\n└ Use `/explain {key}`")
+        
+        embed = discord.Embed(
+            title="📚 All Trading Topics",
+            description="\n\n".join(topics_list),
+            color=0x5865F2,
+            timestamp=discord.utils.utcnow()
+        )
+        
+        embed.set_footer(
+            text=f"💡 Select a topic from the dropdown above • {interaction.user.name}",
+            icon_url=interaction.user.display_avatar.url
+        )
+        
+        await interaction.response.send_message(embed=embed, ephemeral=True)
+  

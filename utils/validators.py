@@ -327,3 +327,23 @@ def validate_url(url: str) -> bool:
         return all([result.scheme, result.netloc])
     except Exception:
         return False
+
+def extract_event_ticker(input_str: str) -> Optional[str]:
+        """
+        Extract event ticker from URL or direct input
+        
+        Args:
+            input_str: URL or event ticker
+            
+        Returns:
+            Event ticker in uppercase or None
+        """
+        # Check if it's a URL
+        if "kalshi.com" in input_str.lower():
+            # Extract from URL pattern: /markets/SERIES/title/EVENT-TICKER
+            match = re.search(r'/markets/[^/]+/[^/]+/([^/?]+)', input_str)
+            if match:
+                return match.group(1).upper()
+        
+        # Otherwise treat as direct ticker input
+        return input_str.strip().upper()    

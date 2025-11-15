@@ -468,7 +468,7 @@ Provide scores as "Score: X/25" format. Include specific code examples to suppor
         }
         
         analysis_request = {
-            "model": "claude-3-5-sonnet-20241022",
+            "model": "claude-sonnet-4-5-20250929",
             "max_tokens": 4000,
             "temperature": 0.3,
             "messages": [

@@ -1,6 +1,10 @@
 import re
 from utils.logger import get_logger
-from typing import Optional, Dict, Any
+from typing import Optional, Dict, Any, List, Tuple
+from datetime import datetime
+import io
+from openpyxl import Workbook
+from openpyxl.styles import Font, PatternFill, Alignment
 import aiohttp
 
 
@@ -30,7 +34,6 @@ def sanitize_code_content(content: str) -> str:
     content = content.replace('\r\n', '\n').replace('\r', '\n')
     
     return content
-
 
 def get_file_extension(filename: str) -> str:
     """
@@ -73,11 +76,11 @@ def get_file_extension(filename: str) -> str:
     
     return language_map.get(ext, ext)
 
-def safe_add_field(embed, name, content, inline=False):
-    # If content is too long, truncate with an indicator
+def safe_add_field(content):
+    """Truncate content to fit Discord's 1024 character limit"""
     if len(content) > 1024:
-        content = content[:1020] + "..."
-    embed.add_field(name=name, value=content, inline=False)
+        return content[:1020] + "..."
+    return content
 
 async def get_token_metadata_and_links(uri, dev_address=None):
     """
@@ -349,3 +352,180 @@ def get_buy_amount_tolerance(amount: float, currency: str) -> float:
             return amount * 0.25  # 25% tolerance for smaller USD amounts
         else:
             return amount * 0.4   # 40% tolerance for very small USD amounts
+
+def get_first_candle_info(candlesticks: List[Dict]) -> Tuple[Optional[int], Optional[int]]:
+    """
+    Get the first trade price and timestamp from candlesticks
+    
+    Args:
+        candlesticks: List of candlestick data
+        
+    Returns:
+        Tuple of (first_price in cents, first_timestamp) or (None, None)
+    """
+    if not candlesticks:
+        return None, None
+    
+    for candle in candlesticks:
+        # Find first candle with volume (actual trades)
+        if candle.get("volume", 0) > 0 and candle.get("price", {}).get("close") is not None:
+            price = candle["price"]["close"]
+            timestamp = candle.get("end_period_ts")
+            return price, timestamp
+    
+    return None, None
+
+def generate_candlestick_excel(markets: List[Dict], series_ticker: str, 
+                               get_candlesticks_func) -> Optional[bytes]:
+    """
+    Generate Excel file with detailed candlestick data for all markets
+    
+    Args:
+        markets: List of market data
+        series_ticker: Series ticker for API calls
+        get_candlesticks_func: Async function to fetch candlesticks
+        
+    Returns:
+        Excel file bytes or None
+    """
+    try:
+        wb = Workbook()
+        ws = wb.active
+        ws.title = "Market Candlesticks"
+        
+        # Style definitions
+        header_font = Font(bold=True, color="FFFFFF")
+        header_fill = PatternFill(start_color="4472C4", end_color="4472C4", fill_type="solid")
+        center_align = Alignment(horizontal="center", vertical="center")
+        
+        # Write header
+        headers = [
+            "Market Name",
+            "Market Ticker",
+            "Timestamp",
+            "Time (UTC)",
+            "Open Price (¢)",
+            "High Price (¢)",
+            "Low Price (¢)",
+            "Close Price (¢)",
+            "Volume",
+            "Open Interest",
+            "Yes Bid (¢)",
+            "Yes Ask (¢)"
+        ]
+        
+        for col, header in enumerate(headers, 1):
+            cell = ws.cell(row=1, column=col, value=header)
+            cell.font = header_font
+            cell.fill = header_fill
+            cell.alignment = center_align
+        
+        # Set column widths
+        column_widths = [20, 30, 15, 22, 15, 15, 15, 15, 12, 15, 15, 15]
+        for col, width in enumerate(column_widths, 1):
+            ws.column_dimensions[ws.cell(row=1, column=col).column_letter].width = width
+        
+        current_row = 2
+        current_ts = int(datetime.now().timestamp())
+        
+        # This needs to be called from an async context
+        # We'll return a coroutine that needs to be awaited
+        return wb, current_row, current_ts
+        
+    except Exception as e:
+        logger.error(f"Error creating Excel workbook: {e}")
+        return None
+
+async def populate_excel_data(wb, start_row: int, markets: List[Dict], 
+                              series_ticker: str, get_candlesticks_func) -> Optional[bytes]:
+    """
+    Populate Excel workbook with candlestick data
+    
+    Args:
+        wb: Workbook object
+        start_row: Starting row for data
+        markets: List of market data
+        series_ticker: Series ticker
+        get_candlesticks_func: Async function to fetch candlesticks
+        
+    Returns:
+        Excel file bytes or None
+    """
+    try:
+        ws = wb.active
+        current_row = start_row
+        current_ts = int(datetime.now().timestamp())
+        
+        # Process each market
+        for market in markets:
+            market_name = market.get("yes_sub_title", "Unknown")
+            ticker = market.get("ticker", "")
+            
+            if not ticker or not series_ticker:
+                continue
+            
+            open_time = market.get("open_time")
+            if not open_time:
+                continue
+            
+            try:
+                start_ts = int(datetime.fromisoformat(open_time.replace('Z', '+00:00')).timestamp())
+                candlesticks = await get_candlesticks_func(series_ticker, ticker, start_ts, current_ts)
+                
+                if not candlesticks:
+                    continue
+                
+                # Write each candlestick
+                for candle in candlesticks:
+                    timestamp = candle.get("end_period_ts")
+                    if not timestamp:
+                        continue
+                    
+                    time_utc = datetime.fromtimestamp(timestamp).strftime('%Y-%m-%d %H:%M:%S')
+                    volume = candle.get("volume", 0)
+                    open_interest = candle.get("open_interest", 0)
+                    
+                    price_data = candle.get("price", {})
+                    open_price = price_data.get("open") if price_data.get("open") is not None else ""
+                    high_price = price_data.get("high") if price_data.get("high") is not None else ""
+                    low_price = price_data.get("low") if price_data.get("low") is not None else ""
+                    close_price = price_data.get("close") if price_data.get("close") is not None else ""
+                    
+                    yes_bid_data = candle.get("yes_bid", {})
+                    yes_ask_data = candle.get("yes_ask", {})
+                    yes_bid = yes_bid_data.get("close") if yes_bid_data.get("close") is not None else ""
+                    yes_ask = yes_ask_data.get("close") if yes_ask_data.get("close") is not None else ""
+                    
+                    row_data = [
+                        market_name,
+                        ticker,
+                        timestamp,
+                        time_utc,
+                        open_price,
+                        high_price,
+                        low_price,
+                        close_price,
+                        volume,
+                        open_interest,
+                        yes_bid,
+                        yes_ask
+                    ]
+                    
+                    for col, value in enumerate(row_data, 1):
+                        ws.cell(row=current_row, column=col, value=value)
+                    
+                    current_row += 1
+                    
+            except Exception as e:
+                logger.warning(f"Could not process candlesticks for {ticker}: {e}")
+                continue
+        
+        # Save to bytes
+        output = io.BytesIO()
+        wb.save(output)
+        output.seek(0)
+        return output.getvalue()
+        
+    except Exception as e:
+        logger.error(f"Error populating Excel data: {e}")
+        return None

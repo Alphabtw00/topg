@@ -31,7 +31,7 @@ class WalletFinderCommands(commands.Cog):
         cutoff="Optional cutoff range (e.g., 5k, 500k) - creates range around target MC",
         buy_amount="Optional buy amount filter (e.g., 2 sol, $150, 1.5 solana, 300 usd) - filters by buy size"
     )
-    @app_commands.checks.cooldown(1, 5) #5 second cooldown
+    @app_commands.checks.cooldown(1, 15) #15 second cooldown
     async def wallet_finder_command(
         self,
         interaction: discord.Interaction,

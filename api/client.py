@@ -24,6 +24,7 @@ class ApiEndpoint(Enum):
     TRENCHBOT = "trenchbot"
     BITQUERY = "bitquery"
     MORALIS = "moralis"
+    KALSHI = "kalshi"
 
 class ApiClient:
     """Unified API client for all external service requests"""

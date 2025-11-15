@@ -19,7 +19,7 @@ class BundleCheckerCommands(commands.Cog):
    
     @app_commands.command(name="bundle-check", description="Analyze token bundle distribution (pumpfun only)")
     @app_commands.guild_only()
-    @app_commands.checks.cooldown(1, 5)  # 5 seconds cooldown
+    @app_commands.checks.cooldown(1, 10)  # 10 seconds cooldown
     async def check_bundle(self, interaction: discord.Interaction, contract_address: str):
         """
         Analyze token bundle distribution for a contract address.

@@ -21,6 +21,10 @@ from commands.bundle_checker_commands import BundleCheckerCommands
 from commands.wallet_finder_commands import WalletFinderCommands
 from commands.ban_commands import BanCommands
 from commands.say_commands import SayCommands
+from commands.kalshi_commands import KalshiCommands
+from commands.explain_commands import ExplainCommands
+from commands.flex_commands import FlexCommands
+from commands.calculator_commands import CalculatorCommands
 from service.truth_tracker_service import initialize_and_start_truth_tracking
 from service.dex_tracker_service import initialize_and_start_dex_tracking
 from service.mysql_service import setup_db_pool, close_db_pool
@@ -120,10 +124,14 @@ class CryptoBot(commands.Bot):
         # await self.add_cog(TruthCommands(self))
         await self.add_cog(DexTrackerCommands(self))
         await self.add_cog(BundleCheckerCommands(self))
-        await self.add_cog(MigrationTrackerCommands(self))
-        await self.add_cog(About_to_GraduateCommands(self))
+        # await self.add_cog(MigrationTrackerCommands(self))
+        # await self.add_cog(About_to_GraduateCommands(self))
         await self.add_cog(WalletFinderCommands(self))
         await self.add_cog(SayCommands(self))
+        await self.add_cog(KalshiCommands(self))
+        await self.add_cog(FlexCommands(self))
+        await self.add_cog(ExplainCommands(self))
+        await self.add_cog(CalculatorCommands(self))
 
         from bot.events import setup_events  # Adjust import based on your project structure
         await setup_events(self)
@@ -143,12 +151,26 @@ class CryptoBot(commands.Bot):
         """Event handler for when the bot is ready"""
         from config import (
             BOT_INPUT_CHANNEL_IDS, BOT_OUTPUT_CHANNEL_IDS, FORWARD_BOT_IDS,
-            USER_INPUT_CHANNEL_IDS, USER_OUTPUT_CHANNEL_IDS, FORWARD_USER_IDS
+            USER_INPUT_CHANNEL_IDS, USER_OUTPUT_CHANNEL_IDS, FORWARD_USER_IDS, ADMIN_USER_IDS
         )
         
         logger.info(f"Logged in as {self.user} (ID: {self.user.id})")
         logger.info(f"Bot connected to {len(self.guilds)} server(s)")
-                
+        
+        # Log admin users configuration
+        if ADMIN_USER_IDS:
+            admin_names = []
+            for admin_id in ADMIN_USER_IDS:
+                try:
+                    admin_user = self.get_user(admin_id)
+                    admin_names.append(admin_user.name if admin_user else str(admin_id))
+                except:
+                    admin_names.append(str(admin_id))
+            logger.info(f"Admin users configured: {', '.join(admin_names)}")
+        else:
+            logger.info("No admin users configured")
+        
+        # Log bot forwarding configuration
         if ENABLE_BOT_FORWARDING and BOT_INPUT_CHANNEL_IDS and BOT_OUTPUT_CHANNEL_IDS:
             bot_info = ""
             if FORWARD_BOT_IDS:
@@ -191,8 +213,8 @@ class CryptoBot(commands.Bot):
             logger.info("Starting tracking services...")
             # self.start_background_task(initialize_and_start_truth_tracking(self), "truth_tracker_init")
             self.start_background_task(initialize_and_start_dex_tracking(self), "dex_tracker_init")
-            self.start_background_task(initialize_and_start_migration_tracking(self), "migration_tracker_init")
-            self.start_background_task(initialize_and_start_about_to_graduate_tracking(self), "about_to_graduate_tracker_init")
+            # self.start_background_task(initialize_and_start_migration_tracking(self), "migration_tracker_init")
+            # self.start_background_task(initialize_and_start_about_to_graduate_tracking(self), "about_to_graduate_tracker_init")
             logger.info("All tracking services started")
 
         

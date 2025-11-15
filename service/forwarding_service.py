@@ -200,7 +200,7 @@ async def forward_user_messages(message, bot):
         'username': message.author.display_name,
         'avatar_url': message.author.display_avatar.url,
         'wait': True,
-        'allowed_mentions': AllowedMentions(everyone=False, users=False, roles=False, replied_user=False),
+        'allowed_mentions': AllowedMentions(everyone=True, users=True, roles=True, replied_user=False),
         'suppress_embeds': False
     }
     
@@ -243,6 +243,11 @@ async def forward_user_messages(message, bot):
     if message.attachments:
         message_files = [await a.to_file() for a in message.attachments]
     
+    if message.stickers:
+        sticker_urls = [sticker.url for sticker in message.stickers]
+        if sticker_urls:
+            base_webhook_params['content'] = (base_webhook_params.get('content', '') + '\n' + '\n'.join(sticker_urls)).strip()
+        
     if message_files or reference_files:
         combined_files = []
         if message_files:

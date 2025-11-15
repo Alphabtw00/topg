@@ -10,6 +10,7 @@ from config import TRUTH_DEFAULT_INTERVAL
 logger = get_logger()
 
 # Table definitions
+#TODO make this repo similar as of other trackers if used
 TABLES = [
     """
     CREATE TABLE IF NOT EXISTS truth_accounts (

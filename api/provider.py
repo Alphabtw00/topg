@@ -10,6 +10,7 @@ from api.truthsocial import TruthSocialService
 from api.trenchbot import TrenchBotService
 from api.bitquery import BitQueryService
 from api.moralis import MoralisService
+from api.kalshi import KalshiService
 from utils.logger import get_logger
 
 logger = get_logger()
@@ -29,6 +30,7 @@ class ApiServiceProvider:
         self.website_analyzer = None
         self.truthsocial = None
         self.bitquery = None
+        self.kalshi = None
 
     
     async def setup(self):
@@ -47,6 +49,7 @@ class ApiServiceProvider:
         self.truthsocial = TruthSocialService(self.api_client)
         self.trenchbot = TrenchBotService(self.api_client)
         self.bitquery = BitQueryService(self.api_client)
+        self.kalshi = KalshiService(self.api_client)
         # await self.truthsocial.setup()
         logger.info("All API services initialized")
         
