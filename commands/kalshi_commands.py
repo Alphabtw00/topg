@@ -11,6 +11,7 @@ from utils.logger import get_logger
 from utils.validators import extract_event_ticker
 from utils.helper import generate_candlestick_excel, populate_excel_data
 from ui.embeds import create_kalshi_market_embed
+from utils.formatters import safe_text
 
 
 logger = get_logger()
@@ -114,7 +115,7 @@ class KalshiCommands(commands.Cog):
             
             # Record metrics
             self.bot.record_command_usage("kalshi-event")
-            logger.info(f"Kalshi event check called by {interaction.user} for {event_ticker} - {title}")
+            logger.info(f"Kalshi event check called by {safe_text(interaction.user.display_name)} ({safe_text(interaction.user.name)}) in {safe_text(interaction.guild.name)} (ID: {interaction.guild.id}) for {event_ticker} - {title}")
             
         except Exception as e:
             logger.error(f"Kalshi event analysis error for {event_input}: {str(e)}", exc_info=True)

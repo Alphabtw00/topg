@@ -7,6 +7,7 @@ from discord.ext import commands
 from bot.error_handler import create_error_handler
 from service.username_ban_service import ban_user
 from utils.logger import get_logger
+from utils.formatters import safe_text
 from datetime import datetime
 
 logger = get_logger()
@@ -87,7 +88,7 @@ class BanCommands(commands.Cog):
                 
                 # Log the command usage
                 self.bot.record_command_usage("ban")
-                logger.info(f"Ban command used by {interaction.user} | Target: {user.id} ({str(user)})")
+                logger.info(f"Ban command used by {safe_text(interaction.user.display_name)} ({safe_text(interaction.user.name)}) | Target: {safe_text(user.display_name)} ({safe_text(user.name)}) [ID: {user.id}] in {safe_text(interaction.guild.name)} (ID: {interaction.guild.id})")
             else:
                 # Ban failed - error is logged in ban_user
                 await interaction.followup.send(

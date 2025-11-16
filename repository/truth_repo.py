@@ -10,7 +10,6 @@ from config import TRUTH_DEFAULT_INTERVAL
 logger = get_logger()
 
 # Table definitions
-#TODO make this repo similar as of other trackers if used
 TABLES = [
     """
     CREATE TABLE IF NOT EXISTS truth_accounts (
@@ -72,6 +71,33 @@ async def setup_truth_tables() -> bool:
             success = False
     
     return success
+
+
+async def get_enabled_guild_channels() -> Dict[int, List[int]]:
+    """Get channels for enabled guilds only - hybrid approach matching DexTracker"""
+    query = """
+    SELECT tc.guild_id, tc.channel_id
+    FROM truth_channels tc
+    JOIN truth_settings ts ON tc.guild_id = ts.guild_id
+    WHERE ts.enabled = TRUE
+    """
+    
+    results = await fetch_all(query)
+    if not results:
+        return {}
+    
+    channels = {}
+    for row in results:
+        guild_id = int(row[0])
+        channel_id = int(row[1])
+        
+        if guild_id not in channels:
+            channels[guild_id] = []
+            
+        channels[guild_id].append(channel_id)
+    
+    return channels
+
 
 async def add_truth_account(handle: str, account_id: str, display_name: str = None) -> bool:
     """Add a Truth Social account to the global accounts table"""
@@ -283,7 +309,15 @@ async def get_guilds_for_account(account_id: str) -> List[Dict]:
     return guilds
 
 async def remove_truth_account_from_guild(guild_id: int, account_id: str) -> bool:
-    """Remove a Truth Social account from tracking for a specific server"""
+    """Remove a Truth Social account from tracking for a specific server. Returns True if removed, False if not found."""
+    # Check if account exists before removing
+    check_query = "SELECT 1 FROM truth_guild_accounts WHERE guild_id = %s AND account_id = %s"
+    existing = await fetch_one(check_query, (guild_id, account_id))
+    
+    if not existing:
+        return False  # Account doesn't exist for this guild
+    
+    # Remove the account
     query = """
     DELETE FROM truth_guild_accounts 
     WHERE guild_id = %s AND account_id = %s
@@ -293,22 +327,35 @@ async def remove_truth_account_from_guild(guild_id: int, account_id: str) -> boo
     return result is not None
 
 async def add_truth_channel(guild_id: int, channel_id: int) -> bool:
-    """Add a channel for Truth Social tracking"""
+    """Add a channel for Truth Social tracking. Returns True if newly added, False if already exists."""
+    # Check if channel already exists
+    check_query = "SELECT 1 FROM truth_channels WHERE guild_id = %s AND channel_id = %s"
+    existing = await fetch_one(check_query, (guild_id, channel_id))
+    
+    if existing:
+        return False  # Channel already exists
+    
+    # Insert new channel
     query = """
     INSERT INTO truth_channels 
     (guild_id, channel_id) 
     VALUES (%s, %s)
-    ON DUPLICATE KEY UPDATE
-    created_at = created_at
     """
     
     result = await execute_query(query, (guild_id, channel_id))
     return result is not None
 
 async def remove_truth_channel(guild_id: int, channel_id: int) -> bool:
-    """Remove a channel from Truth Social tracking"""
-    query = "DELETE FROM truth_channels WHERE guild_id = %s AND channel_id = %s"
+    """Remove a channel from Truth Social tracking. Returns True if removed, False if not found."""
+    # Check if channel exists before removing
+    check_query = "SELECT 1 FROM truth_channels WHERE guild_id = %s AND channel_id = %s"
+    existing = await fetch_one(check_query, (guild_id, channel_id))
     
+    if not existing:
+        return False  # Channel doesn't exist
+    
+    # Remove the channel
+    query = "DELETE FROM truth_channels WHERE guild_id = %s AND channel_id = %s"
     result = await execute_query(query, (guild_id, channel_id))
     return result is not None
 
@@ -430,6 +477,26 @@ async def update_guild_settings(guild_id: int, settings: Dict) -> bool:
         return result is not None
     
     return True
+
+async def enable_tracking(guild_id: int) -> bool:
+    """Enable Truth Social tracking for a guild. Returns True if newly enabled, False if already enabled."""
+    # Check current state
+    settings = await get_guild_settings(guild_id)
+    if settings.get('enabled', False):
+        return False  # Already enabled
+    
+    # Enable tracking
+    return await update_guild_settings(guild_id, {'enabled': True})
+
+async def disable_tracking(guild_id: int) -> bool:
+    """Disable Truth Social tracking for a guild. Returns True if newly disabled, False if already disabled."""
+    # Check current state
+    settings = await get_guild_settings(guild_id)
+    if not settings.get('enabled', False):
+        return False  # Already disabled
+    
+    # Disable tracking
+    return await update_guild_settings(guild_id, {'enabled': False})
 
 async def get_max_last_post_id(account_id: str) -> str:
     """Get the maximum last_post_id for an account across all guilds"""

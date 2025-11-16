@@ -8,6 +8,8 @@ from discord.ext import commands
 from bot.error_handler import create_error_handler
 from ui.embeds import create_bundle_embed
 from utils.logger import get_logger
+from utils.formatters import safe_text
+
 
 logger = get_logger()
 
@@ -49,8 +51,8 @@ class BundleCheckerCommands(commands.Cog):
            
             # Record command usage metrics
             self.bot.record_command_usage("bundle-check")
-            logger.info(f"Bundle check called by {interaction.user} for {contract_address}")
-               
+            logger.info(f"Bundle check called by {safe_text(interaction.user.display_name)} ({safe_text(interaction.user.name)}) in {safe_text(interaction.guild.name)} (ID: {interaction.guild.id}) for {contract_address}")
+            
         except Exception as e:
             logger.error(f"Bundle analysis error for {contract_address}: {str(e)}", exc_info=True)
             await interaction.followup.send(

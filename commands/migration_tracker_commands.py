@@ -72,11 +72,10 @@ class MigrationTrackerCommands(commands.Cog):
                     )
                 
                 await interaction.followup.send(embed=embed, ephemeral=True)
-                logger.info(f"Migration channel {safe_text(channel.name)} (ID: {channel.id}) added by {safe_text(str(interaction.user))} in {safe_text(interaction.guild.name)}")
+                logger.info(f"Migration channel {safe_text(channel.name)} (ID: {channel.id}) added by {safe_text(interaction.user.display_name)} ({safe_text(interaction.user.name)}) in {safe_text(interaction.guild.name)} (ID: {interaction.guild.id})")
                 
             else:
                 await interaction.followup.send(f"ℹ️ Channel {channel.mention} is already configured for migration tracking.", ephemeral=True)
-                logger.info(f"Migration channel {safe_text(channel.name)} (ID: {channel.id}) already configured by {safe_text(str(interaction.user))} in {safe_text(interaction.guild.name)}")
                 
         except Exception as e:
             logger.error(f"Error adding migration channel {safe_text(channel.name)} by {safe_text(str(interaction.user))} in {safe_text(interaction.guild.name)}: {e}")
@@ -105,11 +104,10 @@ class MigrationTrackerCommands(commands.Cog):
                     color=0xE67E22
                 )
                 await interaction.followup.send(embed=embed, ephemeral=True)
-                logger.info(f"Migration channel {safe_text(channel.name)} (ID: {channel.id}) removed by {safe_text(str(interaction.user))} in {safe_text(interaction.guild.name)}")
+                logger.info(f"Migration channel {safe_text(channel.name)} (ID: {channel.id}) removed by {safe_text(interaction.user.display_name)} ({safe_text(interaction.user.name)}) in {safe_text(interaction.guild.name)} (ID: {interaction.guild.id})")
                 
             else:
                 await interaction.followup.send(f"ℹ️ {channel.mention} is already not configured for migration tracking.", ephemeral=True)
-                logger.info(f"Migration channel {safe_text(channel.name)} (ID: {channel.id}) not configured for removal by {safe_text(str(interaction.user))} in {safe_text(interaction.guild.name)}")
                 
         except Exception as e:
             logger.error(f"Error removing migration channel {safe_text(channel.name)} by {safe_text(str(interaction.user))} in {safe_text(interaction.guild.name)}: {e}")
@@ -151,11 +149,10 @@ class MigrationTrackerCommands(commands.Cog):
                 )
                 
                 await interaction.followup.send(embed=embed, ephemeral=True)
-                logger.info(f"Migration tracking enabled by {safe_text(str(interaction.user))} in {safe_text(interaction.guild.name)}")
+                logger.info(f"Migration tracking enabled by {safe_text(interaction.user.display_name)} ({safe_text(interaction.user.name)}) in {safe_text(interaction.guild.name)} (ID: {interaction.guild.id})")
                 
             else:
                 await interaction.followup.send("❌ Migration tracking is already enabled for this server.", ephemeral=True)
-                logger.error(f"Failed to enable migration tracking by {safe_text(str(interaction.user))} in {safe_text(interaction.guild.name)}")
                 
         except Exception as e:
             logger.error(f"Error enabling migration tracking by {safe_text(str(interaction.user))} in {safe_text(interaction.guild.name)}: {e}")
@@ -186,11 +183,10 @@ class MigrationTrackerCommands(commands.Cog):
                     color=0xE74C3C
                 )
                 await interaction.followup.send(embed=embed, ephemeral=True)
-                logger.info(f"Migration tracking disabled by {safe_text(str(interaction.user))} in {safe_text(interaction.guild.name)}")
+                logger.info(f"Migration tracking disabled by {safe_text(interaction.user.display_name)} ({safe_text(interaction.user.name)}) in {safe_text(interaction.guild.name)} (ID: {interaction.guild.id})")
                 
             else:
                 await interaction.followup.send("❌ Migration tracking is already disabled for this server.", ephemeral=True)
-                logger.error(f"Failed to disable migration tracking by {safe_text(str(interaction.user))} in {safe_text(interaction.guild.name)}")
                 
         except Exception as e:
             logger.error(f"Error disabling migration tracking by {safe_text(str(interaction.user))} in {safe_text(interaction.guild.name)}: {e}")
@@ -265,10 +261,10 @@ class MigrationTrackerCommands(commands.Cog):
                 )
             
             await interaction.followup.send(embed=embed, ephemeral=True)
-            logger.debug(f"Migration status checked by {safe_text(str(interaction.user))} in {safe_text(interaction.guild.name)}")
+            logger.info(f"Migration status checked by {safe_text(interaction.user.display_name)} ({safe_text(interaction.user.name)}) in {safe_text(interaction.guild.name)} (ID: {interaction.guild.id})")
             
         except Exception as e:
-            logger.error(f"Error getting migration status by {safe_text(str(interaction.user))} in {safe_text(interaction.guild.name)}: {e}")
+            logger.error(f"Error getting migration status by {safe_text(interaction.user.display_name)} ({safe_text(interaction.user.name)}) in {safe_text(interaction.guild.name)} (ID: {interaction.guild.id}): {e}")
             await interaction.followup.send("❌ Error getting status.", ephemeral=True)
 
     # Add error handlers

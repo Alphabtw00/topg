@@ -12,6 +12,7 @@ from ui.embeds import (
     create_liquidation_calc_embed,
     create_funding_calc_embed
 )
+from utils.formatters import safe_text
 
 logger = get_logger()
 
@@ -75,7 +76,7 @@ class CalculatorCommands(commands.Cog):
             
             # Record usage
             self.bot.record_command_usage("pos_calc_capital")
-            logger.info(f"Position calc (capital-based) used by {interaction.user}")
+            logger.info(f"Position calc (capital-based) used by {safe_text(interaction.user.display_name)} ({safe_text(interaction.user.name)}) in {safe_text(interaction.guild.name)} (ID: {interaction.guild.id})")
             
         except Exception as e:
             logger.error(f"Position calc capital error: {str(e)}", exc_info=True)
@@ -129,7 +130,7 @@ class CalculatorCommands(commands.Cog):
             
             # Record usage
             self.bot.record_command_usage("pos_calc_loss")
-            logger.info(f"Position calc (loss-based) used by {interaction.user}")
+            logger.info(f"Position calc (loss-based) used by {safe_text(interaction.user.display_name)} ({safe_text(interaction.user.name)}) in {safe_text(interaction.guild.name)} (ID: {interaction.guild.id})")
             
         except Exception as e:
             logger.error(f"Position calc loss error: {str(e)}", exc_info=True)
@@ -189,7 +190,7 @@ class CalculatorCommands(commands.Cog):
             
             # Record usage
             self.bot.record_command_usage("liquidation_calc")
-            logger.info(f"Liquidation calc used by {interaction.user}")
+            logger.info(f"Liquidation calc used by {safe_text(interaction.user.display_name)} ({safe_text(interaction.user.name)}) in {safe_text(interaction.guild.name)} (ID: {interaction.guild.id})")
             
         except Exception as e:
             logger.error(f"Liquidation calc error: {str(e)}", exc_info=True)
@@ -243,7 +244,7 @@ class CalculatorCommands(commands.Cog):
             
             # Record usage
             self.bot.record_command_usage("funding_calc")
-            logger.info(f"Funding calc used by {interaction.user}")
+            logger.info(f"Funding calc used by {safe_text(interaction.user.display_name)} ({safe_text(interaction.user.name)}) in {safe_text(interaction.guild.name)} (ID: {interaction.guild.id})")
             
         except Exception as e:
             logger.error(f"Funding calc error: {str(e)}", exc_info=True)

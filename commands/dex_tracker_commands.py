@@ -74,7 +74,7 @@ class DexTrackerCommands(commands.Cog):
                     )
                 
                 await interaction.followup.send(embed=embed, ephemeral=True)
-                logger.info(f"DexTracker channel {safe_text(channel.name)} (ID: {channel.id}) added by {safe_text(str(interaction.user))} in {safe_text(interaction.guild.name)}")
+                logger.info(f"DexTracker channel {safe_text(channel.name)} (ID: {channel.id}) added by {safe_text(interaction.user.display_name)} ({safe_text(interaction.user.name)}) in {safe_text(interaction.guild.name)} (ID: {interaction.guild.id})")
                 
             else:
                 # Channel already exists
@@ -108,7 +108,7 @@ class DexTrackerCommands(commands.Cog):
                     color=0xE67E22
                 )
                 await interaction.followup.send(embed=embed, ephemeral=True)
-                logger.info(f"DexTracker channel {safe_text(channel.name)} (ID: {channel.id}) removed by {safe_text(str(interaction.user))} in {safe_text(interaction.guild.name)}")
+                logger.info(f"DexTracker channel {safe_text(channel.name)} (ID: {channel.id}) removed by {safe_text(interaction.user.display_name)} ({safe_text(interaction.user.name)}) in {safe_text(interaction.guild.name)} (ID: {interaction.guild.id})")
                 
             else:
                 # Channel was not configured
@@ -117,7 +117,6 @@ class DexTrackerCommands(commands.Cog):
         except Exception as e:
             logger.error(f"Error removing channel: {e}")
             await interaction.followup.send("❌ Error removing channel.", ephemeral=True)
-
 
 
     @dex_group.command(name="enable", description="Enable DexScreener tracking")
@@ -161,7 +160,7 @@ class DexTrackerCommands(commands.Cog):
                 )
                 
                 await interaction.followup.send(embed=embed, ephemeral=True)
-                logger.info(f"DexTracker enabled by {safe_text(str(interaction.user))} in {safe_text(interaction.guild.name)}")
+                logger.info(f"DexTracker enabled by {safe_text(interaction.user.display_name)} ({safe_text(interaction.user.name)}) in {safe_text(interaction.guild.name)} (ID: {interaction.guild.id})")
                 
             else:
                 # Already enabled
@@ -190,7 +189,7 @@ class DexTrackerCommands(commands.Cog):
                     color=0xE74C3C
                 )
                 await interaction.followup.send(embed=embed, ephemeral=True)
-                logger.info(f"DexTracker disabled by {safe_text(str(interaction.user))} in {safe_text(interaction.guild.name)}")
+                logger.info(f"DexTracker disabled by {safe_text(interaction.user.display_name)} ({safe_text(interaction.user.name)}) in {safe_text(interaction.guild.name)} (ID: {interaction.guild.id})")
                 
             else:
                 # Already disabled
@@ -267,10 +266,10 @@ class DexTrackerCommands(commands.Cog):
                 )
             
             await interaction.followup.send(embed=embed, ephemeral=True)
-            logger.debug(f"DexTracker status checked by {safe_text(str(interaction.user))} in {safe_text(interaction.guild.name)}")
+            logger.info(f"DexTracker status checked by {safe_text(interaction.user.display_name)} ({safe_text(interaction.user.name)}) in {safe_text(interaction.guild.name)} (ID: {interaction.guild.id})")
             
         except Exception as e:
-            logger.error(f"Error getting status: {e}")
+            logger.error(f"Error getting dex tracking by {safe_text(interaction.user.display_name)} ({safe_text(interaction.user.name)}) in {safe_text(interaction.guild.name)} (ID: {interaction.guild.id}): {e}")
             await interaction.followup.send("❌ Error getting status.", ephemeral=True)
     
     # Add error handlers for all commands

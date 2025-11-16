@@ -136,7 +136,7 @@ class SettingsCommands(commands.Cog):
             embed.set_footer(text="Use these commands to configure where the bot should process messages")
             
             await interaction.followup.send(embed=embed, ephemeral=True)
-            logger.debug(f"Settings status checked by {interaction.user} in {interaction.guild.name}")
+            logger.info(f"Settings status checked by {safe_text(interaction.user.display_name)} ({safe_text(interaction.user.name)}) in {safe_text(interaction.guild.name)} (ID: {interaction.guild.id})")
             self.bot.record_command_usage("settings_status")
             
         except Exception as e:
@@ -194,7 +194,7 @@ class SettingsCommands(commands.Cog):
                         "✅ Server-wide auto-messaging has been enabled. The bot will now respond in all channels except those specifically excluded.",
                         ephemeral=True
                     )
-                    logger.info(f"Server-wide enabled by {interaction.user} in {interaction.guild.name}")
+                    logger.info(f"Server-wide enabled by {safe_text(interaction.user.display_name)} ({safe_text(interaction.user.name)}) in {safe_text(interaction.guild.name)} (ID: {interaction.guild.id})")
                     self.bot.record_command_usage("enable_server_wide")
             else:  # channel_specific
                 success = await disable_server_wide(interaction.guild.id)
@@ -203,7 +203,7 @@ class SettingsCommands(commands.Cog):
                         "✅ Channel-specific auto-messaging has been enabled. Use `/settings add-channel` to enable specific channels.",
                         ephemeral=True
                     )
-                    logger.info(f"Channel-specific enabled by {safe_text(str(interaction.user))} in {safe_text(interaction.guild.name)}")
+                    logger.info(f"Channel-specific enabled by {safe_text(interaction.user.display_name)} ({safe_text(interaction.user.name)}) in {safe_text(interaction.guild.name)} (ID: {interaction.guild.id})")
                     self.bot.record_command_usage("disable_server_wide")
                     
         except Exception as e:
@@ -247,7 +247,7 @@ class SettingsCommands(commands.Cog):
                         f"✅ Channel {channel.mention} has been included in auto-messaging. (Mode: {mode_name})",
                         ephemeral=True
                     )
-                    logger.info(f"Channel {safe_text(channel.name)} (ID: {channel.id}) included by {safe_text(str(interaction.user))} in {safe_text(interaction.guild.name)} | Mode: {mode_name}")
+                    logger.info(f"Channel {safe_text(channel.name)} (ID: {channel.id}) included by {safe_text(interaction.user.display_name)} ({safe_text(interaction.user.name)}) in {safe_text(interaction.guild.name)} (ID: {interaction.guild.id}) | Mode: {mode_name}")
                     self.bot.record_command_usage("include_channel")
                 else:
                     await interaction.followup.send(
@@ -263,7 +263,7 @@ class SettingsCommands(commands.Cog):
                         f"✅ Channel {channel.mention} has been added to auto-messaging. (Mode: {mode_name})",
                         ephemeral=True
                     )
-                    logger.info(f"Channel {safe_text(channel.name)} (ID: {channel.id}) added by {safe_text(str(interaction.user))} in {safe_text(interaction.guild.name)} | Mode: {mode_name}")
+                    logger.info(f"Channel {safe_text(channel.name)} (ID: {channel.id}) added by {safe_text(interaction.user.display_name)} ({safe_text(interaction.user.name)}) in {safe_text(interaction.guild.name)} (ID: {interaction.guild.id}) | Mode: {mode_name}")
                     self.bot.record_command_usage("add_channel")
                 else:
                     await interaction.followup.send(
@@ -312,7 +312,7 @@ class SettingsCommands(commands.Cog):
                         f"✅ Channel {channel.mention} has been excluded from auto-messaging. (Mode: {mode_name})",
                         ephemeral=True
                     )
-                    logger.info(f"Channel {safe_text(channel.name)} (ID: {channel.id}) excluded by {safe_text(str(interaction.user))} in {safe_text(interaction.guild.name)} | Mode: {mode_name}")
+                    logger.info(f"Channel {safe_text(channel.name)} (ID: {channel.id}) excluded by {safe_text(interaction.user.display_name)} ({safe_text(interaction.user.name)}) in {safe_text(interaction.guild.name)} (ID: {interaction.guild.id}) | Mode: {mode_name}")
                     self.bot.record_command_usage("exclude_channel")
                 else:
                     await interaction.followup.send(
@@ -328,7 +328,7 @@ class SettingsCommands(commands.Cog):
                         f"✅ Channel {channel.mention} has been removed from auto-messaging. (Mode: {mode_name})",
                         ephemeral=True
                     )
-                    logger.info(f"Channel {safe_text(channel.name)} (ID: {channel.id}) removed by {safe_text(str(interaction.user))} in {safe_text(interaction.guild.name)} | Mode: {mode_name}")
+                    logger.info(f"Channel {safe_text(channel.name)} (ID: {channel.id}) removed by {safe_text(interaction.user.display_name)} ({safe_text(interaction.user.name)}) in {safe_text(interaction.guild.name)} (ID: {interaction.guild.id}) | Mode: {mode_name}")
                     self.bot.record_command_usage("remove_channel")
                 else:
                     await interaction.followup.send(

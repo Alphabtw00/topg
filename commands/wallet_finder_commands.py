@@ -11,6 +11,8 @@ import service.wallet_finder_service as wallet_finder_service
 from utils.logger import get_logger
 from utils.formatters import safe_text
 from bot.error_handler import create_error_handler
+from utils.formatters import safe_text
+
 
 logger = get_logger()
 
@@ -75,7 +77,7 @@ class WalletFinderCommands(commands.Cog):
                     await interaction.followup.send(embed=embed, view=view)
                 else:
                     await interaction.followup.send(embed=embed)
-                logger.info(f"Wallet finder executed by {safe_text(str(interaction.user))} for {safe_text(contract_address)} at {safe_text(market_cap)} MC")
+                logger.info(f"Wallet finder executed by {safe_text(interaction.user.display_name)} ({safe_text(interaction.user.name)}) in {safe_text(interaction.guild.name)} (ID: {interaction.guild.id}) for {safe_text(contract_address)} at {safe_text(market_cap)} MC")
                 # Record command usage
                 self.bot.record_command_usage("wallet-finder")
             else:

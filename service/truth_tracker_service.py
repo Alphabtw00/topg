@@ -18,9 +18,9 @@ last_check_time = None
 next_check_time = None
 proxy_rotator = None
 
-# Ultra-optimized caching - Updated for hybrid approach
+# Ultra-optimized caching - Hybrid approach matching DexTracker
 _account_cache = {}  # account_id -> {handle, display_name}
-_active_channels = {}  # guild_id -> [channel_ids] - matches about_to_graduate pattern
+_active_channels = {}  # guild_id -> [channel_ids] - only enabled guilds with channels
 _account_guild_mappings = {}  # account_id -> [(guild_id, last_post_id), ...] 
 _last_post_ids = {}  # account_id -> last_post_id (global)
 
@@ -47,11 +47,11 @@ async def initialize_and_start_truth_tracking(bot):
 
 
 async def rebuild_cache_and_restart_if_needed(bot):
-    """Rebuild cache and start/stop tracking based on enabled guilds with channels"""
+    """Rebuild cache and start/stop tracking based on enabled guilds with channels - DexTracker style"""
     global _active_channels
     
     try:
-        # Get enabled guilds with channels
+        # Get enabled guilds with channels (hybrid query)
         new_channels = await truth_db.get_enabled_guild_channels()
         
         # Update cache
@@ -60,13 +60,16 @@ async def rebuild_cache_and_restart_if_needed(bot):
         # Build full tracking cache
         await build_tracking_cache()
         
-        # Start or stop based on whether we have enabled guilds with channels
-        if _active_channels:
+        # Start or stop based on whether we have enabled guilds with channels AND accounts to track
+        if _active_channels and _account_guild_mappings:
             total_channels = sum(len(channels) for channels in _active_channels.values())
-            logger.info(f"Found {len(_active_channels)} enabled guilds with {total_channels} channels for Truth Social tracking")
+            logger.info(f"Found {len(_active_channels)} enabled guilds with {total_channels} channels and {len(_account_guild_mappings)} accounts for Truth Social tracking")
             await start_tracking(bot)
         else:
-            logger.info("No enabled guilds with channels, stopping Truth Social tracking")
+            if not _active_channels:
+                logger.info("No enabled guilds with channels, stopping Truth Social tracking")
+            elif not _account_guild_mappings:
+                logger.info("No accounts to track for enabled guilds, stopping Truth Social tracking")
             await stop_tracking()
             
     except Exception as e:
@@ -132,6 +135,7 @@ async def build_tracking_cache():
             _account_cache = {}
             _account_guild_mappings = {}
             _last_post_ids = {}
+            logger.debug("No active channels, cleared Truth Social tracking cache")
             return
         
         # Get enabled guild IDs
@@ -189,7 +193,7 @@ async def build_tracking_cache():
         _account_guild_mappings = new_account_guild_mappings
         _last_post_ids = new_last_post_ids
         
-        logger.debug(f"Truth Social cache built: {len(_account_cache)} accounts for {len(_active_channels)} enabled guilds")
+        logger.debug(f"Truth Social cache built: {len(_account_cache)} accounts for {len(_active_channels)} enabled guilds with channels")
         
     except Exception as e:
         logger.error(f"Error building Truth Social tracking cache: {e}")

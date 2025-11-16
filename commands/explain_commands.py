@@ -8,6 +8,8 @@ from discord.ext import commands
 from bot.error_handler import create_error_handler
 from utils.logger import get_logger
 from ui.views import ExplainView
+from utils.formatters import safe_text
+
 
 logger = get_logger()
 
@@ -185,7 +187,7 @@ class ExplainCommands(commands.Cog):
                     "*Never use 100% of your margin! Keep 30-50% as buffer. Better to survive than to get liquidated!*"
                 ),
                 "color": 0xFF0000,
-                "image": "https://s3.tradingview.com/v/vOwc3W80_mid.png?v=1762545475"
+                "image": "https://www.investopedia.com/thmb/ohQ8xHtdhpNc1SERuZg-r8rPMlM=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/Liquidation-4193561-Final-699e67d885c243c39cac2985b16d51cb.jpg"
             },
             
             "stoploss": {
@@ -490,7 +492,7 @@ class ExplainCommands(commands.Cog):
             
             # Record usage
             self.bot.record_command_usage("explain")
-            logger.info(f"Explain command used by {interaction.user} - Topic: {topic_key}")
+            logger.info(f"Explain command used by {safe_text(interaction.user.display_name)} ({safe_text(interaction.user.name)}) in {safe_text(interaction.guild.name)} (ID: {interaction.guild.id}) - Topic: {topic_key}")
             
         except Exception as e:
             logger.error(f"Explain command error: {str(e)}", exc_info=True)

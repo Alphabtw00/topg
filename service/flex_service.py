@@ -36,7 +36,7 @@ TEMPLATE_CONFIGS = {
         "positions": {
             "symbol": (545, 174),
             "leverage": (1120, 177),
-            "pnl_percentage": (1320, 330),
+            "pnl_percentage": (800, 350),
             "entry_price": (520, 747),
             "mark_price": (510, 819),
             "username": (900, 610)
@@ -55,7 +55,7 @@ TEMPLATE_CONFIGS = {
         "positions": {
             "symbol": (650, 203),
             "leverage": (1220, 207),
-            "pnl_percentage": (1350, 375),
+            "pnl_percentage": (850, 375),
             "entry_price": (630, 777),
             "mark_price": (620, 849),
             "username": (1000, 635)
@@ -74,7 +74,7 @@ TEMPLATE_CONFIGS = {
         "positions": {
             "symbol": (545, 174),
             "leverage": (1120, 177),
-            "pnl_percentage": (1320, 330),
+            "pnl_percentage": (800, 350),
             "entry_price": (520, 747),
             "mark_price": (510, 819),
             "username": (900, 610)
@@ -93,7 +93,7 @@ TEMPLATE_CONFIGS = {
         "positions": {
             "symbol": (650, 203),
             "leverage": (1220, 207),
-            "pnl_percentage": (1350, 375),
+            "pnl_percentage": (850, 375),
             "entry_price": (630, 777),
             "mark_price": (620, 849),
             "username": (1000, 635)
@@ -217,13 +217,20 @@ async def generate_pnl_card(
             anchor=anchors["leverage"]
         )
         
+        pnl_bbox = draw.textbbox((0, 0), pnl_text, font=fonts["pnl"])
+        pnl_width = pnl_bbox[2] - pnl_bbox[0]
+
+        # Shift position left by half the text width to center it
+        centered_x = positions["pnl_percentage"][0] - (pnl_width // 2)
+        centered_pos = (centered_x, positions["pnl_percentage"][1])
+
         draw.text(
-            positions["pnl_percentage"],
+            centered_pos,
             pnl_text,
             font=fonts["pnl"],
             fill=pnl_color,
-            anchor=anchors["pnl_percentage"]
-        )
+            anchor="lt"  
+)
         
         draw.text(
             positions["entry_price"],

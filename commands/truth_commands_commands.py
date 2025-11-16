@@ -70,7 +70,8 @@ class TruthCommands(commands.Cog):
             # Check if already tracking this account in this server
             existing = await truth_db.get_guild_tracked_account_by_handle(interaction.guild.id, handle)
             if existing and existing.get('last_post_id') != "DISABLED":
-                await interaction.followup.send(f"Already tracking @{handle} in this server.", ephemeral=True)
+                await interaction.followup.send(f"ℹ️ Already tracking @{handle} in this server.", ephemeral=True)
+                logger.debug(f"{safe_text(interaction.user.name)} tried to add already tracked account @{safe_text(handle)} in {safe_text(interaction.guild.name)} (ID: {interaction.guild.id})")
                 return
             
             # Get proxy for request
@@ -85,6 +86,7 @@ class TruthCommands(commands.Cog):
                     f"Please check the handle and try again later.", 
                     ephemeral=True
                 )
+                logger.warning(f"{safe_text(interaction.user.name)} tried to track @{safe_text(handle)} but account not found in {safe_text(interaction.guild.name)} (ID: {interaction.guild.id})")
                 return
             
             # Extract account info from user metadata
@@ -112,6 +114,7 @@ class TruthCommands(commands.Cog):
                     f"Couldn't fetch information for @{handle}.",
                     ephemeral=True
                 )
+                logger.error(f"Failed to fetch account_id for @{safe_text(handle)} in {safe_text(interaction.guild.name)} (ID: {interaction.guild.id})")
                 return
             
             # Add to global accounts table
@@ -121,15 +124,22 @@ class TruthCommands(commands.Cog):
             success = await truth_db.link_account_to_guild(interaction.guild.id, account_id, "0")
             
             if success:
-                # Clear cache to ensure the new account is picked up immediately
-                await tracker.clear_cache_for_guild(interaction.guild.id)
-                await tracker.refresh_all_caches()
+                # Rebuild cache and restart tracking if needed
+                await tracker.rebuild_cache_and_restart_if_needed(self.bot)
+                
+                # Check if tracking is enabled
+                settings = await truth_db.get_guild_settings(interaction.guild.id)
+                is_enabled = settings.get('enabled', False)
+                
+                # Check if channels exist
+                channel_ids = await truth_db.get_truth_channels(interaction.guild.id)
+                has_channels = len(channel_ids) > 0
                 
                 # Create a rich embed profile-like display
                 embed = discord.Embed(
                     title=f"@{handle} Added to Tracking",
                     url=f"https://truthsocial.com/@{handle}",
-                    color=0xE12626  # Truth Social red
+                    color=0xE12626 if (is_enabled and has_channels) else 0xE67E22
                 )
                 
                 # Add verified emoji if account is verified
@@ -162,6 +172,20 @@ class TruthCommands(commands.Cog):
                         inline=True
                     )
                 
+                # Add setup status warnings
+                if not is_enabled:
+                    embed.add_field(
+                        name="⚠️ Tracking Disabled",
+                        value="Use `/truth enable` to start tracking posts",
+                        inline=False
+                    )
+                elif not has_channels:
+                    embed.add_field(
+                        name="⚠️ No Output Channels",
+                        value="Use `/truth add-channel` to configure where posts should be sent",
+                        inline=False
+                    )
+                
                 # Set the footer with creation date
                 embed.set_footer(text=f"Account created: {formatted_date}")
                 
@@ -170,12 +194,13 @@ class TruthCommands(commands.Cog):
                 
                 # Track command usage
                 self.bot.record_command_usage("truth_track")
-                logger.info(f"{safe_text(str(interaction.user))} added @{safe_text(handle)} in server '{safe_text(interaction.guild.name)}' for tracking")
+                logger.info(f"{safe_text(interaction.user.name)} added @{safe_text(handle)} (ID: {safe_text(account_id)}) in {safe_text(interaction.guild.name)} (ID: {interaction.guild.id}) - Enabled: {is_enabled}, Channels: {len(channel_ids)}")
             else:
                 await interaction.followup.send(f"❌ Failed to add @{handle} to tracking database.", ephemeral=True)
+                logger.error(f"Database error adding @{safe_text(handle)} for {safe_text(interaction.user.name)} in {safe_text(interaction.guild.name)} (ID: {interaction.guild.id})")
                 
         except Exception as e:
-            logger.error(f"Error tracking Truth Social account: {e}")
+            logger.error(f"Error tracking Truth Social account @{safe_text(handle)} by {safe_text(interaction.user.name)} in {safe_text(interaction.guild.name)} (ID: {interaction.guild.id}): {e}")
             await interaction.followup.send(
                 f"❌ Couldn't set up tracking for @{handle}. Please try again later.", 
                 ephemeral=True
@@ -196,21 +221,22 @@ class TruthCommands(commands.Cog):
             
             if not account:
                 await interaction.followup.send(f"❌ Not tracking @{handle} in this server.", ephemeral=True)
+                logger.debug(f"{safe_text(interaction.user.name)} tried to untrack non-existent @{safe_text(handle)} in {safe_text(interaction.guild.name)} (ID: {interaction.guild.id})")
                 return
             
             # Get the account_id
             account_id = account.get('account_id')
             if not account_id:
                 await interaction.followup.send(f"❌ Error retrieving account information.", ephemeral=True)
+                logger.error(f"Missing account_id for @{safe_text(handle)} when untracking in {safe_text(interaction.guild.name)} (ID: {interaction.guild.id})")
                 return
             
             # Remove the account from this guild
             success = await truth_db.remove_truth_account_from_guild(interaction.guild.id, account_id)
             
             if success:
-                # Clear cache to ensure the removed account is not tracked anymore
-                await tracker.clear_cache_for_guild(interaction.guild.id)
-                await tracker.refresh_all_caches()
+                # Rebuild cache and restart tracking if needed
+                await tracker.rebuild_cache_and_restart_if_needed(self.bot)
                 
                 embed = discord.Embed(
                     title=f"Stopped tracking @{handle}",
@@ -221,11 +247,12 @@ class TruthCommands(commands.Cog):
                 
                 # Track command usage
                 self.bot.record_command_usage("truth_untrack")
-                logger.info(f"{safe_text(str(interaction.user))} removed @{safe_text(handle)} from tracking in server '{safe_text(interaction.guild.name)}'")
+                logger.info(f"{safe_text(interaction.user.name)} removed @{safe_text(handle)} (ID: {safe_text(account_id)}) from tracking in {safe_text(interaction.guild.name)} (ID: {interaction.guild.id})")
             else:
                 await interaction.followup.send(f"❌ Failed to remove tracking for @{handle}.", ephemeral=True)
+                logger.error(f"Database error removing @{safe_text(handle)} for {safe_text(interaction.user.name)} in {safe_text(interaction.guild.name)} (ID: {interaction.guild.id})")
         except Exception as e:
-            logger.error(f"Error untracking Truth Social account: {e}")
+            logger.error(f"Error untracking @{safe_text(handle)} by {safe_text(interaction.user.name)} in {safe_text(interaction.guild.name)} (ID: {interaction.guild.id}): {e}")
             await interaction.followup.send(f"Error untracking @{handle}. Please try again later.", ephemeral=True)
     
     @truth_group.command(name="add-channel", description="Set a channel for Truth Social updates")
@@ -248,30 +275,56 @@ class TruthCommands(commands.Cog):
                     f"❌ I need 'Send Messages' and 'Embed Links' permissions in {channel.mention}.", 
                     ephemeral=True
                 )
+                logger.warning(f"{safe_text(interaction.user.name)} tried to add channel {safe_text(channel.name)} (ID: {channel.id}) without permissions in {safe_text(interaction.guild.name)} (ID: {interaction.guild.id})")
                 return
             
             # Add channel for this specific guild
             success = await truth_db.add_truth_channel(interaction.guild.id, channel.id)
             
             if success:
-                # Clear cache to ensure the new channel is used immediately
-                await tracker.clear_cache_for_guild(interaction.guild.id)
-                await tracker.refresh_all_caches()
+                # Newly added channel
+                await tracker.rebuild_cache_and_restart_if_needed(self.bot)
+                
+                # Check if tracking is enabled
+                settings = await truth_db.get_guild_settings(interaction.guild.id)
+                is_enabled = settings.get('enabled', False)
+                
+                # Check if accounts exist
+                accounts = await truth_db.get_guild_tracked_accounts(interaction.guild.id)
+                active_accounts = [a for a in accounts if a.get('last_post_id') != "DISABLED"]
+                has_accounts = len(active_accounts) > 0
                 
                 embed = discord.Embed(
                     title="Channel Added",
-                    description=f"{channel.mention} will now receive Truth Social updates!",
-                    color=0x2ECC71  # Green
+                    description=f"{channel.mention} will receive Truth Social updates!",
+                    color=0x2ECC71 if (is_enabled and has_accounts) else 0xE67E22
                 )
+                
+                # Add setup status warnings
+                if not is_enabled:
+                    embed.add_field(
+                        name="⚠️ Tracking Disabled",
+                        value="Use `/truth enable` to start receiving updates",
+                        inline=False
+                    )
+                elif not has_accounts:
+                    embed.add_field(
+                        name="⚠️ No Tracked Accounts",
+                        value="Use `/truth track` to add accounts to track",
+                        inline=False
+                    )
+                
                 await interaction.followup.send(embed=embed, ephemeral=True)
                 
                 # Track command usage
                 self.bot.record_command_usage("truth_addchannel")
-                logger.info(f"{safe_text(str(interaction.user))} added channel #{safe_text(channel.name)} in server '{safe_text(interaction.guild.name)}' for Truth Social tracking")
+                logger.info(f"{safe_text(interaction.user.name)} added channel {safe_text(channel.name)} (ID: {channel.id}) in {safe_text(interaction.guild.name)} (ID: {interaction.guild.id}) - Enabled: {is_enabled}, Accounts: {len(active_accounts)}")
             else:
-                await interaction.followup.send(f"❌ Failed to configure {channel.mention}.", ephemeral=True)
+                # Channel already exists
+                await interaction.followup.send(f"ℹ️ {channel.mention} is already configured for Truth Social updates.", ephemeral=True)
+                logger.debug(f"{safe_text(interaction.user.name)} tried to add existing channel {safe_text(channel.name)} (ID: {channel.id}) in {safe_text(interaction.guild.name)} (ID: {interaction.guild.id})")
         except Exception as e:
-            logger.error(f"Error adding Truth Social channel: {e}")
+            logger.error(f"Error adding channel {safe_text(channel.name) if channel else 'unknown'} (ID: {channel.id if channel else 'unknown'}) by {safe_text(interaction.user.name)} in {safe_text(interaction.guild.name)} (ID: {interaction.guild.id}): {e}")
             await interaction.followup.send(f"❌ Error adding {channel.mention} to Truth Social Updates. Please try again later.", ephemeral=True)
     
     @truth_group.command(name="remove-channel", description="Remove a channel from Truth Social updates")
@@ -289,9 +342,8 @@ class TruthCommands(commands.Cog):
             success = await truth_db.remove_truth_channel(interaction.guild.id, channel.id)
             
             if success:
-                # Clear cache to ensure the removed channel is not used anymore
-                await tracker.clear_cache_for_guild(interaction.guild.id)
-                await tracker.refresh_all_caches()
+                # Channel was removed
+                await tracker.rebuild_cache_and_restart_if_needed(self.bot)
                 
                 embed = discord.Embed(
                     title="Channel Removed",
@@ -302,11 +354,13 @@ class TruthCommands(commands.Cog):
                 
                 # Track command usage
                 self.bot.record_command_usage("truth_removechannel")
-                logger.info(f"{safe_text(str(interaction.user))} removed channel #{safe_text(channel.name)} in server '{safe_text(interaction.guild.name)}' from Truth Social tracking")
+                logger.info(f"{safe_text(interaction.user.name)} removed channel {safe_text(channel.name)} (ID: {channel.id}) in {safe_text(interaction.guild.name)} (ID: {interaction.guild.id})")
             else:
+                # Channel was not configured
                 await interaction.followup.send(f"❌ {channel.mention} was not configured for updates.", ephemeral=True)
+                logger.debug(f"{safe_text(interaction.user.name)} tried to remove non-existent channel {safe_text(channel.name)} (ID: {channel.id}) in {safe_text(interaction.guild.name)} (ID: {interaction.guild.id})")
         except Exception as e:
-            logger.error(f"Error removing Truth Social channel: {e}")
+            logger.error(f"Error removing channel {safe_text(channel.name) if channel else 'unknown'} (ID: {channel.id if channel else 'unknown'}) by {safe_text(interaction.user.name)} in {safe_text(interaction.guild.name)} (ID: {interaction.guild.id}): {e}")
             await interaction.followup.send(f"❌ Error removing {channel.mention} from Truth Social Updates. Please try again later.", ephemeral=True)
     
     @truth_group.command(name="enable", description="Enable Truth Social tracking")
@@ -315,37 +369,47 @@ class TruthCommands(commands.Cog):
         await interaction.response.defer(ephemeral=True, thinking=True)
         
         try:
-            # Validate setup for this specific guild
+            # Check prerequisites (but don't block enabling itself)
             accounts = await truth_db.get_guild_tracked_accounts(interaction.guild.id)
             active_accounts = [a for a in accounts if a.get('last_post_id') != "DISABLED"]
             
             channel_ids = await truth_db.get_truth_channels(interaction.guild.id)
             
-            if not active_accounts:
+            has_accounts = len(active_accounts) > 0
+            has_channels = len(channel_ids) > 0
+            
+            # Check if already enabled
+            settings = await truth_db.get_guild_settings(interaction.guild.id)
+            already_enabled = settings.get('enabled', False)
+            
+            if already_enabled:
+                await interaction.followup.send("ℹ️ Truth Social tracking is already enabled for this server.", ephemeral=True)
+                logger.debug(f"{safe_text(interaction.user.name)} tried to enable already enabled tracking in {safe_text(interaction.guild.name)} (ID: {interaction.guild.id})")
+                return
+            
+            # Validate prerequisites before enabling
+            if not has_accounts:
                 await interaction.followup.send(
                     "❌ No Truth Social accounts configured for this server. Add accounts first with `/truth track`.", 
                     ephemeral=True
                 )
+                logger.warning(f"{safe_text(interaction.user.name)} tried to enable tracking without accounts in {safe_text(interaction.guild.name)} (ID: {interaction.guild.id})")
                 return
             
-            if not channel_ids:
+            if not has_channels:
                 await interaction.followup.send(
                     "❌ No channels configured for this server. Add channels first with `/truth add-channel`.", 
                     ephemeral=True
                 )
+                logger.warning(f"{safe_text(interaction.user.name)} tried to enable tracking without channels in {safe_text(interaction.guild.name)} (ID: {interaction.guild.id})")
                 return
             
-            # Update settings for this specific guild
-            settings = {'enabled': True}
-            success = await truth_db.update_guild_settings(interaction.guild.id, settings)
+            # Enable tracking
+            success = await truth_db.enable_tracking(interaction.guild.id)
             
             if success:
-                # Clear cache to ensure the enabled status is picked up immediately
-                await tracker.clear_cache_for_guild(interaction.guild.id)
-                await tracker.refresh_all_caches()
-                
-                # Ensure the tracking task is running
-                await tracker.start_tracking(self.bot)
+                # Newly enabled
+                await tracker.rebuild_cache_and_restart_if_needed(self.bot)
                 
                 embed = discord.Embed(
                     title="Tracking Enabled",
@@ -361,15 +425,23 @@ class TruthCommands(commands.Cog):
                         inline=False
                     )
                 
+                # Show summary
+                embed.add_field(
+                    name="Active Configuration",
+                    value=f"**{len(active_accounts)}** accounts tracked\n**{len(channel_ids)}** output channels",
+                    inline=False
+                )
+                
                 await interaction.followup.send(embed=embed, ephemeral=True)
                 
                 # Track command usage
                 self.bot.record_command_usage("truth_enable")
-                logger.info(f"{safe_text(str(interaction.user))} enabled Truth Social tracking in server '{safe_text(interaction.guild.name)}'")
+                logger.info(f"{safe_text(interaction.user.name)} enabled Truth Social tracking in {safe_text(interaction.guild.name)} (ID: {interaction.guild.id}) - Accounts: {len(active_accounts)}, Channels: {len(channel_ids)}")
             else:
                 await interaction.followup.send("❌ Failed to enable tracking.", ephemeral=True)
+                logger.error(f"Database error enabling tracking for {safe_text(interaction.user.name)} in {safe_text(interaction.guild.name)} (ID: {interaction.guild.id})")
         except Exception as e:
-            logger.error(f"Error enabling Truth Social tracking: {e}")
+            logger.error(f"Error enabling Truth Social tracking by {safe_text(interaction.user.name)} in {safe_text(interaction.guild.name)} (ID: {interaction.guild.id}): {e}")
             await interaction.followup.send(f"❌ Error enabling Truth Social tracking. Please try again later.", ephemeral=True)
     
     @truth_group.command(name="disable", description="Disable Truth Social tracking")
@@ -378,14 +450,21 @@ class TruthCommands(commands.Cog):
         await interaction.response.defer(ephemeral=True, thinking=True)
         
         try:
-            # Update settings for this specific guild
-            settings = {'enabled': False}
-            success = await truth_db.update_guild_settings(interaction.guild.id, settings)
+            # Check if already disabled
+            settings = await truth_db.get_guild_settings(interaction.guild.id)
+            already_disabled = not settings.get('enabled', False)
+            
+            if already_disabled:
+                await interaction.followup.send("ℹ️ Truth Social tracking is already disabled for this server.", ephemeral=True)
+                logger.debug(f"{safe_text(interaction.user.name)} tried to disable already disabled tracking in {safe_text(interaction.guild.name)} (ID: {interaction.guild.id})")
+                return
+            
+            # Disable tracking
+            success = await truth_db.disable_tracking(interaction.guild.id)
             
             if success:
-                # Clear cache to ensure the disabled status is picked up immediately
-                await tracker.clear_cache_for_guild(interaction.guild.id)
-                await tracker.refresh_all_caches()
+                # Newly disabled
+                await tracker.rebuild_cache_and_restart_if_needed(self.bot)
                 
                 embed = discord.Embed(
                     title="Tracking Disabled",
@@ -396,11 +475,12 @@ class TruthCommands(commands.Cog):
                 
                 # Track command usage
                 self.bot.record_command_usage("truth_disable")
-                logger.info(f"{safe_text(str(interaction.user))} disabled Truth Social tracking in server '{safe_text(interaction.guild.name)}'")
+                logger.info(f"{safe_text(interaction.user.name)} disabled Truth Social tracking in {safe_text(interaction.guild.name)} (ID: {interaction.guild.id})")
             else:
                 await interaction.followup.send("❌ Failed to disable tracking.", ephemeral=True)
+                logger.error(f"Database error disabling tracking for {safe_text(interaction.user.name)} in {safe_text(interaction.guild.name)} (ID: {interaction.guild.id})")
         except Exception as e:
-            logger.error(f"Error disabling Truth Social tracking: {e}")
+            logger.error(f"Error disabling Truth Social tracking by {safe_text(interaction.user.name)} in {safe_text(interaction.guild.name)} (ID: {interaction.guild.id}): {e}")
             await interaction.followup.send(f"❌ Error disabling Truth Social tracking. Please try again later.", ephemeral=True)
     
     @truth_group.command(name="status", description="Show status of Truth Social tracking")
@@ -411,6 +491,7 @@ class TruthCommands(commands.Cog):
         try:
             # Get settings for this specific guild
             settings = await truth_db.get_guild_settings(interaction.guild.id)
+            is_enabled = settings.get('enabled', False)
             
             # Get active accounts for this specific guild
             accounts = await truth_db.get_guild_tracked_accounts(interaction.guild.id)
@@ -424,16 +505,21 @@ class TruthCommands(commands.Cog):
                 if channel:
                     channels.append(channel.mention)
             
-            # Get tracking status
+            # Get global tracking status
             tracking_status = tracker.get_tracking_status()
-            is_tracking = tracking_status.get('is_tracking', False) and settings.get('enabled', False)
+            is_global_tracking = tracking_status.get('is_tracking', False)
+            
+            # This guild's effective status (enabled AND has accounts AND has channels)
+            has_accounts = len(active_accounts) > 0
+            has_channels = len(channel_ids) > 0
+            guild_active = is_enabled and has_accounts and has_channels and is_global_tracking
             
             # Create embed
-            color = 0x2ECC71 if is_tracking else 0xE74C3C
+            color = 0x2ECC71 if guild_active else 0xE74C3C
             
             # Emoji for status
-            status_emoji = "🟢" if is_tracking else "🔴"
-            status_text = "Active" if is_tracking else "Inactive"
+            status_emoji = "🟢" if guild_active else "🔴"
+            status_text = "Active" if guild_active else "Inactive"
             
             embed = discord.Embed(
                 title=f"Truth Social Tracker for {interaction.guild.name}",
@@ -445,18 +531,23 @@ class TruthCommands(commands.Cog):
             
             # Status fields
             embed.add_field(
-                name=f"🔄 Tracker Status",
+                name=f"🔄 Status",
                 value=f"{status_emoji} **{status_text}**",
-                inline=False
+                inline=True
+            )
+            
+            embed.add_field(
+                name=f"⚙️ Enabled",
+                value=f"{'✅' if is_enabled else '❌'} {is_enabled}",
+                inline=True
             )
             
             # Check interval
             embed.add_field(
-                name=f"⏰ Check Interval",
+                name=f"⏰ Interval",
                 value=f"**{TRUTH_DEFAULT_INTERVAL}s**",
-                inline=False
+                inline=True
             )
-            
             
             # Accounts section - server-specific
             if active_accounts:
@@ -491,6 +582,24 @@ class TruthCommands(commands.Cog):
                 inline=False
             )
             
+            # Show reason if inactive
+            if not guild_active:
+                reasons = []
+                if not is_enabled:
+                    reasons.append("Not enabled")
+                if not has_accounts:
+                    reasons.append("No accounts tracked")
+                if not has_channels:
+                    reasons.append("No channels configured")
+                if not is_global_tracking:
+                    reasons.append("Global tracking stopped")
+                
+                embed.add_field(
+                    name="❓ Inactive Reason",
+                    value=" | ".join(reasons),
+                    inline=False
+                )
+            
             # Set footer with server icon
             embed.set_footer(
                 text=f"Truth Social updates for {interaction.guild.name}",
@@ -505,9 +614,10 @@ class TruthCommands(commands.Cog):
             
             # Track command usage
             self.bot.record_command_usage("truth_status")
+            logger.info(f"{safe_text(interaction.user.name)} checked status in {safe_text(interaction.guild.name)} (ID: {interaction.guild.id}) - Active: {guild_active}, Enabled: {is_enabled}, Accounts: {len(active_accounts)}, Channels: {len(channel_ids)}")
             
         except Exception as e:
-            logger.error(f"Error getting Truth Social status: {e}")
+            logger.error(f"Error getting Truth Social status by {safe_text(interaction.user.display_name)} ({safe_text(interaction.user.name)}) in {safe_text(interaction.guild.name)} (ID: {interaction.guild.id}): {e}")
             await interaction.followup.send(f"❌ Error getting Truth Social status for server", ephemeral=True)
     
     # Add error handlers for all commands

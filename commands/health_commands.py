@@ -9,6 +9,8 @@ from ui.embeds import create_health_embed
 from utils.logger import get_logger
 from config import ADMIN_USER_IDS
 from datetime import datetime
+from utils.formatters import safe_text
+
 
 logger = get_logger()
 
@@ -40,7 +42,7 @@ class HealthCommands(commands.Cog):
             await interaction.followup.send(embed=embed, ephemeral=True)        
                
             self.bot.record_command_usage("health")
-            logger.info(f"Health command used by bot owner {interaction.user} ({interaction.user.id})")
+            logger.info(f"Health command used by bot owner {safe_text(interaction.user.display_name)} ({safe_text(interaction.user.name)}) [ID: {interaction.user.id}] in {safe_text(interaction.guild.name)} (ID: {interaction.guild.id})")
             
         except Exception as e:
             logger.error(f"Health command error: {e}")

@@ -7,6 +7,8 @@ from discord.ext import commands
 import io
 from bot.error_handler import create_error_handler
 from utils.logger import get_logger
+from utils.formatters import safe_text
+
 
 logger = get_logger()
 
@@ -163,7 +165,7 @@ class SayCommands(commands.Cog):
             self.bot.record_command_usage("say")
             reply_info = f" | Reply to: {reply_message.id}" if reply_message else ""
             image_info = f" | Image: {image.filename}" if image else ""
-            logger.info(f"Say command used by {interaction.user} | Channel: {target_channel.id} | Message ID: {sent_message.id}{reply_info}{image_info}")
+            logger.info(f"Say command used by {safe_text(interaction.user.display_name)} ({safe_text(interaction.user.name)}) in {safe_text(interaction.guild.name)} (ID: {interaction.guild.id}) | Channel: {target_channel.id} | Message ID: {sent_message.id}{reply_info}{image_info}")
             
         except discord.Forbidden:
             await interaction.followup.send(

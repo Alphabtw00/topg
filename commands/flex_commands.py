@@ -8,6 +8,8 @@ from discord.ext import commands
 from bot.error_handler import create_error_handler
 from service.flex_service import generate_pnl_card, calculate_pnl
 from utils.logger import get_logger
+from utils.formatters import safe_text
+
 
 logger = get_logger()
 
@@ -96,17 +98,12 @@ class FlexCommands(commands.Cog):
             pnl_percentage = calculate_pnl(entry_price, mark_price, leverage, side)
             
             # Send the image
-            await interaction.followup.send(
-                content=f"**{symbol} | {side} | {leverage}X | {pnl_percentage:,.2f}% PnL** 🚀",
-                file=file
-            )
+            await interaction.followup.send(file=file)
            
             # Record command usage metrics
             self.bot.record_command_usage("flex")
-            logger.info(
-                f"Flex command used by {interaction.user} - "
-                f"{side} {symbol} {leverage}X | PnL: {pnl_percentage:.2f}%"
-            )
+            logger.info(f"Flex command used by {safe_text(interaction.user.display_name)} ({safe_text(interaction.user.name)}) in {safe_text(interaction.guild.name)} (ID: {interaction.guild.id}) - {side} {symbol} {leverage}X | PnL: {pnl_percentage:.2f}%")
+
                
         except ValueError as e:
             logger.warning(f"Invalid input for flex command: {str(e)}")

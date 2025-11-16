@@ -119,6 +119,7 @@ def create_token_embed(entry: dict, address: str, order_status: str) -> discord.
         # Set optional fields
         banner = info_data.get("header")
         if banner:
+            banner = banner.split('?')[0]
             embed.set_image(url=banner)
         
         if pair_created_at:
@@ -1372,7 +1373,7 @@ def create_pos_calc_capital_embed(
         timestamp=discord.utils.utcnow()
     )
     
-    embed.set_image(url="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&h=400&fit=crop")
+    embed.set_image(url="https://i.ytimg.com/vi/JNwKWceRgUQ/maxresdefault.jpg")
     
     embed.set_footer(
         text=f"Requested by {user_name}",
@@ -1436,7 +1437,7 @@ def create_pos_calc_loss_embed(
         timestamp=discord.utils.utcnow()
     )
     
-    embed.set_image(url="https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=1200&h=400&fit=crop")
+    embed.set_image(url="https://i.ytimg.com/vi/JNwKWceRgUQ/maxresdefault.jpg")
     
     embed.set_footer(
         text=f"Requested by {user_name}",
@@ -1540,7 +1541,7 @@ def create_liquidation_calc_embed(
         timestamp=discord.utils.utcnow()
     )
     
-    embed.set_image(url="https://images.unsplash.com/photo-1621416894569-0f39ed31d247?w=1200&h=400&fit=crop")
+    embed.set_image(url="https://s3.tradingview.com/v/vOwc3W80_mid.png?v=1762545475")
     
     embed.set_footer(
         text=f"Requested by {user_name}",
@@ -1651,7 +1652,7 @@ def create_funding_calc_embed(
         timestamp=discord.utils.utcnow()
     )
     
-    embed.set_image(url="https://images.unsplash.com/photo-1642790551116-18e150f248e8?w=1200&h=400&fit=crop")
+    embed.set_image(url="https://fsr-develop.com/wp-content/uploads/2024/09/image-1857.png")
     
     embed.set_footer(
         text=f"Requested by {user_name}",

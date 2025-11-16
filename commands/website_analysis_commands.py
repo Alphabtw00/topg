@@ -12,6 +12,8 @@ from urllib.parse import urlparse
 from utils.logger import get_logger
 from ui.views import WebsiteAnalysisView
 from ui.embeds import create_website_embed
+from utils.formatters import safe_text
+
 import io 
 
 logger = get_logger()
@@ -79,7 +81,7 @@ class WebsiteCheckerCommands(commands.Cog):
             
             # Log usage
             self.bot.record_command_usage("health")
-            logger.info(f"Website analysis called by {interaction.user} for {website_url} (cached: {result.get('cached', False)})")
+            logger.info(f"Website analysis called by {safe_text(interaction.user.display_name)} ({safe_text(interaction.user.name)}) in {safe_text(interaction.guild.name)} (ID: {interaction.guild.id}) for {website_url} (cached: {result.get('cached', False)})")
             
         except asyncio.TimeoutError:
             logger.warning(f"Analysis timeout for {website_url}")

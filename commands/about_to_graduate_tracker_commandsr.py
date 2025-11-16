@@ -72,7 +72,8 @@ class About_to_GraduateCommands(commands.Cog):
                     )
                 
                 await interaction.followup.send(embed=embed, ephemeral=True)
-                logger.info(f"About to graduate alert channel {safe_text(channel.name)} (ID: {channel.id}) added by {safe_text(str(interaction.user))} in {safe_text(interaction.guild.name)}")
+                logger.info(f"About to graduate alert channel {safe_text(channel.name)} (ID: {channel.id}) added by {safe_text(interaction.user.display_name)} ({safe_text(interaction.user.name)}) in {safe_text(interaction.guild.name)} (ID: {interaction.guild.id})")
+
                 
             else:
                 # Channel already exists
@@ -105,7 +106,7 @@ class About_to_GraduateCommands(commands.Cog):
                     color=0xE67E22
                 )
                 await interaction.followup.send(embed=embed, ephemeral=True)
-                logger.info(f"About to graduate alert channel {safe_text(channel.name)} (ID: {channel.id}) removed by {safe_text(str(interaction.user))} in {safe_text(interaction.guild.name)}")
+                logger.info(f"About to graduate alert channel {safe_text(channel.name)} (ID: {channel.id}) removed by {safe_text(interaction.user.display_name)} ({safe_text(interaction.user.name)}) in {safe_text(interaction.guild.name)} (ID: {interaction.guild.id})")
                 
             else:
                 # Channel was not configured
@@ -157,8 +158,8 @@ class About_to_GraduateCommands(commands.Cog):
                 )
                 
                 await interaction.followup.send(embed=embed, ephemeral=True)
-                logger.info(f"About to graduate alert tracking enabled by {safe_text(str(interaction.user))} in {safe_text(interaction.guild.name)}")
-                
+                logger.info(f"About to graduate alert tracking enabled by {safe_text(interaction.user.display_name)} ({safe_text(interaction.user.name)}) in {safe_text(interaction.guild.name)} (ID: {interaction.guild.id})")
+
             else:
                 # Already enabled
                 await interaction.followup.send("ℹ️ About to graduate alert tracking is already enabled for this server.", ephemeral=True)
@@ -186,7 +187,7 @@ class About_to_GraduateCommands(commands.Cog):
                     color=0xE74C3C
                 )
                 await interaction.followup.send(embed=embed, ephemeral=True)
-                logger.info(f"About to graduate alert tracking disabled by {safe_text(str(interaction.user))} in {safe_text(interaction.guild.name)}")
+                logger.info(f"About to graduate alert tracking disabled by {safe_text(interaction.user.display_name)} ({safe_text(interaction.user.name)}) in {safe_text(interaction.guild.name)} (ID: {interaction.guild.id})")
                 
             else:
                 # Already disabled
@@ -264,10 +265,10 @@ class About_to_GraduateCommands(commands.Cog):
                 )
             
             await interaction.followup.send(embed=embed, ephemeral=True)
-            logger.debug(f"About to graduate alert status checked by {safe_text(str(interaction.user))} in {safe_text(interaction.guild.name)}")
+            logger.info(f"About to graduate alert status checked by {safe_text(interaction.user.display_name)} ({safe_text(interaction.user.name)}) in {safe_text(interaction.guild.name)} (ID: {interaction.guild.id})")
             
         except Exception as e:
-            logger.error(f"Error getting about to graduate alert status: {e}")
+            logger.error(f"Error getting about to graduate alert status by {safe_text(interaction.user.display_name)} ({safe_text(interaction.user.name)}) in {safe_text(interaction.guild.name)} (ID: {interaction.guild.id}): {e}")
             await interaction.followup.send("❌ Error getting status.", ephemeral=True)
 
     # Add error handlers

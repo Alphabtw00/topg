@@ -11,6 +11,8 @@ from ui.views import GitHubAnalysisView
 from utils.validators import validate_github_url
 from bot.error_handler import create_error_handler
 from utils.logger import get_logger
+from utils.formatters import safe_text
+
 
 logger = get_logger()
 
@@ -76,7 +78,7 @@ class GithubCheckerCommands(commands.Cog):
             self.bot.record_command_usage("github-checker")
            
             # Log usage
-            logger.info(f"GitHub analysis called by {interaction.user} for {repo_url} (cached: {is_cached})")
+            logger.info(f"GitHub analysis called by {safe_text(interaction.user.display_name)} ({safe_text(interaction.user.name)}) in {safe_text(interaction.guild.name)} (ID: {interaction.guild.id}) for {repo_url} (cached: {is_cached})")
                
         except asyncio.TimeoutError:
             logger.warning(f"Analysis timeout for {repo_url}")
