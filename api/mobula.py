@@ -6,6 +6,8 @@ import asyncio
 from api.client import ApiClient, ApiEndpoint
 from utils.logger import get_logger
 from config import MOBULA_ATH_URL, MOBULA_BASE_URL, MOBULA_API_KEY
+from aiocache import cached
+
 
 logger = get_logger()
 
@@ -20,6 +22,7 @@ class MobulaService:
         #     "Authorization": MOBULA_API_KEY
         # }
     
+    @cached(ttl=3)
     async def get_all_time_high(self, address: str, creation_timestamp: int = None, 
                                chain_id: str = "solana", max_retries=3):
         """

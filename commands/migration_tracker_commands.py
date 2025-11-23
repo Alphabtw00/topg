@@ -10,6 +10,7 @@ import repository.migration_tracker_repo as migration_db
 from utils.logger import get_logger
 from utils.formatters import safe_text
 from bot.error_handler import create_error_handler
+from config import ADMIN_USER_IDS
 
 logger = get_logger()
 
@@ -31,6 +32,13 @@ class MigrationTrackerCommands(commands.Cog):
     async def addchannel_command(self, interaction: discord.Interaction, channel: Optional[discord.TextChannel] = None):
         """Add a channel for migration updates"""
         await interaction.response.defer(ephemeral=True, thinking=True)
+        
+        if not (interaction.user.guild_permissions.administrator or interaction.user.id in ADMIN_USER_IDS):
+            await interaction.followup.send(
+                "You need administrator permissions to use this command.",
+                ephemeral=True
+            )
+            return
         
         if not channel:
             channel = interaction.channel
@@ -87,6 +95,13 @@ class MigrationTrackerCommands(commands.Cog):
         """Remove a channel from migration tracking"""
         await interaction.response.defer(ephemeral=True, thinking=True)
         
+        if not (interaction.user.guild_permissions.administrator or interaction.user.id in ADMIN_USER_IDS):
+            await interaction.followup.send(
+                "You need administrator permissions to use this command.",
+                ephemeral=True
+            )
+            return
+
         if not channel:
             channel = interaction.channel
         
@@ -118,6 +133,13 @@ class MigrationTrackerCommands(commands.Cog):
     async def enable_command(self, interaction: discord.Interaction):
         """Enable migration tracking"""
         await interaction.response.defer(ephemeral=True, thinking=True)
+        
+        if not (interaction.user.guild_permissions.administrator or interaction.user.id in ADMIN_USER_IDS):
+            await interaction.followup.send(
+                "You need administrator permissions to use this command.",
+                ephemeral=True
+            )
+            return
         
         try:
             # Check if channels exist
@@ -164,6 +186,13 @@ class MigrationTrackerCommands(commands.Cog):
         """Disable migration tracking"""
         await interaction.response.defer(ephemeral=True, thinking=True)
         
+        if not (interaction.user.guild_permissions.administrator or interaction.user.id in ADMIN_USER_IDS):
+            await interaction.followup.send(
+                "You need administrator permissions to use this command.",
+                ephemeral=True
+            )
+            return
+
         try:
             # Check if already disabled
             settings = await migration_db.get_guild_settings(interaction.guild.id)
@@ -193,12 +222,18 @@ class MigrationTrackerCommands(commands.Cog):
             await interaction.followup.send("❌ Error disabling tracking.", ephemeral=True)
 
 
-
     @migration_group.command(name="status", description="Show Migration tracking status")
     async def status_command(self, interaction: discord.Interaction):
         """Show tracking status"""
         await interaction.response.defer(ephemeral=True, thinking=True)
         
+        if not (interaction.user.guild_permissions.administrator or interaction.user.id in ADMIN_USER_IDS):
+            await interaction.followup.send(
+                "You need administrator permissions to use this command.",
+                ephemeral=True
+            )
+            return
+            
         try:
             # Get guild settings and channels
             settings = await migration_db.get_guild_settings(interaction.guild.id)

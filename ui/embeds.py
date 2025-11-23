@@ -2018,6 +2018,44 @@ async def create_kalshi_market_embed(event: Dict, markets: List[Dict],
     
     return embed
 
+def create_say_embed(
+    title: Optional[str] = None,
+    description: Optional[str] = None,
+    color: Optional[str] = None,
+    footer: Optional[str] = None,
+    thumbnail: Optional[str] = None,
+    image: Optional[str] = None,
+    author: Optional[str] = None,
+    author_icon: Optional[str] = None
+) -> discord.Embed:
+    """Create a Discord embed from provided parameters"""
+    embed = discord.Embed()
+    
+    if title:
+        embed.title = title
+    if description:
+        embed.description = description
+    
+    if color:
+        try:
+            color_clean = color.strip().lstrip("#")
+            embed.color = discord.Color(int(color_clean, 16))
+        except Exception:
+            embed.color = discord.Color.blue()
+    else:
+        embed.color = discord.Color.blue()
+    
+    if footer:
+        embed.set_footer(text=footer)
+    if thumbnail:
+        embed.set_thumbnail(url=thumbnail)
+    if image:
+        embed.set_image(url=image)
+    if author:
+        embed.set_author(name=author, icon_url=author_icon)
+    
+    return embed
+
 def create_bundle_embed(data, contract_address):
     """
     Create an embed for bundle distribution analysis

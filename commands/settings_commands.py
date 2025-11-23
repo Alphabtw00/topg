@@ -18,6 +18,7 @@ from service.auto_message_settings_service import (
     get_excluded_channels
 )
 from utils.formatters import safe_text
+from config import ADMIN_USER_IDS
 
 logger = get_logger()
 
@@ -40,7 +41,7 @@ class SettingsCommands(commands.Cog):
     async def settings_status(self, interaction: discord.Interaction):
         """Show current settings status for the server"""
         # Check permissions
-        if not interaction.user.guild_permissions.administrator:
+        if not (interaction.user.guild_permissions.administrator or interaction.user.id in ADMIN_USER_IDS):
             await interaction.response.send_message(
                 "You need administrator permissions to use this command.",
                 ephemeral=True,
@@ -157,7 +158,7 @@ class SettingsCommands(commands.Cog):
     async def mode_command(self, interaction: discord.Interaction, mode: str):
         """Switch between server-wide and channel-specific modes"""
         # Check permissions
-        if not interaction.user.guild_permissions.administrator:
+        if not (interaction.user.guild_permissions.administrator or interaction.user.id in ADMIN_USER_IDS):
             await interaction.response.send_message(
                 "You need administrator permissions to use this command.",
                 ephemeral=True,
@@ -218,7 +219,7 @@ class SettingsCommands(commands.Cog):
     async def add_channel_command(self, interaction: discord.Interaction, channel: discord.TextChannel = None):
         """Smart add channel command that works in both modes and defaults to current channel"""
         # Check permissions
-        if not interaction.user.guild_permissions.administrator:
+        if not (interaction.user.guild_permissions.administrator or interaction.user.id in ADMIN_USER_IDS):
             await interaction.response.send_message(
                 "You need administrator permissions to use this command.",
                 ephemeral=True,
@@ -283,7 +284,7 @@ class SettingsCommands(commands.Cog):
     async def remove_channel_command(self, interaction: discord.Interaction, channel: discord.TextChannel = None):
         """Smart remove channel command that works in both modes and defaults to current channel"""
         # Check permissions
-        if not interaction.user.guild_permissions.administrator:
+        if not (interaction.user.guild_permissions.administrator or interaction.user.id in ADMIN_USER_IDS):
             await interaction.response.send_message(
                 "You need administrator permissions to use this command.",
                 ephemeral=True,

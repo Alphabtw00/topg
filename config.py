@@ -111,7 +111,8 @@ TRADING_PLATFORMS = {
     "Axiom": "https://axiom.trade/t/{address}",
     "GMGN": "https://gmgn.ai/sol/token/{address}",
     "Photon": "https://photon-sol.tinyastro.io/en/lp/{address}",
-    "Neo BullX": "https://neo.bullx.io/terminal?chainId=1399811149&address={address}"
+    "Neo BullX": "https://neo.bullx.io/terminal?chainId=1399811149&address={address}",
+    "Padre" : "https://trade.padre.gg/trade/solana/{address}"
 }
 
 # ========================================================================================================================================================================================

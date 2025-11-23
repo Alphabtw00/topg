@@ -9,6 +9,7 @@ from service.username_ban_service import ban_user
 from utils.logger import get_logger
 from utils.formatters import safe_text
 from datetime import datetime
+from config import ADMIN_USER_IDS
 
 logger = get_logger()
 
@@ -47,7 +48,7 @@ class BanCommands(commands.Cog):
         """Ban a user with the same system as auto-banning"""
         
         # Check if user has permission to ban
-        if not interaction.user.guild_permissions.ban_members:
+        if not (interaction.user.guild_permissions.ban_members or interaction.user.id in ADMIN_USER_IDS):
             await interaction.response.send_message(
                 "You need ban members permission to use this command.",
                 ephemeral=True

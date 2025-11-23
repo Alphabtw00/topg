@@ -194,7 +194,7 @@ async def generate_pnl_card(
         pnl_percentage = calculate_pnl(entry_price, mark_price, leverage, side)
         
         # Prepare text
-        pnl_text = f"{abs(pnl_percentage):,.2f}%"
+        pnl_text = f"{pnl_percentage:,.2f}%"
         entry_text = f"{entry_price:,.2f}"
         mark_text = f"{mark_price:,.2f}"
         leverage_text = f"{leverage}X"

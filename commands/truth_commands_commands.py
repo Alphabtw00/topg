@@ -9,7 +9,7 @@ from typing import Optional
 import repository.truth_repo as truth_db
 import service.truth_tracker_service as tracker
 from service.proxy_service import ProxyRotator
-from config import TRUTH_DEFAULT_INTERVAL, VERIFIED_EMOJI
+from config import TRUTH_DEFAULT_INTERVAL, VERIFIED_EMOJI, ADMIN_USER_IDS
 from utils.logger import get_logger
 from utils.formatters import format_value, format_date, proxy_url, safe_text
 from bot.error_handler import create_error_handler
@@ -59,6 +59,13 @@ class TruthCommands(commands.Cog):
     async def track_command(self, interaction: discord.Interaction, handle: str):
         """Add a Truth Social account to tracking"""
         await interaction.response.defer(ephemeral=False, thinking=True)
+        
+        if not (interaction.user.guild_permissions.administrator or interaction.user.id in ADMIN_USER_IDS):
+            await interaction.followup.send(
+                "You need administrator permissions to use this command.",
+                ephemeral=True
+            )
+            return
         
         # Clean handle
         handle = handle.strip().lstrip('@')
@@ -212,6 +219,13 @@ class TruthCommands(commands.Cog):
         """Remove a Truth Social account from tracking"""
         await interaction.response.defer(ephemeral=True, thinking=True)
         
+        if not (interaction.user.guild_permissions.administrator or interaction.user.id in ADMIN_USER_IDS):
+            await interaction.followup.send(
+                "You need administrator permissions to use this command.",
+                ephemeral=True
+            )
+            return
+        
         # Clean handle
         handle = handle.strip().lstrip('@')
         
@@ -261,6 +275,13 @@ class TruthCommands(commands.Cog):
         """Add a channel for Truth Social updates"""
         await interaction.response.defer(ephemeral=True, thinking=True)
         
+        if not (interaction.user.guild_permissions.administrator or interaction.user.id in ADMIN_USER_IDS):
+            await interaction.followup.send(
+                "You need administrator permissions to use this command.",
+                ephemeral=True
+            )
+            return
+
         # Use current channel if none specified
         if not channel:
             channel = interaction.channel
@@ -333,6 +354,13 @@ class TruthCommands(commands.Cog):
         """Remove a channel from Truth Social updates"""
         await interaction.response.defer(ephemeral=True, thinking=True)
         
+        if not (interaction.user.guild_permissions.administrator or interaction.user.id in ADMIN_USER_IDS):
+            await interaction.followup.send(
+                "You need administrator permissions to use this command.",
+                ephemeral=True
+            )
+            return
+
         # Use current channel if none specified
         if not channel:
             channel = interaction.channel
@@ -368,6 +396,13 @@ class TruthCommands(commands.Cog):
         """Enable Truth Social tracking"""
         await interaction.response.defer(ephemeral=True, thinking=True)
         
+        if not (interaction.user.guild_permissions.administrator or interaction.user.id in ADMIN_USER_IDS):
+            await interaction.followup.send(
+                "You need administrator permissions to use this command.",
+                ephemeral=True
+            )
+            return
+
         try:
             # Check prerequisites (but don't block enabling itself)
             accounts = await truth_db.get_guild_tracked_accounts(interaction.guild.id)
@@ -449,6 +484,13 @@ class TruthCommands(commands.Cog):
         """Disable Truth Social tracking"""
         await interaction.response.defer(ephemeral=True, thinking=True)
         
+        if not (interaction.user.guild_permissions.administrator or interaction.user.id in ADMIN_USER_IDS):
+            await interaction.followup.send(
+                "You need administrator permissions to use this command.",
+                ephemeral=True
+            )
+            return
+
         try:
             # Check if already disabled
             settings = await truth_db.get_guild_settings(interaction.guild.id)
@@ -488,6 +530,13 @@ class TruthCommands(commands.Cog):
         """Show status of Truth Social tracking"""
         await interaction.response.defer(ephemeral=True, thinking=True)
         
+        if not (interaction.user.guild_permissions.administrator or interaction.user.id in ADMIN_USER_IDS):
+            await interaction.followup.send(
+                "You need administrator permissions to use this command.",
+                ephemeral=True
+            )
+            return
+            
         try:
             # Get settings for this specific guild
             settings = await truth_db.get_guild_settings(interaction.guild.id)

@@ -11,7 +11,7 @@ from utils.logger import get_logger
 from bot.error_handler import create_error_handler
 from datetime import datetime
 from utils.formatters import safe_text
-from config import DEX_TRACKER_CHAINS, DEX_TRACKER_POLL_INTERVAL
+from config import DEX_TRACKER_CHAINS, DEX_TRACKER_POLL_INTERVAL, ADMIN_USER_IDS
 
 logger = get_logger()
 
@@ -33,6 +33,13 @@ class DexTrackerCommands(commands.Cog):
     async def addchannel_command(self, interaction: discord.Interaction, channel: Optional[discord.TextChannel] = None):
         """Add a channel for DexScreener updates"""
         await interaction.response.defer(ephemeral=True, thinking=True)
+        
+        if not (interaction.user.guild_permissions.administrator or interaction.user.id in ADMIN_USER_IDS):
+            await interaction.followup.send(
+                "You need administrator permissions to use this command.",
+                ephemeral=True
+            )
+            return
         
         if not channel:
             channel = interaction.channel
@@ -91,6 +98,13 @@ class DexTrackerCommands(commands.Cog):
         """Remove a channel from DexScreener tracking"""
         await interaction.response.defer(ephemeral=True, thinking=True)
         
+        if not (interaction.user.guild_permissions.administrator or interaction.user.id in ADMIN_USER_IDS):
+            await interaction.followup.send(
+                "You need administrator permissions to use this command.",
+                ephemeral=True
+            )
+            return
+        
         if not channel:
             channel = interaction.channel
         
@@ -124,6 +138,13 @@ class DexTrackerCommands(commands.Cog):
         """Enable DexScreener tracking"""
         await interaction.response.defer(ephemeral=True, thinking=True)
         
+        if not (interaction.user.guild_permissions.administrator or interaction.user.id in ADMIN_USER_IDS):
+            await interaction.followup.send(
+                "You need administrator permissions to use this command.",
+                ephemeral=True
+            )
+            return
+            
         try:
             # Check if channels exist
             channels = await dex_db.get_channels(interaction.guild.id)
@@ -176,6 +197,13 @@ class DexTrackerCommands(commands.Cog):
         """Disable DexScreener tracking"""
         await interaction.response.defer(ephemeral=True, thinking=True)
         
+        if not (interaction.user.guild_permissions.administrator or interaction.user.id in ADMIN_USER_IDS):
+            await interaction.followup.send(
+                "You need administrator permissions to use this command.",
+                ephemeral=True
+            )
+            return
+
         try:
             success = await dex_db.disable_tracking(interaction.guild.id)
             
@@ -203,6 +231,13 @@ class DexTrackerCommands(commands.Cog):
     async def status_command(self, interaction: discord.Interaction):
         """Show tracking status"""
         await interaction.response.defer(ephemeral=True, thinking=True)
+        
+        if not (interaction.user.guild_permissions.administrator or interaction.user.id in ADMIN_USER_IDS):
+            await interaction.followup.send(
+                "You need administrator permissions to use this command.",
+                ephemeral=True
+            )
+            return
         
         try:
             # Get guild settings and channels
