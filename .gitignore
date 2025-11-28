@@ -1,21 +1,16 @@
-# # Ignore compiled Python files
-# __pycache__/
-# *.pyc
-# *.pyo
-# *.pyd
-
-# # Ignore virtual environment
-# venv/
-# .env
-
-# # Ignore logs
-# logs/
-# *.log
-
-# # Ignore JSON response files (if generated for debugging)
-# *.json
-
-
-# # Ignore VS Code settings (optional)
-# .vscode/
-# /bot.py
+who_added_bot_test.py
+social_tracker_forward.py
+second.py
+role.py
+preview.py
+preview.png
+highest.py
+helius.py
+github_response_3.json
+github_response_2.json
+github_response_1.json
+generate_files.py
+generate_document.py
+filtered_transactions.json
+embed.py
+.env
