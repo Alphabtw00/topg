@@ -10,7 +10,7 @@ import re
 from api.client import ApiClient, ApiEndpoint
 from utils.logger import get_logger
 from utils.validators import validate_github_url, parse_github_url, extract_scores, extract_code_review
-from utils.formatters import calculate_trust_score, calculate_verdict, calculate_final_legitimacy_score
+from utils.analytics_utils import calculate_trust_score, calculate_verdict, calculate_final_legitimacy_score
 from utils.helper import sanitize_code_content, get_file_extension
 from cachetools import TTLCache
 from config import (

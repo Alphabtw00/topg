@@ -1,4 +1,8 @@
+"""
+Helper utilities
+"""
 import re
+import discord
 from utils.logger import get_logger
 from typing import Optional, Dict, Any, List, Tuple
 from datetime import datetime
@@ -169,6 +173,41 @@ async def fetch_token_metadata_from_uri(uri: str) -> Optional[dict]:
         logger.debug(f"Error fetching token metadata from {uri}: {e}")
     
     return None
+
+async def get_webhook_info(webhook_url: str, bot) -> Optional[dict]:
+    """Extract webhook info from URL"""
+    try:
+        # Extract webhook ID and token from URL
+        # Format: https://discord.com/api/webhooks/{id}/{token}
+        parts = webhook_url.rstrip("/").split("/")
+        webhook_id = parts[-2]
+        
+        # Fetch the webhook
+        webhook = await bot.fetch_webhook(int(webhook_id))
+        
+        return {
+            "channel_id": webhook.channel_id,
+            "channel_name": webhook.channel.name if webhook.channel else "Unknown",
+            "guild_id": webhook.guild_id
+        }
+    except Exception as e:
+        logger.error(f"Failed to fetch webhook info: {e}")
+        return None   
+
+async def get_thread_name(thread_id: str, interaction: discord.Interaction) -> Optional[str]:
+    """Get thread/channel name from ID"""
+    try:
+        channel = await interaction.guild.fetch_channel(int(thread_id))
+        
+        if isinstance(channel, discord.Thread):
+            return f"🧵 {channel.name} (in #{channel.parent.name})"
+        elif isinstance(channel, discord.ForumChannel):
+            return f"📋 {channel.name}"
+        else:
+            return f"#{channel.name}"
+    except Exception as e:
+        logger.error(f"Failed to fetch thread/channel name: {e}")
+        return None
 
 def parse_market_cap_value(value: str) -> Optional[float]:
     """
@@ -529,3 +568,4 @@ async def populate_excel_data(wb, start_row: int, markets: List[Dict],
     except Exception as e:
         logger.error(f"Error populating Excel data: {e}")
         return None
+    

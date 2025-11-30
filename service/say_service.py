@@ -118,37 +118,144 @@ async def prepare_files(view, interaction: discord.Interaction) -> Tuple[List[di
 
     return files, None
 
-
 async def send_via_webhook(view, interaction: discord.Interaction, content, embed, files):
     """
     Send the message via webhook. Uses provided webhook URL if present,
     otherwise creates a temporary webhook in the target channel and deletes it.
+    Handles forum channels and threads using thread_id.
     """
     webhook = None
     created = False
+    sent = None  # Initialize sent variable
+    
     try:
+        # Check if target is a forum channel
+        is_forum = isinstance(view.target_channel, discord.ForumChannel)
+        
+        if is_forum:
+            # For forum channels, we need a thread ID
+            if not view.thread_id:
+                logger.error("Forum channel selected but no thread_id provided")
+                return None
+            
+            try:
+                # Get the thread from the forum
+                thread = await view.target_channel.guild.fetch_channel(int(view.thread_id))
+                
+                if not isinstance(thread, discord.Thread) or thread.parent_id != view.target_channel.id:
+                    logger.error(f"Invalid thread ID {view.thread_id} or thread doesn't belong to forum {view.target_channel.id}")
+                    return None
+                
+                # Create webhook in parent forum and send to thread
+                webhook = await view.target_channel.create_webhook(
+                    name=view.webhook_name or "Say Webhook",
+                    reason=f"Say command by {interaction.user}"
+                )
+                created = True
+                
+                sent = await webhook.send(
+                    content=content,
+                    embed=embed,
+                    files=files,
+                    username=view.webhook_name or interaction.guild.me.display_name,
+                    avatar_url=view.webhook_avatar,
+                    thread=thread,
+                    wait=True
+                )
+                
+                if created:
+                    try:
+                        await webhook.delete()
+                    except Exception:
+                        logger.debug("send_via_webhook: failed to delete temp webhook (non-fatal)")
+                
+                return sent
+                
+            except (ValueError, discord.NotFound) as e:
+                logger.error(f"Thread not found or invalid: {e}")
+                return None
+        
+        # Non-forum channel handling
         if getattr(view, "webhook_url", None):
             # from_url uses an aiohttp session; reuse bot's http session
             webhook = discord.Webhook.from_url(view.webhook_url, session=view.bot.http._HTTPClient__session)
+            
+            # Check if we need to post to a specific thread
+            if view.thread_id:
+                try:
+                    thread = await interaction.guild.fetch_channel(int(view.thread_id))
+                    if isinstance(thread, discord.Thread):
+                        sent = await webhook.send(
+                            content=content,
+                            embed=embed,
+                            files=files,
+                            thread=thread,
+                            wait=True
+                        )
+                    else:
+                        logger.error(f"Thread ID {view.thread_id} is not a valid thread")
+                        return None
+                except Exception as e:
+                    logger.error(f"Failed to fetch/use thread {view.thread_id}: {e}")
+                    return None
+            else:
+                # Send to webhook's default channel
+                sent = await webhook.send(
+                    content=content,
+                    embed=embed,
+                    files=files,
+                    wait=True
+                )
         else:
-            webhook = await view.target_channel.create_webhook(name=view.webhook_name or "Say Webhook", reason=f"Say command by {interaction.user}")
-            created = True
+            # Check if target is a thread
+            if isinstance(view.target_channel, discord.Thread):
+                # For threads, we need the parent channel to create webhook
+                parent = view.target_channel.parent
+                webhook = await parent.create_webhook(
+                    name=view.webhook_name or "Say Webhook",
+                    reason=f"Say command by {interaction.user}"
+                )
+                created = True
+                
+                # Send to the specific thread
+                sent = await webhook.send(
+                    content=content,
+                    embed=embed,
+                    files=files,
+                    username=view.webhook_name or interaction.guild.me.display_name,
+                    avatar_url=view.webhook_avatar,
+                    thread=view.target_channel,
+                    wait=True
+                )
+            else:
+                # Regular text channel
+                webhook = await view.target_channel.create_webhook(
+                    name=view.webhook_name or "Say Webhook",
+                    reason=f"Say command by {interaction.user}"
+                )
+                created = True
+                
+                sent = await webhook.send(
+                    content=content,
+                    embed=embed,
+                    files=files,
+                    username=view.webhook_name or interaction.guild.me.display_name,
+                    avatar_url=view.webhook_avatar,
+                    wait=True
+                )
 
-        # send - discord.Webhook.send returns a WebhookMessage when wait=True
-        sent = await webhook.send(content=content, embed=embed, files=files, username=view.webhook_name or interaction.guild.me.display_name, avatar_url=view.webhook_avatar, wait=True)
-
-        if created:
+        if created and webhook:
             try:
                 await webhook.delete()
             except Exception:
                 logger.debug("send_via_webhook: failed to delete temp webhook (non-fatal)")
 
         return sent
+        
     except Exception as e:
         logger.error(f"Webhook send failed: {e}", exc_info=True)
-        await interaction.followup.send(f"❌ Webhook error: {str(e)[:200]}", ephemeral=True)
+        # Don't send error to user - just log and return None
         return None
-
 
 async def send_via_bot(view, reply_message, content, embed, files):
     """

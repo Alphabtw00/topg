@@ -3,22 +3,95 @@ Complete fixed modals.py with all naming conflicts resolved
 """
 import discord
 from urllib.parse import urlparse
+from utils.helper import get_webhook_info, get_thread_name
+from utils.validators import is_valid_webhook_url
 from utils.logger import get_logger
 
 logger = get_logger()
 
 
-def is_valid_webhook_url(url: str) -> bool:
-    """Validate Discord webhook URL format"""
-    if not url:
-        return False
-    try:
-        p = urlparse(url)
-        if p.scheme not in ("http", "https"):
-            return False
-        return "/api/webhooks/" in p.path and ("discord" in p.netloc or "discordapp" in p.netloc)
-    except Exception:
-        return False
+class ChannelSelectModal(discord.ui.Modal, title="Select Target Channel"):
+    """Modal for selecting which channel to post in"""
+    
+    channel_input = discord.ui.TextInput(
+        label="Channel ID or #mention",
+        style=discord.TextStyle.short,
+        placeholder="Right-click channel > Copy Channel ID, or type #channel-name",
+        required=True
+    )
+    
+    def __init__(self, view):
+        super().__init__()
+        self.view = view
+        # Prefill with current channel
+        if view.target_channel:
+            self.channel_input.default = str(view.target_channel.id)
+    
+    async def on_submit(self, interaction: discord.Interaction):
+        try:
+            channel_str = self.channel_input.value.strip()
+            
+            # Try parsing as channel mention first
+            if channel_str.startswith("<#") and channel_str.endswith(">"):
+                channel_id = int(channel_str[2:-1])
+            else:
+                # Try as raw ID
+                channel_id = int(channel_str)
+            
+            # Fetch the channel
+            channel = interaction.guild.get_channel(channel_id)
+            if not channel:
+                channel = await interaction.guild.fetch_channel(channel_id)
+            
+            # Verify it's a text-based channel
+            if not isinstance(channel, (discord.TextChannel, discord.Thread, discord.ForumChannel)):
+                await interaction.response.send_message(
+                    "❌ That's not a valid text channel, thread, or forum!",
+                    ephemeral=True
+                )
+                return
+            
+            # Check permissions
+            perms = channel.permissions_for(interaction.guild.me)
+            if not perms.send_messages:
+                await interaction.response.send_message(
+                    f"❌ I don't have permission to send messages in {channel.mention}!",
+                    ephemeral=True
+                )
+                return
+            
+            self.view.target_channel = channel
+            self.view.rebuild_ui()
+            await interaction.response.edit_message(
+                embed=self.view.get_config_embed(),
+                view=self.view
+            )
+            await interaction.followup.send(
+                f"✅ Target channel set to {channel.mention}",
+                ephemeral=True
+            )
+        
+        except ValueError:
+            await interaction.response.send_message(
+                "❌ Invalid channel ID or mention format!",
+                ephemeral=True
+            )
+        except discord.NotFound:
+            await interaction.response.send_message(
+                "❌ Channel not found!",
+                ephemeral=True
+            )
+        except discord.Forbidden:
+            await interaction.response.send_message(
+                "❌ I don't have permission to access that channel!",
+                ephemeral=True
+            )
+        except Exception as e:
+            logger.error(f"Error in ChannelSelectModal: {e}", exc_info=True)
+            await interaction.response.send_message(
+                f"❌ Error selecting channel: {str(e)[:200]}",
+                ephemeral=True
+            )
 
 
 class MessageContentModal(discord.ui.Modal, title="Message Content"):
@@ -302,29 +375,35 @@ class AttachmentModal(discord.ui.Modal, title="Add Attachment"):
                     ephemeral=True
                 )
 
-
 class WebhookConfigModal(discord.ui.Modal, title="Webhook Configuration"):
     """Modal for configuring webhook settings - supports multiple webhook URLs"""
     
     webhook_urls_input = discord.ui.TextInput(
-        label="Webhook URL(s) - one per line",
+        label="Webhook URL(s) - one per line (OPTIONAL)",
         style=discord.TextStyle.paragraph,
-        placeholder="https://discord.com/api/webhooks/...\nhttps://discord.com/api/webhooks/...",
+        placeholder="https://discord.com/api/webhooks/...\nhttps://discord.com/api/webhooks/...\n\nLeave empty to auto-create temporary webhook",
+        required=False
+    )
+    
+    thread_id_input = discord.ui.TextInput(
+        label="Thread ID (OPTIONAL)",
+        style=discord.TextStyle.short,
+        placeholder="For forum posts or when using custom webhook URLs with threads (right-click thread > Copy ID)",
         required=False
     )
     
     webhook_name_input = discord.ui.TextInput(
-        label="Webhook Name",
+        label="Display Name (OPTIONAL)",
         style=discord.TextStyle.short,
-        placeholder="Display name for the webhook",
+        placeholder="Custom webhook display name (if not using custom URL)",
         required=False,
         max_length=80
     )
     
     webhook_avatar_input = discord.ui.TextInput(
-        label="Webhook Avatar URL",
+        label="Avatar URL (OPTIONAL)",
         style=discord.TextStyle.short,
-        placeholder="https://example.com/avatar.png",
+        placeholder="https://example.com/avatar.png (if not using custom URL)",
         required=False
     )
     
@@ -334,6 +413,8 @@ class WebhookConfigModal(discord.ui.Modal, title="Webhook Configuration"):
         # Prefill existing values
         if view.webhook_urls:
             self.webhook_urls_input.default = "\n".join(view.webhook_urls)
+        if view.thread_id:
+            self.thread_id_input.default = view.thread_id
         if view.webhook_name:
             self.webhook_name_input.default = view.webhook_name
         if view.webhook_avatar:
@@ -341,19 +422,26 @@ class WebhookConfigModal(discord.ui.Modal, title="Webhook Configuration"):
     
     async def on_submit(self, interaction: discord.Interaction):
         try:
-            # Parse webhook URLs (one per line)
+            
             urls_text = self.webhook_urls_input.value.strip()
             
             if urls_text:
                 urls = [url.strip() for url in urls_text.split("\n") if url.strip()]
                 
-                # Validate all URLs
                 invalid_urls = []
                 valid_urls = []
+                webhook_channel_names = []
                 
                 for url in urls:
                     if is_valid_webhook_url(url):
                         valid_urls.append(url)
+                        
+                        # Use helper method to get webhook info
+                        webhook_info = await get_webhook_info(url, self.view.bot)
+                        if webhook_info:
+                            webhook_channel_names.append(f"#{webhook_info['channel_name']}")
+                        else:
+                            webhook_channel_names.append("Unknown channel")
                     else:
                         invalid_urls.append(url)
                 
@@ -366,16 +454,30 @@ class WebhookConfigModal(discord.ui.Modal, title="Webhook Configuration"):
                     return
                 
                 self.view.webhook_urls = valid_urls
+                self.view.webhook_channel_names = webhook_channel_names
                 
-                # Show success message with count
-                success_msg = f"✅ {len(valid_urls)} webhook URL(s) configured!"
-                if len(valid_urls) > 1:
-                    success_msg += "\n\nYour message will be sent to all webhooks."
+                success_msg = f"✅ {len(valid_urls)} webhook URL(s) configured!\n"
+                if webhook_channel_names:
+                    success_msg += f"**Channels:** {', '.join(webhook_channel_names)}\n\n"
+                success_msg += "📝 **Note:** When using custom webhook URLs:\n"
+                success_msg += "• Name/avatar settings will be ignored (use webhook's defaults)\n"
+                success_msg += "• You can specify a thread ID to post in specific threads\n"
+                success_msg += "• Message will be sent to all configured webhooks"
             else:
-                # Clear webhooks
                 self.view.webhook_urls = []
-                success_msg = "✅ Webhooks cleared. A temporary webhook will be created when sending."
+                self.view.webhook_channel_names = []
+                success_msg = "✅ Webhooks cleared. A temporary webhook will be created when sending.\n\n"
+                success_msg += "You can now use the name and avatar settings."
             
+            # Handle thread ID - use helper method
+            thread_id_str = self.thread_id_input.value.strip()
+            if thread_id_str:
+                thread_name = await get_thread_name(thread_id_str, interaction)
+                self.view.thread_name = thread_name
+            else:
+                self.view.thread_name = None
+            
+            self.view.thread_id = thread_id_str or None
             self.view.webhook_name = self.webhook_name_input.value.strip() or None
             self.view.webhook_avatar = self.webhook_avatar_input.value.strip() or None
             self.view.rebuild_ui()
@@ -392,7 +494,6 @@ class WebhookConfigModal(discord.ui.Modal, title="Webhook Configuration"):
                 f"❌ Error updating webhook config: {str(e)[:200]}",
                 ephemeral=True
             )
-
 
 class ReplyConfigModal(discord.ui.Modal, title="Reply Configuration"):
     """Modal for setting message to reply to"""

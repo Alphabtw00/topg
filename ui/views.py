@@ -16,7 +16,8 @@ from ui.modals import (
     EmbedImagesModal,
     WebhookConfigModal,
     ReplyConfigModal,
-    AttachmentModal
+    AttachmentModal,
+    ChannelSelectModal
 )
 from ui.embeds import create_say_embed
 from service.say_service import (
@@ -558,6 +559,7 @@ class AllTopicsButton(discord.ui.Button):
         
         await interaction.response.send_message(embed=embed, ephemeral=True)
 
+
 class SayConfigView(discord.ui.View):
     """Interactive view for configuring the say command with progressive disclosure"""
     
@@ -566,32 +568,25 @@ class SayConfigView(discord.ui.View):
         self.interaction = interaction
         self.bot = interaction.client
         
-        # Stage: method -> configure -> ready
         self.stage = "method"
         
-        # configuration
-        self.send_method = None         # "bot" or "webhook"
+        self.send_method = None
         self.target_channel = interaction.channel
         
-        # content flags
         self.has_message = False
         self.has_embed = False
         self.has_attachment = False
         
-        # attachments
         self.attachment = None
         self.attachment_url = None
         self.attachment_message_link = None
         self.attachment_filename = None
         
-        # misc
         self.spoiler = False
         self.reply_to = None
         
-        # message content
         self.message_content = None
         
-        # embed content
         self.embed_title = None
         self.embed_description = None
         self.embed_color = None
@@ -601,14 +596,13 @@ class SayConfigView(discord.ui.View):
         self.embed_author = None
         self.embed_author_icon = None
         
-        # webhook settings
-        self.webhook_urls = []  # list of webhook URLs
+        self.webhook_urls = []
         self.webhook_name = None
         self.webhook_avatar = None
+        self.thread_id = None
         
         self.rebuild_ui()
     
-    # UI builder
     def rebuild_ui(self):
         self.clear_items()
         if self.stage == "method":
@@ -619,40 +613,35 @@ class SayConfigView(discord.ui.View):
             self._add_final_buttons()
     
     def _add_method_buttons(self):
-        bot_btn = discord.ui.Button(
-            label="Send as Bot", 
-            style=discord.ButtonStyle.primary, 
-            emoji="🤖",
-            row=0
-        )
+        bot_btn = discord.ui.Button(label="Send as Bot", style=discord.ButtonStyle.primary, emoji="🤖", row=0)
         bot_btn.callback = self._choose_bot
         self.add_item(bot_btn)
         
-        webhook_btn = discord.ui.Button(
-            label="Send as Webhook", 
-            style=discord.ButtonStyle.primary, 
-            emoji="🔗",
-            row=0
-        )
+        webhook_btn = discord.ui.Button(label="Send as Webhook", style=discord.ButtonStyle.primary, emoji="🔗", row=0)
         webhook_btn.callback = self._choose_webhook
         self.add_item(webhook_btn)
         
-        cancel_btn = discord.ui.Button(
-            label="Cancel", 
-            style=discord.ButtonStyle.danger, 
-            emoji="✖️",
-            row=1
-        )
+        cancel_btn = discord.ui.Button(label="Cancel", style=discord.ButtonStyle.danger, emoji="✖️", row=1)
         cancel_btn.callback = self._cancel
         self.add_item(cancel_btn)
-    
+
     def _add_config_buttons(self):
-        # Row 0: Content type buttons
+        # Only show channel selector if NOT using custom webhook URLs
+        if not self.webhook_urls:
+            channel_btn = discord.ui.Button(
+                label=f"Channel: #{self.target_channel.name}",
+                style=discord.ButtonStyle.primary,
+                emoji="📢",
+                row=0
+            )
+            channel_btn.callback = self._select_channel
+            self.add_item(channel_btn)
+        
         msg_btn = discord.ui.Button(
             label="Message" if not self.has_message else "✓ Message",
             style=discord.ButtonStyle.success if self.has_message else discord.ButtonStyle.secondary,
             emoji="💬",
-            row=0
+            row=1
         )
         msg_btn.callback = self._edit_message
         self.add_item(msg_btn)
@@ -661,7 +650,7 @@ class SayConfigView(discord.ui.View):
             label="Embed" if not self.has_embed else "✓ Embed",
             style=discord.ButtonStyle.success if self.has_embed else discord.ButtonStyle.secondary,
             emoji="📋",
-            row=0
+            row=1
         )
         embed_btn.callback = self._edit_embed
         self.add_item(embed_btn)
@@ -670,29 +659,22 @@ class SayConfigView(discord.ui.View):
             label="Attachment" if not self.has_attachment else "✓ Attachment",
             style=discord.ButtonStyle.success if self.has_attachment else discord.ButtonStyle.secondary,
             emoji="📎",
-            row=0
+            row=1
         )
         attach_btn.callback = self._add_attachment
         self.add_item(attach_btn)
         
-        # Row 1: Additional options (only show if embed exists)
         if self.has_embed:
-            images_btn = discord.ui.Button(
-                label="Embed Images",
-                style=discord.ButtonStyle.secondary,
-                emoji="🖼️",
-                row=1
-            )
+            images_btn = discord.ui.Button(label="Embed Images", style=discord.ButtonStyle.secondary, emoji="🖼️", row=2)
             images_btn.callback = self._edit_images
             self.add_item(images_btn)
         
-        # Row 2: Reply, Webhook, Spoiler
         if self.send_method == "bot":
             reply_btn = discord.ui.Button(
                 label="Reply To" if not self.reply_to else "✓ Reply Set",
                 style=discord.ButtonStyle.success if self.reply_to else discord.ButtonStyle.secondary,
                 emoji="↩️",
-                row=2
+                row=3
             )
             reply_btn.callback = self._set_reply
             self.add_item(reply_btn)
@@ -702,7 +684,7 @@ class SayConfigView(discord.ui.View):
                 label=f"Webhooks ({len(self.webhook_urls)})" if self.webhook_urls else "Webhook Config",
                 style=discord.ButtonStyle.success if self.webhook_urls else discord.ButtonStyle.secondary,
                 emoji="⚙️",
-                row=2
+                row=3
             )
             webhook_btn.callback = self._config_webhook
             self.add_item(webhook_btn)
@@ -711,91 +693,58 @@ class SayConfigView(discord.ui.View):
             label=f"Spoiler: {'ON' if self.spoiler else 'OFF'}",
             style=discord.ButtonStyle.success if self.spoiler else discord.ButtonStyle.secondary,
             emoji="🤫",
-            row=2
+            row=3
         )
         spoiler_btn.callback = self._toggle_spoiler
         self.add_item(spoiler_btn)
         
-        # Row 3: Navigation
         if self._is_ready_to_send():
-            preview_btn = discord.ui.Button(
-                label="Preview & Send",
-                style=discord.ButtonStyle.primary,
-                emoji="👁️",
-                row=3
-            )
+            preview_btn = discord.ui.Button(label="Preview & Send", style=discord.ButtonStyle.primary, emoji="👁️", row=4)
             preview_btn.callback = self._go_to_ready
             self.add_item(preview_btn)
         
-        back_btn = discord.ui.Button(
-            label="Back",
-            style=discord.ButtonStyle.secondary,
-            emoji="⬅️",
-            row=3
-        )
+        back_btn = discord.ui.Button(label="Back", style=discord.ButtonStyle.secondary, emoji="⬅️", row=4)
         back_btn.callback = self._back_to_method
         self.add_item(back_btn)
         
-        cancel_btn = discord.ui.Button(
-            label="Cancel",
-            style=discord.ButtonStyle.danger,
-            emoji="✖️",
-            row=3
-        )
+        cancel_btn = discord.ui.Button(label="Cancel", style=discord.ButtonStyle.danger, emoji="✖️", row=4)
         cancel_btn.callback = self._cancel
         self.add_item(cancel_btn)
-    
+
     def _add_final_buttons(self):
-        send_btn = discord.ui.Button(
-            label="Send Message",
-            style=discord.ButtonStyle.success,
-            emoji="✉️",
-            row=0
-        )
+        send_btn = discord.ui.Button(label="Send Message", style=discord.ButtonStyle.success, emoji="✉️", row=0)
         send_btn.callback = self._send_message
         self.add_item(send_btn)
         
-        back_btn = discord.ui.Button(
-            label="Back to Edit",
-            style=discord.ButtonStyle.secondary,
-            emoji="⬅️",
-            row=0
-        )
+        back_btn = discord.ui.Button(label="Back to Edit", style=discord.ButtonStyle.secondary, emoji="⬅️", row=0)
         back_btn.callback = self._back_to_configure
         self.add_item(back_btn)
         
-        cancel_btn = discord.ui.Button(
-            label="Cancel",
-            style=discord.ButtonStyle.danger,
-            emoji="✖️",
-            row=0
-        )
+        cancel_btn = discord.ui.Button(label="Cancel", style=discord.ButtonStyle.danger, emoji="✖️", row=0)
         cancel_btn.callback = self._cancel
         self.add_item(cancel_btn)
-    
-    # helpers
+
     def _has_embed_content(self):
         return any([
-            self.embed_title, 
-            self.embed_description, 
-            self.embed_color, 
-            self.embed_footer, 
-            self.embed_image, 
-            self.embed_thumbnail, 
+            self.embed_title,
+            self.embed_description,
+            self.embed_color,
+            self.embed_footer,
+            self.embed_image,
+            self.embed_thumbnail,
             self.embed_author
         ])
-    
+
     def _is_ready_to_send(self):
         return self.has_message or self.has_embed or self.has_attachment
-    
+
     def get_config_embed(self):
-        # stage-specific embed
         if self.stage == "method":
             embed = discord.Embed(
                 title="📨 Say Command — Step 1/2",
                 description=(
                     "Choose how to send your message:\n\n"
-                    "🤖 **Bot** — Send as the bot (can reply to messages)\n"
+                    "🤖 **Bot** — Send as the bot\n"
                     "🔗 **Webhook** — Send with custom name & avatar"
                 ),
                 color=discord.Color.blue()
@@ -806,17 +755,25 @@ class SayConfigView(discord.ui.View):
         if self.stage == "configure":
             embed = discord.Embed(
                 title="📨 Say Command — Step 2/2 (Configure)",
-                description=f"**Send Method:** {self.send_method.upper()}\n**Target:** {self.target_channel.mention}",
                 color=discord.Color.blue()
             )
             
-            # Build preview
+            # Different description based on whether custom webhooks are used
+            if self.webhook_urls:
+                embed.description = (
+                    f"**Send Method:** {self.send_method.upper()}\n"
+                    f"**Webhooks:** {len(self.webhook_urls)} custom URL(s) configured\n\n"
+                    f"⚠️ **Using custom webhooks:** Channel selection is disabled. "
+                    f"Your message will be sent to the webhook's configured channel(s). "
+                    f"Use Thread ID if you need to target specific threads."
+                )
+            else:
+                embed.description = f"**Send Method:** {self.send_method.upper()}\n**Target:** {self.target_channel.mention}"
+            
             preview_lines = []
             
             if self.has_message and self.message_content:
-                content_preview = self.message_content
-                if len(content_preview) > 100:
-                    content_preview = content_preview[:97] + "..."
+                content_preview = self.message_content[:100] + "..." if len(self.message_content) > 100 else self.message_content
                 preview_lines.append(f"💬 **Message:** {content_preview}")
             
             if self.has_embed:
@@ -845,34 +802,35 @@ class SayConfigView(discord.ui.View):
             if self.spoiler:
                 preview_lines.append("🤫 **Spoiler:** Enabled")
             
-            if preview_lines:
-                embed.add_field(
-                    name="Current Configuration",
-                    value="\n".join(preview_lines),
-                    inline=False
-                )
-            else:
-                embed.add_field(
-                    name="Current Configuration",
-                    value="*No content added yet. Click the buttons above to add content.*",
-                    inline=False
-                )
+            embed.add_field(
+                name="Current Configuration",
+                value="\n".join(preview_lines) if preview_lines else "*No content added yet.*",
+                inline=False
+            )
             
             embed.set_footer(text="Add content using the buttons above. Click 'Preview & Send' when ready.")
             return embed
         
-        # ready stage
+        # stage == "ready"
         embed = discord.Embed(
             title="📨 Say Command — Final Review",
-            description=f"**Send Method:** {self.send_method.upper()}\n**Target:** {self.target_channel.mention}",
             color=discord.Color.green()
         )
         
-        # Full preview
+        # Different description based on whether custom webhooks are used
+        if self.webhook_urls:
+            embed.description = (
+                f"**Send Method:** {self.send_method.upper()}\n"
+                f"**Webhooks:** {len(self.webhook_urls)} custom URL(s)\n\n"
+                f"Your message will be sent to all configured webhooks."
+            )
+        else:
+            embed.description = f"**Send Method:** {self.send_method.upper()}\n**Target:** {self.target_channel.mention}"
+        
         if self.has_message and self.message_content:
             embed.add_field(
                 name="💬 Message Content",
-                value=self.message_content if len(self.message_content) <= 1024 else self.message_content[:1021] + "...",
+                value=self.message_content[:1021] + "..." if len(self.message_content) > 1024 else self.message_content,
                 inline=False
             )
         
@@ -916,77 +874,88 @@ class SayConfigView(discord.ui.View):
         if self.webhook_name:
             extra_info.append(f"🔗 Webhook name: {self.webhook_name}")
         if self.webhook_urls:
-            extra_info.append(f"🔗 Webhook URLs: {len(self.webhook_urls)} configured")
+            # Show webhook channel info if available
+            if hasattr(self, 'webhook_channel_names') and self.webhook_channel_names:
+                extra_info.append(f"🔗 Webhook channels: {', '.join(self.webhook_channel_names)}")
+            else:
+                extra_info.append(f"🔗 Webhook URLs: {len(self.webhook_urls)} configured")
+        if self.thread_id:
+            # Show thread name if available
+            if hasattr(self, 'thread_name') and self.thread_name:
+                extra_info.append(f"🧵 Thread: {self.thread_name}")
+            else:
+                extra_info.append(f"🧵 Thread ID: {self.thread_id}")
         
         if extra_info:
             embed.add_field(name="Additional Settings", value="\n".join(extra_info), inline=False)
         
         embed.set_footer(text="Review your message and click 'Send Message' to send it!")
         return embed
-    
-    # ==================== callbacks (async handlers) ====================
-    
+
     async def _choose_bot(self, interaction: discord.Interaction):
         self.send_method = "bot"
         self.stage = "configure"
         self.rebuild_ui()
         await interaction.response.edit_message(embed=self.get_config_embed(), view=self)
-    
+
     async def _choose_webhook(self, interaction: discord.Interaction):
         self.send_method = "webhook"
         self.stage = "configure"
         self.rebuild_ui()
         await interaction.response.edit_message(embed=self.get_config_embed(), view=self)
-    
+
+    async def _select_channel(self, interaction: discord.Interaction):
+        modal = ChannelSelectModal(self)
+        await interaction.response.send_modal(modal)
+
     async def _edit_message(self, interaction: discord.Interaction):
         modal = MessageContentModal(self)
         await interaction.response.send_modal(modal)
-    
+
     async def _edit_embed(self, interaction: discord.Interaction):
         modal = EmbedContentModal(self)
         await interaction.response.send_modal(modal)
-    
+
     async def _edit_images(self, interaction: discord.Interaction):
         modal = EmbedImagesModal(self)
         await interaction.response.send_modal(modal)
-    
+
     async def _add_attachment(self, interaction: discord.Interaction):
         modal = AttachmentModal(self)
         await interaction.response.send_modal(modal)
-    
+
     async def _set_reply(self, interaction: discord.Interaction):
         modal = ReplyConfigModal(self)
         await interaction.response.send_modal(modal)
-    
+
     async def _config_webhook(self, interaction: discord.Interaction):
         modal = WebhookConfigModal(self)
         await interaction.response.send_modal(modal)
-    
+
     async def _toggle_spoiler(self, interaction: discord.Interaction):
         self.spoiler = not self.spoiler
         self.rebuild_ui()
         await interaction.response.edit_message(embed=self.get_config_embed(), view=self)
-    
+
     async def _go_to_ready(self, interaction: discord.Interaction):
         self.stage = "ready"
         self.rebuild_ui()
         await interaction.response.edit_message(embed=self.get_config_embed(), view=self)
-    
+
     async def _back_to_method(self, interaction: discord.Interaction):
         self.stage = "method"
         self.rebuild_ui()
         await interaction.response.edit_message(embed=self.get_config_embed(), view=self)
-    
+
     async def _back_to_configure(self, interaction: discord.Interaction):
         self.stage = "configure"
         self.rebuild_ui()
         await interaction.response.edit_message(embed=self.get_config_embed(), view=self)
-    
+
     async def _send_message(self, interaction: discord.Interaction):
         await interaction.response.defer(ephemeral=True)
         
         try:
-            # find reply message if applicable
             reply_message = None
             if self.reply_to:
                 reply_message, found_channel = await find_reply_message(self, interaction)
@@ -994,7 +963,6 @@ class SayConfigView(discord.ui.View):
                     return
                 self.target_channel = found_channel
             
-            # prepare embed
             embed_obj = None
             if self.has_embed and self._has_embed_content():
                 embed_obj = create_say_embed(
@@ -1008,7 +976,6 @@ class SayConfigView(discord.ui.View):
                     author_icon=self.embed_author_icon
                 )
             
-            # prepare files
             files, file_error = await prepare_files(self, interaction)
             if file_error:
                 await interaction.followup.send(f"❌ {file_error}", ephemeral=True)
@@ -1018,22 +985,17 @@ class SayConfigView(discord.ui.View):
             if content and self.spoiler and not files:
                 content = f"||{content}||"
             
-            # send via webhook(s) or bot
             sent_count = 0
+            
             if self.send_method == "webhook":
                 if self.webhook_urls:
-                    # Send to multiple webhooks
                     for webhook_url in self.webhook_urls:
-                        # Need to prepare files again for each webhook
                         files_copy, _ = await prepare_files(self, interaction)
-                        
-                        # Temporarily set single webhook_url for send function
                         original_urls = self.webhook_urls
                         self.webhook_url = webhook_url
                         
                         sent = await send_via_webhook(self, interaction, content, embed_obj, files_copy)
                         
-                        # Restore webhook_urls list
                         self.webhook_urls = original_urls
                         delattr(self, 'webhook_url')
                         
@@ -1047,13 +1009,12 @@ class SayConfigView(discord.ui.View):
                         )
                     else:
                         await interaction.followup.send(
-                            f"❌ Failed to send to any webhooks.",
+                            "❌ Failed to send to any webhooks.",
                             ephemeral=True
                         )
                         return
                 else:
-                    # No webhook URLs, create temp webhook
-                    self.webhook_url = None  # Signal to create temp
+                    self.webhook_url = None
                     sent = await send_via_webhook(self, interaction, content, embed_obj, files)
                     delattr(self, 'webhook_url')
                     
@@ -1063,8 +1024,8 @@ class SayConfigView(discord.ui.View):
                             f"✅ Message sent successfully in {self.target_channel.mention}!",
                             ephemeral=True
                         )
+            
             else:
-                # Bot send
                 sent = await send_via_bot(self, reply_message, content, embed_obj, files)
                 if sent:
                     sent_count = 1
@@ -1074,17 +1035,9 @@ class SayConfigView(discord.ui.View):
                     )
             
             if sent_count > 0:
-                # Record usage if bot has this method
                 if hasattr(self.bot, 'record_command_usage'):
                     self.bot.record_command_usage("say")
                 
-                logger.info(
-                    f"Say command used by {safe_text(interaction.user.display_name)} "
-                    f"in {safe_text(interaction.guild.name)} | "
-                    f"method={self.send_method} webhooks={sent_count if self.send_method == 'webhook' else 0}"
-                )
-                
-                # Disable all buttons
                 for item in self.children:
                     item.disabled = True
                 
@@ -1097,12 +1050,11 @@ class SayConfigView(discord.ui.View):
                 self.stop()
         
         except Exception as e:
-            logger.error(f"Send error in say command: {e}", exc_info=True)
             await interaction.followup.send(
                 f"❌ An error occurred while sending: {str(e)[:200]}",
                 ephemeral=True
             )
-    
+
     async def _cancel(self, interaction: discord.Interaction):
         for item in self.children:
             item.disabled = True
@@ -1114,6 +1066,7 @@ class SayConfigView(discord.ui.View):
         )
         await interaction.response.edit_message(embed=cancel_embed, view=self)
         self.stop()
-    
+
     async def on_timeout(self):
         await handle_view_timeout(self)
+

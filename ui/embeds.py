@@ -15,6 +15,7 @@ from utils.formatters import (
     format_metrics, proxy_url, format_category
 )
 from utils.helper import safe_add_field, fetch_token_metadata_from_uri, get_token_metadata_and_links, calculate_mc_range, get_first_candle_info
+from utils.analytics_utils import calculate_ath_marketcap
 from utils.logger import get_logger
 from repository.truth_repo import get_guild_settings as get_truth_settings
 from repository.migration_tracker_repo import get_guild_settings as get_migration_settings
@@ -172,7 +173,6 @@ def update_ath_in_embed(embed_dict, ath_price, ath_timestamp, current_price, cur
     Returns:
         dict: Updated embed dictionary
     """
-    from utils.formatters import calculate_ath_marketcap
     # Find the ATH field
     for field in embed_dict["fields"]:
         if field["name"] == "🏆 ATH":

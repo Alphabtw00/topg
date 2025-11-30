@@ -10,6 +10,7 @@ from urllib.parse import urlparse
 from utils.logger import get_logger
 from functools import lru_cache
 
+
 logger = get_logger()
 
 # Compile regex patterns for efficiency
@@ -32,7 +33,62 @@ def validate_solana_address(candidate: str) -> bool:
         return len(base58.b58decode(candidate)) == 32
     except Exception:
         return False
+ 
+@lru_cache(maxsize=100)
+def validate_github_url(url: str) -> bool:
+    """
+    Validate GitHub URL format.
     
+    Args:
+        url: URL to validate
+        
+    Returns:
+        True if valid, False otherwise
+    """
+    if not url:
+        return False
+        
+    # Fast format check with compiled regex
+    return bool(GITHUB_REPO_REGEX.search(url))
+
+@lru_cache(maxsize=100)
+def validate_url(url: str) -> bool:
+    """
+    Validate if a string is a valid URL
+    
+    Args:
+        url: String to validate
+        
+    Returns:
+        bool: True if valid URL, False otherwise
+    """
+    # Add http:// if missing
+    if url and not url.startswith(('http://', 'https://')):
+        url = 'https://' + url
+    
+    # Fast regex check
+    if not WEBSITE_REGEX.match(url):
+        return False
+    
+    # More thorough validation
+    try:
+        result = urlparse(url)
+        return all([result.scheme, result.netloc])
+    except Exception:
+        return False
+
+def is_valid_webhook_url(url: str) -> bool:
+    """Validate Discord webhook URL format"""
+    if not url:
+        return False
+    try:
+        p = urlparse(url)
+        if p.scheme not in ("http", "https"):
+            return False
+        return "/api/webhooks/" in p.path and ("discord" in p.netloc or "discordapp" in p.netloc)
+    except Exception:
+        return False
+
 @lru_cache(maxsize=100)
 def extract_tickers_and_addresses_single_regex(content: str) -> tuple:
     """
@@ -87,21 +143,25 @@ def crypto_quick_check(content: str) -> bool:
     
     return False
 
-def validate_github_url(url: str) -> bool:
-    """
-    Validate GitHub URL format.
-    
-    Args:
-        url: URL to validate
+def extract_event_ticker(input_str: str) -> Optional[str]:
+        """
+        Extract event ticker from URL or direct input
         
-    Returns:
-        True if valid, False otherwise
-    """
-    if not url:
-        return False
+        Args:
+            input_str: URL or event ticker
+            
+        Returns:
+            Event ticker in uppercase or None
+        """
+        # Check if it's a URL
+        if "kalshi.com" in input_str.lower():
+            # Extract from URL pattern: /markets/SERIES/title/EVENT-TICKER
+            match = re.search(r'/markets/[^/]+/[^/]+/([^/?]+)', input_str)
+            if match:
+                return match.group(1).upper()
         
-    # Fast format check with compiled regex
-    return bool(GITHUB_REPO_REGEX.search(url))
+        # Otherwise treat as direct ticker input
+        return input_str.strip().upper() 
 
 async def parse_github_url(url: str) -> Optional[Dict[str, str]]:
     """
@@ -303,47 +363,7 @@ def extract_code_review(analysis: str) -> Dict[str, Any]:
     
     return code_review
 
-def validate_url(url: str) -> bool:
-    """
-    Validate if a string is a valid URL
-    
-    Args:
-        url: String to validate
-        
-    Returns:
-        bool: True if valid URL, False otherwise
-    """
-    # Add http:// if missing
-    if url and not url.startswith(('http://', 'https://')):
-        url = 'https://' + url
-    
-    # Fast regex check
-    if not WEBSITE_REGEX.match(url):
-        return False
-    
-    # More thorough validation
-    try:
-        result = urlparse(url)
-        return all([result.scheme, result.netloc])
-    except Exception:
-        return False
 
-def extract_event_ticker(input_str: str) -> Optional[str]:
-        """
-        Extract event ticker from URL or direct input
-        
-        Args:
-            input_str: URL or event ticker
-            
-        Returns:
-            Event ticker in uppercase or None
-        """
-        # Check if it's a URL
-        if "kalshi.com" in input_str.lower():
-            # Extract from URL pattern: /markets/SERIES/title/EVENT-TICKER
-            match = re.search(r'/markets/[^/]+/[^/]+/([^/?]+)', input_str)
-            if match:
-                return match.group(1).upper()
-        
-        # Otherwise treat as direct ticker input
-        return input_str.strip().upper()    
+
+   
+
