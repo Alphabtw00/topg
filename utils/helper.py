@@ -174,39 +174,67 @@ async def fetch_token_metadata_from_uri(uri: str) -> Optional[dict]:
     
     return None
 
-async def get_webhook_info(webhook_url: str, bot) -> Optional[dict]:
-    """Extract webhook info from URL"""
+async def get_webhook_info(webhook_url: str, bot) -> Optional[Dict]:
     try:
-        # Extract webhook ID and token from URL
-        # Format: https://discord.com/api/webhooks/{id}/{token}
         parts = webhook_url.rstrip("/").split("/")
-        webhook_id = parts[-2]
-        
-        # Fetch the webhook
-        webhook = await bot.fetch_webhook(int(webhook_id))
-        
+        webhook_id = int(parts[-2])
+        webhook = await bot.fetch_webhook(webhook_id)
+
+        guild_id = webhook.guild_id
+        channel_id = webhook.channel_id
+        bot_in_guild = False
+        channel_name = "Unknown (bot not in server)"
+
+        if guild_id:
+            for g in bot.guilds:
+                if g.id == guild_id:
+                    bot_in_guild = True
+                    try:
+                        channel = g.get_channel(channel_id) or await g.fetch_channel(channel_id)
+                        channel_name = channel.name
+                    except Exception:
+                        channel_name = "Unknown"
+                    break
+
         return {
-            "channel_id": webhook.channel_id,
-            "channel_name": webhook.channel.name if webhook.channel else "Unknown",
-            "guild_id": webhook.guild_id
+            "guild_id": guild_id,
+            "channel_id": channel_id,
+            "channel_name": channel_name,
+            "bot_in_guild": bot_in_guild
         }
     except Exception as e:
-        logger.error(f"Failed to fetch webhook info: {e}")
-        return None   
+        logger.error(f"Failed to fetch webhook info: {e}", exc_info=True)
+        return None
 
-async def get_thread_name(thread_id: str, interaction: discord.Interaction) -> Optional[str]:
-    """Get thread/channel name from ID"""
+async def fetch_channel_global(bot, channel_id: int) -> Optional[discord.abc.GuildChannel]:
+    for guild in bot.guilds:
+        try:
+            channel = guild.get_channel(channel_id) or await guild.fetch_channel(channel_id)
+            if channel:
+                return channel
+        except Exception:
+            continue
+    return None
+
+async def get_thread_name(thread_id: str, bot) -> Optional[str]:
     try:
-        channel = await interaction.guild.fetch_channel(int(thread_id))
-        
+        tid = int(thread_id)
+    except ValueError:
+        return None
+
+    channel = await fetch_channel_global(bot, tid)
+    if not channel:
+        return None
+
+    try:
         if isinstance(channel, discord.Thread):
-            return f"🧵 {channel.name} (in #{channel.parent.name})"
-        elif isinstance(channel, discord.ForumChannel):
+            parent_name = channel.parent.name if channel.parent else "Unknown"
+            return f"🧵 {channel.name} (in #{parent_name})"
+        if isinstance(channel, discord.ForumChannel):
             return f"📋 {channel.name}"
-        else:
-            return f"#{channel.name}"
+        return f"#{channel.name}"
     except Exception as e:
-        logger.error(f"Failed to fetch thread/channel name: {e}")
+        logger.error(f"Failed to format thread/channel name: {e}", exc_info=True)
         return None
 
 def parse_market_cap_value(value: str) -> Optional[float]:

@@ -9,14 +9,12 @@ import discord
 import aiohttp
 from typing import Optional, Tuple, List
 from utils.logger import get_logger
+from utils.helper import get_webhook_info, fetch_channel_global
 
 logger = get_logger()
 
-
+# Download a file from URL and return a discord.File
 async def fetch_attachment_from_url(url: str, filename: Optional[str] = None, timeout: int = 30) -> Optional[discord.File]:
-    """
-    Download a file from `url` and return a discord.File (or None on failure).
-    """
     try:
         async with aiohttp.ClientSession() as session:
             async with session.get(url, timeout=aiohttp.ClientTimeout(total=timeout)) as resp:
@@ -25,7 +23,6 @@ async def fetch_attachment_from_url(url: str, filename: Optional[str] = None, ti
                     return None
                 data = await resp.read()
 
-                # determine filename
                 if not filename:
                     disposition = resp.headers.get("Content-Disposition", "")
                     if "filename=" in disposition:
@@ -38,19 +35,14 @@ async def fetch_attachment_from_url(url: str, filename: Optional[str] = None, ti
         logger.error(f"Error downloading attachment from URL {url}: {e}", exc_info=True)
         return None
 
-
+# Locate a message to reply to using view.reply_to
 async def find_reply_message(view, interaction: discord.Interaction) -> Tuple[Optional[discord.Message], Optional[discord.TextChannel]]:
-    """
-    Locate a message to reply to using view.reply_to (expects message ID string).
-    Returns (message, channel) or (None, None) and replies ephemerally on failure.
-    """
     try:
         message_id = int(view.reply_to)
     except (ValueError, TypeError):
         await interaction.followup.send("❌ Invalid message ID!", ephemeral=True)
         return None, None
 
-    # search in configured channel first, then all text channels
     search_channels = [view.target_channel] + [ch for ch in interaction.guild.text_channels if ch != view.target_channel]
     for channel in search_channels:
         try:
@@ -62,48 +54,33 @@ async def find_reply_message(view, interaction: discord.Interaction) -> Tuple[Op
     await interaction.followup.send(f"❌ Message {view.reply_to} not found!", ephemeral=True)
     return None, None
 
-
+# Prepare files for sending based on view state
 async def prepare_files(view, interaction: discord.Interaction) -> Tuple[List[discord.File], Optional[str]]:
-    """
-    Produce a list of discord.File objects for sending based on view state.
-    Returns (files_list, error_message_or_None).
-    Supports:
-      - direct initial attachment (not used in this design but kept for compatibility)
-      - attachment_url (downloaded)
-      - attachment_message_link/message_id -> fetch attachments from that message
-    """
     files = []
 
-    # 1) direct attached Attachment object (if set)
     if getattr(view, "attachment", None):
         try:
-            attached = view.attachment  # discord.Attachment
+            attached = view.attachment
             data = await attached.read()
             files.append(discord.File(io.BytesIO(data), filename=attached.filename, spoiler=view.spoiler))
         except Exception as e:
             logger.error(f"prepare_files: failed to read direct attachment: {e}", exc_info=True)
             return [], "Failed to process the attached file."
 
-    # 2) attachment_url
     if getattr(view, "attachment_url", None):
         fetched = await fetch_attachment_from_url(view.attachment_url, filename=getattr(view, "attachment_filename", None))
         if not fetched:
             return [], "Failed to download file from the provided URL."
-        # apply spoiler by renaming (discord.File has no built-in 'spoiler' flag in creation in older versions)
         if view.spoiler:
-            # prepend SPOILER_ to filename (Discord treats filename starting with SPOILER_ as spoiler)
             fetched.filename = f"SPOILER_{fetched.filename}"
         files.append(fetched)
 
-    # 3) attachment_message_link or message id: try parse and fetch attachments
     if getattr(view, "attachment_message_link", None):
         link = view.attachment_message_link.strip()
         try:
-            # parse link format: https://discord.com/channels/<guild>/<channel>/<message>
             parts = link.rstrip("/").split("/")
             message_id = int(parts[-1])
             channel_id = int(parts[-2])
-            # fetch channel and message
             channel = interaction.guild.get_channel(channel_id) or await interaction.guild.fetch_channel(channel_id)
             msg = await channel.fetch_message(message_id)
             if not msg.attachments:
@@ -118,41 +95,32 @@ async def prepare_files(view, interaction: discord.Interaction) -> Tuple[List[di
 
     return files, None
 
-async def send_via_webhook(view, interaction: discord.Interaction, content, embed, files):
-    """
-    Send the message via webhook. Uses provided webhook URL if present,
-    otherwise creates a temporary webhook in the target channel and deletes it.
-    Handles forum channels and threads using thread_id.
-    """
+# Internal helper to send via a temporary webhook in a local channel
+async def _send_via_temp_webhook(view, interaction: discord.Interaction, content, embed, files):
     webhook = None
     created = False
-    sent = None  # Initialize sent variable
-    
+    sent = None
+
     try:
-        # Check if target is a forum channel
         is_forum = isinstance(view.target_channel, discord.ForumChannel)
-        
+
         if is_forum:
-            # For forum channels, we need a thread ID
             if not view.thread_id:
                 logger.error("Forum channel selected but no thread_id provided")
                 return None
-            
+
             try:
-                # Get the thread from the forum
                 thread = await view.target_channel.guild.fetch_channel(int(view.thread_id))
-                
                 if not isinstance(thread, discord.Thread) or thread.parent_id != view.target_channel.id:
-                    logger.error(f"Invalid thread ID {view.thread_id} or thread doesn't belong to forum {view.target_channel.id}")
+                    logger.error(f"Invalid thread ID {view.thread_id} or thread does not belong to forum {view.target_channel.id}")
                     return None
-                
-                # Create webhook in parent forum and send to thread
+
                 webhook = await view.target_channel.create_webhook(
                     name=view.webhook_name or "Say Webhook",
                     reason=f"Say command by {interaction.user}"
                 )
                 created = True
-                
+
                 sent = await webhook.send(
                     content=content,
                     embed=embed,
@@ -162,62 +130,18 @@ async def send_via_webhook(view, interaction: discord.Interaction, content, embe
                     thread=thread,
                     wait=True
                 )
-                
-                if created:
-                    try:
-                        await webhook.delete()
-                    except Exception:
-                        logger.debug("send_via_webhook: failed to delete temp webhook (non-fatal)")
-                
-                return sent
-                
-            except (ValueError, discord.NotFound) as e:
-                logger.error(f"Thread not found or invalid: {e}")
+            except Exception as e:
+                logger.error(f"Failed to send via temp webhook in forum: {e}", exc_info=True)
                 return None
-        
-        # Non-forum channel handling
-        if getattr(view, "webhook_url", None):
-            # from_url uses an aiohttp session; reuse bot's http session
-            webhook = discord.Webhook.from_url(view.webhook_url, session=view.bot.http._HTTPClient__session)
-            
-            # Check if we need to post to a specific thread
-            if view.thread_id:
-                try:
-                    thread = await interaction.guild.fetch_channel(int(view.thread_id))
-                    if isinstance(thread, discord.Thread):
-                        sent = await webhook.send(
-                            content=content,
-                            embed=embed,
-                            files=files,
-                            thread=thread,
-                            wait=True
-                        )
-                    else:
-                        logger.error(f"Thread ID {view.thread_id} is not a valid thread")
-                        return None
-                except Exception as e:
-                    logger.error(f"Failed to fetch/use thread {view.thread_id}: {e}")
-                    return None
-            else:
-                # Send to webhook's default channel
-                sent = await webhook.send(
-                    content=content,
-                    embed=embed,
-                    files=files,
-                    wait=True
-                )
         else:
-            # Check if target is a thread
             if isinstance(view.target_channel, discord.Thread):
-                # For threads, we need the parent channel to create webhook
                 parent = view.target_channel.parent
                 webhook = await parent.create_webhook(
                     name=view.webhook_name or "Say Webhook",
                     reason=f"Say command by {interaction.user}"
                 )
                 created = True
-                
-                # Send to the specific thread
+
                 sent = await webhook.send(
                     content=content,
                     embed=embed,
@@ -228,13 +152,12 @@ async def send_via_webhook(view, interaction: discord.Interaction, content, embe
                     wait=True
                 )
             else:
-                # Regular text channel
                 webhook = await view.target_channel.create_webhook(
                     name=view.webhook_name or "Say Webhook",
                     reason=f"Say command by {interaction.user}"
                 )
                 created = True
-                
+
                 sent = await webhook.send(
                     content=content,
                     embed=embed,
@@ -251,28 +174,99 @@ async def send_via_webhook(view, interaction: discord.Interaction, content, embe
                 logger.debug("send_via_webhook: failed to delete temp webhook (non-fatal)")
 
         return sent
-        
     except Exception as e:
-        logger.error(f"Webhook send failed: {e}", exc_info=True)
-        # Don't send error to user - just log and return None
+        logger.error(f"Temp webhook send failed: {e}", exc_info=True)
         return None
 
+# Send the message via webhook (custom URL or temporary)
+async def send_via_webhook(view, interaction: discord.Interaction, content, embed, files):
+    try:
+        if getattr(view, "webhook_url", None):
+            webhook = discord.Webhook.from_url(view.webhook_url, session=view.bot.http._HTTPClient__session)
+
+            info = None
+            meta = getattr(view, "webhook_meta", {}) or {}
+            if view.webhook_url in meta:
+                info = meta[view.webhook_url]
+            else:
+                info = await get_webhook_info(view.webhook_url, view.bot)
+
+            thread_obj = None
+            thread_id_int = None
+
+            if view.thread_id:
+                try:
+                    thread_id_int = int(view.thread_id)
+                except ValueError:
+                    thread_id_int = None
+
+                if info and info.get("bot_in_guild"):
+                    try:
+                        thread_obj = await fetch_channel_global(view.bot, thread_id_int)
+                        if not isinstance(thread_obj, discord.Thread):
+                            logger.error(f"Thread ID {view.thread_id} is not a valid thread")
+                            thread_obj = None
+                    except Exception as e:
+                        logger.error(f"Failed to fetch thread {view.thread_id}: {e}", exc_info=True)
+                        thread_obj = None
+
+            if thread_obj is not None:
+                sent = await webhook.send(
+                    content=content,
+                    embed=embed,
+                    files=files,
+                    thread=thread_obj,
+                    wait=True
+                )
+                return sent
+
+            if thread_id_int is not None:
+                try:
+                    sent = await webhook.send(
+                        content=content,
+                        embed=embed,
+                        files=files,
+                        wait=True,
+                        thread_id=thread_id_int
+                    )
+                    return sent
+                except TypeError:
+                    logger.error("Webhook.send does not support thread_id parameter in this discord.py version.", exc_info=True)
+                except Exception as e:
+                    logger.error(f"Failed to send to thread_id {thread_id_int} via webhook: {e}", exc_info=True)
+                    return None
+
+            try:
+                sent = await webhook.send(
+                    content=content,
+                    embed=embed,
+                    files=files,
+                    wait=True
+                )
+                return sent
+            except Exception as e:
+                logger.error(f"Webhook send failed: {e}", exc_info=True)
+                return None
+        else:
+            return await _send_via_temp_webhook(view, interaction, content, embed, files)
+    except Exception as e:
+        logger.error(f"send_via_webhook: unexpected failure: {e}", exc_info=True)
+        return None
+
+# Send via bot account (reply if reply_message present)
 async def send_via_bot(view, reply_message, content, embed, files):
-    """
-    Send via bot account (reply if reply_message present).
-    """
     if reply_message:
         return await reply_message.reply(content=content, embed=embed, files=files)
     return await view.target_channel.send(content=content, embed=embed, files=files)
 
-
+# Gracefully mark a view as timed out
 async def handle_view_timeout(view):
-    """
-    Gracefully mark a view as timed out.
-    """
     try:
         for item in view.children:
             item.disabled = True
-        await view.interaction.edit_original_response(embed=discord.Embed(title="⏱️ Configuration Timed Out", color=discord.Color.orange()), view=view)
+        await view.interaction.edit_original_response(
+            embed=discord.Embed(title="⏱️ Configuration Timed Out", color=discord.Color.orange()),
+            view=view
+        )
     except Exception:
         pass

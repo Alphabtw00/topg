@@ -2,11 +2,13 @@
 Validation utilities
 """
 import re
+import discord
 import base58
 from typing import Dict, Optional, Any
 from cachetools import TTLCache, cached, LRUCache
 from config import GITHUB_REPO_REGEX_PATTERN, WEBSITE_REGEX_PATTERN, COMBINED_EXTRACTION_REGEX, ADDRESS_REGEX_PATTERN
 from urllib.parse import urlparse
+from utils.helper import fetch_channel_global
 from utils.logger import get_logger
 from functools import lru_cache
 
@@ -88,6 +90,49 @@ def is_valid_webhook_url(url: str) -> bool:
         return "/api/webhooks/" in p.path and ("discord" in p.netloc or "discordapp" in p.netloc)
     except Exception:
         return False
+
+async def validate_thread_for_webhook(thread_id: str, webhook_info: Dict, bot) -> Dict:
+    result = {
+        "ok": True,
+        "warning": None,
+        "display_name": None
+    }
+
+    if not thread_id:
+        return result
+
+    try:
+        tid = int(thread_id)
+    except ValueError:
+        result["ok"] = False
+        result["warning"] = "⚠️ Thread ID must be a numeric value."
+        return result
+
+    channel = await fetch_channel_global(bot, tid)
+    if not channel:
+        result["warning"] = "⚠️ Cannot verify thread. Bot may not be in the webhook's server."
+        return result
+
+    try:
+        if not isinstance(channel, discord.Thread):
+            result["ok"] = False
+            result["warning"] = "⚠️ Provided ID is not a thread."
+            return result
+
+        result["display_name"] = f"🧵 {channel.name} (in #{channel.parent.name})"
+
+        webhook_channel_id = webhook_info.get("channel_id")
+        if webhook_channel_id and channel.parent_id != webhook_channel_id:
+            result["ok"] = False
+            result["warning"] = (
+                f"⚠️ Thread **#{channel.name}** does not belong to the webhook's channel.\n"
+                "Sending to this thread will fail. Use a thread from the same channel as the webhook."
+            )
+        return result
+    except Exception as e:
+        logger.error(f"Failed to validate thread for webhook: {e}", exc_info=True)
+        result["warning"] = "⚠️ Error while validating thread."
+        return result
 
 @lru_cache(maxsize=100)
 def extract_tickers_and_addresses_single_regex(content: str) -> tuple:

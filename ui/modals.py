@@ -3,8 +3,8 @@ Complete fixed modals.py with all naming conflicts resolved
 """
 import discord
 from urllib.parse import urlparse
-from utils.helper import get_webhook_info, get_thread_name
-from utils.validators import is_valid_webhook_url
+from utils.helper import get_webhook_info, get_thread_name, fetch_channel_global
+from utils.validators import is_valid_webhook_url, validate_thread_for_webhook
 from utils.logger import get_logger
 
 logger = get_logger()
@@ -93,7 +93,6 @@ class ChannelSelectModal(discord.ui.Modal, title="Select Target Channel"):
                 ephemeral=True
             )
 
-
 class MessageContentModal(discord.ui.Modal, title="Message Content"):
     """Modal for adding/editing message text content"""
     
@@ -127,7 +126,6 @@ class MessageContentModal(discord.ui.Modal, title="Message Content"):
                 f"❌ Error updating message: {str(e)[:200]}",
                 ephemeral=True
             )
-
 
 class EmbedContentModal(discord.ui.Modal, title="Embed Configuration"):
     """Modal for configuring embed content"""
@@ -196,7 +194,6 @@ class EmbedContentModal(discord.ui.Modal, title="Embed Configuration"):
                 ephemeral=True
             )
 
-
 class EmbedImagesModal(discord.ui.Modal, title="Embed Images"):
     """Modal for adding images to embeds"""
     
@@ -258,7 +255,6 @@ class EmbedImagesModal(discord.ui.Modal, title="Embed Images"):
                 f"❌ Error updating images: {str(e)[:200]}",
                 ephemeral=True
             )
-
 
 class AttachmentModal(discord.ui.Modal, title="Add Attachment"):
     """
@@ -376,124 +372,197 @@ class AttachmentModal(discord.ui.Modal, title="Add Attachment"):
                 )
 
 class WebhookConfigModal(discord.ui.Modal, title="Webhook Configuration"):
-    """Modal for configuring webhook settings - supports multiple webhook URLs"""
-    
+    # Modal for configuring webhook settings - supports multiple webhook URLs
+
     webhook_urls_input = discord.ui.TextInput(
         label="Webhook URL(s) - one per line (OPTIONAL)",
         style=discord.TextStyle.paragraph,
-        placeholder="https://discord.com/api/webhooks/...\nhttps://discord.com/api/webhooks/...\n\nLeave empty to auto-create temporary webhook",
+        placeholder="One URL per line. Leave empty to auto-create a temporary webhook.",
         required=False
     )
-    
+
     thread_id_input = discord.ui.TextInput(
         label="Thread ID (OPTIONAL)",
         style=discord.TextStyle.short,
-        placeholder="For forum posts or when using custom webhook URLs with threads (right-click thread > Copy ID)",
+        placeholder="Thread ID for forum or webhook threads. Right-click thread > Copy ID.",
         required=False
     )
-    
+
     webhook_name_input = discord.ui.TextInput(
         label="Display Name (OPTIONAL)",
         style=discord.TextStyle.short,
-        placeholder="Custom webhook display name (if not using custom URL)",
+        placeholder="Custom webhook display name (no effect on custom URLs).",
         required=False,
         max_length=80
     )
-    
+
     webhook_avatar_input = discord.ui.TextInput(
         label="Avatar URL (OPTIONAL)",
         style=discord.TextStyle.short,
-        placeholder="https://example.com/avatar.png (if not using custom URL)",
+        placeholder="https://example.com/avatar.png",
         required=False
     )
-    
+
     def __init__(self, view):
         super().__init__()
         self.view = view
-        # Prefill existing values
-        if view.webhook_urls:
-            self.webhook_urls_input.default = "\n".join(view.webhook_urls)
-        if view.thread_id:
-            self.thread_id_input.default = view.thread_id
-        if view.webhook_name:
-            self.webhook_name_input.default = view.webhook_name
-        if view.webhook_avatar:
-            self.webhook_avatar_input.default = view.webhook_avatar
-    
+
+        # Prefill webhook URLs
+        try:
+            urls = getattr(view, "webhook_urls", None)
+            if urls:
+                urls = [str(u) for u in urls if u]
+                if urls:
+                    self.webhook_urls_input.default = "\n".join(urls)
+        except Exception as e:
+            logger.error(f"WebhookConfigModal: error pre-filling webhook_urls: {e}", exc_info=True)
+
+        # Prefill thread ID
+        try:
+            if getattr(view, "thread_id", None):
+                self.thread_id_input.default = str(view.thread_id)
+        except Exception as e:
+            logger.error(f"WebhookConfigModal: error pre-filling thread_id: {e}", exc_info=True)
+
+        # Prefill name
+        try:
+            if getattr(view, "webhook_name", None):
+                self.webhook_name_input.default = str(view.webhook_name)
+        except Exception as e:
+            logger.error(f"WebhookConfigModal: error pre-filling webhook_name: {e}", exc_info=True)
+
+        # Prefill avatar
+        try:
+            if getattr(view, "webhook_avatar", None):
+                self.webhook_avatar_input.default = str(view.webhook_avatar)
+        except Exception as e:
+            logger.error(f"WebhookConfigModal: error pre-filling webhook_avatar: {e}", exc_info=True)
+
     async def on_submit(self, interaction: discord.Interaction):
         try:
-            
-            urls_text = self.webhook_urls_input.value.strip()
-            
-            if urls_text:
-                urls = [url.strip() for url in urls_text.split("\n") if url.strip()]
-                
-                invalid_urls = []
-                valid_urls = []
-                webhook_channel_names = []
-                
+            bot = self.view.bot
+            raw_urls = (self.webhook_urls_input.value or "").strip()
+            thread_raw = (self.thread_id_input.value or "").strip()
+            valid_urls = []
+            invalid_urls = []
+            channel_names = []
+            webhook_meta = {}
+            base_webhook_info = None
+
+            # Parse and validate webhook URLs
+            if raw_urls:
+                urls = [u.strip() for u in raw_urls.split("\n") if u.strip()]
                 for url in urls:
                     if is_valid_webhook_url(url):
-                        valid_urls.append(url)
-                        
-                        # Use helper method to get webhook info
-                        webhook_info = await get_webhook_info(url, self.view.bot)
-                        if webhook_info:
-                            webhook_channel_names.append(f"#{webhook_info['channel_name']}")
+                        info = await get_webhook_info(url, bot)
+                        if info:
+                            valid_urls.append(url)
+                            webhook_meta[url] = info
+                            if info["bot_in_guild"]:
+                                chan_label = f"#{info['channel_name']}"
+                            else:
+                                chan_label = "Unknown (bot not in webhook server)"
+                            channel_names.append(chan_label)
                         else:
-                            webhook_channel_names.append("Unknown channel")
+                            invalid_urls.append(url)
                     else:
                         invalid_urls.append(url)
-                
+
                 if invalid_urls:
-                    await interaction.response.send_message(
-                        f"❌ {len(invalid_urls)} invalid webhook URL(s) found:\n" + 
-                        "\n".join([f"• {url[:50]}..." if len(url) > 50 else f"• {url}" for url in invalid_urls[:3]]),
-                        ephemeral=True
-                    )
-                    return
-                
+                    text = "❌ Invalid webhook URL(s):\n" + "\n".join(f"• {u}" for u in invalid_urls[:5])
+                    return await interaction.response.send_message(text, ephemeral=True)
+
                 self.view.webhook_urls = valid_urls
-                self.view.webhook_channel_names = webhook_channel_names
-                
-                success_msg = f"✅ {len(valid_urls)} webhook URL(s) configured!\n"
-                if webhook_channel_names:
-                    success_msg += f"**Channels:** {', '.join(webhook_channel_names)}\n\n"
-                success_msg += "📝 **Note:** When using custom webhook URLs:\n"
-                success_msg += "• Name/avatar settings will be ignored (use webhook's defaults)\n"
-                success_msg += "• You can specify a thread ID to post in specific threads\n"
-                success_msg += "• Message will be sent to all configured webhooks"
+                self.view.webhook_channel_names = channel_names
+                self.view.webhook_meta = webhook_meta
+
+                if valid_urls:
+                    base_webhook_info = webhook_meta[valid_urls[0]]
+
+                    if base_webhook_info["bot_in_guild"]:
+                        try:
+                            chan = await fetch_channel_global(bot, base_webhook_info["channel_id"])
+                            if chan:
+                                self.view.target_channel = chan
+                        except Exception as e:
+                            logger.error(f"Failed to auto-set target channel from webhook: {e}", exc_info=True)
             else:
                 self.view.webhook_urls = []
                 self.view.webhook_channel_names = []
-                success_msg = "✅ Webhooks cleared. A temporary webhook will be created when sending.\n\n"
-                success_msg += "You can now use the name and avatar settings."
-            
-            # Handle thread ID - use helper method
-            thread_id_str = self.thread_id_input.value.strip()
-            if thread_id_str:
-                thread_name = await get_thread_name(thread_id_str, interaction)
-                self.view.thread_name = thread_name
-            else:
+                self.view.webhook_meta = {}
+
+                self.view.target_channel = self.view.original_target_channel
+                self.view.thread_id = None
                 self.view.thread_name = None
-            
-            self.view.thread_id = thread_id_str or None
-            self.view.webhook_name = self.webhook_name_input.value.strip() or None
-            self.view.webhook_avatar = self.webhook_avatar_input.value.strip() or None
+
+            # Thread ID handling
+            self.view.thread_id = thread_raw if thread_raw else None
+            self.view.thread_name = None
+            thread_warning = None
+
+            if thread_raw:
+                if base_webhook_info and base_webhook_info.get("bot_in_guild"):
+                    validate_result = await validate_thread_for_webhook(thread_raw, base_webhook_info, bot)
+                    if validate_result["display_name"]:
+                        self.view.thread_name = validate_result["display_name"]
+                    if not validate_result["ok"]:
+                        thread_warning = validate_result["warning"]
+                    elif validate_result["warning"]:
+                        thread_warning = validate_result["warning"]
+                else:
+                    name = await get_thread_name(thread_raw, bot)
+                    if name:
+                        self.view.thread_name = name
+                    else:
+                        self.view.thread_name = None
+                        thread_warning = "⚠️ Bot is not in the webhook's server, cannot resolve thread name."
+
+            # Name and avatar settings
+            self.view.webhook_name = (self.webhook_name_input.value or "").strip() or None
+            self.view.webhook_avatar = (self.webhook_avatar_input.value or "").strip() or None
+
+            # Rebuild main UI
             self.view.rebuild_ui()
-            
             await interaction.response.edit_message(
                 embed=self.view.get_config_embed(),
                 view=self.view
             )
-            await interaction.followup.send(success_msg, ephemeral=True)
-        
+
+            # Ephemeral summary
+            lines = []
+            if self.view.webhook_urls:
+                lines.append(f"✅ {len(self.view.webhook_urls)} webhook URL(s) configured.")
+                if channel_names:
+                    lines.append(f"Channels: {', '.join(channel_names)}")
+                lines.append("Note: If the bot is not in a webhook's server, channel names may show as unknown.")
+            else:
+                lines.append("✅ Webhooks cleared. A temporary webhook will be created in the target channel when sending.")
+
+            if self.view.thread_id:
+                if self.view.thread_name:
+                    lines.append(f"🧵 Thread: {self.view.thread_name}")
+                else:
+                    lines.append(f"🧵 Thread ID: {self.view.thread_id}")
+
+            if thread_warning:
+                lines.append("")
+                lines.append(thread_warning)
+
+            await interaction.followup.send("\n".join(lines), ephemeral=True)
+
         except Exception as e:
-            logger.error(f"Error in WebhookConfigModal: {e}", exc_info=True)
-            await interaction.response.send_message(
-                f"❌ Error updating webhook config: {str(e)[:200]}",
-                ephemeral=True
-            )
+            logger.error(f"WebhookConfigModal error: {e}", exc_info=True)
+            try:
+                await interaction.response.send_message(
+                    f"❌ Error updating webhook config: {str(e)[:200]}",
+                    ephemeral=True
+                )
+            except:
+                await interaction.followup.send(
+                    f"❌ Error updating webhook config: {str(e)[:200]}",
+                    ephemeral=True
+                )
+
 
 class ReplyConfigModal(discord.ui.Modal, title="Reply Configuration"):
     """Modal for setting message to reply to"""
