@@ -148,7 +148,7 @@ def calculate_trust_score(code_review: Dict[str, Any]) -> Dict[str, Any]:
         trust_score += factor_value
     
     # Cap the total penalty - ensure even repos with issues don't go below 30
-    trust_score = max(30, trust_score)
+    trust_score = max(15, trust_score)
     
     # Ensure range 0-100
     trust_score = min(100, trust_score)

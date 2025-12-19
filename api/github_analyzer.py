@@ -189,6 +189,9 @@ class GitHubAnalyzer:
         try:
             # Get repo info to check default branch
             repo_data = await self.client.get(repo_api_url, ApiEndpoint.GITHUB, headers=headers)
+            if not repo_data:
+                logger.error(f"Failed to fetch repo data for {owner}/{repo}")
+                return []
             default_branch = repo_data.get("default_branch", "main")
             
             # Use Git Tree API to get all files in one request (MAJOR performance boost)

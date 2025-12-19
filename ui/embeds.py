@@ -889,6 +889,8 @@ def create_github_analysis_embed(repo_info, analysis, start_time, interaction):
     )
 
     # Investment assessment 
+    rating = rating.strip().rstrip('*') if rating else "Unknown"
+    
     rating_emoji = {
         "Strong Buy": "🟢", 
         "Buy": "🟢",
@@ -900,10 +902,7 @@ def create_github_analysis_embed(repo_info, analysis, start_time, interaction):
         "Strong Sell": "🔴",
         "Low": "🔴"
     }.get(rating, "⚪")
-    
-    if not rating:
-        rating = "Unknown"
-    
+        
     embed.add_field(
         name="💰 Investment Rating",
         value=safe_add_field(
@@ -1018,7 +1017,7 @@ def create_github_analysis_embed(repo_info, analysis, start_time, interaction):
         
         # If no marker was found, use neutral emoji formatting
         if not has_marker:
-            insights_text = "\n".join(f"📍 {item}" for item in reasoning[:4])
+            insights_text = "\n".join(reasoning[:4])
         
         embed.add_field(
             name="⚡ Key Insights",
@@ -1062,10 +1061,19 @@ def create_github_analysis_embed(repo_info, analysis, start_time, interaction):
     
     # Overall Assessment (Expert Opinion)
     overall_assessment = code_review.get("overallAssessment", "")
+    full_expert_opinion = overall_assessment
+
     if overall_assessment:
+        max_length = 800  # Leave room for formatting
+        
+        if len(overall_assessment) > max_length:
+            overall_assessment = overall_assessment[:max_length].rstrip() + "...\n\n*👇 Click 'View Full Analysis' for complete opinion*"
+        
+        formatted_opinion = overall_assessment.replace('\n', '\n> ')
+        
         embed.add_field(
             name="🧠 Expert Opinion",
-            value=safe_add_field(f"> {overall_assessment.replace('\\n', '\\n> ')}"),
+            value=safe_add_field(f"> {formatted_opinion}"),
             inline=False
         )
     
@@ -1075,7 +1083,7 @@ def create_github_analysis_embed(repo_info, analysis, start_time, interaction):
         icon_url=interaction.user.display_avatar.url
     )
     
-    return embed
+    return embed, full_expert_opinion
     
 def create_website_embed(result, interaction, start_time):
     """Create a comprehensive embed for the website analysis result

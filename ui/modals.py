@@ -563,7 +563,6 @@ class WebhookConfigModal(discord.ui.Modal, title="Webhook Configuration"):
                     ephemeral=True
                 )
 
-
 class ReplyConfigModal(discord.ui.Modal, title="Reply Configuration"):
     """Modal for setting message to reply to"""
     
@@ -608,3 +607,77 @@ class ReplyConfigModal(discord.ui.Modal, title="Reply Configuration"):
                 f"❌ Error setting reply: {str(e)[:200]}",
                 ephemeral=True
             )
+
+class ExpertOpinionModal(discord.ui.Modal):
+    """Modal to display the complete expert opinion analysis"""
+    
+    def __init__(self, expert_opinion: str, repo_name: str):
+        super().__init__(title=f"Expert Opinion: {repo_name[:50]}")
+        
+        # Split the expert opinion into chunks if it's too long for a single text input
+        # Discord modal text inputs have a 4000 char limit
+        self.expert_opinion = expert_opinion
+        self.repo_name = repo_name
+        
+        # Add the expert opinion as a read-only text input
+        # We'll use multiple inputs if needed to fit all content
+        self._add_opinion_fields()
+    
+    def _add_opinion_fields(self):
+        """Add text input fields with the expert opinion content"""
+        max_length = 4000  # Discord's limit per text input
+        
+        # If opinion is short enough, use single field
+        if len(self.expert_opinion) <= max_length:
+            opinion_field = discord.ui.TextInput(
+                label="Expert Analysis",
+                style=discord.TextStyle.paragraph,
+                default=self.expert_opinion,
+                required=False,
+                max_length=4000
+            )
+            self.add_item(opinion_field)
+        else:
+            # Split into multiple fields if needed
+            chunks = self._split_text(self.expert_opinion, max_length)
+            
+            for i, chunk in enumerate(chunks[:5]):  # Discord allows max 5 inputs per modal
+                field = discord.ui.TextInput(
+                    label=f"Expert Analysis (Part {i+1})" if i > 0 else "Expert Analysis",
+                    style=discord.TextStyle.paragraph,
+                    default=chunk,
+                    required=False,
+                    max_length=4000
+                )
+                self.add_item(field)
+    
+    def _split_text(self, text: str, max_length: int) -> list:
+        """Split text into chunks at natural breakpoints"""
+        chunks = []
+        current_chunk = ""
+        
+        # Split by paragraphs first
+        paragraphs = text.split('\n\n')
+        
+        for para in paragraphs:
+            # If adding this paragraph would exceed limit
+            if len(current_chunk) + len(para) + 2 > max_length:
+                if current_chunk:
+                    chunks.append(current_chunk.strip())
+                    current_chunk = para
+                else:
+                    # Single paragraph too long, split it
+                    chunks.append(para[:max_length].strip())
+                    current_chunk = para[max_length:]
+            else:
+                current_chunk += "\n\n" + para if current_chunk else para
+        
+        if current_chunk:
+            chunks.append(current_chunk.strip())
+        
+        return chunks
+    
+    async def on_submit(self, interaction: discord.Interaction):
+        """Handle modal submission (user closes it)"""
+        # Just acknowledge, no action needed
+        await interaction.response.defer()

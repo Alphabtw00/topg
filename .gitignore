@@ -1,7 +1,8 @@
 who_added_bot_test.py
 social_tracker_forward.py
 second.py
-role.py
+check_server_roles_test.py
+server_bot_list_test.py
 preview.py
 preview.png
 highest.py

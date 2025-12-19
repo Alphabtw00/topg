@@ -17,7 +17,8 @@ from ui.modals import (
     WebhookConfigModal,
     ReplyConfigModal,
     AttachmentModal,
-    ChannelSelectModal
+    ChannelSelectModal,
+    ExpertOpinionModal
 )
 from ui.embeds import create_say_embed
 from service.say_service import (
@@ -93,14 +94,16 @@ class TokenEmbedView(discord.ui.View):
 
 class GitHubAnalysisView(discord.ui.View):
     """Interactive view for GitHub repository analysis"""
-    __slots__ = ("repo_url", "reanalyze_button", "timeout_task", "expiry_time", "cooldown_end")
+    __slots__ = ("repo_url", "reanalyze_button", "timeout_task", "expiry_time", "cooldown_end", "expert_opinion", "repo_name")
    
-    def __init__(self, repo_url: str):
+    def __init__(self, repo_url: str, expert_opinion: str = None, repo_name: str = None):
         # The view itself doesn't time out
         super().__init__(timeout=None)
         self.repo_url = repo_url
         self.timeout_task = None
         self.cooldown_end = None
+        self.expert_opinion = expert_opinion
+        self.repo_name = repo_name
         # Set expiry time 10 minutes from now
         self.expiry_time = datetime.now() + timedelta(minutes=10)
        
@@ -120,7 +123,15 @@ class GitHubAnalysisView(discord.ui.View):
         )
         self.reanalyze_button.callback = self.reanalyze_callback
         self.add_item(self.reanalyze_button)
-       
+        if expert_opinion and len(expert_opinion) > 900:
+            full_analysis_button = discord.ui.Button(
+                label="View Full Analysis",
+                style=discord.ButtonStyle.primary,
+                custom_id="view_full_analysis",
+                emoji="📄"
+            )
+            full_analysis_button.callback = self.view_full_analysis_callback
+            self.add_item(full_analysis_button)
         # Start timeout task for the reanalyze button (10 minutes)
         self.start_timeout_task()
    
@@ -217,7 +228,23 @@ class GitHubAnalysisView(discord.ui.View):
                 f"❌ An error occurred: {str(e)}",
                 ephemeral=True
             )
-       
+            
+    async def view_full_analysis_callback(self, interaction: discord.Interaction):
+        """Show the full expert opinion in a modal"""
+        if not self.expert_opinion:
+            await interaction.response.send_message(
+                "❌ No expert opinion available.",
+                ephemeral=True
+            )
+            return
+        
+        # Create and show the modal with full expert opinion
+        modal = ExpertOpinionModal(
+            expert_opinion=self.expert_opinion,
+            repo_name=self.repo_name or "Repository"
+        )
+        await interaction.response.send_modal(modal)
+     
     def stop(self):
         """Clean up when the view is no longer needed"""
         if self.timeout_task:

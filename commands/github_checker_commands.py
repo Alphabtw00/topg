@@ -22,7 +22,7 @@ class GithubCheckerCommands(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
    
-    @app_commands.command(name="github-checker", description="Analyze a GitHub repository for legitimacy")
+    @app_commands.command(name="github-checker", description="Analyze a GitHub repository for legitimacy (takes 1-2 mins to generate)")
     @app_commands.guild_only()
     @app_commands.checks.cooldown(1, 100)  # 100 seconds cooldown
     async def check_repo(self, interaction: discord.Interaction, repo_url: str):
@@ -62,15 +62,21 @@ class GithubCheckerCommands(commands.Cog):
             is_cached = result.get('cached', False)
             
             # Create embed from result data
-            embed = create_github_analysis_embed(
+            embed, full_expert_opinion = create_github_analysis_embed(
                 result['repo_info'],
                 result['analysis'],
                 start_time,
                 interaction
             )
-           
+            
+            repo_name = result['repo_info'].get('full_name', 'Repository')
+            
             # Create and send view with buttons
-            view = GitHubAnalysisView(repo_url)
+            view = GitHubAnalysisView(
+                        repo_url=repo_url,
+                        expert_opinion=full_expert_opinion,
+                        repo_name=repo_name
+                    )
            
             await interaction.followup.send(embed=embed, view=view)
            
