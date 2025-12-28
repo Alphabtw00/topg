@@ -33,12 +33,12 @@ async def setup_events(bot: CryptoBot):
     _bot = bot
 
     # Register message handler
-    bot.add_listener(on_message, "on_message")
+    # bot.add_listener(on_message, "on_message")
     
-    # Register username ban handlers
-    bot.add_listener(on_member_join, "on_member_join")
-    bot.add_listener(on_member_update, "on_member_update")
-    bot.add_listener(on_user_update, "on_user_update")
+    # # Register username ban handlers
+    # bot.add_listener(on_member_join, "on_member_join")
+    # bot.add_listener(on_member_update, "on_member_update")
+    # bot.add_listener(on_user_update, "on_user_update")
     
     # Register error handlers
     bot.add_listener(on_error, "on_error")

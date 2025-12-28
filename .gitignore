@@ -13,6 +13,7 @@ github_response_1.json
 generate_files.py
 generate_document.py
 filtered_transactions.json
+check_members_in_server_with_role.py
 embed.py
 .env
 data/

@@ -12,14 +12,10 @@ from utils.logger import get_logger
 from utils.validators import validate_github_url, parse_github_url, extract_scores, extract_code_review
 from utils.analytics_utils import calculate_trust_score, calculate_verdict, calculate_final_legitimacy_score
 from utils.helper import sanitize_code_content, get_file_extension
-from cachetools import TTLCache
+import repository.github_analyzer_repo as github_db
 from config import (
-    GITHUB_ANALYSIS_CACHE_SIZE, GITHUB_ANALYSIS_CACHE_TTL, 
     GITHUB_MAX_FILES_TO_FETCH, GITHUB_TOKEN, ANTHROPIC_API_KEY
 )
-
-# Cache for GitHub analysis results
-GITHUB_ANALYSIS_CACHE = TTLCache(maxsize=GITHUB_ANALYSIS_CACHE_SIZE, ttl=GITHUB_ANALYSIS_CACHE_TTL)
 
 logger = get_logger()
 
@@ -55,11 +51,10 @@ class GitHubAnalyzer:
         # Generate cache key
         cache_key = f"{owner.lower()}/{repo.lower()}"
         
-        # Check cache first
-        if cache_key in GITHUB_ANALYSIS_CACHE:
+        # Check database cache first
+        cached_result = await github_db.get_cached_analysis(cache_key)
+        if cached_result:
             logger.info(f"Serving cached analysis for {repo_url}")
-            cached_result = GITHUB_ANALYSIS_CACHE[cache_key]
-            cached_result['cached'] = True
             return cached_result
         
         try:
@@ -109,15 +104,16 @@ class GitHubAnalyzer:
             }
             
             # Prepare result for caching
+            timestamp = datetime.now().timestamp()
             result = {
                 "repo_info": repo_details,
                 "analysis": analysis_result,
-                "timestamp": datetime.now().timestamp(),
+                "timestamp": timestamp,
                 "cached": False
             }
             
-            # Cache the result
-            GITHUB_ANALYSIS_CACHE[cache_key] = result
+            # Save to database
+            await github_db.save_analysis(cache_key, repo_details, analysis_result, timestamp)
             
             return result
             
@@ -260,7 +256,7 @@ class GitHubAnalyzer:
             selected_files = code_files[:GITHUB_MAX_FILES_TO_FETCH]
             
             # Fetch file contents in parallel with a small concurrency limit to avoid rate limiting
-            semaphore = asyncio.Semaphore(10)  # Max 5 concurrent requests
+            semaphore = asyncio.Semaphore(10)  # Max 10 concurrent requests
             
             async def fetch_file(file_path):
                 async with semaphore:  # Limit concurrent requests
@@ -551,11 +547,7 @@ Provide scores as "Score: X/25" format. Include specific code examples to suppor
             # Generate the cache key 
             cache_key = f"{repo_info['owner'].lower()}/{repo_info['repo'].lower()}"
             
-            if cache_key in GITHUB_ANALYSIS_CACHE:
-                GITHUB_ANALYSIS_CACHE.pop(cache_key)
-                return True
-                
-            return False
+            return await github_db.clear_analysis(cache_key)
         except Exception as e:
             logger.error(f"Error clearing repo from cache: {str(e)}")
             return False

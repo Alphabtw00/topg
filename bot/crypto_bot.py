@@ -87,6 +87,7 @@ class CryptoBot(commands.Bot):
                 return
             logger.info("Database connection successful")
             
+            #TODO make setting up all tables in single command
             # Set up settings tables
             from service.auto_message_settings_service import setup_settings_tables
             settings_setup = await setup_settings_tables()
@@ -95,6 +96,13 @@ class CryptoBot(commands.Bot):
             else:
                 logger.warning("Settings tables initialization had issues, but will continue")
             
+            from repository.github_analyzer_repo import setup_github_tables
+            github_setup = await setup_github_tables()
+            if github_setup:
+                logger.debug("GitHub tables initialized successfully")
+            else:
+                logger.warning("GitHub tables initialization had issues, but will continue")
+    
             # Set up truthsocial tables
             from repository.truth_repo import setup_truth_tables
             truth_setup = await setup_truth_tables()
@@ -123,10 +131,10 @@ class CryptoBot(commands.Bot):
         await self.add_cog(BanCommands(self))
         # await self.add_cog(TruthCommands(self))
         await self.add_cog(DexTrackerCommands(self))
-        await self.add_cog(BundleCheckerCommands(self))
+        # await self.add_cog(BundleCheckerCommands(self))
         # await self.add_cog(MigrationTrackerCommands(self))
         # await self.add_cog(About_to_GraduateCommands(self))
-        await self.add_cog(WalletFinderCommands(self))
+        # await self.add_cog(WalletFinderCommands(self))
         await self.add_cog(SayCommands(self))
         await self.add_cog(KalshiCommands(self))
         await self.add_cog(FlexCommands(self))
