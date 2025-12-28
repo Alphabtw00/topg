@@ -25,6 +25,7 @@ from commands.kalshi_commands import KalshiCommands
 from commands.explain_commands import ExplainCommands
 from commands.flex_commands import FlexCommands
 from commands.calculator_commands import CalculatorCommands
+from commands.nword_tracking_commands import NWordTrackingCommands
 from service.truth_tracker_service import initialize_and_start_truth_tracking
 from service.dex_tracker_service import initialize_and_start_dex_tracking
 from service.mysql_service import setup_db_pool, close_db_pool
@@ -87,8 +88,9 @@ class CryptoBot(commands.Bot):
                 return
             logger.info("Database connection successful")
             
-            #TODO make setting up all tables in single command
+            
             # Set up settings tables
+            #TODO make setting up all tables in single command
             from service.auto_message_settings_service import setup_settings_tables
             settings_setup = await setup_settings_tables()
             if settings_setup:
@@ -96,6 +98,15 @@ class CryptoBot(commands.Bot):
             else:
                 logger.warning("Settings tables initialization had issues, but will continue")
             
+            # Set up nword tracking table
+            from repository.nword_tracking_repo import setup_nword_tables
+            nword_setup = await setup_nword_tables()
+            if nword_setup:
+                logger.debug("N-word tables initialized successfully")
+            else:
+                logger.warning("N-word tables initialization had issues, but will continue")
+                
+            # Set up github analysis table
             from repository.github_analyzer_repo import setup_github_tables
             github_setup = await setup_github_tables()
             if github_setup:
@@ -140,6 +151,8 @@ class CryptoBot(commands.Bot):
         await self.add_cog(FlexCommands(self))
         await self.add_cog(ExplainCommands(self))
         await self.add_cog(CalculatorCommands(self))
+        await self.add_cog(NWordTrackingCommands(self))
+        
 
         from bot.events import setup_events  # Adjust import based on your project structure
         await setup_events(self)

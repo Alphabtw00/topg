@@ -51,6 +51,9 @@ ENABLE_BOT_FORWARDING = os.getenv("ENABLE_BOT_FORWARDING", "True").lower() in ("
 ENABLE_USER_FORWARDING = os.getenv("ENABLE_USER_FORWARDING", "True").lower() in ("true", "1", "yes")
 ENABLE_ALERTS = os.getenv("ENABLE_ALERTS", "True").lower() in ("true", "1", "yes")
 
+ENABLE_NWORD_TRACKING = os.getenv("ENABLE_NWORD_TRACKING", "True").lower() in ("true", "1", "yes")
+NWORD_TARGET_WORDS = ["nigga", "nigger" , "nga", "niggers", "niggas"]
+
 
 
 # ========================================================================================================================================================================================
@@ -176,6 +179,12 @@ r'\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})'  # or IP
 r'(?::\d+)?'  # optional port
 r'(?:/?|[/?]\S+)$'
 GITHUB_REPO_REGEX_PATTERN = r'^(?:https?://)?(?:www\.)?github\.com/([^/\s]+)/([^/\s]+?)(?:\.git)?/?$'
+# Fallback simpler regex for just detecting "daniworldwide" (case insensitive)
+SIMPLE_DANI_REGEX = r"(?i)d\W*a\W*n\W*i\W*w\W*o\W*r\W*l\W*d\W*w\W*i\W*d\W*e"
+
+# Enhanced regex pattern with MORE Cyrillic lookalikes
+DANI_WORLDWIDE_REGEX = r"(?i)\b[dⅾᗪｄDᴅdDдДⅆ][^a-zA-Z]*[aａaAäÄ@4ᴀаАaáàäâ][^a-zA-Z]*[nｎnNⁿᴨNηᴎнНńñ][^a-zA-Z]*[iｉiI1!|ιɪɩиИìíîï][^a-zA-Z]*[wｗwWѡѡѠᴡшШщЩŵẃẁẅ][^a-zA-Z]*[oｏoO0öÖøØоОòóôöõ][^a-zA-Z]*[rｒrRᴙʀрРŕŗř][^a-zA-Z]*[lｌlL1|ʟлЛĺļľł][^a-zA-Z]*[dⅾᗪｄDᴅdDдДⅆ][^a-zA-Z]*[wｗwWѡѡѠᴡшШщЩŵẃẁẅ][^a-zA-Z]*[iｉiI1!|ιɪɩиИìíîï][^a-zA-Z]*[dⅾᗪｄDᴅdDдДⅆ][^a-zA-Z]*[eｅeE3ëËεɛеЕэЭèéêë]"
+
 
 # ==============================================
 # Truth Social Configuration
@@ -214,11 +223,6 @@ USERNAME_BAN_LOG_CHANNEL = int(os.getenv('USERNAME_BAN_LOG_CHANNEL', 0)) or None
 # Ban keywords - Add some common variations
 BAN_KEYWORDS = ["daniworldwide", "dani worldwide", "dani_worldwide", "d@ni w0rldwide"]
 
-# Fallback simpler regex for just detecting "daniworldwide" (case insensitive)
-SIMPLE_DANI_REGEX = r"(?i)d\W*a\W*n\W*i\W*w\W*o\W*r\W*l\W*d\W*w\W*i\W*d\W*e"
-
-# Enhanced regex pattern with MORE Cyrillic lookalikes
-DANI_WORLDWIDE_REGEX = r"(?i)\b[dⅾᗪｄDᴅdDдДⅆ][^a-zA-Z]*[aａaAäÄ@4ᴀаАaáàäâ][^a-zA-Z]*[nｎnNⁿᴨNηᴎнНńñ][^a-zA-Z]*[iｉiI1!|ιɪɩиИìíîï][^a-zA-Z]*[wｗwWѡѡѠᴡшШщЩŵẃẁẅ][^a-zA-Z]*[oｏoO0öÖøØоОòóôöõ][^a-zA-Z]*[rｒrRᴙʀрРŕŗř][^a-zA-Z]*[lｌlL1|ʟлЛĺļľł][^a-zA-Z]*[dⅾᗪｄDᴅdDдДⅆ][^a-zA-Z]*[wｗwWѡѡѠᴡшШщЩŵẃẁẅ][^a-zA-Z]*[iｉiI1!|ιɪɩиИìíîï][^a-zA-Z]*[dⅾᗪｄDᴅdDдДⅆ][^a-zA-Z]*[eｅeE3ëËεɛеЕэЭèéêë]"
 
 USERNAME_BAN_REGEXES = [
     DANI_WORLDWIDE_REGEX,

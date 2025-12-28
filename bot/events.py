@@ -10,11 +10,13 @@ from bot.crypto_bot import CryptoBot
 from service.message_service import process_message_with_timeout
 from service.forwarding_service import forward_message, should_process_forwarding
 from service.auto_message_settings_service import should_process_channel
-from service.username_ban_service import check_username, ban_user  # Correct import path
+from service.username_ban_service import check_username, ban_user
+from service.nword_tracking_service import process_message_for_nword
 from utils.validators import crypto_quick_check
 from utils.logger import get_logger
 from config import (
-    USERNAME_BAN_SERVER_ID
+    USERNAME_BAN_SERVER_ID,
+    ENABLE_NWORD_TRACKING
 )
 from datetime import datetime
 
@@ -33,7 +35,7 @@ async def setup_events(bot: CryptoBot):
     _bot = bot
 
     # Register message handler
-    # bot.add_listener(on_message, "on_message")
+    bot.add_listener(on_message, "on_message")
     
     # # Register username ban handlers
     # bot.add_listener(on_member_join, "on_member_join")
@@ -46,30 +48,33 @@ async def setup_events(bot: CryptoBot):
     bot.add_listener(on_resumed, "on_resumed")
     bot.add_listener(on_socket_response, "on_socket_response")
     
-    logger.info(f"Discord Events Registered | Username Ban Server ID: {USERNAME_BAN_SERVER_ID}")
+    logger.info(f"Discord Events Registered")
 
 async def on_message(message: discord.Message):
     """
     Handle incoming messages with optimized forwarding
     """
     if not message.guild:
-        return
-    
-    # ULTRA-FAST forwarding check - only create task if needed
+        return  
+
     if should_process_forwarding(message.channel.id):
-        asyncio.create_task(forward_message(message, _bot))
-    
-    # Skip further processing for bot messages
+        asyncio.create_task(forward_message(message, _bot))  
+
     if message.author.bot:
-        return
-   
-    if not await should_process_channel(message.guild.id, message.channel.id):
-        return
-    
-    if not crypto_quick_check(message.content):
-        return    
-    
-    asyncio.create_task(process_message_with_timeout(message, _bot))
+        return  
+
+    if ENABLE_NWORD_TRACKING and message.content:
+        asyncio.create_task(
+            process_message_for_nword(message.author.id, message.guild.id, message.content)
+        )
+        
+    # if not await should_process_channel(message.guild.id, message.channel.id):
+    #     return 
+
+    # if not crypto_quick_check(message.content):
+    #     return  
+
+    # asyncio.create_task(process_message_with_timeout(message, _bot)) 
 
 async def should_send_fudded_reply(message: discord.Message) -> bool:
     """
