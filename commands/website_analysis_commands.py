@@ -13,6 +13,7 @@ from utils.logger import get_logger
 from ui.views import WebsiteAnalysisView
 from ui.embeds import create_website_embed
 from utils.formatters import safe_text
+from config import PRIVATE_COMMAND_GUILD_IDS
 
 import io 
 
@@ -28,6 +29,7 @@ class WebsiteCheckerCommands(commands.Cog):
     @app_commands.command(name="website-info", description="Analyze a project website")
     @app_commands.guild_only()
     @app_commands.checks.cooldown(1, 45)  # 45 seconds cooldown
+    @app_commands.guilds(*[discord.Object(id=g) for g in PRIVATE_COMMAND_GUILD_IDS])
     async def check_website(self, interaction: discord.Interaction, website_url: str):
         """
         Analyze a website for crypto project legitimacy

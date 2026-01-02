@@ -1836,7 +1836,7 @@ async def create_health_embed(bot, user):
         if api_latency:
             embed.add_field(name="🌐 API Performance", value=api_latency, inline=False)
     
-    # === TOP SERVERS WITH DETAILED INFO ===
+    # === TOP SERVERS WITH DETAILED INFO (SPLIT INTO MULTIPLE FIELDS) ===
     if server_info:
         # Create legend
         legend = (
@@ -1846,13 +1846,55 @@ async def create_health_embed(bot, user):
             "```"
         )
         
-        servers_text = "```\n" + "\n".join(server_info) + "\n```"
+        # Split servers into chunks that fit within 1024 character limit
+        MAX_FIELD_LENGTH = 1024
+        current_chunk = []
+        current_length = 0
+        field_number = 1
         
-        embed.add_field(
-            name="🏆 Top Servers", 
-            value=legend + servers_text, 
-            inline=False
-        )
+        for server_line in server_info:
+            line_length = len(server_line) + 1  # +1 for newline
+            
+            # Check if adding this line would exceed limit
+            # Account for code block markers (8 chars: ```\n and \n```)
+            # Also account for legend length in first field
+            max_available = MAX_FIELD_LENGTH - (len(legend) if field_number == 1 else 0) - 8
+            
+            if current_length + line_length > max_available:
+                # Add current chunk as a field
+                servers_text = "```\n" + "\n".join(current_chunk) + "\n```"
+                field_name = f"🏆 Top Servers" if field_number == 1 else f"🏆 Top Servers (Part {field_number})"
+                
+                # Add legend only to first field
+                field_value = (legend + servers_text) if field_number == 1 else servers_text
+                
+                embed.add_field(
+                    name=field_name,
+                    value=field_value,
+                    inline=False
+                )
+                
+                # Start new chunk
+                current_chunk = [server_line]
+                current_length = line_length
+                field_number += 1
+            else:
+                current_chunk.append(server_line)
+                current_length += line_length
+        
+        # Add remaining servers
+        if current_chunk:
+            servers_text = "```\n" + "\n".join(current_chunk) + "\n```"
+            field_name = f"🏆 Top Servers" if field_number == 1 else f"🏆 Top Servers (Part {field_number})"
+            
+            # Add legend only to first field (if this is the only field)
+            field_value = (legend + servers_text) if field_number == 1 else servers_text
+            
+            embed.add_field(
+                name=field_name,
+                value=field_value,
+                inline=False
+            )
     
     # === COMMAND USAGE ===
     if top_commands:

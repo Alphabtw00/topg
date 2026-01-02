@@ -3,6 +3,7 @@
 Main Discord bot class implementation
 """
 import asyncio
+import discord
 import logging
 import gc
 import psutil
@@ -33,8 +34,12 @@ from service.migration_tracker_service import initialize_and_start_migration_tra
 from service.about_to_graduate_tracker_service import initialize_and_start_about_to_graduate_tracking
 from utils.formatters import relative_time
 from api.provider import ApiServiceProvider
-
-from config import ENABLE_ALERTS, ENABLE_BOT_FORWARDING, ENABLE_USER_FORWARDING
+from config import (
+            ENABLE_ALERTS, ENABLE_BOT_FORWARDING, ENABLE_USER_FORWARDING,
+            BOT_INPUT_CHANNEL_IDS, BOT_OUTPUT_CHANNEL_IDS, FORWARD_BOT_IDS,
+            USER_INPUT_CHANNEL_IDS, USER_OUTPUT_CHANNEL_IDS, FORWARD_USER_IDS, ADMIN_USER_IDS,
+            PRIVATE_COMMAND_GUILD_IDS
+        )
 
 logger = get_logger()
 
@@ -137,7 +142,7 @@ class CryptoBot(commands.Bot):
         # Register commands
         await self.add_cog(HealthCommands(self))
         await self.add_cog(GithubCheckerCommands(self))
-        await self.add_cog(SettingsCommands(self))
+        # await self.add_cog(SettingsCommands(self))
         await self.add_cog(WebsiteCheckerCommands(self))
         await self.add_cog(BanCommands(self))
         # await self.add_cog(TruthCommands(self))
@@ -163,17 +168,18 @@ class CryptoBot(commands.Bot):
         
         
         try:
-            synced = await self.tree.sync()
-            logger.info(f"Successfully synced {len(synced)} command(s)")
+            for guild_id in PRIVATE_COMMAND_GUILD_IDS:
+                guild_synced = await self.tree.sync(guild=discord.Object(id=guild_id))
+                logger.info(f"Synced {len(guild_synced)} command(s) to guild {guild_id}")
+            
+            # Sync remaining global commands (non-private ones)
+            global_synced = await self.tree.sync()
+            logger.info(f"Synced {len(global_synced)} global command(s)")
         except Exception as e:
             logger.error(f"Failed to sync commands: {e}")
 
     async def on_ready(self):
         """Event handler for when the bot is ready"""
-        from config import (
-            BOT_INPUT_CHANNEL_IDS, BOT_OUTPUT_CHANNEL_IDS, FORWARD_BOT_IDS,
-            USER_INPUT_CHANNEL_IDS, USER_OUTPUT_CHANNEL_IDS, FORWARD_USER_IDS, ADMIN_USER_IDS
-        )
         
         logger.info(f"Logged in as {self.user} (ID: {self.user.id})")
         logger.info(f"Bot connected to {len(self.guilds)} server(s)")
@@ -190,6 +196,20 @@ class CryptoBot(commands.Bot):
             logger.info(f"Admin users configured: {', '.join(admin_names)}")
         else:
             logger.info("No admin users configured")
+        
+        
+        # Log private command servers configuration
+        if PRIVATE_COMMAND_GUILD_IDS:
+            private_guild_names = []
+            for guild_id in PRIVATE_COMMAND_GUILD_IDS:
+                try:
+                    guild = self.get_guild(guild_id)
+                    private_guild_names.append(guild.name if guild else str(guild_id))
+                except:
+                    private_guild_names.append(str(guild_id))
+            logger.info(f"Private command servers configured: {', '.join(private_guild_names)}")
+        else:
+            logger.info("No private command servers configured")
         
         # Log bot forwarding configuration
         if ENABLE_BOT_FORWARDING and BOT_INPUT_CHANNEL_IDS and BOT_OUTPUT_CHANNEL_IDS:

@@ -12,6 +12,7 @@ from utils.validators import validate_github_url
 from bot.error_handler import create_error_handler
 from utils.logger import get_logger
 from utils.formatters import safe_text
+from config import PRIVATE_COMMAND_GUILD_IDS
 
 
 logger = get_logger()
@@ -25,6 +26,7 @@ class GithubCheckerCommands(commands.Cog):
     @app_commands.command(name="github-checker", description="Analyze a GitHub repository for legitimacy (takes 1-2 mins to generate)")
     @app_commands.guild_only()
     @app_commands.checks.cooldown(1, 100)  # 100 seconds cooldown
+    @app_commands.guilds(*[discord.Object(id=g) for g in PRIVATE_COMMAND_GUILD_IDS])
     async def check_repo(self, interaction: discord.Interaction, repo_url: str):
         """
         Analyze a GitHub repository for potential scam indicators in crypto projects.

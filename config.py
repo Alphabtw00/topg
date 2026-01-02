@@ -35,6 +35,8 @@ ADMIN_USER_IDS = {int(id.strip()) for id in os.getenv("ADMIN_USER_IDS", "").spli
 # Guild settings
 FORWARD_GUILD_IDS = {int(id.strip()) for id in os.getenv("FORWARD_GUILD_IDS", "").split(",") if id.strip().isdigit()}
 PROCESS_CRYPTO_IN_FORWARDS = os.getenv("PROCESS_CRYPTO_IN_FORWARDS", "True").lower() in ("true", "1", "yes")
+PRIVATE_COMMAND_GUILD_IDS = {int(id.strip()) for id in os.getenv("PRIVATE_COMMAND_GUILD_IDS", "").split(",") if id.strip().isdigit()}
+
 
 # Echo Bot message forwarding
 BOT_INPUT_CHANNEL_IDS = {int(id.strip()) for id in os.getenv("BOT_INPUT_CHANNEL_IDS", "").split(",") if id.strip().isdigit()}
