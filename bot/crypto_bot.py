@@ -32,7 +32,7 @@ from service.dex_tracker_service import initialize_and_start_dex_tracking
 from service.mysql_service import setup_db_pool, close_db_pool
 from service.migration_tracker_service import initialize_and_start_migration_tracking
 from service.about_to_graduate_tracker_service import initialize_and_start_about_to_graduate_tracking
-from utils.formatters import relative_time
+from utils.formatters import relative_time, safe_text
 from api.provider import ApiServiceProvider
 from config import (
             ENABLE_ALERTS, ENABLE_BOT_FORWARDING, ENABLE_USER_FORWARDING,
@@ -167,10 +167,13 @@ class CryptoBot(commands.Bot):
         init_forwarding_cache()
         
         
-        try:
+        try:            
             for guild_id in PRIVATE_COMMAND_GUILD_IDS:
+                guild = self.get_guild(guild_id)
+                guild_name = safe_text(guild.name) if guild else "Unknown"
+                
                 guild_synced = await self.tree.sync(guild=discord.Object(id=guild_id))
-                logger.info(f"Synced {len(guild_synced)} command(s) to guild {guild_id}")
+                logger.info(f"Synced {len(guild_synced)} command(s) to guild {guild_name} (ID: {guild_id})")
             
             # Sync remaining global commands (non-private ones)
             global_synced = await self.tree.sync()
@@ -190,7 +193,7 @@ class CryptoBot(commands.Bot):
             for admin_id in ADMIN_USER_IDS:
                 try:
                     admin_user = self.get_user(admin_id)
-                    admin_names.append(admin_user.name if admin_user else str(admin_id))
+                    admin_names.append(safe_text(admin_user.name) if admin_user else str(admin_id))
                 except:
                     admin_names.append(str(admin_id))
             logger.info(f"Admin users configured: {', '.join(admin_names)}")
@@ -204,7 +207,7 @@ class CryptoBot(commands.Bot):
             for guild_id in PRIVATE_COMMAND_GUILD_IDS:
                 try:
                     guild = self.get_guild(guild_id)
-                    private_guild_names.append(guild.name if guild else str(guild_id))
+                    private_guild_names.append(safe_text(guild.name) if guild else str(guild_id))
                 except:
                     private_guild_names.append(str(guild_id))
             logger.info(f"Private command servers configured: {', '.join(private_guild_names)}")
@@ -220,7 +223,7 @@ class CryptoBot(commands.Bot):
                 for bot_id in FORWARD_BOT_IDS:
                     try:
                         bot_user = self.get_user(bot_id)
-                        bot_names.append(bot_user.name if bot_user else str(bot_id))
+                        bot_names.append(safe_text(bot_user.name) if bot_user else str(bot_id))
                     except:
                         bot_names.append(str(bot_id))
                 bot_info = f" (Bots: {', '.join(bot_names)})"
@@ -236,7 +239,7 @@ class CryptoBot(commands.Bot):
                 for user_id in FORWARD_USER_IDS:
                     try:
                         user = self.get_user(user_id)
-                        user_names.append(user.name if user else str(user_id))
+                        user_names.append(safe_text(user.name) if user else str(user_id))
                     except:
                         user_names.append(str(user_id))
                 user_info = f" (Users: {', '.join(user_names)})"
@@ -264,7 +267,7 @@ class CryptoBot(commands.Bot):
             self.is_first_connect = False
         else:
             logger.info("Bot has reconnected")
-
+    
     async def close(self):
         """Properly close resources when the bot is shutting down"""
         # Prevent duplicate shutdown logs

@@ -18,3 +18,5 @@ react_with_emoji.py
 embed.py
 .env
 data/
+delete_member_messages.py
+copy_server_emoji.py
