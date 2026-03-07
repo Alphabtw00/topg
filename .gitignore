@@ -20,3 +20,5 @@ embed.py
 data/
 delete_member_messages.py
 copy_server_emoji.py
+get_audit_logs.py
+print_messages_in_channel.py

@@ -92,18 +92,13 @@ def get_channel_type(channel_id):
     return None
 
 async def get_webhook_for_channel(channel, bot):
-    """Get or create a webhook for the channel, with caching"""
     cache_key = channel.id
     
+    # Just return cached webhook directly - NO API CALL
     if cache_key in webhook_cache:
-        try:
-            await webhook_cache[cache_key].fetch()  
-            return webhook_cache[cache_key]
-        except discord.NotFound:
-            del webhook_cache[cache_key]
-        except Exception:
-            pass
+        return webhook_cache[cache_key]
     
+    # Only fetch webhooks list when NOT cached (rare)
     try:
         webhooks = await channel.webhooks()
         webhook = next((w for w in webhooks if w.user and w.user.id == bot.user.id), None)
@@ -113,6 +108,12 @@ async def get_webhook_for_channel(channel, bot):
         
         webhook_cache[cache_key] = webhook
         return webhook
+    except discord.HTTPException as e:
+        if e.status == 429:  # Handle rate limit gracefully
+            logger.error(f"Rate limited getting webhook for channel {channel.id}")
+            return None
+        logger.error(f"Failed to get webhook for channel {channel.id}: {e}")
+        return None
     except Exception as e:
         logger.error(f"Failed to get webhook for channel {channel.id}: {e}")
         return None
