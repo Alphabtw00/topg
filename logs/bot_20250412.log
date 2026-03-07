@@ -1,0 +1,798 @@
+2025-04-12 00:31:04,724 - INFO - Starting bot...
+2025-04-12 00:31:05,656 - INFO - API client initialized
+2025-04-12 00:31:05,656 - INFO - WebsiteAnalyzer initialized with concurrency limit of 15
+2025-04-12 00:31:05,656 - INFO - All API services initialized
+2025-04-12 00:31:05,656 - INFO - Services provider initialized
+2025-04-12 00:31:05,695 - INFO - Database connection pool established: size=1-10
+2025-04-12 00:31:05,695 - INFO - Database connection successful
+2025-04-12 00:31:05,705 - INFO - WebsiteChecker cog initialized
+2025-04-12 00:31:05,711 - INFO - Discord Events Registered | Username Ban Server ID: 1313758082974879774
+2025-04-12 00:31:05,712 - INFO - Memory monitor started (threshold: 300MB, interval: 3600s)
+2025-04-12 00:31:05,712 - INFO - Truth Social tracking started
+2025-04-12 00:31:06,290 - INFO - Successfully synced 5 command(s)
+2025-04-12 00:31:09,220 - INFO - Logged in as TOPG#4967 (ID: 1340722186100408340)
+2025-04-12 00:31:09,220 - INFO - Bot connected to 4 server(s)
+2025-04-12 00:31:09,220 - INFO - Echo bot message forwarding: 1 bots from 11 channels to 1 channels
+2025-04-12 00:31:09,220 - INFO - Dani message forwarding: 1 users from 2 channels to 1 channels
+2025-04-12 00:32:24,019 - ERROR - Error getting latest post from realDonaldTrump: argument of type 'NoneType' is not iterable
+2025-04-12 01:31:05,726 - INFO - Metrics Report | Uptime: 1h 0m | Memory: 45.5MB | Processed: 591 | Avg Processing: 0.0686s | Errors: 0 (0 types, Top: none) | Last Cleanup: 2025-04-12 00:31:04 (1h ago)
+2025-04-12 01:49:16,514 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-04-12 01:49:17,146 - INFO - Reconnected to Discord after disconnection
+2025-04-12 01:49:17,147 - INFO - Post-reconnection health check: Database=True, API Client=True
+2025-04-12 01:49:21,525 - INFO - Bot automatically reconnected
+2025-04-12 01:59:27,973 - INFO - Bot is shutting down...
+2025-04-12 01:59:27,974 - INFO - API client closed
+2025-04-12 01:59:27,975 - INFO - Services closed successfully
+2025-04-12 01:59:27,975 - INFO - Background task 'metrics_cleanup' canceled
+2025-04-12 01:59:27,975 - INFO - Background task 'memory_monitor' canceled
+2025-04-12 01:59:27,975 - INFO - Background task 'heartbeat_monitor' canceled
+2025-04-12 01:59:27,976 - INFO - Background task 'metrics_report' canceled
+2025-04-12 01:59:27,976 - INFO - Database connection pool closed successfully
+2025-04-12 01:59:27,979 - INFO - Truth Social tracking task cancelled
+2025-04-12 01:59:27,979 - INFO - Truth Social tracking loop cancelled
+2025-04-12 01:59:27,982 - INFO - Bot stopped by user
+2025-04-12 01:59:33,009 - INFO - Starting bot...
+2025-04-12 01:59:33,885 - INFO - API client initialized
+2025-04-12 01:59:33,886 - INFO - WebsiteAnalyzer initialized with concurrency limit of 15
+2025-04-12 01:59:33,886 - INFO - All API services initialized
+2025-04-12 01:59:33,886 - INFO - Services provider initialized
+2025-04-12 01:59:33,920 - INFO - Database connection pool established: size=1-10
+2025-04-12 01:59:33,920 - INFO - Database connection successful
+2025-04-12 01:59:33,931 - INFO - WebsiteChecker cog initialized
+2025-04-12 01:59:33,934 - INFO - Discord Events Registered | Username Ban Server ID: 1313758082974879774
+2025-04-12 01:59:33,935 - INFO - Memory monitor started (threshold: 300MB, interval: 3600s)
+2025-04-12 01:59:33,936 - INFO - Truth Social tracking started
+2025-04-12 01:59:34,407 - INFO - Successfully synced 5 command(s)
+2025-04-12 01:59:37,534 - INFO - Logged in as TOPG#4967 (ID: 1340722186100408340)
+2025-04-12 01:59:37,534 - INFO - Bot connected to 4 server(s)
+2025-04-12 01:59:37,534 - INFO - Echo bot message forwarding: 1 bots from 11 channels to 1 channels
+2025-04-12 01:59:37,534 - INFO - Dani message forwarding: 1 users from 2 channels to 1 channels
+2025-04-12 02:10:40,003 - INFO - Bot is shutting down...
+2025-04-12 02:10:40,004 - INFO - API client closed
+2025-04-12 02:10:40,004 - INFO - Services closed successfully
+2025-04-12 02:10:40,004 - INFO - Background task 'metrics_cleanup' canceled
+2025-04-12 02:10:40,004 - INFO - Background task 'memory_monitor' canceled
+2025-04-12 02:10:40,004 - INFO - Background task 'heartbeat_monitor' canceled
+2025-04-12 02:10:40,004 - INFO - Background task 'metrics_report' canceled
+2025-04-12 02:10:40,005 - INFO - Database connection pool closed successfully
+2025-04-12 02:10:40,005 - INFO - Truth Social tracking task cancelled
+2025-04-12 02:10:40,006 - INFO - Truth Social tracking loop cancelled
+2025-04-12 02:10:40,007 - INFO - Bot stopped by user
+2025-04-12 02:10:44,678 - INFO - Starting bot...
+2025-04-12 02:10:45,529 - INFO - API client initialized
+2025-04-12 02:10:45,529 - INFO - WebsiteAnalyzer initialized with concurrency limit of 15
+2025-04-12 02:10:45,530 - INFO - All API services initialized
+2025-04-12 02:10:45,530 - INFO - Services provider initialized
+2025-04-12 02:10:45,553 - INFO - Database connection pool established: size=1-10
+2025-04-12 02:10:45,554 - INFO - Database connection successful
+2025-04-12 02:10:45,564 - INFO - WebsiteChecker cog initialized
+2025-04-12 02:10:45,567 - INFO - Discord Events Registered | Username Ban Server ID: 1313758082974879774
+2025-04-12 02:10:45,568 - INFO - Memory monitor started (threshold: 300MB, interval: 3600s)
+2025-04-12 02:10:45,568 - INFO - Truth Social tracking started
+2025-04-12 02:10:46,100 - INFO - Successfully synced 5 command(s)
+2025-04-12 02:10:48,943 - INFO - Logged in as TOPG#4967 (ID: 1340722186100408340)
+2025-04-12 02:10:48,944 - INFO - Bot connected to 4 server(s)
+2025-04-12 02:10:48,944 - INFO - Echo bot message forwarding: 1 bots from 11 channels to 1 channels
+2025-04-12 02:10:48,944 - INFO - Dani message forwarding: 1 users from 2 channels to 1 channels
+2025-04-12 02:12:11,807 - ERROR - Error getting latest post from realDonaldTrump: argument of type 'NoneType' is not iterable
+2025-04-12 02:12:15,719 - ERROR - Error tracking Truth Social account: '>' not supported between instances of 'datetime.timedelta' and 'int'
+2025-04-12 02:41:45,198 - ERROR - Error getting new posts from realDonaldTrump: argument of type 'NoneType' is not iterable
+2025-04-12 02:41:50,038 - ERROR - Error processing account realDonaldTrump for guild 1313758082974879774: '>' not supported between instances of 'datetime.timedelta' and 'int'
+2025-04-12 02:42:18,614 - ERROR - Recurring error processing account realDonaldTrump (5 times): '>' not supported between instances of 'datetime.t...
+2025-04-12 02:42:42,742 - ERROR - Recurring error processing account realDonaldTrump (10 times): '>' not supported between instances of 'datetime.t...
+2025-04-12 02:43:04,607 - ERROR - Recurring error processing account realDonaldTrump (15 times): '>' not supported between instances of 'datetime.t...
+2025-04-12 02:43:14,433 - INFO - Truth tracking is active. Next check in 4s
+2025-04-12 02:43:29,355 - ERROR - Recurring error processing account realDonaldTrump (20 times): '>' not supported between instances of 'datetime.t...
+2025-04-12 02:43:51,797 - ERROR - Recurring error processing account realDonaldTrump (25 times): '>' not supported between instances of 'datetime.t...
+2025-04-12 02:44:13,250 - ERROR - Recurring error processing account realDonaldTrump (30 times): '>' not supported between instances of 'datetime.t...
+2025-04-12 02:44:35,743 - ERROR - Recurring error processing account realDonaldTrump (35 times): '>' not supported between instances of 'datetime.t...
+2025-04-12 02:44:59,566 - ERROR - Recurring error processing account realDonaldTrump (40 times): '>' not supported between instances of 'datetime.t...
+2025-04-12 02:45:07,898 - ERROR - Error processing guild 1313758082974879774: '>' not supported between instances of 'datetime.timedelta' and 'int'
+2025-04-12 02:46:26,379 - INFO - Truth tracking is active. Next check in 5s
+2025-04-12 02:47:12,695 - ERROR - Recurring error processing guild 1313758082974879774 (5 times): '>' not supported between instances of 'datetime.t...
+2025-04-12 02:47:12,696 - INFO - Truth tracking is active. Next check in 5s
+2025-04-12 02:47:34,918 - INFO - Truth tracking is active. Next check in 4s
+2025-04-12 02:47:40,232 - INFO - Truth tracking is active. Next check in 4s
+2025-04-12 02:48:35,776 - INFO - Truth tracking is active. Next check in 3s
+2025-04-12 02:48:50,650 - ERROR - Recurring error processing account realDonaldTrump (45 times): '>' not supported between instances of 'datetime.t...
+2025-04-12 02:49:15,006 - ERROR - Recurring error processing account realDonaldTrump (50 times): '>' not supported between instances of 'datetime.t...
+2025-04-12 02:49:37,354 - ERROR - Recurring error processing account realDonaldTrump (55 times): '>' not supported between instances of 'datetime.t...
+2025-04-12 02:49:42,225 - INFO - Truth tracking is active. Next check in 4s
+2025-04-12 02:50:02,990 - ERROR - Recurring error processing account realDonaldTrump (60 times): '>' not supported between instances of 'datetime.t...
+2025-04-12 02:50:07,818 - ERROR - Error in Truth Social tracking loop: '>' not supported between instances of 'datetime.timedelta' and 'int'
+2025-04-12 02:50:07,849 - ERROR - Traceback (most recent call last):
+  File "C:\Users\ansha\Documents\VsCode\TOPG\service\truth_service.py", line 305, in get_new_posts
+    posts = list(api.pull_statuses(username=handle, replies=False))
+  File "C:\Users\ansha\Documents\VsCode\TOPG\venv\Lib\site-packages\truthbrush\api.py", line 397, in pull_statuses
+    if "error" in result:
+       ^^^^^^^^^^^^^^^^^
+TypeError: argument of type 'NoneType' is not iterable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\ansha\Documents\VsCode\TOPG\handlers\truth_tracker.py", line 274, in process_account
+    new_posts = await truth_service.get_new_posts(handle, last_post_id)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ansha\Documents\VsCode\TOPG\service\truth_service.py", line 329, in get_new_posts
+    logger.error(f"Error getting new posts from {handle}: {error_msg}")
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ansha\Documents\VsCode\TOPG\utils\logger.py", line 72, in error
+    if msg_hash in self.last_reported and (current_time - self.last_reported[msg_hash]) > self.time_window:
+                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: '>' not supported between instances of 'datetime.timedelta' and 'int'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\ansha\Documents\VsCode\TOPG\handlers\truth_tracker.py", line 250, in process_guild
+    await process_account(guild_id, account, channels)
+  File "C:\Users\ansha\Documents\VsCode\TOPG\handlers\truth_tracker.py", line 327, in process_account
+    logger.error(f"Error processing account {handle} for guild {guild_id}: {e}")
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ansha\Documents\VsCode\TOPG\utils\logger.py", line 72, in error
+    if msg_hash in self.last_reported and (current_time - self.last_reported[msg_hash]) > self.time_window:
+                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: '>' not supported between instances of 'datetime.timedelta' and 'int'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\ansha\Documents\VsCode\TOPG\handlers\truth_tracker.py", line 142, in tracking_loop
+    await asyncio.gather(*tasks)
+  File "C:\Users\ansha\Documents\VsCode\TOPG\handlers\truth_tracker.py", line 197, in process_guild_with_delay
+    await process_guild(bot, guild_data, is_active)
+  File "C:\Users\ansha\Documents\VsCode\TOPG\handlers\truth_tracker.py", line 256, in process_guild
+    logger.error(f"Error processing guild {guild_id}: {e}")
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ansha\Documents\VsCode\TOPG\utils\logger.py", line 72, in error
+    if msg_hash in self.last_reported and (current_time - self.last_reported[msg_hash]) > self.time_window:
+                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: '>' not supported between instances of 'datetime.timedelta' and 'int'
+
+2025-04-12 02:50:20,279 - INFO - Truth tracking is active. Next check in 4s
+2025-04-12 02:50:44,905 - INFO - Truth tracking is active. Next check in 3s
+2025-04-12 02:51:42,433 - INFO - Truth tracking is active. Next check in 4s
+2025-04-12 02:52:06,186 - INFO - Bot is shutting down...
+2025-04-12 02:52:06,187 - INFO - API client closed
+2025-04-12 02:52:06,187 - INFO - Services closed successfully
+2025-04-12 02:52:06,187 - INFO - Background task 'metrics_cleanup' canceled
+2025-04-12 02:52:06,187 - INFO - Background task 'memory_monitor' canceled
+2025-04-12 02:52:06,188 - INFO - Background task 'heartbeat_monitor' canceled
+2025-04-12 02:52:06,188 - INFO - Background task 'metrics_report' canceled
+2025-04-12 02:52:06,188 - INFO - Database connection pool closed successfully
+2025-04-12 02:52:06,191 - INFO - Truth Social tracking task cancelled
+2025-04-12 02:52:06,191 - INFO - Truth Social tracking loop cancelled
+2025-04-12 02:52:06,193 - INFO - Bot stopped by user
+2025-04-12 02:52:39,254 - INFO - Starting bot...
+2025-04-12 02:52:40,253 - INFO - API client initialized
+2025-04-12 02:52:40,254 - INFO - WebsiteAnalyzer initialized with concurrency limit of 15
+2025-04-12 02:52:40,254 - INFO - All API services initialized
+2025-04-12 02:52:40,254 - INFO - Services provider initialized
+2025-04-12 02:52:40,286 - INFO - Database connection pool established: size=1-10
+2025-04-12 02:52:40,287 - INFO - Database connection successful
+2025-04-12 02:52:40,296 - INFO - WebsiteChecker cog initialized
+2025-04-12 02:52:40,299 - INFO - Discord Events Registered | Username Ban Server ID: 1313758082974879774
+2025-04-12 02:52:40,299 - INFO - Memory monitor started (threshold: 300MB, interval: 3600s)
+2025-04-12 02:52:40,300 - INFO - Truth Social tracking started
+2025-04-12 02:52:42,766 - INFO - Successfully synced 5 command(s)
+2025-04-12 02:52:45,594 - INFO - Logged in as TOPG#4967 (ID: 1340722186100408340)
+2025-04-12 02:52:45,594 - INFO - Bot connected to 4 server(s)
+2025-04-12 02:52:45,594 - INFO - Echo bot message forwarding: 1 bots from 11 channels to 1 channels
+2025-04-12 02:52:45,595 - INFO - Dani message forwarding: 1 users from 2 channels to 1 channels
+2025-04-12 02:52:53,431 - ERROR - Error getting new posts from realDonaldTrump: argument of type 'NoneType' is not iterable
+2025-04-12 02:52:58,335 - ERROR - Error processing account realDonaldTrump for guild 1313758082974879774: '>' not supported between instances of 'datetime.timedelta' and 'int'
+2025-04-12 02:53:30,468 - ERROR - Recurring error processing account realDonaldTrump (5 times): '>' not supported between instances of 'datetime.t...
+2025-04-12 02:53:47,894 - INFO - Bot is shutting down...
+2025-04-12 02:53:47,895 - INFO - API client closed
+2025-04-12 02:53:47,895 - INFO - Services closed successfully
+2025-04-12 02:53:47,895 - INFO - Background task 'metrics_cleanup' canceled
+2025-04-12 02:53:47,895 - INFO - Background task 'memory_monitor' canceled
+2025-04-12 02:53:47,895 - INFO - Background task 'heartbeat_monitor' canceled
+2025-04-12 02:53:47,896 - INFO - Background task 'metrics_report' canceled
+2025-04-12 02:53:47,896 - INFO - Database connection pool closed successfully
+2025-04-12 02:53:47,897 - INFO - Truth Social tracking task cancelled
+2025-04-12 02:53:47,897 - INFO - Truth Social tracking loop cancelled
+2025-04-12 02:53:47,898 - INFO - Bot stopped by user
+2025-04-12 03:36:33,161 - INFO - Starting bot...
+2025-04-12 03:36:34,023 - INFO - API client initialized
+2025-04-12 03:36:34,023 - INFO - WebsiteAnalyzer initialized with concurrency limit of 15
+2025-04-12 03:36:34,024 - INFO - All API services initialized
+2025-04-12 03:36:34,024 - INFO - Services provider initialized
+2025-04-12 03:36:34,069 - INFO - Database connection pool established: size=1-10
+2025-04-12 03:36:34,070 - INFO - Database connection successful
+2025-04-12 03:36:34,081 - INFO - WebsiteChecker cog initialized
+2025-04-12 03:36:34,087 - INFO - Discord Events Registered | Username Ban Server ID: 1313758082974879774
+2025-04-12 03:36:34,088 - INFO - Memory monitor started (threshold: 300MB, interval: 3600s)
+2025-04-12 03:36:34,088 - INFO - Truth Social tracking started
+2025-04-12 03:36:34,588 - INFO - Successfully synced 5 command(s)
+2025-04-12 03:36:37,448 - INFO - Logged in as TOPG#4967 (ID: 1340722186100408340)
+2025-04-12 03:36:37,448 - INFO - Bot connected to 4 server(s)
+2025-04-12 03:36:37,448 - INFO - Echo bot message forwarding: 1 bots from 11 channels to 1 channels
+2025-04-12 03:36:37,448 - INFO - Dani message forwarding: 1 users from 2 channels to 1 channels
+2025-04-12 03:37:09,893 - INFO - Bot is shutting down...
+2025-04-12 03:37:09,894 - INFO - API client closed
+2025-04-12 03:37:09,894 - INFO - Services closed successfully
+2025-04-12 03:37:09,894 - INFO - Background task 'metrics_cleanup' canceled
+2025-04-12 03:37:09,894 - INFO - Background task 'memory_monitor' canceled
+2025-04-12 03:37:09,895 - INFO - Background task 'heartbeat_monitor' canceled
+2025-04-12 03:37:09,895 - INFO - Background task 'metrics_report' canceled
+2025-04-12 03:37:09,895 - INFO - Database connection pool closed successfully
+2025-04-12 03:37:09,896 - INFO - Truth Social tracking task cancelled
+2025-04-12 03:37:09,896 - INFO - Truth Social tracking loop cancelled
+2025-04-12 03:37:09,897 - INFO - Bot stopped by user
+2025-04-12 03:37:23,337 - INFO - Starting bot...
+2025-04-12 03:37:24,223 - INFO - API client initialized
+2025-04-12 03:37:24,223 - INFO - WebsiteAnalyzer initialized with concurrency limit of 15
+2025-04-12 03:37:24,223 - INFO - All API services initialized
+2025-04-12 03:37:24,223 - INFO - Services provider initialized
+2025-04-12 03:37:24,250 - INFO - Database connection pool established: size=1-10
+2025-04-12 03:37:24,251 - INFO - Database connection successful
+2025-04-12 03:37:24,261 - INFO - WebsiteChecker cog initialized
+2025-04-12 03:37:24,264 - INFO - Discord Events Registered | Username Ban Server ID: 1313758082974879774
+2025-04-12 03:37:24,265 - INFO - Memory monitor started (threshold: 300MB, interval: 3600s)
+2025-04-12 03:37:24,265 - INFO - Truth Social tracking started
+2025-04-12 03:37:24,761 - INFO - Successfully synced 5 command(s)
+2025-04-12 03:37:27,686 - INFO - Logged in as TOPG#4967 (ID: 1340722186100408340)
+2025-04-12 03:37:27,686 - INFO - Bot connected to 4 server(s)
+2025-04-12 03:37:27,686 - INFO - Echo bot message forwarding: 1 bots from 11 channels to 1 channels
+2025-04-12 03:37:27,687 - INFO - Dani message forwarding: 1 users from 2 channels to 1 channels
+2025-04-12 03:37:37,533 - ERROR - Error getting new posts from realDonaldTrump: argument of type 'NoneType' is not iterable
+2025-04-12 03:37:42,397 - ERROR - Error processing account realDonaldTrump for guild 1313758082974879774: '>' not supported between instances of 'datetime.timedelta' and 'int'
+2025-04-12 03:38:08,792 - ERROR - Recurring error processing account realDonaldTrump (5 times): '>' not supported between instances of 'datetime.t...
+2025-04-12 04:37:24,272 - INFO - Metrics Report | Uptime: 1h 0m | Memory: 41.3MB | Processed: 405 | Avg Processing: 0.0622s | Errors: 0 (0 types, Top: none) | Last Cleanup: 2025-04-12 03:37:23 (1h ago)
+2025-04-12 05:16:09,837 - INFO - Starting bot...
+2025-04-12 05:16:10,880 - INFO - API client initialized
+2025-04-12 05:16:10,886 - INFO - WebsiteAnalyzer initialized with concurrency limit of 15
+2025-04-12 05:16:10,888 - INFO - All API services initialized
+2025-04-12 05:16:10,890 - INFO - Services provider initialized
+2025-04-12 05:16:11,105 - INFO - Database connection pool established: size=1-10
+2025-04-12 05:16:11,134 - INFO - Database connection successful
+2025-04-12 05:16:11,163 - INFO - WebsiteChecker cog initialized
+2025-04-12 05:16:11,180 - INFO - Discord Events Registered | Username Ban Server ID: 1313758082974879774
+2025-04-12 05:16:11,203 - INFO - Memory monitor started (threshold: 300MB, interval: 3600s)
+2025-04-12 05:16:11,207 - INFO - Truth Social tracking started
+2025-04-12 05:16:11,687 - INFO - Successfully synced 5 command(s)
+2025-04-12 05:16:14,811 - INFO - Logged in as TOPG#4967 (ID: 1340722186100408340)
+2025-04-12 05:16:14,813 - INFO - Bot connected to 4 server(s)
+2025-04-12 05:16:14,821 - INFO - Echo bot message forwarding: 1 bots from 11 channels to 1 channels
+2025-04-12 05:16:14,825 - INFO - Dani message forwarding: 1 users from 2 channels to 1 channels
+2025-04-12 06:07:19,744 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-04-12 06:07:20,411 - INFO - Reconnected to Discord after disconnection
+2025-04-12 06:07:20,413 - INFO - Post-reconnection health check: Database=True, API Client=True
+2025-04-12 06:07:24,757 - INFO - Bot automatically reconnected
+2025-04-12 06:16:11,220 - INFO - Metrics Report | Uptime: 1h 0m | Memory: 41.1MB | Processed: 380 | Avg Processing: 0.0001s | Errors: 0 (0 types, Top: none) | Last Cleanup: 2025-04-12 05:16:09 (1h ago)
+2025-04-12 07:16:11,229 - INFO - Metrics Report | Uptime: 2h 0m | Memory: 41.0MB | Processed: 885 | Avg Processing: 0.0001s | Errors: 0 (0 types, Top: none) | Last Cleanup: 2025-04-12 05:16:09 (2h ago)
+2025-04-12 07:48:53,827 - INFO - Bot is shutting down...
+2025-04-12 07:48:53,828 - INFO - API client closed
+2025-04-12 07:48:53,829 - INFO - Services closed successfully
+2025-04-12 07:48:53,829 - INFO - Background task 'metrics_cleanup' canceled
+2025-04-12 07:48:53,829 - INFO - Background task 'memory_monitor' canceled
+2025-04-12 07:48:53,829 - INFO - Background task 'heartbeat_monitor' canceled
+2025-04-12 07:48:53,829 - INFO - Background task 'metrics_report' canceled
+2025-04-12 07:48:53,830 - INFO - Database connection pool closed successfully
+2025-04-12 07:48:53,839 - INFO - Truth Social tracking task cancelled
+2025-04-12 07:48:53,839 - INFO - Truth Social tracking loop cancelled
+2025-04-12 07:48:53,844 - INFO - Bot stopped by user
+2025-04-12 07:48:59,746 - INFO - Starting bot...
+2025-04-12 07:49:00,691 - INFO - API client initialized
+2025-04-12 07:49:00,691 - INFO - WebsiteAnalyzer initialized with concurrency limit of 15
+2025-04-12 07:49:00,692 - INFO - All API services initialized
+2025-04-12 07:49:00,692 - INFO - Services provider initialized
+2025-04-12 07:49:00,724 - INFO - Database connection pool established: size=1-10
+2025-04-12 07:49:00,724 - INFO - Database connection successful
+2025-04-12 07:49:00,734 - INFO - WebsiteChecker cog initialized
+2025-04-12 07:49:00,743 - INFO - Discord Events Registered | Username Ban Server ID: 1313758082974879774
+2025-04-12 07:49:00,743 - INFO - Memory monitor started (threshold: 300MB, interval: 3600s)
+2025-04-12 07:49:00,744 - INFO - Truth Social tracking started
+2025-04-12 07:49:01,424 - INFO - Successfully synced 5 command(s)
+2025-04-12 07:49:04,527 - INFO - Logged in as TOPG#4967 (ID: 1340722186100408340)
+2025-04-12 07:49:04,527 - INFO - Bot connected to 4 server(s)
+2025-04-12 07:49:04,527 - INFO - Echo bot message forwarding: 1 bots from 11 channels to 1 channels
+2025-04-12 07:49:04,527 - INFO - Dani message forwarding: 1 users from 2 channels to 1 channels
+2025-04-12 07:59:15,091 - INFO - Bot is shutting down...
+2025-04-12 07:59:15,091 - INFO - API client closed
+2025-04-12 07:59:15,091 - INFO - Services closed successfully
+2025-04-12 07:59:15,091 - INFO - Background task 'metrics_cleanup' canceled
+2025-04-12 07:59:15,091 - INFO - Background task 'memory_monitor' canceled
+2025-04-12 07:59:15,092 - INFO - Background task 'heartbeat_monitor' canceled
+2025-04-12 07:59:15,092 - INFO - Background task 'metrics_report' canceled
+2025-04-12 07:59:15,092 - INFO - Database connection pool closed successfully
+2025-04-12 07:59:15,093 - INFO - Truth Social tracking task cancelled
+2025-04-12 07:59:15,093 - INFO - Truth Social tracking loop cancelled
+2025-04-12 07:59:15,094 - INFO - Bot stopped by user
+2025-04-12 07:59:39,229 - INFO - Starting bot...
+2025-04-12 07:59:40,506 - INFO - API client initialized
+2025-04-12 07:59:40,507 - INFO - WebsiteAnalyzer initialized with concurrency limit of 15
+2025-04-12 07:59:40,507 - INFO - All API services initialized
+2025-04-12 07:59:40,507 - INFO - Services provider initialized
+2025-04-12 07:59:40,520 - INFO - Database connection pool established: size=1-10
+2025-04-12 07:59:40,520 - INFO - Database connection successful
+2025-04-12 07:59:40,530 - INFO - WebsiteChecker cog initialized
+2025-04-12 07:59:40,533 - INFO - Discord Events Registered | Username Ban Server ID: 1313758082974879774
+2025-04-12 07:59:40,534 - INFO - Memory monitor started (threshold: 300MB, interval: 3600s)
+2025-04-12 07:59:40,534 - INFO - Truth Social tracking started
+2025-04-12 07:59:40,534 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 07:59:41,058 - INFO - Successfully synced 5 command(s)
+2025-04-12 07:59:43,980 - INFO - Logged in as TOPG#4967 (ID: 1340722186100408340)
+2025-04-12 07:59:43,980 - INFO - Bot connected to 4 server(s)
+2025-04-12 07:59:43,980 - INFO - Echo bot message forwarding: 1 bots from 11 channels to 1 channels
+2025-04-12 07:59:43,980 - INFO - Dani message forwarding: 1 users from 2 channels to 1 channels
+2025-04-12 07:59:45,543 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 07:59:50,553 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 07:59:55,565 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:00:00,573 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:00:04,587 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:00:09,600 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:00:14,617 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:00:19,622 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:00:23,634 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:00:28,644 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:00:32,649 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:00:36,665 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:00:41,679 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:00:45,688 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:00:49,701 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:00:54,702 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:00:54,703 - INFO - Truth tracking is active (active hours). Next check in 4s
+2025-04-12 08:00:58,709 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:01:03,723 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:01:08,729 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:01:13,731 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:01:14,430 - INFO - Bot is shutting down...
+2025-04-12 08:01:14,430 - INFO - API client closed
+2025-04-12 08:01:14,431 - INFO - Services closed successfully
+2025-04-12 08:01:14,431 - INFO - Background task 'metrics_cleanup' canceled
+2025-04-12 08:01:14,431 - INFO - Background task 'memory_monitor' canceled
+2025-04-12 08:01:14,431 - INFO - Background task 'heartbeat_monitor' canceled
+2025-04-12 08:01:14,431 - INFO - Background task 'metrics_report' canceled
+2025-04-12 08:01:14,431 - INFO - Database connection pool closed successfully
+2025-04-12 08:01:14,432 - INFO - Truth Social tracking task cancelled
+2025-04-12 08:01:14,432 - INFO - Truth Social tracking loop cancelled
+2025-04-12 08:01:14,433 - INFO - Bot stopped by user
+2025-04-12 08:01:18,991 - INFO - Starting bot...
+2025-04-12 08:01:20,187 - INFO - API client initialized
+2025-04-12 08:01:20,187 - INFO - WebsiteAnalyzer initialized with concurrency limit of 15
+2025-04-12 08:01:20,187 - INFO - All API services initialized
+2025-04-12 08:01:20,188 - INFO - Services provider initialized
+2025-04-12 08:01:20,200 - INFO - Database connection pool established: size=1-10
+2025-04-12 08:01:20,200 - INFO - Database connection successful
+2025-04-12 08:01:20,208 - INFO - WebsiteChecker cog initialized
+2025-04-12 08:01:20,211 - INFO - Discord Events Registered | Username Ban Server ID: 1313758082974879774
+2025-04-12 08:01:20,212 - INFO - Memory monitor started (threshold: 300MB, interval: 3600s)
+2025-04-12 08:01:20,213 - INFO - Truth Social tracking started
+2025-04-12 08:01:20,213 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:01:20,213 - INFO - Truth tracking is active (active hours). Next check in 5s
+2025-04-12 08:01:20,692 - INFO - Successfully synced 5 command(s)
+2025-04-12 08:01:24,657 - INFO - Logged in as TOPG#4967 (ID: 1340722186100408340)
+2025-04-12 08:01:24,657 - INFO - Bot connected to 4 server(s)
+2025-04-12 08:01:24,657 - INFO - Echo bot message forwarding: 1 bots from 11 channels to 1 channels
+2025-04-12 08:01:24,657 - INFO - Dani message forwarding: 1 users from 2 channels to 1 channels
+2025-04-12 08:01:25,219 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:01:29,224 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:01:34,240 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:01:35,876 - INFO - Bot is shutting down...
+2025-04-12 08:01:35,876 - INFO - API client closed
+2025-04-12 08:01:35,877 - INFO - Services closed successfully
+2025-04-12 08:01:35,877 - INFO - Background task 'metrics_cleanup' canceled
+2025-04-12 08:01:35,877 - INFO - Background task 'memory_monitor' canceled
+2025-04-12 08:01:35,878 - INFO - Background task 'heartbeat_monitor' canceled
+2025-04-12 08:01:35,878 - INFO - Background task 'metrics_report' canceled
+2025-04-12 08:01:35,878 - INFO - Database connection pool closed successfully
+2025-04-12 08:01:35,879 - INFO - Truth Social tracking task cancelled
+2025-04-12 08:01:35,879 - INFO - Truth Social tracking loop cancelled
+2025-04-12 08:01:35,880 - INFO - Bot stopped by user
+2025-04-12 08:07:20,531 - INFO - Starting bot...
+2025-04-12 08:07:21,441 - INFO - API client initialized
+2025-04-12 08:07:21,441 - INFO - WebsiteAnalyzer initialized with concurrency limit of 15
+2025-04-12 08:07:21,442 - INFO - All API services initialized
+2025-04-12 08:07:21,442 - INFO - Services provider initialized
+2025-04-12 08:07:21,457 - INFO - Database connection pool established: size=1-10
+2025-04-12 08:07:21,457 - INFO - Database connection successful
+2025-04-12 08:07:21,529 - INFO - WebsiteChecker cog initialized
+2025-04-12 08:07:21,532 - INFO - Discord Events Registered | Username Ban Server ID: 1313758082974879774
+2025-04-12 08:07:21,533 - INFO - Memory monitor started (threshold: 300MB, interval: 3600s)
+2025-04-12 08:07:21,533 - INFO - Truth Social tracking started
+2025-04-12 08:07:21,534 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:07:22,013 - INFO - Successfully synced 5 command(s)
+2025-04-12 08:07:24,869 - INFO - Logged in as TOPG#4967 (ID: 1340722186100408340)
+2025-04-12 08:07:24,869 - INFO - Bot connected to 4 server(s)
+2025-04-12 08:07:24,869 - INFO - Echo bot message forwarding: 1 bots from 11 channels to 1 channels
+2025-04-12 08:07:24,869 - INFO - Dani message forwarding: 1 users from 2 channels to 1 channels
+2025-04-12 08:07:26,546 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:07:30,559 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:07:34,569 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:07:38,573 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:07:43,585 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:07:47,594 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:07:51,611 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:07:51,611 - INFO - Truth tracking is active (active hours). Next check in 5s
+2025-04-12 08:07:56,614 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:08:00,617 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:08:04,629 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:08:09,644 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:08:14,655 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:08:18,663 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:08:23,666 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:08:27,673 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:08:32,676 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:08:36,680 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:08:41,690 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:08:45,699 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:08:49,701 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:08:54,711 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:08:58,726 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:08:58,726 - INFO - Truth tracking is active (active hours). Next check in 5s
+2025-04-12 08:09:03,739 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:09:08,756 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:09:12,770 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:09:17,785 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:09:22,788 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:09:27,804 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:09:32,817 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:09:37,831 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:09:42,839 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:09:46,847 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:09:51,861 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:09:55,876 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:09:59,889 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:10:03,890 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:10:07,893 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:10:11,899 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:10:11,900 - INFO - Truth tracking is active (active hours). Next check in 5s
+2025-04-12 08:10:16,904 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:10:21,911 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:10:26,921 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:10:30,928 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:10:35,943 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:10:39,945 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:10:44,947 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:10:49,952 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:10:53,953 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:10:57,958 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:11:01,974 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:11:06,988 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:11:10,993 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:11:15,006 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:11:20,014 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:11:24,030 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:11:28,045 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:11:33,055 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:11:37,067 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:11:42,073 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:11:47,081 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:11:52,086 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:11:56,094 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:12:00,099 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:12:05,113 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:12:09,127 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:12:13,143 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:12:18,146 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:12:22,151 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:12:26,160 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:12:31,168 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:12:36,175 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:12:40,191 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:12:44,194 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:12:49,202 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:12:54,215 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:12:59,229 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:13:03,239 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:13:08,249 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:13:13,250 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:13:17,263 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:13:21,274 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:13:26,291 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:13:26,292 - INFO - Truth tracking is active (active hours). Next check in 5s
+2025-04-12 08:13:31,303 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:13:35,315 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:13:39,326 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:13:44,334 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:13:49,349 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:13:54,365 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:13:59,367 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:13:59,368 - INFO - Truth tracking is active (active hours). Next check in 5s
+2025-04-12 08:14:04,371 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:14:04,372 - INFO - Truth tracking is active (active hours). Next check in 5s
+2025-04-12 08:14:09,379 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:14:14,394 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:14:18,409 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:14:22,420 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:14:27,427 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:14:32,440 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:14:37,445 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:14:42,453 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:14:47,462 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:14:47,463 - INFO - Truth tracking is active (active hours). Next check in 4s
+2025-04-12 08:14:51,470 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:14:55,480 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:14:59,495 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:15:04,510 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:15:08,512 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:15:12,516 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:15:16,529 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:15:20,538 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:15:25,546 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:15:29,560 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:15:34,563 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:15:39,568 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:15:43,579 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:15:47,588 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:15:47,589 - INFO - Truth tracking is active (active hours). Next check in 5s
+2025-04-12 08:15:52,602 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:15:57,614 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:16:02,620 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:16:07,631 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:16:12,643 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:16:16,645 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:16:21,646 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:16:25,653 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:16:29,658 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:16:33,662 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:16:38,674 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:16:42,682 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:16:46,698 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:16:50,704 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:16:55,706 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:17:00,718 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:17:04,729 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:17:08,742 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:17:12,758 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:17:16,764 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:17:20,778 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:17:25,794 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:17:30,810 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:17:34,824 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:17:38,832 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:17:43,843 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:17:47,844 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:17:52,860 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:17:56,868 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:18:00,876 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:18:05,880 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:18:09,891 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:18:13,894 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:18:18,909 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:18:23,921 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:18:28,927 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:18:33,938 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:18:37,941 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:18:41,942 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:18:46,948 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:18:51,952 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:18:56,966 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:18:56,968 - ERROR - Database error fetching rows: (1146, "Table 'topg.truth_settings' doesn't exist")
+2025-04-12 08:19:00,974 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:19:00,975 - ERROR - Error checking for Truth Social updates: '>' not supported between instances of 'datetime.timedelta' and 'int'
+2025-04-12 08:19:05,986 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:19:05,987 - ERROR - Error in Truth Social tracking loop: '>' not supported between instances of 'datetime.timedelta' and 'int'
+2025-04-12 08:19:15,990 - INFO - Polling Truth Social accounts across enabled servers
+2025-04-12 08:19:15,991 - ERROR - Database error fetching rows: (1146, "Table 'topg.truth_accounts' doesn't exist")
+2025-04-12 08:19:16,199 - INFO - Bot is shutting down...
+2025-04-12 08:19:16,199 - INFO - API client closed
+2025-04-12 08:19:16,199 - INFO - Services closed successfully
+2025-04-12 08:19:16,199 - INFO - Background task 'metrics_cleanup' canceled
+2025-04-12 08:19:16,200 - INFO - Background task 'memory_monitor' canceled
+2025-04-12 08:19:16,200 - INFO - Background task 'heartbeat_monitor' canceled
+2025-04-12 08:19:16,200 - INFO - Background task 'metrics_report' canceled
+2025-04-12 08:19:16,200 - INFO - Database connection pool closed successfully
+2025-04-12 08:19:16,201 - INFO - Truth Social tracking task cancelled
+2025-04-12 08:19:16,201 - INFO - Truth Social tracking loop cancelled
+2025-04-12 08:19:16,202 - INFO - Bot stopped by user
+2025-04-12 08:19:31,938 - INFO - Starting bot...
+2025-04-12 08:19:32,791 - INFO - API client initialized
+2025-04-12 08:19:32,792 - INFO - WebsiteAnalyzer initialized with concurrency limit of 15
+2025-04-12 08:19:32,792 - INFO - All API services initialized
+2025-04-12 08:19:32,792 - INFO - Services provider initialized
+2025-04-12 08:19:32,811 - INFO - Database connection pool established: size=1-10
+2025-04-12 08:19:32,811 - INFO - Database connection successful
+2025-04-12 08:19:32,916 - INFO - WebsiteChecker cog initialized
+2025-04-12 08:19:32,919 - INFO - Discord Events Registered | Username Ban Server ID: 1313758082974879774
+2025-04-12 08:19:32,920 - INFO - Memory monitor started (threshold: 300MB, interval: 3600s)
+2025-04-12 08:19:32,921 - INFO - Truth Social tracking started
+2025-04-12 08:19:32,923 - INFO - Truth Social tracking initialized but no enabled accounts found
+2025-04-12 08:19:33,484 - INFO - Successfully synced 5 command(s)
+2025-04-12 08:19:36,525 - INFO - Logged in as TOPG#4967 (ID: 1340722186100408340)
+2025-04-12 08:19:36,525 - INFO - Bot connected to 4 server(s)
+2025-04-12 08:19:36,525 - INFO - Echo bot message forwarding: 1 bots from 11 channels to 1 channels
+2025-04-12 08:19:36,525 - INFO - Dani message forwarding: 1 users from 2 channels to 1 channels
+2025-04-12 08:20:28,043 - INFO - Truth tracking is active (active hours). Next check in 4s
+2025-04-12 08:21:06,143 - INFO - Truth tracking is active (active hours). Next check in 4s
+2025-04-12 08:21:58,266 - INFO - Truth tracking is active (active hours). Next check in 4s
+2025-04-12 08:23:28,446 - INFO - Truth tracking is active (active hours). Next check in 5s
+2025-04-12 08:23:37,463 - INFO - Truth tracking is active (active hours). Next check in 4s
+2025-04-12 08:23:41,476 - INFO - Truth tracking is active (active hours). Next check in 5s
+2025-04-12 08:24:11,525 - INFO - Truth tracking is active (active hours). Next check in 5s
+2025-04-12 08:25:13,885 - INFO - Bot is shutting down...
+2025-04-12 08:25:13,885 - INFO - API client closed
+2025-04-12 08:25:13,886 - INFO - Services closed successfully
+2025-04-12 08:25:13,886 - INFO - Background task 'metrics_cleanup' canceled
+2025-04-12 08:25:13,886 - INFO - Background task 'memory_monitor' canceled
+2025-04-12 08:25:13,886 - INFO - Background task 'heartbeat_monitor' canceled
+2025-04-12 08:25:13,886 - INFO - Background task 'metrics_report' canceled
+2025-04-12 08:25:13,886 - INFO - Database connection pool closed successfully
+2025-04-12 08:25:13,887 - INFO - Truth Social tracking task cancelled
+2025-04-12 08:25:13,887 - INFO - Truth Social tracking loop cancelled
+2025-04-12 08:25:13,888 - INFO - Bot stopped by user
+2025-04-12 08:25:23,659 - INFO - Starting bot...
+2025-04-12 08:25:24,532 - INFO - API client initialized
+2025-04-12 08:25:24,532 - INFO - WebsiteAnalyzer initialized with concurrency limit of 15
+2025-04-12 08:25:24,532 - INFO - All API services initialized
+2025-04-12 08:25:24,532 - INFO - Services provider initialized
+2025-04-12 08:25:24,545 - INFO - Database connection pool established: size=1-10
+2025-04-12 08:25:24,545 - INFO - Database connection successful
+2025-04-12 08:25:24,554 - INFO - WebsiteChecker cog initialized
+2025-04-12 08:25:24,558 - INFO - Discord Events Registered | Username Ban Server ID: 1313758082974879774
+2025-04-12 08:25:24,559 - INFO - Memory monitor started (threshold: 300MB, interval: 3600s)
+2025-04-12 08:25:24,560 - INFO - Truth Social tracking started
+2025-04-12 08:25:24,561 - INFO - Truth Social tracking initialized but no enabled accounts found
+2025-04-12 08:25:25,026 - INFO - Successfully synced 5 command(s)
+2025-04-12 08:25:28,061 - INFO - Logged in as TOPG#4967 (ID: 1340722186100408340)
+2025-04-12 08:25:28,061 - INFO - Bot connected to 4 server(s)
+2025-04-12 08:25:28,061 - INFO - Echo bot message forwarding: 1 bots from 11 channels to 1 channels
+2025-04-12 08:25:28,062 - INFO - Dani message forwarding: 1 users from 2 channels to 1 channels
+2025-04-12 08:35:18,246 - INFO - Bot is shutting down...
+2025-04-12 08:35:18,247 - INFO - API client closed
+2025-04-12 08:35:18,247 - INFO - Services closed successfully
+2025-04-12 08:35:18,247 - INFO - Background task 'metrics_cleanup' canceled
+2025-04-12 08:35:18,247 - INFO - Background task 'memory_monitor' canceled
+2025-04-12 08:35:18,247 - INFO - Background task 'heartbeat_monitor' canceled
+2025-04-12 08:35:18,247 - INFO - Background task 'metrics_report' canceled
+2025-04-12 08:35:18,247 - INFO - Database connection pool closed successfully
+2025-04-12 08:35:18,248 - INFO - Truth Social tracking task cancelled
+2025-04-12 08:35:18,248 - INFO - Truth Social tracking loop cancelled
+2025-04-12 08:35:18,249 - INFO - Bot stopped by user
+2025-04-12 08:35:21,966 - INFO - Starting bot...
+2025-04-12 08:35:22,862 - INFO - API client initialized
+2025-04-12 08:35:22,863 - INFO - WebsiteAnalyzer initialized with concurrency limit of 15
+2025-04-12 08:35:22,863 - INFO - All API services initialized
+2025-04-12 08:35:22,863 - INFO - Services provider initialized
+2025-04-12 08:35:22,875 - INFO - Database connection pool established: size=1-10
+2025-04-12 08:35:22,875 - INFO - Database connection successful
+2025-04-12 08:35:22,885 - INFO - WebsiteChecker cog initialized
+2025-04-12 08:35:22,888 - INFO - Discord Events Registered | Username Ban Server ID: 1313758082974879774
+2025-04-12 08:35:22,889 - INFO - Memory monitor started (threshold: 300MB, interval: 3600s)
+2025-04-12 08:35:22,889 - INFO - Truth Social tracking started
+2025-04-12 08:35:22,890 - INFO - Truth Social tracking initialized but no enabled accounts found
+2025-04-12 08:35:23,371 - INFO - Successfully synced 5 command(s)
+2025-04-12 08:35:26,186 - INFO - Logged in as TOPG#4967 (ID: 1340722186100408340)
+2025-04-12 08:35:26,186 - INFO - Bot connected to 4 server(s)
+2025-04-12 08:35:26,187 - INFO - Echo bot message forwarding: 1 bots from 11 channels to 1 channels
+2025-04-12 08:35:26,187 - INFO - Dani message forwarding: 1 users from 2 channels to 1 channels
+2025-04-12 09:35:22,893 - INFO - Metrics Report | Uptime: 1h 0m | Memory: 39.9MB | Processed: 470 | Avg Processing: 0.0260s | Errors: 0 (0 types, Top: none) | Last Cleanup: 2025-04-12 08:35:21 (1h ago)
+2025-04-12 10:35:22,899 - INFO - Metrics Report | Uptime: 2h 0m | Memory: 39.5MB | Processed: 807 | Avg Processing: 0.0266s | Errors: 0 (0 types, Top: none) | Last Cleanup: 2025-04-12 08:35:21 (2h ago)
+2025-04-12 11:24:24,135 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-04-12 11:24:24,786 - INFO - Reconnected to Discord after disconnection
+2025-04-12 11:24:24,786 - INFO - Post-reconnection health check: Database=True, API Client=True
+2025-04-12 11:24:29,148 - INFO - Bot automatically reconnected
+2025-04-12 11:35:22,903 - INFO - Metrics Report | Uptime: 3h 0m | Memory: 43.3MB | Processed: 1014 | Avg Processing: 0.0390s | Errors: 0 (0 types, Top: none) | Last Cleanup: 2025-04-12 08:35:21 (3h ago)
+2025-04-12 11:55:22,904 - INFO - Starting periodic metrics cleanup task...
+2025-04-12 11:55:22,905 - INFO - Cleaned processing times
+2025-04-12 11:55:22,975 - INFO - Garbage collection completed successfully.
+2025-04-12 11:55:22,976 - INFO - Metrics cleanup completed in 0.07 seconds. Next cleanup at 2025-04-12 21:55:22
+2025-04-12 12:35:22,906 - INFO - Metrics Report | Uptime: 4h 0m | Memory: 74.3MB | Processed: 1343 | Avg Processing: 0.0244s | Errors: 0 (0 types, Top: none) | Last Cleanup: 2025-04-12 11:55:22 (40m ago)
+2025-04-12 13:11:42,869 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-04-12 13:11:43,550 - INFO - Reconnected to Discord after disconnection
+2025-04-12 13:11:43,553 - INFO - Post-reconnection health check: Database=True, API Client=True
+2025-04-12 13:11:47,886 - INFO - Bot automatically reconnected
+2025-04-12 13:35:22,914 - INFO - Metrics Report | Uptime: 5h 0m | Memory: 74.9MB | Processed: 1518 | Avg Processing: 0.0313s | Errors: 0 (0 types, Top: none) | Last Cleanup: 2025-04-12 11:55:22 (1h ago)
+2025-04-12 14:35:22,925 - INFO - Metrics Report | Uptime: 6h 0m | Memory: 75.0MB | Processed: 1717 | Avg Processing: 0.0168s | Errors: 0 (0 types, Top: none) | Last Cleanup: 2025-04-12 11:55:22 (2h ago)
+2025-04-12 15:07:16,348 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-04-12 15:07:17,008 - INFO - Reconnected to Discord after disconnection
+2025-04-12 15:07:17,011 - INFO - Post-reconnection health check: Database=True, API Client=True
+2025-04-12 15:07:21,365 - INFO - Bot automatically reconnected
+2025-04-12 15:15:22,987 - INFO - Starting periodic metrics cleanup task...
+2025-04-12 15:15:22,993 - INFO - Cleaned processing times
+2025-04-12 15:15:23,091 - INFO - Garbage collection completed successfully.
+2025-04-12 15:15:23,095 - INFO - Metrics cleanup completed in 0.10 seconds. Next cleanup at 2025-04-13 01:15:22
+2025-04-12 15:33:06,615 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-04-12 15:33:07,286 - INFO - Reconnected to Discord after disconnection
+2025-04-12 15:33:07,288 - INFO - Post-reconnection health check: Database=True, API Client=True
+2025-04-12 15:33:11,623 - INFO - Bot automatically reconnected
+2025-04-12 15:35:22,930 - INFO - Metrics Report | Uptime: 7h 0m | Memory: 75.2MB | Processed: 1952 | Avg Processing: 0.0158s | Errors: 0 (0 types, Top: none) | Last Cleanup: 2025-04-12 15:15:22 (19m ago)
+2025-04-12 16:35:22,938 - INFO - Metrics Report | Uptime: 8h 0m | Memory: 75.5MB | Processed: 2116 | Avg Processing: 0.0052s | Errors: 0 (0 types, Top: none) | Last Cleanup: 2025-04-12 15:15:22 (1h ago)
+2025-04-12 17:35:22,941 - INFO - Metrics Report | Uptime: 9h 0m | Memory: 75.9MB | Processed: 2426 | Avg Processing: 0.1975s | Errors: 0 (0 types, Top: none) | Last Cleanup: 2025-04-12 15:15:22 (2h ago)
+2025-04-12 18:35:22,955 - INFO - Metrics Report | Uptime: 10h 0m | Memory: 76.1MB | Processed: 2679 | Avg Processing: 0.0155s | Errors: 0 (0 types, Top: none) | Last Cleanup: 2025-04-12 15:15:22 (3h ago)
+2025-04-12 18:35:23,110 - INFO - Starting periodic metrics cleanup task...
+2025-04-12 18:35:23,112 - INFO - Cleaned processing times
+2025-04-12 18:35:23,178 - INFO - Garbage collection completed successfully.
+2025-04-12 18:35:23,179 - INFO - Metrics cleanup completed in 0.07 seconds. Next cleanup at 2025-04-13 04:35:23
+2025-04-12 19:06:41,529 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-04-12 19:06:43,606 - INFO - Reconnected to Discord after disconnection
+2025-04-12 19:06:43,608 - INFO - Post-reconnection health check: Database=True, API Client=True
+2025-04-12 19:06:46,546 - INFO - Bot automatically reconnected
+2025-04-12 19:35:22,988 - INFO - Metrics Report | Uptime: 11h 0m | Memory: 35.8MB | Processed: 3034 | Avg Processing: 0.0266s | Errors: 0 (0 types, Top: none) | Last Cleanup: 2025-04-12 18:35:23 (59m ago)
+2025-04-12 20:35:25,010 - INFO - Metrics Report | Uptime: 12h 0m | Memory: 37.4MB | Processed: 3451 | Avg Processing: 0.0355s | Errors: 0 (0 types, Top: none) | Last Cleanup: 2025-04-12 18:35:23 (2h ago)
+2025-04-12 20:46:48,079 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-04-12 20:46:48,722 - INFO - Reconnected to Discord after disconnection
+2025-04-12 20:46:48,723 - INFO - Post-reconnection health check: Database=True, API Client=True
+2025-04-12 20:46:53,080 - INFO - Bot automatically reconnected
+2025-04-12 21:18:50,240 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-04-12 21:18:50,880 - INFO - Reconnected to Discord after disconnection
+2025-04-12 21:18:50,881 - INFO - Post-reconnection health check: Database=True, API Client=True
+2025-04-12 21:18:55,248 - INFO - Bot automatically reconnected
+2025-04-12 21:35:25,025 - INFO - Metrics Report | Uptime: 13h 0m | Memory: 39.8MB | Processed: 3952 | Avg Processing: 0.0612s | Errors: 0 (0 types, Top: none) | Last Cleanup: 2025-04-12 18:35:23 (3h ago)
+2025-04-12 21:40:09,864 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-04-12 21:40:10,623 - INFO - Reconnected to Discord after disconnection
+2025-04-12 21:40:10,624 - INFO - Post-reconnection health check: Database=True, API Client=True
+2025-04-12 21:40:14,879 - INFO - Bot automatically reconnected
+2025-04-12 21:55:25,198 - INFO - Starting periodic metrics cleanup task...
+2025-04-12 21:55:25,199 - INFO - Cleaned processing times
+2025-04-12 21:55:25,278 - INFO - Garbage collection completed successfully.
+2025-04-12 21:55:25,278 - INFO - Metrics cleanup completed in 0.08 seconds. Next cleanup at 2025-04-13 07:55:25
+2025-04-12 22:35:25,037 - INFO - Metrics Report | Uptime: 14h 0m | Memory: 68.8MB | Processed: 4473 | Avg Processing: 0.0784s | Errors: 0 (0 types, Top: none) | Last Cleanup: 2025-04-12 21:55:25 (39m ago)
+2025-04-12 22:44:58,478 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-04-12 22:44:59,104 - INFO - Reconnected to Discord after disconnection
+2025-04-12 22:44:59,105 - INFO - Post-reconnection health check: Database=True, API Client=True
+2025-04-12 22:45:03,485 - INFO - Bot automatically reconnected
+2025-04-12 23:06:55,174 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-04-12 23:06:55,810 - INFO - Reconnected to Discord after disconnection
+2025-04-12 23:06:55,811 - INFO - Post-reconnection health check: Database=True, API Client=True
+2025-04-12 23:07:00,177 - INFO - Bot automatically reconnected
+2025-04-12 23:35:25,039 - INFO - Metrics Report | Uptime: 15h 0m | Memory: 39.4MB | Processed: 4938 | Avg Processing: 0.0499s | Errors: 0 (0 types, Top: none) | Last Cleanup: 2025-04-12 21:55:25 (1h ago)
+2025-04-12 23:48:48,230 - INFO - Bot is shutting down...
+2025-04-12 23:48:48,230 - INFO - API client closed
+2025-04-12 23:48:48,231 - INFO - Services closed successfully
+2025-04-12 23:48:48,231 - INFO - Background task 'metrics_cleanup' canceled
+2025-04-12 23:48:48,231 - INFO - Background task 'memory_monitor' canceled
+2025-04-12 23:48:48,231 - INFO - Background task 'heartbeat_monitor' canceled
+2025-04-12 23:48:48,231 - INFO - Background task 'metrics_report' canceled
+2025-04-12 23:48:48,232 - INFO - Database connection pool closed successfully
+2025-04-12 23:48:48,236 - INFO - Truth Social tracking task cancelled
+2025-04-12 23:48:48,236 - INFO - Truth Social tracking loop cancelled
+2025-04-12 23:48:48,239 - INFO - Bot stopped by user
+2025-04-12 23:48:58,053 - INFO - Starting bot...
+2025-04-12 23:48:59,013 - INFO - API client initialized
+2025-04-12 23:48:59,013 - INFO - WebsiteAnalyzer initialized with concurrency limit of 15
+2025-04-12 23:48:59,014 - INFO - All API services initialized
+2025-04-12 23:48:59,014 - INFO - Services provider initialized
+2025-04-12 23:48:59,084 - INFO - Database connection pool established: size=1-10
+2025-04-12 23:48:59,084 - INFO - Database connection successful
+2025-04-12 23:48:59,095 - INFO - WebsiteChecker cog initialized
+2025-04-12 23:48:59,104 - INFO - Discord Events Registered | Username Ban Server ID: 1313758082974879774
+2025-04-12 23:48:59,105 - INFO - Memory monitor started (threshold: 300MB, interval: 3600s)
+2025-04-12 23:48:59,106 - INFO - Truth Social tracking started
+2025-04-12 23:48:59,107 - INFO - Truth Social tracking initialized but no enabled accounts found
+2025-04-12 23:48:59,653 - INFO - Successfully synced 5 command(s)
+2025-04-12 23:49:02,666 - INFO - Logged in as TOPG#4967 (ID: 1340722186100408340)
+2025-04-12 23:49:02,666 - INFO - Bot connected to 4 server(s)
+2025-04-12 23:49:02,666 - INFO - Echo bot message forwarding: 1 bots from 11 channels to 1 channels
+2025-04-12 23:49:02,666 - INFO - Dani message forwarding: 1 users from 2 channels to 1 channels
+2025-04-12 23:50:05,682 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-04-12 23:50:08,002 - INFO - Reconnected to Discord after disconnection
+2025-04-12 23:50:08,003 - INFO - Post-reconnection health check: Database=True, API Client=True
+2025-04-12 23:50:10,695 - INFO - Bot automatically reconnected
+2025-04-13 00:48:59,140 - INFO - Metrics Report | Uptime: 1h 0m | Memory: 39.1MB | Processed: 426 | Avg Processing: 0.0484s | Errors: 0 (0 types, Top: none) | Last Cleanup: 2025-04-12 23:48:58 (1h ago)
+2025-04-13 01:41:55,608 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-04-13 01:41:56,261 - INFO - Reconnected to Discord after disconnection
+2025-04-13 01:41:56,263 - INFO - Post-reconnection health check: Database=True, API Client=True
+2025-04-13 01:42:00,611 - INFO - Bot automatically reconnected
+2025-04-13 01:48:59,182 - INFO - Metrics Report | Uptime: 2h 0m | Memory: 35.5MB | Processed: 808 | Avg Processing: 0.0444s | Errors: 0 (0 types, Top: none) | Last Cleanup: 2025-04-12 23:48:58 (2h ago)
+2025-04-13 02:48:59,183 - INFO - Metrics Report | Uptime: 3h 0m | Memory: 36.3MB | Processed: 1219 | Avg Processing: 0.0186s | Errors: 0 (0 types, Top: none) | Last Cleanup: 2025-04-12 23:48:58 (3h ago)
+2025-04-13 03:08:59,121 - INFO - Starting periodic metrics cleanup task...
+2025-04-13 03:08:59,122 - INFO - Cleaned processing times
+2025-04-13 03:08:59,344 - INFO - Garbage collection completed successfully.
+2025-04-13 03:08:59,345 - INFO - Metrics cleanup completed in 0.22 seconds. Next cleanup at 2025-04-13 13:08:59
+2025-04-13 03:48:59,193 - INFO - Metrics Report | Uptime: 4h 0m | Memory: 34.2MB | Processed: 1626 | Avg Processing: 0.0288s | Errors: 0 (0 types, Top: none) | Last Cleanup: 2025-04-13 03:08:59 (40m ago)
+2025-04-13 03:58:33,724 - INFO - Channel general (ID: 1286569421342773291) excluded by alphabtw_ in yo | Mode: Server-wide
+2025-04-13 03:58:49,850 - INFO - Channel general (ID: 1286569421342773291) included by alphabtw_ in yo | Mode: Server-wide
+2025-04-13 04:28:00,574 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-04-13 04:28:01,219 - INFO - Reconnected to Discord after disconnection
+2025-04-13 04:28:01,220 - INFO - Post-reconnection health check: Database=True, API Client=True
+2025-04-13 04:28:05,583 - INFO - Bot automatically reconnected
+2025-04-13 04:48:59,196 - INFO - Metrics Report | Uptime: 5h 0m | Memory: 38.2MB | Processed: 1949 | Avg Processing: 0.0669s | Errors: 0 (0 types, Top: none) | Last Cleanup: 2025-04-13 03:08:59 (1h ago)
+2025-04-13 04:50:18,665 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-04-13 04:50:19,294 - INFO - Reconnected to Discord after disconnection
+2025-04-13 04:50:19,294 - INFO - Post-reconnection health check: Database=True, API Client=True
+2025-04-13 04:50:23,670 - INFO - Bot automatically reconnected
+2025-04-13 05:05:57,655 - INFO - Bot is shutting down...
+2025-04-13 05:05:57,655 - INFO - API client closed
+2025-04-13 05:05:57,656 - INFO - Services closed successfully
+2025-04-13 05:05:57,656 - INFO - Background task 'metrics_cleanup' canceled
+2025-04-13 05:05:57,656 - INFO - Background task 'memory_monitor' canceled
+2025-04-13 05:05:57,656 - INFO - Background task 'heartbeat_monitor' canceled
+2025-04-13 05:05:57,656 - INFO - Background task 'metrics_report' canceled
+2025-04-13 05:05:57,657 - INFO - Database connection pool closed successfully
+2025-04-13 05:05:57,659 - INFO - Truth Social tracking task cancelled
+2025-04-13 05:05:57,659 - INFO - Truth Social tracking loop cancelled
+2025-04-13 05:05:57,661 - INFO - Bot stopped by user

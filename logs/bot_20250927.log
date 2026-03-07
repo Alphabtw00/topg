@@ -1,0 +1,50 @@
+2025-09-27 06:44:34,060 - INFO - Starting bot...
+2025-09-27 06:44:34,872 - INFO - API client initialized
+2025-09-27 06:44:34,873 - INFO - WebsiteAnalyzer initialized with concurrency limit of 15
+2025-09-27 06:44:34,873 - INFO - All API services initialized
+2025-09-27 06:44:34,873 - INFO - Services provider initialized
+2025-09-27 06:44:34,944 - INFO - Database connection pool established: size=1-10
+2025-09-27 06:44:34,945 - INFO - Database connection successful
+2025-09-27 06:44:34,962 - INFO - Discord Events Registered | Username Ban Server ID: 1313758082974879774
+2025-09-27 06:44:34,962 - INFO - User forwarding initialized: 2 input channels
+2025-09-27 06:44:34,962 - INFO - Alerts initialized: 3 alert channels
+2025-09-27 06:44:34,962 - INFO - Total forwarding channels: 5
+2025-09-27 06:44:34,963 - INFO - Memory monitor started (threshold: 300MB, interval: 3600s)
+2025-09-27 06:44:35,558 - INFO - Successfully synced 11 command(s)
+2025-09-27 06:44:42,013 - INFO - Logged in as TOPG#4967 (ID: 1340722186100408340)
+2025-09-27 06:44:42,013 - INFO - Bot connected to 11 server(s)
+2025-09-27 06:44:42,049 - INFO - Alerts are enabled
+2025-09-27 06:44:42,050 - INFO - Starting tracking services...
+2025-09-27 06:44:42,050 - INFO - All tracking services started
+2025-09-27 06:44:42,050 - INFO - Initializing DexScreener live tracker...
+2025-09-27 06:44:42,050 - INFO - Initializing migration tracker...
+2025-09-27 06:44:42,050 - INFO - Initializing about to graduate alert tracker...
+2025-09-27 06:44:42,062 - INFO - No enabled guilds with channels, stopping dex paid tracking
+2025-09-27 06:44:42,062 - INFO - DexScreener tracking stopped
+2025-09-27 06:44:42,062 - INFO - DexScreener tracking initialization complete
+2025-09-27 06:44:42,062 - INFO - No enabled guilds with channels, stopping about to graduate alert tracking
+2025-09-27 06:44:42,062 - INFO - About to graduate alert tracking stopped
+2025-09-27 06:44:42,062 - INFO - About to graduate alert tracking initialization complete
+2025-09-27 06:44:42,066 - INFO - Found 1 enabled guilds with 1 channels for migration tracking
+2025-09-27 06:44:42,066 - INFO - Migration tracking started
+2025-09-27 06:44:42,066 - INFO - Migration tracking initialization complete
+2025-09-27 06:44:43,427 - ERROR - Error in method-based stream: server rejected WebSocket connection: HTTP 403
+2025-09-27 06:44:44,778 - ERROR - Error in log-based stream: server rejected WebSocket connection: HTTP 403
+2025-09-27 06:45:03,562 - ERROR - Error in log-based stream: server rejected WebSocket connection: HTTP 403 (occurred 10 times)
+2025-09-27 06:45:17,025 - ERROR - Error in method-based stream: server rejected WebSocket connection: HTTP 403 (occurred 10 times)
+2025-09-27 06:45:27,791 - ERROR - Error in log-based stream: server rejected WebSocket connection: HTTP 403 (occurred 20 times)
+2025-09-27 06:45:37,243 - ERROR - Error in method-based stream: server rejected WebSocket connection: HTTP 403 (occurred 20 times)
+2025-09-27 06:45:49,582 - INFO - Bot is shutting down...
+2025-09-27 06:45:49,582 - INFO - API client closed
+2025-09-27 06:45:49,582 - INFO - Truth Social tracking stopped
+2025-09-27 06:45:49,582 - INFO - Truth Social tracking stopped
+2025-09-27 06:45:49,582 - INFO - Services closed successfully
+2025-09-27 06:45:49,582 - INFO - Background task 'metrics_cleanup' canceled
+2025-09-27 06:45:49,583 - INFO - Background task 'memory_monitor' canceled
+2025-09-27 06:45:49,583 - INFO - Background task 'heartbeat_monitor' canceled
+2025-09-27 06:45:49,583 - INFO - Background task 'metrics_report' canceled
+2025-09-27 06:45:49,583 - INFO - DexScreener tracking stopped
+2025-09-27 06:45:49,583 - INFO - DexScreener tracking stopped
+2025-09-27 06:45:49,583 - INFO - Database connection pool closed successfully
+2025-09-27 06:45:49,584 - INFO - Tracking loop cancelled
+2025-09-27 06:45:49,585 - INFO - Bot stopped by user

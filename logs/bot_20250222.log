@@ -1,0 +1,2 @@
+2025-02-22 01:50:43,272 - WARNING - API returned status 404 for URL: https://api.dexscreener.com/orders/v1/solana/factory/osmo1n3n75av8awcnw4jl62n3l48e6e4sxqmaf97w5ua6ddu4s475q5qq9udvx4/alloyed/allSOL
+2025-02-22 01:50:43,781 - WARNING - API returned status 500 for URL: https://production-api.mobula.io/api/1/market/history/pair?address=1960&blockchain=solana&period=1d&amount=1000

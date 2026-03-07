@@ -1,0 +1,94 @@
+2025-04-03 00:02:10,940 - ERROR - website request error: 200, message='Attempt to decode JSON with unexpected mimetype: text/html', url='https://discord.com/oauth2/authorize?client_id=1340722186100408340&permissions=8&integration_type=0&scope=applications.commands+bot' for URL: https://discord.com/oauth2/authorize?client_id=1340722186100408340&permissions=8&integration_type=0&scope=applications.commands+bot
+2025-04-03 00:02:10,941 - ERROR - Failed to fetch https://discord.com/oauth2/authorize?client_id=1340722186100408340&permissions=8&integration_type=0&scope=applications.commands+bot
+2025-04-03 00:05:31,373 - WARNING - API website returned status 404 for URL: https://worthlesscoin.neocities.org/favicon.ico
+2025-04-03 00:05:31,709 - ERROR - website request error: Cannot connect to host archive.org:443 ssl:True [SSLCertVerificationError: (1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: Basic Constraints of CA cert not marked critical (_ssl.c:1028)')] for URL: https://archive.org/wayback/available?url=worthlesscoin.neocities.org
+2025-04-03 00:05:37,161 - ERROR - Error analyzing https://worthlesscoin.neocities.org/: 'WebsiteAnalyzer' object has no attribute '_analyze_blockchain_integration'
+Traceback (most recent call last):
+  File "C:\Users\ansha\Documents\VsCode\TOPG\api\website_analyzer.py", line 185, in analyze_website
+    blockchain_info = self._analyze_blockchain_integration(html, links)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'WebsiteAnalyzer' object has no attribute '_analyze_blockchain_integration'
+2025-04-03 00:19:25,526 - WARNING - API website returned status 404 for URL: https://worthlesscoin.neocities.org/favicon.ico
+2025-04-03 00:19:26,209 - ERROR - website request error: Cannot connect to host archive.org:443 ssl:True [SSLCertVerificationError: (1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: Basic Constraints of CA cert not marked critical (_ssl.c:1028)')] for URL: https://archive.org/wayback/available?url=worthlesscoin.neocities.org
+2025-04-03 00:19:28,309 - ERROR - Error analyzing https://worthlesscoin.neocities.org/: WebsiteAnalyzer._calculate_social_score() missing 1 required positional argument: 'platforms'
+Traceback (most recent call last):
+  File "C:\Users\ansha\Documents\VsCode\TOPG\api\website_analyzer.py", line 204, in analyze_website
+    "social": self._calculate_social_score(social_media),
+              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+TypeError: WebsiteAnalyzer._calculate_social_score() missing 1 required positional argument: 'platforms'
+2025-04-03 00:46:56,100 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-04-03 00:46:56,179 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-04-03 00:46:56,767 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-04-03 00:46:56,955 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-04-03 00:47:02,063 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-04-03 00:47:21,635 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-04-03 00:47:51,761 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-04-03 00:48:21,193 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-04-03 03:41:37,491 - CRITICAL - Failed to start bot: aiodns needs a SelectorEventLoop on Windows. See more: https://github.com/saghul/aiodns/issues/86
+2025-04-03 03:41:37,492 - CRITICAL - Fatal error: 'NoneType' object has no attribute 'close'
+2025-04-03 03:55:04,360 - ERROR - Error analyzing https://worthlesscoin.neocities.org/: 'WebsiteAnalyzer' object has no attribute '_fetch_favicon'
+Traceback (most recent call last):
+  File "C:\Users\ansha\Documents\VsCode\TOPG\api\website_analyzer.py", line 211, in analyze_website
+    self._fetch_favicon(favicon_url),
+    ^^^^^^^^^^^^^^^^^^^
+AttributeError: 'WebsiteAnalyzer' object has no attribute '_fetch_favicon'
+2025-04-03 04:27:17,927 - ERROR - website request error: Cannot connect to host archive.org:443 ssl:True [SSLCertVerificationError: (1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: Basic Constraints of CA cert not marked critical (_ssl.c:1028)')] for URL: https://archive.org/wayback/available?url=worthlesscoin.neocities.org
+2025-04-03 04:27:18,068 - WARNING - API website returned status 404 for URL: https://worthlesscoin.neocities.org/favicon.ico
+2025-04-03 04:29:02,805 - ERROR - Error analyzing https://worthlesscoin.neocities.org/: WebsiteAnalyzer._calculate_social_score() missing 1 required positional argument: 'platforms'
+Traceback (most recent call last):
+  File "C:\Users\ansha\Documents\VsCode\TOPG\api\website_analyzer.py", line 242, in analyze_website
+    "social": self._calculate_social_score(social_media),
+              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+TypeError: WebsiteAnalyzer._calculate_social_score() missing 1 required positional argument: 'platforms'
+2025-04-03 04:34:32,576 - ERROR - website request error: Cannot connect to host archive.org:443 ssl:True [SSLCertVerificationError: (1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: Basic Constraints of CA cert not marked critical (_ssl.c:1028)')] for URL: https://archive.org/wayback/available?url=worthlesscoin.neocities.org
+2025-04-03 04:34:32,838 - WARNING - API website returned status 404 for URL: https://worthlesscoin.neocities.org/favicon.ico
+2025-04-03 04:34:34,706 - ERROR - Error analyzing https://worthlesscoin.neocities.org/: WebsiteAnalyzer._calculate_social_score() missing 1 required positional argument: 'platforms'
+Traceback (most recent call last):
+  File "C:\Users\ansha\Documents\VsCode\TOPG\api\website_analyzer.py", line 240, in analyze_website
+    "social": self._calculate_social_score(social_media),
+              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+TypeError: WebsiteAnalyzer._calculate_social_score() missing 1 required positional argument: 'platforms'
+2025-04-03 04:45:42,495 - CRITICAL - Failed to start bot: aiodns needs a SelectorEventLoop on Windows. See more: https://github.com/saghul/aiodns/issues/86
+2025-04-03 04:45:42,496 - CRITICAL - Fatal error: 'NoneType' object has no attribute 'close'
+2025-04-03 04:46:51,434 - CRITICAL - Failed to start bot: aiodns needs a SelectorEventLoop on Windows. See more: https://github.com/saghul/aiodns/issues/86
+2025-04-03 04:46:51,435 - CRITICAL - Fatal error: 'NoneType' object has no attribute 'close'
+2025-04-03 04:47:05,785 - CRITICAL - Failed to start bot: aiodns needs a SelectorEventLoop on Windows. See more: https://github.com/saghul/aiodns/issues/86
+2025-04-03 04:47:05,786 - CRITICAL - Fatal error: 'NoneType' object has no attribute 'close'
+2025-04-03 04:48:37,050 - WARNING - API website returned status 404 for URL: https://worthlesscoin.neocities.org/favicon.ico
+2025-04-03 04:48:37,139 - ERROR - website request error: Cannot connect to host archive.org:443 ssl:True [SSLCertVerificationError: (1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: Basic Constraints of CA cert not marked critical (_ssl.c:1028)')] for URL: https://archive.org/wayback/available?url=worthlesscoin.neocities.org
+2025-04-03 04:48:39,424 - ERROR - Website analysis error for https://worthlesscoin.neocities.org/: 'WebsiteChecker' object has no attribute '_create_website_embed'
+Traceback (most recent call last):
+  File "C:\Users\ansha\Documents\VsCode\TOPG\commands\website_info.py", line 61, in check_website
+    embed = self._create_website_embed(result, interaction, start_time)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'WebsiteChecker' object has no attribute '_create_website_embed'
+2025-04-03 04:49:32,515 - ERROR - website request error: Cannot connect to host archive.org:443 ssl:True [SSLCertVerificationError: (1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: Basic Constraints of CA cert not marked critical (_ssl.c:1028)')] for URL: https://archive.org/wayback/available?url=worthlesscoin.neocities.org
+2025-04-03 04:49:32,801 - WARNING - API website returned status 404 for URL: https://worthlesscoin.neocities.org/favicon.ico
+2025-04-03 04:49:33,904 - ERROR - Website analysis error for https://worthlesscoin.neocities.org/: _create_website_embed() missing 1 required positional argument: 'start_time'
+Traceback (most recent call last):
+  File "C:\Users\ansha\Documents\VsCode\TOPG\commands\website_info.py", line 61, in check_website
+    embed = _create_website_embed(result, interaction, start_time)
+TypeError: _create_website_embed() missing 1 required positional argument: 'start_time'
+2025-04-03 04:55:56,134 - ERROR - website request error: Cannot connect to host archive.org:443 ssl:True [SSLCertVerificationError: (1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: Basic Constraints of CA cert not marked critical (_ssl.c:1028)')] for URL: https://archive.org/wayback/available?url=worthlesscoin.neocities.org
+2025-04-03 04:55:56,426 - WARNING - API website returned status 404 for URL: https://worthlesscoin.neocities.org/favicon.ico
+2025-04-03 04:59:09,907 - WARNING - API website returned status 403 for URL: https://www.donaldjtrump.com/
+2025-04-03 04:59:09,907 - ERROR - Failed to fetch https://www.donaldjtrump.com/
+2025-04-03 05:00:23,800 - WARNING - API website returned status 403 for URL: https://www.donaldjtrump.com/
+2025-04-03 05:00:23,800 - ERROR - Failed to fetch https://www.donaldjtrump.com/
+2025-04-03 05:00:39,743 - ERROR - website request error: Cannot connect to host archive.org:443 ssl:True [SSLCertVerificationError: (1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: Basic Constraints of CA cert not marked critical (_ssl.c:1028)')] for URL: https://archive.org/wayback/available?url=purpcoin.com
+2025-04-03 05:56:47,520 - ERROR - website request error: Cannot connect to host pumpnhodl.com:443 ssl:True [SSLCertVerificationError: (5, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1028)')] for URL: https://pumpnhodl.com/
+2025-04-03 05:56:47,520 - ERROR - Failed to fetch https://pumpnhodl.com/
+2025-04-03 21:56:54,253 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-04-03 22:08:37,533 - ERROR - website request error: 'utf-8' codec can't decode byte 0x80 in position 42: invalid start byte for URL: https://www.gamerholic.xyz/favicon.ico
+2025-04-03 22:23:14,286 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-04-03 22:42:29,346 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-04-04 01:24:03,315 - ERROR - website request error: 'utf-8' codec can't decode byte 0x89 in position 0: invalid start byte for URL: https://www.thevintagenews.com/wp-content/uploads/sites/65/fbrfg/apple-touch-icon.png
+2025-04-04 01:46:43,868 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-04-04 04:59:42,376 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-04-04 05:59:05,520 - ERROR - website request error: 'utf-8' codec can't decode byte 0x89 in position 0: invalid start byte for URL: https://kolnations.app/logo.png
+2025-04-04 05:59:05,843 - WARNING - API website returned status 404 for URL: https://www.virustotal.com/api/v3/domains/kolnations.app
+2025-04-04 07:32:26,620 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-04-04 10:00:04,700 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-04-04 11:21:20,059 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-04-04 15:19:48,135 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-04-04 16:36:50,268 - WARNING - Bot disconnected from Discord. Attempting to reconnect...

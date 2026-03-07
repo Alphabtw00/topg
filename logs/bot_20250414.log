@@ -1,0 +1,295 @@
+2025-04-14 03:47:09,475 - INFO - Starting bot...
+2025-04-14 03:47:11,309 - INFO - API client initialized
+2025-04-14 03:47:11,309 - INFO - WebsiteAnalyzer initialized with concurrency limit of 15
+2025-04-14 03:47:11,310 - INFO - All API services initialized
+2025-04-14 03:47:11,310 - INFO - Services provider initialized
+2025-04-14 03:47:11,370 - INFO - Database connection pool established: size=1-10
+2025-04-14 03:47:11,370 - INFO - Database connection successful
+2025-04-14 03:47:11,381 - INFO - WebsiteChecker cog initialized
+2025-04-14 03:47:11,388 - INFO - Discord Events Registered | Username Ban Server ID: 1313758082974879774
+2025-04-14 03:47:11,388 - INFO - Memory monitor started (threshold: 300MB, interval: 3600s)
+2025-04-14 03:47:14,040 - INFO - Successfully synced 5 command(s)
+2025-04-14 03:47:16,994 - INFO - Logged in as TOPG#4967 (ID: 1340722186100408340)
+2025-04-14 03:47:16,995 - INFO - Bot connected to 4 server(s)
+2025-04-14 03:47:16,995 - INFO - Echo bot message forwarding: 1 bots from 11 channels to 1 channels
+2025-04-14 03:47:16,995 - INFO - Dani message forwarding: 1 users from 2 channels to 1 channels
+2025-04-14 03:50:13,012 - INFO - Bot is shutting down...
+2025-04-14 03:50:13,012 - INFO - API client closed
+2025-04-14 03:50:13,012 - INFO - Services closed successfully
+2025-04-14 03:50:13,012 - INFO - Background task 'metrics_cleanup' canceled
+2025-04-14 03:50:13,012 - INFO - Background task 'memory_monitor' canceled
+2025-04-14 03:50:13,012 - INFO - Background task 'heartbeat_monitor' canceled
+2025-04-14 03:50:13,013 - INFO - Background task 'metrics_report' canceled
+2025-04-14 03:50:13,013 - INFO - Database connection pool closed successfully
+2025-04-14 03:50:13,014 - INFO - Bot stopped by user
+2025-04-14 04:30:33,381 - INFO - Starting bot...
+2025-04-14 04:30:34,385 - INFO - API client initialized
+2025-04-14 04:30:34,385 - INFO - WebsiteAnalyzer initialized with concurrency limit of 15
+2025-04-14 04:30:34,385 - INFO - All API services initialized
+2025-04-14 04:30:34,385 - INFO - Services provider initialized
+2025-04-14 04:30:34,403 - INFO - Database connection pool established: size=1-10
+2025-04-14 04:30:34,403 - INFO - Database connection successful
+2025-04-14 04:30:34,484 - INFO - WebsiteChecker cog initialized
+2025-04-14 04:30:34,487 - INFO - Discord Events Registered | Username Ban Server ID: 1313758082974879774
+2025-04-14 04:30:34,488 - INFO - Memory monitor started (threshold: 300MB, interval: 3600s)
+2025-04-14 04:30:34,488 - INFO - Truth Social tracking started
+2025-04-14 04:30:35,276 - INFO - Successfully synced 5 command(s)
+2025-04-14 04:30:38,308 - INFO - Logged in as TOPG#4967 (ID: 1340722186100408340)
+2025-04-14 04:30:38,308 - INFO - Bot connected to 4 server(s)
+2025-04-14 04:30:38,308 - INFO - Echo bot message forwarding: 1 bots from 11 channels to 1 channels
+2025-04-14 04:30:38,308 - INFO - Dani message forwarding: 1 users from 2 channels to 1 channels
+2025-04-14 04:32:34,516 - INFO - Polling Truth Social at 2025-04-14 04:32:34 | Interval: 60s | Active hours: True
+2025-04-14 04:33:36,069 - INFO - Polling Truth Social at 2025-04-14 04:33:36 | Interval: 60s | Active hours: True
+2025-04-14 04:33:37,665 - ERROR - Error creating Truth embed: cannot access local variable 'embed' where it is not associated with a value
+2025-04-14 04:33:38,143 - INFO - Found 1 new post(s) from @alphabtw for guild 1313758082974879774
+2025-04-14 04:34:38,150 - INFO - Polling Truth Social at 2025-04-14 04:34:38 | Interval: 60s | Active hours: True
+2025-04-14 04:35:40,303 - INFO - Polling Truth Social at 2025-04-14 04:35:40 | Interval: 60s | Active hours: True
+2025-04-14 04:36:42,305 - INFO - Polling Truth Social at 2025-04-14 04:36:42 | Interval: 60s | Active hours: True
+2025-04-14 04:37:43,920 - INFO - Polling Truth Social at 2025-04-14 04:37:43 | Interval: 60s | Active hours: True
+2025-04-14 04:38:46,072 - INFO - Polling Truth Social at 2025-04-14 04:38:46 | Interval: 60s | Active hours: True
+2025-04-14 04:39:48,144 - INFO - Polling Truth Social at 2025-04-14 04:39:48 | Interval: 60s | Active hours: True
+2025-04-14 04:40:50,372 - INFO - Polling Truth Social at 2025-04-14 04:40:50 | Interval: 60s | Active hours: True
+2025-04-14 04:41:52,689 - INFO - Polling Truth Social at 2025-04-14 04:41:52 | Interval: 60s | Active hours: True
+2025-04-14 04:42:54,767 - INFO - Polling Truth Social at 2025-04-14 04:42:54 | Interval: 60s | Active hours: True
+2025-04-14 04:43:56,863 - INFO - Polling Truth Social at 2025-04-14 04:43:56 | Interval: 60s | Active hours: True
+2025-04-14 04:44:58,895 - INFO - Polling Truth Social at 2025-04-14 04:44:58 | Interval: 60s | Active hours: True
+2025-04-14 04:46:01,127 - INFO - Polling Truth Social at 2025-04-14 04:46:01 | Interval: 60s | Active hours: True
+2025-04-14 04:47:03,442 - INFO - Polling Truth Social at 2025-04-14 04:47:03 | Interval: 60s | Active hours: True
+2025-04-14 04:48:05,634 - INFO - Polling Truth Social at 2025-04-14 04:48:05 | Interval: 60s | Active hours: True
+2025-04-14 04:49:07,635 - INFO - Polling Truth Social at 2025-04-14 04:49:07 | Interval: 60s | Active hours: True
+2025-04-14 04:50:09,811 - INFO - Polling Truth Social at 2025-04-14 04:50:09 | Interval: 60s | Active hours: True
+2025-04-14 04:51:11,402 - INFO - Polling Truth Social at 2025-04-14 04:51:11 | Interval: 60s | Active hours: True
+2025-04-14 04:52:13,408 - INFO - Polling Truth Social at 2025-04-14 04:52:13 | Interval: 60s | Active hours: True
+2025-04-14 04:53:15,479 - INFO - Polling Truth Social at 2025-04-14 04:53:15 | Interval: 60s | Active hours: True
+2025-04-14 04:54:17,678 - INFO - Polling Truth Social at 2025-04-14 04:54:17 | Interval: 60s | Active hours: True
+2025-04-14 04:55:19,824 - INFO - Polling Truth Social at 2025-04-14 04:55:19 | Interval: 60s | Active hours: True
+2025-04-14 04:56:21,921 - INFO - Polling Truth Social at 2025-04-14 04:56:21 | Interval: 60s | Active hours: True
+2025-04-14 04:57:23,951 - INFO - Polling Truth Social at 2025-04-14 04:57:23 | Interval: 60s | Active hours: True
+2025-04-14 04:58:26,034 - INFO - Polling Truth Social at 2025-04-14 04:58:26 | Interval: 60s | Active hours: True
+2025-04-14 04:59:27,812 - INFO - Polling Truth Social at 2025-04-14 04:59:27 | Interval: 60s | Active hours: True
+2025-04-14 05:00:30,057 - INFO - Polling Truth Social at 2025-04-14 05:00:30 | Interval: 60s | Active hours: True
+2025-04-14 05:01:32,261 - INFO - Polling Truth Social at 2025-04-14 05:01:32 | Interval: 60s | Active hours: True
+2025-04-14 05:02:34,313 - INFO - Polling Truth Social at 2025-04-14 05:02:34 | Interval: 60s | Active hours: True
+2025-04-14 05:03:36,519 - INFO - Polling Truth Social at 2025-04-14 05:03:36 | Interval: 60s | Active hours: True
+2025-04-14 05:04:38,285 - INFO - Polling Truth Social at 2025-04-14 05:04:38 | Interval: 60s | Active hours: True
+2025-04-14 05:05:40,486 - INFO - Polling Truth Social at 2025-04-14 05:05:40 | Interval: 60s | Active hours: True
+2025-04-14 05:06:42,678 - INFO - Polling Truth Social at 2025-04-14 05:06:42 | Interval: 60s | Active hours: True
+2025-04-14 05:07:44,893 - INFO - Polling Truth Social at 2025-04-14 05:07:44 | Interval: 60s | Active hours: True
+2025-04-14 05:08:46,932 - INFO - Polling Truth Social at 2025-04-14 05:08:46 | Interval: 60s | Active hours: True
+2025-04-14 05:09:49,116 - INFO - Polling Truth Social at 2025-04-14 05:09:49 | Interval: 60s | Active hours: True
+2025-04-14 05:10:51,293 - INFO - Polling Truth Social at 2025-04-14 05:10:51 | Interval: 60s | Active hours: True
+2025-04-14 05:11:53,335 - INFO - Polling Truth Social at 2025-04-14 05:11:53 | Interval: 60s | Active hours: True
+2025-04-14 05:12:55,453 - INFO - Polling Truth Social at 2025-04-14 05:12:55 | Interval: 60s | Active hours: True
+2025-04-14 05:13:57,657 - INFO - Polling Truth Social at 2025-04-14 05:13:57 | Interval: 60s | Active hours: True
+2025-04-14 05:14:59,666 - INFO - Polling Truth Social at 2025-04-14 05:14:59 | Interval: 60s | Active hours: True
+2025-04-14 05:16:01,667 - INFO - Polling Truth Social at 2025-04-14 05:16:01 | Interval: 60s | Active hours: True
+2025-04-14 05:17:03,864 - INFO - Polling Truth Social at 2025-04-14 05:17:03 | Interval: 60s | Active hours: True
+2025-04-14 05:18:06,242 - INFO - Polling Truth Social at 2025-04-14 05:18:06 | Interval: 60s | Active hours: True
+2025-04-14 05:19:08,295 - INFO - Polling Truth Social at 2025-04-14 05:19:08 | Interval: 60s | Active hours: True
+2025-04-14 05:20:10,526 - INFO - Polling Truth Social at 2025-04-14 05:20:10 | Interval: 60s | Active hours: True
+2025-04-14 05:21:12,504 - INFO - Polling Truth Social at 2025-04-14 05:21:12 | Interval: 60s | Active hours: True
+2025-04-14 05:22:14,574 - INFO - Polling Truth Social at 2025-04-14 05:22:14 | Interval: 60s | Active hours: True
+2025-04-14 05:23:16,815 - INFO - Polling Truth Social at 2025-04-14 05:23:16 | Interval: 60s | Active hours: True
+2025-04-14 05:24:19,011 - INFO - Polling Truth Social at 2025-04-14 05:24:19 | Interval: 60s | Active hours: True
+2025-04-14 05:25:21,045 - INFO - Polling Truth Social at 2025-04-14 05:25:21 | Interval: 60s | Active hours: True
+2025-04-14 05:26:23,148 - INFO - Polling Truth Social at 2025-04-14 05:26:23 | Interval: 60s | Active hours: True
+2025-04-14 05:27:25,380 - INFO - Polling Truth Social at 2025-04-14 05:27:25 | Interval: 60s | Active hours: True
+2025-04-14 05:28:27,358 - INFO - Polling Truth Social at 2025-04-14 05:28:27 | Interval: 60s | Active hours: True
+2025-04-14 05:29:28,974 - INFO - Polling Truth Social at 2025-04-14 05:29:28 | Interval: 60s | Active hours: True
+2025-04-14 05:30:30,990 - INFO - Polling Truth Social at 2025-04-14 05:30:30 | Interval: 60s | Active hours: True
+2025-04-14 05:30:34,490 - INFO - Metrics Report | Uptime: 1h 0m | Memory: 47.8MB | Processed: 362 | Avg Processing: 0.0001s | Errors: 0 (0 types, Top: none) | Last Cleanup: 2025-04-14 04:30:33 (1h ago)
+2025-04-14 05:31:33,011 - INFO - Polling Truth Social at 2025-04-14 05:31:33 | Interval: 60s | Active hours: True
+2025-04-14 05:31:40,587 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-04-14 05:31:41,208 - INFO - Reconnected to Discord after disconnection
+2025-04-14 05:31:41,209 - INFO - Post-reconnection health check: Database=True, API Client=True
+2025-04-14 05:31:45,599 - INFO - Bot automatically reconnected
+2025-04-14 05:32:35,063 - INFO - Polling Truth Social at 2025-04-14 05:32:35 | Interval: 60s | Active hours: True
+2025-04-14 05:33:37,117 - INFO - Polling Truth Social at 2025-04-14 05:33:37 | Interval: 60s | Active hours: True
+2025-04-14 05:34:39,335 - INFO - Polling Truth Social at 2025-04-14 05:34:39 | Interval: 60s | Active hours: True
+2025-04-14 05:35:41,672 - INFO - Polling Truth Social at 2025-04-14 05:35:41 | Interval: 60s | Active hours: True
+2025-04-14 05:36:43,723 - INFO - Polling Truth Social at 2025-04-14 05:36:43 | Interval: 60s | Active hours: True
+2025-04-14 05:37:45,793 - INFO - Polling Truth Social at 2025-04-14 05:37:45 | Interval: 60s | Active hours: True
+2025-04-14 05:38:47,817 - INFO - Polling Truth Social at 2025-04-14 05:38:47 | Interval: 60s | Active hours: True
+2025-04-14 05:39:49,810 - INFO - Polling Truth Social at 2025-04-14 05:39:49 | Interval: 60s | Active hours: True
+2025-04-14 05:40:51,844 - INFO - Polling Truth Social at 2025-04-14 05:40:51 | Interval: 60s | Active hours: True
+2025-04-14 05:41:53,826 - INFO - Polling Truth Social at 2025-04-14 05:41:53 | Interval: 60s | Active hours: True
+2025-04-14 05:42:56,005 - INFO - Polling Truth Social at 2025-04-14 05:42:56 | Interval: 60s | Active hours: True
+2025-04-14 05:43:58,012 - INFO - Polling Truth Social at 2025-04-14 05:43:58 | Interval: 60s | Active hours: True
+2025-04-14 05:45:00,085 - INFO - Polling Truth Social at 2025-04-14 05:45:00 | Interval: 60s | Active hours: True
+2025-04-14 05:46:01,616 - INFO - Polling Truth Social at 2025-04-14 05:46:01 | Interval: 60s | Active hours: True
+2025-04-14 05:47:03,181 - INFO - Polling Truth Social at 2025-04-14 05:47:03 | Interval: 60s | Active hours: True
+2025-04-14 05:48:05,512 - INFO - Polling Truth Social at 2025-04-14 05:48:05 | Interval: 60s | Active hours: True
+2025-04-14 05:49:07,660 - INFO - Polling Truth Social at 2025-04-14 05:49:07 | Interval: 60s | Active hours: True
+2025-04-14 05:50:09,858 - INFO - Polling Truth Social at 2025-04-14 05:50:09 | Interval: 60s | Active hours: True
+2025-04-14 05:51:11,889 - INFO - Polling Truth Social at 2025-04-14 05:51:11 | Interval: 60s | Active hours: True
+2025-04-14 05:52:13,893 - INFO - Polling Truth Social at 2025-04-14 05:52:13 | Interval: 60s | Active hours: True
+2025-04-14 05:54:14,485 - ERROR - Error getting latest post from realDonaldTrump: argument of type 'NoneType' is not iterable
+2025-04-14 05:54:44,495 - INFO - Polling Truth Social at 2025-04-14 05:54:44 | Interval: 60s | Active hours: True
+2025-04-14 05:54:46,735 - ERROR - Error getting new posts from realDonaldTrump: argument of type 'NoneType' is not iterable
+2025-04-14 05:55:46,748 - INFO - Polling Truth Social at 2025-04-14 05:55:46 | Interval: 60s | Active hours: True
+2025-04-14 05:55:49,029 - ERROR - Error processing account realDonaldTrump for guild 1313758082974879774: '>' not supported between instances of 'datetime.timedelta' and 'int'
+2025-04-14 06:30:34,492 - INFO - Metrics Report | Uptime: 2h 0m | Memory: 41.3MB | Processed: 639 | Avg Processing: 0.0001s | Errors: 0 (0 types, Top: none) | Last Cleanup: 2025-04-14 04:30:33 (2h ago)
+2025-04-14 07:30:34,502 - INFO - Metrics Report | Uptime: 3h 0m | Memory: 39.6MB | Processed: 1151 | Avg Processing: 0.0000s | Errors: 0 (0 types, Top: none) | Last Cleanup: 2025-04-14 04:30:33 (3h ago)
+2025-04-14 07:50:34,498 - INFO - Starting periodic metrics cleanup task...
+2025-04-14 07:50:34,499 - INFO - Cleaned processing times
+2025-04-14 07:50:34,584 - INFO - Garbage collection completed successfully.
+2025-04-14 07:50:34,584 - INFO - Metrics cleanup completed in 0.09 seconds. Next cleanup at 2025-04-14 17:50:34
+2025-04-14 07:59:13,138 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-04-14 07:59:13,786 - INFO - Reconnected to Discord after disconnection
+2025-04-14 07:59:13,786 - INFO - Post-reconnection health check: Database=True, API Client=True
+2025-04-14 07:59:18,154 - INFO - Bot automatically reconnected
+2025-04-14 08:30:34,522 - INFO - Metrics Report | Uptime: 4h 0m | Memory: 40.8MB | Processed: 1611 | Avg Processing: 0.0001s | Errors: 0 (0 types, Top: none) | Last Cleanup: 2025-04-14 07:50:34 (40m ago)
+2025-04-14 08:48:45,118 - WARNING - API mobula returned status 500 for URL: https://production-api.mobula.io/api/1/market/history/pair?asset=0x36bfD9b78f5BB5F1fC107F22B27b5BDF300e1B6a&blockchain=pulsechain&period=30d
+2025-04-14 08:48:45,119 - WARNING - API mobula returned status 500 for URL: https://production-api.mobula.io/api/1/market/history/pair?asset=0x36bfD9b78f5BB5F1fC107F22B27b5BDF300e1B6a&blockchain=pulsechain&period=30d
+2025-04-14 08:48:45,617 - WARNING - API mobula returned status 500 for URL: https://production-api.mobula.io/api/1/market/history/pair?asset=0x36bfD9b78f5BB5F1fC107F22B27b5BDF300e1B6a&blockchain=pulsechain&period=30d
+2025-04-14 08:48:45,844 - WARNING - API mobula returned status 500 for URL: https://production-api.mobula.io/api/1/market/history/pair?asset=0x36bfD9b78f5BB5F1fC107F22B27b5BDF300e1B6a&blockchain=pulsechain&period=30d
+2025-04-14 08:48:46,316 - WARNING - API mobula returned status 500 for URL: https://production-api.mobula.io/api/1/market/history/pair?asset=0x36bfD9b78f5BB5F1fC107F22B27b5BDF300e1B6a&blockchain=pulsechain&period=30d
+2025-04-14 08:48:46,536 - WARNING - API mobula returned status 500 for URL: https://production-api.mobula.io/api/1/market/history/pair?asset=0x36bfD9b78f5BB5F1fC107F22B27b5BDF300e1B6a&blockchain=pulsechain&period=30d
+2025-04-14 08:48:47,214 - WARNING - API mobula returned status 500 for URL: https://production-api.mobula.io/api/1/market/history/pair?asset=0x36bfD9b78f5BB5F1fC107F22B27b5BDF300e1B6a&blockchain=pulsechain&period=30d
+2025-04-14 08:48:47,432 - WARNING - API mobula returned status 500 for URL: https://production-api.mobula.io/api/1/market/history/pair?asset=0x36bfD9b78f5BB5F1fC107F22B27b5BDF300e1B6a&blockchain=pulsechain&period=30d
+2025-04-14 09:29:12,820 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-04-14 09:29:13,446 - INFO - Reconnected to Discord after disconnection
+2025-04-14 09:29:13,447 - INFO - Post-reconnection health check: Database=True, API Client=True
+2025-04-14 09:29:17,833 - INFO - Bot automatically reconnected
+2025-04-14 09:30:34,540 - INFO - Metrics Report | Uptime: 5h 0m | Memory: 46.8MB | Processed: 2281 | Avg Processing: 0.0000s | Errors: 8 (1 types, Top: api_mobula=8) | Last Cleanup: 2025-04-14 07:50:34 (1h ago)
+2025-04-14 10:19:05,080 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-04-14 10:19:10,098 - INFO - Bot automatically reconnected
+2025-04-14 10:19:16,135 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-04-14 10:19:17,062 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-04-14 10:19:17,731 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-04-14 10:19:19,133 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-04-14 10:19:21,141 - INFO - Bot automatically reconnected
+2025-04-14 10:19:22,069 - INFO - Bot automatically reconnected
+2025-04-14 10:19:22,741 - INFO - Bot automatically reconnected
+2025-04-14 10:19:24,135 - INFO - Bot automatically reconnected
+2025-04-14 10:19:35,098 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-04-14 10:19:40,110 - INFO - Bot automatically reconnected
+2025-04-14 10:19:56,283 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-04-14 10:20:01,290 - INFO - Bot automatically reconnected
+2025-04-14 10:20:32,634 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-04-14 10:20:37,639 - INFO - Bot automatically reconnected
+2025-04-14 10:22:02,760 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-04-14 10:22:07,771 - INFO - Bot automatically reconnected
+2025-04-14 10:25:18,502 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-04-14 10:25:23,515 - INFO - Bot automatically reconnected
+2025-04-14 10:30:34,548 - INFO - Metrics Report | Uptime: 6h 0m | Memory: 41.0MB | Processed: 2635 | Avg Processing: 0.0001s | Errors: 8 (1 types, Top: api_mobula=8) | Last Cleanup: 2025-04-14 07:50:34 (2h ago)
+2025-04-14 10:33:26,878 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-04-14 10:33:31,886 - INFO - Bot automatically reconnected
+2025-04-14 10:45:02,840 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-04-14 10:45:07,856 - INFO - Bot automatically reconnected
+2025-04-14 11:01:10,156 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-04-14 11:01:15,168 - INFO - Bot automatically reconnected
+2025-04-14 11:02:25,591 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-04-14 11:02:30,603 - INFO - Bot automatically reconnected
+2025-04-14 11:08:44,650 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-04-14 11:08:49,660 - INFO - Bot automatically reconnected
+2025-04-14 11:10:34,596 - INFO - Starting periodic metrics cleanup task...
+2025-04-14 11:10:34,597 - INFO - Cleaned processing times
+2025-04-14 11:10:34,676 - INFO - Garbage collection completed successfully.
+2025-04-14 11:10:34,676 - INFO - Metrics cleanup completed in 0.08 seconds. Next cleanup at 2025-04-14 21:10:34
+2025-04-14 11:18:57,631 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-04-14 11:19:02,635 - INFO - Bot automatically reconnected
+2025-04-14 11:25:41,224 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-04-14 11:25:46,238 - INFO - Bot automatically reconnected
+2025-04-14 11:26:02,516 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-04-14 11:26:07,520 - INFO - Bot automatically reconnected
+2025-04-14 11:30:34,555 - INFO - Metrics Report | Uptime: 7h 0m | Memory: 73.4MB | Processed: 2635 | Avg Processing: 0.0001s | Errors: 8 (1 types, Top: api_mobula=8) | Last Cleanup: 2025-04-14 11:10:34 (19m ago)
+2025-04-14 11:31:54,198 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-04-14 11:31:59,209 - INFO - Bot automatically reconnected
+2025-04-14 11:38:23,882 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-04-14 11:38:28,894 - INFO - Bot automatically reconnected
+2025-04-14 11:49:15,490 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-04-14 11:49:20,500 - INFO - Bot automatically reconnected
+2025-04-14 12:02:53,446 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-04-14 12:02:58,455 - INFO - Bot automatically reconnected
+2025-04-14 12:03:01,419 - INFO - Logged in as TOPG#4967 (ID: 1340722186100408340)
+2025-04-14 12:03:01,420 - INFO - Bot connected to 4 server(s)
+2025-04-14 12:03:01,420 - INFO - Echo bot message forwarding: 1 bots from 11 channels to 1 channels
+2025-04-14 12:03:01,420 - INFO - Dani message forwarding: 1 users from 2 channels to 1 channels
+2025-04-14 12:03:01,420 - INFO - Bot has reconnected
+2025-04-14 12:30:34,558 - INFO - Metrics Report | Uptime: 8h 0m | Memory: 76.3MB | Processed: 2715 | Avg Processing: 0.0001s | Errors: 8 (1 types, Top: api_mobula=8) | Last Cleanup: 2025-04-14 11:10:34 (1h ago)
+2025-04-14 13:30:34,572 - INFO - Metrics Report | Uptime: 9h 0m | Memory: 76.6MB | Processed: 2871 | Avg Processing: 0.0002s | Errors: 8 (1 types, Top: api_mobula=8) | Last Cleanup: 2025-04-14 11:10:34 (2h ago)
+2025-04-14 14:30:34,580 - INFO - Metrics Report | Uptime: 10h 0m | Memory: 76.8MB | Processed: 3024 | Avg Processing: 0.0002s | Errors: 8 (1 types, Top: api_mobula=8) | Last Cleanup: 2025-04-14 11:10:34 (3h ago)
+2025-04-14 14:30:34,691 - INFO - Starting periodic metrics cleanup task...
+2025-04-14 14:30:34,759 - INFO - Garbage collection completed successfully.
+2025-04-14 14:30:34,760 - INFO - Metrics cleanup completed in 0.07 seconds. Next cleanup at 2025-04-15 00:30:34
+2025-04-14 14:38:00,708 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-04-14 14:38:01,383 - INFO - Reconnected to Discord after disconnection
+2025-04-14 14:38:01,386 - INFO - Post-reconnection health check: Database=True, API Client=True
+2025-04-14 14:38:05,724 - INFO - Bot automatically reconnected
+2025-04-14 15:30:34,595 - INFO - Metrics Report | Uptime: 11h 0m | Memory: 75.7MB | Processed: 3245 | Avg Processing: 0.0002s | Errors: 8 (1 types, Top: api_mobula=8) | Last Cleanup: 2025-04-14 14:30:34 (59m ago)
+2025-04-14 16:05:59,033 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-04-14 16:05:59,687 - INFO - Reconnected to Discord after disconnection
+2025-04-14 16:05:59,690 - INFO - Post-reconnection health check: Database=True, API Client=True
+2025-04-14 16:06:04,041 - INFO - Bot automatically reconnected
+2025-04-14 16:30:34,610 - INFO - Metrics Report | Uptime: 12h 0m | Memory: 76.0MB | Processed: 3451 | Avg Processing: 0.0002s | Errors: 8 (1 types, Top: api_mobula=8) | Last Cleanup: 2025-04-14 14:30:34 (1h ago)
+2025-04-14 17:00:48,845 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-04-14 17:00:49,520 - INFO - Reconnected to Discord after disconnection
+2025-04-14 17:00:49,523 - INFO - Post-reconnection health check: Database=True, API Client=True
+2025-04-14 17:00:53,848 - INFO - Bot automatically reconnected
+2025-04-14 17:30:34,619 - INFO - Metrics Report | Uptime: 13h 0m | Memory: 76.6MB | Processed: 3709 | Avg Processing: 0.0718s | Errors: 8 (1 types, Top: api_mobula=8) | Last Cleanup: 2025-04-14 14:30:34 (2h ago)
+2025-04-14 17:50:34,762 - INFO - Starting periodic metrics cleanup task...
+2025-04-14 17:50:34,764 - INFO - Cleaned processing times
+2025-04-14 17:50:34,833 - INFO - Garbage collection completed successfully.
+2025-04-14 17:50:34,834 - INFO - Metrics cleanup completed in 0.07 seconds. Next cleanup at 2025-04-15 03:50:34
+2025-04-14 18:30:34,635 - INFO - Metrics Report | Uptime: 14h 0m | Memory: 77.2MB | Processed: 4025 | Avg Processing: 0.0002s | Errors: 8 (1 types, Top: api_mobula=8) | Last Cleanup: 2025-04-14 17:50:34 (39m ago)
+2025-04-14 19:30:35,716 - INFO - Metrics Report | Uptime: 15h 0m | Memory: 77.3MB | Processed: 4550 | Avg Processing: 0.0002s | Errors: 8 (1 types, Top: api_mobula=8) | Last Cleanup: 2025-04-14 17:50:34 (1h ago)
+2025-04-14 20:27:20,369 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-04-14 20:27:21,021 - INFO - Reconnected to Discord after disconnection
+2025-04-14 20:27:21,024 - INFO - Post-reconnection health check: Database=True, API Client=True
+2025-04-14 20:27:25,373 - INFO - Bot automatically reconnected
+2025-04-14 20:30:35,723 - INFO - Metrics Report | Uptime: 16h 0m | Memory: 77.5MB | Processed: 5039 | Avg Processing: 0.0002s | Errors: 8 (1 types, Top: api_mobula=8) | Last Cleanup: 2025-04-14 17:50:34 (2h ago)
+2025-04-14 20:38:34,393 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-04-14 20:38:35,080 - INFO - Reconnected to Discord after disconnection
+2025-04-14 20:38:35,083 - INFO - Post-reconnection health check: Database=True, API Client=True
+2025-04-14 20:38:39,402 - INFO - Bot automatically reconnected
+2025-04-14 21:10:35,914 - INFO - Starting periodic metrics cleanup task...
+2025-04-14 21:10:35,916 - INFO - Cleaned processing times
+2025-04-14 21:10:35,985 - INFO - Garbage collection completed successfully.
+2025-04-14 21:10:35,986 - INFO - Metrics cleanup completed in 0.07 seconds. Next cleanup at 2025-04-15 07:10:35
+2025-04-14 21:30:35,739 - INFO - Metrics Report | Uptime: 17h 0m | Memory: 77.7MB | Processed: 5636 | Avg Processing: 0.0002s | Errors: 8 (1 types, Top: api_mobula=8) | Last Cleanup: 2025-04-14 21:10:35 (19m ago)
+2025-04-14 22:30:35,753 - INFO - Metrics Report | Uptime: 18h 0m | Memory: 77.9MB | Processed: 6785 | Avg Processing: 0.0002s | Errors: 8 (1 types, Top: api_mobula=8) | Last Cleanup: 2025-04-14 21:10:35 (1h ago)
+2025-04-14 22:46:19,038 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-04-14 22:46:19,682 - INFO - Reconnected to Discord after disconnection
+2025-04-14 22:46:19,682 - INFO - Post-reconnection health check: Database=True, API Client=True
+2025-04-14 22:46:24,048 - INFO - Bot automatically reconnected
+2025-04-14 23:30:35,774 - INFO - Metrics Report | Uptime: 19h 0m | Memory: 46.5MB | Processed: 7370 | Avg Processing: 0.0001s | Errors: 8 (1 types, Top: api_mobula=8) | Last Cleanup: 2025-04-14 21:10:35 (2h ago)
+2025-04-15 00:30:35,781 - INFO - Metrics Report | Uptime: 20h 0m | Memory: 40.8MB | Processed: 7901 | Avg Processing: 0.0001s | Errors: 8 (1 types, Top: api_mobula=8) | Last Cleanup: 2025-04-14 21:10:35 (3h ago)
+2025-04-15 00:30:35,996 - INFO - Starting periodic metrics cleanup task...
+2025-04-15 00:30:35,997 - INFO - Cleaned processing times
+2025-04-15 00:30:36,184 - INFO - Garbage collection completed successfully.
+2025-04-15 00:30:36,185 - INFO - Metrics cleanup completed in 0.19 seconds. Next cleanup at 2025-04-15 10:30:35
+2025-04-15 01:08:18,440 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-04-15 01:08:19,112 - INFO - Reconnected to Discord after disconnection
+2025-04-15 01:08:19,113 - INFO - Post-reconnection health check: Database=True, API Client=True
+2025-04-15 01:08:23,455 - INFO - Bot automatically reconnected
+2025-04-15 01:30:35,796 - INFO - Metrics Report | Uptime: 21h 0m | Memory: 46.5MB | Processed: 8561 | Avg Processing: 0.0001s | Errors: 8 (1 types, Top: api_mobula=8) | Last Cleanup: 2025-04-15 00:30:35 (59m ago)
+2025-04-15 01:38:06,570 - WARNING - Banning user 581470835898974208 | Username: daniworldwidex | Display Name: DaniWorldwide ALWAYS CHECK NAME | Reason: Username contains banned keyword: daniworldwide | Delete Messages: 1 days
+2025-04-15 01:38:08,736 - ERROR - Missing permissions to ban 581470835898974208 in 1313758082974879774
+2025-04-15 02:00:25,395 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-04-15 02:00:26,027 - INFO - Reconnected to Discord after disconnection
+2025-04-15 02:00:26,028 - INFO - Post-reconnection health check: Database=True, API Client=True
+2025-04-15 02:00:30,400 - INFO - Bot automatically reconnected
+2025-04-15 02:30:35,802 - INFO - Metrics Report | Uptime: 22h 0m | Memory: 51.1MB | Processed: 9256 | Avg Processing: 0.0001s | Errors: 8 (1 types, Top: api_mobula=8) | Last Cleanup: 2025-04-15 00:30:35 (1h ago)
+2025-04-15 03:30:35,818 - INFO - Metrics Report | Uptime: 23h 0m | Memory: 46.7MB | Processed: 9749 | Avg Processing: 0.0762s | Errors: 8 (1 types, Top: api_mobula=8) | Last Cleanup: 2025-04-15 00:30:35 (2h ago)
+2025-04-15 03:50:36,194 - INFO - Starting periodic metrics cleanup task...
+2025-04-15 03:50:36,195 - INFO - Cleaned processing times
+2025-04-15 03:50:36,338 - INFO - Garbage collection completed successfully.
+2025-04-15 03:50:36,338 - INFO - Metrics cleanup completed in 0.14 seconds. Next cleanup at 2025-04-15 13:50:36
+2025-04-15 04:30:35,832 - INFO - Metrics Report | Uptime: 24h 0m | Memory: 19.1MB | Processed: 10125 | Avg Processing: 0.0001s | Errors: 8 (1 types, Top: api_mobula=8) | Last Cleanup: 2025-04-15 03:50:36 (39m ago)
+2025-04-15 05:30:35,849 - INFO - Metrics Report | Uptime: 25h 0m | Memory: 31.9MB | Processed: 10713 | Avg Processing: 0.0001s | Errors: 8 (1 types, Top: api_mobula=8) | Last Cleanup: 2025-04-15 03:50:36 (1h ago)
+2025-04-15 05:57:13,538 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-04-15 05:57:14,166 - INFO - Reconnected to Discord after disconnection
+2025-04-15 05:57:14,167 - INFO - Post-reconnection health check: Database=True, API Client=True
+2025-04-15 05:57:18,542 - INFO - Bot automatically reconnected
+2025-04-15 06:13:57,738 - INFO - Bot is shutting down...
+2025-04-15 06:13:57,741 - INFO - API client closed
+2025-04-15 06:13:57,741 - INFO - Services closed successfully
+2025-04-15 06:13:57,741 - INFO - Background task 'metrics_cleanup' canceled
+2025-04-15 06:13:57,741 - INFO - Background task 'memory_monitor' canceled
+2025-04-15 06:13:57,742 - INFO - Background task 'heartbeat_monitor' canceled
+2025-04-15 06:13:57,742 - INFO - Background task 'metrics_report' canceled
+2025-04-15 06:13:57,744 - INFO - Database connection pool closed successfully
+2025-04-15 06:13:57,755 - INFO - Truth Social tracking task cancelled
+2025-04-15 06:13:57,755 - INFO - Truth Social tracking loop cancelled
+2025-04-15 06:13:57,768 - INFO - Bot stopped by user

@@ -1,0 +1,67 @@
+2025-06-24 00:21:15,349 - INFO - Starting bot...
+2025-06-24 00:21:16,356 - INFO - API client initialized
+2025-06-24 00:21:16,356 - INFO - WebsiteAnalyzer initialized with concurrency limit of 15
+2025-06-24 00:21:16,362 - INFO - Loaded 4 Truth Social tokens from file
+2025-06-24 00:21:16,362 - INFO - Authenticating 4 Truth Social accounts with missing or expired tokens...
+2025-06-24 00:21:16,405 - ERROR - Auth error: Status 403
+2025-06-24 00:21:16,406 - ERROR - Failed to authenticate Truth Social account: alphabtw
+2025-06-24 00:21:16,437 - ERROR - Failed to authenticate Truth Social account: visheshbtw
+2025-06-24 00:21:16,460 - ERROR - Failed to authenticate Truth Social account: sakshambtw
+2025-06-24 00:21:16,485 - ERROR - Failed to authenticate Truth Social account: mayankbtw
+2025-06-24 00:21:16,486 - INFO - Successfully authenticated 0/4 Truth Social accounts
+2025-06-24 00:21:16,486 - INFO - Saved 4 Truth Social tokens to file
+2025-06-24 00:21:16,486 - INFO - All API services initialized
+2025-06-24 00:21:16,487 - INFO - Services provider initialized
+2025-06-24 00:21:16,570 - INFO - Database connection pool established: size=1-10
+2025-06-24 00:21:16,571 - INFO - Database connection successful
+2025-06-24 00:21:16,580 - INFO - Proxy rotator initialized with http protocol
+2025-06-24 00:21:16,580 - INFO - Proxy rotator initialized for Truth commands
+2025-06-24 00:21:16,595 - INFO - Discord Events Registered | Username Ban Server ID: 1313758082974879774
+2025-06-24 00:21:16,596 - INFO - Memory monitor started (threshold: 300MB, interval: 3600s)
+2025-06-24 00:21:17,117 - INFO - Successfully synced 10 command(s)
+2025-06-24 00:21:21,336 - INFO - Logged in as TOPG#4967 (ID: 1340722186100408340)
+2025-06-24 00:21:21,336 - INFO - Bot connected to 7 server(s)
+2025-06-24 00:21:21,336 - INFO - Alerts are enabled.
+2025-06-24 00:21:21,336 - INFO - Starting tracking services...
+2025-06-24 00:21:21,337 - INFO - All tracking services started
+2025-06-24 00:21:21,337 - INFO - Initializing DexScreener live tracker...
+2025-06-24 00:21:21,337 - INFO - Initializing migration tracker...
+2025-06-24 00:21:21,337 - INFO - Initializing about to graduate alert tracker...
+2025-06-24 00:21:21,350 - INFO - No enabled guilds with channels, stopping about to graduate alert tracking
+2025-06-24 00:21:21,350 - INFO - About to graduate alert tracking stopped
+2025-06-24 00:21:21,350 - INFO - About to graduate alert tracking initialization complete
+2025-06-24 00:21:21,351 - INFO - No enabled guilds with channels, stopping tracking
+2025-06-24 00:21:21,351 - INFO - DexScreener tracking stopped
+2025-06-24 00:21:21,351 - INFO - DexScreener tracking initialization complete
+2025-06-24 00:21:21,351 - INFO - No enabled guilds with channels, stopping tracking
+2025-06-24 00:21:21,351 - INFO - Migration tracking stopped
+2025-06-24 00:21:21,351 - INFO - Migration tracking initialization complete
+2025-06-24 01:21:16,610 - INFO - Metrics Report | Uptime: 1h 0m | Memory: 48.0MB | Processed: 30 | Avg Processing: 0.5891s | Errors: 0 (0 types, Top: none) | Last Cleanup: 2025-06-24 00:21:15 (1h ago)
+2025-06-24 01:50:44,897 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-06-24 01:50:45,520 - INFO - Reconnected to Discord after disconnection
+2025-06-24 01:50:45,520 - INFO - Post-reconnection health check: Database=True, API Client=True
+2025-06-24 01:50:49,899 - INFO - Bot automatically reconnected
+2025-06-24 02:21:16,626 - INFO - Metrics Report | Uptime: 2h 0m | Memory: 49.6MB | Processed: 52 | Avg Processing: 0.7255s | Errors: 0 (0 types, Top: none) | Last Cleanup: 2025-06-24 00:21:15 (2h ago)
+2025-06-24 03:21:16,634 - INFO - Metrics Report | Uptime: 3h 0m | Memory: 38.2MB | Processed: 75 | Avg Processing: 0.6439s | Errors: 0 (0 types, Top: none) | Last Cleanup: 2025-06-24 00:21:15 (3h ago)
+2025-06-24 03:41:16,611 - INFO - Starting periodic metrics cleanup task...
+2025-06-24 03:41:16,662 - INFO - Garbage collection completed successfully.
+2025-06-24 03:41:16,662 - INFO - Metrics cleanup completed in 0.05 seconds. Next cleanup at 2025-06-24 13:41:16
+2025-06-24 04:21:16,642 - INFO - Metrics Report | Uptime: 4h 0m | Memory: 20.6MB | Processed: 88 | Avg Processing: 0.5489s | Errors: 0 (0 types, Top: none) | Last Cleanup: 2025-06-24 03:41:16 (40m ago)
+2025-06-24 04:55:03,295 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-06-24 04:55:03,966 - INFO - Reconnected to Discord after disconnection
+2025-06-24 04:55:03,967 - INFO - Post-reconnection health check: Database=True, API Client=True
+2025-06-24 04:55:08,300 - INFO - Bot automatically reconnected
+2025-06-24 05:21:16,646 - INFO - Metrics Report | Uptime: 5h 0m | Memory: 32.5MB | Processed: 117 | Avg Processing: 0.3983s | Errors: 0 (0 types, Top: none) | Last Cleanup: 2025-06-24 03:41:16 (1h ago)
+2025-06-24 06:17:33,214 - INFO - Bot is shutting down...
+2025-06-24 06:17:33,214 - INFO - API client closed
+2025-06-24 06:17:33,215 - INFO - Truth Social tracking stopped
+2025-06-24 06:17:33,215 - INFO - Truth Social tracking stopped
+2025-06-24 06:17:33,215 - INFO - Services closed successfully
+2025-06-24 06:17:33,215 - INFO - Background task 'metrics_cleanup' canceled
+2025-06-24 06:17:33,215 - INFO - Background task 'memory_monitor' canceled
+2025-06-24 06:17:33,215 - INFO - Background task 'heartbeat_monitor' canceled
+2025-06-24 06:17:33,216 - INFO - Background task 'metrics_report' canceled
+2025-06-24 06:17:33,216 - INFO - DexScreener tracking stopped
+2025-06-24 06:17:33,216 - INFO - DexScreener tracking stopped
+2025-06-24 06:17:33,216 - INFO - Database connection pool closed successfully
+2025-06-24 06:17:33,219 - INFO - Bot stopped by user

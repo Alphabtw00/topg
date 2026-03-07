@@ -1,0 +1,526 @@
+2025-07-10 02:16:58,728 - INFO - Starting bot...
+2025-07-10 02:16:59,712 - INFO - API client initialized
+2025-07-10 02:16:59,713 - INFO - WebsiteAnalyzer initialized with concurrency limit of 15
+2025-07-10 02:16:59,713 - INFO - All API services initialized
+2025-07-10 02:16:59,713 - INFO - Services provider initialized
+2025-07-10 02:16:59,766 - INFO - Database connection pool established: size=1-10
+2025-07-10 02:16:59,766 - INFO - Database connection successful
+2025-07-10 02:16:59,772 - INFO - Proxy rotator initialized with http protocol
+2025-07-10 02:16:59,772 - INFO - Proxy rotator initialized for Truth commands
+2025-07-10 02:16:59,796 - INFO - Memory monitor started (threshold: 300MB, interval: 3600s)
+2025-07-10 02:17:00,457 - INFO - Successfully synced 11 command(s)
+2025-07-10 02:17:04,951 - INFO - Logged in as TOPG#4967 (ID: 1340722186100408340)
+2025-07-10 02:17:04,951 - INFO - Bot connected to 8 server(s)
+2025-07-10 02:17:04,951 - INFO - Alerts are enabled.
+2025-07-10 02:17:04,952 - INFO - Starting tracking services...
+2025-07-10 02:17:04,952 - INFO - All tracking services started
+2025-07-10 02:17:04,952 - INFO - Initializing DexScreener live tracker...
+2025-07-10 02:17:04,952 - INFO - Initializing migration tracker...
+2025-07-10 02:17:04,952 - INFO - Initializing about to graduate alert tracker...
+2025-07-10 02:17:04,956 - INFO - Found 1 enabled guilds with 1 channels
+2025-07-10 02:17:04,956 - INFO - Migration tracking started
+2025-07-10 02:17:04,957 - INFO - Migration tracking initialization complete
+2025-07-10 02:17:04,957 - INFO - No enabled guilds with channels, stopping dex paid tracking
+2025-07-10 02:17:04,957 - INFO - DexScreener tracking stopped
+2025-07-10 02:17:04,957 - INFO - DexScreener tracking initialization complete
+2025-07-10 02:17:04,958 - INFO - No enabled guilds with channels, stopping about to graduate alert tracking
+2025-07-10 02:17:04,958 - INFO - About to graduate alert tracking stopped
+2025-07-10 02:17:04,958 - INFO - About to graduate alert tracking initialization complete
+2025-07-10 02:17:22,398 - INFO - Bot is shutting down...
+2025-07-10 02:17:22,398 - INFO - API client closed
+2025-07-10 02:17:22,398 - INFO - Truth Social tracking stopped
+2025-07-10 02:17:22,399 - INFO - Truth Social tracking stopped
+2025-07-10 02:17:22,399 - INFO - Services closed successfully
+2025-07-10 02:17:22,399 - INFO - Background task 'metrics_cleanup' canceled
+2025-07-10 02:17:22,399 - INFO - Background task 'memory_monitor' canceled
+2025-07-10 02:17:22,399 - INFO - Background task 'heartbeat_monitor' canceled
+2025-07-10 02:17:22,399 - INFO - Background task 'metrics_report' canceled
+2025-07-10 02:17:22,399 - INFO - DexScreener tracking stopped
+2025-07-10 02:17:22,399 - INFO - DexScreener tracking stopped
+2025-07-10 02:17:22,399 - INFO - Database connection pool closed successfully
+2025-07-10 02:17:25,587 - INFO - Bot stopped by user
+2025-07-10 02:17:25,634 - ERROR - Unhandled exception in event loop: None | Task was destroyed but it is pending!
+2025-07-10 02:18:40,688 - INFO - Starting bot...
+2025-07-10 02:18:41,903 - INFO - API client initialized
+2025-07-10 02:18:41,904 - INFO - WebsiteAnalyzer initialized with concurrency limit of 15
+2025-07-10 02:18:41,904 - INFO - All API services initialized
+2025-07-10 02:18:41,904 - INFO - Services provider initialized
+2025-07-10 02:18:41,916 - INFO - Database connection pool established: size=1-10
+2025-07-10 02:18:41,916 - INFO - Database connection successful
+2025-07-10 02:18:41,923 - INFO - Proxy rotator initialized with http protocol
+2025-07-10 02:18:41,923 - INFO - Proxy rotator initialized for Truth commands
+2025-07-10 02:18:41,934 - INFO - Memory monitor started (threshold: 300MB, interval: 3600s)
+2025-07-10 02:18:42,472 - INFO - Successfully synced 11 command(s)
+2025-07-10 02:18:46,978 - INFO - Logged in as TOPG#4967 (ID: 1340722186100408340)
+2025-07-10 02:18:46,978 - INFO - Bot connected to 8 server(s)
+2025-07-10 02:18:46,979 - INFO - Alerts are enabled.
+2025-07-10 02:18:46,979 - INFO - Starting tracking services...
+2025-07-10 02:18:46,979 - INFO - All tracking services started
+2025-07-10 02:18:46,979 - INFO - Initializing DexScreener live tracker...
+2025-07-10 02:18:46,979 - INFO - Initializing migration tracker...
+2025-07-10 02:18:46,979 - INFO - Initializing about to graduate alert tracker...
+2025-07-10 02:18:46,983 - INFO - No enabled guilds with channels, stopping dex paid tracking
+2025-07-10 02:18:46,984 - INFO - DexScreener tracking stopped
+2025-07-10 02:18:46,984 - INFO - DexScreener tracking initialization complete
+2025-07-10 02:18:46,984 - INFO - No enabled guilds with channels, stopping about to graduate alert tracking
+2025-07-10 02:18:46,984 - INFO - About to graduate alert tracking stopped
+2025-07-10 02:18:46,984 - INFO - About to graduate alert tracking initialization complete
+2025-07-10 02:18:46,985 - INFO - Found 1 enabled guilds with 1 channels
+2025-07-10 02:18:46,985 - INFO - Migration tracking started
+2025-07-10 02:18:46,985 - INFO - Migration tracking initialization complete
+2025-07-10 02:36:23,458 - WARNING - API mobula returned status 404 for URL: https://api.mobula.io/api/1/market/data?asset=JUPVjtWFmkMDqim64V61KKB1U7BLQ1d1Y4Sd7VUj7SZ&blockchain=solana
+2025-07-10 02:36:23,458 - ERROR - Empty response from Mobula API for JUPVjtWFmkMDqim64V61KKB1U7BLQ1d1Y4Sd7VUj7SZ
+2025-07-10 02:37:12,095 - WARNING - API mobula returned status 404 for URL: https://api.mobula.io/api/1/market/data?asset=BonkB4HxseEbLt7y2DTfpYEC6ZkUyjCEbXaUPVQdTR6W&blockchain=solana
+2025-07-10 02:37:12,095 - ERROR - Empty response from Mobula API for BonkB4HxseEbLt7y2DTfpYEC6ZkUyjCEbXaUPVQdTR6W
+2025-07-10 02:48:54,230 - WARNING - API mobula returned status 404 for URL: https://api.mobula.io/api/1/market/data?asset=3hQEJUE2kVDD6VVHCd8q6KBZd9LJnJ474kE36SU9jups&blockchain=solana
+2025-07-10 02:48:54,231 - ERROR - Empty response from Mobula API for 3hQEJUE2kVDD6VVHCd8q6KBZd9LJnJ474kE36SU9jups
+2025-07-10 02:58:31,658 - INFO - Bot is shutting down...
+2025-07-10 02:58:31,658 - INFO - API client closed
+2025-07-10 02:58:31,658 - INFO - Truth Social tracking stopped
+2025-07-10 02:58:31,658 - INFO - Truth Social tracking stopped
+2025-07-10 02:58:31,658 - INFO - Services closed successfully
+2025-07-10 02:58:31,658 - INFO - Background task 'metrics_cleanup' canceled
+2025-07-10 02:58:31,659 - INFO - Background task 'memory_monitor' canceled
+2025-07-10 02:58:31,659 - INFO - Background task 'heartbeat_monitor' canceled
+2025-07-10 02:58:31,659 - INFO - Background task 'metrics_report' canceled
+2025-07-10 02:58:31,659 - INFO - DexScreener tracking stopped
+2025-07-10 02:58:31,659 - INFO - DexScreener tracking stopped
+2025-07-10 02:58:31,659 - INFO - Database connection pool closed successfully
+2025-07-10 02:58:41,856 - ERROR - Error in method-based stream: no close frame received or sent
+2025-07-10 02:58:41,857 - INFO - Tracking loop cancelled
+2025-07-10 02:58:41,857 - ERROR - Unhandled exception in event loop: no close frame received or sent | unhandled exception during asyncio.run() shutdown
+2025-07-10 02:58:41,898 - INFO - Bot stopped by user
+2025-07-10 05:46:19,740 - INFO - Starting bot...
+2025-07-10 05:46:20,670 - INFO - API client initialized
+2025-07-10 05:46:20,670 - INFO - WebsiteAnalyzer initialized with concurrency limit of 15
+2025-07-10 05:46:20,671 - INFO - All API services initialized
+2025-07-10 05:46:20,671 - INFO - Services provider initialized
+2025-07-10 05:46:20,690 - INFO - Database connection pool established: size=1-10
+2025-07-10 05:46:20,690 - INFO - Database connection successful
+2025-07-10 05:46:20,696 - INFO - Proxy rotator initialized with http protocol
+2025-07-10 05:46:20,696 - INFO - Proxy rotator initialized for Truth commands
+2025-07-10 05:46:20,697 - INFO - Memory monitor started (threshold: 300MB, interval: 3600s)
+2025-07-10 05:46:21,210 - INFO - Successfully synced 11 command(s)
+2025-07-10 05:46:26,039 - INFO - Logged in as TOPG#4967 (ID: 1340722186100408340)
+2025-07-10 05:46:26,039 - INFO - Bot connected to 8 server(s)
+2025-07-10 05:46:26,039 - INFO - Alerts are enabled.
+2025-07-10 05:46:26,039 - INFO - Starting tracking services...
+2025-07-10 05:46:26,039 - INFO - All tracking services started
+2025-07-10 05:46:26,040 - INFO - Initializing DexScreener live tracker...
+2025-07-10 05:46:26,040 - INFO - Initializing migration tracker...
+2025-07-10 05:46:26,040 - INFO - Initializing about to graduate alert tracker...
+2025-07-10 05:46:26,044 - INFO - No enabled guilds with channels, stopping dex paid tracking
+2025-07-10 05:46:26,044 - INFO - DexScreener tracking stopped
+2025-07-10 05:46:26,044 - INFO - DexScreener tracking initialization complete
+2025-07-10 05:46:26,044 - INFO - No enabled guilds with channels, stopping about to graduate alert tracking
+2025-07-10 05:46:26,045 - INFO - About to graduate alert tracking stopped
+2025-07-10 05:46:26,045 - INFO - About to graduate alert tracking initialization complete
+2025-07-10 05:46:26,045 - INFO - Found 1 enabled guilds with 1 channels
+2025-07-10 05:46:26,045 - INFO - Migration tracking started
+2025-07-10 05:46:26,046 - INFO - Migration tracking initialization complete
+2025-07-10 05:46:26,996 - ERROR - Bitquery connection error for migration tracker: server rejected WebSocket connection: HTTP 402
+2025-07-10 05:46:39,324 - INFO - Bot is shutting down...
+2025-07-10 05:46:39,324 - INFO - API client closed
+2025-07-10 05:46:39,324 - INFO - Truth Social tracking stopped
+2025-07-10 05:46:39,324 - INFO - Truth Social tracking stopped
+2025-07-10 05:46:39,324 - INFO - Services closed successfully
+2025-07-10 05:46:39,325 - INFO - Background task 'metrics_cleanup' canceled
+2025-07-10 05:46:39,325 - INFO - Background task 'memory_monitor' canceled
+2025-07-10 05:46:39,325 - INFO - Background task 'heartbeat_monitor' canceled
+2025-07-10 05:46:39,325 - INFO - Background task 'metrics_report' canceled
+2025-07-10 05:46:39,325 - INFO - DexScreener tracking stopped
+2025-07-10 05:46:39,325 - INFO - DexScreener tracking stopped
+2025-07-10 05:46:39,325 - INFO - Database connection pool closed successfully
+2025-07-10 05:46:39,331 - INFO - Tracking loop cancelled
+2025-07-10 05:46:39,333 - INFO - Bot stopped by user
+2025-07-10 05:47:05,853 - INFO - Starting bot...
+2025-07-10 05:47:06,688 - INFO - API client initialized
+2025-07-10 05:47:06,688 - INFO - WebsiteAnalyzer initialized with concurrency limit of 15
+2025-07-10 05:47:06,689 - INFO - All API services initialized
+2025-07-10 05:47:06,689 - INFO - Services provider initialized
+2025-07-10 05:47:06,701 - INFO - Database connection pool established: size=1-10
+2025-07-10 05:47:06,701 - INFO - Database connection successful
+2025-07-10 05:47:06,707 - INFO - Proxy rotator initialized with http protocol
+2025-07-10 05:47:06,708 - INFO - Proxy rotator initialized for Truth commands
+2025-07-10 05:47:06,709 - INFO - Memory monitor started (threshold: 300MB, interval: 3600s)
+2025-07-10 05:47:07,263 - INFO - Successfully synced 11 command(s)
+2025-07-10 05:47:12,737 - INFO - Logged in as TOPG#4967 (ID: 1340722186100408340)
+2025-07-10 05:47:12,738 - INFO - Bot connected to 8 server(s)
+2025-07-10 05:47:12,738 - INFO - Alerts are enabled.
+2025-07-10 05:47:12,738 - INFO - Starting tracking services...
+2025-07-10 05:47:12,738 - INFO - All tracking services started
+2025-07-10 05:47:12,738 - INFO - Initializing DexScreener live tracker...
+2025-07-10 05:47:12,738 - INFO - Initializing migration tracker...
+2025-07-10 05:47:12,738 - INFO - Initializing about to graduate alert tracker...
+2025-07-10 05:47:12,742 - INFO - Found 1 enabled guilds with 1 channels
+2025-07-10 05:47:12,742 - INFO - Migration tracking started
+2025-07-10 05:47:12,742 - INFO - Migration tracking initialization complete
+2025-07-10 05:47:12,743 - INFO - No enabled guilds with channels, stopping dex paid tracking
+2025-07-10 05:47:12,743 - INFO - DexScreener tracking stopped
+2025-07-10 05:47:12,743 - INFO - DexScreener tracking initialization complete
+2025-07-10 05:47:12,744 - INFO - No enabled guilds with channels, stopping about to graduate alert tracking
+2025-07-10 05:47:12,744 - INFO - About to graduate alert tracking stopped
+2025-07-10 05:47:12,744 - INFO - About to graduate alert tracking initialization complete
+2025-07-10 05:47:13,680 - ERROR - Bitquery connection error for migration tracker: server rejected WebSocket connection: HTTP 402
+2025-07-10 05:47:27,791 - INFO - Starting bot...
+2025-07-10 05:47:28,621 - INFO - API client initialized
+2025-07-10 05:47:28,621 - INFO - WebsiteAnalyzer initialized with concurrency limit of 15
+2025-07-10 05:47:28,622 - INFO - All API services initialized
+2025-07-10 05:47:28,622 - INFO - Services provider initialized
+2025-07-10 05:47:28,635 - INFO - Database connection pool established: size=1-10
+2025-07-10 05:47:28,635 - INFO - Database connection successful
+2025-07-10 05:47:28,642 - INFO - Proxy rotator initialized with http protocol
+2025-07-10 05:47:28,642 - INFO - Proxy rotator initialized for Truth commands
+2025-07-10 05:47:28,644 - INFO - Memory monitor started (threshold: 300MB, interval: 3600s)
+2025-07-10 05:48:07,419 - INFO - Successfully synced 11 command(s)
+2025-07-10 05:48:12,998 - INFO - Logged in as TOPG#4967 (ID: 1340722186100408340)
+2025-07-10 05:48:12,998 - INFO - Bot connected to 8 server(s)
+2025-07-10 05:48:12,998 - INFO - Alerts are enabled.
+2025-07-10 05:48:12,998 - INFO - Starting tracking services...
+2025-07-10 05:48:12,998 - INFO - All tracking services started
+2025-07-10 05:48:12,998 - INFO - Initializing DexScreener live tracker...
+2025-07-10 05:48:12,998 - INFO - Initializing migration tracker...
+2025-07-10 05:48:12,999 - INFO - Initializing about to graduate alert tracker...
+2025-07-10 05:48:13,002 - INFO - No enabled guilds with channels, stopping dex paid tracking
+2025-07-10 05:48:13,002 - INFO - DexScreener tracking stopped
+2025-07-10 05:48:13,002 - INFO - DexScreener tracking initialization complete
+2025-07-10 05:48:13,002 - INFO - Found 1 enabled guilds with 1 channels
+2025-07-10 05:48:13,003 - INFO - Migration tracking started
+2025-07-10 05:48:13,003 - INFO - Migration tracking initialization complete
+2025-07-10 05:48:13,003 - INFO - No enabled guilds with channels, stopping about to graduate alert tracking
+2025-07-10 05:48:13,004 - INFO - About to graduate alert tracking stopped
+2025-07-10 05:48:13,004 - INFO - About to graduate alert tracking initialization complete
+2025-07-10 05:51:45,425 - INFO - Stream result received from method_based: 1 instructions
+2025-07-10 05:51:45,425 - INFO - Attempting to extract token mint from method: migration_damm_v2
+2025-07-10 05:51:45,425 - INFO - Token mint extracted: AFkURADHfeUAsMYk5NZQXZBC59todEJEGvENPKxjups
+2025-07-10 05:51:45,426 - INFO - Starting graduation processing for token: AFkURADHfeUAsMYk5NZQXZBC59todEJEGvENPKxjups
+2025-07-10 05:51:45,928 - INFO - DexScreener data available: True
+2025-07-10 05:51:46,101 - INFO - Mobula data available: True
+2025-07-10 05:51:46,101 - INFO - Embed created successfully: True
+2025-07-10 05:53:11,812 - INFO - Found 1 enabled guilds with 1 channels
+2025-07-10 05:53:11,952 - INFO - Stream result received from log_based: 1 instructions
+2025-07-10 05:53:11,952 - INFO - Attempting to extract token mint from method: migrate
+2025-07-10 05:53:11,952 - INFO - Token mint extracted: FA8zzXiVfav2nfunCLiquqZZeqpBM1WcEngXXvHGpump
+2025-07-10 05:53:11,952 - INFO - Starting graduation processing for token: FA8zzXiVfav2nfunCLiquqZZeqpBM1WcEngXXvHGpump
+2025-07-10 05:53:12,259 - INFO - Migration channel pf-migrations (ID: 1380831032428990464) added by alphabtw_ in habibifnf
+2025-07-10 05:53:12,297 - INFO - DexScreener data available: True
+2025-07-10 05:53:12,426 - INFO - Mobula data available: True
+2025-07-10 05:53:12,426 - INFO - Embed created successfully: True
+2025-07-10 05:53:16,418 - INFO - Found 1 enabled guilds with 1 channels
+2025-07-10 05:53:16,847 - INFO - Migration tracking enabled by alphabtw_ in habibifnf
+2025-07-10 05:55:49,627 - INFO - Stream result received from method_based: 1 instructions
+2025-07-10 05:55:49,627 - INFO - Attempting to extract token mint from method: migrate_to_cpswap
+2025-07-10 05:55:49,628 - INFO - Token mint extracted: HMp8aLtshGc5NWKRioPQZZqCfMDcJUX28ayETxoBbonk
+2025-07-10 05:55:49,628 - INFO - Starting graduation processing for token: HMp8aLtshGc5NWKRioPQZZqCfMDcJUX28ayETxoBbonk
+2025-07-10 05:55:50,001 - INFO - DexScreener data available: True
+2025-07-10 05:55:51,633 - INFO - Mobula data available: True
+2025-07-10 05:55:51,634 - INFO - Embed created successfully: True
+2025-07-10 05:56:52,037 - INFO - Bot is shutting down...
+2025-07-10 05:56:52,041 - INFO - API client closed
+2025-07-10 05:56:52,042 - INFO - Truth Social tracking stopped
+2025-07-10 05:56:52,042 - INFO - Truth Social tracking stopped
+2025-07-10 05:56:52,042 - INFO - Services closed successfully
+2025-07-10 05:56:52,042 - INFO - Background task 'metrics_cleanup' canceled
+2025-07-10 05:56:52,042 - INFO - Background task 'memory_monitor' canceled
+2025-07-10 05:56:52,042 - INFO - Background task 'heartbeat_monitor' canceled
+2025-07-10 05:56:52,042 - INFO - Background task 'metrics_report' canceled
+2025-07-10 05:56:52,043 - INFO - DexScreener tracking stopped
+2025-07-10 05:56:52,043 - INFO - DexScreener tracking stopped
+2025-07-10 05:56:52,043 - INFO - Database connection pool closed successfully
+2025-07-10 05:56:54,403 - INFO - Bot stopped by user
+2025-07-10 05:56:54,429 - ERROR - Unhandled exception in event loop: None | Task was destroyed but it is pending!
+2025-07-10 05:56:59,875 - INFO - Starting bot...
+2025-07-10 05:57:00,713 - INFO - API client initialized
+2025-07-10 05:57:00,713 - INFO - WebsiteAnalyzer initialized with concurrency limit of 15
+2025-07-10 05:57:00,714 - INFO - All API services initialized
+2025-07-10 05:57:00,714 - INFO - Services provider initialized
+2025-07-10 05:57:00,728 - INFO - Database connection pool established: size=1-10
+2025-07-10 05:57:00,728 - INFO - Database connection successful
+2025-07-10 05:57:00,735 - INFO - Proxy rotator initialized with http protocol
+2025-07-10 05:57:00,736 - INFO - Proxy rotator initialized for Truth commands
+2025-07-10 05:57:00,738 - INFO - Memory monitor started (threshold: 300MB, interval: 3600s)
+2025-07-10 05:57:01,266 - INFO - Successfully synced 11 command(s)
+2025-07-10 05:57:06,008 - INFO - Logged in as TOPG#4967 (ID: 1340722186100408340)
+2025-07-10 05:57:06,008 - INFO - Bot connected to 8 server(s)
+2025-07-10 05:57:06,008 - INFO - Alerts are enabled.
+2025-07-10 05:57:06,008 - INFO - Starting tracking services...
+2025-07-10 05:57:06,009 - INFO - All tracking services started
+2025-07-10 05:57:06,009 - INFO - Initializing DexScreener live tracker...
+2025-07-10 05:57:06,009 - INFO - Initializing migration tracker...
+2025-07-10 05:57:06,009 - INFO - Initializing about to graduate alert tracker...
+2025-07-10 05:57:06,013 - INFO - No enabled guilds with channels, stopping dex paid tracking
+2025-07-10 05:57:06,013 - INFO - DexScreener tracking stopped
+2025-07-10 05:57:06,013 - INFO - DexScreener tracking initialization complete
+2025-07-10 05:57:06,014 - INFO - Found 1 enabled guilds with 1 channels
+2025-07-10 05:57:06,014 - INFO - Migration tracking started
+2025-07-10 05:57:06,014 - INFO - Migration tracking initialization complete
+2025-07-10 05:57:06,014 - INFO - No enabled guilds with channels, stopping about to graduate alert tracking
+2025-07-10 05:57:06,014 - INFO - About to graduate alert tracking stopped
+2025-07-10 05:57:06,015 - INFO - About to graduate alert tracking initialization complete
+2025-07-10 05:57:27,445 - INFO - Stream result received from log_based: 1 instructions
+2025-07-10 05:57:27,445 - INFO - Attempting to extract token mint from method: migrate
+2025-07-10 05:57:27,445 - INFO - Token mint extracted: PRaTqUZSTcy1BpVLTug4HNhUj4KUrrzqSTKP5h8pump
+2025-07-10 05:57:27,445 - INFO - Starting graduation processing for token: PRaTqUZSTcy1BpVLTug4HNhUj4KUrrzqSTKP5h8pump
+2025-07-10 05:57:27,836 - INFO - DexScreener data available: True
+2025-07-10 05:57:28,044 - INFO - Mobula data available: True
+2025-07-10 05:57:28,044 - ERROR - Error processing graduation PRaTqUZSTcy1BpVLTug4HNhUj4KUrrzqSTKP5h8pump: 'coroutine' object has no attribute 'title'
+2025-07-10 05:58:04,293 - INFO - Bot is shutting down...
+2025-07-10 05:58:04,300 - INFO - API client closed
+2025-07-10 05:58:04,300 - INFO - Truth Social tracking stopped
+2025-07-10 05:58:04,300 - INFO - Truth Social tracking stopped
+2025-07-10 05:58:04,300 - INFO - Services closed successfully
+2025-07-10 05:58:04,300 - INFO - Background task 'metrics_cleanup' canceled
+2025-07-10 05:58:04,300 - INFO - Background task 'memory_monitor' canceled
+2025-07-10 05:58:04,300 - INFO - Background task 'heartbeat_monitor' canceled
+2025-07-10 05:58:04,300 - INFO - Background task 'metrics_report' canceled
+2025-07-10 05:58:04,301 - INFO - DexScreener tracking stopped
+2025-07-10 05:58:04,301 - INFO - DexScreener tracking stopped
+2025-07-10 05:58:04,301 - INFO - Database connection pool closed successfully
+2025-07-10 05:58:06,891 - INFO - Bot stopped by user
+2025-07-10 05:58:06,916 - ERROR - Unhandled exception in event loop: None | Task was destroyed but it is pending!
+2025-07-10 05:58:10,084 - INFO - Starting bot...
+2025-07-10 05:58:10,982 - INFO - API client initialized
+2025-07-10 05:58:10,982 - INFO - WebsiteAnalyzer initialized with concurrency limit of 15
+2025-07-10 05:58:10,983 - INFO - All API services initialized
+2025-07-10 05:58:10,983 - INFO - Services provider initialized
+2025-07-10 05:58:10,993 - INFO - Database connection pool established: size=1-10
+2025-07-10 05:58:10,993 - INFO - Database connection successful
+2025-07-10 05:58:10,999 - INFO - Proxy rotator initialized with http protocol
+2025-07-10 05:58:10,999 - INFO - Proxy rotator initialized for Truth commands
+2025-07-10 05:58:11,000 - INFO - Memory monitor started (threshold: 300MB, interval: 3600s)
+2025-07-10 05:58:11,537 - INFO - Successfully synced 11 command(s)
+2025-07-10 05:58:16,154 - INFO - Logged in as TOPG#4967 (ID: 1340722186100408340)
+2025-07-10 05:58:16,154 - INFO - Bot connected to 8 server(s)
+2025-07-10 05:58:16,154 - INFO - Alerts are enabled.
+2025-07-10 05:58:16,154 - INFO - Starting tracking services...
+2025-07-10 05:58:16,154 - INFO - All tracking services started
+2025-07-10 05:58:16,155 - INFO - Initializing DexScreener live tracker...
+2025-07-10 05:58:16,155 - INFO - Initializing migration tracker...
+2025-07-10 05:58:16,155 - INFO - Initializing about to graduate alert tracker...
+2025-07-10 05:58:16,159 - INFO - No enabled guilds with channels, stopping dex paid tracking
+2025-07-10 05:58:16,159 - INFO - DexScreener tracking stopped
+2025-07-10 05:58:16,159 - INFO - DexScreener tracking initialization complete
+2025-07-10 05:58:16,160 - INFO - No enabled guilds with channels, stopping about to graduate alert tracking
+2025-07-10 05:58:16,160 - INFO - About to graduate alert tracking stopped
+2025-07-10 05:58:16,160 - INFO - About to graduate alert tracking initialization complete
+2025-07-10 05:58:16,161 - INFO - Found 1 enabled guilds with 1 channels
+2025-07-10 05:58:16,161 - INFO - Migration tracking started
+2025-07-10 05:58:16,161 - INFO - Migration tracking initialization complete
+2025-07-10 06:03:19,503 - INFO - Stream result received from method_based: 1 instructions
+2025-07-10 06:03:19,503 - INFO - Attempting to extract token mint from method: migrate_to_cpswap
+2025-07-10 06:03:19,503 - INFO - Token mint extracted: 6HwgsbYrgCXrr7LfoSsejGdVNq7FhHXABzxs2N1gbonk
+2025-07-10 06:03:19,503 - INFO - Starting graduation processing for token: 6HwgsbYrgCXrr7LfoSsejGdVNq7FhHXABzxs2N1gbonk
+2025-07-10 06:03:19,878 - INFO - DexScreener data available: True
+2025-07-10 06:03:20,033 - INFO - Mobula data available: True
+2025-07-10 06:03:20,033 - INFO - Embed details -
+2025-07-10 06:03:20,033 - ERROR - Error processing graduation 6HwgsbYrgCXrr7LfoSsejGdVNq7FhHXABzxs2N1gbonk: 'coroutine' object has no attribute 'color'
+2025-07-10 06:05:22,651 - INFO - Bot is shutting down...
+2025-07-10 06:05:22,651 - INFO - API client closed
+2025-07-10 06:05:22,651 - INFO - Truth Social tracking stopped
+2025-07-10 06:05:22,651 - INFO - Truth Social tracking stopped
+2025-07-10 06:05:22,651 - INFO - Services closed successfully
+2025-07-10 06:05:22,651 - INFO - Background task 'metrics_cleanup' canceled
+2025-07-10 06:05:22,651 - INFO - Background task 'memory_monitor' canceled
+2025-07-10 06:05:22,651 - INFO - Background task 'heartbeat_monitor' canceled
+2025-07-10 06:05:22,651 - INFO - Background task 'metrics_report' canceled
+2025-07-10 06:05:22,651 - INFO - DexScreener tracking stopped
+2025-07-10 06:05:22,651 - INFO - DexScreener tracking stopped
+2025-07-10 06:05:22,652 - INFO - Database connection pool closed successfully
+2025-07-10 06:05:24,650 - INFO - Bot stopped by user
+2025-07-10 06:05:24,677 - ERROR - Unhandled exception in event loop: None | Task was destroyed but it is pending!
+2025-07-10 06:05:36,523 - INFO - Starting bot...
+2025-07-10 06:05:37,479 - INFO - API client initialized
+2025-07-10 06:05:37,479 - INFO - WebsiteAnalyzer initialized with concurrency limit of 15
+2025-07-10 06:05:37,480 - INFO - All API services initialized
+2025-07-10 06:05:37,480 - INFO - Services provider initialized
+2025-07-10 06:05:37,492 - INFO - Database connection pool established: size=1-10
+2025-07-10 06:05:37,492 - INFO - Database connection successful
+2025-07-10 06:05:37,498 - INFO - Proxy rotator initialized with http protocol
+2025-07-10 06:05:37,498 - INFO - Proxy rotator initialized for Truth commands
+2025-07-10 06:05:37,500 - INFO - Memory monitor started (threshold: 300MB, interval: 3600s)
+2025-07-10 06:05:38,011 - INFO - Successfully synced 11 command(s)
+2025-07-10 06:05:42,522 - INFO - Logged in as TOPG#4967 (ID: 1340722186100408340)
+2025-07-10 06:05:42,522 - INFO - Bot connected to 8 server(s)
+2025-07-10 06:05:42,523 - INFO - Alerts are enabled.
+2025-07-10 06:05:42,523 - INFO - Starting tracking services...
+2025-07-10 06:05:42,523 - INFO - All tracking services started
+2025-07-10 06:05:42,523 - INFO - Initializing DexScreener live tracker...
+2025-07-10 06:05:42,523 - INFO - Initializing migration tracker...
+2025-07-10 06:05:42,523 - INFO - Initializing about to graduate alert tracker...
+2025-07-10 06:05:42,527 - INFO - No enabled guilds with channels, stopping dex paid tracking
+2025-07-10 06:05:42,527 - INFO - DexScreener tracking stopped
+2025-07-10 06:05:42,527 - INFO - DexScreener tracking initialization complete
+2025-07-10 06:05:42,528 - INFO - Found 1 enabled guilds with 1 channels
+2025-07-10 06:05:42,528 - INFO - Migration tracking started
+2025-07-10 06:05:42,528 - INFO - Migration tracking initialization complete
+2025-07-10 06:05:42,528 - INFO - No enabled guilds with channels, stopping about to graduate alert tracking
+2025-07-10 06:05:42,529 - INFO - About to graduate alert tracking stopped
+2025-07-10 06:05:42,529 - INFO - About to graduate alert tracking initialization complete
+2025-07-10 06:07:09,204 - INFO - Stream result received from log_based: 1 instructions
+2025-07-10 06:07:09,204 - INFO - Attempting to extract token mint from method: migrate
+2025-07-10 06:07:09,204 - INFO - Token mint extracted: 34Vz77ZqibwUSg6ifmNb1VdkdMm4JPLGYTZKiTw6pump
+2025-07-10 06:07:09,205 - INFO - Starting graduation processing for token: 34Vz77ZqibwUSg6ifmNb1VdkdMm4JPLGYTZKiTw6pump
+2025-07-10 06:07:09,374 - INFO - DexScreener data available: True
+2025-07-10 06:07:09,374 - INFO - Embed created successfully: True
+2025-07-10 06:07:09,374 - ERROR - Error processing graduation 34Vz77ZqibwUSg6ifmNb1VdkdMm4JPLGYTZKiTw6pump: 'coroutine' object has no attribute 'to_dict'
+2025-07-10 06:07:59,440 - INFO - Stream result received from method_based: 1 instructions
+2025-07-10 06:07:59,440 - INFO - Attempting to extract token mint from method: migrate_to_cpswap
+2025-07-10 06:07:59,441 - INFO - Token mint extracted: J3y8nTsAsAAUvRn9CBhkJgHbL1BAEpQBfy7tJoU4bonk
+2025-07-10 06:07:59,441 - INFO - Starting graduation processing for token: J3y8nTsAsAAUvRn9CBhkJgHbL1BAEpQBfy7tJoU4bonk
+2025-07-10 06:07:59,911 - INFO - DexScreener data available: False
+2025-07-10 06:08:04,062 - INFO - Mobula data available: True
+2025-07-10 06:08:04,062 - INFO - Embed created successfully: True
+2025-07-10 06:08:04,062 - ERROR - Error processing graduation J3y8nTsAsAAUvRn9CBhkJgHbL1BAEpQBfy7tJoU4bonk: 'coroutine' object has no attribute 'to_dict'
+2025-07-10 06:08:33,473 - INFO - Stream result received from method_based: 1 instructions
+2025-07-10 06:08:33,473 - INFO - Attempting to extract token mint from method: migration_damm_v2
+2025-07-10 06:08:33,473 - INFO - Token mint extracted: GsdKqSd8zv3a8qBiE2Xqs3KiP6eghP6DxKJaheaM2dab
+2025-07-10 06:08:33,474 - INFO - Starting graduation processing for token: GsdKqSd8zv3a8qBiE2Xqs3KiP6eghP6DxKJaheaM2dab
+2025-07-10 06:08:33,802 - INFO - DexScreener data available: False
+2025-07-10 06:08:33,912 - INFO - Mobula data available: True
+2025-07-10 06:08:33,913 - INFO - Embed created successfully: True
+2025-07-10 06:08:33,913 - ERROR - Error processing graduation GsdKqSd8zv3a8qBiE2Xqs3KiP6eghP6DxKJaheaM2dab: 'coroutine' object has no attribute 'to_dict'
+2025-07-10 06:11:39,063 - INFO - Bot is shutting down...
+2025-07-10 06:11:39,063 - INFO - API client closed
+2025-07-10 06:11:39,064 - INFO - Truth Social tracking stopped
+2025-07-10 06:11:39,064 - INFO - Truth Social tracking stopped
+2025-07-10 06:11:39,064 - INFO - Services closed successfully
+2025-07-10 06:11:39,064 - INFO - Background task 'metrics_cleanup' canceled
+2025-07-10 06:11:39,064 - INFO - Background task 'memory_monitor' canceled
+2025-07-10 06:11:39,064 - INFO - Background task 'heartbeat_monitor' canceled
+2025-07-10 06:11:39,064 - INFO - Background task 'metrics_report' canceled
+2025-07-10 06:11:39,064 - INFO - DexScreener tracking stopped
+2025-07-10 06:11:39,064 - INFO - DexScreener tracking stopped
+2025-07-10 06:11:39,065 - INFO - Database connection pool closed successfully
+2025-07-10 06:11:49,261 - ERROR - Error in method-based stream: no close frame received or sent
+2025-07-10 06:11:49,261 - INFO - Tracking loop cancelled
+2025-07-10 06:11:49,262 - ERROR - Unhandled exception in event loop: no close frame received or sent | unhandled exception during asyncio.run() shutdown
+2025-07-10 06:11:49,267 - INFO - Bot stopped by user
+2025-07-10 06:17:31,481 - INFO - Starting bot...
+2025-07-10 06:17:32,451 - INFO - API client initialized
+2025-07-10 06:17:32,452 - INFO - WebsiteAnalyzer initialized with concurrency limit of 15
+2025-07-10 06:17:32,452 - INFO - All API services initialized
+2025-07-10 06:17:32,452 - INFO - Services provider initialized
+2025-07-10 06:17:32,462 - INFO - Database connection pool established: size=1-10
+2025-07-10 06:17:32,462 - INFO - Database connection successful
+2025-07-10 06:17:32,468 - INFO - Proxy rotator initialized with http protocol
+2025-07-10 06:17:32,468 - INFO - Proxy rotator initialized for Truth commands
+2025-07-10 06:17:32,470 - INFO - Memory monitor started (threshold: 300MB, interval: 3600s)
+2025-07-10 06:17:33,033 - INFO - Successfully synced 11 command(s)
+2025-07-10 06:17:37,841 - INFO - Logged in as TOPG#4967 (ID: 1340722186100408340)
+2025-07-10 06:17:37,841 - INFO - Bot connected to 8 server(s)
+2025-07-10 06:17:37,841 - INFO - Alerts are enabled.
+2025-07-10 06:17:37,841 - INFO - Starting tracking services...
+2025-07-10 06:17:37,842 - INFO - All tracking services started
+2025-07-10 06:17:37,842 - INFO - Initializing DexScreener live tracker...
+2025-07-10 06:17:37,842 - INFO - Initializing migration tracker...
+2025-07-10 06:17:37,842 - INFO - Initializing about to graduate alert tracker...
+2025-07-10 06:17:37,846 - INFO - No enabled guilds with channels, stopping dex paid tracking
+2025-07-10 06:17:37,846 - INFO - DexScreener tracking stopped
+2025-07-10 06:17:37,846 - INFO - DexScreener tracking initialization complete
+2025-07-10 06:17:37,847 - INFO - Found 1 enabled guilds with 1 channels
+2025-07-10 06:17:37,847 - INFO - Migration tracking started
+2025-07-10 06:17:37,847 - INFO - Migration tracking initialization complete
+2025-07-10 06:17:37,847 - INFO - No enabled guilds with channels, stopping about to graduate alert tracking
+2025-07-10 06:17:37,848 - INFO - About to graduate alert tracking stopped
+2025-07-10 06:17:37,848 - INFO - About to graduate alert tracking initialization complete
+2025-07-10 06:17:53,229 - INFO - Found 1 enabled guilds with 1 channels
+2025-07-10 06:17:53,667 - INFO - Migration channel pf-migrations (ID: 1380831032428990464) added by alphabtw_ in habibifnf
+2025-07-10 06:19:56,001 - INFO - No enabled guilds with channels, stopping dex paid tracking
+2025-07-10 06:19:56,001 - INFO - DexScreener tracking stopped
+2025-07-10 06:19:56,526 - INFO - DexTracker channel dex-paid (ID: 1386882521895272500) added by alphabtw_ in habibifnf
+2025-07-10 06:20:02,060 - INFO - No enabled guilds with channels, stopping dex paid tracking
+2025-07-10 06:20:02,060 - INFO - DexScreener tracking stopped
+2025-07-10 06:20:02,554 - INFO - DexTracker channel dex-paid (ID: 1386882521895272500) added by alphabtw_ in habibifnf
+2025-07-10 06:21:06,141 - INFO - No enabled guilds with channels, stopping dex paid tracking
+2025-07-10 06:21:06,141 - INFO - DexScreener tracking stopped
+2025-07-10 06:21:06,627 - INFO - DexTracker channel dex-paid (ID: 1386882521895272500) removed by alphabtw_ in habibifnf
+2025-07-10 06:21:08,841 - INFO - No enabled guilds with channels, stopping dex paid tracking
+2025-07-10 06:21:08,842 - INFO - DexScreener tracking stopped
+2025-07-10 06:21:09,400 - INFO - DexTracker channel dex-paid (ID: 1386882521895272500) removed by alphabtw_ in habibifnf
+2025-07-10 06:21:12,673 - INFO - No enabled guilds with channels, stopping dex paid tracking
+2025-07-10 06:21:12,673 - INFO - DexScreener tracking stopped
+2025-07-10 06:21:13,264 - INFO - DexTracker channel dex-paid (ID: 1386882521895272500) removed by alphabtw_ in habibifnf
+2025-07-10 06:21:41,483 - INFO - No enabled guilds with channels, stopping dex paid tracking
+2025-07-10 06:21:41,484 - INFO - DexScreener tracking stopped
+2025-07-10 06:21:41,892 - INFO - DexTracker channel dex-paid (ID: 1386882521895272500) removed by alphabtw_ in habibifnf
+2025-07-10 06:22:36,660 - INFO - No enabled guilds with channels, stopping dex paid tracking
+2025-07-10 06:22:36,660 - INFO - DexScreener tracking stopped
+2025-07-10 06:22:37,122 - INFO - DexTracker disabled by alphabtw_ in habibifnf
+2025-07-10 06:23:15,815 - INFO - No enabled guilds with channels, stopping dex paid tracking
+2025-07-10 06:23:15,816 - INFO - DexScreener tracking stopped
+2025-07-10 06:23:16,251 - INFO - DexTracker channel dex-paid (ID: 1386882521895272500) added by alphabtw_ in habibifnf
+2025-07-10 06:23:20,819 - INFO - Found 1 enabled guilds with 1 channels
+2025-07-10 06:23:20,819 - INFO - DexScreener tracking started
+2025-07-10 06:23:20,820 - INFO - Initializing tracking baseline...
+2025-07-10 06:23:20,919 - INFO - Tracking baseline: BQTJoqJS... on solana
+2025-07-10 06:23:21,264 - INFO - DexTracker enabled by alphabtw_ in habibifnf
+2025-07-10 06:23:24,350 - INFO - Found 1 enabled guilds with 1 channels
+2025-07-10 06:23:24,811 - INFO - DexTracker enabled by alphabtw_ in habibifnf
+2025-07-10 06:35:39,553 - INFO - Bot is shutting down...
+2025-07-10 06:35:39,559 - INFO - API client closed
+2025-07-10 06:35:39,559 - INFO - Truth Social tracking stopped
+2025-07-10 06:35:39,559 - INFO - Truth Social tracking stopped
+2025-07-10 06:35:39,560 - INFO - Services closed successfully
+2025-07-10 06:35:39,560 - INFO - Background task 'metrics_cleanup' canceled
+2025-07-10 06:35:39,560 - INFO - Background task 'memory_monitor' canceled
+2025-07-10 06:35:39,560 - INFO - Background task 'heartbeat_monitor' canceled
+2025-07-10 06:35:39,560 - INFO - Background task 'metrics_report' canceled
+2025-07-10 06:35:39,560 - INFO - Tracking loop cancelled
+2025-07-10 06:35:39,560 - INFO - DexScreener tracking stopped
+2025-07-10 06:35:39,560 - INFO - DexScreener tracking stopped
+2025-07-10 06:35:39,560 - INFO - Database connection pool closed successfully
+2025-07-10 06:35:49,749 - ERROR - Error in log-based stream: no close frame received or sent
+2025-07-10 06:35:49,749 - ERROR - Error in method-based stream: no close frame received or sent
+2025-07-10 06:35:49,750 - INFO - Tracking loop cancelled
+2025-07-10 06:35:49,750 - ERROR - Unhandled exception in event loop: no close frame received or sent | unhandled exception during asyncio.run() shutdown
+2025-07-10 06:35:49,761 - INFO - Bot stopped by user
+2025-07-10 07:03:50,954 - INFO - Starting bot...
+2025-07-10 07:03:51,937 - INFO - API client initialized
+2025-07-10 07:03:51,937 - INFO - WebsiteAnalyzer initialized with concurrency limit of 15
+2025-07-10 07:03:51,938 - INFO - All API services initialized
+2025-07-10 07:03:51,938 - INFO - Services provider initialized
+2025-07-10 07:03:51,952 - INFO - Database connection pool established: size=1-10
+2025-07-10 07:03:51,952 - INFO - Database connection successful
+2025-07-10 07:03:51,958 - INFO - Proxy rotator initialized with http protocol
+2025-07-10 07:03:51,959 - INFO - Proxy rotator initialized for Truth commands
+2025-07-10 07:03:51,960 - INFO - Memory monitor started (threshold: 300MB, interval: 3600s)
+2025-07-10 07:03:52,489 - INFO - Successfully synced 11 command(s)
+2025-07-10 07:03:58,104 - INFO - Logged in as TOPG#4967 (ID: 1340722186100408340)
+2025-07-10 07:03:58,104 - INFO - Bot connected to 8 server(s)
+2025-07-10 07:03:58,104 - INFO - Alerts are enabled.
+2025-07-10 07:03:58,105 - INFO - Starting tracking services...
+2025-07-10 07:03:58,105 - INFO - All tracking services started
+2025-07-10 07:03:58,105 - INFO - Initializing DexScreener live tracker...
+2025-07-10 07:03:58,105 - INFO - Initializing migration tracker...
+2025-07-10 07:03:58,105 - INFO - Initializing about to graduate alert tracker...
+2025-07-10 07:03:58,109 - INFO - Found 1 enabled guilds with 1 channels
+2025-07-10 07:03:58,109 - INFO - DexScreener tracking started
+2025-07-10 07:03:58,109 - INFO - DexScreener tracking initialization complete
+2025-07-10 07:03:58,109 - INFO - Initializing tracking baseline...
+2025-07-10 07:03:58,110 - INFO - No enabled guilds with channels, stopping about to graduate alert tracking
+2025-07-10 07:03:58,110 - INFO - About to graduate alert tracking stopped
+2025-07-10 07:03:58,110 - INFO - About to graduate alert tracking initialization complete
+2025-07-10 07:03:58,110 - INFO - Found 1 enabled guilds with 1 channels
+2025-07-10 07:03:58,110 - INFO - Migration tracking started
+2025-07-10 07:03:58,110 - INFO - Migration tracking initialization complete
+2025-07-10 07:03:58,237 - INFO - Tracking baseline: FYvirxKC... on solana
+2025-07-10 07:04:52,484 - INFO - No enabled guilds with channels, stopping dex paid tracking
+2025-07-10 07:04:52,484 - INFO - Tracking loop cancelled
+2025-07-10 07:04:52,485 - INFO - DexScreener tracking stopped
+2025-07-10 07:04:52,917 - INFO - DexTracker channel dex-paid (ID: 1386882521895272500) removed by alphabtw_ in habibifnf
+2025-07-10 07:05:17,177 - INFO - Bot is shutting down...
+2025-07-10 07:05:17,181 - INFO - API client closed
+2025-07-10 07:05:17,182 - INFO - Truth Social tracking stopped
+2025-07-10 07:05:17,182 - INFO - Truth Social tracking stopped
+2025-07-10 07:05:17,182 - INFO - Services closed successfully
+2025-07-10 07:05:17,182 - INFO - Background task 'metrics_cleanup' canceled
+2025-07-10 07:05:17,182 - INFO - Background task 'memory_monitor' canceled
+2025-07-10 07:05:17,182 - INFO - Background task 'heartbeat_monitor' canceled
+2025-07-10 07:05:17,182 - INFO - Background task 'metrics_report' canceled
+2025-07-10 07:05:17,183 - INFO - DexScreener tracking stopped
+2025-07-10 07:05:17,183 - INFO - DexScreener tracking stopped
+2025-07-10 07:05:17,183 - INFO - Database connection pool closed successfully
+2025-07-10 07:05:27,387 - ERROR - Error in method-based stream: no close frame received or sent
+2025-07-10 07:05:27,388 - INFO - Tracking loop cancelled
+2025-07-10 07:05:27,388 - ERROR - Unhandled exception in event loop: no close frame received or sent | unhandled exception during asyncio.run() shutdown
+2025-07-10 07:05:27,394 - INFO - Bot stopped by user

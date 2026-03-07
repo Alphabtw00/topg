@@ -1,0 +1,335 @@
+2025-04-18 08:20:12,307 - INFO - Starting bot...
+2025-04-18 08:20:13,219 - INFO - API client initialized
+2025-04-18 08:20:13,219 - INFO - WebsiteAnalyzer initialized with concurrency limit of 15
+2025-04-18 08:20:13,220 - INFO - All API services initialized
+2025-04-18 08:20:13,220 - INFO - Services provider initialized
+2025-04-18 08:20:13,265 - INFO - Database connection pool established: size=1-10
+2025-04-18 08:20:13,265 - INFO - Database connection successful
+2025-04-18 08:20:13,274 - INFO - WebsiteChecker cog initialized
+2025-04-18 08:20:13,292 - INFO - Discord Events Registered | Username Ban Server ID: 1313758082974879774
+2025-04-18 08:20:13,293 - INFO - Memory monitor started (threshold: 300MB, interval: 3600s)
+2025-04-18 08:20:13,734 - INFO - Successfully synced 4 command(s)
+2025-04-18 08:20:16,683 - INFO - Logged in as TOPG#4967 (ID: 1340722186100408340)
+2025-04-18 08:20:16,684 - INFO - Bot connected to 4 server(s)
+2025-04-18 08:20:16,684 - INFO - Echo bot message forwarding: 1 bots from 11 channels to 1 channels
+2025-04-18 08:20:16,684 - INFO - Dani message forwarding: 1 users from 2 channels to 1 channels
+2025-04-18 08:21:12,164 - INFO - Bot is shutting down...
+2025-04-18 08:21:12,164 - INFO - API client closed
+2025-04-18 08:21:12,165 - INFO - Services closed successfully
+2025-04-18 08:21:12,165 - INFO - Background task 'metrics_cleanup' canceled
+2025-04-18 08:21:12,165 - INFO - Background task 'memory_monitor' canceled
+2025-04-18 08:21:12,165 - INFO - Background task 'heartbeat_monitor' canceled
+2025-04-18 08:21:12,165 - INFO - Background task 'metrics_report' canceled
+2025-04-18 08:21:12,165 - INFO - Database connection pool closed successfully
+2025-04-18 08:21:12,167 - INFO - Bot stopped by user
+2025-04-18 08:21:15,632 - INFO - Starting bot...
+2025-04-18 08:21:16,492 - INFO - API client initialized
+2025-04-18 08:21:16,493 - INFO - WebsiteAnalyzer initialized with concurrency limit of 15
+2025-04-18 08:21:16,493 - INFO - All API services initialized
+2025-04-18 08:21:16,493 - INFO - Services provider initialized
+2025-04-18 08:21:16,511 - INFO - Database connection pool established: size=1-10
+2025-04-18 08:21:16,512 - INFO - Database connection successful
+2025-04-18 08:21:16,524 - INFO - WebsiteChecker cog initialized
+2025-04-18 08:21:16,527 - INFO - Discord Events Registered | Username Ban Server ID: 1313758082974879774
+2025-04-18 08:21:16,528 - INFO - Memory monitor started (threshold: 300MB, interval: 3600s)
+2025-04-18 08:21:16,999 - INFO - Successfully synced 4 command(s)
+2025-04-18 08:21:19,947 - INFO - Logged in as TOPG#4967 (ID: 1340722186100408340)
+2025-04-18 08:21:19,949 - INFO - Bot connected to 4 server(s)
+2025-04-18 08:21:19,950 - INFO - Echo bot message forwarding: 1 bots from 11 channels to 1 channels
+2025-04-18 08:21:19,950 - INFO - Dani message forwarding: 1 users from 2 channels to 1 channels
+2025-04-18 08:22:57,929 - INFO - Bot is shutting down...
+2025-04-18 08:22:57,929 - INFO - API client closed
+2025-04-18 08:22:57,929 - INFO - Services closed successfully
+2025-04-18 08:22:57,929 - INFO - Background task 'metrics_cleanup' canceled
+2025-04-18 08:22:57,930 - INFO - Background task 'memory_monitor' canceled
+2025-04-18 08:22:57,930 - INFO - Background task 'heartbeat_monitor' canceled
+2025-04-18 08:22:57,930 - INFO - Background task 'metrics_report' canceled
+2025-04-18 08:22:57,930 - INFO - Database connection pool closed successfully
+2025-04-18 08:22:57,931 - INFO - Bot stopped by user
+2025-04-18 08:23:02,503 - INFO - Starting bot...
+2025-04-18 08:23:03,505 - INFO - API client initialized
+2025-04-18 08:23:03,506 - INFO - WebsiteAnalyzer initialized with concurrency limit of 15
+2025-04-18 08:23:03,506 - INFO - All API services initialized
+2025-04-18 08:23:03,506 - INFO - Services provider initialized
+2025-04-18 08:23:03,521 - INFO - Database connection pool established: size=1-10
+2025-04-18 08:23:03,521 - INFO - Database connection successful
+2025-04-18 08:23:03,530 - INFO - WebsiteChecker cog initialized
+2025-04-18 08:23:03,547 - INFO - Discord Events Registered | Username Ban Server ID: 1313758082974879774
+2025-04-18 08:23:03,548 - INFO - Memory monitor started (threshold: 300MB, interval: 3600s)
+2025-04-18 08:23:03,985 - INFO - Successfully synced 4 command(s)
+2025-04-18 08:23:07,007 - INFO - Logged in as TOPG#4967 (ID: 1340722186100408340)
+2025-04-18 08:23:07,008 - INFO - Bot connected to 4 server(s)
+2025-04-18 08:23:07,008 - INFO - Echo bot message forwarding: 1 bots from 11 channels to 1 channels
+2025-04-18 08:23:07,008 - INFO - Dani message forwarding: 1 users from 2 channels to 1 channels
+2025-04-18 08:24:11,894 - INFO - Bot is shutting down...
+2025-04-18 08:24:11,895 - INFO - API client closed
+2025-04-18 08:24:11,895 - INFO - Services closed successfully
+2025-04-18 08:24:11,895 - INFO - Background task 'metrics_cleanup' canceled
+2025-04-18 08:24:11,895 - INFO - Background task 'memory_monitor' canceled
+2025-04-18 08:24:11,895 - INFO - Background task 'heartbeat_monitor' canceled
+2025-04-18 08:24:11,895 - INFO - Background task 'metrics_report' canceled
+2025-04-18 08:24:11,895 - INFO - Database connection pool closed successfully
+2025-04-18 08:24:11,897 - INFO - Bot stopped by user
+2025-04-18 08:24:15,678 - INFO - Starting bot...
+2025-04-18 08:24:16,545 - INFO - API client initialized
+2025-04-18 08:24:16,545 - INFO - WebsiteAnalyzer initialized with concurrency limit of 15
+2025-04-18 08:24:16,546 - INFO - All API services initialized
+2025-04-18 08:24:16,546 - INFO - Services provider initialized
+2025-04-18 08:24:16,560 - INFO - Database connection pool established: size=1-10
+2025-04-18 08:24:16,560 - INFO - Database connection successful
+2025-04-18 08:24:16,569 - INFO - WebsiteChecker cog initialized
+2025-04-18 08:24:16,586 - INFO - Discord Events Registered | Username Ban Server ID: 1313758082974879774
+2025-04-18 08:24:16,587 - INFO - Memory monitor started (threshold: 300MB, interval: 3600s)
+2025-04-18 08:24:17,095 - INFO - Successfully synced 4 command(s)
+2025-04-18 08:24:19,910 - INFO - Logged in as TOPG#4967 (ID: 1340722186100408340)
+2025-04-18 08:24:19,910 - INFO - Bot connected to 4 server(s)
+2025-04-18 08:24:19,910 - INFO - Echo bot message forwarding: 1 bots from 11 channels to 1 channels
+2025-04-18 08:24:19,911 - INFO - Dani message forwarding: 1 users from 2 channels to 1 channels
+2025-04-18 08:27:20,295 - INFO - Bot is shutting down...
+2025-04-18 08:27:20,295 - INFO - API client closed
+2025-04-18 08:27:20,295 - INFO - Services closed successfully
+2025-04-18 08:27:20,295 - INFO - Background task 'metrics_cleanup' canceled
+2025-04-18 08:27:20,295 - INFO - Background task 'memory_monitor' canceled
+2025-04-18 08:27:20,296 - INFO - Background task 'heartbeat_monitor' canceled
+2025-04-18 08:27:20,296 - INFO - Background task 'metrics_report' canceled
+2025-04-18 08:27:20,296 - INFO - Database connection pool closed successfully
+2025-04-18 08:27:20,297 - INFO - Bot stopped by user
+2025-04-18 08:27:28,090 - INFO - Starting bot...
+2025-04-18 08:27:28,979 - INFO - API client initialized
+2025-04-18 08:27:28,979 - INFO - WebsiteAnalyzer initialized with concurrency limit of 15
+2025-04-18 08:27:28,979 - INFO - All API services initialized
+2025-04-18 08:27:28,980 - INFO - Services provider initialized
+2025-04-18 08:27:29,002 - INFO - Database connection pool established: size=1-10
+2025-04-18 08:27:29,002 - INFO - Database connection successful
+2025-04-18 08:27:29,014 - INFO - WebsiteChecker cog initialized
+2025-04-18 08:27:29,036 - INFO - Discord Events Registered | Username Ban Server ID: 1313758082974879774
+2025-04-18 08:27:29,037 - INFO - Memory monitor started (threshold: 300MB, interval: 3600s)
+2025-04-18 08:27:29,504 - INFO - Successfully synced 4 command(s)
+2025-04-18 08:27:32,524 - INFO - Logged in as TOPG#4967 (ID: 1340722186100408340)
+2025-04-18 08:27:32,524 - INFO - Bot connected to 4 server(s)
+2025-04-18 08:27:32,524 - INFO - Echo bot message forwarding: 1 bots from 11 channels to 1 channels
+2025-04-18 08:27:32,524 - INFO - Dani message forwarding: 1 users from 2 channels to 1 channels
+2025-04-18 08:28:57,135 - INFO - Bot is shutting down...
+2025-04-18 08:28:57,135 - INFO - API client closed
+2025-04-18 08:28:57,135 - INFO - Services closed successfully
+2025-04-18 08:28:57,135 - INFO - Background task 'metrics_cleanup' canceled
+2025-04-18 08:28:57,136 - INFO - Background task 'memory_monitor' canceled
+2025-04-18 08:28:57,136 - INFO - Background task 'heartbeat_monitor' canceled
+2025-04-18 08:28:57,136 - INFO - Background task 'metrics_report' canceled
+2025-04-18 08:28:57,136 - INFO - Database connection pool closed successfully
+2025-04-18 08:28:57,137 - INFO - Bot stopped by user
+2025-04-18 08:29:00,557 - INFO - Starting bot...
+2025-04-18 08:29:01,487 - INFO - API client initialized
+2025-04-18 08:29:01,488 - INFO - WebsiteAnalyzer initialized with concurrency limit of 15
+2025-04-18 08:29:01,488 - INFO - All API services initialized
+2025-04-18 08:29:01,488 - INFO - Services provider initialized
+2025-04-18 08:29:01,501 - INFO - Database connection pool established: size=1-10
+2025-04-18 08:29:01,502 - INFO - Database connection successful
+2025-04-18 08:29:01,511 - INFO - WebsiteChecker cog initialized
+2025-04-18 08:29:01,530 - INFO - Discord Events Registered | Username Ban Server ID: 1313758082974879774
+2025-04-18 08:29:01,531 - INFO - Memory monitor started (threshold: 300MB, interval: 3600s)
+2025-04-18 08:29:02,035 - INFO - Successfully synced 4 command(s)
+2025-04-18 08:29:04,874 - INFO - Logged in as TOPG#4967 (ID: 1340722186100408340)
+2025-04-18 08:29:04,874 - INFO - Bot connected to 4 server(s)
+2025-04-18 08:29:04,874 - INFO - Echo bot message forwarding: 1 bots from 11 channels to 1 channels
+2025-04-18 08:29:04,874 - INFO - Dani message forwarding: 1 users from 2 channels to 1 channels
+2025-04-18 08:29:37,726 - INFO - Bot is shutting down...
+2025-04-18 08:29:37,727 - INFO - API client closed
+2025-04-18 08:29:37,727 - INFO - Services closed successfully
+2025-04-18 08:29:37,727 - INFO - Background task 'metrics_cleanup' canceled
+2025-04-18 08:29:37,728 - INFO - Background task 'memory_monitor' canceled
+2025-04-18 08:29:37,728 - INFO - Background task 'heartbeat_monitor' canceled
+2025-04-18 08:29:37,728 - INFO - Background task 'metrics_report' canceled
+2025-04-18 08:29:37,728 - INFO - Database connection pool closed successfully
+2025-04-18 08:29:37,730 - INFO - Bot stopped by user
+2025-04-18 08:32:42,929 - INFO - Starting bot...
+2025-04-18 08:32:43,827 - INFO - API client initialized
+2025-04-18 08:32:43,827 - INFO - WebsiteAnalyzer initialized with concurrency limit of 15
+2025-04-18 08:32:43,828 - INFO - All API services initialized
+2025-04-18 08:32:43,828 - INFO - Services provider initialized
+2025-04-18 08:32:43,843 - INFO - Database connection pool established: size=1-10
+2025-04-18 08:32:43,843 - INFO - Database connection successful
+2025-04-18 08:32:43,853 - INFO - WebsiteChecker cog initialized
+2025-04-18 08:32:43,858 - INFO - Discord Events Registered | Username Ban Server ID: 1313758082974879774
+2025-04-18 08:32:43,859 - INFO - Memory monitor started (threshold: 300MB, interval: 3600s)
+2025-04-18 08:32:45,171 - INFO - Successfully synced 4 command(s)
+2025-04-18 08:32:48,129 - INFO - Logged in as TOPG#4967 (ID: 1340722186100408340)
+2025-04-18 08:32:48,129 - INFO - Bot connected to 4 server(s)
+2025-04-18 08:32:48,130 - INFO - Echo bot message forwarding: 1 bots from 11 channels to 1 channels
+2025-04-18 08:32:48,130 - INFO - Dani message forwarding: 1 users from 2 channels to 1 channels
+2025-04-18 08:33:07,625 - INFO - Bot is shutting down...
+2025-04-18 08:33:07,626 - INFO - API client closed
+2025-04-18 08:33:07,626 - INFO - Services closed successfully
+2025-04-18 08:33:07,626 - INFO - Background task 'metrics_cleanup' canceled
+2025-04-18 08:33:07,627 - INFO - Background task 'memory_monitor' canceled
+2025-04-18 08:33:07,627 - INFO - Background task 'heartbeat_monitor' canceled
+2025-04-18 08:33:07,627 - INFO - Background task 'metrics_report' canceled
+2025-04-18 08:33:07,627 - INFO - Database connection pool closed successfully
+2025-04-18 08:33:07,628 - INFO - Bot stopped by user
+2025-04-18 08:33:22,424 - INFO - Starting bot...
+2025-04-18 08:33:23,332 - INFO - API client initialized
+2025-04-18 08:33:23,332 - INFO - WebsiteAnalyzer initialized with concurrency limit of 15
+2025-04-18 08:33:23,333 - INFO - All API services initialized
+2025-04-18 08:33:23,333 - INFO - Services provider initialized
+2025-04-18 08:33:23,345 - INFO - Database connection pool established: size=1-10
+2025-04-18 08:33:23,346 - INFO - Database connection successful
+2025-04-18 08:33:23,354 - INFO - WebsiteChecker cog initialized
+2025-04-18 08:33:23,369 - INFO - Discord Events Registered | Username Ban Server ID: 1313758082974879774
+2025-04-18 08:33:23,370 - INFO - Memory monitor started (threshold: 300MB, interval: 3600s)
+2025-04-18 08:33:24,007 - INFO - Successfully synced 4 command(s)
+2025-04-18 08:33:27,019 - INFO - Logged in as TOPG#4967 (ID: 1340722186100408340)
+2025-04-18 08:33:27,019 - INFO - Bot connected to 4 server(s)
+2025-04-18 08:33:27,019 - INFO - Echo bot message forwarding: 1 bots from 11 channels to 1 channels
+2025-04-18 08:33:27,019 - INFO - Dani message forwarding: 1 users from 2 channels to 1 channels
+2025-04-18 09:33:23,375 - INFO - Metrics Report | Uptime: 1h 0m | Memory: 40.9MB | Processed: 262 | Avg Processing: 0.0202s | Errors: 0 (0 types, Top: none) | Last Cleanup: 2025-04-18 08:33:22 (1h ago)
+2025-04-18 10:33:23,387 - INFO - Metrics Report | Uptime: 2h 0m | Memory: 43.2MB | Processed: 472 | Avg Processing: 0.0000s | Errors: 0 (0 types, Top: none) | Last Cleanup: 2025-04-18 08:33:22 (2h ago)
+2025-04-18 11:06:18,871 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-04-18 11:06:19,494 - INFO - Reconnected to Discord after disconnection
+2025-04-18 11:06:19,495 - INFO - Post-reconnection health check: Database=True, API Client=True
+2025-04-18 11:06:23,885 - INFO - Bot automatically reconnected
+2025-04-18 11:33:23,398 - INFO - Metrics Report | Uptime: 3h 0m | Memory: 44.6MB | Processed: 609 | Avg Processing: 0.0002s | Errors: 0 (0 types, Top: none) | Last Cleanup: 2025-04-18 08:33:22 (3h ago)
+2025-04-18 11:53:23,378 - INFO - Starting periodic metrics cleanup task...
+2025-04-18 11:53:23,471 - INFO - Garbage collection completed successfully.
+2025-04-18 11:53:23,472 - INFO - Metrics cleanup completed in 0.09 seconds. Next cleanup at 2025-04-18 21:53:23
+2025-04-18 12:33:23,409 - INFO - Metrics Report | Uptime: 4h 0m | Memory: 72.2MB | Processed: 787 | Avg Processing: 0.0002s | Errors: 0 (0 types, Top: none) | Last Cleanup: 2025-04-18 11:53:23 (40m ago)
+2025-04-18 13:33:23,422 - INFO - Metrics Report | Uptime: 5h 0m | Memory: 73.2MB | Processed: 968 | Avg Processing: 0.0002s | Errors: 0 (0 types, Top: none) | Last Cleanup: 2025-04-18 11:53:23 (1h ago)
+2025-04-18 14:33:23,428 - INFO - Metrics Report | Uptime: 6h 0m | Memory: 73.4MB | Processed: 1168 | Avg Processing: 0.0002s | Errors: 0 (0 types, Top: none) | Last Cleanup: 2025-04-18 11:53:23 (2h ago)
+2025-04-18 14:50:18,745 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-04-18 14:50:19,427 - INFO - Reconnected to Discord after disconnection
+2025-04-18 14:50:19,443 - INFO - Post-reconnection health check: Database=True, API Client=True
+2025-04-18 14:50:23,754 - INFO - Bot automatically reconnected
+2025-04-18 15:13:23,488 - INFO - Starting periodic metrics cleanup task...
+2025-04-18 15:13:23,490 - INFO - Cleaned processing times
+2025-04-18 15:13:23,556 - INFO - Garbage collection completed successfully.
+2025-04-18 15:13:23,557 - INFO - Metrics cleanup completed in 0.07 seconds. Next cleanup at 2025-04-19 01:13:23
+2025-04-18 15:33:23,454 - INFO - Metrics Report | Uptime: 7h 0m | Memory: 74.5MB | Processed: 1328 | Avg Processing: 0.1555s | Errors: 0 (0 types, Top: none) | Last Cleanup: 2025-04-18 15:13:23 (19m ago)
+2025-04-18 16:29:04,662 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-04-18 16:29:05,435 - INFO - Reconnected to Discord after disconnection
+2025-04-18 16:29:05,437 - INFO - Post-reconnection health check: Database=True, API Client=True
+2025-04-18 16:29:09,672 - INFO - Bot automatically reconnected
+2025-04-18 16:33:23,462 - INFO - Metrics Report | Uptime: 8h 0m | Memory: 74.4MB | Processed: 1558 | Avg Processing: 0.0002s | Errors: 0 (0 types, Top: none) | Last Cleanup: 2025-04-18 15:13:23 (1h ago)
+2025-04-18 17:10:07,371 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-04-18 17:10:08,032 - INFO - Reconnected to Discord after disconnection
+2025-04-18 17:10:08,035 - INFO - Post-reconnection health check: Database=True, API Client=True
+2025-04-18 17:10:12,383 - INFO - Bot automatically reconnected
+2025-04-18 17:33:23,470 - INFO - Metrics Report | Uptime: 9h 0m | Memory: 73.9MB | Processed: 1737 | Avg Processing: 0.0272s | Errors: 0 (0 types, Top: none) | Last Cleanup: 2025-04-18 15:13:23 (2h ago)
+2025-04-18 18:33:23,482 - INFO - Metrics Report | Uptime: 10h 0m | Memory: 75.2MB | Processed: 2121 | Avg Processing: 0.0042s | Errors: 0 (0 types, Top: none) | Last Cleanup: 2025-04-18 15:13:23 (3h ago)
+2025-04-18 18:33:23,560 - INFO - Starting periodic metrics cleanup task...
+2025-04-18 18:33:23,562 - INFO - Cleaned processing times
+2025-04-18 18:33:23,625 - INFO - Garbage collection completed successfully.
+2025-04-18 18:33:23,626 - INFO - Metrics cleanup completed in 0.07 seconds. Next cleanup at 2025-04-19 04:33:23
+2025-04-18 19:26:34,838 - INFO - Bot is shutting down...
+2025-04-18 19:26:34,838 - INFO - API client closed
+2025-04-18 19:26:34,839 - INFO - Services closed successfully
+2025-04-18 19:26:34,839 - INFO - Background task 'metrics_cleanup' canceled
+2025-04-18 19:26:34,839 - INFO - Background task 'memory_monitor' canceled
+2025-04-18 19:26:34,839 - INFO - Background task 'heartbeat_monitor' canceled
+2025-04-18 19:26:34,839 - INFO - Background task 'metrics_report' canceled
+2025-04-18 19:26:34,839 - INFO - Database connection pool closed successfully
+2025-04-18 19:26:34,841 - INFO - Bot stopped by user
+2025-04-18 19:26:41,647 - INFO - Starting bot...
+2025-04-18 19:26:42,598 - INFO - API client initialized
+2025-04-18 19:26:42,599 - INFO - WebsiteAnalyzer initialized with concurrency limit of 15
+2025-04-18 19:26:42,599 - INFO - All API services initialized
+2025-04-18 19:26:42,599 - INFO - Services provider initialized
+2025-04-18 19:26:42,621 - INFO - Database connection pool established: size=1-10
+2025-04-18 19:26:42,621 - INFO - Database connection successful
+2025-04-18 19:26:42,629 - INFO - WebsiteChecker cog initialized
+2025-04-18 19:26:42,645 - INFO - Discord Events Registered | Username Ban Server ID: 1313758082974879774
+2025-04-18 19:26:42,646 - INFO - Memory monitor started (threshold: 300MB, interval: 3600s)
+2025-04-18 19:26:43,281 - INFO - Successfully synced 4 command(s)
+2025-04-18 19:26:46,320 - INFO - Logged in as TOPG#4967 (ID: 1340722186100408340)
+2025-04-18 19:26:46,321 - INFO - Bot connected to 4 server(s)
+2025-04-18 19:26:46,321 - INFO - Echo bot message forwarding: 1 bots from 11 channels to 1 channels
+2025-04-18 19:26:46,321 - INFO - Dani message forwarding: 1 users from 2 channels to 1 channels
+2025-04-18 19:30:15,856 - INFO - Bot is shutting down...
+2025-04-18 19:30:15,856 - INFO - API client closed
+2025-04-18 19:30:15,857 - INFO - Services closed successfully
+2025-04-18 19:30:15,857 - INFO - Background task 'metrics_cleanup' canceled
+2025-04-18 19:30:15,857 - INFO - Background task 'memory_monitor' canceled
+2025-04-18 19:30:15,857 - INFO - Background task 'heartbeat_monitor' canceled
+2025-04-18 19:30:15,857 - INFO - Background task 'metrics_report' canceled
+2025-04-18 19:30:15,857 - INFO - Database connection pool closed successfully
+2025-04-18 19:30:15,859 - INFO - Bot stopped by user
+2025-04-18 19:30:20,179 - INFO - Starting bot...
+2025-04-18 19:30:21,820 - INFO - API client initialized
+2025-04-18 19:30:21,820 - INFO - WebsiteAnalyzer initialized with concurrency limit of 15
+2025-04-18 19:30:21,821 - INFO - All API services initialized
+2025-04-18 19:30:21,821 - INFO - Services provider initialized
+2025-04-18 19:30:21,835 - INFO - Database connection pool established: size=1-10
+2025-04-18 19:30:21,835 - INFO - Database connection successful
+2025-04-18 19:30:21,843 - INFO - WebsiteChecker cog initialized
+2025-04-18 19:30:21,859 - INFO - Discord Events Registered | Username Ban Server ID: 1313758082974879774
+2025-04-18 19:30:21,860 - INFO - Memory monitor started (threshold: 300MB, interval: 3600s)
+2025-04-18 19:30:22,486 - INFO - Successfully synced 4 command(s)
+2025-04-18 19:30:25,607 - INFO - Logged in as TOPG#4967 (ID: 1340722186100408340)
+2025-04-18 19:30:25,607 - INFO - Bot connected to 4 server(s)
+2025-04-18 19:30:25,607 - INFO - Echo bot message forwarding: 1 bots from 11 channels to 1 channels
+2025-04-18 19:30:25,608 - INFO - Dani message forwarding: 1 users from 2 channels to 1 channels
+2025-04-18 19:30:49,200 - ERROR - Processing error for 8BtoThi2ZoXnF7QQK1Wjmh2JuBw9FjVvhnGMVZ2vpump: wait() takes 1 positional argument but 2 were given
+2025-04-18 19:31:52,599 - INFO - Bot is shutting down...
+2025-04-18 19:31:52,599 - INFO - API client closed
+2025-04-18 19:31:52,599 - INFO - Services closed successfully
+2025-04-18 19:31:52,600 - INFO - Background task 'metrics_cleanup' canceled
+2025-04-18 19:31:52,600 - INFO - Background task 'memory_monitor' canceled
+2025-04-18 19:31:52,600 - INFO - Background task 'heartbeat_monitor' canceled
+2025-04-18 19:31:52,600 - INFO - Background task 'metrics_report' canceled
+2025-04-18 19:31:52,600 - INFO - Database connection pool closed successfully
+2025-04-18 19:31:52,602 - INFO - Bot stopped by user
+2025-04-18 19:31:59,710 - INFO - Starting bot...
+2025-04-18 19:32:00,612 - INFO - API client initialized
+2025-04-18 19:32:00,612 - INFO - WebsiteAnalyzer initialized with concurrency limit of 15
+2025-04-18 19:32:00,613 - INFO - All API services initialized
+2025-04-18 19:32:00,613 - INFO - Services provider initialized
+2025-04-18 19:32:00,625 - INFO - Database connection pool established: size=1-10
+2025-04-18 19:32:00,626 - INFO - Database connection successful
+2025-04-18 19:32:00,634 - INFO - WebsiteChecker cog initialized
+2025-04-18 19:32:00,650 - INFO - Discord Events Registered | Username Ban Server ID: 1313758082974879774
+2025-04-18 19:32:00,652 - INFO - Memory monitor started (threshold: 300MB, interval: 3600s)
+2025-04-18 19:32:01,414 - INFO - Successfully synced 4 command(s)
+2025-04-18 19:32:04,365 - INFO - Logged in as TOPG#4967 (ID: 1340722186100408340)
+2025-04-18 19:32:04,365 - INFO - Bot connected to 4 server(s)
+2025-04-18 19:32:04,365 - INFO - Echo bot message forwarding: 1 bots from 11 channels to 1 channels
+2025-04-18 19:32:04,366 - INFO - Dani message forwarding: 1 users from 2 channels to 1 channels
+2025-04-18 20:32:02,550 - INFO - Metrics Report | Uptime: 1h 0m | Memory: 44.0MB | Processed: 447 | Avg Processing: 0.0273s | Errors: 0 (0 types, Top: none) | Last Cleanup: 2025-04-18 19:31:59 (1h ago)
+2025-04-18 21:18:01,317 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-04-18 21:18:01,963 - INFO - Reconnected to Discord after disconnection
+2025-04-18 21:18:01,964 - INFO - Post-reconnection health check: Database=True, API Client=True
+2025-04-18 21:18:06,332 - INFO - Bot automatically reconnected
+2025-04-18 21:32:02,556 - INFO - Metrics Report | Uptime: 2h 0m | Memory: 47.3MB | Processed: 889 | Avg Processing: 0.0217s | Errors: 0 (0 types, Top: none) | Last Cleanup: 2025-04-18 19:31:59 (2h ago)
+2025-04-18 22:32:02,563 - INFO - Metrics Report | Uptime: 3h 0m | Memory: 42.6MB | Processed: 1345 | Avg Processing: 0.0196s | Errors: 0 (0 types, Top: none) | Last Cleanup: 2025-04-18 19:31:59 (3h ago)
+2025-04-18 22:32:23,922 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-04-18 22:32:24,601 - INFO - Reconnected to Discord after disconnection
+2025-04-18 22:32:24,602 - INFO - Post-reconnection health check: Database=True, API Client=True
+2025-04-18 22:32:28,927 - INFO - Bot automatically reconnected
+2025-04-18 22:52:02,541 - INFO - Starting periodic metrics cleanup task...
+2025-04-18 22:52:02,542 - INFO - Cleaned processing times
+2025-04-18 22:52:02,616 - INFO - Garbage collection completed successfully.
+2025-04-18 22:52:02,616 - INFO - Metrics cleanup completed in 0.07 seconds. Next cleanup at 2025-04-19 08:52:02
+2025-04-18 22:54:52,639 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-04-18 22:54:53,277 - INFO - Reconnected to Discord after disconnection
+2025-04-18 22:54:53,277 - INFO - Post-reconnection health check: Database=True, API Client=True
+2025-04-18 22:54:57,644 - INFO - Bot automatically reconnected
+2025-04-18 23:12:27,491 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-04-18 23:12:28,125 - INFO - Reconnected to Discord after disconnection
+2025-04-18 23:12:28,126 - INFO - Post-reconnection health check: Database=True, API Client=True
+2025-04-18 23:12:32,504 - INFO - Bot automatically reconnected
+2025-04-18 23:21:45,438 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-04-18 23:21:46,088 - INFO - Reconnected to Discord after disconnection
+2025-04-18 23:21:46,090 - INFO - Post-reconnection health check: Database=True, API Client=True
+2025-04-18 23:21:50,445 - INFO - Bot automatically reconnected
+2025-04-18 23:23:03,117 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-04-18 23:23:03,753 - INFO - Reconnected to Discord after disconnection
+2025-04-18 23:23:03,755 - INFO - Post-reconnection health check: Database=True, API Client=True
+2025-04-18 23:23:08,131 - INFO - Bot automatically reconnected
+2025-04-18 23:32:02,582 - INFO - Metrics Report | Uptime: 4h 0m | Memory: 52.2MB | Processed: 1798 | Avg Processing: 0.0243s | Errors: 0 (0 types, Top: none) | Last Cleanup: 2025-04-18 22:52:02 (40m ago)
+2025-04-18 23:33:09,049 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-04-18 23:33:09,677 - INFO - Reconnected to Discord after disconnection
+2025-04-18 23:33:09,680 - INFO - Post-reconnection health check: Database=True, API Client=True
+2025-04-18 23:33:14,056 - INFO - Bot automatically reconnected
+2025-04-19 00:32:02,583 - INFO - Metrics Report | Uptime: 5h 0m | Memory: 47.6MB | Processed: 2155 | Avg Processing: 0.0345s | Errors: 0 (0 types, Top: none) | Last Cleanup: 2025-04-18 22:52:02 (1h ago)
+2025-04-19 01:29:20,994 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-04-19 01:29:21,645 - INFO - Reconnected to Discord after disconnection
+2025-04-19 01:29:21,646 - INFO - Post-reconnection health check: Database=True, API Client=True
+2025-04-19 01:29:26,000 - INFO - Bot automatically reconnected
+2025-04-19 01:32:02,595 - INFO - Metrics Report | Uptime: 6h 0m | Memory: 50.8MB | Processed: 2600 | Avg Processing: 0.0130s | Errors: 0 (0 types, Top: none) | Last Cleanup: 2025-04-18 22:52:02 (2h ago)

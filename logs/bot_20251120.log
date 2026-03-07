@@ -1,0 +1,226 @@
+2025-11-20 19:00:58,429 - INFO - Starting bot...
+2025-11-20 19:00:59,372 - INFO - API client initialized
+2025-11-20 19:00:59,372 - INFO - WebsiteAnalyzer initialized with concurrency limit of 15
+2025-11-20 19:00:59,373 - INFO - All API services initialized
+2025-11-20 19:00:59,373 - INFO - Services provider initialized
+2025-11-20 19:00:59,449 - INFO - Database connection pool established: size=1-10
+2025-11-20 19:00:59,450 - INFO - Database connection successful
+2025-11-20 19:00:59,471 - INFO - Discord Events Registered | Username Ban Server ID: 1313758082974879774
+2025-11-20 19:00:59,471 - INFO - User forwarding initialized: 2 input channels
+2025-11-20 19:00:59,471 - INFO - Alerts initialized: 3 alert channels
+2025-11-20 19:00:59,471 - INFO - Total forwarding channels: 5
+2025-11-20 19:00:59,472 - INFO - Memory monitor started (threshold: 300MB, interval: 3600s)
+2025-11-20 19:01:00,025 - INFO - Successfully synced 16 command(s)
+2025-11-20 19:01:08,189 - INFO - Logged in as TOPG#4967 (ID: 1340722186100408340)
+2025-11-20 19:01:08,190 - INFO - Bot connected to 14 server(s)
+2025-11-20 19:01:08,190 - INFO - Admin users configured: daniworldwidex, alphabtw_, geeksvc
+2025-11-20 19:01:08,190 - INFO - User forwarding enabled: 2 input -> 1 output channels (All users)
+2025-11-20 19:01:08,190 - INFO - Alerts are enabled
+2025-11-20 19:01:08,190 - INFO - Starting tracking services...
+2025-11-20 19:01:08,190 - INFO - All tracking services started
+2025-11-20 19:01:08,190 - INFO - Initializing DexScreener live tracker...
+2025-11-20 19:01:08,202 - INFO - No enabled guilds with channels, stopping dex paid tracking
+2025-11-20 19:01:08,202 - INFO - DexScreener tracking stopped
+2025-11-20 19:01:08,202 - INFO - DexScreener tracking initialization complete
+2025-11-20 19:01:36,176 - INFO - Health command used by bot owner alpha (alphabtw_) [ID: 370857037480853505] in shini's cord project (ID: 1430163961319395422)
+2025-11-20 19:02:12,719 - INFO - Channel-specific enabled by alpha (alphabtw_) in shinigamiXBT? (ID: 953426223344812133)
+2025-11-20 19:07:49,349 - INFO - Bot is shutting down...
+2025-11-20 19:07:49,349 - INFO - API client closed
+2025-11-20 19:07:49,349 - INFO - Truth Social tracking stopped
+2025-11-20 19:07:49,349 - INFO - Truth Social tracking stopped
+2025-11-20 19:07:49,350 - INFO - Services closed successfully
+2025-11-20 19:07:49,350 - INFO - Background task 'metrics_cleanup' canceled
+2025-11-20 19:07:49,350 - INFO - Background task 'memory_monitor' canceled
+2025-11-20 19:07:49,350 - INFO - Background task 'heartbeat_monitor' canceled
+2025-11-20 19:07:49,350 - INFO - Background task 'metrics_report' canceled
+2025-11-20 19:07:49,350 - INFO - DexScreener tracking stopped
+2025-11-20 19:07:49,350 - INFO - DexScreener tracking stopped
+2025-11-20 19:07:49,350 - INFO - Database connection pool closed successfully
+2025-11-20 19:07:49,351 - INFO - Bot stopped by user
+2025-11-20 19:40:24,285 - INFO - Starting bot...
+2025-11-20 19:40:25,107 - INFO - API client initialized
+2025-11-20 19:40:25,107 - INFO - WebsiteAnalyzer initialized with concurrency limit of 15
+2025-11-20 19:40:25,108 - INFO - All API services initialized
+2025-11-20 19:40:25,108 - INFO - Services provider initialized
+2025-11-20 19:40:25,121 - INFO - Database connection pool established: size=1-10
+2025-11-20 19:40:25,121 - INFO - Database connection successful
+2025-11-20 19:40:25,129 - INFO - Discord Events Registered | Username Ban Server ID: 1313758082974879774
+2025-11-20 19:40:25,129 - INFO - User forwarding initialized: 2 input channels
+2025-11-20 19:40:25,129 - INFO - Alerts initialized: 3 alert channels
+2025-11-20 19:40:25,129 - INFO - Total forwarding channels: 5
+2025-11-20 19:40:25,130 - INFO - Memory monitor started (threshold: 300MB, interval: 3600s)
+2025-11-20 19:40:25,712 - INFO - Successfully synced 16 command(s)
+2025-11-20 19:40:33,600 - INFO - Logged in as TOPG#4967 (ID: 1340722186100408340)
+2025-11-20 19:40:33,601 - INFO - Bot connected to 14 server(s)
+2025-11-20 19:40:33,601 - INFO - Admin users configured: daniworldwidex, alphabtw_, geeksvc
+2025-11-20 19:40:33,601 - INFO - User forwarding enabled: 2 input -> 1 output channels (All users)
+2025-11-20 19:40:33,601 - INFO - Alerts are enabled
+2025-11-20 19:40:33,601 - INFO - Starting tracking services...
+2025-11-20 19:40:33,601 - INFO - All tracking services started
+2025-11-20 19:40:33,601 - INFO - Initializing DexScreener live tracker...
+2025-11-20 19:40:33,604 - INFO - No enabled guilds with channels, stopping dex paid tracking
+2025-11-20 19:40:33,604 - INFO - DexScreener tracking stopped
+2025-11-20 19:40:33,604 - INFO - DexScreener tracking initialization complete
+2025-11-20 19:41:19,429 - ERROR - say command error: Command 'say' raised an exception: HTTPException: 400 Bad Request (error code: 50035): Invalid Form Body
+In data.components.2.components.2.emoji.name: Invalid emoji
+2025-11-20 19:43:23,171 - INFO - Bot is shutting down...
+2025-11-20 19:43:23,172 - INFO - API client closed
+2025-11-20 19:43:23,172 - INFO - Truth Social tracking stopped
+2025-11-20 19:43:23,172 - INFO - Truth Social tracking stopped
+2025-11-20 19:43:23,172 - INFO - Services closed successfully
+2025-11-20 19:43:23,172 - INFO - Background task 'metrics_cleanup' canceled
+2025-11-20 19:43:23,172 - INFO - Background task 'memory_monitor' canceled
+2025-11-20 19:43:23,172 - INFO - Background task 'heartbeat_monitor' canceled
+2025-11-20 19:43:23,172 - INFO - Background task 'metrics_report' canceled
+2025-11-20 19:43:23,172 - INFO - DexScreener tracking stopped
+2025-11-20 19:43:23,173 - INFO - DexScreener tracking stopped
+2025-11-20 19:43:23,173 - INFO - Database connection pool closed successfully
+2025-11-20 19:43:23,174 - INFO - Bot stopped by user
+2025-11-20 19:46:23,345 - INFO - Starting bot...
+2025-11-20 19:46:24,282 - INFO - API client initialized
+2025-11-20 19:46:24,282 - INFO - WebsiteAnalyzer initialized with concurrency limit of 15
+2025-11-20 19:46:24,282 - INFO - All API services initialized
+2025-11-20 19:46:24,282 - INFO - Services provider initialized
+2025-11-20 19:46:24,294 - INFO - Database connection pool established: size=1-10
+2025-11-20 19:46:24,295 - INFO - Database connection successful
+2025-11-20 19:46:24,303 - INFO - Discord Events Registered | Username Ban Server ID: 1313758082974879774
+2025-11-20 19:46:24,303 - INFO - User forwarding initialized: 2 input channels
+2025-11-20 19:46:24,303 - INFO - Alerts initialized: 3 alert channels
+2025-11-20 19:46:24,303 - INFO - Total forwarding channels: 5
+2025-11-20 19:46:24,304 - INFO - Memory monitor started (threshold: 300MB, interval: 3600s)
+2025-11-20 19:46:24,777 - INFO - Successfully synced 16 command(s)
+2025-11-20 19:46:32,346 - INFO - Logged in as TOPG#4967 (ID: 1340722186100408340)
+2025-11-20 19:46:32,347 - INFO - Bot connected to 14 server(s)
+2025-11-20 19:46:32,347 - INFO - Admin users configured: daniworldwidex, alphabtw_, geeksvc
+2025-11-20 19:46:32,347 - INFO - User forwarding enabled: 2 input -> 1 output channels (All users)
+2025-11-20 19:46:32,347 - INFO - Alerts are enabled
+2025-11-20 19:46:32,347 - INFO - Starting tracking services...
+2025-11-20 19:46:32,347 - INFO - All tracking services started
+2025-11-20 19:46:32,347 - INFO - Initializing DexScreener live tracker...
+2025-11-20 19:46:32,350 - INFO - No enabled guilds with channels, stopping dex paid tracking
+2025-11-20 19:46:32,350 - INFO - DexScreener tracking stopped
+2025-11-20 19:46:32,350 - INFO - DexScreener tracking initialization complete
+2025-11-20 22:33:30,504 - INFO - Starting bot...
+2025-11-20 22:33:32,344 - INFO - API client initialized
+2025-11-20 22:33:32,344 - INFO - WebsiteAnalyzer initialized with concurrency limit of 15
+2025-11-20 22:33:32,345 - INFO - All API services initialized
+2025-11-20 22:33:32,345 - INFO - Services provider initialized
+2025-11-20 22:33:32,373 - INFO - Database connection pool established: size=1-10
+2025-11-20 22:33:32,373 - INFO - Database connection successful
+2025-11-20 22:33:32,391 - INFO - Discord Events Registered | Username Ban Server ID: 1313758082974879774
+2025-11-20 22:33:32,392 - INFO - User forwarding initialized: 2 input channels
+2025-11-20 22:33:32,392 - INFO - Alerts initialized: 3 alert channels
+2025-11-20 22:33:32,392 - INFO - Total forwarding channels: 5
+2025-11-20 22:33:32,394 - INFO - Memory monitor started (threshold: 300MB, interval: 3600s)
+2025-11-20 22:33:32,933 - INFO - Successfully synced 16 command(s)
+2025-11-20 22:33:40,732 - INFO - Logged in as TOPG#4967 (ID: 1340722186100408340)
+2025-11-20 22:33:40,732 - INFO - Bot connected to 14 server(s)
+2025-11-20 22:33:40,733 - INFO - Admin users configured: daniworldwidex, alphabtw_, geeksvc
+2025-11-20 22:33:40,733 - INFO - User forwarding enabled: 2 input -> 1 output channels (All users)
+2025-11-20 22:33:40,733 - INFO - Alerts are enabled
+2025-11-20 22:33:40,733 - INFO - Starting tracking services...
+2025-11-20 22:33:40,734 - INFO - All tracking services started
+2025-11-20 22:33:40,734 - INFO - Initializing DexScreener live tracker...
+2025-11-20 22:33:40,738 - INFO - No enabled guilds with channels, stopping dex paid tracking
+2025-11-20 22:33:40,738 - INFO - DexScreener tracking stopped
+2025-11-20 22:33:40,739 - INFO - DexScreener tracking initialization complete
+2025-11-20 22:34:09,661 - INFO - Bot is shutting down...
+2025-11-20 22:34:09,661 - INFO - API client closed
+2025-11-20 22:34:09,662 - INFO - Truth Social tracking stopped
+2025-11-20 22:34:09,662 - INFO - Truth Social tracking stopped
+2025-11-20 22:34:09,662 - INFO - Services closed successfully
+2025-11-20 22:34:09,662 - INFO - Background task 'metrics_cleanup' canceled
+2025-11-20 22:34:09,662 - INFO - Background task 'memory_monitor' canceled
+2025-11-20 22:34:09,663 - INFO - Background task 'heartbeat_monitor' canceled
+2025-11-20 22:34:09,663 - INFO - Background task 'metrics_report' canceled
+2025-11-20 22:34:09,663 - INFO - DexScreener tracking stopped
+2025-11-20 22:34:09,663 - INFO - DexScreener tracking stopped
+2025-11-20 22:34:09,664 - INFO - Database connection pool closed successfully
+2025-11-20 22:34:09,665 - INFO - Bot stopped by user
+2025-11-20 23:21:22,444 - INFO - Starting bot...
+2025-11-20 23:21:23,259 - INFO - API client initialized
+2025-11-20 23:21:23,259 - INFO - WebsiteAnalyzer initialized with concurrency limit of 15
+2025-11-20 23:21:23,259 - INFO - All API services initialized
+2025-11-20 23:21:23,260 - INFO - Services provider initialized
+2025-11-20 23:21:23,277 - INFO - Database connection pool established: size=1-10
+2025-11-20 23:21:23,277 - INFO - Database connection successful
+2025-11-20 23:21:23,286 - INFO - Discord Events Registered | Username Ban Server ID: 1313758082974879774
+2025-11-20 23:21:23,286 - INFO - User forwarding initialized: 2 input channels
+2025-11-20 23:21:23,286 - INFO - Alerts initialized: 3 alert channels
+2025-11-20 23:21:23,286 - INFO - Total forwarding channels: 5
+2025-11-20 23:21:23,287 - INFO - Memory monitor started (threshold: 300MB, interval: 3600s)
+2025-11-20 23:21:23,992 - INFO - Successfully synced 16 command(s)
+2025-11-20 23:21:31,639 - INFO - Logged in as TOPG#4967 (ID: 1340722186100408340)
+2025-11-20 23:21:31,640 - INFO - Bot connected to 14 server(s)
+2025-11-20 23:21:31,640 - INFO - Admin users configured: daniworldwidex, alphabtw_, geeksvc
+2025-11-20 23:21:31,640 - INFO - User forwarding enabled: 2 input -> 1 output channels (All users)
+2025-11-20 23:21:31,640 - INFO - Alerts are enabled
+2025-11-20 23:21:31,640 - INFO - Starting tracking services...
+2025-11-20 23:21:31,640 - INFO - All tracking services started
+2025-11-20 23:21:31,640 - INFO - Initializing DexScreener live tracker...
+2025-11-20 23:21:31,644 - INFO - No enabled guilds with channels, stopping dex paid tracking
+2025-11-20 23:21:31,645 - INFO - DexScreener tracking stopped
+2025-11-20 23:21:31,645 - INFO - DexScreener tracking initialization complete
+2025-11-20 23:21:43,383 - ERROR - say command error: Command 'say' raised an exception: HTTPException: 400 Bad Request (error code: 40060): Interaction has already been acknowledged.
+2025-11-20 23:21:43,738 - ERROR - Unhandled exception in event loop: 400 Bad Request (error code: 40060): Interaction has already been acknowledged. | Task exception was never retrieved
+2025-11-20 23:26:21,746 - ERROR - settings command error: Command 'add-channel' raised an exception: NotFound: 404 Not Found (error code: 10062): Unknown interaction
+2025-11-20 23:26:22,075 - ERROR - Unhandled exception in event loop: 400 Bad Request (error code: 40060): Interaction has already been acknowledged. | Task exception was never retrieved
+2025-11-20 23:28:34,032 - ERROR - settings command error: Command 'status' raised an exception: HTTPException: 400 Bad Request (error code: 40060): Interaction has already been acknowledged.
+2025-11-20 23:28:34,384 - ERROR - Unhandled exception in event loop: 400 Bad Request (error code: 40060): Interaction has already been acknowledged. | Task exception was never retrieved
+2025-11-20 23:28:57,329 - ERROR - settings command error: Command 'mode' raised an exception: HTTPException: 400 Bad Request (error code: 40060): Interaction has already been acknowledged.
+2025-11-20 23:29:02,057 - INFO - Bot is shutting down...
+2025-11-20 23:29:02,058 - INFO - API client closed
+2025-11-20 23:29:02,058 - INFO - Truth Social tracking stopped
+2025-11-20 23:29:02,058 - INFO - Truth Social tracking stopped
+2025-11-20 23:29:02,058 - INFO - Services closed successfully
+2025-11-20 23:29:02,058 - INFO - Background task 'metrics_cleanup' canceled
+2025-11-20 23:29:02,058 - INFO - Background task 'memory_monitor' canceled
+2025-11-20 23:29:02,058 - INFO - Background task 'heartbeat_monitor' canceled
+2025-11-20 23:29:02,058 - INFO - Background task 'metrics_report' canceled
+2025-11-20 23:29:02,058 - INFO - DexScreener tracking stopped
+2025-11-20 23:29:02,059 - INFO - DexScreener tracking stopped
+2025-11-20 23:29:02,059 - INFO - Database connection pool closed successfully
+2025-11-20 23:29:02,064 - INFO - Bot stopped by user
+2025-11-20 23:31:11,528 - INFO - Starting bot...
+2025-11-20 23:31:12,447 - INFO - API client initialized
+2025-11-20 23:31:12,447 - INFO - WebsiteAnalyzer initialized with concurrency limit of 15
+2025-11-20 23:31:12,448 - INFO - All API services initialized
+2025-11-20 23:31:12,448 - INFO - Services provider initialized
+2025-11-20 23:31:12,460 - INFO - Database connection pool established: size=1-10
+2025-11-20 23:31:12,460 - INFO - Database connection successful
+2025-11-20 23:31:12,469 - INFO - Discord Events Registered | Username Ban Server ID: 1313758082974879774
+2025-11-20 23:31:12,469 - INFO - User forwarding initialized: 2 input channels
+2025-11-20 23:31:12,469 - INFO - Alerts initialized: 3 alert channels
+2025-11-20 23:31:12,469 - INFO - Total forwarding channels: 5
+2025-11-20 23:31:12,470 - INFO - Memory monitor started (threshold: 300MB, interval: 3600s)
+2025-11-20 23:31:13,165 - INFO - Successfully synced 16 command(s)
+2025-11-20 23:31:20,766 - INFO - Logged in as TOPG#4967 (ID: 1340722186100408340)
+2025-11-20 23:31:20,766 - INFO - Bot connected to 14 server(s)
+2025-11-20 23:31:20,766 - INFO - Admin users configured: daniworldwidex, alphabtw_, geeksvc
+2025-11-20 23:31:20,766 - INFO - User forwarding enabled: 2 input -> 1 output channels (All users)
+2025-11-20 23:31:20,767 - INFO - Alerts are enabled
+2025-11-20 23:31:20,767 - INFO - Starting tracking services...
+2025-11-20 23:31:20,767 - INFO - All tracking services started
+2025-11-20 23:31:20,767 - INFO - Initializing DexScreener live tracker...
+2025-11-20 23:31:20,769 - INFO - No enabled guilds with channels, stopping dex paid tracking
+2025-11-20 23:31:20,769 - INFO - DexScreener tracking stopped
+2025-11-20 23:31:20,770 - INFO - DexScreener tracking initialization complete
+2025-11-20 23:49:00,364 - ERROR - Send error
+Traceback (most recent call last):
+  File "C:\Users\ansha\OneDrive\Documents\vscode\TOPG\ui\views.py", line 874, in _send_message
+    files, file_error = await prepare_files(self, interaction)
+                              ^^^^^^^^^^^^^
+NameError: name 'prepare_files' is not defined
+2025-11-20 23:58:18,242 - INFO - Bot is shutting down...
+2025-11-20 23:58:18,243 - INFO - API client closed
+2025-11-20 23:58:18,243 - INFO - Truth Social tracking stopped
+2025-11-20 23:58:18,243 - INFO - Truth Social tracking stopped
+2025-11-20 23:58:18,243 - INFO - Services closed successfully
+2025-11-20 23:58:18,243 - INFO - Background task 'metrics_cleanup' canceled
+2025-11-20 23:58:18,243 - INFO - Background task 'memory_monitor' canceled
+2025-11-20 23:58:18,243 - INFO - Background task 'heartbeat_monitor' canceled
+2025-11-20 23:58:18,243 - INFO - Background task 'metrics_report' canceled
+2025-11-20 23:58:18,243 - INFO - DexScreener tracking stopped
+2025-11-20 23:58:18,243 - INFO - DexScreener tracking stopped
+2025-11-20 23:58:18,244 - INFO - Database connection pool closed successfully
+2025-11-20 23:58:18,245 - INFO - Bot stopped by user

@@ -1,0 +1,77 @@
+2025-04-02 04:50:44,452 - ERROR - website request error: 200, message='Attempt to decode JSON with unexpected mimetype: text/html; charset=utf-8', url='https://eggyield.fun/' for URL: https://eggyield.fun/
+2025-04-02 04:50:44,453 - WARNING - Failed to fetch main page for https://eggyield.fun/
+2025-04-02 04:50:44,453 - WARNING - Failed to collect site data for https://eggyield.fun/
+2025-04-02 04:52:20,000 - ERROR - website request error: 200, message='Attempt to decode JSON with unexpected mimetype: text/html; charset=utf-8', url='https://genplay.fun/' for URL: https://genplay.fun/
+2025-04-02 04:52:20,000 - WARNING - Failed to fetch main page for https://genplay.fun/
+2025-04-02 04:52:20,001 - WARNING - Failed to collect site data for https://genplay.fun/
+2025-04-02 04:54:29,696 - ERROR - Error collecting site data for https://genplay.fun/: unhashable type: 'list'
+Traceback (most recent call last):
+  File "C:\Users\ansha\Documents\VsCode\TOPG\api\website_analyzer.py", line 176, in _collect_site_data
+    results = await asyncio.gather(*tasks, return_exceptions=True)
+                    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ansha\AppData\Local\Programs\Python\Python313\Lib\asyncio\tasks.py", line 883, in gather
+    if arg not in arg_to_fut:
+       ^^^^^^^^^^^^^^^^^^^^^
+TypeError: unhashable type: 'list'
+2025-04-02 04:54:29,700 - WARNING - Failed to collect site data for https://genplay.fun/
+2025-04-02 04:54:29,702 - WARNING - Error fetching WHOIS data for genplay.fun: module 'whois' has no attribute 'whois'
+2025-04-02 05:12:27,238 - ERROR - Error collecting site data for https://genplay.fun/: unhashable type: 'list'
+Traceback (most recent call last):
+  File "C:\Users\ansha\Documents\VsCode\TOPG\api\website_analyzer.py", line 208, in _collect_site_data
+    results = await asyncio.gather(*tasks, return_exceptions=True)
+                    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ansha\AppData\Local\Programs\Python\Python313\Lib\asyncio\tasks.py", line 883, in gather
+    if arg not in arg_to_fut:
+       ^^^^^^^^^^^^^^^^^^^^^
+TypeError: unhashable type: 'list'
+2025-04-02 05:12:27,241 - WARNING - Failed to collect site data for https://genplay.fun/
+2025-04-02 05:12:27,243 - WARNING - Error fetching WHOIS data for genplay.fun: module 'whois' has no attribute 'whois'
+2025-04-02 05:21:13,304 - WARNING - Error fetching WHOIS data for genplay.fun: module 'whois' has no attribute 'whois'
+2025-04-02 05:21:14,013 - ERROR - website request error: 400, message='Got more than 8190 bytes (9623) when reading Header value is too long.', url='https://x.com/GenPlayAI' for URL: https://x.com/GenPlayAI
+2025-04-02 05:21:14,017 - ERROR - Error analyzing website https://genplay.fun/: 'WebsiteAnalyzer' object has no attribute '_analyze_site_data'
+Traceback (most recent call last):
+  File "C:\Users\ansha\Documents\VsCode\TOPG\api\website_analyzer.py", line 87, in analyze_website
+    analysis_result = await self._analyze_site_data(site_data)
+                            ^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'WebsiteAnalyzer' object has no attribute '_analyze_site_data'. Did you mean: '_collect_site_data'?
+2025-04-02 05:54:50,040 - ERROR - website request error: 400, message='Got more than 8190 bytes (8923) when reading Header value is too long.', url='https://x.com/GenPlayAI' for URL: https://x.com/GenPlayAI
+2025-04-02 05:54:50,043 - ERROR - Error analyzing website https://genplay.fun/: 'WebsiteAnalyzer' object has no attribute '_analyze_site_data'
+Traceback (most recent call last):
+  File "C:\Users\ansha\Documents\VsCode\TOPG\api\website_analyzer.py", line 87, in analyze_website
+    analysis_result = await self._analyze_site_data(site_data)
+                            ^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'WebsiteAnalyzer' object has no attribute '_analyze_site_data'. Did you mean: '_collect_site_data'?
+2025-04-02 06:12:13,759 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-04-02 06:22:32,752 - ERROR - website request error: 400, message='Got more than 8190 bytes (9623) when reading Header value is too long.', url='https://x.com/GenPlayAI' for URL: https://x.com/GenPlayAI
+2025-04-02 06:22:32,755 - ERROR - Error analyzing website https://genplay.fun/: 'WebsiteAnalyzer' object has no attribute '_analyze_site_data'
+Traceback (most recent call last):
+  File "C:\Users\ansha\Documents\VsCode\TOPG\api\website_analyzer.py", line 87, in analyze_website
+    analysis_result = await self._analyze_site_data(site_data)
+                            ^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'WebsiteAnalyzer' object has no attribute '_analyze_site_data'. Did you mean: '_collect_site_data'?
+2025-04-02 07:40:49,023 - ERROR - website request error: 400, message='Got more than 8190 bytes (8923) when reading Header value is too long.', url='https://x.com/GenPlayAI' for URL: https://x.com/GenPlayAI
+2025-04-02 07:41:03,713 - ERROR - Received empty analysis from Claude API
+2025-04-02 07:41:18,408 - ERROR - Received empty analysis from Claude API
+2025-04-02 07:41:34,403 - ERROR - Received empty analysis from Claude API
+2025-04-02 07:41:34,404 - ERROR - Failed to get analysis from Claude API
+2025-04-02 07:41:34,404 - WARNING - Failed to analyze site data for https://genplay.fun/
+2025-04-02 07:50:40,048 - ERROR - website request error: 400, message='Got more than 8190 bytes (9623) when reading Header value is too long.', url='https://x.com/GenPlayAI' for URL: https://x.com/GenPlayAI
+2025-04-02 07:50:54,022 - ERROR - Received empty analysis from Claude API
+2025-04-02 08:00:53,824 - ERROR - website request error: 400, message='Got more than 8190 bytes (9623) when reading Header value is too long.', url='https://x.com/GenPlayAI' for URL: https://x.com/GenPlayAI
+2025-04-02 08:01:07,097 - ERROR - Received empty analysis from Claude API
+2025-04-02 08:04:36,985 - ERROR - website request error: 400, message='Got more than 8190 bytes (8923) when reading Header value is too long.', url='https://x.com/GenPlayAI' for URL: https://x.com/GenPlayAI
+2025-04-02 11:47:32,355 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-04-02 14:13:04,994 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-04-02 14:29:08,707 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-04-02 14:34:19,451 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-04-02 14:34:19,997 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-04-02 14:34:21,826 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-04-02 14:34:23,797 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-04-02 14:34:26,327 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-04-02 14:34:39,095 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-04-02 14:34:59,643 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-04-02 14:35:35,481 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-04-02 17:19:49,830 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-04-02 20:21:55,553 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-04-02 22:27:16,764 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-04-02 23:39:18,848 - WARNING - Bot disconnected from Discord. Attempting to reconnect...

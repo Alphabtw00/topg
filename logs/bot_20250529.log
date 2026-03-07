@@ -1,0 +1,335 @@
+2025-05-29 16:01:00,144 - INFO - Starting bot...
+2025-05-29 16:01:01,206 - INFO - API client initialized
+2025-05-29 16:01:01,207 - INFO - WebsiteAnalyzer initialized with concurrency limit of 15
+2025-05-29 16:01:01,213 - INFO - Loaded 4 Truth Social tokens from file
+2025-05-29 16:01:01,214 - INFO - Authenticating 4 Truth Social accounts with missing or expired tokens...
+2025-05-29 16:01:01,693 - INFO - Authenticated Truth Social account: alphabtw
+2025-05-29 16:01:02,621 - INFO - Authenticated Truth Social account: visheshbtw
+2025-05-29 16:01:03,069 - INFO - Authenticated Truth Social account: sakshambtw
+2025-05-29 16:01:03,991 - INFO - Authenticated Truth Social account: mayankbtw
+2025-05-29 16:01:03,991 - INFO - Successfully authenticated 4/4 Truth Social accounts
+2025-05-29 16:01:03,991 - INFO - Saved 4 Truth Social tokens to file
+2025-05-29 16:01:03,992 - INFO - All API services initialized
+2025-05-29 16:01:03,992 - INFO - Services provider initialized
+2025-05-29 16:01:04,131 - INFO - Database connection pool established: size=1-10
+2025-05-29 16:01:04,131 - INFO - Database connection successful
+2025-05-29 16:01:04,147 - INFO - WebsiteChecker cog initialized
+2025-05-29 16:01:04,147 - INFO - Proxy rotator initialized with http protocol
+2025-05-29 16:01:04,147 - INFO - Proxy rotator initialized for Truth commands
+2025-05-29 16:01:04,153 - INFO - Discord Events Registered | Username Ban Server ID: 1313758082974879774
+2025-05-29 16:01:04,155 - INFO - Memory monitor started (threshold: 300MB, interval: 3600s)
+2025-05-29 16:01:04,156 - INFO - Initializing Truth Social tracking...
+2025-05-29 16:01:04,156 - INFO - Initializing DexScreener live tracker...
+2025-05-29 16:01:04,163 - INFO - Proxy rotator initialized with http protocol
+2025-05-29 16:01:04,163 - INFO - Proxy rotator initialized for Truth Social tracking
+2025-05-29 16:01:04,191 - INFO - Built DexScreener tracking cache: 1 guilds with channels
+2025-05-29 16:01:04,193 - INFO - Found 1 guilds with DexScreener tracking enabled
+2025-05-29 16:01:04,193 - INFO - DexScreener tracking started
+2025-05-29 16:01:04,193 - INFO - DexScreener tracking initialization complete
+2025-05-29 16:01:04,193 - INFO - Ultra-optimized cache built: 0 accounts, 0 accounts with channels, 0 total channel mappings
+2025-05-29 16:01:04,193 - INFO - Fetching initial tokens to establish tracking baseline
+2025-05-29 16:01:04,194 - INFO - No guilds with Truth Social tracking enabled
+2025-05-29 16:01:04,194 - INFO - Truth Social tracking initialization complete
+2025-05-29 16:01:04,241 - INFO - Initialized DexScreener tracker with latest token: EUTMwQb32VCaqBLEUHgUxooFAcNy3EzFmDZHuv3i2tpt on solana
+2025-05-29 16:01:04,655 - INFO - Successfully synced 8 command(s)
+2025-05-29 16:01:07,789 - INFO - Logged in as TOPG#4967 (ID: 1340722186100408340)
+2025-05-29 16:01:07,789 - INFO - Bot connected to 5 server(s)
+2025-05-29 16:01:07,789 - INFO - Echo bot message forwarding: 1 bots from 9 channels to 1 channels
+2025-05-29 16:01:07,790 - INFO - Dani message forwarding: 1 users from 2 channels to 1 channels
+2025-05-29 16:03:55,966 - INFO - Ultra-optimized cache built: 1 accounts, 1 accounts with channels, 2 total channel mappings
+2025-05-29 16:03:55,968 - INFO - Ultra-optimized cache built: 1 accounts, 1 accounts with channels, 2 total channel mappings
+2025-05-29 16:03:55,968 - INFO - Truth Social tracking started
+2025-05-29 16:03:56,393 - INFO - alphabtw_ enabled Truth Social tracking in server 'HabibiFNF'
+2025-05-29 16:03:57,282 - INFO - Post ID 114588686952126558 image URL: None
+2025-05-29 16:03:57,746 - INFO - Post ID 114588769957413971 image URL: https://images.weserv.nl/?url=https%3A%2F%2Fstatic-assets-1.truthsocial.com%2Ftmtg%3Aprime-ts-assets%2Fmedia_attachments%2Ffiles%2F114%2F588%2F769%2F598%2F673%2F456%2Foriginal%2Ffdcd29770f40b9d1.jpg
+2025-05-29 16:03:58,173 - INFO - Post ID 114588777076099501 image URL: https://images.weserv.nl/?url=https%3A%2F%2Fstatic-assets-1.truthsocial.com%2Ftmtg%3Aprime-ts-assets%2Fmedia_attachments%2Ffiles%2F114%2F588%2F776%2F829%2F103%2F792%2Foriginal%2F297d2132e1301306.jpg
+2025-05-29 16:03:58,647 - INFO - Post ID 114588832258950510 image URL: https://images.weserv.nl/?url=https%3A%2F%2Fstatic-assets-1.truthsocial.com%2Ftmtg%3Aprime-ts-assets%2Fmedia_attachments%2Fthumbnails%2F114%2F588%2F831%2F409%2F349%2F394%2Foriginal%2Fddacad588ea936d0.jpg
+2025-05-29 16:03:59,190 - INFO - Post ID 114588947311720532 image URL: None
+2025-05-29 16:03:59,676 - INFO - Broadcast 5 posts from @realDonaldTrump to 1 guilds (2 channels)
+2025-05-29 18:39:38,864 - INFO - Starting bot...
+2025-05-29 18:39:39,930 - INFO - API client initialized
+2025-05-29 18:39:39,930 - INFO - WebsiteAnalyzer initialized with concurrency limit of 15
+2025-05-29 18:39:39,938 - INFO - Loaded 4 Truth Social tokens from file
+2025-05-29 18:39:39,938 - INFO - Successfully authenticated 4/4 Truth Social accounts
+2025-05-29 18:39:39,938 - INFO - Saved 4 Truth Social tokens to file
+2025-05-29 18:39:39,939 - INFO - All API services initialized
+2025-05-29 18:39:39,939 - INFO - Services provider initialized
+2025-05-29 18:39:40,065 - INFO - Database connection pool established: size=1-10
+2025-05-29 18:39:40,065 - INFO - Database connection successful
+2025-05-29 18:39:40,080 - INFO - WebsiteChecker cog initialized
+2025-05-29 18:39:40,080 - INFO - Proxy rotator initialized with http protocol
+2025-05-29 18:39:40,080 - INFO - Proxy rotator initialized for Truth commands
+2025-05-29 18:39:40,086 - INFO - Discord Events Registered | Username Ban Server ID: 1313758082974879774
+2025-05-29 18:39:40,087 - INFO - Memory monitor started (threshold: 300MB, interval: 3600s)
+2025-05-29 18:39:40,087 - INFO - Initializing Truth Social tracking...
+2025-05-29 18:39:40,087 - INFO - Initializing DexScreener live tracker...
+2025-05-29 18:39:40,097 - INFO - Proxy rotator initialized with http protocol
+2025-05-29 18:39:40,097 - INFO - Proxy rotator initialized for Truth Social tracking
+2025-05-29 18:39:40,122 - INFO - Built DexScreener tracking cache: 1 guilds with channels
+2025-05-29 18:39:40,124 - INFO - Ultra-optimized cache built: 0 accounts, 0 accounts with channels, 0 total channel mappings
+2025-05-29 18:39:40,125 - INFO - Found 1 guilds with DexScreener tracking enabled
+2025-05-29 18:39:40,126 - INFO - DexScreener tracking started
+2025-05-29 18:39:40,126 - INFO - DexScreener tracking initialization complete
+2025-05-29 18:39:40,126 - INFO - Fetching initial tokens to establish tracking baseline
+2025-05-29 18:39:40,127 - INFO - No guilds with Truth Social tracking enabled
+2025-05-29 18:39:40,127 - INFO - Truth Social tracking initialization complete
+2025-05-29 18:39:40,376 - INFO - Initialized DexScreener tracker with latest token: X69GKB2fLN8tSUxNTMneGAQw79qDw9KcPQp3RoAk9cf on solana
+2025-05-29 18:39:40,628 - INFO - Successfully synced 8 command(s)
+2025-05-29 18:39:44,835 - INFO - Logged in as TOPG#4967 (ID: 1340722186100408340)
+2025-05-29 18:39:44,835 - INFO - Bot connected to 7 server(s)
+2025-05-29 18:39:44,835 - INFO - Echo bot message forwarding: 1 bots from 9 channels to 1 channels
+2025-05-29 18:39:44,835 - INFO - Dani message forwarding: 1 users from 2 channels to 1 channels
+2025-05-29 18:44:29,377 - INFO - Ultra-optimized cache built: 1 accounts, 1 accounts with channels, 2 total channel mappings
+2025-05-29 18:44:29,378 - INFO - Ultra-optimized cache built: 1 accounts, 1 accounts with channels, 2 total channel mappings
+2025-05-29 18:44:29,379 - INFO - Truth Social tracking started
+2025-05-29 18:44:29,855 - INFO - alphabtw_ enabled Truth Social tracking in server 'HabibiFNF'
+2025-05-29 18:44:30,713 - INFO - Post ID 114588686952126558 image URL: None
+2025-05-29 18:44:31,269 - INFO - Post ID 114588769957413971 image URL: https://images.weserv.nl/?url=https%3A%2F%2Fstatic-assets-1.truthsocial.com%2Ftmtg%3Aprime-ts-assets%2Fmedia_attachments%2Ffiles%2F114%2F588%2F769%2F598%2F673%2F456%2Foriginal%2Ffdcd29770f40b9d1.jpg
+2025-05-29 18:44:31,753 - INFO - Post ID 114588777076099501 image URL: https://images.weserv.nl/?url=https%3A%2F%2Fstatic-assets-1.truthsocial.com%2Ftmtg%3Aprime-ts-assets%2Fmedia_attachments%2Ffiles%2F114%2F588%2F776%2F829%2F103%2F792%2Foriginal%2F297d2132e1301306.jpg
+2025-05-29 18:44:32,226 - INFO - Post ID 114588832258950510 image URL: https://images.weserv.nl/?url=https%3A%2F%2Fstatic-assets-1.truthsocial.com%2Ftmtg%3Aprime-ts-assets%2Fmedia_attachments%2Fthumbnails%2F114%2F588%2F831%2F409%2F349%2F394%2Foriginal%2Fddacad588ea936d0.jpg
+2025-05-29 18:44:32,732 - INFO - Post ID 114588947311720532 image URL: None
+2025-05-29 18:44:33,314 - INFO - Broadcast 5 posts from @realDonaldTrump to 1 guilds (2 channels)
+2025-05-29 19:22:47,745 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-05-29 19:22:48,560 - INFO - Reconnected to Discord after disconnection
+2025-05-29 19:22:48,576 - INFO - Post-reconnection health check: Database=True, API Client=True
+2025-05-29 19:22:52,756 - INFO - Bot automatically reconnected
+2025-05-29 19:33:08,317 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-05-29 19:33:09,136 - INFO - Reconnected to Discord after disconnection
+2025-05-29 19:33:09,150 - INFO - Post-reconnection health check: Database=True, API Client=True
+2025-05-29 19:33:13,332 - INFO - Bot automatically reconnected
+2025-05-29 19:39:40,095 - INFO - Metrics Report | Uptime: 1h 0m | Memory: 80.5MB | Processed: 6 | Avg Processing: 0.0722s | Errors: 0 (0 types, Top: none) | Last Cleanup: 2025-05-29 18:39:38 (1h ago)
+2025-05-29 20:08:54,788 - WARNING - API mobula returned status 500 for URL: https://api.mobula.io/api/1/market/history/pair?asset=Dz9mQ9NzkBcCsuGPFJ3r1bS4wgqKMHBPiVuniW8Mbonk&blockchain=solana&period=4h&amount=100000
+2025-05-29 20:08:55,778 - WARNING - API mobula returned status 500 for URL: https://api.mobula.io/api/1/market/history/pair?asset=Dz9mQ9NzkBcCsuGPFJ3r1bS4wgqKMHBPiVuniW8Mbonk&blockchain=solana&period=4h&amount=100000
+2025-05-29 20:08:56,534 - WARNING - API mobula returned status 500 for URL: https://api.mobula.io/api/1/market/history/pair?asset=Dz9mQ9NzkBcCsuGPFJ3r1bS4wgqKMHBPiVuniW8Mbonk&blockchain=solana&period=4h&amount=100000
+2025-05-29 20:08:57,820 - WARNING - API mobula returned status 404 for URL: https://api.mobula.io/api/1/market/history/pair?asset=Dz9mQ9NzkBcCsuGPFJ3r1bS4wgqKMHBPiVuniW8Mbonk&blockchain=solana&period=4h&amount=100000
+2025-05-29 20:39:40,107 - INFO - Metrics Report | Uptime: 2h 0m | Memory: 80.3MB | Processed: 10 | Avg Processing: 0.5966s | Errors: 4 (1 types, Top: api_mobula=4) | Last Cleanup: 2025-05-29 18:39:38 (2h ago)
+2025-05-29 20:45:04,694 - WARNING - Account mayankbtw rate limited, cooling down for 5s
+2025-05-29 20:45:05,094 - WARNING - Account alphabtw rate limited, cooling down for 5s
+2025-05-29 20:45:05,531 - WARNING - Account visheshbtw rate limited, cooling down for 5s
+2025-05-29 20:45:05,537 - WARNING - API error: Status 429
+2025-05-29 20:45:12,693 - WARNING - Account sakshambtw rate limited, cooling down for 5s
+2025-05-29 20:45:13,104 - WARNING - Account mayankbtw rate limited, cooling down for 5s
+2025-05-29 20:45:13,471 - WARNING - Account alphabtw rate limited, cooling down for 5s
+2025-05-29 20:45:13,477 - WARNING - API error: Status 429
+2025-05-29 20:45:20,684 - WARNING - Account visheshbtw rate limited, cooling down for 5s
+2025-05-29 20:45:21,063 - WARNING - Account sakshambtw rate limited, cooling down for 5s
+2025-05-29 20:45:21,429 - WARNING - Account mayankbtw rate limited, cooling down for 5s
+2025-05-29 20:45:21,435 - WARNING - API error: Status 429
+2025-05-29 20:45:28,712 - WARNING - Account alphabtw rate limited, cooling down for 5s
+2025-05-29 20:45:29,088 - WARNING - Account visheshbtw rate limited, cooling down for 5s
+2025-05-29 20:45:29,518 - WARNING - Account sakshambtw rate limited, cooling down for 5s
+2025-05-29 20:45:29,523 - WARNING - API error: Status 429
+2025-05-29 20:45:36,693 - WARNING - Account mayankbtw rate limited, cooling down for 5s
+2025-05-29 20:45:37,089 - WARNING - Account alphabtw rate limited, cooling down for 5s
+2025-05-29 20:45:37,494 - WARNING - Account visheshbtw rate limited, cooling down for 5s
+2025-05-29 20:45:37,500 - WARNING - API error: Status 429
+2025-05-29 20:45:44,714 - WARNING - Account sakshambtw rate limited, cooling down for 5s
+2025-05-29 20:45:45,093 - WARNING - Account mayankbtw rate limited, cooling down for 5s
+2025-05-29 20:45:45,510 - WARNING - Account alphabtw rate limited, cooling down for 5s
+2025-05-29 20:45:45,515 - WARNING - API error: Status 429
+2025-05-29 20:45:52,743 - WARNING - Account visheshbtw rate limited, cooling down for 5s
+2025-05-29 20:45:53,128 - WARNING - Account sakshambtw rate limited, cooling down for 5s
+2025-05-29 20:45:53,490 - WARNING - Account mayankbtw rate limited, cooling down for 5s
+2025-05-29 20:45:53,496 - WARNING - API error: Status 429
+2025-05-29 20:46:00,755 - WARNING - Account alphabtw rate limited, cooling down for 5s
+2025-05-29 20:46:01,133 - WARNING - Account visheshbtw rate limited, cooling down for 5s
+2025-05-29 20:46:01,501 - WARNING - Account sakshambtw rate limited, cooling down for 5s
+2025-05-29 20:46:01,507 - WARNING - API error: Status 429
+2025-05-29 20:46:08,802 - WARNING - Account mayankbtw rate limited, cooling down for 5s
+2025-05-29 20:46:09,178 - WARNING - Account alphabtw rate limited, cooling down for 5s
+2025-05-29 20:46:09,588 - WARNING - Account visheshbtw rate limited, cooling down for 5s
+2025-05-29 20:46:09,594 - WARNING - API error: Status 429
+2025-05-29 20:46:16,792 - WARNING - Account sakshambtw rate limited, cooling down for 5s
+2025-05-29 20:46:17,155 - WARNING - Account mayankbtw rate limited, cooling down for 5s
+2025-05-29 20:46:17,565 - WARNING - Account alphabtw rate limited, cooling down for 5s
+2025-05-29 20:46:17,570 - WARNING - API error: Status 429
+2025-05-29 20:46:24,786 - WARNING - Account visheshbtw rate limited, cooling down for 5s
+2025-05-29 20:46:25,207 - WARNING - Account sakshambtw rate limited, cooling down for 5s
+2025-05-29 20:46:25,619 - WARNING - Account mayankbtw rate limited, cooling down for 5s
+2025-05-29 20:46:25,625 - WARNING - API error: Status 429
+2025-05-29 20:46:32,804 - WARNING - Account alphabtw rate limited, cooling down for 5s
+2025-05-29 20:46:33,205 - WARNING - Account visheshbtw rate limited, cooling down for 5s
+2025-05-29 20:46:33,612 - WARNING - Account sakshambtw rate limited, cooling down for 5s
+2025-05-29 20:46:33,619 - WARNING - API error: Status 429
+2025-05-29 20:46:40,778 - WARNING - Account mayankbtw rate limited, cooling down for 5s
+2025-05-29 20:46:41,171 - WARNING - Account alphabtw rate limited, cooling down for 5s
+2025-05-29 20:46:41,528 - WARNING - Account visheshbtw rate limited, cooling down for 5s
+2025-05-29 20:46:41,533 - WARNING - API error: Status 429
+2025-05-29 20:46:48,782 - WARNING - Account sakshambtw rate limited, cooling down for 5s
+2025-05-29 20:46:49,156 - WARNING - Account mayankbtw rate limited, cooling down for 5s
+2025-05-29 20:46:49,517 - WARNING - Account alphabtw rate limited, cooling down for 5s
+2025-05-29 20:46:49,522 - WARNING - API error: Status 429
+2025-05-29 20:46:56,834 - WARNING - Account visheshbtw rate limited, cooling down for 5s
+2025-05-29 20:46:57,236 - WARNING - Account sakshambtw rate limited, cooling down for 5s
+2025-05-29 20:46:57,651 - WARNING - Account mayankbtw rate limited, cooling down for 5s
+2025-05-29 20:46:57,656 - WARNING - API error: Status 429
+2025-05-29 20:47:04,844 - WARNING - Account alphabtw rate limited, cooling down for 5s
+2025-05-29 20:47:05,213 - WARNING - Account visheshbtw rate limited, cooling down for 5s
+2025-05-29 20:47:05,601 - WARNING - Account sakshambtw rate limited, cooling down for 5s
+2025-05-29 20:47:05,607 - WARNING - API error: Status 429
+2025-05-29 20:47:12,806 - WARNING - Account mayankbtw rate limited, cooling down for 5s
+2025-05-29 20:47:13,212 - WARNING - Account alphabtw rate limited, cooling down for 5s
+2025-05-29 20:47:13,616 - WARNING - Account visheshbtw rate limited, cooling down for 5s
+2025-05-29 20:47:13,622 - WARNING - API error: Status 429
+2025-05-29 20:47:20,821 - WARNING - Account sakshambtw rate limited, cooling down for 5s
+2025-05-29 20:47:21,223 - WARNING - Account mayankbtw rate limited, cooling down for 5s
+2025-05-29 20:47:21,588 - WARNING - Account alphabtw rate limited, cooling down for 5s
+2025-05-29 20:47:21,595 - WARNING - API error: Status 429
+2025-05-29 20:47:28,822 - WARNING - Account visheshbtw rate limited, cooling down for 5s
+2025-05-29 20:47:29,191 - WARNING - Account sakshambtw rate limited, cooling down for 5s
+2025-05-29 20:47:29,547 - WARNING - Account mayankbtw rate limited, cooling down for 5s
+2025-05-29 20:47:29,553 - WARNING - API error: Status 429
+2025-05-29 20:47:36,861 - WARNING - Account alphabtw rate limited, cooling down for 5s
+2025-05-29 20:47:37,240 - WARNING - Account visheshbtw rate limited, cooling down for 5s
+2025-05-29 20:47:37,609 - WARNING - Account sakshambtw rate limited, cooling down for 5s
+2025-05-29 20:47:37,614 - WARNING - API error: Status 429
+2025-05-29 20:47:44,853 - WARNING - Account mayankbtw rate limited, cooling down for 5s
+2025-05-29 20:47:45,238 - WARNING - Account alphabtw rate limited, cooling down for 5s
+2025-05-29 20:47:45,602 - WARNING - Account visheshbtw rate limited, cooling down for 5s
+2025-05-29 20:47:45,608 - WARNING - API error: Status 429
+2025-05-29 20:47:52,931 - WARNING - Account sakshambtw rate limited, cooling down for 5s
+2025-05-29 20:47:53,398 - WARNING - Account mayankbtw rate limited, cooling down for 5s
+2025-05-29 20:47:53,799 - WARNING - Account alphabtw rate limited, cooling down for 5s
+2025-05-29 20:47:53,806 - WARNING - API error: Status 429
+2025-05-29 20:48:00,885 - WARNING - Account visheshbtw rate limited, cooling down for 5s
+2025-05-29 20:48:01,276 - WARNING - Account sakshambtw rate limited, cooling down for 5s
+2025-05-29 20:48:01,635 - WARNING - Account mayankbtw rate limited, cooling down for 5s
+2025-05-29 20:48:01,640 - WARNING - API error: Status 429
+2025-05-29 20:48:08,927 - WARNING - Account alphabtw rate limited, cooling down for 5s
+2025-05-29 20:48:09,296 - WARNING - Account visheshbtw rate limited, cooling down for 5s
+2025-05-29 20:48:09,672 - WARNING - Account sakshambtw rate limited, cooling down for 5s
+2025-05-29 20:48:09,678 - WARNING - API error: Status 429
+2025-05-29 20:48:16,961 - WARNING - Account mayankbtw rate limited, cooling down for 5s
+2025-05-29 20:48:17,353 - WARNING - Account alphabtw rate limited, cooling down for 5s
+2025-05-29 20:48:17,715 - WARNING - Account visheshbtw rate limited, cooling down for 5s
+2025-05-29 20:48:17,721 - WARNING - API error: Status 429
+2025-05-29 20:48:24,928 - WARNING - Account sakshambtw rate limited, cooling down for 5s
+2025-05-29 20:48:25,296 - WARNING - Account mayankbtw rate limited, cooling down for 5s
+2025-05-29 20:48:25,653 - WARNING - Account alphabtw rate limited, cooling down for 5s
+2025-05-29 20:48:25,659 - WARNING - API error: Status 429
+2025-05-29 20:48:32,907 - WARNING - Account visheshbtw rate limited, cooling down for 5s
+2025-05-29 20:48:33,272 - WARNING - Account sakshambtw rate limited, cooling down for 5s
+2025-05-29 20:48:33,642 - WARNING - Account mayankbtw rate limited, cooling down for 5s
+2025-05-29 20:48:33,648 - WARNING - API error: Status 429
+2025-05-29 20:48:40,935 - WARNING - Account alphabtw rate limited, cooling down for 5s
+2025-05-29 20:48:41,315 - WARNING - Account visheshbtw rate limited, cooling down for 5s
+2025-05-29 20:48:41,680 - WARNING - Account sakshambtw rate limited, cooling down for 5s
+2025-05-29 20:48:41,685 - WARNING - API error: Status 429
+2025-05-29 20:48:48,941 - WARNING - Account mayankbtw rate limited, cooling down for 5s
+2025-05-29 20:48:49,307 - WARNING - Account alphabtw rate limited, cooling down for 5s
+2025-05-29 20:48:49,668 - WARNING - Account visheshbtw rate limited, cooling down for 5s
+2025-05-29 20:48:49,674 - WARNING - API error: Status 429
+2025-05-29 20:48:56,944 - WARNING - Account sakshambtw rate limited, cooling down for 5s
+2025-05-29 20:48:57,319 - WARNING - Account mayankbtw rate limited, cooling down for 5s
+2025-05-29 20:48:57,688 - WARNING - Account alphabtw rate limited, cooling down for 5s
+2025-05-29 20:48:57,694 - WARNING - API error: Status 429
+2025-05-29 20:49:12,995 - WARNING - Account sakshambtw rate limited, cooling down for 5s
+2025-05-29 20:49:13,358 - WARNING - Account mayankbtw rate limited, cooling down for 5s
+2025-05-29 20:49:13,726 - WARNING - Account alphabtw rate limited, cooling down for 5s
+2025-05-29 20:49:13,732 - WARNING - API error: Status 429
+2025-05-29 20:49:37,007 - WARNING - Account mayankbtw rate limited, cooling down for 5s
+2025-05-29 20:49:37,384 - WARNING - Account alphabtw rate limited, cooling down for 5s
+2025-05-29 20:49:37,743 - WARNING - Account visheshbtw rate limited, cooling down for 5s
+2025-05-29 20:49:37,749 - WARNING - API error: Status 429
+2025-05-29 20:50:01,046 - WARNING - Account alphabtw rate limited, cooling down for 5s
+2025-05-29 20:50:01,425 - WARNING - Account visheshbtw rate limited, cooling down for 5s
+2025-05-29 20:50:01,784 - WARNING - Account sakshambtw rate limited, cooling down for 5s
+2025-05-29 20:50:01,790 - WARNING - API error: Status 429
+2025-05-29 20:55:12,869 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-05-29 20:55:14,482 - INFO - Reconnected to Discord after disconnection
+2025-05-29 20:55:14,514 - INFO - Post-reconnection health check: Database=True, API Client=True
+2025-05-29 20:55:17,881 - INFO - Bot automatically reconnected
+2025-05-29 21:36:31,583 - ERROR - Processing error for 676YgDtdAekpjYwNvLSLFPkBooVxBqJVpgxxoHJPpump: 404 Not Found (error code: 10008): Unknown Message
+2025-05-29 21:39:40,123 - INFO - Metrics Report | Uptime: 3h 0m | Memory: 82.0MB | Processed: 25 | Avg Processing: 1.9200s | Errors: 4 (1 types, Top: api_mobula=4) | Last Cleanup: 2025-05-29 18:39:38 (3h ago)
+2025-05-29 21:51:44,117 - INFO - Starting bot...
+2025-05-29 21:51:45,074 - INFO - API client initialized
+2025-05-29 21:51:45,074 - INFO - WebsiteAnalyzer initialized with concurrency limit of 15
+2025-05-29 21:51:45,081 - INFO - Loaded 4 Truth Social tokens from file
+2025-05-29 21:51:45,082 - INFO - Successfully authenticated 4/4 Truth Social accounts
+2025-05-29 21:51:45,082 - INFO - Saved 4 Truth Social tokens to file
+2025-05-29 21:51:45,082 - INFO - All API services initialized
+2025-05-29 21:51:45,083 - INFO - Services provider initialized
+2025-05-29 21:51:45,410 - INFO - Database connection pool established: size=1-10
+2025-05-29 21:51:45,411 - INFO - Database connection successful
+2025-05-29 21:51:45,439 - INFO - WebsiteChecker cog initialized
+2025-05-29 21:51:45,439 - INFO - Proxy rotator initialized with http protocol
+2025-05-29 21:51:45,439 - INFO - Proxy rotator initialized for Truth commands
+2025-05-29 21:51:45,443 - INFO - Discord Events Registered | Username Ban Server ID: 1313758082974879774
+2025-05-29 21:51:45,444 - INFO - Memory monitor started (threshold: 300MB, interval: 3600s)
+2025-05-29 21:51:45,445 - INFO - Initializing Truth Social tracking...
+2025-05-29 21:51:45,445 - INFO - Initializing DexScreener live tracker...
+2025-05-29 21:51:45,459 - INFO - Proxy rotator initialized with http protocol
+2025-05-29 21:51:45,459 - INFO - Proxy rotator initialized for Truth Social tracking
+2025-05-29 21:51:45,491 - INFO - Built DexScreener tracking cache: 1 guilds with channels
+2025-05-29 21:51:45,492 - INFO - Found 1 guilds with DexScreener tracking enabled
+2025-05-29 21:51:45,494 - INFO - DexScreener tracking started
+2025-05-29 21:51:45,495 - INFO - DexScreener tracking initialization complete
+2025-05-29 21:51:45,496 - INFO - Fetching initial tokens to establish tracking baseline
+2025-05-29 21:51:45,544 - INFO - Ultra-optimized cache built: 1 accounts, 1 accounts with channels, 2 total channel mappings
+2025-05-29 21:51:45,545 - INFO - Found 1 guilds with Truth Social tracking enabled
+2025-05-29 21:51:45,545 - INFO - Truth Social tracking started
+2025-05-29 21:51:45,545 - INFO - Truth Social tracking initialization complete
+2025-05-29 21:51:45,665 - INFO - Initialized DexScreener tracker with latest token: ot7U5vb4oZG2RQnhMciTdWEiP3yoM6v5B8N67vxindi on solana
+2025-05-29 21:51:45,928 - INFO - Successfully synced 8 command(s)
+2025-05-29 21:51:51,288 - INFO - Logged in as TOPG#4967 (ID: 1340722186100408340)
+2025-05-29 21:51:51,289 - INFO - Bot connected to 7 server(s)
+2025-05-29 21:51:51,289 - INFO - Echo bot message forwarding: 1 bots from 9 channels to 1 channels
+2025-05-29 21:51:51,289 - INFO - Dani message forwarding: 1 users from 2 channels to 1 channels
+2025-05-29 21:52:14,809 - INFO - Ultra-optimized cache built: 0 accounts, 0 accounts with channels, 0 total channel mappings
+2025-05-29 21:52:14,810 - INFO - Ultra-optimized cache built: 0 accounts, 0 accounts with channels, 0 total channel mappings
+2025-05-29 21:52:15,455 - INFO - alphabtw_ disabled Truth Social tracking in server 'HabibiFNF'
+2025-05-29 21:52:22,670 - INFO - Built DexScreener tracking cache: 0 guilds with channels
+2025-05-29 21:52:22,670 - INFO - Built DexScreener tracking cache: 0 guilds with channels
+2025-05-29 21:52:23,291 - INFO - alphabtw_ disabled DexScreener tracking in server 'HabibiFNF'
+2025-05-29 22:10:18,693 - WARNING - API mobula returned status 500 for URL: https://api.mobula.io/api/1/market/history/pair?asset=676YgDtdAekpjYwNvLSLFPkBooVxBqJVpgxxoHJPpump&blockchain=solana&period=15min&amount=100000
+2025-05-29 22:20:27,122 - WARNING - API mobula returned status 500 for URL: https://api.mobula.io/api/1/market/history/pair?asset=AVoJYKzoPF3SXC8Xb1cHKaUMBqxLM4yJ8mtzKndXpump&blockchain=solana&period=1min&amount=100000
+2025-05-29 22:51:45,476 - INFO - Metrics Report | Uptime: 1h 0m | Memory: 13.1MB | Processed: 13 | Avg Processing: 3.1717s | Errors: 2 (1 types, Top: api_mobula=2) | Last Cleanup: 2025-05-29 21:51:44 (1h ago)
+2025-05-29 23:23:07,082 - WARNING - API mobula returned status 404 for URL: https://api.mobula.io/api/1/market/history/pair?asset=5Qr82kTJQtycmHfBRpFcxW7w9Rxm7zthCaC4ocZSpump&blockchain=solana&period=1min&amount=100000
+2025-05-29 23:23:07,677 - WARNING - API mobula returned status 404 for URL: https://api.mobula.io/api/1/market/history/pair?asset=5Qr82kTJQtycmHfBRpFcxW7w9Rxm7zthCaC4ocZSpump&blockchain=solana&period=1min&amount=100000
+2025-05-29 23:31:47,298 - WARNING - API mobula returned status 404 for URL: https://api.mobula.io/api/1/market/history/pair?asset=2BWZnp2tU7zeraJmN9tWyiqHokLf8Mp8kgMYMFSKpump&blockchain=solana&period=1min&amount=100000
+2025-05-29 23:31:48,126 - WARNING - API mobula returned status 500 for URL: https://api.mobula.io/api/1/market/history/pair?asset=2BWZnp2tU7zeraJmN9tWyiqHokLf8Mp8kgMYMFSKpump&blockchain=solana&period=1min&amount=100000
+2025-05-29 23:31:48,951 - WARNING - API mobula returned status 500 for URL: https://api.mobula.io/api/1/market/history/pair?asset=2BWZnp2tU7zeraJmN9tWyiqHokLf8Mp8kgMYMFSKpump&blockchain=solana&period=1min&amount=100000
+2025-05-29 23:31:49,950 - WARNING - API mobula returned status 500 for URL: https://api.mobula.io/api/1/market/history/pair?asset=2BWZnp2tU7zeraJmN9tWyiqHokLf8Mp8kgMYMFSKpump&blockchain=solana&period=1min&amount=100000
+2025-05-29 23:32:22,038 - INFO - Bundle check called by alphabtw_ for 2BWZnp2tU7zeraJmN9tWyiqHokLf8Mp8kgMYMFSKpump
+2025-05-29 23:46:46,028 - WARNING - API mobula returned status 500 for URL: https://api.mobula.io/api/1/market/history/pair?asset=x5NxF5iEe5vTYchyaEiLsyDpWQzZzvXbbzVMRpzpump&blockchain=solana&period=1min&amount=100000
+2025-05-29 23:46:46,644 - WARNING - API mobula returned status 404 for URL: https://api.mobula.io/api/1/market/history/pair?asset=x5NxF5iEe5vTYchyaEiLsyDpWQzZzvXbbzVMRpzpump&blockchain=solana&period=1min&amount=100000
+2025-05-29 23:51:45,503 - INFO - Metrics Report | Uptime: 2h 0m | Memory: 15.7MB | Processed: 26 | Avg Processing: 3.5829s | Errors: 10 (1 types, Top: api_mobula=10) | Last Cleanup: 2025-05-29 21:51:44 (2h ago)
+2025-05-29 23:53:57,255 - WARNING - API mobula returned status 404 for URL: https://api.mobula.io/api/1/market/history/pair?asset=B5Pk3iofNAzZUSU18gXjNhEWFeZuE6pQmiUr4E97pump&blockchain=solana&period=1min&amount=100000
+2025-05-29 23:53:57,811 - WARNING - API mobula returned status 404 for URL: https://api.mobula.io/api/1/market/history/pair?asset=B5Pk3iofNAzZUSU18gXjNhEWFeZuE6pQmiUr4E97pump&blockchain=solana&period=1min&amount=100000
+2025-05-29 23:53:58,507 - WARNING - API mobula returned status 500 for URL: https://api.mobula.io/api/1/market/history/pair?asset=B5Pk3iofNAzZUSU18gXjNhEWFeZuE6pQmiUr4E97pump&blockchain=solana&period=1min&amount=100000
+2025-05-29 23:53:59,386 - WARNING - API mobula returned status 404 for URL: https://api.mobula.io/api/1/market/history/pair?asset=B5Pk3iofNAzZUSU18gXjNhEWFeZuE6pQmiUr4E97pump&blockchain=solana&period=1min&amount=100000
+2025-05-30 00:11:14,457 - WARNING - API mobula returned status 404 for URL: https://api.mobula.io/api/1/market/history/pair?asset=6MQpbiTC2YcogidTmKqMLK82qvE9z5QEm7EP3AEDpump&blockchain=solana&period=5min&amount=100000
+2025-05-30 00:51:45,544 - INFO - Metrics Report | Uptime: 3h 0m | Memory: 20.8MB | Processed: 42 | Avg Processing: 3.7657s | Errors: 15 (1 types, Top: api_mobula=15) | Last Cleanup: 2025-05-29 21:51:44 (3h ago)
+2025-05-30 00:55:22,431 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-05-30 00:55:23,218 - INFO - Reconnected to Discord after disconnection
+2025-05-30 00:55:23,227 - INFO - Post-reconnection health check: Database=True, API Client=True
+2025-05-30 00:55:27,439 - INFO - Bot automatically reconnected
+2025-05-30 01:11:45,481 - INFO - Starting periodic metrics cleanup task...
+2025-05-30 01:11:46,597 - INFO - Garbage collection completed successfully.
+2025-05-30 01:11:46,599 - INFO - Metrics cleanup completed in 1.09 seconds. Next cleanup at 2025-05-30 11:11:45
+2025-05-30 01:51:45,597 - INFO - Metrics Report | Uptime: 4h 0m | Memory: 13.3MB | Processed: 51 | Avg Processing: 3.7683s | Errors: 15 (1 types, Top: api_mobula=15) | Last Cleanup: 2025-05-30 01:11:45 (40m ago)
+2025-05-30 01:53:40,006 - WARNING - API mobula returned status 500 for URL: https://api.mobula.io/api/1/market/history/pair?asset=56xE9AkoX2RGdpJngykFYaDmgquA9ef1SrG8U1Zrpump&blockchain=solana&period=15min&amount=100000
+2025-05-30 01:53:40,559 - WARNING - API mobula returned status 500 for URL: https://api.mobula.io/api/1/market/history/pair?asset=56xE9AkoX2RGdpJngykFYaDmgquA9ef1SrG8U1Zrpump&blockchain=solana&period=15min&amount=100000
+2025-05-30 01:53:41,310 - WARNING - API mobula returned status 500 for URL: https://api.mobula.io/api/1/market/history/pair?asset=56xE9AkoX2RGdpJngykFYaDmgquA9ef1SrG8U1Zrpump&blockchain=solana&period=15min&amount=100000
+2025-05-30 01:53:42,297 - WARNING - API mobula returned status 404 for URL: https://api.mobula.io/api/1/market/history/pair?asset=56xE9AkoX2RGdpJngykFYaDmgquA9ef1SrG8U1Zrpump&blockchain=solana&period=15min&amount=100000
+2025-05-30 02:01:18,236 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-05-30 02:01:19,157 - INFO - Reconnected to Discord after disconnection
+2025-05-30 02:01:19,160 - INFO - Post-reconnection health check: Database=True, API Client=True
+2025-05-30 02:01:23,242 - INFO - Bot automatically reconnected
+2025-05-30 02:23:32,925 - INFO - Bot is shutting down...
+2025-05-30 02:23:32,958 - INFO - API client closed
+2025-05-30 02:23:32,963 - INFO - Truth Social tracking task cancelled
+2025-05-30 02:23:32,963 - INFO - Truth Social tracking loop cancelled
+2025-05-30 02:23:32,966 - INFO - Truth Social tracking stopped
+2025-05-30 02:23:32,967 - INFO - Truth Social tracking stopped
+2025-05-30 02:23:32,967 - INFO - Services closed successfully
+2025-05-30 02:23:32,968 - INFO - Background task 'metrics_cleanup' canceled
+2025-05-30 02:23:32,969 - INFO - Background task 'memory_monitor' canceled
+2025-05-30 02:23:32,969 - INFO - Background task 'heartbeat_monitor' canceled
+2025-05-30 02:23:32,970 - INFO - Background task 'metrics_report' canceled
+2025-05-30 02:23:32,972 - INFO - DexScreener tracking task cancelled
+2025-05-30 02:23:32,972 - INFO - DexScreener tracking loop cancelled
+2025-05-30 02:23:32,984 - INFO - DexScreener tracking stopped
+2025-05-30 02:23:32,984 - INFO - DexScreener tracking stopped
+2025-05-30 02:23:32,997 - INFO - Database connection pool closed successfully
+2025-05-30 02:23:33,077 - INFO - Bot stopped by user

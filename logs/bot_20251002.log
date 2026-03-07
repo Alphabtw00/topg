@@ -1,0 +1,180 @@
+2025-10-02 01:53:58,076 - INFO - Starting bot...
+2025-10-02 01:53:58,904 - INFO - API client initialized
+2025-10-02 01:53:58,904 - INFO - WebsiteAnalyzer initialized with concurrency limit of 15
+2025-10-02 01:53:58,904 - INFO - All API services initialized
+2025-10-02 01:53:58,904 - INFO - Services provider initialized
+2025-10-02 01:53:59,085 - INFO - Database connection pool established: size=1-10
+2025-10-02 01:53:59,085 - INFO - Database connection successful
+2025-10-02 01:53:59,110 - INFO - Discord Events Registered | Username Ban Server ID: 1313758082974879774
+2025-10-02 01:53:59,110 - INFO - User forwarding initialized: 2 input channels
+2025-10-02 01:53:59,111 - INFO - Alerts initialized: 3 alert channels
+2025-10-02 01:53:59,111 - INFO - Total forwarding channels: 5
+2025-10-02 01:53:59,112 - INFO - Memory monitor started (threshold: 300MB, interval: 3600s)
+2025-10-02 01:53:59,733 - INFO - Successfully synced 12 command(s)
+2025-10-02 01:54:06,721 - INFO - Logged in as TOPG#4967 (ID: 1340722186100408340)
+2025-10-02 01:54:06,721 - INFO - Bot connected to 11 server(s)
+2025-10-02 01:54:06,721 - INFO - User forwarding enabled: 2 input -> 1 output channels (All users)
+2025-10-02 01:54:06,721 - INFO - Alerts are enabled
+2025-10-02 01:54:06,721 - INFO - Starting tracking services...
+2025-10-02 01:54:06,721 - INFO - All tracking services started
+2025-10-02 01:54:06,722 - INFO - Initializing DexScreener live tracker...
+2025-10-02 01:54:06,722 - INFO - Initializing migration tracker...
+2025-10-02 01:54:06,722 - INFO - Initializing about to graduate alert tracker...
+2025-10-02 01:54:06,738 - INFO - No enabled guilds with channels, stopping about to graduate alert tracking
+2025-10-02 01:54:06,738 - INFO - About to graduate alert tracking stopped
+2025-10-02 01:54:06,738 - INFO - About to graduate alert tracking initialization complete
+2025-10-02 01:54:06,738 - INFO - No enabled guilds with channels, stopping dex paid tracking
+2025-10-02 01:54:06,738 - INFO - DexScreener tracking stopped
+2025-10-02 01:54:06,739 - INFO - DexScreener tracking initialization complete
+2025-10-02 01:54:06,744 - INFO - Found 1 enabled guilds with 1 channels for migration tracking
+2025-10-02 01:54:06,744 - INFO - Migration tracking started
+2025-10-02 01:54:06,744 - INFO - Migration tracking initialization complete
+2025-10-02 01:54:07,949 - ERROR - Error in method-based stream: server rejected WebSocket connection: HTTP 403
+2025-10-02 01:54:09,070 - ERROR - Error in log-based stream: server rejected WebSocket connection: HTTP 403
+2025-10-02 01:54:28,638 - ERROR - Error in method-based stream: server rejected WebSocket connection: HTTP 403 (occurred 10 times)
+2025-10-02 01:54:29,812 - ERROR - Error in log-based stream: server rejected WebSocket connection: HTTP 403 (occurred 10 times)
+2025-10-02 01:54:49,575 - ERROR - Error in method-based stream: server rejected WebSocket connection: HTTP 403 (occurred 20 times)
+2025-10-02 01:54:52,808 - ERROR - Kalshi event analysis error for https://kalshi.com/markets/kxmlbgame/professional-baseball-game/kxmlbgame-25oct01detcle: extract_event_ticker() missing 1 required positional argument: 'input_str'
+Traceback (most recent call last):
+  File "C:\Users\ansha\OneDrive\Documents\vscode\TOPG\commands\kalshi_commands.py", line 38, in check_kalshi_event
+    event_ticker = extract_event_ticker(event_input)
+TypeError: extract_event_ticker() missing 1 required positional argument: 'input_str'
+2025-10-02 01:54:56,606 - ERROR - Error in log-based stream: server rejected WebSocket connection: HTTP 403 (occurred 20 times)
+2025-10-02 01:55:12,880 - ERROR - Error in log-based stream: server rejected WebSocket connection: HTTP 403 (occurred 30 times)
+2025-10-02 01:55:18,670 - ERROR - Error in method-based stream: server rejected WebSocket connection: HTTP 403 (occurred 30 times)
+2025-10-02 01:55:55,461 - ERROR - Error in method-based stream: server rejected WebSocket connection: HTTP 403 (occurred 40 times)
+2025-10-02 01:55:58,896 - ERROR - Error in log-based stream: server rejected WebSocket connection: HTTP 403 (occurred 40 times)
+2025-10-02 01:55:59,732 - INFO - Bot is shutting down...
+2025-10-02 01:55:59,732 - INFO - API client closed
+2025-10-02 01:55:59,732 - INFO - Truth Social tracking stopped
+2025-10-02 01:55:59,733 - INFO - Truth Social tracking stopped
+2025-10-02 01:55:59,733 - INFO - Services closed successfully
+2025-10-02 01:55:59,733 - INFO - Background task 'metrics_cleanup' canceled
+2025-10-02 01:55:59,733 - INFO - Background task 'memory_monitor' canceled
+2025-10-02 01:55:59,733 - INFO - Background task 'heartbeat_monitor' canceled
+2025-10-02 01:55:59,733 - INFO - Background task 'metrics_report' canceled
+2025-10-02 01:55:59,733 - INFO - DexScreener tracking stopped
+2025-10-02 01:55:59,733 - INFO - DexScreener tracking stopped
+2025-10-02 01:55:59,734 - INFO - Database connection pool closed successfully
+2025-10-02 01:55:59,735 - INFO - Tracking loop cancelled
+2025-10-02 01:55:59,865 - INFO - Bot stopped by user
+2025-10-02 01:57:22,102 - INFO - Starting bot...
+2025-10-02 01:57:22,902 - INFO - API client initialized
+2025-10-02 01:57:22,902 - INFO - WebsiteAnalyzer initialized with concurrency limit of 15
+2025-10-02 01:57:22,903 - INFO - All API services initialized
+2025-10-02 01:57:22,903 - INFO - Services provider initialized
+2025-10-02 01:57:22,918 - INFO - Database connection pool established: size=1-10
+2025-10-02 01:57:22,919 - INFO - Database connection successful
+2025-10-02 01:57:22,930 - INFO - Discord Events Registered | Username Ban Server ID: 1313758082974879774
+2025-10-02 01:57:22,930 - INFO - User forwarding initialized: 2 input channels
+2025-10-02 01:57:22,930 - INFO - Alerts initialized: 3 alert channels
+2025-10-02 01:57:22,930 - INFO - Total forwarding channels: 5
+2025-10-02 01:57:22,931 - INFO - Memory monitor started (threshold: 300MB, interval: 3600s)
+2025-10-02 01:57:23,390 - INFO - Successfully synced 12 command(s)
+2025-10-02 01:57:29,445 - INFO - Logged in as TOPG#4967 (ID: 1340722186100408340)
+2025-10-02 01:57:29,445 - INFO - Bot connected to 11 server(s)
+2025-10-02 01:57:29,445 - INFO - User forwarding enabled: 2 input -> 1 output channels (All users)
+2025-10-02 01:57:29,445 - INFO - Alerts are enabled
+2025-10-02 01:57:29,446 - INFO - Starting tracking services...
+2025-10-02 01:57:29,446 - INFO - All tracking services started
+2025-10-02 01:57:29,446 - INFO - Initializing DexScreener live tracker...
+2025-10-02 01:57:29,446 - INFO - Initializing migration tracker...
+2025-10-02 01:57:29,447 - INFO - Initializing about to graduate alert tracker...
+2025-10-02 01:57:29,451 - INFO - No enabled guilds with channels, stopping dex paid tracking
+2025-10-02 01:57:29,451 - INFO - DexScreener tracking stopped
+2025-10-02 01:57:29,452 - INFO - DexScreener tracking initialization complete
+2025-10-02 01:57:29,453 - INFO - No enabled guilds with channels, stopping about to graduate alert tracking
+2025-10-02 01:57:29,453 - INFO - About to graduate alert tracking stopped
+2025-10-02 01:57:29,453 - INFO - About to graduate alert tracking initialization complete
+2025-10-02 01:57:29,453 - INFO - Found 1 enabled guilds with 1 channels for migration tracking
+2025-10-02 01:57:29,453 - INFO - Migration tracking started
+2025-10-02 01:57:29,454 - INFO - Migration tracking initialization complete
+2025-10-02 01:57:30,616 - ERROR - Error in method-based stream: server rejected WebSocket connection: HTTP 403
+2025-10-02 01:57:31,791 - ERROR - Error in log-based stream: server rejected WebSocket connection: HTTP 403
+2025-10-02 01:57:41,625 - INFO - Kalshi event check called by alphabtw_ for KXMLBGAME-25OCT01DETCLE
+2025-10-02 01:57:44,529 - ERROR - Error in log-based stream: server rejected WebSocket connection: HTTP 403 (occurred 10 times)
+2025-10-02 01:58:02,038 - ERROR - Error in log-based stream: server rejected WebSocket connection: HTTP 403 (occurred 20 times)
+2025-10-02 01:58:07,790 - ERROR - Error in method-based stream: server rejected WebSocket connection: HTTP 403 (occurred 10 times)
+2025-10-02 01:58:20,402 - ERROR - Error in log-based stream: server rejected WebSocket connection: HTTP 403 (occurred 30 times)
+2025-10-02 01:58:30,728 - ERROR - Error in method-based stream: server rejected WebSocket connection: HTTP 403 (occurred 20 times)
+2025-10-02 01:58:45,635 - ERROR - Error in log-based stream: server rejected WebSocket connection: HTTP 403 (occurred 40 times)
+2025-10-02 01:58:49,065 - ERROR - Error in method-based stream: server rejected WebSocket connection: HTTP 403 (occurred 30 times)
+2025-10-02 01:59:03,980 - ERROR - Error in log-based stream: server rejected WebSocket connection: HTTP 403 (occurred 50 times)
+2025-10-02 01:59:05,920 - INFO - Bot is shutting down...
+2025-10-02 01:59:06,021 - INFO - API client closed
+2025-10-02 01:59:06,022 - INFO - Truth Social tracking stopped
+2025-10-02 01:59:06,022 - INFO - Truth Social tracking stopped
+2025-10-02 01:59:06,022 - INFO - Services closed successfully
+2025-10-02 01:59:06,022 - INFO - Background task 'metrics_cleanup' canceled
+2025-10-02 01:59:06,022 - INFO - Background task 'memory_monitor' canceled
+2025-10-02 01:59:06,022 - INFO - Background task 'heartbeat_monitor' canceled
+2025-10-02 01:59:06,022 - INFO - Background task 'metrics_report' canceled
+2025-10-02 01:59:06,023 - INFO - DexScreener tracking stopped
+2025-10-02 01:59:06,023 - INFO - DexScreener tracking stopped
+2025-10-02 01:59:06,023 - INFO - Database connection pool closed successfully
+2025-10-02 01:59:06,024 - INFO - Tracking loop cancelled
+2025-10-02 01:59:06,083 - INFO - Bot stopped by user
+2025-10-02 04:23:07,524 - INFO - Starting bot...
+2025-10-02 04:23:08,326 - INFO - API client initialized
+2025-10-02 04:23:08,327 - INFO - WebsiteAnalyzer initialized with concurrency limit of 15
+2025-10-02 04:23:08,327 - INFO - All API services initialized
+2025-10-02 04:23:08,327 - INFO - Services provider initialized
+2025-10-02 04:23:08,357 - INFO - Database connection pool established: size=1-10
+2025-10-02 04:23:08,357 - INFO - Database connection successful
+2025-10-02 04:23:08,368 - INFO - Discord Events Registered | Username Ban Server ID: 1313758082974879774
+2025-10-02 04:23:08,368 - INFO - User forwarding initialized: 2 input channels
+2025-10-02 04:23:08,368 - INFO - Alerts initialized: 3 alert channels
+2025-10-02 04:23:08,368 - INFO - Total forwarding channels: 5
+2025-10-02 04:23:08,369 - INFO - Memory monitor started (threshold: 300MB, interval: 3600s)
+2025-10-02 04:23:08,934 - INFO - Successfully synced 12 command(s)
+2025-10-02 04:23:15,169 - INFO - Logged in as TOPG#4967 (ID: 1340722186100408340)
+2025-10-02 04:23:15,169 - INFO - Bot connected to 11 server(s)
+2025-10-02 04:23:15,169 - INFO - User forwarding enabled: 2 input -> 1 output channels (All users)
+2025-10-02 04:23:15,170 - INFO - Alerts are enabled
+2025-10-02 04:23:15,170 - INFO - Starting tracking services...
+2025-10-02 04:23:15,170 - INFO - All tracking services started
+2025-10-02 04:23:15,170 - INFO - Initializing DexScreener live tracker...
+2025-10-02 04:23:15,170 - INFO - Initializing migration tracker...
+2025-10-02 04:23:15,171 - INFO - Initializing about to graduate alert tracker...
+2025-10-02 04:23:15,176 - INFO - No enabled guilds with channels, stopping dex paid tracking
+2025-10-02 04:23:15,176 - INFO - DexScreener tracking stopped
+2025-10-02 04:23:15,176 - INFO - DexScreener tracking initialization complete
+2025-10-02 04:23:15,177 - INFO - Found 1 enabled guilds with 1 channels for migration tracking
+2025-10-02 04:23:15,177 - INFO - Migration tracking started
+2025-10-02 04:23:15,177 - INFO - Migration tracking initialization complete
+2025-10-02 04:23:15,179 - INFO - No enabled guilds with channels, stopping about to graduate alert tracking
+2025-10-02 04:23:15,179 - INFO - About to graduate alert tracking stopped
+2025-10-02 04:23:15,179 - INFO - About to graduate alert tracking initialization complete
+2025-10-02 04:23:16,338 - ERROR - Error in method-based stream: server rejected WebSocket connection: HTTP 403
+2025-10-02 04:23:17,499 - ERROR - Error in log-based stream: server rejected WebSocket connection: HTTP 403
+2025-10-02 04:23:32,495 - ERROR - Error in log-based stream: server rejected WebSocket connection: HTTP 403 (occurred 10 times)
+2025-10-02 04:23:42,920 - ERROR - Error in method-based stream: server rejected WebSocket connection: HTTP 403 (occurred 10 times)
+2025-10-02 04:24:00,288 - ERROR - Error in method-based stream: server rejected WebSocket connection: HTTP 403 (occurred 20 times)
+2025-10-02 04:24:04,929 - ERROR - Error in log-based stream: server rejected WebSocket connection: HTTP 403 (occurred 20 times)
+2025-10-02 04:24:10,763 - INFO - Kalshi event check called by alphabtw_ for KXMLBGAME-25OCT01BOSNYY
+2025-10-02 04:24:20,244 - ERROR - Error in method-based stream: server rejected WebSocket connection: HTTP 403 (occurred 30 times)
+2025-10-02 04:24:26,077 - ERROR - Error in log-based stream: server rejected WebSocket connection: HTTP 403 (occurred 30 times)
+2025-10-02 04:24:45,727 - ERROR - Error in log-based stream: server rejected WebSocket connection: HTTP 403 (occurred 40 times)
+2025-10-02 04:24:48,028 - ERROR - Error in method-based stream: server rejected WebSocket connection: HTTP 403 (occurred 40 times)
+2025-10-02 04:25:07,671 - ERROR - Error in method-based stream: server rejected WebSocket connection: HTTP 403 (occurred 50 times)
+2025-10-02 04:25:12,282 - ERROR - Error in log-based stream: server rejected WebSocket connection: HTTP 403 (occurred 50 times)
+2025-10-02 04:25:26,223 - ERROR - Error in method-based stream: server rejected WebSocket connection: HTTP 403 (occurred 60 times)
+2025-10-02 04:25:40,132 - ERROR - Error in log-based stream: server rejected WebSocket connection: HTTP 403 (occurred 60 times)
+2025-10-02 04:25:52,859 - ERROR - Error in method-based stream: server rejected WebSocket connection: HTTP 403 (occurred 70 times)
+2025-10-02 04:26:04,421 - ERROR - Error in method-based stream: server rejected WebSocket connection: HTTP 403 (occurred 80 times)
+2025-10-02 04:26:11,310 - ERROR - Error in log-based stream: server rejected WebSocket connection: HTTP 403 (occurred 70 times)
+2025-10-02 04:26:26,446 - ERROR - Error in method-based stream: server rejected WebSocket connection: HTTP 403 (occurred 90 times)
+2025-10-02 04:26:39,665 - INFO - Bot is shutting down...
+2025-10-02 04:26:39,666 - INFO - API client closed
+2025-10-02 04:26:39,666 - INFO - Truth Social tracking stopped
+2025-10-02 04:26:39,666 - INFO - Truth Social tracking stopped
+2025-10-02 04:26:39,666 - INFO - Services closed successfully
+2025-10-02 04:26:39,666 - INFO - Background task 'metrics_cleanup' canceled
+2025-10-02 04:26:39,666 - INFO - Background task 'memory_monitor' canceled
+2025-10-02 04:26:39,666 - INFO - Background task 'heartbeat_monitor' canceled
+2025-10-02 04:26:39,667 - INFO - Background task 'metrics_report' canceled
+2025-10-02 04:26:39,667 - INFO - DexScreener tracking stopped
+2025-10-02 04:26:39,667 - INFO - DexScreener tracking stopped
+2025-10-02 04:26:39,667 - INFO - Database connection pool closed successfully
+2025-10-02 04:26:39,668 - INFO - Tracking loop cancelled
+2025-10-02 04:26:40,003 - INFO - Bot stopped by user

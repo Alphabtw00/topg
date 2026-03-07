@@ -1,0 +1,302 @@
+2025-04-23 02:54:44,100 - INFO - Starting bot...
+2025-04-23 02:54:45,089 - INFO - API client initialized
+2025-04-23 02:54:45,089 - INFO - WebsiteAnalyzer initialized with concurrency limit of 15
+2025-04-23 02:54:45,090 - INFO - All API services initialized
+2025-04-23 02:54:45,090 - INFO - Services provider initialized
+2025-04-23 02:54:45,362 - INFO - Database connection pool established: size=1-10
+2025-04-23 02:54:45,362 - INFO - Database connection successful
+2025-04-23 02:54:45,382 - INFO - WebsiteChecker cog initialized
+2025-04-23 02:54:45,388 - INFO - Discord Events Registered | Username Ban Server ID: 1313758082974879774
+2025-04-23 02:54:45,389 - INFO - Memory monitor started (threshold: 300MB, interval: 3600s)
+2025-04-23 02:54:45,999 - INFO - Successfully synced 4 command(s)
+2025-04-23 02:54:49,080 - INFO - Logged in as TOPG#4967 (ID: 1340722186100408340)
+2025-04-23 02:54:49,080 - INFO - Bot connected to 4 server(s)
+2025-04-23 02:54:49,080 - INFO - Echo bot message forwarding: 1 bots from 11 channels to 1 channels
+2025-04-23 02:54:49,080 - INFO - Dani message forwarding: 1 users from 2 channels to 1 channels
+2025-04-23 02:55:50,537 - INFO - Starting website analysis for https://www.ihop.com/en
+2025-04-23 02:55:50,537 - INFO - Parsed domain: www.ihop.com
+2025-04-23 02:55:50,538 - INFO - Generated cache key: www.ihop.com
+2025-04-23 02:55:50,538 - INFO - Cache miss for www.ihop.com, running analysis
+2025-04-23 02:55:50,587 - WARNING - API website returned status 403 for URL: https://www.ihop.com/en
+2025-04-23 02:55:50,587 - INFO - Successfully fetched main page for https://www.ihop.com/en
+2025-04-23 02:55:50,587 - ERROR - Failed to fetch https://www.ihop.com/en
+2025-04-23 02:56:37,351 - INFO - Starting website analysis for https://www.ihop.com/en/rewards
+2025-04-23 02:56:37,351 - INFO - Parsed domain: www.ihop.com
+2025-04-23 02:56:37,351 - INFO - Generated cache key: www.ihop.com
+2025-04-23 02:56:37,352 - INFO - Cache miss for www.ihop.com, running analysis
+2025-04-23 02:56:37,366 - WARNING - API website returned status 403 for URL: https://www.ihop.com/en/rewards
+2025-04-23 02:56:37,366 - INFO - Successfully fetched main page for https://www.ihop.com/en/rewards
+2025-04-23 02:56:37,366 - ERROR - Failed to fetch https://www.ihop.com/en/rewards
+2025-04-23 03:54:45,393 - INFO - Metrics Report | Uptime: 1h 0m | Memory: 42.9MB | Processed: 479 | Avg Processing: 0.0001s | Errors: 2 (1 types, Top: api_website=2) | Last Cleanup: 2025-04-23 02:54:44 (1h ago)
+2025-04-23 03:59:45,342 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-04-23 03:59:46,019 - INFO - Reconnected to Discord after disconnection
+2025-04-23 03:59:46,020 - INFO - Post-reconnection health check: Database=True, API Client=True
+2025-04-23 03:59:50,358 - INFO - Bot automatically reconnected
+2025-04-23 04:54:45,409 - INFO - Metrics Report | Uptime: 2h 0m | Memory: 43.0MB | Processed: 930 | Avg Processing: 0.0242s | Errors: 2 (1 types, Top: api_website=2) | Last Cleanup: 2025-04-23 02:54:44 (2h ago)
+2025-04-23 05:54:45,417 - INFO - Metrics Report | Uptime: 3h 0m | Memory: 38.3MB | Processed: 1214 | Avg Processing: 0.0001s | Errors: 2 (1 types, Top: api_website=2) | Last Cleanup: 2025-04-23 02:54:44 (3h ago)
+2025-04-23 06:14:45,401 - INFO - Starting periodic metrics cleanup task...
+2025-04-23 06:14:45,405 - INFO - Cleaned processing times
+2025-04-23 06:14:45,844 - INFO - Garbage collection completed successfully.
+2025-04-23 06:14:45,845 - INFO - Metrics cleanup completed in 0.44 seconds. Next cleanup at 2025-04-23 16:14:45
+2025-04-23 06:54:45,424 - INFO - Metrics Report | Uptime: 4h 0m | Memory: 31.8MB | Processed: 1563 | Avg Processing: 0.0001s | Errors: 2 (1 types, Top: api_website=2) | Last Cleanup: 2025-04-23 06:14:45 (40m ago)
+2025-04-23 07:11:57,828 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-04-23 07:11:58,496 - INFO - Reconnected to Discord after disconnection
+2025-04-23 07:11:58,500 - INFO - Post-reconnection health check: Database=True, API Client=True
+2025-04-23 07:12:02,833 - INFO - Bot automatically reconnected
+2025-04-23 07:31:34,288 - WARNING - API mobula returned status 404 for URL: https://api.mobula.io/api/1/market/history/pair?asset=BWFRjzKnC3cXw3uC8G8BvwpkuUYncVNYNgRrDhgUpump&blockchain=solana&period=1min&amount=100000
+2025-04-23 07:31:34,777 - WARNING - API mobula returned status 404 for URL: https://api.mobula.io/api/1/market/history/pair?asset=BWFRjzKnC3cXw3uC8G8BvwpkuUYncVNYNgRrDhgUpump&blockchain=solana&period=1min&amount=100000
+2025-04-23 07:31:35,480 - WARNING - API mobula returned status 404 for URL: https://api.mobula.io/api/1/market/history/pair?asset=BWFRjzKnC3cXw3uC8G8BvwpkuUYncVNYNgRrDhgUpump&blockchain=solana&period=1min&amount=100000
+2025-04-23 07:31:36,366 - WARNING - API mobula returned status 404 for URL: https://api.mobula.io/api/1/market/history/pair?asset=BWFRjzKnC3cXw3uC8G8BvwpkuUYncVNYNgRrDhgUpump&blockchain=solana&period=1min&amount=100000
+2025-04-23 07:35:17,148 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-04-23 07:35:17,844 - INFO - Reconnected to Discord after disconnection
+2025-04-23 07:35:17,844 - INFO - Post-reconnection health check: Database=True, API Client=True
+2025-04-23 07:35:22,159 - INFO - Bot automatically reconnected
+2025-04-23 07:54:45,437 - INFO - Metrics Report | Uptime: 5h 0m | Memory: 41.2MB | Processed: 1912 | Avg Processing: 0.0443s | Errors: 6 (2 types, Top: api_mobula=4, api_website=2) | Last Cleanup: 2025-04-23 06:14:45 (1h ago)
+2025-04-23 08:05:18,305 - WARNING - API mobula returned status 500 for URL: https://api.mobula.io/api/1/market/history/pair?asset=4Efv4tEbFeJFmQBUYNVdiJcH5s9argJWWzZmRCrRpump&blockchain=solana&period=1min&amount=100000
+2025-04-23 08:32:30,186 - WARNING - API mobula returned status 404 for URL: https://api.mobula.io/api/1/market/history/pair?asset=Hxu8NoTC7HnLNXbJf9pN33SjsyKPwFS3pL7wFRk1pump&blockchain=solana&period=1min&amount=100000
+2025-04-23 08:32:30,736 - WARNING - API mobula returned status 404 for URL: https://api.mobula.io/api/1/market/history/pair?asset=Hxu8NoTC7HnLNXbJf9pN33SjsyKPwFS3pL7wFRk1pump&blockchain=solana&period=1min&amount=100000
+2025-04-23 08:32:31,426 - WARNING - API mobula returned status 404 for URL: https://api.mobula.io/api/1/market/history/pair?asset=Hxu8NoTC7HnLNXbJf9pN33SjsyKPwFS3pL7wFRk1pump&blockchain=solana&period=1min&amount=100000
+2025-04-23 08:32:32,319 - WARNING - API mobula returned status 404 for URL: https://api.mobula.io/api/1/market/history/pair?asset=Hxu8NoTC7HnLNXbJf9pN33SjsyKPwFS3pL7wFRk1pump&blockchain=solana&period=1min&amount=100000
+2025-04-23 08:34:50,228 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-04-23 08:34:50,875 - INFO - Reconnected to Discord after disconnection
+2025-04-23 08:34:50,875 - INFO - Post-reconnection health check: Database=True, API Client=True
+2025-04-23 08:34:55,232 - INFO - Bot automatically reconnected
+2025-04-23 08:54:45,446 - INFO - Metrics Report | Uptime: 6h 0m | Memory: 42.8MB | Processed: 2259 | Avg Processing: 0.0181s | Errors: 11 (2 types, Top: api_mobula=9, api_website=2) | Last Cleanup: 2025-04-23 06:14:45 (2h ago)
+2025-04-23 09:34:45,856 - INFO - Starting periodic metrics cleanup task...
+2025-04-23 09:34:45,856 - INFO - Cleaned processing times
+2025-04-23 09:34:45,994 - INFO - Garbage collection completed successfully.
+2025-04-23 09:34:45,994 - INFO - Metrics cleanup completed in 0.14 seconds. Next cleanup at 2025-04-23 19:34:45
+2025-04-23 09:36:17,577 - WARNING - API mobula returned status 500 for URL: https://api.mobula.io/api/1/market/history/pair?asset=8wkqP6ghSXynGBg5HuMRBdYvjHdZnVAqpNudRgKYpump&blockchain=solana&period=5min&amount=100000
+2025-04-23 09:36:19,245 - WARNING - API mobula returned status 500 for URL: https://api.mobula.io/api/1/market/history/pair?asset=8wkqP6ghSXynGBg5HuMRBdYvjHdZnVAqpNudRgKYpump&blockchain=solana&period=5min&amount=100000
+2025-04-23 09:54:45,460 - INFO - Metrics Report | Uptime: 7h 0m | Memory: 71.6MB | Processed: 2469 | Avg Processing: 0.1123s | Errors: 13 (2 types, Top: api_mobula=11, api_website=2) | Last Cleanup: 2025-04-23 09:34:45 (19m ago)
+2025-04-23 10:54:45,476 - INFO - Metrics Report | Uptime: 8h 0m | Memory: 71.3MB | Processed: 2696 | Avg Processing: 0.0211s | Errors: 13 (2 types, Top: api_mobula=11, api_website=2) | Last Cleanup: 2025-04-23 09:34:45 (1h ago)
+2025-04-23 11:54:45,484 - INFO - Metrics Report | Uptime: 9h 0m | Memory: 71.3MB | Processed: 2917 | Avg Processing: 0.0280s | Errors: 13 (2 types, Top: api_mobula=11, api_website=2) | Last Cleanup: 2025-04-23 09:34:45 (2h ago)
+2025-04-23 12:06:02,968 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-04-23 12:06:03,653 - INFO - Reconnected to Discord after disconnection
+2025-04-23 12:06:03,656 - INFO - Post-reconnection health check: Database=True, API Client=True
+2025-04-23 12:06:07,985 - INFO - Bot automatically reconnected
+2025-04-23 12:54:45,488 - INFO - Metrics Report | Uptime: 10h 0m | Memory: 71.6MB | Processed: 3115 | Avg Processing: 0.0695s | Errors: 13 (2 types, Top: api_mobula=11, api_website=2) | Last Cleanup: 2025-04-23 09:34:45 (3h ago)
+2025-04-23 12:54:45,999 - INFO - Starting periodic metrics cleanup task...
+2025-04-23 12:54:46,068 - INFO - Garbage collection completed successfully.
+2025-04-23 12:54:46,069 - INFO - Metrics cleanup completed in 0.07 seconds. Next cleanup at 2025-04-23 22:54:46
+2025-04-23 13:54:45,491 - INFO - Metrics Report | Uptime: 11h 0m | Memory: 72.0MB | Processed: 3345 | Avg Processing: 0.0229s | Errors: 13 (2 types, Top: api_mobula=11, api_website=2) | Last Cleanup: 2025-04-23 12:54:46 (59m ago)
+2025-04-23 14:48:55,176 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-04-23 14:48:55,850 - INFO - Reconnected to Discord after disconnection
+2025-04-23 14:48:55,853 - INFO - Post-reconnection health check: Database=True, API Client=True
+2025-04-23 14:49:00,191 - INFO - Bot automatically reconnected
+2025-04-23 14:54:45,498 - INFO - Metrics Report | Uptime: 12h 0m | Memory: 72.4MB | Processed: 3578 | Avg Processing: 0.0002s | Errors: 13 (2 types, Top: api_mobula=11, api_website=2) | Last Cleanup: 2025-04-23 12:54:46 (1h ago)
+2025-04-23 15:11:45,903 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-04-23 15:11:46,590 - INFO - Reconnected to Discord after disconnection
+2025-04-23 15:11:46,593 - INFO - Post-reconnection health check: Database=True, API Client=True
+2025-04-23 15:11:50,908 - INFO - Bot automatically reconnected
+2025-04-23 15:28:41,798 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-04-23 15:28:42,479 - INFO - Reconnected to Discord after disconnection
+2025-04-23 15:28:42,481 - INFO - Post-reconnection health check: Database=True, API Client=True
+2025-04-23 15:28:46,803 - INFO - Bot automatically reconnected
+2025-04-23 15:54:45,515 - INFO - Metrics Report | Uptime: 13h 0m | Memory: 72.3MB | Processed: 3788 | Avg Processing: 0.0002s | Errors: 13 (2 types, Top: api_mobula=11, api_website=2) | Last Cleanup: 2025-04-23 12:54:46 (2h ago)
+2025-04-23 16:14:46,073 - INFO - Starting periodic metrics cleanup task...
+2025-04-23 16:14:46,075 - INFO - Cleaned processing times
+2025-04-23 16:14:46,143 - INFO - Garbage collection completed successfully.
+2025-04-23 16:14:46,144 - INFO - Metrics cleanup completed in 0.07 seconds. Next cleanup at 2025-04-24 02:14:46
+2025-04-23 16:46:04,980 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-04-23 16:46:05,654 - INFO - Reconnected to Discord after disconnection
+2025-04-23 16:46:05,656 - INFO - Post-reconnection health check: Database=True, API Client=True
+2025-04-23 16:46:09,990 - INFO - Bot automatically reconnected
+2025-04-23 16:54:45,520 - INFO - Metrics Report | Uptime: 14h 0m | Memory: 72.5MB | Processed: 4021 | Avg Processing: 0.0002s | Errors: 13 (2 types, Top: api_mobula=11, api_website=2) | Last Cleanup: 2025-04-23 16:14:46 (39m ago)
+2025-04-23 17:54:45,537 - INFO - Metrics Report | Uptime: 15h 0m | Memory: 72.4MB | Processed: 4262 | Avg Processing: 0.0002s | Errors: 13 (2 types, Top: api_mobula=11, api_website=2) | Last Cleanup: 2025-04-23 16:14:46 (1h ago)
+2025-04-23 17:55:47,211 - WARNING - API mobula returned status 500 for URL: https://api.mobula.io/api/1/market/history/pair?asset=HXXhX1jcvhA4KQAFN4TkUj3zya4w3XVFdiYzDzvapump&blockchain=solana&period=1min&amount=100000
+2025-04-23 18:54:45,552 - INFO - Metrics Report | Uptime: 16h 0m | Memory: 25.9MB | Processed: 4573 | Avg Processing: 0.0001s | Errors: 14 (2 types, Top: api_mobula=12, api_website=2) | Last Cleanup: 2025-04-23 16:14:46 (2h ago)
+2025-04-23 19:34:46,156 - INFO - Starting periodic metrics cleanup task...
+2025-04-23 19:34:46,158 - INFO - Cleaned processing times
+2025-04-23 19:34:46,287 - INFO - Garbage collection completed successfully.
+2025-04-23 19:34:46,288 - INFO - Metrics cleanup completed in 0.13 seconds. Next cleanup at 2025-04-24 05:34:46
+2025-04-23 19:54:45,561 - INFO - Metrics Report | Uptime: 17h 0m | Memory: 67.0MB | Processed: 4984 | Avg Processing: 0.0001s | Errors: 14 (2 types, Top: api_mobula=12, api_website=2) | Last Cleanup: 2025-04-23 19:34:46 (19m ago)
+2025-04-23 20:07:46,175 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-04-23 20:07:46,859 - INFO - Reconnected to Discord after disconnection
+2025-04-23 20:07:46,860 - INFO - Post-reconnection health check: Database=True, API Client=True
+2025-04-23 20:07:51,182 - INFO - Bot automatically reconnected
+2025-04-23 20:54:45,563 - INFO - Metrics Report | Uptime: 18h 0m | Memory: 40.6MB | Processed: 5512 | Avg Processing: 0.0001s | Errors: 14 (2 types, Top: api_mobula=12, api_website=2) | Last Cleanup: 2025-04-23 19:34:46 (1h ago)
+2025-04-23 21:54:34,213 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-04-23 21:54:34,867 - INFO - Reconnected to Discord after disconnection
+2025-04-23 21:54:34,872 - INFO - Post-reconnection health check: Database=True, API Client=True
+2025-04-23 21:54:39,217 - INFO - Bot automatically reconnected
+2025-04-23 21:54:45,565 - INFO - Metrics Report | Uptime: 19h 0m | Memory: 41.4MB | Processed: 6047 | Avg Processing: 0.0001s | Errors: 14 (2 types, Top: api_mobula=12, api_website=2) | Last Cleanup: 2025-04-23 19:34:46 (2h ago)
+2025-04-23 22:36:27,426 - WARNING - API mobula returned status 404 for URL: https://api.mobula.io/api/1/market/history/pair?asset=AZ2Gff2Tte8efjrq3prgks3zDDxxQXpE93dLXYFcpump&blockchain=solana&period=1min&amount=100000
+2025-04-23 22:36:27,924 - WARNING - API mobula returned status 404 for URL: https://api.mobula.io/api/1/market/history/pair?asset=AZ2Gff2Tte8efjrq3prgks3zDDxxQXpE93dLXYFcpump&blockchain=solana&period=1min&amount=100000
+2025-04-23 22:36:28,625 - WARNING - API mobula returned status 404 for URL: https://api.mobula.io/api/1/market/history/pair?asset=AZ2Gff2Tte8efjrq3prgks3zDDxxQXpE93dLXYFcpump&blockchain=solana&period=1min&amount=100000
+2025-04-23 22:36:29,517 - WARNING - API mobula returned status 404 for URL: https://api.mobula.io/api/1/market/history/pair?asset=AZ2Gff2Tte8efjrq3prgks3zDDxxQXpE93dLXYFcpump&blockchain=solana&period=1min&amount=100000
+2025-04-23 22:36:41,314 - WARNING - API mobula returned status 404 for URL: https://api.mobula.io/api/1/market/history/pair?asset=AZ2Gff2Tte8efjrq3prgks3zDDxxQXpE93dLXYFcpump&blockchain=solana&period=1min&amount=100000
+2025-04-23 22:36:41,817 - WARNING - API mobula returned status 404 for URL: https://api.mobula.io/api/1/market/history/pair?asset=AZ2Gff2Tte8efjrq3prgks3zDDxxQXpE93dLXYFcpump&blockchain=solana&period=1min&amount=100000
+2025-04-23 22:36:42,526 - WARNING - API mobula returned status 404 for URL: https://api.mobula.io/api/1/market/history/pair?asset=AZ2Gff2Tte8efjrq3prgks3zDDxxQXpE93dLXYFcpump&blockchain=solana&period=1min&amount=100000
+2025-04-23 22:36:43,426 - WARNING - API mobula returned status 404 for URL: https://api.mobula.io/api/1/market/history/pair?asset=AZ2Gff2Tte8efjrq3prgks3zDDxxQXpE93dLXYFcpump&blockchain=solana&period=1min&amount=100000
+2025-04-23 22:54:45,569 - INFO - Metrics Report | Uptime: 20h 0m | Memory: 41.8MB | Processed: 6569 | Avg Processing: 0.0065s | Errors: 22 (2 types, Top: api_mobula=20, api_website=2) | Last Cleanup: 2025-04-23 19:34:46 (3h ago)
+2025-04-23 22:54:46,299 - INFO - Starting periodic metrics cleanup task...
+2025-04-23 22:54:46,300 - INFO - Cleaned processing times
+2025-04-23 22:54:46,423 - INFO - Garbage collection completed successfully.
+2025-04-23 22:54:46,424 - INFO - Metrics cleanup completed in 0.12 seconds. Next cleanup at 2025-04-24 08:54:46
+2025-04-23 23:05:42,388 - INFO - Starting website analysis for https://www.raiku.com
+2025-04-23 23:05:42,388 - INFO - Parsed domain: www.raiku.com
+2025-04-23 23:05:42,389 - INFO - Generated cache key: www.raiku.com
+2025-04-23 23:05:42,389 - INFO - Cache miss for www.raiku.com, running analysis
+2025-04-23 23:05:42,623 - INFO - Successfully fetched main page for https://www.raiku.com
+2025-04-23 23:05:43,198 - INFO - Check 'security_headers' completed in 0.449s
+2025-04-23 23:05:43,234 - ERROR - website request error: 'utf-8' codec can't decode byte 0x89 in position 0: invalid start byte for URL: https://cdn.prod.website-files.com/67aba92ec7dbb6dc7c29ad65/67abc14f047b249fe22f1ddb_Frame%201171275071-1.png
+2025-04-23 23:05:43,235 - INFO - Check 'favicon' completed in 0.040s
+2025-04-23 23:05:43,332 - INFO - Successfully checked SSL certificate for www.raiku.com
+2025-04-23 23:05:43,333 - INFO - Check 'ssl_certificate' completed in 0.585s
+2025-04-23 23:05:44,158 - INFO - Fetched fresh WHOIS data for raiku.com
+2025-04-23 23:05:44,159 - INFO - Check 'domain_info' completed in 1.413s
+2025-04-23 23:05:44,852 - INFO - Check 'virustotal' completed in 2.104s
+2025-04-23 23:05:49,121 - INFO - Successfully checked Wayback Machine for www.raiku.com
+2025-04-23 23:05:49,121 - INFO - Check 'wayback_history' completed in 6.373s
+2025-04-23 23:05:49,507 - INFO - Check summary: 14 succeeded, 0 failed
+2025-04-23 23:05:49,507 - INFO - Scores and risk assessment calculated in 0.000s
+2025-04-23 23:05:49,508 - INFO - Analysis of https://www.raiku.com completed in 7.12s
+2025-04-23 23:05:50,157 - INFO - Website analysis called by alphabtw_ for https://www.raiku.com (cached: False)
+2025-04-23 23:20:12,706 - WARNING - API github returned status 404 for URL: https://api.github.com/repos/mkirch/repository
+2025-04-23 23:20:12,707 - WARNING - Failed to fetch repository info for mkirch/repository
+2025-04-23 23:54:45,582 - INFO - Metrics Report | Uptime: 21h 0m | Memory: 36.6MB | Processed: 7028 | Avg Processing: 0.0001s | Errors: 23 (3 types, Top: api_mobula=20, api_website=2, api_github=1) | Last Cleanup: 2025-04-23 22:54:46 (59m ago)
+2025-04-24 00:25:31,522 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-04-24 00:25:32,207 - INFO - Reconnected to Discord after disconnection
+2025-04-24 00:25:32,209 - INFO - Post-reconnection health check: Database=True, API Client=True
+2025-04-24 00:25:36,526 - INFO - Bot automatically reconnected
+2025-04-24 00:54:45,595 - INFO - Metrics Report | Uptime: 22h 0m | Memory: 39.9MB | Processed: 7404 | Avg Processing: 0.0001s | Errors: 23 (3 types, Top: api_mobula=20, api_website=2, api_github=1) | Last Cleanup: 2025-04-23 22:54:46 (1h ago)
+2025-04-24 01:29:08,948 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-04-24 01:29:09,696 - INFO - Reconnected to Discord after disconnection
+2025-04-24 01:29:09,697 - INFO - Post-reconnection health check: Database=True, API Client=True
+2025-04-24 01:29:13,963 - INFO - Bot automatically reconnected
+2025-04-24 01:54:45,602 - INFO - Metrics Report | Uptime: 23h 0m | Memory: 46.0MB | Processed: 7870 | Avg Processing: 0.0425s | Errors: 23 (3 types, Top: api_mobula=20, api_website=2, api_github=1) | Last Cleanup: 2025-04-23 22:54:46 (2h ago)
+2025-04-24 02:14:46,430 - INFO - Starting periodic metrics cleanup task...
+2025-04-24 02:14:46,432 - INFO - Cleaned processing times
+2025-04-24 02:14:46,710 - INFO - Garbage collection completed successfully.
+2025-04-24 02:14:46,710 - INFO - Metrics cleanup completed in 0.28 seconds. Next cleanup at 2025-04-24 12:14:46
+2025-04-24 02:26:49,031 - INFO - GitHub analysis called by alphabtw_ for https://github.com/AladdinAGI/aladdin-app (cached: False)
+2025-04-24 02:54:45,608 - INFO - Metrics Report | Uptime: 24h 0m | Memory: 37.6MB | Processed: 8301 | Avg Processing: 0.1156s | Errors: 23 (3 types, Top: api_mobula=20, api_website=2, api_github=1) | Last Cleanup: 2025-04-24 02:14:46 (39m ago)
+2025-04-24 02:55:09,810 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-04-24 02:55:10,554 - INFO - Reconnected to Discord after disconnection
+2025-04-24 02:55:10,555 - INFO - Post-reconnection health check: Database=True, API Client=True
+2025-04-24 02:55:14,815 - INFO - Bot automatically reconnected
+2025-04-24 03:54:45,617 - INFO - Metrics Report | Uptime: 25h 0m | Memory: 31.3MB | Processed: 8691 | Avg Processing: 0.0263s | Errors: 23 (3 types, Top: api_mobula=20, api_website=2, api_github=1) | Last Cleanup: 2025-04-24 02:14:46 (1h ago)
+2025-04-24 04:27:45,824 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-04-24 04:27:46,518 - INFO - Reconnected to Discord after disconnection
+2025-04-24 04:27:46,519 - INFO - Post-reconnection health check: Database=True, API Client=True
+2025-04-24 04:27:50,834 - INFO - Bot automatically reconnected
+2025-04-24 04:54:45,630 - INFO - Metrics Report | Uptime: 26h 0m | Memory: 28.9MB | Processed: 9055 | Avg Processing: 0.0400s | Errors: 23 (3 types, Top: api_mobula=20, api_website=2, api_github=1) | Last Cleanup: 2025-04-24 02:14:46 (2h ago)
+2025-04-24 04:58:39,423 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-04-24 04:58:40,184 - INFO - Reconnected to Discord after disconnection
+2025-04-24 04:58:40,186 - INFO - Post-reconnection health check: Database=True, API Client=True
+2025-04-24 04:58:44,437 - INFO - Bot automatically reconnected
+2025-04-24 05:34:46,725 - INFO - Starting periodic metrics cleanup task...
+2025-04-24 05:34:46,727 - INFO - Cleaned processing times
+2025-04-24 05:34:46,894 - INFO - Garbage collection completed successfully.
+2025-04-24 05:34:46,895 - INFO - Metrics cleanup completed in 0.17 seconds. Next cleanup at 2025-04-24 15:34:46
+2025-04-24 05:54:45,644 - INFO - Metrics Report | Uptime: 27h 0m | Memory: 62.8MB | Processed: 9438 | Avg Processing: 0.0247s | Errors: 23 (3 types, Top: api_mobula=20, api_website=2, api_github=1) | Last Cleanup: 2025-04-24 05:34:46 (19m ago)
+2025-04-24 06:54:45,652 - INFO - Metrics Report | Uptime: 28h 0m | Memory: 31.4MB | Processed: 9802 | Avg Processing: 0.1039s | Errors: 23 (3 types, Top: api_mobula=20, api_website=2, api_github=1) | Last Cleanup: 2025-04-24 05:34:46 (1h ago)
+2025-04-24 07:54:45,666 - INFO - Metrics Report | Uptime: 29h 0m | Memory: 27.7MB | Processed: 10190 | Avg Processing: 0.0038s | Errors: 23 (3 types, Top: api_mobula=20, api_website=2, api_github=1) | Last Cleanup: 2025-04-24 05:34:46 (2h ago)
+2025-04-24 08:18:49,558 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-04-24 08:18:50,256 - INFO - Reconnected to Discord after disconnection
+2025-04-24 08:18:50,261 - INFO - Post-reconnection health check: Database=True, API Client=True
+2025-04-24 08:18:54,569 - INFO - Bot automatically reconnected
+2025-04-24 08:54:45,676 - INFO - Metrics Report | Uptime: 30h 0m | Memory: 33.8MB | Processed: 10464 | Avg Processing: 0.2877s | Errors: 23 (3 types, Top: api_mobula=20, api_website=2, api_github=1) | Last Cleanup: 2025-04-24 05:34:46 (3h ago)
+2025-04-24 08:54:46,906 - INFO - Starting periodic metrics cleanup task...
+2025-04-24 08:54:46,907 - INFO - Cleaned processing times
+2025-04-24 08:54:47,070 - INFO - Garbage collection completed successfully.
+2025-04-24 08:54:47,070 - INFO - Metrics cleanup completed in 0.16 seconds. Next cleanup at 2025-04-24 18:54:46
+2025-04-24 09:54:45,682 - INFO - Metrics Report | Uptime: 31h 0m | Memory: 64.8MB | Processed: 10680 | Avg Processing: 0.0001s | Errors: 23 (3 types, Top: api_mobula=20, api_website=2, api_github=1) | Last Cleanup: 2025-04-24 08:54:46 (59m ago)
+2025-04-24 10:03:55,546 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-04-24 10:03:56,231 - INFO - Reconnected to Discord after disconnection
+2025-04-24 10:03:56,251 - INFO - Post-reconnection health check: Database=True, API Client=True
+2025-04-24 10:04:00,549 - INFO - Bot automatically reconnected
+2025-04-24 10:54:45,691 - INFO - Metrics Report | Uptime: 32h 0m | Memory: 66.4MB | Processed: 11108 | Avg Processing: 0.1480s | Errors: 23 (3 types, Top: api_mobula=20, api_website=2, api_github=1) | Last Cleanup: 2025-04-24 08:54:46 (1h ago)
+2025-04-24 11:54:45,700 - INFO - Metrics Report | Uptime: 33h 0m | Memory: 66.1MB | Processed: 11368 | Avg Processing: 0.0002s | Errors: 23 (3 types, Top: api_mobula=20, api_website=2, api_github=1) | Last Cleanup: 2025-04-24 08:54:46 (2h ago)
+2025-04-24 12:08:41,757 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-04-24 12:08:42,545 - INFO - Reconnected to Discord after disconnection
+2025-04-24 12:08:42,570 - INFO - Post-reconnection health check: Database=True, API Client=True
+2025-04-24 12:08:46,762 - INFO - Bot automatically reconnected
+2025-04-24 12:14:47,079 - INFO - Starting periodic metrics cleanup task...
+2025-04-24 12:14:47,082 - INFO - Cleaned processing times
+2025-04-24 12:14:47,175 - INFO - Garbage collection completed successfully.
+2025-04-24 12:14:47,176 - INFO - Metrics cleanup completed in 0.10 seconds. Next cleanup at 2025-04-24 22:14:47
+2025-04-24 12:54:45,716 - INFO - Metrics Report | Uptime: 34h 0m | Memory: 66.7MB | Processed: 11632 | Avg Processing: 0.0925s | Errors: 23 (3 types, Top: api_mobula=20, api_website=2, api_github=1) | Last Cleanup: 2025-04-24 12:14:47 (39m ago)
+2025-04-24 13:54:45,729 - INFO - Metrics Report | Uptime: 35h 0m | Memory: 67.1MB | Processed: 11825 | Avg Processing: 0.0670s | Errors: 23 (3 types, Top: api_mobula=20, api_website=2, api_github=1) | Last Cleanup: 2025-04-24 12:14:47 (1h ago)
+2025-04-24 14:54:45,733 - INFO - Metrics Report | Uptime: 36h 0m | Memory: 65.7MB | Processed: 12072 | Avg Processing: 0.0003s | Errors: 23 (3 types, Top: api_mobula=20, api_website=2, api_github=1) | Last Cleanup: 2025-04-24 12:14:47 (2h ago)
+2025-04-24 15:32:56,764 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-04-24 15:32:57,525 - INFO - Reconnected to Discord after disconnection
+2025-04-24 15:32:57,528 - INFO - Post-reconnection health check: Database=True, API Client=True
+2025-04-24 15:33:01,771 - INFO - Bot automatically reconnected
+2025-04-24 15:34:47,181 - INFO - Starting periodic metrics cleanup task...
+2025-04-24 15:34:47,183 - INFO - Cleaned processing times
+2025-04-24 15:34:47,260 - INFO - Garbage collection completed successfully.
+2025-04-24 15:34:47,261 - INFO - Metrics cleanup completed in 0.08 seconds. Next cleanup at 2025-04-25 01:34:47
+2025-04-24 15:54:45,743 - INFO - Metrics Report | Uptime: 37h 0m | Memory: 66.1MB | Processed: 12307 | Avg Processing: 0.0003s | Errors: 23 (3 types, Top: api_mobula=20, api_website=2, api_github=1) | Last Cleanup: 2025-04-24 15:34:47 (19m ago)
+2025-04-24 15:58:43,602 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-04-24 15:58:44,300 - INFO - Reconnected to Discord after disconnection
+2025-04-24 15:58:44,303 - INFO - Post-reconnection health check: Database=True, API Client=True
+2025-04-24 15:58:48,610 - INFO - Bot automatically reconnected
+2025-04-24 16:54:45,760 - INFO - Metrics Report | Uptime: 38h 0m | Memory: 66.3MB | Processed: 12561 | Avg Processing: 0.0002s | Errors: 23 (3 types, Top: api_mobula=20, api_website=2, api_github=1) | Last Cleanup: 2025-04-24 15:34:47 (1h ago)
+2025-04-24 17:54:45,771 - INFO - Metrics Report | Uptime: 39h 0m | Memory: 66.5MB | Processed: 12832 | Avg Processing: 0.0002s | Errors: 23 (3 types, Top: api_mobula=20, api_website=2, api_github=1) | Last Cleanup: 2025-04-24 15:34:47 (2h ago)
+2025-04-24 17:58:17,560 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-04-24 17:58:18,226 - INFO - Reconnected to Discord after disconnection
+2025-04-24 17:58:18,242 - INFO - Post-reconnection health check: Database=True, API Client=True
+2025-04-24 17:58:22,574 - INFO - Bot automatically reconnected
+2025-04-24 18:37:58,437 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-04-24 18:37:59,166 - INFO - Reconnected to Discord after disconnection
+2025-04-24 18:37:59,167 - INFO - Post-reconnection health check: Database=True, API Client=True
+2025-04-24 18:38:03,448 - INFO - Bot automatically reconnected
+2025-04-24 18:53:55,233 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-04-24 18:53:55,913 - INFO - Reconnected to Discord after disconnection
+2025-04-24 18:53:55,918 - INFO - Post-reconnection health check: Database=True, API Client=True
+2025-04-24 18:54:00,246 - INFO - Bot automatically reconnected
+2025-04-24 18:54:45,793 - INFO - Metrics Report | Uptime: 40h 0m | Memory: 29.8MB | Processed: 13170 | Avg Processing: 0.0001s | Errors: 23 (3 types, Top: api_mobula=20, api_website=2, api_github=1) | Last Cleanup: 2025-04-24 15:34:47 (3h ago)
+2025-04-24 18:54:47,273 - INFO - Starting periodic metrics cleanup task...
+2025-04-24 18:54:47,282 - INFO - Cleaned processing times
+2025-04-24 18:54:47,508 - INFO - Garbage collection completed successfully.
+2025-04-24 18:54:47,508 - INFO - Metrics cleanup completed in 0.23 seconds. Next cleanup at 2025-04-25 04:54:47
+2025-04-24 19:54:45,808 - INFO - Metrics Report | Uptime: 41h 0m | Memory: 27.9MB | Processed: 13474 | Avg Processing: 0.0001s | Errors: 23 (3 types, Top: api_mobula=20, api_website=2, api_github=1) | Last Cleanup: 2025-04-24 18:54:47 (59m ago)
+2025-04-24 20:03:13,356 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-04-24 20:03:14,046 - INFO - Reconnected to Discord after disconnection
+2025-04-24 20:03:14,067 - INFO - Post-reconnection health check: Database=True, API Client=True
+2025-04-24 20:03:18,366 - INFO - Bot automatically reconnected
+2025-04-24 20:53:58,197 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-04-24 20:53:58,874 - INFO - Reconnected to Discord after disconnection
+2025-04-24 20:53:58,876 - INFO - Post-reconnection health check: Database=True, API Client=True
+2025-04-24 20:54:03,211 - INFO - Bot automatically reconnected
+2025-04-24 20:54:45,831 - INFO - Metrics Report | Uptime: 42h 0m | Memory: 36.8MB | Processed: 13894 | Avg Processing: 0.0195s | Errors: 23 (3 types, Top: api_mobula=20, api_website=2, api_github=1) | Last Cleanup: 2025-04-24 18:54:47 (1h ago)
+2025-04-24 21:43:33,030 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-04-24 21:43:33,887 - INFO - Reconnected to Discord after disconnection
+2025-04-24 21:43:33,889 - INFO - Post-reconnection health check: Database=True, API Client=True
+2025-04-24 21:43:38,040 - INFO - Bot automatically reconnected
+2025-04-24 21:54:47,778 - INFO - Metrics Report | Uptime: 43h 0m | Memory: 39.5MB | Processed: 14469 | Avg Processing: 0.0001s | Errors: 23 (3 types, Top: api_mobula=20, api_website=2, api_github=1) | Last Cleanup: 2025-04-24 18:54:47 (3h ago)
+2025-04-24 22:14:49,449 - INFO - Starting periodic metrics cleanup task...
+2025-04-24 22:14:49,450 - INFO - Cleaned processing times
+2025-04-24 22:14:49,646 - INFO - Garbage collection completed successfully.
+2025-04-24 22:14:49,646 - INFO - Metrics cleanup completed in 0.20 seconds. Next cleanup at 2025-04-25 08:14:49
+2025-04-24 22:41:40,872 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-04-24 22:41:41,531 - INFO - Reconnected to Discord after disconnection
+2025-04-24 22:41:41,532 - INFO - Post-reconnection health check: Database=True, API Client=True
+2025-04-24 22:41:45,877 - INFO - Bot automatically reconnected
+2025-04-24 22:54:47,788 - INFO - Metrics Report | Uptime: 44h 0m | Memory: 68.0MB | Processed: 15020 | Avg Processing: 0.0001s | Errors: 23 (3 types, Top: api_mobula=20, api_website=2, api_github=1) | Last Cleanup: 2025-04-24 22:14:49 (39m ago)
+2025-04-24 23:44:08,055 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-04-24 23:44:08,707 - INFO - Reconnected to Discord after disconnection
+2025-04-24 23:44:08,708 - INFO - Post-reconnection health check: Database=True, API Client=True
+2025-04-24 23:44:13,064 - INFO - Bot automatically reconnected
+2025-04-24 23:54:47,793 - INFO - Metrics Report | Uptime: 45h 0m | Memory: 37.8MB | Processed: 15553 | Avg Processing: 0.0001s | Errors: 23 (3 types, Top: api_mobula=20, api_website=2, api_github=1) | Last Cleanup: 2025-04-24 22:14:49 (1h ago)
+2025-04-25 00:54:47,808 - INFO - Metrics Report | Uptime: 46h 0m | Memory: 36.7MB | Processed: 15982 | Avg Processing: 0.0653s | Errors: 23 (3 types, Top: api_mobula=20, api_website=2, api_github=1) | Last Cleanup: 2025-04-24 22:14:49 (2h ago)
+2025-04-25 00:55:58,627 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-04-25 00:55:59,398 - INFO - Reconnected to Discord after disconnection
+2025-04-25 00:55:59,402 - INFO - Post-reconnection health check: Database=True, API Client=True
+2025-04-25 00:56:03,645 - INFO - Bot automatically reconnected
+2025-04-25 01:34:49,652 - INFO - Starting periodic metrics cleanup task...
+2025-04-25 01:34:49,660 - INFO - Cleaned processing times
+2025-04-25 01:34:50,033 - INFO - Garbage collection completed successfully.
+2025-04-25 01:34:50,034 - INFO - Metrics cleanup completed in 0.37 seconds. Next cleanup at 2025-04-25 11:34:49
+2025-04-25 01:54:47,824 - INFO - Metrics Report | Uptime: 47h 0m | Memory: 68.1MB | Processed: 16691 | Avg Processing: 0.0214s | Errors: 23 (3 types, Top: api_mobula=20, api_website=2, api_github=1) | Last Cleanup: 2025-04-25 01:34:49 (19m ago)
+2025-04-25 02:05:23,135 - INFO - Bot is shutting down...
+2025-04-25 02:05:23,135 - INFO - API client closed
+2025-04-25 02:05:23,136 - INFO - Services closed successfully
+2025-04-25 02:05:23,136 - INFO - Background task 'metrics_cleanup' canceled
+2025-04-25 02:05:23,136 - INFO - Background task 'memory_monitor' canceled
+2025-04-25 02:05:23,136 - INFO - Background task 'heartbeat_monitor' canceled
+2025-04-25 02:05:23,136 - INFO - Background task 'metrics_report' canceled
+2025-04-25 02:05:23,136 - INFO - Database connection pool closed successfully
+2025-04-25 02:05:23,143 - INFO - Bot stopped by user

@@ -1,0 +1,318 @@
+"""
+Formatting utilities for values, dates, and other display elements
+"""
+from datetime import datetime
+from typing import Dict, Set, Any
+from functools import lru_cache
+import re
+import urllib.parse
+
+from utils.logger import get_logger
+
+
+logger = get_logger()
+
+
+def format_value(value) -> str:
+    """
+    Format a numerical value for display, with appropriate suffix
+    
+    Args:
+        value: Number to format
+        
+    Returns:
+        str: Formatted string
+    """
+    if value is None:
+        return "N/A"
+        
+    value = float(value)
+    abs_value = abs(value)
+    
+    if abs_value >= 1e9:
+        return f"{value / 1e9:.1f}".rstrip("0").rstrip(".") + "B"
+    if abs_value >= 1e6:
+       return f"{value / 1e6:.1f}".rstrip("0").rstrip(".") + "M"
+    if abs_value >= 1e3:
+        return f"{value / 1e3:.1f}".rstrip("0").rstrip(".") + "K"
+    if abs_value < 1:
+        # Handle small values efficiently
+        return f"{value:.6f}".rstrip('0').rstrip('.')
+    
+    # Format normal values efficiently
+    if abs_value == int(abs_value):
+        return str(int(value))
+    return f"{value:.2f}".rstrip('0').rstrip('.')
+
+def build_stats_field(volume, change, timeframe='1h'):
+    stats = []
+    if volume:
+        stats.append(f"🔥 **`{format_value(volume)}`**")
+    if change:
+        emoji = "🚀" if change > 0 else "🔻"
+        stats.append(f"{emoji} **`{format_value(change)}%`** ({timeframe})")
+    return " ".join(stats) if stats else None
+
+def format_size(size_kb):
+    """
+    Convert size in KB to a human-readable format (KB, MB, or GB)
+    
+    Args:
+        size_kb: Size in kilobytes
+        
+    Returns:
+        str: Formatted size string
+    """
+    try:
+        size = float(size_kb)
+    except (ValueError, TypeError):
+        return "Unknown"
+    if size < 1024:
+        return f"{size:.0f} KB"
+    elif size < 1024 * 1024:
+        size_mb = size / 1024
+        return f"{size_mb:.2f} MB"
+    else:
+        size_gb = size / (1024 * 1024)
+        return f"{size_gb:.2f} GB"
+
+def format_metrics(post: Dict[str, Any]) -> str:
+    """
+    Format post metrics (replies, reblogs, likes)
+    
+    Args:
+        post: Truth Social post data
+        
+    Returns:
+        str: Formatted metrics string
+    """
+    metrics = []
+    
+    reply_count = post.get('replies_count', 0)
+    reblogs_count = post.get('reblogs_count', 0)
+    faves_count = post.get('favourites_count', 0) or post.get('upvotes_count', 0)
+    
+    if reply_count > 0:
+        metrics.append(f"💬 {format_value(reply_count)}")
+    
+    if reblogs_count > 0:
+        metrics.append(f"🔄 {format_value(reblogs_count)}")
+    
+    if faves_count > 0:
+        metrics.append(f"❤️ {format_value(faves_count)}")
+    
+    return " • ".join(metrics) if metrics else ""
+
+def format_category(category):
+    """Format bundle category for display"""
+    category_map = {
+        "new_wallet": "NEW WALLET",
+        "sniper": "SNIPER",
+        "regular": "REGULAR",
+        "copy_trader": "COPY TRADER",
+        "team_bundle": "TEAM BUNDLE"
+    }
+    
+    return category_map.get(category.lower(), category.upper())
+
+def format_date(date_str):
+    """
+    Format an ISO date string to a more readable format
+    
+    Args:
+        date_str: ISO date string
+        
+    Returns:
+        str: Formatted date string or 'Unknown' if invalid
+    """
+    if not date_str or date_str == "Unknown":
+        return "Unknown"
+    try:
+        return datetime.fromisoformat(date_str.replace("Z", "+00:00")).strftime("%b %d, %Y")
+    except Exception:
+        return date_str
+
+def relative_time(timestamp, include_ago=False) -> str:
+    """
+    Convert a timestamp to a relative time string
+    
+    Args:
+        timestamp: Unix timestamp in milliseconds
+        include_ago: Whether to append 'ago' to the result
+        
+    Returns:
+        str: Relative time string
+    """
+    try:
+        delta = datetime.now() - datetime.fromtimestamp(timestamp / 1000)
+        
+        if delta.seconds <= 5 and delta.days == 0:
+            return "Just now"
+            
+        # Format the time unit
+        if delta.days >= 365:
+            time_str = f"{delta.days//365}y"
+        elif delta.days > 30:
+            time_str = f"{delta.days//30}mo"
+        elif delta.days:
+            time_str = f"{delta.days}d"
+        elif delta.seconds >= 3600:
+            time_str = f"{delta.seconds//3600}h"
+        elif delta.seconds >= 60:
+            time_str = f"{delta.seconds//60}m"
+        else:
+            time_str = f"{delta.seconds}s"
+        
+        return f"{time_str} ago" if include_ago else time_str
+    except Exception:
+        return "N/A"
+    
+def get_color_from_change(change: float) -> int:
+    """
+    Determine color based on a numerical change
+    
+    Args:
+        change: Numerical change value
+        
+    Returns:
+        int: Discord color code
+    """
+    if change > 0:
+        return 0x00FF00  # Green
+    elif change < 0:
+        return 0xFF0000  # Red
+    else:
+        return 0x0000FF  # Blue
+
+def create_progress_bar(percentage: float, max_bars: int = 10) -> str:
+    """
+    Create a progress bar with appropriate color indicator
+    
+    Args:
+        percentage: Value between 0 and 100
+        max_bars: Maximum number of bars in the progress indicator
+        
+    Returns:
+        str: Formatted progress bar
+    """
+    filled = int(round(percentage / 100 * max_bars))
+    color = (
+        "🟢" if percentage < 50 else
+        "🟡" if percentage < 75 else
+        "🔴"
+    )
+    return f"{color} {'█' * filled}{'░' * (max_bars - filled)}"
+
+def score_bar(percentage: float, blocks: int = 5) -> str:
+    """
+    Create a visual score bar with configurable length
+    
+    Args:
+        percentage: Value between 0 and 100
+        blocks: Number of total blocks (default: 5)
+        
+    Returns:
+        str: Emoji-based score bar
+    """
+    if percentage <= 0:
+        return "⬜" * blocks
+    
+    # Calculate filled and empty blocks
+    filled = min(blocks, max(0, round(percentage / (100 / blocks))))
+    
+    # Determine color based on score
+    if percentage >= 80:
+        filled_char = "🟩"
+    elif percentage >= 60:
+        filled_char = "🟨"
+    elif percentage >= 40:
+        filled_char = "🟧"
+    else:
+        filled_char = "🟥"
+    
+    # Create bar with appropriate coloring
+    return filled_char * filled + "⬜" * (blocks - filled)
+
+def clean_html(html_content: str) -> str:
+    """
+    Remove HTML tags from content
+    
+    Args:
+        html_content: HTML content string
+        
+    Returns:
+        str: Plain text content
+    """
+    if not html_content:
+        return ""
+    
+    # Remove <br/> with newlines before removing all tags
+    content = html_content.replace("<br/>", "\n").replace("<br>", "\n")
+    
+    # Simple regex-based HTML tag removal
+    content = re.sub(r'<[^>]+>', '', content)
+    
+    # Clean up extra spaces and newlines
+    content = re.sub(r'\n\s*\n', '\n\n', content)
+    return content.strip()
+
+def safe_text(text):
+    """
+    Make any text safe for logging by replacing non-ASCII characters
+    For use in extreme cases where automatic handling isn't sufficient
+    """
+    if text is None:
+        return "None"
+    
+    if not isinstance(text, str):
+        try:
+            text = str(text)
+        except:
+            return "Unstringable object"
+    
+    return text.encode('ascii', 'replace').decode('ascii')
+
+def proxy_url(url: str) -> str:
+    if not url:
+        return ""
+    # Remove https:// from the original URL
+    clean_url = url.replace("https://", "").replace("http://", "")
+    return f"https://i0.wp.com/{clean_url}"
+
+def parse_channel_colors(colors_str: str, bot_input_channel_ids: Set[int]) -> Dict[int, int]:
+    """Parse channel-specific colors from environment variable"""
+    color_dict = {}
+    
+    # Check if we have channel-specific colors in format: channel_id:color,channel_id:color
+    if ":" in colors_str:
+        pairs = colors_str.split(",")
+        for pair in pairs:
+            if ":" in pair:
+                ch_id, color = pair.strip().split(":")
+                if ch_id.isdigit() and color.strip():
+                    try:
+                        color_dict[int(ch_id)] = int(color.strip(), 16)
+                    except ValueError:
+                        pass
+    else:
+        # Just a list of colors to assign sequentially
+        colors = colors_str.split(",")
+        colors = [int(color.strip(), 16) for color in colors if color.strip()]
+        
+        # Map colors to input channels
+        for i, channel_id in enumerate(bot_input_channel_ids):
+            # Use the corresponding color if available, otherwise use the first or default color
+            color_index = min(i, len(colors) - 1) if colors else 0
+            color_dict[channel_id] = colors[color_index] if colors else 0x3498db
+    
+    return color_dict
+
+
+
+
+
+
+
+
+
+

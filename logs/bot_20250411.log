@@ -1,0 +1,36 @@
+2025-04-11 10:30:56,970 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-04-11 12:32:54,491 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-04-11 16:22:26,830 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-04-11 17:01:58,796 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-04-11 17:20:20,088 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-04-11 17:59:05,373 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-04-11 18:38:17,891 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-04-11 21:03:20,919 - ERROR - Error getting latest post from alphabtw: Api.pull_statuses() got an unexpected keyword argument 'limit'
+2025-04-11 21:54:27,587 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-04-11 22:18:34,023 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
+2025-04-11 23:00:57,769 - ERROR - Database error fetching rows: (1146, "Table 'topg.truth_settings' doesn't exist")
+2025-04-11 23:01:57,797 - ERROR - Database error fetching rows: (1146, "Table 'topg.truth_settings' doesn't exist")
+2025-04-11 23:02:57,824 - ERROR - Database error fetching rows: (1146, "Table 'topg.truth_settings' doesn't exist")
+2025-04-11 23:03:57,839 - ERROR - Database error fetching rows: (1146, "Table 'topg.truth_settings' doesn't exist")
+2025-04-11 23:04:57,863 - ERROR - Database error fetching rows: (1146, "Table 'topg.truth_settings' doesn't exist")
+2025-04-11 23:19:42,123 - ERROR - Error getting new posts from alphabtw: argument of type 'NoneType' is not iterable
+2025-04-11 23:19:48,444 - ERROR - Error getting new posts from alphabtw: argument of type 'NoneType' is not iterable
+2025-04-11 23:19:55,158 - ERROR - Error getting new posts from alphabtw: argument of type 'NoneType' is not iterable
+2025-04-11 23:20:43,573 - ERROR - Error getting new posts from alphabtw: argument of type 'NoneType' is not iterable
+2025-04-11 23:21:43,139 - ERROR - Error getting new posts from alphabtw: argument of type 'NoneType' is not iterable
+2025-04-11 23:22:35,093 - ERROR - Error getting new posts from alphabtw: argument of type 'NoneType' is not iterable
+2025-04-11 23:23:28,612 - ERROR - Error getting new posts from alphabtw: argument of type 'NoneType' is not iterable
+2025-04-11 23:24:36,018 - ERROR - Error getting new posts from alphabtw: argument of type 'NoneType' is not iterable
+2025-04-11 23:25:43,678 - ERROR - Error getting new posts from alphabtw: argument of type 'NoneType' is not iterable
+2025-04-11 23:26:42,891 - ERROR - Error getting new posts from alphabtw: argument of type 'NoneType' is not iterable
+2025-04-11 23:27:35,889 - ERROR - Error getting new posts from alphabtw: argument of type 'NoneType' is not iterable
+2025-04-11 23:28:35,827 - ERROR - Error getting new posts from alphabtw: argument of type 'NoneType' is not iterable
+2025-04-11 23:29:02,398 - ERROR - Error getting new posts from alphabtw: argument of type 'NoneType' is not iterable
+2025-04-11 23:29:08,691 - ERROR - Error getting new posts from alphabtw: argument of type 'NoneType' is not iterable
+2025-04-11 23:29:14,607 - ERROR - Error getting new posts from alphabtw: argument of type 'NoneType' is not iterable
+2025-04-11 23:29:20,489 - ERROR - Error getting new posts from alphabtw: argument of type 'NoneType' is not iterable
+2025-04-11 23:30:28,128 - ERROR - Error getting new posts from alphabtw: argument of type 'NoneType' is not iterable
+2025-04-11 23:31:36,131 - ERROR - Error getting new posts from alphabtw: argument of type 'NoneType' is not iterable
+2025-04-11 23:33:03,751 - ERROR - Error getting new posts from alphabtw: argument of type 'NoneType' is not iterable
+2025-04-11 23:33:50,973 - ERROR - Error getting new posts from alphabtw: argument of type 'NoneType' is not iterable
+2025-04-12 00:17:37,046 - WARNING - Bot disconnected from Discord. Attempting to reconnect...
