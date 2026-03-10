@@ -9,23 +9,24 @@ from service.username_ban_service import ban_user
 from utils.logger import get_logger
 from utils.formatters import safe_text
 from datetime import datetime
-from config import ADMIN_USER_IDS
+from config import ADMIN_USER_IDS, BAN_GIF_URL
+import asyncio
 
 logger = get_logger()
 
 class BanCommands(commands.Cog):
     """Ban command that uses the same system as auto-banning"""
-   
+
     def __init__(self, bot):
         self.bot = bot
-   
-    @app_commands.command(name="ban", description="Ban a user in this server with funny reply")
+
+    @app_commands.command(name="ban", description="Ban a user in this server with funny/nsfw reply")
     @app_commands.guild_only()
     @app_commands.default_permissions(ban_members=True)
     @app_commands.checks.cooldown(1, 5)
     @app_commands.describe(
         user="The user to ban",
-        reason="Reason for the ban (optional)",
+        reason="Reason for the ban (optional)(Defauls to a funny reason)",
         delete_days="Number of days of messages to delete (optional, default: 1)"
     )
     @app_commands.choices(delete_days=[
@@ -39,15 +40,13 @@ class BanCommands(commands.Cog):
         app_commands.Choice(name="7 days", value=7)
     ])
     async def ban_slash(
-        self, 
-        interaction: discord.Interaction, 
+        self,
+        interaction: discord.Interaction,
         user: discord.Member,
         reason: str = "Manual ban triggered by moderator",
         delete_days: int = 1
     ):
-        """Ban a user with the same system as auto-banning"""
-        
-        # Check if user has permission to ban
+        # Check caller has permission
         if not (interaction.user.guild_permissions.ban_members or interaction.user.id in ADMIN_USER_IDS):
             await interaction.response.send_message(
                 "You need ban members permission to use this command.",
@@ -55,56 +54,81 @@ class BanCommands(commands.Cog):
             )
             return
 
-        # Prevent banning yourself
+        # Prevent self-ban
         if user.id == interaction.user.id:
             await interaction.response.send_message(
                 "You cannot ban yourself!",
                 ephemeral=True
             )
             return
-            
-        # Defer response while ban is processed
-        await interaction.response.defer(ephemeral=True, thinking=True)
-        
+
+        # Check caller's role vs target's role
+        if not interaction.user.top_role > user.top_role:
+            await interaction.response.send_message(
+                "You cannot ban someone with a higher or equal role to yours.",
+                ephemeral=True
+            )
+            return
+
+        await interaction.response.defer(ephemeral=False, thinking=True)
+
         try:
-            # Format the reason with moderator info
             formatted_reason = f"{reason} (Banned by {interaction.user})"
-            
-            # The ban_user function now handles all permission checks
             ban_result = await ban_user(self.bot, user, formatted_reason, delete_days=delete_days)
-            
+
             if ban_result:
-                # Send confirmation to the moderator
-                embed = discord.Embed(
-                    title="User Banned Successfully",
-                    description=f"User {user.mention} ({user}) has been banned.",
-                    color=discord.Color.green(),
+                # --- Ephemeral mod-only info message ---
+                info_embed = discord.Embed(
+                    title="User Banned",
+                    color=discord.Color.red(),
                     timestamp=datetime.now()
                 )
-                embed.add_field(name="Reason", value=reason, inline=False)
-                embed.add_field(name="User ID", value=user.id, inline=True)
-                embed.add_field(name="Banned by", value=interaction.user.mention, inline=True)
-                
-                await interaction.followup.send(embed=embed, ephemeral=True)
-                
-                # Log the command usage
+                info_embed.add_field(name="Display Name", value=user.display_name, inline=True)
+                info_embed.add_field(name="Username", value=str(user), inline=True)
+                info_embed.add_field(name="User ID", value=user.id, inline=True)
+                info_embed.add_field(name="Banned by", value=interaction.user.mention, inline=True)
+                info_embed.add_field(name="Reason", value=reason, inline=False)
+                days_text = f"{delete_days} day(s)" if delete_days > 0 else "None"
+                info_embed.add_field(name="Messages Deleted", value=days_text, inline=True)
+                if user.avatar:
+                    info_embed.set_thumbnail(url=user.avatar.url)
+
+                await interaction.followup.send(embed=info_embed, ephemeral=True)
+
+                # --- Public message with gif, auto-deletes in 10 mins ---
+                public_embed = discord.Embed(
+                    description=f"{user.mention} has been banned from the server.",
+                    color=discord.Color.red()
+                )
+                if BAN_GIF_URL:
+                    public_embed.set_image(url=BAN_GIF_URL)
+
+                public_msg = await interaction.channel.send(embed=public_embed)
+                asyncio.create_task(self._delete_after(public_msg, 600))
+
                 self.bot.record_command_usage("ban")
                 logger.info(f"Ban command used by {safe_text(interaction.user.display_name)} ({safe_text(interaction.user.name)}) | Target: {safe_text(user.display_name)} ({safe_text(user.name)}) [ID: {user.id}] in {safe_text(interaction.guild.name)} (ID: {interaction.guild.id})")
+
             else:
-                # Ban failed - error is logged in ban_user
                 await interaction.followup.send(
-                    f"Failed to ban user {user.mention}. They may have a higher role than the bot, or the bot may lack permissions.",
+                    f"Failed to ban **{user}**.",
                     ephemeral=True
                 )
-        
+
         except Exception as e:
             logger.error(f"Ban command error: {e}")
             await interaction.followup.send(
                 "An error occurred while trying to ban the user. Please check the logs.",
                 ephemeral=True
             )
-           
-    # Register error handler
+
+    async def _delete_after(self, message, delay: int):
+        await asyncio.sleep(delay)
+        try:
+            await message.delete()
+        except Exception:
+            pass
+
     @ban_slash.error
     async def ban_error(self, interaction, error):
         await create_error_handler("ban")(self, interaction, error)

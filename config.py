@@ -240,7 +240,7 @@ BAN_FUNNY_REASONS = [
 ]
 
 # Ban GIF URL
-BAN_GIF_URL = "https://i.imgur.com/sGySZT3.gif" 
+BAN_GIF_URL = "https://cdn.discordapp.com/attachments/1380393342096904232/1480361537070960734/caption-3.gif?ex=69b00e5e&is=69aebcde&hm=03a9f9d923d04acf9e6d529f08ef985ebdc7e90b2bfaaf66e88e6a9c3cd66db4&animated=true" 
 FIGHT_BACK_GIF_URL = "https://i.imgur.com/3fJo5ne.gif"
 
 
