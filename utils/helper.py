@@ -597,3 +597,32 @@ async def populate_excel_data(wb, start_row: int, markets: List[Dict],
         logger.error(f"Error populating Excel data: {e}")
         return None
     
+async def resolve_user(
+    bot: discord.Client,
+    user_id: int,
+    guild: discord.Guild,
+    scope: str
+) -> Optional[tuple[str, discord.Member | discord.User]]:
+    """
+    Try to resolve a user_id to a live Discord user/member object.
+    Returns (display_string, user_obj) or None if ghost/deleted/banned.
+    """
+    try:
+        if scope == "server":
+            user = guild.get_member(user_id)
+        else:
+            user = bot.get_user(user_id)
+            if user is None:
+                user = await bot.fetch_user(user_id)
+
+        if user is None:
+            return None
+
+        display = f"{user.display_name} (@{user.name})"
+        return display, user
+
+    except discord.NotFound:
+        return None
+    except Exception as e:
+        logger.warning(f"Could not resolve user {user_id}: {e}")
+        return None

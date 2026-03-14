@@ -1,0 +1,196 @@
+Date : 2026-03-10 07:19:40
+Directory : c:\Users\ansha\OneDrive\Documents\vscode\TOPG
+Total : 160 files,  146297 codes, 3377 comments, 4295 blanks, all 153969 lines
+
+Languages
++------------------+------------+------------+------------+------------+------------+
+| language         | files      | code       | comment    | blank      | total      |
++------------------+------------+------------+------------+------------+------------+
+| Log              |         87 |    132,246 |          0 |      1,012 |    133,258 |
+| Python           |         71 |     14,005 |      3,374 |      3,281 |     20,660 |
+| pip requirements |          1 |         38 |          0 |          0 |         38 |
+| Shell Script     |          1 |          8 |          3 |          2 |         13 |
++------------------+------------+------------+------------+------------+------------+
+
+Directories
++-----------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                                          | files      | code       | comment    | blank      | total      |
++-----------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                             |        160 |    146,297 |      3,377 |      4,295 |    153,969 |
+| . (Files)                                                                                     |          4 |        216 |         80 |         50 |        346 |
+| api                                                                                           |         12 |      2,286 |        634 |        583 |      3,503 |
+| bot                                                                                           |          4 |        606 |        232 |        147 |        985 |
+| commands                                                                                      |         18 |      2,840 |        396 |        651 |      3,887 |
+| logs                                                                                          |         87 |    132,246 |          0 |      1,012 |    133,258 |
+| repository                                                                                    |          8 |      1,111 |        436 |        224 |      1,771 |
+| service                                                                                       |         16 |      2,818 |        598 |        682 |      4,098 |
+| ui                                                                                            |          5 |      3,132 |        530 |        679 |      4,341 |
+| utils                                                                                         |          6 |      1,042 |        471 |        267 |      1,780 |
++-----------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++-----------------------------------------------------------------------------------------------+------------------+------------+------------+------------+------------+
+| filename                                                                                      | language         | code       | comment    | blank      | total      |
++-----------------------------------------------------------------------------------------------+------------------+------------+------------+------------+------------+
+| c:\Users\ansha\OneDrive\Documents\vscode\TOPG\api\__init__.py                                 | Python           |          0 |          0 |          1 |          1 |
+| c:\Users\ansha\OneDrive\Documents\vscode\TOPG\api\bitquery.py                                 | Python           |         34 |         15 |          8 |         57 |
+| c:\Users\ansha\OneDrive\Documents\vscode\TOPG\api\client.py                                   | Python           |        117 |         55 |         18 |        190 |
+| c:\Users\ansha\OneDrive\Documents\vscode\TOPG\api\dexscreener.py                              | Python           |         77 |         42 |         25 |        144 |
+| c:\Users\ansha\OneDrive\Documents\vscode\TOPG\api\github_analyzer.py                          | Python           |        347 |        113 |         93 |        553 |
+| c:\Users\ansha\OneDrive\Documents\vscode\TOPG\api\kalshi.py                                   | Python           |         40 |         26 |         14 |         80 |
+| c:\Users\ansha\OneDrive\Documents\vscode\TOPG\api\mobula.py                                   | Python           |         60 |         32 |         17 |        109 |
+| c:\Users\ansha\OneDrive\Documents\vscode\TOPG\api\moralis.py                                  | Python           |         30 |         22 |         15 |         67 |
+| c:\Users\ansha\OneDrive\Documents\vscode\TOPG\api\provider.py                                 | Python           |         51 |         10 |         10 |         71 |
+| c:\Users\ansha\OneDrive\Documents\vscode\TOPG\api\trenchbot.py                                | Python           |         21 |         15 |          7 |         43 |
+| c:\Users\ansha\OneDrive\Documents\vscode\TOPG\api\truthsocial.py                              | Python           |        276 |         73 |         79 |        428 |
+| c:\Users\ansha\OneDrive\Documents\vscode\TOPG\api\website_analyzer.py                         | Python           |      1,233 |        231 |        296 |      1,760 |
+| c:\Users\ansha\OneDrive\Documents\vscode\TOPG\bot\__init__.py                                 | Python           |          0 |          0 |          1 |          1 |
+| c:\Users\ansha\OneDrive\Documents\vscode\TOPG\bot\crypto_bot.py                               | Python           |        388 |        123 |         91 |        602 |
+| c:\Users\ansha\OneDrive\Documents\vscode\TOPG\bot\error_handler.py                            | Python           |         49 |         21 |          8 |         78 |
+| c:\Users\ansha\OneDrive\Documents\vscode\TOPG\bot\events.py                                   | Python           |        169 |         88 |         47 |        304 |
+| c:\Users\ansha\OneDrive\Documents\vscode\TOPG\commands\__init__.py                            | Python           |          0 |          0 |          1 |          1 |
+| c:\Users\ansha\OneDrive\Documents\vscode\TOPG\commands\about_to_graduate_tracker_commandsr.py | Python           |        224 |         30 |         65 |        319 |
+| c:\Users\ansha\OneDrive\Documents\vscode\TOPG\commands\ban_commands.py                        | Python           |        108 |          9 |         17 |        134 |
+| c:\Users\ansha\OneDrive\Documents\vscode\TOPG\commands\bundle_checker_commands.py             | Python           |         37 |         18 |         12 |         67 |
+| c:\Users\ansha\OneDrive\Documents\vscode\TOPG\commands\calculator_commands.py                 | Python           |        218 |         22 |         40 |        280 |
+| c:\Users\ansha\OneDrive\Documents\vscode\TOPG\commands\dex_tracker_commands.py                | Python           |        227 |         30 |         62 |        319 |
+| c:\Users\ansha\OneDrive\Documents\vscode\TOPG\commands\explain_commands.py                    | Python           |        399 |         20 |         88 |        507 |
+| c:\Users\ansha\OneDrive\Documents\vscode\TOPG\commands\flex_commands.py                       | Python           |         82 |         24 |         19 |        125 |
+| c:\Users\ansha\OneDrive\Documents\vscode\TOPG\commands\github_checker_commands.py             | Python           |         70 |         20 |         18 |        108 |
+| c:\Users\ansha\OneDrive\Documents\vscode\TOPG\commands\health_commands.py                     | Python           |         40 |          7 |         12 |         59 |
+| c:\Users\ansha\OneDrive\Documents\vscode\TOPG\commands\kalshi_commands.py                     | Python           |         94 |         18 |         21 |        133 |
+| c:\Users\ansha\OneDrive\Documents\vscode\TOPG\commands\migration_tracker_commands.py          | Python           |        222 |         28 |         63 |        313 |
+| c:\Users\ansha\OneDrive\Documents\vscode\TOPG\commands\nword_tracking_commands.py             | Python           |        187 |         15 |         33 |        235 |
+| c:\Users\ansha\OneDrive\Documents\vscode\TOPG\commands\say_commands.py                        | Python           |         28 |          9 |         12 |         49 |
+| c:\Users\ansha\OneDrive\Documents\vscode\TOPG\commands\settings_commands.py                   | Python           |        284 |         27 |         42 |        353 |
+| c:\Users\ansha\OneDrive\Documents\vscode\TOPG\commands\truth_commands_commands.py             | Python           |        478 |         89 |        116 |        683 |
+| c:\Users\ansha\OneDrive\Documents\vscode\TOPG\commands\wallet_finder_commands.py              | Python           |         72 |         10 |         12 |         94 |
+| c:\Users\ansha\OneDrive\Documents\vscode\TOPG\commands\website_analysis_commands.py           | Python           |         70 |         20 |         18 |        108 |
+| c:\Users\ansha\OneDrive\Documents\vscode\TOPG\config.py                                       | Python           |        140 |         71 |         45 |        256 |
+| c:\Users\ansha\OneDrive\Documents\vscode\TOPG\logs\bot_20250222.log                           | Log              |          2 |          0 |          1 |          3 |
+| c:\Users\ansha\OneDrive\Documents\vscode\TOPG\logs\bot_20250310.log                           | Log              |          2 |          0 |          1 |          3 |
+| c:\Users\ansha\OneDrive\Documents\vscode\TOPG\logs\bot_20250311.log                           | Log              |         16 |          0 |          1 |         17 |
+| c:\Users\ansha\OneDrive\Documents\vscode\TOPG\logs\bot_20250312.log                           | Log              |         24 |          0 |          1 |         25 |
+| c:\Users\ansha\OneDrive\Documents\vscode\TOPG\logs\bot_20250313.log                           | Log              |         34 |          0 |          1 |         35 |
+| c:\Users\ansha\OneDrive\Documents\vscode\TOPG\logs\bot_20250314.log                           | Log              |         36 |          0 |          1 |         37 |
+| c:\Users\ansha\OneDrive\Documents\vscode\TOPG\logs\bot_20250315.log                           | Log              |         26 |          0 |          1 |         27 |
+| c:\Users\ansha\OneDrive\Documents\vscode\TOPG\logs\bot_20250316.log                           | Log              |         62 |          0 |          1 |         63 |
+| c:\Users\ansha\OneDrive\Documents\vscode\TOPG\logs\bot_20250317.log                           | Log              |         34 |          0 |          1 |         35 |
+| c:\Users\ansha\OneDrive\Documents\vscode\TOPG\logs\bot_20250318.log                           | Log              |         69 |          0 |          1 |         70 |
+| c:\Users\ansha\OneDrive\Documents\vscode\TOPG\logs\bot_20250319.log                           | Log              |         59 |          0 |          1 |         60 |
+| c:\Users\ansha\OneDrive\Documents\vscode\TOPG\logs\bot_20250320.log                           | Log              |          1 |          0 |          1 |          2 |
+| c:\Users\ansha\OneDrive\Documents\vscode\TOPG\logs\bot_20250321.log                           | Log              |         35 |          0 |          1 |         36 |
+| c:\Users\ansha\OneDrive\Documents\vscode\TOPG\logs\bot_20250322.log                           | Log              |         13 |          0 |          1 |         14 |
+| c:\Users\ansha\OneDrive\Documents\vscode\TOPG\logs\bot_20250323.log                           | Log              |         69 |          0 |          1 |         70 |
+| c:\Users\ansha\OneDrive\Documents\vscode\TOPG\logs\bot_20250324.log                           | Log              |        143 |          0 |          1 |        144 |
+| c:\Users\ansha\OneDrive\Documents\vscode\TOPG\logs\bot_20250325.log                           | Log              |         37 |          0 |          1 |         38 |
+| c:\Users\ansha\OneDrive\Documents\vscode\TOPG\logs\bot_20250326.log                           | Log              |         23 |          0 |          1 |         24 |
+| c:\Users\ansha\OneDrive\Documents\vscode\TOPG\logs\bot_20250327.log                           | Log              |         20 |          0 |          1 |         21 |
+| c:\Users\ansha\OneDrive\Documents\vscode\TOPG\logs\bot_20250329.log                           | Log              |         29 |          0 |          1 |         30 |
+| c:\Users\ansha\OneDrive\Documents\vscode\TOPG\logs\bot_20250330.log                           | Log              |        113 |          0 |          1 |        114 |
+| c:\Users\ansha\OneDrive\Documents\vscode\TOPG\logs\bot_20250331.log                           | Log              |         20 |          0 |          1 |         21 |
+| c:\Users\ansha\OneDrive\Documents\vscode\TOPG\logs\bot_20250401.log                           | Log              |         29 |          0 |          1 |         30 |
+| c:\Users\ansha\OneDrive\Documents\vscode\TOPG\logs\bot_20250402.log                           | Log              |         77 |          0 |          1 |         78 |
+| c:\Users\ansha\OneDrive\Documents\vscode\TOPG\logs\bot_20250403.log                           | Log              |         94 |          0 |          1 |         95 |
+| c:\Users\ansha\OneDrive\Documents\vscode\TOPG\logs\bot_20250404.log                           | Log              |          4 |          0 |          1 |          5 |
+| c:\Users\ansha\OneDrive\Documents\vscode\TOPG\logs\bot_20250405.log                           | Log              |        721 |          0 |        907 |      1,628 |
+| c:\Users\ansha\OneDrive\Documents\vscode\TOPG\logs\bot_20250406.log                           | Log              |         25 |          0 |          1 |         26 |
+| c:\Users\ansha\OneDrive\Documents\vscode\TOPG\logs\bot_20250407.log                           | Log              |         42 |          0 |          1 |         43 |
+| c:\Users\ansha\OneDrive\Documents\vscode\TOPG\logs\bot_20250409.log                           | Log              |         13 |          0 |          1 |         14 |
+| c:\Users\ansha\OneDrive\Documents\vscode\TOPG\logs\bot_20250410.log                           | Log              |        100 |          0 |          1 |        101 |
+| c:\Users\ansha\OneDrive\Documents\vscode\TOPG\logs\bot_20250411.log                           | Log              |         36 |          0 |          1 |         37 |
+| c:\Users\ansha\OneDrive\Documents\vscode\TOPG\logs\bot_20250412.log                           | Log              |        791 |          0 |          8 |        799 |
+| c:\Users\ansha\OneDrive\Documents\vscode\TOPG\logs\bot_20250413.log                           | Log              |        313 |          0 |          1 |        314 |
+| c:\Users\ansha\OneDrive\Documents\vscode\TOPG\logs\bot_20250414.log                           | Log              |        295 |          0 |          1 |        296 |
+| c:\Users\ansha\OneDrive\Documents\vscode\TOPG\logs\bot_20250415.log                           | Log              |        249 |          0 |          1 |        250 |
+| c:\Users\ansha\OneDrive\Documents\vscode\TOPG\logs\bot_20250416.log                           | Log              |        289 |          0 |          1 |        290 |
+| c:\Users\ansha\OneDrive\Documents\vscode\TOPG\logs\bot_20250418.log                           | Log              |        335 |          0 |          1 |        336 |
+| c:\Users\ansha\OneDrive\Documents\vscode\TOPG\logs\bot_20250419.log                           | Log              |        143 |          0 |          1 |        144 |
+| c:\Users\ansha\OneDrive\Documents\vscode\TOPG\logs\bot_20250420.log                           | Log              |        246 |          0 |          1 |        247 |
+| c:\Users\ansha\OneDrive\Documents\vscode\TOPG\logs\bot_20250421.log                           | Log              |        219 |          0 |          1 |        220 |
+| c:\Users\ansha\OneDrive\Documents\vscode\TOPG\logs\bot_20250423.log                           | Log              |        302 |          0 |          1 |        303 |
+| c:\Users\ansha\OneDrive\Documents\vscode\TOPG\logs\bot_20250425.log                           | Log              |        557 |          0 |          9 |        566 |
+| c:\Users\ansha\OneDrive\Documents\vscode\TOPG\logs\bot_20250426.log                           | Log              |        368 |          0 |          1 |        369 |
+| c:\Users\ansha\OneDrive\Documents\vscode\TOPG\logs\bot_20250427.log                           | Log              |      4,015 |          0 |          3 |      4,018 |
+| c:\Users\ansha\OneDrive\Documents\vscode\TOPG\logs\bot_20250428.log                           | Log              |        401 |          0 |          1 |        402 |
+| c:\Users\ansha\OneDrive\Documents\vscode\TOPG\logs\bot_20250429.log                           | Log              |        467 |          0 |          1 |        468 |
+| c:\Users\ansha\OneDrive\Documents\vscode\TOPG\logs\bot_20250430.log                           | Log              |     10,343 |          0 |          1 |     10,344 |
+| c:\Users\ansha\OneDrive\Documents\vscode\TOPG\logs\bot_20250501.log                           | Log              |     21,405 |          0 |          1 |     21,406 |
+| c:\Users\ansha\OneDrive\Documents\vscode\TOPG\logs\bot_20250503.log                           | Log              |      9,662 |          0 |          1 |      9,663 |
+| c:\Users\ansha\OneDrive\Documents\vscode\TOPG\logs\bot_20250504.log                           | Log              |     23,153 |          0 |          1 |     23,154 |
+| c:\Users\ansha\OneDrive\Documents\vscode\TOPG\logs\bot_20250506.log                           | Log              |     11,464 |          0 |          1 |     11,465 |
+| c:\Users\ansha\OneDrive\Documents\vscode\TOPG\logs\bot_20250507.log                           | Log              |     27,574 |          0 |          1 |     27,575 |
+| c:\Users\ansha\OneDrive\Documents\vscode\TOPG\logs\bot_20250508.log                           | Log              |        667 |          0 |          1 |        668 |
+| c:\Users\ansha\OneDrive\Documents\vscode\TOPG\logs\bot_20250509.log                           | Log              |        175 |          0 |          1 |        176 |
+| c:\Users\ansha\OneDrive\Documents\vscode\TOPG\logs\bot_20250510.log                           | Log              |        590 |          0 |          3 |        593 |
+| c:\Users\ansha\OneDrive\Documents\vscode\TOPG\logs\bot_20250511.log                           | Log              |        173 |          0 |          1 |        174 |
+| c:\Users\ansha\OneDrive\Documents\vscode\TOPG\logs\bot_20250512.log                           | Log              |      4,438 |          0 |          1 |      4,439 |
+| c:\Users\ansha\OneDrive\Documents\vscode\TOPG\logs\bot_20250513.log                           | Log              |        616 |          0 |          1 |        617 |
+| c:\Users\ansha\OneDrive\Documents\vscode\TOPG\logs\bot_20250529.log                           | Log              |        335 |          0 |          1 |        336 |
+| c:\Users\ansha\OneDrive\Documents\vscode\TOPG\logs\bot_20250530.log                           | Log              |         61 |          0 |          1 |         62 |
+| c:\Users\ansha\OneDrive\Documents\vscode\TOPG\logs\bot_20250604.log                           | Log              |        513 |          0 |          1 |        514 |
+| c:\Users\ansha\OneDrive\Documents\vscode\TOPG\logs\bot_20250605.log                           | Log              |        405 |          0 |          1 |        406 |
+| c:\Users\ansha\OneDrive\Documents\vscode\TOPG\logs\bot_20250606.log                           | Log              |      1,058 |          0 |          1 |      1,059 |
+| c:\Users\ansha\OneDrive\Documents\vscode\TOPG\logs\bot_20250607.log                           | Log              |      2,128 |          0 |          1 |      2,129 |
+| c:\Users\ansha\OneDrive\Documents\vscode\TOPG\logs\bot_20250608.log                           | Log              |      1,416 |          0 |          1 |      1,417 |
+| c:\Users\ansha\OneDrive\Documents\vscode\TOPG\logs\bot_20250610.log                           | Log              |         98 |          0 |          1 |         99 |
+| c:\Users\ansha\OneDrive\Documents\vscode\TOPG\logs\bot_20250611.log                           | Log              |         55 |          0 |          1 |         56 |
+| c:\Users\ansha\OneDrive\Documents\vscode\TOPG\logs\bot_20250613.log                           | Log              |         73 |          0 |          1 |         74 |
+| c:\Users\ansha\OneDrive\Documents\vscode\TOPG\logs\bot_20250616.log                           | Log              |        214 |          0 |          1 |        215 |
+| c:\Users\ansha\OneDrive\Documents\vscode\TOPG\logs\bot_20250618.log                           | Log              |        199 |          0 |          1 |        200 |
+| c:\Users\ansha\OneDrive\Documents\vscode\TOPG\logs\bot_20250619.log                           | Log              |        111 |          0 |          1 |        112 |
+| c:\Users\ansha\OneDrive\Documents\vscode\TOPG\logs\bot_20250621.log                           | Log              |        179 |          0 |          1 |        180 |
+| c:\Users\ansha\OneDrive\Documents\vscode\TOPG\logs\bot_20250622.log                           | Log              |         58 |          0 |          1 |         59 |
+| c:\Users\ansha\OneDrive\Documents\vscode\TOPG\logs\bot_20250624.log                           | Log              |         67 |          0 |          1 |         68 |
+| c:\Users\ansha\OneDrive\Documents\vscode\TOPG\logs\bot_20250706.log                           | Log              |      2,069 |          0 |          1 |      2,070 |
+| c:\Users\ansha\OneDrive\Documents\vscode\TOPG\logs\bot_20250709.log                           | Log              |         45 |          0 |          1 |         46 |
+| c:\Users\ansha\OneDrive\Documents\vscode\TOPG\logs\bot_20250710.log                           | Log              |        526 |          0 |          1 |        527 |
+| c:\Users\ansha\OneDrive\Documents\vscode\TOPG\logs\bot_20250731.log                           | Log              |         94 |          0 |          1 |         95 |
+| c:\Users\ansha\OneDrive\Documents\vscode\TOPG\logs\bot_20250801.log                           | Log              |        157 |          0 |          1 |        158 |
+| c:\Users\ansha\OneDrive\Documents\vscode\TOPG\logs\bot_20250927.log                           | Log              |         50 |          0 |          1 |         51 |
+| c:\Users\ansha\OneDrive\Documents\vscode\TOPG\logs\bot_20250928.log                           | Log              |        274 |          0 |          1 |        275 |
+| c:\Users\ansha\OneDrive\Documents\vscode\TOPG\logs\bot_20251002.log                           | Log              |        180 |          0 |          1 |        181 |
+| c:\Users\ansha\OneDrive\Documents\vscode\TOPG\logs\bot_20251120.log                           | Log              |        226 |          0 |          1 |        227 |
+| c:\Users\ansha\OneDrive\Documents\vscode\TOPG\logs\bot_20251121.log                           | Log              |        119 |          0 |          1 |        120 |
+| c:\Users\ansha\OneDrive\Documents\vscode\TOPG\logs\bot_20251130.log                           | Log              |         37 |          0 |          1 |         38 |
+| c:\Users\ansha\OneDrive\Documents\vscode\TOPG\logs\bot_20251201.log                           | Log              |        241 |          0 |          1 |        242 |
+| c:\Users\ansha\OneDrive\Documents\vscode\TOPG\main.py                                         | Python           |         30 |          6 |          3 |         39 |
+| c:\Users\ansha\OneDrive\Documents\vscode\TOPG\repository\__init__.py                          | Python           |          0 |          0 |          1 |          1 |
+| c:\Users\ansha\OneDrive\Documents\vscode\TOPG\repository\about_to_graduate_repo.py            | Python           |        134 |         54 |         25 |        213 |
+| c:\Users\ansha\OneDrive\Documents\vscode\TOPG\repository\auto_messaging_settings_repo.py      | Python           |        188 |         39 |         40 |        267 |
+| c:\Users\ansha\OneDrive\Documents\vscode\TOPG\repository\dex_tracker_repo.py                  | Python           |        149 |         93 |         26 |        268 |
+| c:\Users\ansha\OneDrive\Documents\vscode\TOPG\repository\github_analyzer_repo.py              | Python           |         61 |         19 |         14 |         94 |
+| c:\Users\ansha\OneDrive\Documents\vscode\TOPG\repository\migration_tracker_repo.py            | Python           |        122 |         54 |         25 |        201 |
+| c:\Users\ansha\OneDrive\Documents\vscode\TOPG\repository\nword_tracking_repo.py               | Python           |        114 |         57 |         19 |        190 |
+| c:\Users\ansha\OneDrive\Documents\vscode\TOPG\repository\truth_repo.py                        | Python           |        343 |        120 |         74 |        537 |
+| c:\Users\ansha\OneDrive\Documents\vscode\TOPG\requirements.txt                                | pip requirements |         38 |          0 |          0 |         38 |
+| c:\Users\ansha\OneDrive\Documents\vscode\TOPG\service\__init__.py                             | Python           |          0 |          0 |          1 |          1 |
+| c:\Users\ansha\OneDrive\Documents\vscode\TOPG\service\about_to_graduate_tracker_service.py    | Python           |        202 |         33 |         60 |        295 |
+| c:\Users\ansha\OneDrive\Documents\vscode\TOPG\service\address_service.py                      | Python           |        147 |         71 |         39 |        257 |
+| c:\Users\ansha\OneDrive\Documents\vscode\TOPG\service\auto_message_settings_service.py        | Python           |         81 |         17 |         17 |        115 |
+| c:\Users\ansha\OneDrive\Documents\vscode\TOPG\service\dex_tracker_service.py                  | Python           |        191 |         39 |         66 |        296 |
+| c:\Users\ansha\OneDrive\Documents\vscode\TOPG\service\flex_service.py                         | Python           |        244 |         27 |         36 |        307 |
+| c:\Users\ansha\OneDrive\Documents\vscode\TOPG\service\forwarding_service.py                   | Python           |        314 |         33 |         82 |        429 |
+| c:\Users\ansha\OneDrive\Documents\vscode\TOPG\service\message_service.py                      | Python           |         31 |         13 |         12 |         56 |
+| c:\Users\ansha\OneDrive\Documents\vscode\TOPG\service\migration_tracker_service.py            | Python           |        446 |         64 |        111 |        621 |
+| c:\Users\ansha\OneDrive\Documents\vscode\TOPG\service\mysql_service.py                        | Python           |        248 |         98 |         38 |        384 |
+| c:\Users\ansha\OneDrive\Documents\vscode\TOPG\service\nword_tracking_service.py               | Python           |         22 |         24 |          6 |         52 |
+| c:\Users\ansha\OneDrive\Documents\vscode\TOPG\service\proxy_service.py                        | Python           |         74 |         25 |         21 |        120 |
+| c:\Users\ansha\OneDrive\Documents\vscode\TOPG\service\say_service.py                          | Python           |        227 |         13 |         33 |        273 |
+| c:\Users\ansha\OneDrive\Documents\vscode\TOPG\service\truth_tracker_service.py                | Python           |        269 |         61 |         90 |        420 |
+| c:\Users\ansha\OneDrive\Documents\vscode\TOPG\service\username_ban_service.py                 | Python           |        139 |         45 |         41 |        225 |
+| c:\Users\ansha\OneDrive\Documents\vscode\TOPG\service\wallet_finder_service.py                | Python           |        183 |         35 |         29 |        247 |
+| c:\Users\ansha\OneDrive\Documents\vscode\TOPG\start.sh                                        | Shell Script     |          8 |          3 |          2 |         13 |
+| c:\Users\ansha\OneDrive\Documents\vscode\TOPG\ui\__init__.py                                  | Python           |          0 |          0 |          1 |          1 |
+| c:\Users\ansha\OneDrive\Documents\vscode\TOPG\ui\embeds.py                                    | Python           |      1,731 |        393 |        417 |      2,541 |
+| c:\Users\ansha\OneDrive\Documents\vscode\TOPG\ui\formatters.py                                | Python           |          0 |          0 |          1 |          1 |
+| c:\Users\ansha\OneDrive\Documents\vscode\TOPG\ui\modals.py                                    | Python           |        541 |         52 |         90 |        683 |
+| c:\Users\ansha\OneDrive\Documents\vscode\TOPG\ui\views.py                                     | Python           |        860 |         85 |        170 |      1,115 |
+| c:\Users\ansha\OneDrive\Documents\vscode\TOPG\utils\__init__.py                               | Python           |          0 |          0 |          1 |          1 |
+| c:\Users\ansha\OneDrive\Documents\vscode\TOPG\utils\analytics_utils.py                        | Python           |        208 |         96 |         47 |        351 |
+| c:\Users\ansha\OneDrive\Documents\vscode\TOPG\utils\formatters.py                             | Python           |        160 |        107 |         52 |        319 |
+| c:\Users\ansha\OneDrive\Documents\vscode\TOPG\utils\helper.py                                 | Python           |        370 |        145 |         85 |        600 |
+| c:\Users\ansha\OneDrive\Documents\vscode\TOPG\utils\logger.py                                 | Python           |         51 |         26 |         17 |         94 |
+| c:\Users\ansha\OneDrive\Documents\vscode\TOPG\utils\validators.py                             | Python           |        253 |         97 |         65 |        415 |
+| Total                                                                                         |                  |    146,297 |      3,377 |      4,295 |    153,969 |
++-----------------------------------------------------------------------------------------------+------------------+------------+------------+------------+------------+

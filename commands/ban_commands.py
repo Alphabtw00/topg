@@ -70,14 +70,13 @@ class BanCommands(commands.Cog):
             )
             return
 
-        await interaction.response.defer(ephemeral=False, thinking=True)
+        await interaction.response.defer(ephemeral=True)
 
         try:
             formatted_reason = f"{reason} (Banned by {interaction.user})"
             ban_result = await ban_user(self.bot, user, formatted_reason, delete_days=delete_days)
 
             if ban_result:
-                # --- Ephemeral mod-only info message ---
                 info_embed = discord.Embed(
                     title="User Banned",
                     color=discord.Color.red(),
@@ -87,24 +86,16 @@ class BanCommands(commands.Cog):
                 info_embed.add_field(name="Username", value=str(user), inline=True)
                 info_embed.add_field(name="User ID", value=user.id, inline=True)
                 info_embed.add_field(name="Banned by", value=interaction.user.mention, inline=True)
+                info_embed.add_field(name="Banned user", value=user.mention, inline=True)
                 info_embed.add_field(name="Reason", value=reason, inline=False)
                 days_text = f"{delete_days} day(s)" if delete_days > 0 else "None"
                 info_embed.add_field(name="Messages Deleted", value=days_text, inline=True)
                 if user.avatar:
                     info_embed.set_thumbnail(url=user.avatar.url)
+                if BAN_GIF_URL:
+                    info_embed.set_image(url=BAN_GIF_URL)
 
                 await interaction.followup.send(embed=info_embed, ephemeral=True)
-
-                # --- Public message with gif, auto-deletes in 10 mins ---
-                public_embed = discord.Embed(
-                    description=f"{user.mention} has been banned from the server.",
-                    color=discord.Color.red()
-                )
-                if BAN_GIF_URL:
-                    public_embed.set_image(url=BAN_GIF_URL)
-
-                public_msg = await interaction.channel.send(embed=public_embed)
-                asyncio.create_task(self._delete_after(public_msg, 600))
 
                 self.bot.record_command_usage("ban")
                 logger.info(f"Ban command used by {safe_text(interaction.user.display_name)} ({safe_text(interaction.user.name)}) | Target: {safe_text(user.display_name)} ({safe_text(user.name)}) [ID: {user.id}] in {safe_text(interaction.guild.name)} (ID: {interaction.guild.id})")
@@ -121,13 +112,6 @@ class BanCommands(commands.Cog):
                 "An error occurred while trying to ban the user. Please check the logs.",
                 ephemeral=True
             )
-
-    async def _delete_after(self, message, delay: int):
-        await asyncio.sleep(delay)
-        try:
-            await message.delete()
-        except Exception:
-            pass
 
     @ban_slash.error
     async def ban_error(self, interaction, error):

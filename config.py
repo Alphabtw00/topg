@@ -219,8 +219,8 @@ VERIFIED_EMOJI = "<:Pink_Verified:1360315088837415135>"
 # Moderation Configuration
 # ==============================================
 # Server-specific username ban configuration
-USERNAME_BAN_SERVER_ID = int(os.getenv('USERNAME_BAN_SERVER_ID', 0)) or None
-USERNAME_BAN_LOG_CHANNEL = int(os.getenv('USERNAME_BAN_LOG_CHANNEL', 0)) or None
+USERNAME_BAN_LOG_CHANNEL = int(os.getenv('USERNAME_BAN_LOG_CHANNEL') or 0) or None
+USERNAME_BAN_SERVER_ID   = int(os.getenv('USERNAME_BAN_SERVER_ID') or 0) or None
 
 # Ban keywords - Add some common variations
 BAN_KEYWORDS = ["daniworldwide", "dani worldwide", "dani_worldwide", "d@ni w0rldwide"]
