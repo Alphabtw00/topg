@@ -12,9 +12,7 @@ curl_cffi
 discord.py[voice]
 frozenlist
 idna
-imagehash
 multidict
-numpy
 pillow
 propcache
 psutil
@@ -23,16 +21,13 @@ PyMySQL
 python-dateutil
 python-dotenv
 python-whois
-PyWavelets
-scipy
 six
 soupsieve
 typing-extensions
 urllib3
 yarl
 aiocache
-gql[all]
+gql[websockets]
 cryptography
 openpyxl
-pillow
 watchdog

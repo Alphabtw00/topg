@@ -7,7 +7,6 @@ import re
 import ssl
 import socket
 import whois
-import imagehash
 from io import BytesIO
 from PIL import Image
 from datetime import datetime, timedelta
